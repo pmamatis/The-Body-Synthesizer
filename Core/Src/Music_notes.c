@@ -187,7 +187,8 @@ return keyindex;
 }
 
 double Get_Note_Frequency(uint8_t index,uint8_t octave){
-	double tmp =notes[12*octave+index];
+	int tmp_octave = 12*octave; //DEBUG
+	double tmp =notes[tmp_octave+index];
 	return tmp;
 }
 
@@ -222,11 +223,13 @@ void Play_Chord(char root_note,uint8_t sex,  uint8_t octave, uint8_t chordtype){
 
 
 	for (int i=0; i < count; i++){
-		uint8_t tmp; //DEBUG
+		uint8_t tmp, scale_index, freq_index; //DEBUG
 			switch(chordtype){
 							case fifth:
-								tmp = root_note+scale[chord_5[i]-1];
-								note_frequency[i] = Get_Note_Frequency(Get_Keyindex(tmp), octave);
+								scale_index = chord_5[i]-1;
+								freq_index = Get_Keyindex(root_note)+scale[scale_index];
+								//freq_index = Get_Keyindex(tmp); //DEBUG
+								note_frequency[i] = Get_Note_Frequency(freq_index, octave);
 								  break;
 							case seventh:
 								note_frequency[i] = Get_Note_Frequency(Get_Keyindex(root_note+scale[chord_7[i]-1]), octave);

@@ -40,8 +40,8 @@ Body-Synthesizer_STM32_F746ZG.bin \
 all: Body-Synthesizer_STM32_F746ZG.elf secondary-outputs
 
 # Tool invocations
-Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) C:\Users\Max\Documents\GIT\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld
-	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Max\Documents\GIT\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) E:\GIT\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld
+	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"E:\GIT\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
