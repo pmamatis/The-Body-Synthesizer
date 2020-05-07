@@ -131,9 +131,10 @@ float notes[108] = {
 7458.62,
 7902.13};
 
-/** @brief lookuptable for respective note keys*/
-char keys[26] = {'C','C#','D','D#','E','F','F#','G','G#','A','B','H','C','C#','D','D#','E','F','F#','G','G#','A','B','H','C','C#'};
-
+/** @brief lookuptable for respective note keys
+ * @A*/
+char keys[26] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
+//                    C#      D#		  F#	  G#				  C#	  D#		  F#	  G#				  C#
 
 
 
@@ -185,8 +186,8 @@ uint8_t Get_Keyindex(char key){
 return keyindex;
 }
 
-uint32_t Get_Note_Frequency(uint8_t index,uint8_t octave){
-	uint32_t tmp =notes[12*octave+index];
+double Get_Note_Frequency(uint8_t index,uint8_t octave){
+	double tmp =notes[12*octave+index];
 	return tmp;
 }
 
@@ -216,7 +217,7 @@ void Play_Chord(char root_note,uint8_t sex,  uint8_t octave, uint8_t chordtype){
 		for (int i=0;i<9;i++)
 			scale[i]=minor_scale[i];
 	}
-	uint8_t note_frequency[count];
+	double note_frequency[count];
 	note_frequency[3] = 0;
 
 

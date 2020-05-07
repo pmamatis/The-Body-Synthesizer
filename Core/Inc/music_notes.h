@@ -29,7 +29,7 @@ enum sex_type{
 };
 uint8_t Get_Keyindex(char key);
 void Play_Note(char note, uint8_t octave);
-uint32_t Get_Note_Frequency(uint8_t index,uint8_t octave);
+double Get_Note_Frequency(uint8_t index,uint8_t octave);
 void Play_Chord(char root_note,uint8_t sex, uint8_t octave, uint8_t chordtype);
 
 
