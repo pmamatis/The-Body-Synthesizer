@@ -9,6 +9,7 @@ EWARM/*
 *.o
 .mxproject
 Debug/*
+RemoteSystemsTempFiles/*
 
 .metadata/*
 
