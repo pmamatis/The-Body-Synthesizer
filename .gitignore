@@ -10,6 +10,7 @@ EWARM/*
 .mxproject
 Debug/*
 
+.metadata/*
 
 *.settings
 
