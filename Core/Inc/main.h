@@ -37,6 +37,10 @@ extern "C" {
 #include "SignalErzeugung.h"
 #include "music_notes.h"
 
+#include "filters.h"
+#include "arm_math.h"
+#include "math_helper.h"
+
 
 /* USER CODE END Includes */
 
