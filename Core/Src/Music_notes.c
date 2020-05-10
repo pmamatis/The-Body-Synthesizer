@@ -193,7 +193,7 @@ double Get_Note_Frequency(uint8_t index,uint8_t octave){
 }
 
 void Play_Note(char note, uint8_t octave){
-	Output_Signal(hdac, htim8, Get_Note_Frequency(Get_Keyindex(note), octave), SIN);
+	//Output_Signal(hdac, htim8, Get_Note_Frequency(Get_Keyindex(note), octave), SIN);
 }
 
 
@@ -239,7 +239,7 @@ void Play_Chord(char root_note,uint8_t sex,  uint8_t octave, uint8_t chordtype){
 								  break;
 			}
 	}
-	Output_Signal(hdac, htim8, SignaleAddieren(count,SIN,note_frequency[0],SIN,note_frequency[1],SIN,note_frequency[2],SIN,note_frequency[3]), ADDSIG);
+	//Output_Signal(hdac, htim8, SignaleAddieren(count,SIN,note_frequency[0],SIN,note_frequency[1],SIN,note_frequency[2],SIN,note_frequency[3]), ADDSIG);
 }
 
 

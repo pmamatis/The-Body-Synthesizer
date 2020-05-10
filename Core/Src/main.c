@@ -111,7 +111,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   //HAL_TIM_Base_Start(&htim8);
   //HAL_TIM_Base_Start(&htim6);
-  SignalErzeugung_Init(htim8,hdac);
+Signal_Synthesis_Init(htim8, hdac);
   //HAL_DACEx_TriangleWaveGenerate(&hdac, DAC_CHANNEL_2, DAC_TRIANGLEAMPLITUDE_2047);
   /* USER CODE END 2 */
 
@@ -122,14 +122,15 @@ int main(void)
 
 
 
-
+Signal_Synthesis(1,SIN,(double)1000);
+Output_Signal(hdac);
 
   	//ChangePWMArray(0.5);
   	//Output_Signal(hdac, htim8, 100, 3);
 
 //  	Output_Signal(hdac, htim8, SignaleAddieren(2,SIN,10,SIN,8000), ADDSIG);
 //  Output_Signal(hdac, htim8,8000, SIN);
-  Play_Chord('D', major, 5, fifth);
+//  Play_Chord('D', major, 5, fifth);
 //  Play_Note('C', 5);
   while (1)
 {

@@ -34,7 +34,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 
 #include "stm32f7xx_hal.h"
-#include "SignalErzeugung.h"
+#include "signal_synthesis.h"
 #include "music_notes.h"
 
 
