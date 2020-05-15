@@ -89,7 +89,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -122,7 +122,7 @@ Signal_Synthesis_Init(htim8, hdac);
 
 
 
-Signal_Synthesis(1,SIN,(double)1000);
+Signal_Synthesis(1,SIN,(double)7941,17);
 Output_Signal(hdac);
 
   	//ChangePWMArray(0.5);

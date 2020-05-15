@@ -35,7 +35,7 @@
 
 //defines
 /**@brief number of support points for the output vector*/
-#define SUPPORT_POINTS  65000
+#define SUPPORT_POINTS  32768
 
 /**@brief maximale Amplitude der Signale in milli Volt*/
 #define AMPLITUDE 	2000
@@ -52,7 +52,7 @@
 /**@brief timer clock */
 #define CLOCK 108000000
 /**@brief counter period of the timer */
-#define COUNTER_PERIOD 50
+#define COUNTER_PERIOD 100
 /**@brief frequency of SIgnal if just one  whole period is writen into the vector */
 #define SAMPLE_FREQ CLOCK/(COUNTER_PERIOD*SUPPORT_POINTS)
 
@@ -74,14 +74,15 @@ struct signal{
 
 //Variables
 /** @brief signal support point array*/
-uint32_t output_vector[SUPPORT_POINTS];
-
+float calculate_vector[SUPPORT_POINTS];
+float sigFreq_sampleFreq_ratio;
+int lastIndex;
 
 
 //Funktionen
 
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
-double Signal_Synthesis(uint8_t count, ...);
+float Signal_Synthesis(uint8_t count, ...);
 HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac);
 #endif /* INC_SIGNALERZEUGUNG_H_ */
 

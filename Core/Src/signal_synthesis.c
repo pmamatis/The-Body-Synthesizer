@@ -45,7 +45,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
  *@return Die Funktion gibt den HAL Status des gestarteten DAC zurück
 
  */
-double Signal_Synthesis(uint8_t count, ...){
+float Signal_Synthesis(uint8_t count, ...){
 		uint16_t freqMin = 8000;
 		struct signal signals;
 		va_list argumentlist;
@@ -67,30 +67,24 @@ double Signal_Synthesis(uint8_t count, ...){
 			}
 		}
 
-		double wt, sinf0,addValue,tmp, wt_max;//DEBUG
-
-		//Schleife um alle Einträge des Ziel-Arrays zu beschreiben
+		float wt, sinf0,addValue,tmp, tmp1;//DEBUG
+		tmp1 = (float)SAMPLE_FREQ; //DEBUG
+		//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
-			wt_max = SUPPORT_POINTS/(signals.freq[j]/SAMPLE_FREQ );
-			double overflow = 0;
+			sigFreq_sampleFreq_ratio = signals.freq[j]/tmp1;
+			int wt_max = round(SUPPORT_POINTS/(sigFreq_sampleFreq_ratio));
+			lastIndex = wt_max * sigFreq_sampleFreq_ratio;
 
+				//Loop for the Array
 				for (int i = 0; i < SUPPORT_POINTS;i++){
-					wt = i + overflow;
-					if ( )
-					wt = i * normierung(SUPPORT_POINTS);
-//					double addValueSIN = 0;
-//					double addValueSaegezahn = 0;
-//					double addValueDreieck = 0;
-//					double addValuePWM = 0;
-						//Schleife um alle Signale an der i-ten Stelle des Ziel-Arrays aufzusummieren,
 
 								switch (signals.kind[j]) {
 										case SIN:
-
-											wt = signals.freq[j]/SAMPLE_FREQ * 2*M_PI
-
-											sinf0 = sin(); // Erzeugung des Sinus-Wertes abhängig von der kleinsten Frequenz
-											addValueSIN = addValueSIN + (maximalwert_DAC/2 * (sinf0 + 1) + OFFSET); // Addierten-Wert auf gewünschte Amplitude bringen
+										    tmp = (i % wt_max);
+											wt = (tmp/wt_max) * 2*M_PI;
+											sinf0 = sin(wt); // Erzeugung des Sinus-Wertes abhängig von der kleinsten Frequenz
+											addValue = sinf0;
+//											addValueSIN = addValueSIN + (maximalwert_DAC/2 * (sinf0 + 1) + OFFSET); // Addierten-Wert auf gewünschte Amplitude bringen
 											break;
 										case SAWTOOTH:
 											tmp = (int)(signals.freq[j]/SAMPLE_FREQ)*i; //Sägezahnwert durch beschleunigen des Counters abhängig von Frequenz bestimmen
@@ -115,11 +109,12 @@ double Signal_Synthesis(uint8_t count, ...){
 											return -1;
 											break;
 								}
+				calculate_vector[i] = addValue;
 
 				 }
 		//normierung des Signals
-		addValue =(addValueDreieck + addValuePWM + addValueSIN + addValueSaegezahn)/count; // auf Eins normieren
-		output_vector[i] = addValue;
+		//addValue =(addValueDreieck + addValuePWM + addValueSIN + addValueSaegezahn)/count; // auf Eins normieren
+
 		}
 
 		va_end(argumentlist);
@@ -139,10 +134,21 @@ double Signal_Synthesis(uint8_t count, ...){
 
  */
 HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
-
+		uint32_t output_vector[SUPPORT_POINTS];
+		uint8_t index[1000];
+		int j = 0;
 		HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
 
-		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector, SUPPORT_POINTS, DAC_ALIGN_12B_R);
+		for (int i = 0; i < SUPPORT_POINTS; i++){
+			output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
+
+			if (output_vector[i] > (maximalwert_DAC + OFFSET) ){
+				index[j] = i;
+				j++;
+		}
+		}
+
+		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector, lastIndex, DAC_ALIGN_12B_R);
 
 
 
