@@ -67,6 +67,7 @@ float Signal_Synthesis(uint8_t count, ...){
 			}
 		}
 
+		//
 		float wt, sinf0,addValue,tmp, tmp1;//DEBUG
 		tmp1 = (float)SAMPLE_FREQ; //DEBUG
 		//Loop to reach all Signals
