@@ -126,13 +126,15 @@ int main(void)
 
   	//ChangePWMArray(0.5);
   	//Output_Signal(hdac, htim8, 100, 3);
+  Output_Signal(hdac, htim8, 2093, SIN);
 
 //  	Output_Signal(hdac, htim8, SignaleAddieren(2,SIN,10,SIN,8000), ADDSIG);
 //  Output_Signal(hdac, htim8,8000, SIN);
-  Play_Chord('D', major, 5, fifth);
+//  Play_Chord('D', major, 5, fifth);
 //  Play_Note('C', 5);
   while (1)
 {
+
 //	  for (int i = 1; i <= 16 ;i++){
 //		  Output_Signal(hdac, htim8, SignaleAddieren(2,SIN,1000,SIN,i*500), ADDSIG);
 //	  HAL_Delay(4000);
