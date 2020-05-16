@@ -73,7 +73,7 @@ float Signal_Synthesis(uint8_t count, ...){
 		//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
 			sigFreq_sampleFreq_ratio = signals.freq[j]/tmp1;
-			int wt_max = round(SUPPORT_POINTS/(sigFreq_sampleFreq_ratio));
+			int wt_max =floor(signals.freq[j]/F_MIN * BLOCKSIZE)-1;
 			lastIndex = wt_max * sigFreq_sampleFreq_ratio;
 
 				//Loop for the Array
@@ -139,8 +139,13 @@ HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
 		uint8_t index[1000];
 		int j = 0;
 		HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
-
+		float tmp, tmp2;
+		uint32_t tmp3 ;
 		for (int i = 0; i < SUPPORT_POINTS; i++){
+
+			tmp = calculate_vector[i]+1;
+			tmp2 = tmp * maximalwert_DAC/2 ;
+			tmp3 = tmp2 +OFFSET;
 			output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
 
 			if (output_vector[i] > (maximalwert_DAC + OFFSET) ){

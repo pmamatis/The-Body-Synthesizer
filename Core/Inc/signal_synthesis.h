@@ -33,9 +33,8 @@
 
 
 
-//defines
-/**@brief number of support points for the output vector*/
-#define SUPPORT_POINTS  32768
+
+
 
 /**@brief maximale Amplitude der Signale in milli Volt*/
 #define AMPLITUDE 	2000
@@ -47,15 +46,6 @@
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
 /**@brief normiert die Stützsetellen auf 2*Pi */
 #define normierung(stuetzstellen) 2*M_PI/stuetzstellen
-
-
-/**@brief timer clock */
-#define CLOCK 108000000
-/**@brief counter period of the timer */
-#define COUNTER_PERIOD 100
-/**@brief frequency of SIgnal if just one  whole period is writen into the vector */
-#define SAMPLE_FREQ CLOCK/(COUNTER_PERIOD*SUPPORT_POINTS)
-
 
 
 /**@brief Signalarten zur eingabe in Funktionen*/
@@ -72,11 +62,7 @@ struct signal{
 	double freq[10];
 };
 
-//Variables
-/** @brief signal support point array*/
-float calculate_vector[SUPPORT_POINTS];
-float sigFreq_sampleFreq_ratio;
-int lastIndex;
+
 
 
 //Funktionen

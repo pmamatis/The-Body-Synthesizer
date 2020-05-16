@@ -121,9 +121,9 @@ Signal_Synthesis_Init(htim8, hdac);
 
 
 
-
-Signal_Synthesis(1,SIN,(double)7941,17);
-Output_Signal(hdac);
+int tmp_36;
+Signal_Synthesis(1,SIN,(double)100);
+tmp_36 = Output_Signal(hdac);
 
   	//ChangePWMArray(0.5);
   	//Output_Signal(hdac, htim8, 100, 3);

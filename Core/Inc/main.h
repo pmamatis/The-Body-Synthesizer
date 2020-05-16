@@ -65,6 +65,35 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN Private defines */
 
+
+
+/**@brief number of support points for a single period*/
+#define SUPPORT_POINTS 19200  //20
+
+/**@brief output array size */
+#define BLOCKSIZE 19200
+
+/**@brief minimal frequency fittinig in the output-array */
+#define F_MIN 5
+
+/**@brief maximal frequency available with selected SUPPORT_POINTS*/
+#define F_MAX 4800
+
+/**@brief counter period of the timer 8 */
+#define COUNTER_PERIOD 1125
+
+/**@brief timer clock */
+#define CLOCK 108000000
+
+/**@brief frequency of SIgnal if just one  whole period is writen into the vector */
+#define SAMPLE_FREQ CLOCK/COUNTER_PERIOD
+
+//Variables
+/** @brief signal support point array*/
+float calculate_vector[SUPPORT_POINTS];
+float sigFreq_sampleFreq_ratio;
+int lastIndex;
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
