@@ -16,8 +16,8 @@
  *********************************/
 #define BUFFERSIZE	65536
 #define CLOCK		108000000
-#define TIMPERIOD	50
-#define SAMPLERATE	CLOCK/TIMPERIOD
+#define TIMPERIOD	1125
+#define SAMPLERATE	96000
 
 /***************************
  * @brief		Enumeration for DSP Debugging

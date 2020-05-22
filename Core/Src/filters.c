@@ -73,4 +73,5 @@ DSP_Status ProcessBP(struct BQFilter BP[2], float data[], uint16_t end){
 	return DSP_OK;
 }
 
+// DSP_Status AutoWah ()
 
