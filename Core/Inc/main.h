@@ -33,7 +33,6 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "stm32f7xx_hal.h"
 #include "SignalErzeugung.h"
 #include "music_notes.h"
 

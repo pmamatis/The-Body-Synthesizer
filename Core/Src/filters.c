@@ -3,6 +3,8 @@
   * @author  Max Lehmer
   * @date 	 07 May 2020
   * @brief	 Filter-Library
+  * @brief	 Based on Audio-EQ cookbook
+  * @brief   https://github.com/libaudioverse/libaudioverse/blob/master/audio%20eq%20cookbook.txt
 ******************************/
 #include "filters.h"
 
@@ -46,6 +48,8 @@ DSP_Status SetupBandpass(struct BQFilter BP[2], float cutoff_LP, float cutoff_HP
 
 	return DSP_OK;
 }
+
+
 
 DSP_Status ProcessFilter(struct BQFilter F, float data[], uint16_t end){
 

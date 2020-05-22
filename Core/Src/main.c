@@ -112,7 +112,7 @@ int main(void)
   //HAL_TIM_Base_Start(&htim8);
   //HAL_TIM_Base_Start(&htim6);
   SignalErzeugung_Init(htim8,hdac);
-  SetupLowpass(LP, 100, 0.7071);
+  //SetupLowpass(LP, 100, 0.7071);
 
   //HAL_DACEx_TriangleWaveGenerate(&hdac, DAC_CHANNEL_2, DAC_TRIANGLEAMPLITUDE_2047);
   /* USER CODE END 2 */
@@ -132,8 +132,6 @@ int main(void)
 //  	Output_Signal(hdac, htim8, SignaleAddieren(2,SIN,10,SIN,8000), ADDSIG);
 //  Output_Signal(hdac, htim8,8000, SIN);
   Play_Chord('D', major, 5, fifth);
-
-  ProcessFilter(LP, sinTable, 136);
 
 //  Play_Note('C', 5);
   while (1)
