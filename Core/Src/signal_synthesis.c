@@ -58,8 +58,8 @@ float Signal_Synthesis(uint8_t count, ...){
 			signals.kind[tmpCount] = va_arg(argumentlist, unsigned int);
 			signals.freq[tmpCount] = va_arg(argumentlist, double);
 
-			if (signals.freq[tmpCount] > 8000)
-				signals.freq[tmpCount] = 8000;
+			if (signals.freq[tmpCount] > F_MAX)
+				signals.freq[tmpCount] = F_MAX;
 
 			if(signals.freq[tmpCount] < freqMin){
 				freqMin = signals.freq[tmpCount];
@@ -68,12 +68,12 @@ float Signal_Synthesis(uint8_t count, ...){
 		}
 
 		//
-		float wt, sinf0,addValue,tmp, tmp1;//DEBUG
+		float wt, sinf0,addValue,tmp, tmp1, tmp2,tmp3,tmp4;//DEBUG
 		tmp1 = (float)SAMPLE_FREQ; //DEBUG
 		//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
 			sigFreq_sampleFreq_ratio = signals.freq[j]/tmp1;
-			int wt_max =floor(signals.freq[j]/F_MIN * BLOCKSIZE)-1;
+			int wt_max =floor(BLOCKSIZE/(signals.freq[j]/ F_MIN));
 			lastIndex = wt_max * sigFreq_sampleFreq_ratio;
 
 				//Loop for the Array
@@ -154,7 +154,7 @@ HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
 		}
 		}
 
-		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector, lastIndex, DAC_ALIGN_12B_R);
+		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector, BLOCKSIZE, DAC_ALIGN_12B_R);
 
 
 

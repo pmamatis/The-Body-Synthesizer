@@ -68,13 +68,13 @@ void Error_Handler(void);
 
 
 /**@brief number of support points for a single period*/
-#define SUPPORT_POINTS 19200  //20
+#define SUPPORT_POINTS 9600  //20
 
 /**@brief output array size */
-#define BLOCKSIZE 19200
+#define BLOCKSIZE 9600
 
 /**@brief minimal frequency fittinig in the output-array */
-#define F_MIN 5
+#define F_MIN 10
 
 /**@brief maximal frequency available with selected SUPPORT_POINTS*/
 #define F_MAX 4800
