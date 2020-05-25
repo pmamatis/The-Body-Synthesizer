@@ -68,13 +68,13 @@ void Error_Handler(void);
 
 
 /**@brief number of support points for a single period*/
-#define SUPPORT_POINTS 9600  //20
+#define SUPPORT_POINTS 20
 
 /**@brief output array size */
-#define BLOCKSIZE 9600
+#define BLOCKSIZE 19200
 
 /**@brief minimal frequency fittinig in the output-array */
-#define F_MIN 10
+#define F_MIN 5
 
 /**@brief maximal frequency available with selected SUPPORT_POINTS*/
 #define F_MAX 4800
@@ -90,7 +90,7 @@ void Error_Handler(void);
 
 //Variables
 /** @brief signal support point array*/
-float calculate_vector[SUPPORT_POINTS];
+float calculate_vector[BLOCKSIZE];
 float sigFreq_sampleFreq_ratio;
 int lastIndex;
 

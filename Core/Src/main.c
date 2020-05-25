@@ -48,6 +48,8 @@ DMA_HandleTypeDef hdma_dac1;
 TIM_HandleTypeDef htim6;
 TIM_HandleTypeDef htim8;
 
+UART_HandleTypeDef huart3;
+
 /* USER CODE BEGIN PV */
 HAL_StatusTypeDef PWM_status_TIM1, PWM_status_TIM8;
 
@@ -66,6 +68,7 @@ static void MX_TIM8_Init(void);
 static void MX_DMA_Init(void);
 static void MX_DAC_Init(void);
 static void MX_TIM6_Init(void);
+static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -85,11 +88,10 @@ int main(void)
 
   /* USER CODE END 1 */
 
-
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -108,10 +110,11 @@ int main(void)
   MX_DMA_Init();
   MX_DAC_Init();
   MX_TIM6_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
   //HAL_TIM_Base_Start(&htim8);
   //HAL_TIM_Base_Start(&htim6);
-Signal_Synthesis_Init(htim8, hdac);
+  Signal_Synthesis_Init(htim8, hdac);
   //HAL_DACEx_TriangleWaveGenerate(&hdac, DAC_CHANNEL_2, DAC_TRIANGLEAMPLITUDE_2047);
   /* USER CODE END 2 */
 
@@ -122,28 +125,24 @@ Signal_Synthesis_Init(htim8, hdac);
 
 
 int tmp_36;
-Signal_Synthesis(1,SIN,(double)1000);
-tmp_36 = Output_Signal(hdac);
-
-  	//ChangePWMArray(0.5);
-  	//Output_Signal(hdac, htim8, 100, 3);
-
-//  	Output_Signal(hdac, htim8, SignaleAddieren(2,SIN,10,SIN,8000), ADDSIG);
-//  Output_Signal(hdac, htim8,8000, SIN);
-//  Play_Chord('D', major, 5, fifth);
-//  Play_Note('C', 5);
+//Signal_Synthesis(1,SIN,(double)300);
+////for (int z=0;z< 100;z++){
+////	lastIndex =lastIndex-1;
+//tmp_36 = Output_Signal(hdac);
+//HAL_Delay(3000);
+//}
+//TEST(hdac);
+//uint8_t buffer[]="Hello World";
+//HAL_UART_Transmit(&huart3, buffer, 11, 100);
+Signal_Synthesis(1,SIN,(double)300);
   while (1)
 {
-//	  for (int i = 1; i <= 16 ;i++){
-//		  Output_Signal(hdac, htim8, SignaleAddieren(2,SIN,1000,SIN,i*500), ADDSIG);
-//	  HAL_Delay(4000);
-//	  }
-//  	Output_Signal(hdac, htim8, SignaleAddieren(2,SIN,6000,SIN,300), ADDSIG);
-//	HAL_Delay(1000);
-//	Output_Signal(hdac, htim8, SignaleAddieren(2,SAEGEZAHN,600,SIN,300), ADDSIG);
-//	HAL_Delay(1000);
-//	Output_Signal(hdac, htim8, SignaleAddieren(2,DREIECK,600,SIN,300), ADDSIG);
-//	HAL_Delay(1000);
+	//Signal_Synthesis(1,SIN,(double)300);
+	tmp_36 = Output_Signal(hdac);
+	HAL_Delay(1000);
+	//Signal_Synthesis(1,SIN,(double)300);
+	tmp_36 = Output_Signal(hdac);
+	HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -162,6 +161,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
 
   /** Configure the main internal regulator output voltage 
   */
@@ -195,9 +195,15 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART3;
+  PeriphClkInitStruct.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
@@ -370,6 +376,41 @@ static void MX_TIM8_Init(void)
 
 }
 
+/**
+  * @brief USART3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART3_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART3_Init 0 */
+
+  /* USER CODE END USART3_Init 0 */
+
+  /* USER CODE BEGIN USART3_Init 1 */
+
+  /* USER CODE END USART3_Init 1 */
+  huart3.Instance = USART3;
+  huart3.Init.BaudRate = 115200;
+  huart3.Init.WordLength = UART_WORDLENGTH_8B;
+  huart3.Init.StopBits = UART_STOPBITS_1;
+  huart3.Init.Parity = UART_PARITY_NONE;
+  huart3.Init.Mode = UART_MODE_TX_RX;
+  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart3.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart3.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART3_Init 2 */
+
+  /* USER CODE END USART3_Init 2 */
+
+}
+
 /** 
   * Enable DMA controller clock
   */
@@ -398,6 +439,7 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_7, GPIO_PIN_RESET);

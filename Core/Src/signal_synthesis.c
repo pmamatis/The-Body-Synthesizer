@@ -74,10 +74,10 @@ float Signal_Synthesis(uint8_t count, ...){
 		for (int j = 0; j < count;j++){
 			sigFreq_sampleFreq_ratio = signals.freq[j]/tmp1;
 			int wt_max =floor(BLOCKSIZE/(signals.freq[j]/ F_MIN));
-			lastIndex = wt_max * sigFreq_sampleFreq_ratio;
+			lastIndex = BLOCKSIZE-(BLOCKSIZE % wt_max) ;
 
 				//Loop for the Array
-				for (int i = 0; i < SUPPORT_POINTS;i++){
+				for (int i = 0; i < BLOCKSIZE;i++){
 
 								switch (signals.kind[j]) {
 										case SIN:
@@ -91,10 +91,10 @@ float Signal_Synthesis(uint8_t count, ...){
 											tmp = (int)(signals.freq[j]/SAMPLE_FREQ)*i; //Sägezahnwert durch beschleunigen des Counters abhängig von Frequenz bestimmen
 
 											//Wenn der Wert größer als der Maximalwert des Counters ist, wieder bei 0 anfangen
-		//									if (tmp > SUPPORT_POINTS)
-		//										tmp = tmp - SUPPORT_POINTS;
+		//									if (tmp > BLOCKSIZE)
+		//										tmp = tmp - BLOCKSIZE;
 		//
-		//									addValueSaegezahn = addValueSaegezahn + maximalwert_DAC/SUPPORT_POINTS*tmp + OFFSET;// Addierten-Wert auf gewünschte Amplitude bringen
+		//									addValueSaegezahn = addValueSaegezahn + maximalwert_DAC/BLOCKSIZE*tmp + OFFSET;// Addierten-Wert auf gewünschte Amplitude bringen
 		//									break;
 		//								case DREIECK:
 		//										addValueDreieck = addValueDreieck + dreieckTable[i*(int)(Signale.frequenz[j]/Signale.frequenz[indexMin])];//bereits erzeugtes Dreieck-Stützstellen-Array frequenzabängig durchgehen
@@ -116,6 +116,7 @@ float Signal_Synthesis(uint8_t count, ...){
 		//normierung des Signals
 		//addValue =(addValueDreieck + addValuePWM + addValueSIN + addValueSaegezahn)/count; // auf Eins normieren
 
+
 		}
 
 		va_end(argumentlist);
@@ -135,13 +136,13 @@ float Signal_Synthesis(uint8_t count, ...){
 
  */
 HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
-		uint32_t output_vector[SUPPORT_POINTS];
+		uint32_t output_vector[BLOCKSIZE+39];
 		uint8_t index[1000];
 		int j = 0;
-		HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
+		//HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
 		float tmp, tmp2;
 		uint32_t tmp3 ;
-		for (int i = 0; i < SUPPORT_POINTS; i++){
+		for (int i = 0; i < BLOCKSIZE; i++){
 
 			tmp = calculate_vector[i]+1;
 			tmp2 = tmp * maximalwert_DAC/2 ;
@@ -153,9 +154,40 @@ HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
 				j++;
 		}
 		}
+		for (int i=0;i<39;i++){
+			output_vector[i+BLOCKSIZE] = 0 ;
+		}
 
-		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector, BLOCKSIZE, DAC_ALIGN_12B_R);
-
-
-
+		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,lastIndex, DAC_ALIGN_12B_R); // artefakte nach 1:05 min
 }
+
+void TEST(DAC_HandleTypeDef hdac){
+	//10 ... 20 Hz
+	for (int z=10; z < 20; z++){
+	Signal_Synthesis(1,SIN,(double)z);
+	Output_Signal(hdac);
+	HAL_Delay(5000);
+	}
+	//20 ...100
+	for (int z=20; z < 100; z=z+10){
+	Signal_Synthesis(1,SIN,(double)z);
+	Output_Signal(hdac);
+	HAL_Delay(5000);
+	}
+	// 100... 1000
+	for (int z=100; z < 1000; z=z+100){
+	Signal_Synthesis(1,SIN,(double)z);
+	Output_Signal(hdac);
+	HAL_Delay(5000);
+	}
+	// 1000... 4800
+	for (int z=1000; z < 4800; z=z+500){
+	Signal_Synthesis(1,SIN,(double)z);
+	Output_Signal(hdac);
+	HAL_Delay(5000);
+	}
+	Signal_Synthesis(1,SIN,(double)4800);
+	Output_Signal(hdac);
+	HAL_Delay(5000);
+}
+
