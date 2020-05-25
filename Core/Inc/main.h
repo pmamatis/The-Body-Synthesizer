@@ -91,6 +91,8 @@ void Error_Handler(void);
 //Variables
 /** @brief signal support point array*/
 float calculate_vector[BLOCKSIZE];
+float sinTable[BLOCKSIZE];
+uint32_t output_vector[BLOCKSIZE];
 float sigFreq_sampleFreq_ratio;
 int lastIndex;
 

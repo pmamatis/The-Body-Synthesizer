@@ -131,18 +131,21 @@ int tmp_36;
 //tmp_36 = Output_Signal(hdac);
 //HAL_Delay(3000);
 //}
-//TEST(hdac);
+TEST(hdac);
 //uint8_t buffer[]="Hello World";
 //HAL_UART_Transmit(&huart3, buffer, 11, 100);
-Signal_Synthesis(1,SIN,(double)300);
+//Signal_Synthesis(1,SIN,(double)5);
+//tmp_36 = Output_Signal(hdac);
+
   while (1)
 {
-	//Signal_Synthesis(1,SIN,(double)300);
-	tmp_36 = Output_Signal(hdac);
-	HAL_Delay(1000);
-	//Signal_Synthesis(1,SIN,(double)300);
-	tmp_36 = Output_Signal(hdac);
-	HAL_Delay(1000);
+//	  for (int i=0; i<BLOCKSIZE;i++)
+//		  output_vector[i] = output_vector[i];
+//	Signal_Synthesis(1,SIN,(double)3000);
+	//tmp_36 = Output_Signal(hdac);
+//	HAL_Delay(1000);
+//	Signal_Synthesis(1,SIN,(double)300);
+	//HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
