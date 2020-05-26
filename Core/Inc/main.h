@@ -89,12 +89,18 @@ void Error_Handler(void);
 #define SAMPLE_FREQ CLOCK/COUNTER_PERIOD
 
 //Variables
-/** @brief signal support point array*/
-float calculate_vector[BLOCKSIZE];
-float sinTable[BLOCKSIZE];
+
+/** @brief signal array*/
+float calculate_vector[BLOCKSIZE+1];
+/** @brief signal sythesis sin table array*/
+float sinTable[BLOCKSIZE+1];
+/** @brief DAC output array*/
 uint32_t output_vector[BLOCKSIZE];
+
 float sigFreq_sampleFreq_ratio;
-int lastIndex;
+
+/** @brief index from the calculate vector with the last zero*/
+uint32_t lastIndex;
 
 /* USER CODE END Private defines */
 

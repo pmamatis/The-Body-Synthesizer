@@ -115,7 +115,6 @@ int main(void)
   //HAL_TIM_Base_Start(&htim8);
   //HAL_TIM_Base_Start(&htim6);
   Signal_Synthesis_Init(htim8, hdac);
-  //HAL_DACEx_TriangleWaveGenerate(&hdac, DAC_CHANNEL_2, DAC_TRIANGLEAMPLITUDE_2047);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -131,21 +130,12 @@ int tmp_36;
 //tmp_36 = Output_Signal(hdac);
 //HAL_Delay(3000);
 //}
-TEST(hdac);
-//uint8_t buffer[]="Hello World";
-//HAL_UART_Transmit(&huart3, buffer, 11, 100);
-//Signal_Synthesis(1,SIN,(double)5);
-//tmp_36 = Output_Signal(hdac);
-
-  while (1)
+//TEST(hdac);
+Signal_Synthesis(3,SIN,(double)300,SIN,(double)600,SIN,(double)900);
+tmp_36 = Output_Signal(hdac);
+while (1)
 {
-//	  for (int i=0; i<BLOCKSIZE;i++)
-//		  output_vector[i] = output_vector[i];
-//	Signal_Synthesis(1,SIN,(double)3000);
-	//tmp_36 = Output_Signal(hdac);
-//	HAL_Delay(1000);
-//	Signal_Synthesis(1,SIN,(double)300);
-	//HAL_Delay(1000);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
