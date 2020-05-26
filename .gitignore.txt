@@ -1,4 +1,6 @@
-.settings/
-.Debug/
+settings/*
+Debug/*
 
-.xml
+
+*.settings
+*.xml
