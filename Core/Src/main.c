@@ -131,7 +131,8 @@ int tmp_36;
 //HAL_Delay(3000);
 //}
 //TEST(hdac);
-Signal_Synthesis(3,SIN,(double)300,SIN,(double)600,SIN,(double)900);
+Signal_Synthesis(3,SIN,(double)1000,SIN,(double) 2200,SIN,(double)3000);
+//Signal_Synthesis(3,SIN,(double)1046.5,SIN,(double) 1244.51,SIN,(double)1567.98);//,SIN,(double)600,SIN,(double)900);
 tmp_36 = Output_Signal(hdac);
 while (1)
 {
