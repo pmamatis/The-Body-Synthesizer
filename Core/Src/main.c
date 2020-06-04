@@ -116,7 +116,7 @@ int main(void)
   //HAL_TIM_Base_Start(&htim8);
   //HAL_TIM_Base_Start(&htim6);
   Signal_Synthesis_Init(htim8, hdac);
-  //SetupLowpass(LP, 100, 0.7071);
+  SetupLowpass(&LP, 100, 0.7071);
 
   /* USER CODE END 2 */
 
@@ -125,8 +125,6 @@ int main(void)
 //  Test(htim8,hdac);
 
 
-
-int tmp_36;
 //Signal_Synthesis(1,SIN,(double)300);
 ////for (int z=0;z< 100;z++){
 ////	lastIndex =lastIndex-1;
@@ -134,8 +132,10 @@ int tmp_36;
 //HAL_Delay(3000);
 //}
 //TEST(hdac);
-Signal_Synthesis(3,SIN,(double)1000,SIN,(double) 2200,SIN,(double)3000);
-tmp_36 = Output_Signal(hdac);
+Signal_Synthesis(2,SIN,(double)200,SIN,(double)200); //SIN,(double) 195,
+ProcessFilter(&LP, calculate_vector, BLOCKSIZE);
+Output_Signal(hdac);
+
 while (1)
 {
 

@@ -41,11 +41,11 @@ struct BQFilter{
 /*********************************
  * @parameter	Functions
  *********************************/
-DSP_Status SetupLowpass (struct BQFilter LP, float cutoff, float Q);
+DSP_Status SetupLowpass (struct BQFilter *LP, float cutoff, float Q);
 DSP_Status SetupHighpass(struct BQFilter HP, float cutoff, float Q);
 DSP_Status SetupBandpass(struct BQFilter BP[2], float cutoff_LP, float cutoff_HP, float QLP, float QHP);
 
-DSP_Status ProcessFilter(struct BQFilter F,  float data[], uint16_t end);
+DSP_Status ProcessFilter(struct BQFilter *F,  float *data, uint16_t end);
 DSP_Status ProcessBP    (struct BQFilter BP[2], float data[], uint16_t end);
 
 
