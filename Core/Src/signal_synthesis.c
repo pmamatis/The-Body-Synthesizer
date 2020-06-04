@@ -37,7 +37,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	}
 	//Starte Timer 8, ist verbunden mit DAC
 	__HAL_TIM_SET_AUTORELOAD(&htim,COUNTER_PERIOD);
-	return HAL_TIM_Base_Start(&htim);
+	return 1;
 }
 
 
@@ -223,10 +223,11 @@ HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
 	uint32_t tmp3 ;
 	for (int i = 0; i < BLOCKSIZE; i++){
 
+
 		tmp = calculate_vector[i]+1;
 		tmp2 = tmp * maximalwert_DAC/2 ;
 		tmp3 = tmp2 +OFFSET;
-		output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
+		output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET;
 	}
 	//HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
 	return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,length, DAC_ALIGN_12B_R);

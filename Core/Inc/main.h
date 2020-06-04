@@ -102,6 +102,10 @@ uint32_t output_vector[BLOCKSIZE];
 
 float sigFreq_sampleFreq_ratio;
 
+int out_index;
+float out_filter;
+uint32_t out_dac;
+
 /** @brief index from the calculate vector with the last zero*/
 uint32_t lastIndex;
 

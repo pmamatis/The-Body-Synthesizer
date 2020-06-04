@@ -56,6 +56,11 @@ HAL_StatusTypeDef PWM_status_TIM1, PWM_status_TIM8;
 
 struct BQFilter LP;
 
+float out_filter = 0;
+uint32_t out_dac = 0;
+int out_index = 0;
+
+int debug = 1;
 
 uint8_t sinIndex=0;
 
@@ -76,7 +81,27 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
 
+   if(debug == 1){
+
+	   if (htim == &htim8)
+	      {
+	   	   out_filter = calculate_vector[out_index];
+	   	   out_dac = output_vector[out_index];
+
+	   	   out_index++;
+
+	   	   if(out_index == BLOCKSIZE){
+
+	   		  out_index = 0;
+	   		  debug = 1;
+	   	   }
+	   }
+   }
+
+}
 /* USER CODE END 0 */
 
 /**
@@ -133,12 +158,13 @@ int main(void)
 //}
 //TEST(hdac);
 Signal_Synthesis(2,SIN,(double)200,SIN,(double)200); //SIN,(double) 195,
-ProcessFilter(&LP, calculate_vector, BLOCKSIZE);
+ProcessFilter(&LP, calculate_vector, lastIndex);
+HAL_TIM_Base_Start_IT(&htim8);
 Output_Signal(hdac);
+
 
 while (1)
 {
-
 
 
     /* USER CODE END WHILE */
