@@ -89,7 +89,7 @@ void Error_Handler(void);
 #define CLOCK 108000000
 
 /**@brief frequency of SIgnal if just one  whole period is writen into the vector */
-#define SAMPLE_FREQ CLOCK/COUNTER_PERIOD
+#define SAMPLE_FREQ CLOCK/(COUNTER_PERIOD)
 
 //Variables
 
@@ -102,7 +102,7 @@ uint32_t output_vector[BLOCKSIZE];
 
 float sigFreq_sampleFreq_ratio;
 
-int out_index;
+uint32_t out_index;
 float out_filter;
 uint32_t out_dac;
 

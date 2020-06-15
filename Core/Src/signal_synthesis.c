@@ -217,7 +217,6 @@ float Signal_Synthesis(uint8_t count, ...){
  */
 HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
 	//uint32_t output_vector[BLOCKSIZE+39];
-	uint32_t length = lastIndex;
 	//	HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
 	float tmp, tmp2;
 	uint32_t tmp3 ;
@@ -228,9 +227,12 @@ HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
 		tmp2 = tmp * maximalwert_DAC/2 ;
 		tmp3 = tmp2 +OFFSET;
 		output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET;
+		if (i>=BLOCKSIZE-100){
+			output_vector[i] = 4000;
+		}
 	}
 	//HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
-	return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,length, DAC_ALIGN_12B_R);
+	return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,BLOCKSIZE, DAC_ALIGN_12B_R);
 }
 
 void TEST(DAC_HandleTypeDef hdac){
