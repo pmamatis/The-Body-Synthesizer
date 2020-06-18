@@ -170,95 +170,111 @@ float Signal_Synthesis(uint8_t count, ...){
 	//norm the signal to -1...1
 	for (int i = 0; i< BLOCKSIZE;i++){
 		calculate_vector[i] = calculate_vector[i]*(2/(max-min));
-		//		calculate_vector[i] = calculate_vector[i]*1/count;
+		watch = calculate_vector[i];
+
 	}
 
 
 	//calculate the end of one periode of the combined signal by finding the least common multiplier(LCM)
 	uint16_t LCM = wt_max[indexMin];
 	uint8_t isLCM = 0;
-	for (int i = LCM; i < BLOCKSIZE;i++){
+	int k = LCM;
+	for (k; k < BLOCKSIZE;k++){
 		isLCM = 0;
 
 		for (int j = 0; j < count ;j++){
-			if ((i % wt_max[j])==0){
+			if ((k % wt_max[j])==0){
 				isLCM = isLCM + 1;
 			}
 		}
 
 		// check if i is a LCM
 		if (isLCM==count){
-			LCM = i;
+			LCM = k;
 			break;
 		}
 	}
 
-	if (LCM > BLOCKSIZE){
-		return -1;
+	//set lastIndex for the OutputSignal function
+	if ( k == BLOCKSIZE && isLCM == 0 ){
+		int i = BLOCKSIZE;
+		while(i--){
+			if ((calculate_vector[i-1]<= 0) && (calculate_vector[i]>=0)){
+				lastIndex = i-1;
+				break;
+			}
+		}
+	}
+	else{
+		lastIndex = BLOCKSIZE - (BLOCKSIZE % LCM);
 	}
 
-	//set lastIndex for the OutputSignal function
-	lastIndex = BLOCKSIZE - (BLOCKSIZE % LCM);
 	va_end(argumentlist);
 	return freqMin;
-}
-
-
-/** @brief lässt den DAC via DMA entweder ein Sinus, Dreieck, oder Saegezahnsiganl asgeben
- * @param hdac: ist der DAC handler
- * @param htim: ist der Timerhandler welcher den DAC steuert
- * @param frequenz: ist die frequenz des Ausgabe Signals
- * @param  Signalart:@li SIN
- * 		  			 @li SAEGEZAHN
- * 		  			 @li DREIECK
- * 		  			 @li PWM, standard ist alpha = 0.5. Wenn alpha etwas anderes betragen soll, muss zuerst ChangePWMArray(float alpha) ausgeführt werden
- *@return Die Funktion gibt den HAL Status des gestarteten DAC zurück
-
- */
-HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
-	//uint32_t output_vector[BLOCKSIZE+39];
-	uint32_t length = lastIndex;
-	//	HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
-	float tmp, tmp2;
-	uint32_t tmp3 ;
-	for (int i = 0; i < BLOCKSIZE; i++){
-
-		tmp = calculate_vector[i]+1;
-		tmp2 = tmp * maximalwert_DAC/2 ;
-		tmp3 = tmp2 +OFFSET;
-		output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
 	}
-	//HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
-	return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,length, DAC_ALIGN_12B_R);
-}
 
-void TEST(DAC_HandleTypeDef hdac){
-	//10 ... 20 Hz
-	for (int z=10; z < 20; z++){
-		Signal_Synthesis(1,SIN,(float)z);
-		Output_Signal(hdac);
-		HAL_Delay(10000);
-	}
-	//20 ...100
-	for (int z=20; z < 100; z=z+10){
-		Signal_Synthesis(1,SIN,(float)z);
-		Output_Signal(hdac);
+
+	/** @brief converts the calculate_vector into DAC friendly value and gives the signal via DAC out
+	 * @param hdac: handler of the DAC
+	 * @param channel: DAC output channel
+	 * @return gives back the status of the DAC
+	 */
+	HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac, uint8_t channel){
+		float tmp, tmp2;
+		uint32_t tmp3 ;
+		for (int i = 0; i < BLOCKSIZE; i++){
+
+			tmp = calculate_vector[i]+1;
+			tmp2 = tmp * maximalwert_DAC/2 ;
+			tmp3 = tmp2 +OFFSET;
+			output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
+		}
+		//HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
+//		if (channel == 1){
+		for (int i=0;i<100;i++){
+		output_vector[lastIndex - i] = 4000 ;
+		}
+		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,lastIndex, DAC_ALIGN_12B_R);
+//		}
+//		else if (channel == 2){
+//				return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector,lastIndex, DAC_ALIGN_12B_R);
+//		}
+//		else{
+//				return HAL_ERROR;
+		}
+//		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,lastIndex, DAC_ALIGN_12B_R);
+
+	//	}
+
+
+
+	void TEST(DAC_HandleTypeDef hdac){
+		//10 ... 20 Hz
+		for (int z=10; z < 20; z++){
+			Signal_Synthesis(1,SIN,(float)z);
+//			Output_Signal(hdac);
+			HAL_Delay(10000);
+		}
+		//20 ...100
+		for (int z=20; z < 100; z=z+10){
+			Signal_Synthesis(1,SIN,(float)z);
+//			Output_Signal(hdac);
+			HAL_Delay(1000);
+		}
+		// 100... 1000
+		for (int z=100; z < 1000; z=z+100){
+			Signal_Synthesis(1,SIN,(double)z);
+//			Output_Signal(hdac,1);
+			HAL_Delay(1000);
+		}
+		// 1000... 4800
+		for (int z=1000; z < 4800; z=z+500){
+			Signal_Synthesis(1,SIN,(double)z);
+//			Output_Signal(hdac);
+			HAL_Delay(1000);
+		}
+		Signal_Synthesis(1,SIN,(double)4800);
+//		Output_Signal(hdac);
 		HAL_Delay(1000);
 	}
-	// 100... 1000
-	for (int z=100; z < 1000; z=z+100){
-		Signal_Synthesis(1,SIN,(double)z);
-		Output_Signal(hdac);
-		HAL_Delay(1000);
-	}
-	// 1000... 4800
-	for (int z=1000; z < 4800; z=z+500){
-		Signal_Synthesis(1,SIN,(double)z);
-		Output_Signal(hdac);
-		HAL_Delay(1000);
-	}
-	Signal_Synthesis(1,SIN,(double)4800);
-	Output_Signal(hdac);
-	HAL_Delay(1000);
-}
 

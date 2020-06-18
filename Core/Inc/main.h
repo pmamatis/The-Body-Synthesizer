@@ -80,7 +80,7 @@ void Error_Handler(void);
 #define F_MAX 4800
 
 /**@brief counter period of the timer 8 */
-#define COUNTER_PERIOD 1125
+#define COUNTER_PERIOD 1125-1
 
 /**@brief timer clock */
 #define CLOCK 108000000

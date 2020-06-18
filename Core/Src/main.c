@@ -43,6 +43,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 DAC_HandleTypeDef hdac;
+DMA_HandleTypeDef hdma_dac2;
 DMA_HandleTypeDef hdma_dac1;
 
 TIM_HandleTypeDef htim6;
@@ -131,9 +132,12 @@ int tmp_36;
 //HAL_Delay(3000);
 //}
 //TEST(hdac);
-Signal_Synthesis(3,SIN,(double)1000,SIN,(double) 2200,SIN,(double)3000);
-//Signal_Synthesis(3,SIN,(double)1046.5,SIN,(double) 1244.51,SIN,(double)1567.98);//,SIN,(double)600,SIN,(double)900);
-tmp_36 = Output_Signal(hdac);
+//Signal_Synthesis(3,SIN,(double)1000,SIN,(double) 2200,SIN,(double)3000);
+Signal_Synthesis(1,SIN,(double)1046.5);//,SIN,(double) 1244.51,SIN,(double)1567.98);//,SIN,(double)600,SIN,(double)900);
+tmp_36 = Output_Signal(hdac,1);
+//tmp_36 = Output_Signal(hdac,2);
+//uint32_t buffer[] = {4000,4000,4000};
+//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, buffer,3, DAC_ALIGN_12B_R);
 while (1)
 {
 
@@ -237,14 +241,7 @@ static void MX_DAC_Init(void)
   }
   /** DAC channel OUT2 config 
   */
-  sConfig.DAC_Trigger = DAC_TRIGGER_T6_TRGO;
   if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Configure Triangle wave generation on DAC OUT2 
-  */
-  if (HAL_DACEx_TriangleWaveGenerate(&hdac, DAC_CHANNEL_2, DAC_TRIANGLEAMPLITUDE_2047) != HAL_OK)
   {
     Error_Handler();
   }
@@ -416,8 +413,11 @@ static void MX_DMA_Init(void)
 
   /* DMA interrupt init */
   /* DMA1_Stream5_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 1, 0);
+  HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+  /* DMA1_Stream6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 
 }
 

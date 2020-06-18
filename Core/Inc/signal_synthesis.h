@@ -63,13 +63,13 @@ struct signal{
 };
 
 
-
+float watch;
 
 //Funktionen
 
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
 float Signal_Synthesis(uint8_t count, ...);
-HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac);
+HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac, uint8_t channel);
 void TEST(DAC_HandleTypeDef hdac);
 
 

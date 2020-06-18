@@ -239,7 +239,7 @@ void Play_Chord(char root_note,uint8_t sex,  uint8_t octave, uint8_t chordtype){
 								  break;
 			}
 	}
-	//Output_Signal(hdac, htim8, SignaleAddieren(count,SIN,note_frequency[0],SIN,note_frequency[1],SIN,note_frequency[2],SIN,note_frequency[3]), ADDSIG);
+	Signal_Synthesis(count,SIN,note_frequency[0],SIN,note_frequency[1],SIN,note_frequency[2],SIN,note_frequency[3]);
 }
 
 
