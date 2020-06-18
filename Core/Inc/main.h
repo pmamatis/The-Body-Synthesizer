@@ -85,8 +85,9 @@ void Error_Handler(void);
 /**@brief timer clock */
 #define CLOCK 9600000
 
-/**@brief frequency of SIgnal if just one  whole period is writen into the vector */
-#define SAMPLE_FREQ CLOCK/COUNTER_PERIOD
+/**@brief frequency of SIgnal if just one  whole period is writen into the vector, calculatet with Matlab */
+//#define SAMPLE_FREQ CLOCK/COUNTER_PERIOD
+#define SAMPLE_FREQ 96354
 
 //Variables
 
