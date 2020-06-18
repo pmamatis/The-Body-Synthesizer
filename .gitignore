@@ -1,4 +1,4 @@
-# STM32Cube copied library and project folders
+# SSTM32Cube copied library and project folders
 Drivers/*
 MDK-ARM/*
 EWARM/*
@@ -41,8 +41,7 @@ Debug/*
 
 # Misc
 *.map
-*.m
-*.png
+* .png
 
 # Eclipse CDT project files
 .cproject
