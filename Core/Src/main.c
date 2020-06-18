@@ -128,14 +128,15 @@ int tmp_36;
 //Signal_Synthesis(1,SIN,(double)300);
 ////for (int z=0;z< 100;z++){
 ////	lastIndex =lastIndex-1;
-//tmp_36 = Output_Signal(hdac);
+//tmp_36 = Output_Signal(hdac);<
 //HAL_Delay(3000);
 //}
 //TEST(hdac);
 //Signal_Synthesis(3,SIN,(double)1000,SIN,(double) 2200,SIN,(double)3000);
-Signal_Synthesis(1,SIN,(double)1046.5);//,SIN,(double) 1244.51,SIN,(double)1567.98);//,SIN,(double)600,SIN,(double)900);
+Signal_Synthesis(2,SIN,(double)100,SIN,(double)1000);//,SIN,(double) 1244.51,SIN,(double)1567.98);//,SIN,(double)600,SIN,(double)900);
+tmp_36 = Output_Signal(hdac,2);
+Signal_Synthesis(2,SIN,(double)200,SIN,(double)2000);
 tmp_36 = Output_Signal(hdac,1);
-//tmp_36 = Output_Signal(hdac,2);
 //uint32_t buffer[] = {4000,4000,4000};
 //HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, buffer,3, DAC_ALIGN_12B_R);
 while (1)

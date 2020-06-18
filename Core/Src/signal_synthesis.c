@@ -217,34 +217,37 @@ float Signal_Synthesis(uint8_t count, ...){
 	/** @brief converts the calculate_vector into DAC friendly value and gives the signal via DAC out
 	 * @param hdac: handler of the DAC
 	 * @param channel: DAC output channel
+	 * 		@arg 1...Channel 1
+	 * 		@arg 2...Channel 2
 	 * @return gives back the status of the DAC
 	 */
 	HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac, uint8_t channel){
-		float tmp, tmp2;
-		uint32_t tmp3 ;
+
 		for (int i = 0; i < BLOCKSIZE; i++){
 
-			tmp = calculate_vector[i]+1;
-			tmp2 = tmp * maximalwert_DAC/2 ;
-			tmp3 = tmp2 +OFFSET;
-			output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
+			if (channel == 1){
+			output_vector1[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
+			}
+			else if (channel == 2){
+			output_vector2[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
+			}
 		}
 		//HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
-//		if (channel == 1){
-		for (int i=0;i<100;i++){
-		output_vector[lastIndex - i] = 4000 ;
+		if (channel == 1){
+//		for (int i=0;i<100;i++){
+//		output_vector[lastIndex - i] = 4000 ;
+//		}
+		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,lastIndex, DAC_ALIGN_12B_R);
 		}
-		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,lastIndex, DAC_ALIGN_12B_R);
-//		}
-//		else if (channel == 2){
-//				return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector,lastIndex, DAC_ALIGN_12B_R);
-//		}
-//		else{
-//				return HAL_ERROR;
+		else if (channel == 2){
+				return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector2,lastIndex, DAC_ALIGN_12B_R);
+		}
+		else{
+				return HAL_ERROR;
 		}
 //		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,lastIndex, DAC_ALIGN_12B_R);
 
-	//	}
+	}
 
 
 
