@@ -90,13 +90,13 @@ void Error_Handler(void);
 
 /**@brief frequency of SIgnal if just one  whole period is writen into the vector */
 #define SAMPLE_FREQ CLOCK/(COUNTER_PERIOD)
-
+#define SR_REAL 96354
 //Variables
 
 /** @brief signal array*/
 float calculate_vector[BLOCKSIZE+1];
 /** @brief signal sythesis sin table array*/
-float sinTable[BLOCKSIZE+1];
+//float sinTable[BLOCKSIZE+1];
 /** @brief DAC output array*/
 uint32_t output_vector[BLOCKSIZE];
 
@@ -105,6 +105,7 @@ float sigFreq_sampleFreq_ratio;
 uint32_t out_index;
 float out_filter;
 uint32_t out_dac;
+
 
 /** @brief index from the calculate vector with the last zero*/
 uint32_t lastIndex;

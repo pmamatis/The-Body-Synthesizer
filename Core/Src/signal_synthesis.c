@@ -24,20 +24,22 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	// Berechnung der DAC Werte abhängig von der gewünschten Amplitude
 
 	maximalwert_DAC = (double)DAC_MAXVALUE_TO_AMPLITUDE_RATIO * (double)AMPLITUDE;
-	// Create Sin Table
+
+	/*// Create Sin Table
 	float wt;
 	for(int i = 0; i<BLOCKSIZE;i++){
 		wt = i/(float)BLOCKSIZE* 2*M_PI;
 		sinTable[i] = sin(wt);
 	}
-	sinTable[BLOCKSIZE+1] = 0;
+	sinTable[BLOCKSIZE+1] = 0;*/
+
 	// init calculate Vector with 0
 	for(int i = 0; i<BLOCKSIZE;i++){
 		calculate_vector[i] = 0;
 	}
 	//Starte Timer 8, ist verbunden mit DAC
 	__HAL_TIM_SET_AUTORELOAD(&htim,COUNTER_PERIOD);
-	return 1;
+	return HAL_TIM_Base_Start(&htim);
 }
 
 
@@ -227,9 +229,9 @@ HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac){
 		tmp2 = tmp * maximalwert_DAC/2 ;
 		tmp3 = tmp2 +OFFSET;
 		output_vector[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET;
-		if (i>=BLOCKSIZE-100){
-			output_vector[i] = 4000;
-		}
+//		if (i>=BLOCKSIZE-100){
+//			output_vector[i] = 4000;
+//		}
 	}
 	//HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
 	return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,BLOCKSIZE, DAC_ALIGN_12B_R);

@@ -92,40 +92,40 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-
-	if(debug == 1){
-
-		if (htim == &htim8)
-		{
-			out_filter = calculate_vector[out_index];
-			out_dac = output_vector[out_index];
-
-			out_index++;
-			tim_temp += 1125;
-			tim_final = 0;
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+//{
 //
-//			if(out_index == 96000){
+//	if(debug == 1){
+//
+//		if (htim == &htim8)
+//		{
+//			out_filter = calculate_vector[out_index];
+//			out_dac = output_vector[out_index];
+//
+//			out_index++;
+//			tim_temp += 1125;
+//			tim_final = 0;
+////
+////			if(out_index == 96000){
+////				tim_final = tim_temp;
+////			}
+//
+//			if(out_index == BLOCKSIZE){
+//
 //				tim_final = tim_temp;
+//				//out_dac = 750;
+//				//out_filter = 2;
+//				out_index = 0;
+//
+//				if(tim_temp == 108000000){
+//					tim_temp = 0;
+//				}
+//				debug = 1;
 //			}
-
-			if(out_index == BLOCKSIZE){
-
-				tim_final = tim_temp;
-				//out_dac = 750;
-				//out_filter = 2;
-				out_index = 0;
-
-				if(tim_temp == 108000000){
-					tim_temp = 0;
-				}
-				debug = 1;
-			}
-		}
-	}
-
-}
+//		}
+//	}
+//
+//}
 /* USER CODE END 0 */
 
 /**
@@ -166,13 +166,14 @@ int main(void)
 	//HAL_TIM_Base_Start(&htim6);
 	Signal_Synthesis_Init(htim8, hdac);
 
-	//SetupLowpass(&LP, 100, 0.7071);
+	SetupLowpass(&LP, 20, 0.7071);
 	//SetupHighpass(&HP, 400, 0.7071);
 
 	Signal_Synthesis(1,SIN,(double)200); //,SIN,(double)200); //SIN,(double) 195,
 
-	//HAL_TIM_Base_Start_IT(&htim8);
-	//Output_Signal(hdac);
+	ProcessFilter(&LP, calculate_vector, lastIndex);
+//	HAL_TIM_Base_Start_IT(&htim8);
+	Output_Signal(hdac);
 
 	//ProcessFilter(&HP, calculate_vector, lastIndex);
 	//filter_processed = ProcessFilter(&LP, calculate_vector, lastIndex);
@@ -183,9 +184,9 @@ int main(void)
 //		Output_Signal(hdac);
 //	}
 
-	HAL_TIM_Base_Start_IT(&htim8);
-
-	Output_Signal(hdac);
+//	HAL_TIM_Base_Start_IT(&htim8);
+//
+//	Output_Signal(hdac);
 
 
 	while (1)

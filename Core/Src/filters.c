@@ -11,7 +11,8 @@
 /* ------------------------------------------------------------------
  * Global variables for FIR LPF Example
  * ------------------------------------------------------------------- */
-uint32_t samplerate = SAMPLE_FREQ;
+uint32_t samplerate = SR_REAL;
+//uint32_t samplerate = SAMPLE_FREQ;
 
 
 DSP_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
@@ -57,25 +58,44 @@ DSP_Status ProcessFilter(struct BQFilter *F, float *data, uint16_t end){
 	float out = 0;
 	float input = 0;
 
-	F->z[0] = data[end-1];
-	F->z[1] = data[end-2];
-	F->z[2] = data[end-3];
-	F->z[3] = data[end-4];
+	float tempo[2*end];
 
-	//for(int j = 0; j < 2; j++){
+	int z = 0;
+	for(int i=0; i < 2*end; i++) {
 
-	for(int i = 0; i < end; i++){
+		if(i==end) {
+			z=0;
+		}
+		tempo[i] = data[z];
+		z++;
+		/*z = i;
 
-		input = data[i];
+		if(i >= end) z = i - end;
+
+		tempo[i]=data[z];*/
+	}
+
+	//	F->z[0] = data[end-1];
+	//	F->z[1] = data[end-2];
+	//	F->z[2] = data[end-3];
+	//	F->z[3] = data[end-4];
+
+	for(int i=0; i < 2*end; i++) {
+
+		input = tempo[i];
 		//out = input * F.b0 + F.z[0] * F.b1 + F.z[1] * F.b2 - F.z[2] * F.a1 - F.z[3] * F.a2;
 		out = input * F->b0 + F->z[0] * F->b1 + F->z[1] * F->b2 - F->z[2] * F->a1 - F->z[3] * F->a2;
 		F->z[3] = F->z[2];
 		F->z[2] = out;
 		F->z[1] = F->z[0];
 		F->z[0] = input;
+		tempo[i] = out;
+
+		if(i >= end) {
+			data[i-end] = out;
+		}
 
 		//*(data+i) = out;
-		data[i] = out;
 	}
 	//}
 
