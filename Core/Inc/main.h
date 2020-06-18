@@ -80,10 +80,10 @@ void Error_Handler(void);
 #define F_MAX 4800
 
 /**@brief counter period of the timer 8 */
-#define COUNTER_PERIOD 1125-1
+#define COUNTER_PERIOD 100-1
 
 /**@brief timer clock */
-#define CLOCK 108000000
+#define CLOCK 9600000
 
 /**@brief frequency of SIgnal if just one  whole period is writen into the vector */
 #define SAMPLE_FREQ CLOCK/COUNTER_PERIOD
