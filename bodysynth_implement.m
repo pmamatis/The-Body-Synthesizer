@@ -1,24 +1,30 @@
-clock = 108000000;
-stuetz = 10;
-SR = 48000;
+clock = 9600000;
+%% Sample Rate (SR)
+SR = 96000;
+%SR = clock / timperiod;
+%% Timer
+%timperiod = 167;
 timperiod = clock / SR;
-
+%SR = clock / timperiod;
+%% Signal
+stuetz = 10;
 fsignal = 4186;         % C8
 fmax = clock / (timperiod * stuetz);
-SR = clock / timperiod;
+%fmin = SR / blocksize;
+fmin = 5.0184;
+
 
 OS = SR / fsignal;
 delta = (1-cos(pi/(SR/fmax)))*100;
 
 %blocksize = 8100;
-%fmin = SR / blocksize;
 
-fmin = 5.0184;
+
 blocksize = SR / fmin;
-
 DAC_max = 0;
 
 
+%% Filter
 cutoff = 100;
 PI = 3.14159;
 Q = 0.7072;
