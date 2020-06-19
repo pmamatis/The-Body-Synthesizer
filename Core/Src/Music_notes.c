@@ -140,7 +140,7 @@ char keys[26] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d'
 
 /** @brief minor/major tone scale in semi tone steps, according to the array keys*/
 uint32_t major_scale[9] =  {0,2,4,5,7,9,11,12, 14}; 	// {2,2,1,2,2,2,1}; Dur
-uint32_t minor_scale[9] =  {0,2,3,5,7,8,10,12, 14};	// {2,1,2,2,1,2,2}; Mol
+uint32_t minor_scale[9] =  {0,2,3,5,7,8,10,12, 14};		// {2,1,2,2,1,2,2}; Mol
 
 
 /** @brief minor/major tone chords in semi tone steps, according to the array keys*/
