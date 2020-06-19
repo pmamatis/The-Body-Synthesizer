@@ -8,7 +8,7 @@
 
 
 
-/** @briefMaximaler binärer Wert die der DAC darstellen soll, wird über AMPLITUDE eingestellt*/
+/** @brief Maximaler binärer Wert die der DAC darstellen soll, wird über AMPLITUDE eingestellt*/
 double maximalwert_DAC = DAC_MAX;
 
 
@@ -47,10 +47,10 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 /** @brief Addiert beliebig viele Signale und schreibt das Ergebnis in das Array addierterVektor,
  *  	   @attention die Signale müssen wie folgt aufgelistet werden  SignaleAddieren(count,Signalart_1,Frequenz_1,Signalart_2,Frequenz_2,...)
  * @param count: Anzahl zu addierender Signale
- * @param Signalart: @li SIN
- * 		  			 @li SAEGEZAHN
- * 		  			 @li DREIECK
- * 		  			 @li PWM, standard ist alpha = 0.5. Wenn alpha etwas anderes betragen soll, muss zuerst ChangePWMArray(float alpha) ausgeführt werden
+ * @param Signalart: @arg SIN
+ * 		  			 @arg SAWTOOTH
+ * 		  			 @arg TRIANGLE
+ * 		  			 @arg PWM, standard ist alpha = 0.5. Wenn alpha etwas anderes betragen soll, muss zuerst ChangePWMArray(float alpha) ausgeführt werden
  * @param frequenz: Frequency of the Signal, have to be a double type
  *@return Die Funktion gibt den HAL Status des gestarteten DAC zurück
 
@@ -64,16 +64,20 @@ float Signal_Synthesis(uint8_t count, ...){
 		calculate_vector[i] = 0;
 	}
 
-	float freqMin = 8000;
+	//Init for variable number of function input arguments
 	struct signal signals;
 	va_list argumentlist;
 	va_start(argumentlist, count);
+
+	//minimal frequency of the given signals, initialized with F_MAX
+	double freqMin = F_MAX;
+
 	uint8_t indexMin;
 	//used to save the minimum and maximum of the caculate array
 	float min=0;
 	float max=0;
 
-	//Bestimmt die kleinste Frequenz und speichert alle Signale im Struct
+	//calculates the lowest frequency and saves the given signals in a struct
 	uint8_t tmpCount = count;
 	while(tmpCount--){ //first frequency is stored in signals[count]
 		signals.kind[tmpCount] = va_arg(argumentlist, unsigned int);
@@ -89,61 +93,43 @@ float Signal_Synthesis(uint8_t count, ...){
 	}
 
 	//
-	float wt, sinf0,addValue,tmp, tmp1, tmp2,tmp3,tmp4;//DEBUG
-	//	tmp1 = (float)SAMPLE_FREQ; //DEBUG
+	float wt,addValue
 	uint16_t wt_max[count];
 
 	//Loop to reach all Signals
 	for (int j = 0; j < count;j++){
 
-
-		//		sigFreq_sampleFreq_ratio = signals.freq[j]/tmp1;
-
-		//metode 2
-//		wt_max[j] = floor(BLOCKSIZE/(signals.freq[j]/ F_MIN));
-		//lastIndex = BLOCKSIZE-(BLOCKSIZE % wt_max);
-		//Loop for the Array
+		//Loop to reach every array entry
 		for (int i = 0; i < BLOCKSIZE+1;i++){
 
 			switch (signals.kind[j]) {
 			case SIN:
-				// methode 1
-								wt = (int)(signals.freq[j]/ F_MIN*i) % (BLOCKSIZE);
-								addValue = sinTable[(int)(wt)];
-
-				//metode 2
-//				tmp = (i % wt_max[j]);
-//				wt = (tmp/wt_max[j]) * 2*M_PI;
-//				sinf0 = sin(wt); // Erzeugung des Sinus-Wertes abhängig von der kleinsten Frequenz
-//				addValue = sinf0;
-
-				break;
+					// calculate the input argument for the sin-funktion
+					wt = (int)(signals.freq[j]/ F_MIN*i) % (BLOCKSIZE);
+					//Get sin value
+					addValue = GetSin((int)(wt));
+					break;
 			case SAWTOOTH:
-				tmp = (int)(signals.freq[j]/SAMPLE_FREQ)*i; //Sägezahnwert durch beschleunigen des Counters abhängig von Frequenz bestimmen
+				tmp = (int)(signals.freq[j]/SAMPLE_FREQ)*i;
 
-				//Wenn der Wert größer als der Maximalwert des Counters ist, wieder bei 0 anfangen
-				//									if (tmp > BLOCKSIZE)
-				//										tmp = tmp - BLOCKSIZE;
-				//
-				//									addValueSaegezahn = addValueSaegezahn + maximalwert_DAC/BLOCKSIZE*tmp + OFFSET;// Addierten-Wert auf gewünschte Amplitude bringen
-				//									break;
-				//								case DREIECK:
-				//										addValueDreieck = addValueDreieck + dreieckTable[i*(int)(Signale.frequenz[j]/Signale.frequenz[indexMin])];//bereits erzeugtes Dreieck-Stützstellen-Array frequenzabängig durchgehen
-				//									break;
-				//								case PWM:
-				//									//	wird im gegensatz zu den anderen Signalen nur einmal addiert da es entweder Maximale Amplitude oder null ist
-				//									double tmp = PWMTable[i*(int)(Signale.frequenz[j]/Signale.frequenz[indexMin]]);
-				//									if (tmp){
-				//									addValuePWM = PWMTable[i*(int)(Signale.frequenz[j]/Signale.frequenz[indexMin])];//bereits erzeugtes PWM-Stützstellen-Array frequenzabängig durchgehen
-				//									}
+			case TRIANGLE:
+
 				break;
+			case PWM:
+
+				break;
+
 			default:
 				return -1;
 				break;
 
 
 			}
-			calculate_vector[i] = (calculate_vector[i]+ addValue);// max min auf infinity und -infinity
+
+			//write into calculate_vector
+			calculate_vector[i] = (calculate_vector[i]+ addValue);
+
+
 			//maximum
 			if (max < calculate_vector[i])
 				max = calculate_vector[i];
@@ -151,19 +137,7 @@ float Signal_Synthesis(uint8_t count, ...){
 			if (min > calculate_vector[i])
 				min = calculate_vector[i];
 
-
-
-			//methode 1
-			//			if (calculate_vector[i] == 0){
-			//				lastIndex = i;
-			//			}
-
 		}
-
-
-		//norminate the siganl to -1...1
-
-		//addValue =(addValueDreieck + addValuePWM + addValueSIN + addValueSaegezahn)/count; // auf Eins normieren
 
 
 	}
@@ -214,7 +188,7 @@ float Signal_Synthesis(uint8_t count, ...){
 	}
 
 
-	/** @brief converts the calculate_vector into DAC friendly value and gives the signal via DAC out
+	/** @brief converts the calculate_vector into DAC friendly value and gives the signal via DAC out by using the Array output_vector1 and output_vector2
 	 * @param hdac: handler of the DAC
 	 * @param channel: DAC output channel
 	 * 		@arg 1...Channel 1
@@ -232,11 +206,8 @@ float Signal_Synthesis(uint8_t count, ...){
 			output_vector2[i] = (calculate_vector[i]+1) * maximalwert_DAC/2 + OFFSET ;
 			}
 		}
-		//HAL_DAC_Stop_DMA(&hdac, DAC_CHANNEL_1);
 		if (channel == 1){
-//		for (int i=0;i<100;i++){
-//		output_vector[lastIndex - i] = 4000 ;
-//		}
+
 		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,lastIndex, DAC_ALIGN_12B_R);
 		}
 		else if (channel == 2){
@@ -245,7 +216,6 @@ float Signal_Synthesis(uint8_t count, ...){
 		else{
 				return HAL_ERROR;
 		}
-//		return HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector,lastIndex, DAC_ALIGN_12B_R);
 
 	}
 

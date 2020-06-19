@@ -1,15 +1,11 @@
 /**
   ******************************************************************************
-  * @file    SignalErzeugung.c
+  * @file    signal_sythesis.c
   * @author  Paul Mamatis
   * @date 	27 Apr 2020
-  * @brief	Funktionsgenerator für HAL-Libary auf Nucleo-144 F4.....
+  * @brief	Signal sythesis for HAL-Libary on Nucleo-144 F4.....
   *
-  *         Diese H-Datei beinhaltet die wichtige voreinstellungen zur Signalerzeugung von 1Hz bis 8000Hz.
-  *
-  *@todo SIgnaladdierung testen, bzw fehler berechnen
-  *
-  *
+  *@todo implement 	SAWTOOTH, TRIANGLE, PWM in signal_sythesis function
 */
 
 #ifndef INC_SIGNAL_SYNTHESIS_H_
@@ -36,19 +32,16 @@
 
 
 
-/**@brief maximale Amplitude der Signale in milli Volt*/
+/**@brief maximal amplitude of output voltage in millivolts*/
 #define AMPLITUDE 	2000
-/**@brief DAC wert für maximale Spannung(3,3V) */
+/**@brief digital DAC value for maximal output voltage (3,3V) */
 #define DAC_MAX 	4095
- /** @brief 100mV */
+ /** @brief digital value for 100mV */
 #define OFFSET 		145
 /**@brief 4096/3300 */
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
-/**@brief normiert die Stützsetellen auf 2*Pi */
-#define normierung(stuetzstellen) 2*M_PI/stuetzstellen
 
-
-/**@brief Signalarten zur eingabe in Funktionen*/
+/**@brief Signal kinds*/
 enum signal_kind{
 	SIN = 0,
 	SAWTOOTH,
@@ -56,21 +49,17 @@ enum signal_kind{
 	PWM,
 };
 
-/**@brief wird zur Signal addierung gebraucht*/
+/**@brief struct to store signals*/
 struct signal{
 	unsigned int kind[10];
 	double freq[10];
 };
 
-
-float watch;
-
-//Funktionen
-
+//functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
 float Signal_Synthesis(uint8_t count, ...);
 HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac, uint8_t channel);
-void TEST(DAC_HandleTypeDef hdac);
+//void TEST(DAC_HandleTypeDef hdac);
 
 
 #endif /* INC_SIGNALERZEUGUNG_H_ */

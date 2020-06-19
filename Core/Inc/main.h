@@ -94,8 +94,7 @@ void Error_Handler(void);
 
 /** @brief signal array*/
 float calculate_vector[BLOCKSIZE+1];
-/** @brief signal sythesis sin table array*/
-float sinTable[BLOCKSIZE+1];
+
 /** @brief DAC output array*/
 uint32_t output_vector1[BLOCKSIZE];
 uint32_t output_vector2[BLOCKSIZE];
