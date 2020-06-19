@@ -25,12 +25,12 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 
 	maximalwert_DAC = (double)DAC_MAXVALUE_TO_AMPLITUDE_RATIO * (double)AMPLITUDE;
 	// Create Sin Table
-	float wt;
-	for(int i = 0; i<BLOCKSIZE;i++){
-		wt = i/(float)BLOCKSIZE* 2*M_PI;
-		sinTable[i] = sin(wt);
-	}
-	sinTable[BLOCKSIZE+1] = 0;
+//	float wt;
+//	for(int i = 0; i<BLOCKSIZE;i++){
+//		wt = i/(float)BLOCKSIZE* 2*M_PI;
+//		sinTable[i] = sin(wt);
+//	}
+//	sinTable[BLOCKSIZE+1] = 0;
 	// init calculate Vector with 0
 	for(int i = 0; i<BLOCKSIZE;i++){
 		calculate_vector[i] = 0;
@@ -100,7 +100,7 @@ float Signal_Synthesis(uint8_t count, ...){
 		//		sigFreq_sampleFreq_ratio = signals.freq[j]/tmp1;
 
 		//metode 2
-		wt_max[j] = floor(BLOCKSIZE/(signals.freq[j]/ F_MIN));
+//		wt_max[j] = floor(BLOCKSIZE/(signals.freq[j]/ F_MIN));
 		//lastIndex = BLOCKSIZE-(BLOCKSIZE % wt_max);
 		//Loop for the Array
 		for (int i = 0; i < BLOCKSIZE+1;i++){
@@ -108,14 +108,14 @@ float Signal_Synthesis(uint8_t count, ...){
 			switch (signals.kind[j]) {
 			case SIN:
 				// methode 1
-				//				wt = (int)(signals.freq[j]/ F_MIN*i) % (BLOCKSIZE);
-				//				addValue = sinTable[(int)(wt)];
+								wt = (int)(signals.freq[j]/ F_MIN*i) % (BLOCKSIZE);
+								addValue = sinTable[(int)(wt)];
 
 				//metode 2
-				tmp = (i % wt_max[j]);
-				wt = (tmp/wt_max[j]) * 2*M_PI;
-				sinf0 = sin(wt); // Erzeugung des Sinus-Wertes abhängig von der kleinsten Frequenz
-				addValue = sinf0;
+//				tmp = (i % wt_max[j]);
+//				wt = (tmp/wt_max[j]) * 2*M_PI;
+//				sinf0 = sin(wt); // Erzeugung des Sinus-Wertes abhängig von der kleinsten Frequenz
+//				addValue = sinf0;
 
 				break;
 			case SAWTOOTH:
