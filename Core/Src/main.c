@@ -166,27 +166,35 @@ int main(void)
 	//HAL_TIM_Base_Start(&htim6);
 	Signal_Synthesis_Init(htim8, hdac);
 
-	SetupLowpass(&LP, 20, 0.7071);
+	SetupLowpass(&LP, 400, 0.7071);
 	//SetupHighpass(&HP, 400, 0.7071);
 
-	Signal_Synthesis(1,SIN,(double)200); //,SIN,(double)200); //SIN,(double) 195,
+	double fsignal = 50;
 
-	ProcessFilter(&LP, calculate_vector, lastIndex);
-//	HAL_TIM_Base_Start_IT(&htim8);
-	Output_Signal(hdac);
+	while(fsignal < 4000) {
+		Signal_Synthesis(1,SIN,fsignal);
+
+		//HAL_Delay(4000);
+
+		//ProcessFilter(&LP, calculate_vector, lastIndex);
+		//HAL_TIM_Base_Start_IT(&htim8);
+		Output_Signal(hdac);
+
+		fsignal = fsignal+50;
+	}
 
 	//ProcessFilter(&HP, calculate_vector, lastIndex);
 	//filter_processed = ProcessFilter(&LP, calculate_vector, lastIndex);
 
-//	if(filter_processed){
-//
-//		HAL_TIM_Base_Start_IT(&htim8);
-//		Output_Signal(hdac);
-//	}
+	//	if(filter_processed){
+	//
+	//		HAL_TIM_Base_Start_IT(&htim8);
+	//		Output_Signal(hdac);
+	//	}
 
-//	HAL_TIM_Base_Start_IT(&htim8);
-//
-//	Output_Signal(hdac);
+	//	HAL_TIM_Base_Start_IT(&htim8);
+	//
+	//	Output_Signal(hdac);
 
 
 	while (1)
