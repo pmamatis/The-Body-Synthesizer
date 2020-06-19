@@ -36,6 +36,7 @@ extern "C" {
 #include "stm32f7xx_hal.h"
 #include "signal_synthesis.h"
 #include "music_notes.h"
+#include "sinus_LUT.h"
 
 
 /* USER CODE END Includes */
