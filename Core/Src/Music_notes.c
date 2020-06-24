@@ -125,10 +125,9 @@ const float notes[108] = {
 7458.62,
 7902.13};
 
-/** @brief lookuptable for respective note keys
- * @A*/
+/** @brief lookuptable for respective note keys*/
 const char keys[26] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
-//                    C#      D#		  F#	  G#				  C#	  D#		  F#	  G#				  C#
+//                      C#      D#		        F#	    G#				    C#	    D#		    F#	    G#				    C#
 
 
 
@@ -188,6 +187,14 @@ return keyindex;
 /**@brief returns the frequency of a music note listed in the
  */
 double Get_Note_Frequency(uint8_t index,uint8_t octave){
+	int tmp_octave = 12*octave; //DEBUG
+	double note_freq =notes[tmp_octave+index];
+	return note_freq;
+}
+
+/**@brief returns the frequency of a music note listed in the
+ */
+double Get_Note_Index(uint8_t index,uint8_t octave){
 	int tmp_octave = 12*octave; //DEBUG
 	double note_freq =notes[tmp_octave+index];
 	return note_freq;
