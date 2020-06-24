@@ -7,7 +7,7 @@ SR = 96000;
 timperiod = clock / SR;
 %SR = clock / timperiod;
 %% Signal
-stuetz = 10;
+stuetz = 20;
 fsignal = 4186;         % C8
 fmax = clock / (timperiod * stuetz);
 %fmin = SR / blocksize;
