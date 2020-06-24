@@ -53,10 +53,6 @@ float Signal_Synthesis(uint8_t count, ...){
 
 	// init calculate Vector with 0
 	lastIndex = 0;
-	for(int i = 0; i<BLOCKSIZE+1;i++){
-		calculate_vector[i] = 0;
-	}
-
 	//Init for variable number of function input arguments
 	struct signal signals;
 	va_list argumentlist;
