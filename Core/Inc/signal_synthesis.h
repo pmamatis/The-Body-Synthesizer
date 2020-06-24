@@ -53,6 +53,7 @@ enum signal_kind{
 struct signal{
 	unsigned int kind[10];
 	double freq[10];
+	uint32_t maxIndex[10];
 };
 
 //functions

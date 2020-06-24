@@ -72,7 +72,7 @@ void Error_Handler(void);
 #define SUPPORT_POINTS 20
 
 /**@brief output array size */
-#define BLOCKSIZE 9600
+#define BLOCKSIZE 96000
 
 /**@brief minimal frequency fittinig in the output-array */
 #define F_MIN 5
@@ -93,7 +93,7 @@ void Error_Handler(void);
 //Variables
 
 /** @brief signal array*/
-float calculate_vector[BLOCKSIZE+1];
+//float calculate_vector[BLOCKSIZE+1];
 
 /** @brief DAC output array*/
 uint32_t output_vector1[BLOCKSIZE];
@@ -104,6 +104,14 @@ float sigFreq_sampleFreq_ratio;
 /** @brief index from the calculate vector with the last zero*/
 uint32_t lastIndex;
 
+
+/** @brief enum for DMA Output buffer position */
+enum outputBuffer_position_enum{
+	HALF_BLOCK = 0,
+	FULL_BLOCK
+};
+/** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
+uint8_t outputBuffer_position = HALF_BLOCK;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
