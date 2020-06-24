@@ -11,7 +11,7 @@ stuetz = 20;
 fsignal = 4186;         % C8
 fmax = clock / (timperiod * stuetz);
 %fmin = SR / blocksize;
-fmin = 5.0184;
+fmin = 5.0;
 
 
 OS = SR / fsignal;
