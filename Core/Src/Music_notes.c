@@ -3,15 +3,9 @@
   * @file    music_notes.c
   * @author  Max Lehmer,Paul Mamatis
   * @date 	27 Apr 2020
-  * @brief	Funktionsgenerator für HAL-Libary auf Nucleo-144 F4.....
+  * @brief	Music note synthesis for Nucleo-144 F4.....
+  *			This C-file maps music notes to frequencies
   *
-  *         Diese C-Datei beinhaltet die Funktionen zur Signalerzeugung von 1Hz bis 8000Hz.
-  *         die Signale sind:
-  *         * Sinus
-  *         * Saegezahn
-  *         * Dreieck
-  *         * PWM
-  *         * Addition sämtlicher aufgeführter Signale
   *
   *
   *
@@ -21,7 +15,7 @@
 
 
 /** @brief lookuptable for note frequencies*/
-float notes[108] = {
+const float notes[108] = {
 16.35,		// C0
 17.32,
 18.35,
@@ -133,25 +127,25 @@ float notes[108] = {
 
 /** @brief lookuptable for respective note keys
  * @A*/
-char keys[26] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
+const char keys[26] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
 //                    C#      D#		  F#	  G#				  C#	  D#		  F#	  G#				  C#
 
 
 
 /** @brief minor/major tone scale in semi tone steps, according to the array keys*/
-uint32_t major_scale[9] =  {0,2,4,5,7,9,11,12, 14}; 	// {2,2,1,2,2,2,1}; Dur
-uint32_t minor_scale[9] =  {0,2,3,5,7,8,10,12, 14};		// {2,1,2,2,1,2,2}; Mol
+const uint32_t major_scale[9] =  {0,2,4,5,7,9,11,12, 14}; 	// {2,2,1,2,2,2,1}; Dur
+const uint32_t minor_scale[9] =  {0,2,3,5,7,8,10,12, 14};		// {2,1,2,2,1,2,2}; Mol
 
 
 /** @brief minor/major tone chords in semi tone steps, according to the array keys*/
-uint32_t major_chords[9] = {0,1,1,0,0,1, 2, 0, 1}; 	// 0: major, 1: minor, 2: diminished
-uint32_t minor_chords[9] = {1,2,0,1,1,0, 0, 1, 2};	// 0: major, 1: minor, 2: diminished
+const uint32_t major_chords[9] = {0,1,1,0,0,1, 2, 0, 1}; 	// 0: major, 1: minor, 2: diminished
+const uint32_t minor_chords[9] = {1,2,0,1,1,0, 0, 1, 2};	// 0: major, 1: minor, 2: diminished
 
 /** @brief chords, numbers give information of position in scale array(must be -1 if used directly) */
-uint32_t chord_5[3] = {1,3,5};   //5th-chord
-uint32_t chord_7[4] = {1,3,5,7}; //7th-chord, Jazz
-uint32_t chord_9[4] = {1,3,5,9}; //9th-chord, Math-Rock
-uint32_t chord_dim[3] = {1,3,4};//diminished-chord
+const uint32_t chord_5[3] = {1,3,5};   //5th-chord
+const uint32_t chord_7[4] = {1,3,5,7}; //7th-chord, Jazz
+const uint32_t chord_9[4] = {1,3,5,9}; //9th-chord, Math-Rock
+const uint32_t chord_dim[3] = {1,3,4};//diminished-chord
 
 
 
@@ -175,6 +169,10 @@ uint8_t sex = 0;
 //functions
 
 
+/** @brief returns the index of a note-letter depending on the keys-array
+ * 	@param key: note-letter e.g. C
+ * 	@return key index
+ * 	*/
 
 uint8_t Get_Keyindex(char key){
 
@@ -186,14 +184,19 @@ uint8_t Get_Keyindex(char key){
 return keyindex;
 }
 
+
+/**@brief returns the frequency of a music note listed in the
+ */
 double Get_Note_Frequency(uint8_t index,uint8_t octave){
 	int tmp_octave = 12*octave; //DEBUG
-	double tmp =notes[tmp_octave+index];
-	return tmp;
+	double note_freq =notes[tmp_octave+index];
+	return note_freq;
 }
 
-void Play_Note(char note, uint8_t octave){
-	//Output_Signal(hdac, htim8, Get_Note_Frequency(Get_Keyindex(note), octave), SIN);
+void Play_Note(char note, uint8_t octave,uint8_t channel){
+	double freq = Get_Note_Frequency(Get_Keyindex(note), octave);
+	Signal_Synthesis(1,SIN,freq);
+	Output_Signal(hdac, channel);
 }
 
 
@@ -223,7 +226,7 @@ void Play_Chord(char root_note,uint8_t sex,  uint8_t octave, uint8_t chordtype){
 
 
 	for (int i=0; i < count; i++){
-		uint8_t tmp, scale_index, freq_index; //DEBUG
+		uint8_t scale_index, freq_index; //DEBUG
 			switch(chordtype){
 							case fifth:
 								scale_index = chord_5[i]-1;
@@ -239,7 +242,12 @@ void Play_Chord(char root_note,uint8_t sex,  uint8_t octave, uint8_t chordtype){
 								  break;
 			}
 	}
-	Signal_Synthesis(count,SIN,note_frequency[0],SIN,note_frequency[1],SIN,note_frequency[2],SIN,note_frequency[3]);
+
+	Signal_Synthesis(count-2,SIN,note_frequency[0],SIN,note_frequency[1]);
+	Output_Signal(hdac, 1);
+	count = count -2;
+	Signal_Synthesis(count,SIN,note_frequency[2],SIN,note_frequency[3]);
+	Output_Signal(hdac, 2);
 }
 
 
