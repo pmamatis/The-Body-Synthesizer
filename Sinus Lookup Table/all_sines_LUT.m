@@ -63,8 +63,18 @@ end
 
 FandBS = [fn, BS, start_ind, end_ind];
 
+dlmwrite('test.txt',FandBS(1,:),'delimiter',',', 'precision', 10);
+
+for i = 1 : length(fn)
+
+    
+end
+
+
+
+
 %csvwrite(strcat('sines.txt'), Y);
-csvwrite(strcat('test.txt'), fn, BS);
+%csvwrite(strcat('test.txt'), FandBS);
 %csvwrite(strcat('F.txt'), freq);
 
 
