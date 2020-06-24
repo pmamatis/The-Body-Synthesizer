@@ -108,18 +108,16 @@ notes = [
 7458.62,
 7902.13];
 
+
+% Calculation
 SR = 96000;
 dt = 1/SR;
 freq = 500;
 BS = SR / freq;
 
-% F = 5 Hz
-t = 0:1/SR:BS/SR-dt;
+t = 0:dt:BS*dt-dt;
 y = sin(2*pi*freq*t);
 
-
-
-plot(t,y);
 csvwrite('Sin500Hz.txt', y);
 
 % Fs = 8000;                   % samples per second
