@@ -66,47 +66,56 @@ FandBS = [fn, BS, start_ind, end_ind];
 %write sin LUT as one whole array
 
 %% C-file
-dlmwrite('sinLUT.c','const float LUT = {','delimiter','', 'precision', 10)   
-for i = 1 : length(Y)
-     dlmwrite('sinLUT.c',Y{i},'delimiter',',', 'precision', 10,'-append');         
-end
+dlmwrite('sinLUT.c','#include "sinLUT.h"','delimiter','', 'precision', 10);   
+dlmwrite('sinLUT.c','const float LUT[] = {','delimiter','', 'precision', 10,'-append');  
+dlmwrite('sinLUT.c',Y{5},'delimiter',',', 'precision', 10,'-append'); 
+% for i = 1 : length(Y)
+%      dlmwrite('sinLUT.c',Y{i},'delimiter',',', 'precision', 10,'-append');         
+% end
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 
 %write frequency array
-dlmwrite('sinLUT.c','const float LUT_frequency = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c','const float LUT_frequency[] = {','delimiter','', 'precision', 10,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,1)','delimiter',',', 'precision', 10,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 
 %write Blocksize array
-dlmwrite('sinLUT.c','const uint32_t LUT_SUPPORTPOINTS = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LUT_SUPPORTPOINTS[] = {','delimiter','', 'precision', 10,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,2)','delimiter',',', 'precision', 10,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 
 %write start index array
-dlmwrite('sinLUT.c','const uint32_t LUT_STARTINDEX = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LUT_STARTINDEX[] = {','delimiter','', 'precision', 10,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,3)','delimiter',',', 'precision', 10,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 
 %write Blocksize array
-dlmwrite('sinLUT.c','const uint32_t LUT_ENDINDEX = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LUT_ENDINDEX[] = {','delimiter','', 'precision', 10,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,4)','delimiter',',', 'precision', 10,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 
-
+%write Blocksize array
+dlmwrite('sinLUT.c','const float LUT_FREQUENCYS[] = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c',fn','delimiter',',', 'precision', 10,'-append');  
+dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 %% H-file
 length_Y = 0;
 for i =1 : length(Y)
     length_Y = length_Y + length(Y{i});
 end
 
+dlmwrite('sinLUT.h','#ifndef INC_SINLUT_H_','delimiter','', 'precision', 10);
+dlmwrite('sinLUT.h','#define INC_SINLUT_H_','delimiter','', 'precision', 10,'-append') ;
 
 
-dlmwrite('sinLUT.h',['const uint32_t LUT_ENDINDEX[', num2str(length(fn)),'];'],'delimiter','', 'precision', 10) ;
+
+dlmwrite('sinLUT.h','#include "main.h"','delimiter','', 'precision', 10,'-append') ;
 dlmwrite('sinLUT.h',['const float  LUT[',num2str(length_Y),'];'],'delimiter','', 'precision', 10,'-append');
+dlmwrite('sinLUT.h',['const uint32_t LUT_ENDINDEX[', num2str(length(fn)),'];'],'delimiter','', 'precision', 10,'-append') ;
 dlmwrite('sinLUT.h',['const uint32_t LUT_STARTINDEX[',num2str(length(fn)),'];'],'delimiter','', 'precision', 10,'-append');  
 dlmwrite('sinLUT.h',['const uint32_t LUT_SUPPORTPOINTS[',num2str(length(fn)),'];'],'delimiter','', 'precision', 10,'-append'); 
-
-dlmwrite('sinLUT.h','float LUT_GetSin(uint32_t index);','delimiter','', 'precision', 10,'-append'); 
+dlmwrite('sinLUT.h',['const float LUT_FREQUENCYS[',num2str(length(fn)),'];'],'delimiter','', 'precision', 10,'-append'); 
+dlmwrite('sinLUT.h','#endif','delimiter','', 'precision', 10,'-append'); 
 
 %%
 % Fs = 8000;                   % samples per second
