@@ -91,23 +91,24 @@ dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');
 dlmwrite('sinLUT.c','const uint32_t LUT_ENDINDEX = {','delimiter','', 'precision', 10,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,4)','delimiter',',', 'precision', 10,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
+
+
 %% H-file
 length_Y = 0;
 for i =1 : length(Y)
-    length_Y = length_Y + length(Y{i})
+    length_Y = length_Y + length(Y{i});
 end
 
 
 
-dlmwrite('sinLUT.h','const uint32_t LUT_ENDINDEX['+num2str(length(fn)) +'];','delimiter','', 'precision', 10) ;
-dlmwrite('sinLUT.h','const float  LUT['+num2str(length()) +'];','delimiter','', 'precision', 10,'-append');
-dlmwrite('sinLUT.h','const uint32_t LUT_STARTINDEX['+num2str(length(fn)) +'];','delimiter','', 'precision', 10,'-append');  
-dlmwrite('sinLUT.h','const uint32_t LUT_SUPPORTPOINTS['+num2str(length(fn)) +'];','delimiter','', 'precision', 10,'-append'); 
-%csvwrite(strcat('sines.txt'), Y);
-%csvwrite(strcat('test.txt'), FandBS);
-%csvwrite(strcat('F.txt'), freq);
+dlmwrite('sinLUT.h',['const uint32_t LUT_ENDINDEX[', num2str(length(fn)),'];'],'delimiter','', 'precision', 10) ;
+dlmwrite('sinLUT.h',['const float  LUT[',num2str(length_Y),'];'],'delimiter','', 'precision', 10,'-append');
+dlmwrite('sinLUT.h',['const uint32_t LUT_STARTINDEX[',num2str(length(fn)),'];'],'delimiter','', 'precision', 10,'-append');  
+dlmwrite('sinLUT.h',['const uint32_t LUT_SUPPORTPOINTS[',num2str(length(fn)),'];'],'delimiter','', 'precision', 10,'-append'); 
 
+dlmwrite('sinLUT.h','float LUT_GetSin(uint32_t index);','delimiter','', 'precision', 10,'-append'); 
 
+%%
 % Fs = 8000;                   % samples per second
 %    dt = 1/Fs;                   % seconds per sample
 %    StopTime = 0.25;             % seconds
