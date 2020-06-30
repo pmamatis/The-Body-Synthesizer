@@ -3,12 +3,13 @@ clear
 a  = 2^(1/12);
 f0 = 440;
 
-n = -141;   % C-7
-
+%n = -141;   % C-7
+%n= -93;
+%n = -81;
 %n = -69;   % C-1 
-%n = -57;   % C0
+n = -57;   % C0
 
-oct = 15;
+oct = 8;
 keys = 12;
 
 nend = n + oct*keys;
@@ -62,17 +63,46 @@ end
 
 
 FandBS = [fn, BS, start_ind, end_ind];
+%write sin LUT as one whole array
 
-dlmwrite('test.txt',FandBS(1,:),'delimiter',',', 'precision', 10);
+%% C-file
+dlmwrite('sinLUT.c','const float LUT = {','delimiter','', 'precision', 10)   
+for i = 1 : length(Y)
+     dlmwrite('sinLUT.c',Y{i},'delimiter',',', 'precision', 10,'-append');         
+end
+dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 
-for i = 1 : length(fn)
+%write frequency array
+dlmwrite('sinLUT.c','const float LUT_frequency = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c',FandBS(:,1)','delimiter',',', 'precision', 10,'-append');  
+dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 
-    
+%write Blocksize array
+dlmwrite('sinLUT.c','const uint32_t LUT_SUPPORTPOINTS = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c',FandBS(:,2)','delimiter',',', 'precision', 10,'-append');  
+dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
+
+%write start index array
+dlmwrite('sinLUT.c','const uint32_t LUT_STARTINDEX = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c',FandBS(:,3)','delimiter',',', 'precision', 10,'-append');  
+dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
+
+%write Blocksize array
+dlmwrite('sinLUT.c','const uint32_t LUT_ENDINDEX = {','delimiter','', 'precision', 10,'-append')   
+dlmwrite('sinLUT.c',FandBS(:,4)','delimiter',',', 'precision', 10,'-append');  
+dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
+%% H-file
+length_Y = 0;
+for i =1 : length(Y)
+    length_Y = length_Y + length(Y{i})
 end
 
 
 
-
+dlmwrite('sinLUT.h','const uint32_t LUT_ENDINDEX['+num2str(length(fn)) +'];','delimiter','', 'precision', 10) ;
+dlmwrite('sinLUT.h','const float  LUT['+num2str(length()) +'];','delimiter','', 'precision', 10,'-append');
+dlmwrite('sinLUT.h','const uint32_t LUT_STARTINDEX['+num2str(length(fn)) +'];','delimiter','', 'precision', 10,'-append');  
+dlmwrite('sinLUT.h','const uint32_t LUT_SUPPORTPOINTS['+num2str(length(fn)) +'];','delimiter','', 'precision', 10,'-append'); 
 %csvwrite(strcat('sines.txt'), Y);
 %csvwrite(strcat('test.txt'), FandBS);
 %csvwrite(strcat('F.txt'), freq);
