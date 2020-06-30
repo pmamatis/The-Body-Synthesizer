@@ -36,7 +36,7 @@ extern "C" {
 #include "stm32f7xx_hal.h"
 #include "signal_synthesis.h"
 #include "music_notes.h"
-#include "sinus_LUT.h"
+#include "sinLUT.h"
 
 
 /* USER CODE END Includes */
@@ -111,7 +111,7 @@ enum outputBuffer_position_enum{
 	FULL_BLOCK
 };
 /** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
-uint8_t outputBuffer_position = HALF_BLOCK;
+uint8_t outputBuffer_position;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

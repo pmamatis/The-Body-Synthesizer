@@ -70,7 +70,7 @@ float Signal_Synthesis(uint8_t count, ...){
 	while(tmpCount--){ //first frequency is stored in signals[count]
 		signals.kind[tmpCount] = va_arg(argumentlist, unsigned int);
 		signals.freq[tmpCount] = va_arg(argumentlist, double);
-		signals.maxIndex[tmpCount] = GetSupportpoints(signals.freq[tmpCount]);
+//		signals.maxIndex[tmpCount] =LUT_Supportpoints[signals.freq[tmpCount]];
 
 		if (signals.freq[tmpCount] > F_MAX)
 			signals.freq[tmpCount] = F_MAX;
@@ -102,10 +102,10 @@ float Signal_Synthesis(uint8_t count, ...){
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 	//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
-
+			uint32_t index;
 			switch (signals.kind[j]) {
 			case SIN:
-					addValue = GetSinValue(signals.freq[count],sinIndex[count]);
+//					addValue = LUT[index];
 					//v. 1.3
 					// calculate the input argument for the sin-funktion
 					//wt = (int)(signals.freq[j]/ F_MIN*i) % (BLOCKSIZE);
