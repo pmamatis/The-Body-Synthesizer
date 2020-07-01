@@ -67,11 +67,14 @@ FandBS = [fn, BS, start_ind, end_ind];
 
 %% C-file
 dlmwrite('sinLUT.c','#include "sinLUT.h"','delimiter','', 'precision', 10);   
-dlmwrite('sinLUT.c','const float LUT[] = {','delimiter','', 'precision', 10,'-append');  
-dlmwrite('sinLUT.c',Y{5},'delimiter',',', 'precision', 10,'-append'); 
-% for i = 1 : length(Y)
-%      dlmwrite('sinLUT.c',Y{i},'delimiter',',', 'precision', 10,'-append');         
-% end
+dlmwrite('sinLUT.c','const float LUT[] = {','delimiter','', 'precision', 10,'-append');   
+for i = 1 : length(Y)
+     dlmwrite('sinLUT.c',Y{i},'delimiter',',', 'precision', 10,'-append');
+     if i < length(Y)
+         dlmwrite('sinLUT.c',',','delimiter',',', 'precision', 10,'-append'); 
+     end
+     
+end
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', 10,'-append');  
 
 %write frequency array
@@ -103,13 +106,23 @@ length_Y = 0;
 for i =1 : length(Y)
     length_Y = length_Y + length(Y{i});
 end
-
+%include Guard
 dlmwrite('sinLUT.h','#ifndef INC_SINLUT_H_','delimiter','', 'precision', 10);
-dlmwrite('sinLUT.h','#define INC_SINLUT_H_','delimiter','', 'precision', 10,'-append') ;
-
-
-
+dlmwrite('sinLUT.h','#define INC_SINLUT_H_','delimiter','', 'precision', 10,'-append') 
+dlmwrite('sinLUT.h','//includes ','delimiter','', 'precision', 10,'-append');
 dlmwrite('sinLUT.h','#include "main.h"','delimiter','', 'precision', 10,'-append') ;
+%Space
+dlmwrite('sinLUT.h',' ','delimiter','', 'precision', 10,'-append');
+dlmwrite('sinLUT.h',' ','delimiter','', 'precision', 10,'-append');
+%defines
+dlmwrite('sinLUT.h','//defines ','delimiter','', 'precision', 10,'-append');
+dlmwrite('sinLUT.h',['#define LUT_FMAX ',num2str(fn(length(fn)))],'delimiter','', 'precision', 10,'-append');
+dlmwrite('sinLUT.h',['#define LUT_FMIN ',num2str(fn(length(0)))],'delimiter','', 'precision', 10,'-append');
+%Space
+dlmwrite('sinLUT.h',' ','delimiter','', 'precision', 10,'-append');
+dlmwrite('sinLUT.h',' ','delimiter','', 'precision', 10,'-append');
+%variables
+dlmwrite('sinLUT.h','//variables','delimiter','', 'precision', 10,'-append');
 dlmwrite('sinLUT.h',['const float  LUT[',num2str(length_Y),'];'],'delimiter','', 'precision', 10,'-append');
 dlmwrite('sinLUT.h',['const uint32_t LUT_ENDINDEX[', num2str(length(fn)),'];'],'delimiter','', 'precision', 10,'-append') ;
 dlmwrite('sinLUT.h',['const uint32_t LUT_STARTINDEX[',num2str(length(fn)),'];'],'delimiter','', 'precision', 10,'-append');  
