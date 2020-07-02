@@ -122,10 +122,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 //  Test(htim8,hdac);
 
-
-
-int tmp_36;
-//Signal_Synthesis(1,SIN,(double)300);
+ Signal_Synthesis(1,note_key,'C',3);
+//int tmp_36;
+//Signal_Synthesis(1,note_key,(uint)'C',(uint)3);
 ////for (int z=0;z< 100;z++){
 ////	lastIndex =lastIndex-1;
 //tmp_36 = Output_Signal(hdac);<

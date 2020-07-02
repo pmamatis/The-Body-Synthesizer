@@ -40,25 +40,36 @@
 #define OFFSET 		145
 /**@brief 4096/3300 */
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
+/**@brief Maximum of SIgnals which can be played at the same time */
+#define MAX_SIGNAL_KOMBINATION 10
 
+/**@brief struct to store signals*/
+struct signal{
+	unsigned int kind[MAX_SIGNAL_KOMBINATION];
+	double freq[MAX_SIGNAL_KOMBINATION];
+	uint8_t freqIndex[MAX_SIGNAL_KOMBINATION];
+	uint32_t current_LUT_Index[MAX_SIGNAL_KOMBINATION];
+
+};
+enum singnal_synthesis_enum{
+	note_key = 0,
+	mixed
+};
 /**@brief Signal kinds*/
-enum signal_kind{
+enum signal_kind_enum{
 	SIN = 0,
 	SAWTOOTH,
 	TRIANGLE,
 	PWM,
 };
 
-/**@brief struct to store signals*/
-struct signal{
-	unsigned int kind[10];
-	double freq[10];
-	uint32_t maxIndex[10];
-};
+
+
+
 
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
-float Signal_Synthesis(uint8_t count, ...);
+void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...);
 HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac, uint8_t channel);
 //void TEST(DAC_HandleTypeDef hdac);
 

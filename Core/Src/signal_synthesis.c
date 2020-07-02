@@ -23,7 +23,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 
 	// Sets the maximal digital value which the DAC converts into analog voltage
 	maxValueDAC = (double)DAC_MAXVALUE_TO_AMPLITUDE_RATIO * (double)AMPLITUDE;
-
+//	outputBuffer_position = HALF_BLOCK;
 	// init calculate Vector with 0
 //	for(int i = 0; i<BLOCKSIZE;i++){
 //		calculate_vector[i] = 0;
@@ -46,45 +46,60 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
  * 		  				 @arg PWM
  * @param  frequency: Frequency of the signal, have to be a double type
  *@return gives the lowest frequency back
-
  */
-float Signal_Synthesis(uint8_t count, ...){
+void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...){
 
 
-	lastIndex = 0;
-	//Init for variable number of function input arguments
+//	lastIndex = 0;
+//	//Init for variable number of function input arguments
 	struct signal signals;
-	va_list argumentlist;
-	va_start(argumentlist, count);
+	va_list argumentlist, argumentlist_copy;
+	va_start(argumentlist, signal_composition);
+	va_copy(argumentlist_copy,argumentlist);
+
+
 
 	//minimal frequency of the given signals, initialized with F_MAX
 	double freqMin = F_MAX;
-
-	uint8_t indexMin;
-	//used to save the minimum and maximum of the caculate array
-	float min=0;
-	float max=0;
-
+//
+//	uint8_t indexMin;
+//	//used to save the minimum and maximum of the caculate array
+//	float min=0;
+//	float max=0;
+//
 	//calculates the lowest frequency and saves the given signals in a struct
 	uint8_t tmpCount = count;
 	while(tmpCount--){ //first frequency is stored in signals[count]
-		signals.kind[tmpCount] = va_arg(argumentlist, unsigned int);
-		signals.freq[tmpCount] = va_arg(argumentlist, double);
-//		signals.maxIndex[tmpCount] =LUT_Supportpoints[signals.freq[tmpCount]];
+
+
+		if(signal_composition == note_key){
+			char key = va_arg(argumentlist, unsigned int);
+			uint8_t octave = va_arg(argumentlist, unsigned int);
+			signals.kind[tmpCount] = SIN;
+			signals.freq[tmpCount] = Get_Note_Frequency(Get_Keyindex(key), octave);
+			signals.current_LUT_Index[tmpCount] = 0;
+			signals.freqIndex[tmpCount] = Get_Note_Index(key,octave);
+		}
+		else if(signal_composition == mixed){
+			signals.kind[tmpCount] = va_arg(argumentlist, unsigned int);
+			signals.freq[tmpCount] = va_arg(argumentlist, int);
+//		signals.maxIndex[tmpCount] = LUT_SUPPORTPOINTS[signals.freq[tmpCount]];
+		}
+
 
 		if (signals.freq[tmpCount] > F_MAX)
 			signals.freq[tmpCount] = F_MAX;
 
 		if(signals.freq[tmpCount] < freqMin){
 			freqMin = signals.freq[tmpCount];
-			indexMin = tmpCount;
+//			indexMin = tmpCount;
 		}
 	}
-
-	float wt,addValue;
-	uint16_t wt_max[count];
-
-
+//
+//	float wt,addValue;
+//	uint16_t wt_max[count];
+//
+//
 	//decide if first half of BLOCKSIZE or second half
 	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
 
@@ -105,6 +120,7 @@ float Signal_Synthesis(uint8_t count, ...){
 			uint32_t index;
 			switch (signals.kind[j]) {
 			case SIN:
+
 //					addValue = LUT[index];
 					//v. 1.3
 					// calculate the input argument for the sin-funktion
@@ -143,11 +159,14 @@ float Signal_Synthesis(uint8_t count, ...){
 		}
 
 //	wt_max[j] = floor(BLOCKSIZE/(signals.freq[j]/ F_MIN));
-	}
+//	}
 	//norm the signal to -1...1
 //	for (int i = 0; i< BLOCKSIZE;i++){
 //		calculate_vector[i] = calculate_vector[i]*(2/(max-min));
-//	}
+	}
+
+	va_end(argumentlist);
+}
 
 // v.1.3
 
@@ -190,9 +209,9 @@ float Signal_Synthesis(uint8_t count, ...){
 //		lastIndex = BLOCKSIZE;
 //	}
 
-	va_end(argumentlist);
-	return freqMin;
-	}
+//	va_end(argumentlist);
+////	return freqMin;
+//	}
 
 
 	/** @brief converts the calculate_vector into DAC friendly value and gives the signal via DAC out by using the Array output_vector1 and output_vector2
