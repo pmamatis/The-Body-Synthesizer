@@ -69,16 +69,17 @@ FandBS = [fn, BS, start_ind, end_ind];
 %% LFO calculation
 %parameter
 %LFO_ind=[1,13,20,25,32,37,41,44,46,49,61,73,80,85]'; %ausgewählte frequenzen
-%n= -129; % C-6
+anzahlFrequenzen = 4;
+startFrequenz = 0.5;
 
 %variables init
 LFO_Array = [];
-%calculation
-nend = n + oct_LFO*keys;
-for i = 0:3
+fn_LFO = (anzahlFrequenzen);
 
-   % fn(i+abs(n)+1,1) = f0 * a^i;
-    fn_LFO(i+1,1) = 2^(i);
+%calculation
+indexOffset = log2(startFrequenz);
+for i = 0:anzahlFrequenzen
+    fn_LFO(i+1,1) = 2^(i+indexOffset);
 end
 
 Y = cell(length(fn_LFO),1);
@@ -129,68 +130,58 @@ precision_LFO = 2; %precision of Nachkommastelle
 
 %% C-file
 dlmwrite('sinLUT.c','#include "sinLUT.h"','delimiter','', 'precision', precision);   
-dlmwrite('sinLUT.c','const float LUT[] = {','delimiter','', 'precision', precision,'-append'); 
 
 %LUT
 
 %LUT Array
+dlmwrite('sinLUT.c','const float LUT[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append'); 
 dlmwrite('sinLUT.c',LUT_Array,'delimiter',',', 'precision', precision,'-append');
-
-% for i = 1 : length(Y)
-%      dlmwrite('sinLUT.c',Y{i},'delimiter',',', 'precision', precision,'-append');
-%      if i < length(Y)
-%          dlmwrite('sinLUT.c',',','delimiter',',', 'precision', precision,'-append'); 
-%      end
-%      
-% end
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
-
-
 %write frequency array
-dlmwrite('sinLUT.c','const float LUT_frequency[] = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const float LUT_FREQUENCYS[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,1)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %write Blocksize array
-dlmwrite('sinLUT.c','const uint32_t LUT_SUPPORTPOINTS[] = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LUT_SUPPORTPOINTS[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,2)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %write start index array
-dlmwrite('sinLUT.c','const uint32_t LUT_STARTINDEX[] = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LUT_STARTINDEX[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,3)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %write Blocksize array
-dlmwrite('sinLUT.c','const uint32_t LUT_ENDINDEX[] = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LUT_ENDINDEX[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS(:,4)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %LFO
 
 %LFO Array
-dlmwrite('sinLUT.c','const float LFO[] = {','delimiter','', 'precision', precision,'-append');   
+dlmwrite('sinLUT.c','const float LFO[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append');   
 dlmwrite('sinLUT.c',LFO_Array,'delimiter',',', 'precision', precision_LFO,'-append');
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %write frequency array
-dlmwrite('sinLUT.c','const float LFO_frequency[] = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const float LFOLUT_FREQUENCYS[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS_LFO(:,1)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %write Blocksize array
-dlmwrite('sinLUT.c','const uint32_t LFO_SUPPORTPOINTS[] = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LFO_SUPPORTPOINTS[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS_LFO(:,2)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %write start index array
-dlmwrite('sinLUT.c','const uint32_t LFO_STARTINDEX[] = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LFO_STARTINDEX[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS_LFO(:,3)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %write Blocksize array
-dlmwrite('sinLUT.c','const uint32_t LFO_ENDINDEX[] = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const uint32_t LFO_ENDINDEX[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS_LFO(:,4)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 %% H-file
@@ -211,17 +202,18 @@ dlmwrite('sinLUT.h',' ','delimiter','', 'precision', precision,'-append');
 dlmwrite('sinLUT.h','//defines ','delimiter','', 'precision', precision,'-append');
 
 dlmwrite('sinLUT.h',['#define LUT_SR ',num2str(SR)],'delimiter','', 'precision', precision,'-append');
-%LUT defines
+% %LUT defines
 dlmwrite('sinLUT.h',['#define LUT_START_OCTAVE ',num2str(FandBS(length(FandBS),1))],'delimiter','', 'precision', precision,'-append');
 
 dlmwrite('sinLUT.h',['#define LUT_FMAX ',num2str(FandBS(length(FandBS),1))],'delimiter','', 'precision', precision,'-append');
 dlmwrite('sinLUT.h',['#define LUT_FMIN ',num2str(FandBS(1,1))],'delimiter','', 'precision', precision,'-append');
 dlmwrite('sinLUT.h',['#define LUT_OCTAVES ',num2str(oct_LUT)],'delimiter','', 'precision', precision,'-append');
+
 %LFO defines
 dlmwrite('sinLUT.h','//defines ','delimiter','', 'precision', precision,'-append');
 dlmwrite('sinLUT.h',['#define LFO_FMAX ',num2str(FandBS_LFO(length(FandBS_LFO),1))],'delimiter','', 'precision', precision,'-append');
 dlmwrite('sinLUT.h',['#define LFO_FMIN ',num2str(FandBS_LFO(1,1))],'delimiter','', 'precision', precision,'-append');
-dlmwrite('sinLUT.h',['#define LFO_OCTAVES ',num2str(oct_LFO)],'delimiter','', 'precision', precision,'-append');
+%dlmwrite('sinLUT.h',['#define LFO_OCTAVES ',num2str(oct_LFO)],'delimiter','', 'precision', precision,'-append');
 
 
 %Space
