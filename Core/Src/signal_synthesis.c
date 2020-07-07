@@ -53,10 +53,11 @@ void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...){
 //	lastIndex = 0;
 //	//Init for variable number of function input arguments
 	struct signal signals;
-	va_list argumentlist, argumentlist_copy;
+	va_list argumentlist;
 	va_start(argumentlist, signal_composition);
-	va_copy(argumentlist_copy,argumentlist);
-
+	float addValue=0;
+	float min = 1;
+	float max = -1;
 
 
 	//minimal frequency of the given signals, initialized with F_MAX
@@ -71,14 +72,14 @@ void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...){
 	uint8_t tmpCount = count;
 	while(tmpCount--){ //first frequency is stored in signals[count]
 
-
+		//Fetch information
 		if(signal_composition == note_key){
 			char key = va_arg(argumentlist, unsigned int);
 			uint8_t octave = va_arg(argumentlist, unsigned int);
 			signals.kind[tmpCount] = SIN;
 			signals.freq[tmpCount] = Get_Note_Frequency(Get_Keyindex(key), octave);
-			signals.current_LUT_Index[tmpCount] = 0;
 			signals.freqIndex[tmpCount] = Get_Note_Index(key,octave);
+			signals.current_LUT_Index[tmpCount] = LUT_STARTINDEX[signals.freqIndex[tmpCount]];
 		}
 		else if(signal_composition == mixed){
 			signals.kind[tmpCount] = va_arg(argumentlist, unsigned int);
@@ -99,7 +100,7 @@ void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...){
 //	float wt,addValue;
 //	uint16_t wt_max[count];
 //
-//
+	va_end(argumentlist);
 	//decide if first half of BLOCKSIZE or second half
 	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
 
@@ -115,13 +116,23 @@ void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...){
 
 //Loop to reach every array entry of calculate vector
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+		addValue = 0;
 	//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
-			uint32_t index;
 			switch (signals.kind[j]) {
 			case SIN:
+					//get current sin value
+					addValue = addValue + LUT[signals.current_LUT_Index[j]];
 
-//					addValue = LUT[index];
+					//get index for the next sin value
+					if (signals.current_LUT_Index[j] > LUT_ENDINDEX[signals.freqIndex[j]])
+					{
+						signals.current_LUT_Index[j] = LUT_STARTINDEX[signals.freqIndex[j]];
+					}
+					else
+					{
+						signals.current_LUT_Index[j]++;
+					}
 					//v. 1.3
 					// calculate the input argument for the sin-funktion
 					//wt = (int)(signals.freq[j]/ F_MIN*i) % (BLOCKSIZE);
@@ -139,33 +150,34 @@ void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...){
 				break;
 
 			default:
-				return -1;
+//				return -1;
 				break;
 
 
 			}
 
-//			//write into calculate_vector
-//			calculate_vector[i] = (calculate_vector[i]+ addValue);
 
 
-//			//maximum
-//			if (max < calculate_vector[i])
-//				max = calculate_vector[i];
-//			//minimum
-//			if (min > calculate_vector[i])
-//				min = calculate_vector[i];
+		}// SIgnal counter for-loop
 
-		}
 
-//	wt_max[j] = floor(BLOCKSIZE/(signals.freq[j]/ F_MIN));
-//	}
-	//norm the signal to -1...1
-//	for (int i = 0; i< BLOCKSIZE;i++){
-//		calculate_vector[i] = calculate_vector[i]*(2/(max-min));
-	}
+		//Signal adjustment to DAC
 
-	va_end(argumentlist);
+		//maximum
+		if (max < addValue)
+			max = addValue;
+		//minimum
+		if (min > addValue)
+			min = addValue;
+
+//norm the signal to -1...1
+	addValue = addValue*(2/(max-min));
+
+	//write into output vector
+	output_vector1[BLOCKSIZE_counter] = (addValue+1) * maxValueDAC/2 + OFFSET ;
+	} //BLOCKSIZE for-Loop
+
+
 }
 
 // v.1.3

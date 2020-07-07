@@ -83,7 +83,7 @@ double Get_Note_Frequency(uint8_t index,uint8_t octave){
 
 /**@brief returns the frequency of a music note listed in the
  */
-double Get_Note_Index(char key,uint8_t octave){
+uint16_t Get_Note_Index(char key,uint8_t octave){
 	return 12*octave + Get_Keyindex(key);
 }
 

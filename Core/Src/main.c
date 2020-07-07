@@ -121,7 +121,7 @@ printf("%d",(int)x);
   /* USER CODE BEGIN WHILE */
 //  Test(htim8,hdac);
 
- Signal_Synthesis(1,note_key,'C',3);
+ Signal_Synthesis(2,note_key,'C',3,'C',4);
 //int tmp_36;
 //Signal_Synthesis(1,note_key,(uint)'C',(uint)3);
 ////for (int z=0;z< 100;z++){
@@ -135,8 +135,9 @@ printf("%d",(int)x);
 //tmp_36 = Output_Signal(hdac,2);
 //Signal_Synthesis(1,SIN,(double)4800,SIN);//,(double)2000);
 //tmp_36 = Output_Signal(hdac,1);
-//uint32_t buffer[] = {4000,4000,4000};
-//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, buffer,3, DAC_ALIGN_12B_R);
+uint32_t buffer[] = {4000,4000,4000};
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
 while (1)
 {
 
