@@ -72,7 +72,7 @@ void Error_Handler(void);
 #define SUPPORT_POINTS 20
 
 /**@brief output array size */
-#define BLOCKSIZE 96000
+#define BLOCKSIZE 24000
 
 /**@brief minimal frequency fittinig in the output-array */
 #define F_MIN 5
@@ -103,6 +103,7 @@ float sigFreq_sampleFreq_ratio;
 
 /** @brief index from the calculate vector with the last zero*/
 uint32_t lastIndex;
+
 
 
 /** @brief enum for DMA Output buffer position */

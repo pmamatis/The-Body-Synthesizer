@@ -58,8 +58,6 @@ HAL_StatusTypeDef PWM_status_TIM1, PWM_status_TIM8;
 
 uint8_t sinIndex=0;
 
-
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -117,7 +115,8 @@ int main(void)
   //HAL_TIM_Base_Start(&htim6);
   Signal_Synthesis_Init(htim8, hdac);
   /* USER CODE END 2 */
-
+float x = LUT[13] + LUT[14];
+printf("%d",(int)x);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 //  Test(htim8,hdac);
