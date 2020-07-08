@@ -1,13 +1,13 @@
 clock = 9600000;
 %% Sample Rate (SR)
-SR = 96000;
+SR = 48000;
 %SR = clock / timperiod;
 %% Timer
 %timperiod = 167;
 timperiod = clock / SR;
 %SR = clock / timperiod;
 %% Signal
-stuetz = 20;
+stuetz = 40;
 fsignal = 4186;         % C8
 fmax = clock / (timperiod * stuetz);
 %fmin = SR / blocksize;

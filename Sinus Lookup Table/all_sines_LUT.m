@@ -2,7 +2,7 @@ clear
 %% global parameters 
 a  = 2^(1/12);
 f0 = 65.40639;
-SR = 48000; %sample rate
+SR = 96000; %sample rate
 dt = 1/SR;
 
 %% normal LUT
@@ -42,11 +42,16 @@ end_ind  (1,1) = round(SR / fn(1))-1;
 
 for i = 1 : length(fn)
     
-    BS(i,1) = round(SR / fn(i));
+    BS(i,1) = round((SR / fn(i))/4);
     
-    t = 0:dt:BS(i)*dt-dt;
+    t = 0:dt:BS(i)*dt-dt; %-dt
     
     Y{i} = sin(2*pi*fn(i)*t);
+    figure(2);
+    ylim([-1.5 1.5]);
+    plot(t,Y{i});
+    hold on;
+    grid on;
     %y = sin(2*pi*freq(i)*t);
 
     if i > 1
@@ -66,7 +71,7 @@ FandBS = [fn, BS, start_ind, end_ind];
 
 
 
-%% LFO calculation
+%% LFO calculation (kann auf viertel Periode reduziert werden)
 %parameter
 %LFO_ind=[1,13,20,25,32,37,41,44,46,49,61,73,80,85]'; %ausgewählte frequenzen
 anzahlFrequenzen = 4;
@@ -94,9 +99,9 @@ end_ind_LFO  (1,1) = round(SR / fn_LFO(1))-1;
 
 for i = 1 : length(fn_LFO)
     
-    BS_LFO(i,1) = round(SR / fn_LFO(i));
+    BS_LFO(i,1) = round(SR / fn_LFO(i))/4;
     
-    t = 0:dt:BS_LFO(i)*dt-dt;
+    t = 0:dt:(BS_LFO(i))*dt-dt;
     
     Y{i} = sin(2*pi*fn_LFO(i)*t);
     %y = sin(2*pi*freq(i)*t);
@@ -109,9 +114,9 @@ for i = 1 : length(fn_LFO)
     end
     
     %plot
-%     figure(1)
-%     plot(t,Y{i});
-%     hold on;
+    figure(1)
+    plot(t,Y{i});
+    hold on;
     
 
 end
