@@ -111,8 +111,7 @@ enum outputBuffer_position_enum{
 	HALF_BLOCK = 0,
 	FULL_BLOCK
 };
-/** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
-uint8_t outputBuffer_position;
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

@@ -75,6 +75,28 @@ static void MX_USART3_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+//DAC_CHANNEL_1
+void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
+
+	Signal_Synthesis();
+	outputBuffer_position = FULL_BLOCK;
+}
+
+
+void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
+
+	Signal_Synthesis();
+	outputBuffer_position = HALF_BLOCK;
+}
+
+//DAC_CHANNEL_2
+void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
+
+}
+
+void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
+
+}
 /* USER CODE END 0 */
 
 /**
@@ -111,33 +133,19 @@ int main(void)
   MX_TIM6_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-  //HAL_TIM_Base_Start(&htim8);
-  //HAL_TIM_Base_Start(&htim6);
+
   Signal_Synthesis_Init(htim8, hdac);
   /* USER CODE END 2 */
-float x = LUT[13] + LUT[14];
-printf("%d",(int)x);
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-//  Test(htim8,hdac);
 
- Signal_Synthesis(2,note_key,'C',3,'C',4);
-//int tmp_36;
-//Signal_Synthesis(1,note_key,(uint)'C',(uint)3);
-////for (int z=0;z< 100;z++){
-////	lastIndex =lastIndex-1;
-//tmp_36 = Output_Signal(hdac);<
-//HAL_Delay(3000);
-//}
-//TEST(hdac);
-//Signal_Synthesis(3,SIN,(double)1000,SIN,(double) 2200,SIN,(double)3000);
-//Signal_Synthesis(1,SIN,(double)5,SIN,(double)4800);//,(double)1000);//,SIN,(double) 1244.51,SIN,(double)1567.98);//,SIN,(double)600,SIN,(double)900);
-//tmp_36 = Output_Signal(hdac,2);
-//Signal_Synthesis(1,SIN,(double)4800,SIN);//,(double)2000);
-//tmp_36 = Output_Signal(hdac,1);
-uint32_t buffer[] = {4000,4000,4000};
+NewSignal(SIN, 'C', 3);
+//NewSignal(SIN, 'd', 3);
+//NewSignal(SIN, 'D', 3);
+
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
+//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
 while (1)
 {
 
@@ -164,7 +172,7 @@ void SystemClock_Config(void)
   /** Configure the main internal regulator output voltage 
   */
   __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   /** Initializes the CPU, AHB and APB busses clocks 
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
@@ -172,11 +180,17 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 10;
-  RCC_OscInitStruct.PLL.PLLN = 96;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 216;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Activate the Over-Drive mode 
+  */
+  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
     Error_Handler();
   }
@@ -185,11 +199,11 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
   {
     Error_Handler();
   }

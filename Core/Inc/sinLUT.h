@@ -5,7 +5,7 @@
  
  
 //defines 
-#define LUT_SR 48000
+#define LUT_SR 96000
 #define LUT_START_OCTAVE 4186.009
 #define LUT_FMAX 4186.009
 #define LUT_FMIN 65.4064
@@ -16,12 +16,11 @@
  
  
 //variables
-const float  LUT[12880];
+const float  LUT[25767];
 const uint32_t LUT_ENDINDEX[73];
 const uint32_t LUT_STARTINDEX[73];
 const uint32_t LUT_SUPPORTPOINTS[73];
 const float LUT_FREQUENCYS[73];
-const float LFO[186000];
 const uint32_t LFO_ENDINDEX[5];
 const uint32_t LFO_STARTINDEX[5];
 const uint32_t LFO_SUPPORTPOINTS[5];

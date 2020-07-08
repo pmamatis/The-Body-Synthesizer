@@ -13,7 +13,6 @@ double maxValueDAC = DAC_MAX;
 
 
 
-
 /**@brief Init funtion for the signal_synthesis, must be used in order to use any other funtion of this .c
  * @param htim: timer-handler which controls the DAC, timer have to be connected with DAC
  * @param hdac: is the DAC handler
@@ -23,8 +22,9 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 
 	// Sets the maximal digital value which the DAC converts into analog voltage
 	maxValueDAC = (double)DAC_MAXVALUE_TO_AMPLITUDE_RATIO * (double)AMPLITUDE;
-//	outputBuffer_position = HALF_BLOCK;
-
+	outputBuffer_position = HALF_BLOCK;
+	output_Channel = 1;
+	signals1.count = 0;
 	//Inits and starts timer connected with DAC
 	SetTimerSettings(&htim, LUT_SR);
 	return HAL_TIM_Base_Start(&htim);
@@ -62,6 +62,112 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 
 
 
+
+void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
+
+			if (signals1.count <= MAX_SIGNAL_KOMBINATION){
+				signals1.count += 1;
+				uint8_t index = signals1.count-1;
+
+				signals1.kind[index ] = kind;
+				signals1.freq[index ] = Get_Note_Frequency(Get_Keyindex(key), octave);
+				signals1.freqIndex[index ] = Get_Note_Index(key,octave);
+				signals1.current_LUT_Index[index ] = LUT_STARTINDEX[signals1.freqIndex[signals1.count]];
+			}
+
+}
+
+void DeleteSignal(uint8_t signal_index){
+	for (int delete_counter=signal_index; delete_counter < signals1.count;delete_counter++ ){
+		signals1.current_LUT_Index[delete_counter] = signals1.current_LUT_Index[delete_counter+1] ;
+		signals1.freq[delete_counter] = signals1.freq[delete_counter+1];
+		signals1.freqIndex[delete_counter] = signals1.freqIndex[delete_counter+1];
+		signals1.kind[delete_counter] = signals1.kind[delete_counter+1];
+	}
+	signals1.count-=1;
+}
+
+void Signal_Synthesis(){
+
+	//Variables
+		float addValue=0;
+		float min = 1;
+		float max = -1;
+		uint8_t count;
+		struct signal signals;
+		if (output_Channel == 1){
+			count = signals1.count;
+			signals = signals1;
+		}
+//		else if (output_Channel == 2){
+//			count = signals2.count;
+//			signals = signals2;
+//		}
+
+
+	//decide if first half of BLOCKSIZE or second half
+		uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
+
+		if (outputBuffer_position == HALF_BLOCK){
+			BLOOCKSIZE_startIndex = 0;
+			BLOOCKSIZE_endIndex = (BLOCKSIZE/2)-1;
+		}
+		else if(outputBuffer_position == FULL_BLOCK){
+			BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+			BLOOCKSIZE_endIndex  = BLOCKSIZE-1;
+		}
+
+
+		//Loop to reach every array entry of calculate vector
+		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+//				addValue = 0;
+		//Loop to reach all Signals
+				for (int j = 0; j < count;j++){
+					switch (signals.kind[j]) {
+					case SIN:
+						addValue = addValue + LUT[signals.current_LUT_Index[j]];
+							//get index for the next sin value
+							if (signals.current_LUT_Index[j] > LUT_ENDINDEX[signals.freqIndex[j]])
+							{
+
+								signals.current_LUT_Index[j] = LUT_STARTINDEX[signals.freqIndex[j]];
+							}
+							else
+							{
+								signals.current_LUT_Index[j]++;
+							}
+					break;
+					}//Switch-Case
+				}// SIgnal counter for-loop
+
+				//Signal adjustment to DAC
+
+				//maximum
+				if (max < addValue)
+					max = addValue;
+				//minimum
+
+				if (min > addValue)
+					min = addValue;
+
+//			//norm the signal to -1...1
+			addValue = addValue/count;
+//			addValue = addValue*(2/(max-min)); //vllt logarithmisch
+			//Effekte
+
+
+			//write into output vector
+			output_vector1[BLOCKSIZE_counter] = (addValue+1) * maxValueDAC/2 + OFFSET ;
+			} //BLOCKSIZE for-Loop
+
+
+}//Signal Synthesis
+
+
+
+
+
+
 /** @brief adds up to two signals and writes the result into calculate_vector
  *  	   @attention the signals have to be written in following order  Signal_Synthesis(count, kind of signal 1,(double)frequency_1, kind of signal 2,(double)frequency_2)
  * @param count: number of signals
@@ -72,138 +178,138 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
  * @param  frequency: Frequency of the signal, have to be a double type
  *@return gives the lowest frequency back
  */
-void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...){
-
-
-//	lastIndex = 0;
-//	//Init for variable number of function input arguments
-	struct signal signals;
-	va_list argumentlist;
-	va_start(argumentlist, signal_composition);
-	float addValue=0;
-	float min = 1;
-	float max = -1;
-
-
-	//minimal frequency of the given signals, initialized with F_MAX
-	double freqMin = F_MAX;
+//void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...){
 //
-//	uint8_t indexMin;
-//	//used to save the minimum and maximum of the caculate array
-//	float min=0;
-//	float max=0;
 //
-	//calculates the lowest frequency and saves the given signals in a struct
-	uint8_t tmpCount = count;
-	while(tmpCount--){ //first frequency is stored in signals[count]
-
-		//Fetch information
-		if(signal_composition == note_key){
-			char key = va_arg(argumentlist, unsigned int);
-			uint8_t octave = va_arg(argumentlist, unsigned int);
-			signals.kind[tmpCount] = SIN;
-			signals.freq[tmpCount] = Get_Note_Frequency(Get_Keyindex(key), octave);
-			signals.freqIndex[tmpCount] = Get_Note_Index(key,octave);
-			signals.current_LUT_Index[tmpCount] = LUT_STARTINDEX[signals.freqIndex[tmpCount]];
-		}
-		else if(signal_composition == mixed){
-			signals.kind[tmpCount] = va_arg(argumentlist, unsigned int);
-			signals.freq[tmpCount] = va_arg(argumentlist, int);
-//		signals.maxIndex[tmpCount] = LUT_SUPPORTPOINTS[signals.freq[tmpCount]];
-		}
-
-
-		if (signals.freq[tmpCount] > F_MAX)
-			signals.freq[tmpCount] = F_MAX;
-
-		if(signals.freq[tmpCount] < freqMin){
-			freqMin = signals.freq[tmpCount];
-//			indexMin = tmpCount;
-		}
-	}
+////	lastIndex = 0;
+////	//Init for variable number of function input arguments
 //
-//	float wt,addValue;
-//	uint16_t wt_max[count];
+//	va_list argumentlist;
+//	va_start(argumentlist, signal_composition);
+//	float addValue=0;
+//	float min = 1;
+//	float max = -1;
 //
-	va_end(argumentlist);
-	//decide if first half of BLOCKSIZE or second half
-	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
-
-	if (outputBuffer_position == HALF_BLOCK){
-		BLOOCKSIZE_startIndex = 0;
-		BLOOCKSIZE_endIndex = BLOCKSIZE/2;
-
-	}
-	else if(outputBuffer_position == FULL_BLOCK){
-		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
-		BLOOCKSIZE_endIndex  = BLOCKSIZE;
-	}
-
-//Loop to reach every array entry of calculate vector
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-		addValue = 0;
-	//Loop to reach all Signals
-		for (int j = 0; j < count;j++){
-			switch (signals.kind[j]) {
-			case SIN:
-					//get current sin value
-					addValue = addValue + LUT[signals.current_LUT_Index[j]];
-
-					//get index for the next sin value
-					if (signals.current_LUT_Index[j] > LUT_ENDINDEX[signals.freqIndex[j]])
-					{
-						signals.current_LUT_Index[j] = LUT_STARTINDEX[signals.freqIndex[j]];
-					}
-					else
-					{
-						signals.current_LUT_Index[j]++;
-					}
-					//v. 1.3
-					// calculate the input argument for the sin-funktion
-					//wt = (int)(signals.freq[j]/ F_MIN*i) % (BLOCKSIZE);
-					//Get sin value
-					//addValue = GetSin((int)(wt));
-					break;
-			case SAWTOOTH:
-				//tmp = (int)(signals.freq[j]/SAMPLE_FREQ)*i;
-
-			case TRIANGLE:
-
-				break;
-			case PWM:
-
-				break;
-
-			default:
-//				return -1;
-				break;
-
-
-			}
-
-
-
-		}// SIgnal counter for-loop
-
-
-		//Signal adjustment to DAC
-
-		//maximum
-		if (max < addValue)
-			max = addValue;
-		//minimum
-		if (min > addValue)
-			min = addValue;
-
-//norm the signal to -1...1
-	addValue = addValue*(2/(max-min));
-
-	//write into output vector
-	output_vector1[BLOCKSIZE_counter] = (addValue+1) * maxValueDAC/2 + OFFSET ;
-	} //BLOCKSIZE for-Loop
-
-
-}
+//
+//	//minimal frequency of the given signals, initialized with F_MAX
+//	double freqMin = F_MAX;
+////
+////	uint8_t indexMin;
+////	//used to save the minimum and maximum of the caculate array
+////	float min=0;
+////	float max=0;
+////
+//	//calculates the lowest frequency and saves the given signals in a struct
+//	uint8_t tmpCount = count;
+//	while(tmpCount--){ //first frequency is stored in signals[count]
+//
+//		//Fetch information
+//		if(signal_composition == note_key){
+//			char key = va_arg(argumentlist, unsigned int);
+//			uint8_t octave = va_arg(argumentlist, unsigned int);
+//			signals.kind[tmpCount] = SIN;
+//			signals.freq[tmpCount] = Get_Note_Frequency(Get_Keyindex(key), octave);
+//			signals.freqIndex[tmpCount] = Get_Note_Index(key,octave);
+//			signals.current_LUT_Index[tmpCount] = LUT_STARTINDEX[signals.freqIndex[tmpCount]];
+//		}
+//		else if(signal_composition == mixed){
+//			signals.kind[tmpCount] = va_arg(argumentlist, unsigned int);
+//			signals.freq[tmpCount] = va_arg(argumentlist, int);
+////		signals.maxIndex[tmpCount] = LUT_SUPPORTPOINTS[signals.freq[tmpCount]];
+//		}
+//
+//
+//		if (signals.freq[tmpCount] > F_MAX)
+//			signals.freq[tmpCount] = F_MAX;
+//
+//		if(signals.freq[tmpCount] < freqMin){
+//			freqMin = signals.freq[tmpCount];
+////			indexMin = tmpCount;
+//		}
+//	}
+////
+////	float wt,addValue;
+////	uint16_t wt_max[count];
+////
+//	va_end(argumentlist);
+//	//decide if first half of BLOCKSIZE or second half
+//	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
+//
+//	if (outputBuffer_position == HALF_BLOCK){
+//		BLOOCKSIZE_startIndex = 0;
+//		BLOOCKSIZE_endIndex = (BLOCKSIZE/2)-1;
+//
+//	}
+//	else if(outputBuffer_position == FULL_BLOCK){
+//		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+//		BLOOCKSIZE_endIndex  = BLOCKSIZE-1;
+//	}
+//
+////Loop to reach every array entry of calculate vector
+//	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+//		addValue = 0;
+//	//Loop to reach all Signals
+//		for (int j = 0; j < count;j++){
+//			switch (signals.kind[j]) {
+//			case SIN:
+//					//get current sin value
+//					addValue = addValue + LUT[signals.current_LUT_Index[j]];
+//
+//					//get index for the next sin value
+//					if (signals.current_LUT_Index[j] > LUT_ENDINDEX[signals.freqIndex[j]])
+//					{
+//						signals.current_LUT_Index[j] = LUT_STARTINDEX[signals.freqIndex[j]];
+//					}
+//					else
+//					{
+//						signals.current_LUT_Index[j]++;
+//					}
+//					//v. 1.3
+//					// calculate the input argument for the sin-funktion
+//					//wt = (int)(signals.freq[j]/ F_MIN*i) % (BLOCKSIZE);
+//					//Get sin value
+//					//addValue = GetSin((int)(wt));
+//					break;
+//			case SAWTOOTH:
+//				//tmp = (int)(signals.freq[j]/SAMPLE_FREQ)*i;
+//
+//			case TRIANGLE:
+//
+//				break;
+//			case PWM:
+//
+//				break;
+//
+//			default:
+////				return -1;
+//				break;
+//
+//
+//			}
+//
+//
+//
+//		}// SIgnal counter for-loop
+//
+//
+//		//Signal adjustment to DAC
+//
+//		//maximum
+//		if (max < addValue)
+//			max = addValue;
+//		//minimum
+//		if (min > addValue)
+//			min = addValue;
+//
+////norm the signal to -1...1
+//	addValue = addValue*(2/(max-min));
+//
+//	//write into output vector
+//	output_vector1[BLOCKSIZE_counter] = (addValue+1) * maxValueDAC/2 + OFFSET ;
+//	} //BLOCKSIZE for-Loop
+//
+//
+//}
 
 // v.1.3
 
