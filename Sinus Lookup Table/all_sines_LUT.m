@@ -42,7 +42,7 @@ end_ind  (1,1) = round(SR / fn(1))-1;
 
 for i = 1 : length(fn)
     
-    BS(i,1) = round((SR / fn(i))/4);
+    BS(i,1) = round((SR / fn(i)));
     
     t = 0:dt:BS(i)*dt-dt; %-dt
     
@@ -80,6 +80,10 @@ startFrequenz = 0.5;
 %variables init
 LFO_Array = [];
 fn_LFO = (anzahlFrequenzen);
+start_ind_LFO = zeros(length(fn_LFO),1);
+end_ind_LFO   = zeros(length(fn_LFO),1);
+Y = cell(length(fn_LFO),1);
+BS_LFO =  zeros(length(fn_LFO),1);
 
 %calculation
 indexOffset = log2(startFrequenz);
@@ -87,14 +91,9 @@ for i = 0:anzahlFrequenzen
     fn_LFO(i+1,1) = 2^(i+indexOffset);
 end
 
-Y = cell(length(fn_LFO),1);
-start_ind_LFO = zeros(length(fn_LFO),1);
-end_ind_LFO   = zeros(length(fn_LFO),1);
-BS_LFO =  zeros(length(fn_LFO),1);
-
 %index an der stelle 1
 start_ind_LFO(1,1) = 0;
-end_ind_LFO  (1,1) = round(SR / fn_LFO(1))-1;
+end_ind_LFO  (1,1) = round(SR / fn_LFO(1))/4-1;
 
 
 for i = 1 : length(fn_LFO)
@@ -171,7 +170,7 @@ dlmwrite('sinLUT.c',LFO_Array,'delimiter',',', 'precision', precision_LFO,'-appe
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
 %write frequency array
-dlmwrite('sinLUT.c','const float LFOLUT_FREQUENCYS[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
+dlmwrite('sinLUT.c','const float LFO_FREQUENCYS[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append')   
 dlmwrite('sinLUT.c',FandBS_LFO(:,1)','delimiter',',', 'precision', precision,'-append');  
 dlmwrite('sinLUT.c','};','delimiter','', 'precision', precision,'-append');  
 
@@ -236,7 +235,7 @@ dlmwrite('sinLUT.h',['const uint32_t LUT_SUPPORTPOINTS[',num2str(length(FandBS(:
 dlmwrite('sinLUT.h',['const float LUT_FREQUENCYS[',num2str(length(FandBS(:,1))),'];'],'delimiter','', 'precision', precision,'-append'); 
 
 %LFO
-dlmwrite('sinLUT.h',['const float LFO[',num2str(length(LFO_Array)),'];'],'delimiter','', 'precision', precision,'-append');
+%dlmwrite('sinLUT.h',['const float LFO[',num2str(length(LFO_Array)),'];'],'delimiter','', 'precision', precision,'-append');
 dlmwrite('sinLUT.h',['const uint32_t LFO_ENDINDEX[',num2str(length(FandBS_LFO(:,4))),'];'],'delimiter','', 'precision', precision,'-append') ;
 dlmwrite('sinLUT.h',['const uint32_t LFO_STARTINDEX[',num2str(length(FandBS_LFO(:,3))),'];'],'delimiter','', 'precision', precision,'-append');  
 dlmwrite('sinLUT.h',['const uint32_t LFO_SUPPORTPOINTS[',num2str(length(FandBS_LFO(:,2))),'];'],'delimiter','', 'precision', precision,'-append'); 
