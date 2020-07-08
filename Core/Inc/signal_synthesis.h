@@ -71,6 +71,7 @@ enum signal_kind_enum{
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
 void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...);
 HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac, uint8_t channel);
+void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 //void TEST(DAC_HandleTypeDef hdac);
 
 

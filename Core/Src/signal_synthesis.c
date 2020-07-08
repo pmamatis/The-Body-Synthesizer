@@ -24,16 +24,41 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	// Sets the maximal digital value which the DAC converts into analog voltage
 	maxValueDAC = (double)DAC_MAXVALUE_TO_AMPLITUDE_RATIO * (double)AMPLITUDE;
 //	outputBuffer_position = HALF_BLOCK;
-	// init calculate Vector with 0
-//	for(int i = 0; i<BLOCKSIZE;i++){
-//		calculate_vector[i] = 0;
-//	}
+
 	//Inits and starts timer connected with DAC
-	__HAL_TIM_SET_AUTORELOAD(&htim,COUNTER_PERIOD);
+	SetTimerSettings(&htim, LUT_SR);
 	return HAL_TIM_Base_Start(&htim);
 }
 
 
+/**@brief Init funtion for the Timer which triggers the DAC
+ * @param htim: timer-handler which controls the DAC, timer have to be connected with DAC
+ * @param SR: Sample Rate
+ */
+void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
+
+	uint32_t Clock = HAL_RCC_GetHCLKFreq();	// system core clock HCLK
+	uint32_t values_length = 65536;
+	uint16_t prescaler;
+	uint32_t timerperiod;
+
+	for(int i=1; i<values_length; i++) {
+
+		prescaler = fmod(Clock, i);	// modulo-operation
+		if(prescaler == 0) {// find possible prescaler Values
+			prescaler = i;
+			timerperiod = Clock/( prescaler * SR );//set timerperiod
+			if (timerperiod < values_length){
+				break;
+			}
+		}
+	}//end for-loop
+
+	__HAL_TIM_SET_AUTORELOAD(htim, timerperiod-1);	// update timer settings
+	__HAL_TIM_SET_PRESCALER(htim, prescaler-1);
+	//TIM6->ARR = period-1;
+	//TIM6->PSC = prescaler-1;
+}
 
 
 
