@@ -120,21 +120,17 @@ void Signal_Synthesis(){
 
 		//Loop to reach every array entry of calculate vector
 		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-//				addValue = 0;
+				addValue = 0;
 		//Loop to reach all Signals
 				for (int j = 0; j < count;j++){
 					switch (signals.kind[j]) {
 					case SIN:
-						addValue = addValue + LUT[signals.current_LUT_Index[j]];
+							addValue = addValue + LUT[signals.current_LUT_Index[j]];
 							//get index for the next sin value
+							signals.current_LUT_Index[j]++;
 							if (signals.current_LUT_Index[j] > LUT_ENDINDEX[signals.freqIndex[j]])
 							{
-
 								signals.current_LUT_Index[j] = LUT_STARTINDEX[signals.freqIndex[j]];
-							}
-							else
-							{
-								signals.current_LUT_Index[j]++;
 							}
 					break;
 					}//Switch-Case
