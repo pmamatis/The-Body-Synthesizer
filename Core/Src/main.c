@@ -140,15 +140,22 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-NewSignal(SIN, 'C', 3);
-//NewSignal(SIN, 'd', 3);
-//NewSignal(SIN, 'D', 3);
 
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
+HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
+uint16_t t = 500;
 //	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
 while (1)
 {
-
+	NewSignal(SIN, 'C', 6);
+	NewSignal(SIN, 'd', 5);
+	HAL_Delay(t);
+	DeleteSignal(0);
+	HAL_Delay(t);
+	NewSignal(SIN, 'H', 5);
+	HAL_Delay(t);
+	DeleteSignal(0);
+	DeleteSignal(0);
+	HAL_Delay(t);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -69,10 +69,10 @@ void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
 				signals1.count += 1;
 				uint8_t index = signals1.count-1;
 
-				signals1.kind[index ] = kind;
-				signals1.freq[index ] = Get_Note_Frequency(Get_Keyindex(key), octave);
-				signals1.freqIndex[index ] = Get_Note_Index(key,octave);
-				signals1.current_LUT_Index[index ] = LUT_STARTINDEX[signals1.freqIndex[signals1.count]];
+				signals1.kind[index] = kind;
+				signals1.freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
+				signals1.freqIndex[index] = Get_Note_Index(key,octave);
+				signals1.current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
 			}
 
 }
@@ -122,15 +122,17 @@ void Signal_Synthesis(){
 		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 				addValue = 0;
 		//Loop to reach all Signals
+//				uint32_t tmp_index = 0;
 				for (int j = 0; j < count;j++){
 					switch (signals.kind[j]) {
 					case SIN:
+//							tmp_index = LUT_STARTINDEX[signals.freqIndex[j]] + signals.current_LUT_Index[j];
 							addValue = addValue + LUT[signals.current_LUT_Index[j]];
 							//get index for the next sin value
 							signals.current_LUT_Index[j]++;
 							if (signals.current_LUT_Index[j] > LUT_ENDINDEX[signals.freqIndex[j]])
 							{
-								signals.current_LUT_Index[j] = LUT_STARTINDEX[signals.freqIndex[j]];
+								signals.current_LUT_Index[j] = LUT_STARTINDEX[signals1.freqIndex[j]];
 							}
 					break;
 					}//Switch-Case
