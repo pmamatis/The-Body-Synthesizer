@@ -159,6 +159,11 @@ void Signal_Synthesis(){
 			} //BLOCKSIZE for-Loop
 
 
+			// save current LUT index into signals1,
+			for (int tmp_count = 0 ; tmp_count < signals.count; tmp_count++){
+				signals1.current_LUT_Index[tmp_count] = signals.current_LUT_Index[tmp_count];
+			}
+
 }//Signal Synthesis
 
 
