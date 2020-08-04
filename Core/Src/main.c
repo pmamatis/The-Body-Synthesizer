@@ -77,16 +77,17 @@ static void MX_USART3_UART_Init(void);
 
 //DAC_CHANNEL_1
 void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-
-	Signal_Synthesis();
 	outputBuffer_position = FULL_BLOCK;
+	Signal_Synthesis();
+//	 HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
+
 }
 
 
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-
-	Signal_Synthesis();
 	outputBuffer_position = HALF_BLOCK;
+	Signal_Synthesis();
+
 }
 
 //DAC_CHANNEL_2
@@ -140,22 +141,22 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-
-HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
-uint16_t t = 500;
+  NewSignal(SIN, 'C',0);
+  HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
+  uint16_t t = 500;
 //	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
 while (1)
 {
-	NewSignal(SIN, 'C', 6);
-	NewSignal(SIN, 'd', 5);
-	HAL_Delay(t);
-	DeleteSignal(0);
-	HAL_Delay(t);
-	NewSignal(SIN, 'H', 5);
-	HAL_Delay(t);
-	DeleteSignal(0);
-	DeleteSignal(0);
-	HAL_Delay(t);
+//	NewSignal(SIN, 'C', 6);
+//	NewSignal(SIN, 'd', 5);
+//	HAL_Delay(t);
+//	DeleteSignal(0);
+//	HAL_Delay(t);
+//	NewSignal(SIN, 'H', 5);
+//	HAL_Delay(t);
+//	DeleteSignal(0);
+//	DeleteSignal(0);
+//	HAL_Delay(t);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -428,10 +429,10 @@ static void MX_DMA_Init(void)
 
   /* DMA interrupt init */
   /* DMA1_Stream5_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
   /* DMA1_Stream6_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 
 }

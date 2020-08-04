@@ -31,7 +31,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 }
 
 
-/**@brief Init funtion for the Timer which triggers the DAC
+/**@brief Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler
  * @param htim: timer-handler which controls the DAC, timer have to be connected with DAC
  * @param SR: Sample Rate
  */
@@ -107,17 +107,22 @@ void Signal_Synthesis(){
 
 	//decide if first half of BLOCKSIZE or second half
 		uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
+//		BLOOCKSIZE_startIndex = 0;
+//		BLOOCKSIZE_endIndex = BLOCKSIZE;
 
 		if (outputBuffer_position == HALF_BLOCK){
 			BLOOCKSIZE_startIndex = 0;
-			BLOOCKSIZE_endIndex = (BLOCKSIZE/2)-1;
+			BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
 		}
 		else if(outputBuffer_position == FULL_BLOCK){
 			BLOOCKSIZE_startIndex = BLOCKSIZE/2;
-			BLOOCKSIZE_endIndex  = BLOCKSIZE-1;
+			BLOOCKSIZE_endIndex  = BLOCKSIZE;
 		}
 
-
+		uint32_t tmp[100];
+		for (int i = 0;i<100;i++)
+			tmp[i]=0;
+		uint8_t index_tmp=0;
 		//Loop to reach every array entry of calculate vector
 		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 				addValue = 0;
@@ -155,7 +160,21 @@ void Signal_Synthesis(){
 
 
 			//write into output vector
-			output_vector1[BLOCKSIZE_counter] = (addValue+1) * maxValueDAC/2 + OFFSET ;
+//			if (outputBuffer_position == HALF_BLOCK){
+//				outputvector_firstHalf[BLOCKSIZE_counter] = (addValue+1)/2 * maxValueDAC + OFFSET ;
+//			}
+//			else if(outputBuffer_position == FULL_BLOCK){
+//				outputvector_secondHalf[BLOCKSIZE_counter] = (addValue+1)/2 * maxValueDAC + OFFSET ;
+//
+//			}
+			output_vector1[BLOCKSIZE_counter] = (addValue+1)/2 * maxValueDAC + OFFSET ;
+
+
+			//if-clause to control the distance between two vector entrys
+//			if (abs(output_vector1[BLOCKSIZE_counter]-output_vector1[BLOCKSIZE_counter-1]) > 20){
+//				tmp[index_tmp] = BLOCKSIZE_counter;
+//				index_tmp++;
+//			}
 			} //BLOCKSIZE for-Loop
 
 
