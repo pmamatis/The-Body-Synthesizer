@@ -74,37 +74,17 @@ void Error_Handler(void);
 /**@brief output array size */
 #define BLOCKSIZE 24000
 
-/**@brief minimal frequency fittinig in the output-array */
-#define F_MIN 5
-
-/**@brief maximal frequency available with selected SUPPORT_POINTS*/
-#define F_MAX 4800
-
-/**@brief counter period of the timer 8 */
-#define COUNTER_PERIOD 200-1
-
-/**@brief timer clock */
-#define CLOCK 9600000
-
-/**@brief frequency of SIgnal if just one  whole period is writen into the vector, calculatet with Matlab */
-#define SAMPLE_FREQ CLOCK/COUNTER_PERIOD
-//#define SAMPLE_FREQ_REAL 96354
-
 //Variables
 
-/** @brief signal array*/
-//float calculate_vector[BLOCKSIZE+1];
 
 /** @brief DAC output array*/
 uint32_t output_vector1[BLOCKSIZE];
 uint32_t output_vector2[BLOCKSIZE];
-//uint32_t outputvector_firstHalf[BLOCKSIZE/2];
-//uint32_t outputvector_secondHalf[BLOCKSIZE/2];
+
+
 
 float sigFreq_sampleFreq_ratio;
 
-/** @brief index from the calculate vector with the last zero*/
-uint32_t lastIndex;
 
 
 

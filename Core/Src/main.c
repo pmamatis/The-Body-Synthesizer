@@ -141,7 +141,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  NewSignal(SIN, 'C',0);
+  NewSignal(SIN, 'C',4);
   HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
   uint16_t t = 500;
 //	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);

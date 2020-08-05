@@ -14,10 +14,6 @@
 #include "music_notes.h"
 
 
-/** @brief lookuptable for respective note keys*/
-const char keys[26] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
-//                      C#      D#		        F#	    G#				    C#	    D#		    F#	    G#				    C#
-
 
 
 /** @brief minor/major tone scale in semi tone steps, according to the array keys*/
