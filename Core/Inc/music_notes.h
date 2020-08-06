@@ -28,11 +28,7 @@ enum sex_type{
 	diminished
 };
 
-/** @brief lookuptable for respective note keys*/
-const char keys[26] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
-//                      C#      D#		        F#	    G#				    C#	    D#		    F#	    G#				    C#
-
-
+const char keys[26];
 
 uint8_t Get_Keyindex(char key);
 void Play_Note(char note, uint8_t octave, uint8_t channel);

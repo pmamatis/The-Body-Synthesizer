@@ -10,7 +10,7 @@
 #define LUT_FMAX 4186.009
 #define LUT_FMIN 65.4064
 #define LUT_OCTAVES 6
-//defines 
+//defines LFO
 #define LFO_FMAX 8
 #define LFO_FMIN 0.5
  

@@ -43,15 +43,30 @@
 /**@brief Maximum of SIgnals which can be played at the same time */
 #define MAX_SIGNAL_KOMBINATION 20
 
-/**@brief struct to store signals*/
+/**@brief struct to store signals
+ * @param count: amount of signals
+ * @param max: global Maximum of all added Signals, set to zero when construct or destruct a Signal
+ * @param kind:
+ * @param
+ * @param
+ * @param
+ * @param
+ * */
 struct signal{
+	//globals
 	uint8_t count;
+	float max;
+	//part of a Signal Object
 	unsigned int kind[MAX_SIGNAL_KOMBINATION];
 	double freq[MAX_SIGNAL_KOMBINATION];
 	uint8_t freqIndex[MAX_SIGNAL_KOMBINATION];
 	uint32_t current_LUT_Index[MAX_SIGNAL_KOMBINATION];
-
+	uint8_t ID[MAX_SIGNAL_KOMBINATION];
 };
+
+/**@brief Array to monitor which ID's are taken, taken = 1; free = 0*/
+ID_array[MAX_SIGNAL_KOMBINATION];
+
 enum singnal_synthesis_enum{
 	note_key = 0,
 	mixed
@@ -73,6 +88,7 @@ uint8_t outputBuffer_position;
 
 struct signal signals1;
 struct signal signals2;
+
 
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);

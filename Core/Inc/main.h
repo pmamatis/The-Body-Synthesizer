@@ -72,15 +72,17 @@ void Error_Handler(void);
 #define SUPPORT_POINTS 20
 
 /**@brief output array size */
-#define BLOCKSIZE 24000
+#define BLOCKSIZE 4096
 
 //Variables
 
 
 /** @brief DAC output array*/
 uint32_t output_vector1[BLOCKSIZE];
-uint32_t output_vector2[BLOCKSIZE];
+float calculate_vector1[BLOCKSIZE];
 
+uint32_t output_vector2[BLOCKSIZE];
+float calculate_vector2[BLOCKSIZE];
 
 
 float sigFreq_sampleFreq_ratio;

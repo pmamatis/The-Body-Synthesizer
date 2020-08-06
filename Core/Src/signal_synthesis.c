@@ -25,6 +25,11 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	outputBuffer_position = HALF_BLOCK;
 	output_Channel = 1;
 	signals1.count = 0;
+
+	//Sets all taken ID to zero
+	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++){
+		ID_array[Signal_Synthesis_Init_count]=0;
+	}
 	//Inits and starts timer connected with DAC
 	SetTimerSettings(&htim, LUT_SR);
 	return HAL_TIM_Base_Start(&htim);
@@ -78,6 +83,15 @@ void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
 		signals1.freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
 		signals1.freqIndex[index] = Get_Note_Index(key,octave);
 		signals1.current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
+		signals1.max = 0;
+		for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
+			if(!ID_array[NewSignal_count]){
+				signals1.ID = NewSignal_count;
+			}
+
+
+		}
+
 	}
 
 }
@@ -93,6 +107,7 @@ void DeleteSignal(uint8_t signal_index){
 		signals1.kind[delete_counter] = signals1.kind[delete_counter+1];
 	}
 	signals1.count-=1;
+	signals1.max = 0;
 }
 
 
@@ -103,8 +118,6 @@ void Signal_Synthesis(){
 
 	//Variables
 	float addValue=0;
-	float min = 1;
-	float max = -1;
 	uint8_t count;
 	struct signal signals;
 	// decide if Channel 1 or Channel 2
@@ -130,7 +143,7 @@ void Signal_Synthesis(){
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
 	}
 
-	//Loop to reach every array entry of calculate vector
+	//Loop to for first signal synthesis and find maximum
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 		addValue = 0;
 		//Loop to reach all Signals
@@ -150,18 +163,51 @@ void Signal_Synthesis(){
 			}//Switch-Case
 		}// SIgnal counter for-loop
 
-		//Signal adjustment to DAC
+
 
 		//maximum
-		if (max < addValue)
-			max = addValue;
-		//minimum
-		if (min > addValue)
-			min = addValue;
+		if (signals.max < fabs((double)addValue)){
+			signals.max = fabs((double)addValue);
+		}
+
+
+
+
+		//write into calculate vector
+		calculate_vector1[BLOCKSIZE_counter] = addValue;
+
+
+	} //BLOCKSIZE for-Loop I
+
+
+	//Loop to adjust the signal
+	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+
 
 		//norm the signal to -1...1
-		addValue = addValue/count;
-//		addValue = addValue*(2/(max-min)); //vllt logarithmisch
+		//		addValue = addValue/count;
+		calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/signals.max;
+		//scale output signal depeding on amount of voices
+				switch (signals.count){
+				case 1:
+					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
+					break;
+				case 2:
+					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)2);// -6 dB
+					break;
+				case 3:
+					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
+					break;
+				case 4:
+					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
+					break;
+				case 5:
+					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
+					break;
+				default:
+					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter];
+					break;
+				}
 
 
 		//Effekte
@@ -169,16 +215,18 @@ void Signal_Synthesis(){
 
 
 
-		//write into output vector
-		output_vector1[BLOCKSIZE_counter] = (addValue+1)/2 * maxValueDAC + OFFSET ;
-
-
 		//if-clause to control the distance between two vector entrys
 		//			if (abs(output_vector1[BLOCKSIZE_counter]-output_vector1[BLOCKSIZE_counter-1]) > 20){
 		//				tmp[index_tmp] = BLOCKSIZE_counter;
 		//				index_tmp++;
 		//			}
-	} //BLOCKSIZE for-Loop
+
+
+		//Signal adjustment to DAC
+		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+
+	} //BLOCKSIZE for-Loop II
+
 
 
 	// save current LUT index into signals1,
