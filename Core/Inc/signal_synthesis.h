@@ -26,7 +26,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <stdarg.h>
-
+//#include  <string.h>
 
 
 
@@ -63,9 +63,41 @@ struct signal{
 	uint32_t current_LUT_Index[MAX_SIGNAL_KOMBINATION];
 	uint8_t ID[MAX_SIGNAL_KOMBINATION];
 };
-
 /**@brief Array to monitor which ID's are taken, taken = 1; free = 0*/
-ID_array[MAX_SIGNAL_KOMBINATION];
+uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
+
+
+
+
+
+
+
+
+
+//Effects
+
+
+
+enum effects_using_LFO{
+	TREMOLLO = 0,
+};
+
+struct effects_LFO{
+	uint8_t name;
+	uint16_t index;
+	uint8_t quarter;
+	float frequency;
+
+};
+
+
+
+
+
+
+
+
+
 
 enum singnal_synthesis_enum{
 	note_key = 0,
@@ -99,6 +131,7 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 void Signal_Synthesis();
 void DeleteSignal(uint8_t signal_index);
 void NewSignal(uint8_t kind, uint8_t key, uint8_t octave);
+void Signal_Synthesis_LFO(struct effects_LFO* effect);
 
 #endif /* INC_SIGNALERZEUGUNG_H_ */
 

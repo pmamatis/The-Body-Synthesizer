@@ -86,7 +86,8 @@ void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
 		signals1.max = 0;
 		for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
 			if(!ID_array[NewSignal_count]){
-				signals1.ID = NewSignal_count;
+				signals1.ID[NewSignal_count] = NewSignal_count;
+				ID_array[NewSignal_count] = 1;
 			}
 
 
@@ -100,11 +101,18 @@ void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
  * @param: signal_index: index of the signals which should be seleted
  * @attention if you wnat to delete two signals in a row, beware that the index of the second signal could have changed, e.g. signals1 contains three signals, you want to delete signals1[0] and signals1[1]. After using DeleteSignal(0) you need to use DeleteSignal(0) again, because signals1[1] became signals1[0] after first use  */
 void DeleteSignal(uint8_t signal_index){
+	//free the signal ID
+	uint8_t tmp = signals1.ID[signal_index];
+	ID_array[tmp] = 0;
+
+	//shift signals too left
 	for (int delete_counter=signal_index; delete_counter < signals1.count;delete_counter++ ){
 		signals1.current_LUT_Index[delete_counter] = signals1.current_LUT_Index[delete_counter+1] ;
 		signals1.freq[delete_counter] = signals1.freq[delete_counter+1];
 		signals1.freqIndex[delete_counter] = signals1.freqIndex[delete_counter+1];
 		signals1.kind[delete_counter] = signals1.kind[delete_counter+1];
+		signals1.ID[delete_counter] = signals1.ID[delete_counter+1];
+
 	}
 	signals1.count-=1;
 	signals1.max = 0;
@@ -237,4 +245,49 @@ void Signal_Synthesis(){
 }//Signal Synthesis
 
 
+
+
+void Signal_Synthesis_LFO(struct effects_LFO* effect){
+	uint index = effect->index;
+	float frequency = effect -> frequency;
+	uint8_t quarter = effect -> quarter;
+
+	// calculate ratio between LFO_LUT frequency and disired frequency
+	float frequency_ratio = frequency /LFO_FMIN;
+	for (int LFO_counter = 0; LFO_counter < BLOCKSIZE/2; LFO_counter++){
+
+		// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
+		if ( index  > LFO_ENDINDEX[0]){
+			index = 0;
+			quarter++;
+			if (quarter > 3)
+				quarter =0;
+		}
+		// select quarter of the sin-wave
+		switch(quarter){
+		case 0:
+			effect_LFO[LFO_counter] = LFO[(uint)(index)];
+			break;
+		case 1:
+			effect_LFO[LFO_counter] = LFO[(uint)(LFO_ENDINDEX[0] -index )];
+			break;
+		case 2:
+			effect_LFO[LFO_counter] = -LFO[(uint)(index)];
+			break;
+		case 3:
+			effect_LFO[LFO_counter] = -LFO[(uint)(LFO_ENDINDEX[0] -index)];
+			break;
+		default:
+			break;
+		} // end switch-case
+
+		index = round((double)(index + frequency_ratio));
+	}//end for-Loop
+	for (int i = 0;i<BLOCKSIZE;i++){
+		effect_LFO_output[i] = (uint32_t)((effect_LFO[i]+1)/2 * 3000 + 145 );
+	}
+	//save current state into given effect struct
+	effect -> quarter = quarter;
+	effect -> index = index;
+}
 

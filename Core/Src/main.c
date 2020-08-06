@@ -78,7 +78,8 @@ static void MX_USART3_UART_Init(void);
 //DAC_CHANNEL_1
 void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = FULL_BLOCK;
-	Signal_Synthesis();
+	Signal_Synthesis_LFO(&tremollo);
+//	Signal_Synthesis();
 
 
 }
@@ -86,7 +87,8 @@ void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
-	Signal_Synthesis();
+	Signal_Synthesis_LFO(&tremollo);
+//	Signal_Synthesis();
 
 }
 
@@ -139,9 +141,20 @@ int main(void)
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+
+
+
+	tremollo.index = 0;
+	tremollo.frequency = 10;
+	tremollo.quarter = 0;
+
+
+
+
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, effect_LFO_output ,BLOCKSIZE/2, DAC_ALIGN_12B_R);
 
 	//Example signal for test
+
 
 
 
@@ -156,12 +169,12 @@ int main(void)
 	//  HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1,(uint32_t)* output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 
-
-
 int i =0;
 int c = 0;
 	while (1)
 	{
+//		Signal_Synthesis_LFO(&tremollo);
+
 
 		/* USER CODE END WHILE */
 
@@ -171,7 +184,7 @@ int c = 0;
 		else
 			    NewSignal(SIN, 'G',i);
 
-		HAL_Delay(1000);
+		HAL_Delay(10);
 		c = c^1;
 
 //		//Example signal for test
