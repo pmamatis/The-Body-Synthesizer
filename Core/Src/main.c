@@ -145,7 +145,7 @@ int main(void)
 
 
 	tremollo.index = 0;
-	tremollo.frequency = 10;
+	tremollo.frequency = 0.5;
 	tremollo.quarter = 0;
 
 
@@ -158,13 +158,13 @@ int main(void)
 
 
 
-	NewSignal(SIN, 'A',0);
+	/*NewSignal(SIN, 'A',0);
 	NewSignal(SIN, 'A',1);
 	NewSignal(SIN, 'A',2);
 	NewSignal(SIN, 'A',3);
 	NewSignal(SIN, 'A',4);
 
-	HAL_Delay(1000);
+	HAL_Delay(1000);*/
 	//starts the DAC output
 	//  HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1,(uint32_t)* output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
 
@@ -179,13 +179,13 @@ int c = 0;
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		if (c ==0)
+		/*if (c ==0)
 				NewSignal(SIN, 'C',i);
 		else
 			    NewSignal(SIN, 'G',i);
 
 		HAL_Delay(10);
-		c = c^1;
+		c = c^1;*/
 
 //		//Example signal for test
 //		NewSignal(SIN, 'C',0);

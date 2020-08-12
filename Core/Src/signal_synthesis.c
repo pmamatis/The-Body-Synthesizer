@@ -248,6 +248,7 @@ void Signal_Synthesis(){
 
 
 void Signal_Synthesis_LFO(struct effects_LFO* effect){
+
 	uint index = effect->index;
 	float frequency = effect -> frequency;
 	uint8_t quarter = effect -> quarter;
@@ -261,12 +262,14 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect){
 			index = 0;
 			quarter++;
 			if (quarter > 3)
-				quarter =0;
+				quarter = 0;
 		}
+
+		//effect_LFO[LFO_counter] = LFO[index];
 		// select quarter of the sin-wave
 		switch(quarter){
 		case 0:
-			effect_LFO[LFO_counter] = LFO[(uint)(index)];
+			effect_LFO[LFO_counter] = LFO[index];
 			break;
 		case 1:
 			effect_LFO[LFO_counter] = LFO[(uint)(LFO_ENDINDEX[0] -index )];
@@ -283,8 +286,10 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect){
 
 		index = round((double)(index + frequency_ratio));
 	}//end for-Loop
-	for (int i = 0;i<BLOCKSIZE;i++){
-		effect_LFO_output[i] = (uint32_t)((effect_LFO[i]+1)/2 * 3000 + 145 );
+	for (int i=0; i<BLOCKSIZE/2; i++){
+		//effect_LFO_output[i] = (uint32_t)((effect_LFO[i]+1)/2 * 3000 + 145 );
+		// (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+		effect_LFO_output[i] = (effect_LFO[i] - 0) * (4095 - 0) / (1 - 0) + 0;
 	}
 	//save current state into given effect struct
 	effect -> quarter = quarter;
