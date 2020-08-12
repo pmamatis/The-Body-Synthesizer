@@ -84,7 +84,7 @@ enum effects_using_LFO{
 
 struct effects_LFO{
 	uint8_t name;
-	uint16_t index;
+	uint32_t index;
 	uint8_t quarter;
 	float frequency;
 

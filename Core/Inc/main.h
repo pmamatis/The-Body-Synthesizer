@@ -72,7 +72,7 @@ void Error_Handler(void);
 #define SUPPORT_POINTS 20
 
 /**@brief output array size */
-#define BLOCKSIZE 10000
+#define BLOCKSIZE 8192
 
 //Variables
 
@@ -84,13 +84,14 @@ float calculate_vector1[BLOCKSIZE];
 uint32_t output_vector2[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
-float effect_LFO[BLOCKSIZE/2];
-uint32_t effect_LFO_output[BLOCKSIZE/2];
+float effect_LFO[BLOCKSIZE];
+uint32_t effect_LFO_output[BLOCKSIZE];
 
 float sigFreq_sampleFreq_ratio;
 
 
 struct effects_LFO tremollo;
+
 
 /** @brief enum for DMA Output buffer position */
 enum outputBuffer_position_enum{

@@ -120,7 +120,7 @@ void DeleteSignal(uint8_t signal_index){
 
 
 
-/** @brief generates a signal in the outputvector, depending on the signals insie the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
+/** @brief generates a signal in the outputvector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
  */
 void Signal_Synthesis(){
 
@@ -246,48 +246,70 @@ void Signal_Synthesis(){
 
 
 
-
+/** @brief generates a low frequency sine to be used for effects
+ *  @param effect: struct which contains the parameter for the effect which want to use the LFO
+ *
+ */
 void Signal_Synthesis_LFO(struct effects_LFO* effect){
-	uint index = effect->index;
-	float frequency = effect -> frequency;
-	uint8_t quarter = effect -> quarter;
 
-	// calculate ratio between LFO_LUT frequency and disired frequency
-	float frequency_ratio = frequency /LFO_FMIN;
-	for (int LFO_counter = 0; LFO_counter < BLOCKSIZE/2; LFO_counter++){
+		float frequency = effect->frequency;
+		uint8_t quarter = effect -> quarter;
+		uint32_t index = effect->index;
 
-		// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
-		if ( index  > LFO_ENDINDEX[0]){
-			index = 0;
-			quarter++;
-			if (quarter > 3)
-				quarter =0;
+		//	 calculate ratio between LFO_LUT frequency and disired frequency
+			float frequency_ratio = frequency /LFO_FMIN;
+
+
+			//DEBUG
+			/*
+		uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
+		if (outputBuffer_position == HALF_BLOCK){
+			BLOOCKSIZE_startIndex = 0;
+			BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
 		}
-		// select quarter of the sin-wave
-		switch(quarter){
-		case 0:
-			effect_LFO[LFO_counter] = LFO[(uint)(index)];
-			break;
-		case 1:
-			effect_LFO[LFO_counter] = LFO[(uint)(LFO_ENDINDEX[0] -index )];
-			break;
-		case 2:
-			effect_LFO[LFO_counter] = -LFO[(uint)(index)];
-			break;
-		case 3:
-			effect_LFO[LFO_counter] = -LFO[(uint)(LFO_ENDINDEX[0] -index)];
-			break;
-		default:
-			break;
-		} // end switch-case
+		else if(outputBuffer_position == FULL_BLOCK){
+			BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+			BLOOCKSIZE_endIndex  = BLOCKSIZE;
+		}
 
-		index = round((double)(index + frequency_ratio));
-	}//end for-Loop
-	for (int i = 0;i<BLOCKSIZE;i++){
-		effect_LFO_output[i] = (uint32_t)((effect_LFO[i]+1)/2 * 3000 + 145 );
-	}
-	//save current state into given effect struct
-	effect -> quarter = quarter;
-	effect -> index = index;
+		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+			*/
+
+			for (int LFO_counter = 0; LFO_counter <BLOCKSIZE/2; LFO_counter++){
+					// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
+					if ( index  > LFO_ENDINDEX[0]){
+						index = 0;
+						quarter++;
+						if (quarter > 3)
+							quarter = 0;
+					}
+
+					switch(quarter){
+					case 0:
+						effect_LFO[LFO_counter] = LFO[(index)];
+						break;
+					case 1:
+						effect_LFO[LFO_counter] = LFO[(LFO_ENDINDEX[0] -index )];
+						break;
+					case 2:
+						effect_LFO[LFO_counter] = -LFO[(index)];
+						break;
+					case 3:
+						effect_LFO[LFO_counter] = -LFO[(LFO_ENDINDEX[0] -index)];
+						break;
+					default:
+						break;
+					} // end switch-case
+					index = round((double)(index + frequency_ratio));
+
+					//DEBUG
+//					effect_LFO_output[BLOCKSIZE_counter] = (uint32_t)((effect_LFO[BLOCKSIZE_counter]+1)/2 * 3000 + 145);
+
+		} //BLOCKSIZE for-Loop I
+
+		//save current state into given effect struct
+		effect -> index = index;
+		effect -> quarter = quarter;
 }
+
 
