@@ -252,6 +252,7 @@ void Signal_Synthesis(){
  */
 void Signal_Synthesis_LFO(struct effects_LFO* effect){
 
+<<<<<<< HEAD
 		float frequency = effect->frequency;
 		uint8_t quarter = effect -> quarter;
 		uint32_t index = effect->index;
@@ -310,6 +311,53 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect){
 		//save current state into given effect struct
 		effect -> index = index;
 		effect -> quarter = quarter;
+=======
+	uint index = effect->index;
+	float frequency = effect -> frequency;
+	uint8_t quarter = effect -> quarter;
+
+	// calculate ratio between LFO_LUT frequency and disired frequency
+	float frequency_ratio = frequency /LFO_FMIN;
+	for (int LFO_counter = 0; LFO_counter < BLOCKSIZE/2; LFO_counter++){
+
+		// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
+		if ( index  > LFO_ENDINDEX[0]){
+			index = 0;
+			quarter++;
+			if (quarter > 3)
+				quarter = 0;
+		}
+
+		//effect_LFO[LFO_counter] = LFO[index];
+		// select quarter of the sin-wave
+		switch(quarter){
+		case 0:
+			effect_LFO[LFO_counter] = LFO[index];
+			break;
+		case 1:
+			effect_LFO[LFO_counter] = LFO[(uint)(LFO_ENDINDEX[0] -index )];
+			break;
+		case 2:
+			effect_LFO[LFO_counter] = -LFO[(uint)(index)];
+			break;
+		case 3:
+			effect_LFO[LFO_counter] = -LFO[(uint)(LFO_ENDINDEX[0] -index)];
+			break;
+		default:
+			break;
+		} // end switch-case
+
+		index = round((double)(index + frequency_ratio));
+	}//end for-Loop
+	for (int i=0; i<BLOCKSIZE/2; i++){
+		//effect_LFO_output[i] = (uint32_t)((effect_LFO[i]+1)/2 * 3000 + 145 );
+		// (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+		effect_LFO_output[i] = (effect_LFO[i] - 0) * (4095 - 0) / (1 - 0) + 0;
+	}
+	//save current state into given effect struct
+	effect -> quarter = quarter;
+	effect -> index = index;
+>>>>>>> 5c0538e884fcce304a8e672aedec605bf33e4451
 }
 
 

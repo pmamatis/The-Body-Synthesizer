@@ -148,7 +148,11 @@ int main(void)
 
 
 	tremollo.index = 0;
+<<<<<<< HEAD
 	tremollo.frequency = 5000;
+=======
+	tremollo.frequency = 0.5;
+>>>>>>> 5c0538e884fcce304a8e672aedec605bf33e4451
 	tremollo.quarter = 0;
 
 
