@@ -128,7 +128,7 @@ FandBS_LFO = [fn_LFO, BS_LFO, start_ind_LFO, end_ind_LFO];
 
 %% C-File generator parameters
 precision = 5; %precision of Nachkommastelle
-precision_LFO = 2; %precision of Nachkommastelle
+precision_LFO = 5; %precision of Nachkommastelle
 
 
 
