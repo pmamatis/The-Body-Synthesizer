@@ -1,6 +1,6 @@
 clock = 9600000;
 %% Sample Rate (SR)
-SR = 48000;
+SR = 96000;
 %SR = clock / timperiod;
 %% Timer
 %timperiod = 167;
