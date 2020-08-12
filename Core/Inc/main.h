@@ -84,8 +84,8 @@ float calculate_vector1[BLOCKSIZE];
 uint32_t output_vector2[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
-float effect_LFO[BLOCKSIZE];
-uint32_t effect_LFO_output[BLOCKSIZE];
+float effect_LFO[BLOCKSIZE/2];
+
 
 float sigFreq_sampleFreq_ratio;
 

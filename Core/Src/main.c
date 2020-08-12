@@ -148,17 +148,13 @@ int main(void)
 
 
 	tremollo.index = 0;
-<<<<<<< HEAD
-	tremollo.frequency = 5000;
-=======
-	tremollo.frequency = 0.5;
->>>>>>> 5c0538e884fcce304a8e672aedec605bf33e4451
+	tremollo.frequency = 5;
 	tremollo.quarter = 0;
 
 
 
 
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, effect_LFO_output ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//Example signal for test
 
