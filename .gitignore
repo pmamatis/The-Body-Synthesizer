@@ -9,7 +9,9 @@ EWARM/*
 *.o
 .mxproject
 Debug/*
+RemoteSystemsTempFiles/*
 
+.metadata/*
 
 *.settings
 
@@ -45,8 +47,7 @@ Debug/*
 *.png
 
 # Eclipse CDT project files
-.cproject
-.project
+
 .settings/
 
 # Vagrant directory
