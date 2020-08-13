@@ -142,17 +142,17 @@ void Signal_Synthesis(){
 
 	//decide if first half of BLOCKSIZE or second half
 	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
-	if (outputBuffer_position == HALF_BLOCK){
+	if(outputBuffer_position == HALF_BLOCK) {
 		BLOOCKSIZE_startIndex = 0;
-		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
+		BLOOCKSIZE_endIndex = BLOCKSIZE/2;
 	}
-	else if(outputBuffer_position == FULL_BLOCK){
+	else if(outputBuffer_position == FULL_BLOCK) {
 		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
 	}
 
 	//Loop to for first signal synthesis and find maximum
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+	for(int BLOCKSIZE_counter=BLOOCKSIZE_startIndex; BLOCKSIZE_counter<BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
 		addValue = 0;
 		//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
@@ -168,20 +168,15 @@ void Signal_Synthesis(){
 					signals.current_LUT_Index[j] = LUT_STARTINDEX[signals1.freqIndex[j]];
 				}
 				break;
-			}//Switch-Case
-		}// SIgnal counter for-loop
+			} // Switch-Case
+		} // Signal counter for-loop
 
-
-
-		//maximum
+		// maximum
 		if (signals.max < fabs((double)addValue)){
 			signals.max = fabs((double)addValue);
 		}
 
-
-
-
-		//write into calculate vector
+		// write into calculate vector
 		calculate_vector1[BLOCKSIZE_counter] = addValue;
 
 
@@ -189,39 +184,83 @@ void Signal_Synthesis(){
 
 
 	//Loop to adjust the signal
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-
+	for(int BLOCKSIZE_counter=BLOOCKSIZE_startIndex; BLOCKSIZE_counter<BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
 
 		//norm the signal to -1...1
-		//		addValue = addValue/count;
+		// addValue = addValue/count;
 		calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/signals.max;
-		//scale output signal depeding on amount of voices
-				switch (signals.count){
-				case 1:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
-					break;
-				case 2:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)2);// -6 dB
-					break;
-				case 3:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
-					break;
-				case 4:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
-					break;
-				case 5:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
-					break;
-				default:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter];
-					break;
-				}
 
+		// BEGIN EFFECTS----------------------------------------------------------------------------------------------
 
-		//Effekte
+		// Tremolo
+		Signal_Synthesis_LFO(&tremollo);
+		calculate_vector1[BLOCKSIZE_counter] = (0.5 + 0.5 * effect_LFO[tremollo.lfo_blocksizecounter]) * calculate_vector1[BLOCKSIZE_counter];
+		tremollo.lfo_blocksizecounter++;
+		//tremollo.index = round((double)(tremollo.index + (tremollo.frequency / LFO_FMIN)));
 
+		/*// Basic Delay
+		// User-adjustable effect parameters:
+		dryMix = 0.5;
+		wetMix = 0.5;
+		feedback_level = 0;
 
+		delay_out = (dryMix * calculate_vector1[BLOCKSIZE_counter] + wetMix * delayData[dpr]);
 
+		delayData[dpw] = calculate_vector1[BLOCKSIZE_counter] + (delayData[dpr] * feedback_level);
+		if (++dpr >= delayBufLength)
+			dpr = 0;
+		if (++dpw >= delayBufLength)
+			dpw = 0;
+
+		calculate_vector1[BLOCKSIZE_counter] = delay_out;*/
+
+		/*// Feedback-Echo
+		uint8_t BPM = 120;	// beats per minute
+		float BPS = BPM/60;	// beats per second
+		float SPB = 1/BPS;	// seconds per beat
+		// note duration = 1-quarter, 0.5-8th, 2-half note
+		float note_duration = 0.5;
+		uint32_t delay_samples = floor(note_duration * SPB * LUT_SR);  // floor is rounding the number
+		float gain = -0.5;
+		// Array-Indexing-method
+		if((BLOCKSIZE_counter-delay_samples) < 1)
+			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] + 0;
+		else
+			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] + gain * calculate_vector1[BLOCKSIZE_counter-delay_samples];*/
+
+		/*// Hard Clipping Distortion
+		double DistortionGain = 1.5;	// value between 1 and 20 (sine to squarewave)
+		calculate_vector1[BLOCKSIZE_counter] = DistortionGain * calculate_vector1[BLOCKSIZE_counter];
+		if(calculate_vector1[BLOCKSIZE_counter] >= signals.max)
+			calculate_vector1[BLOCKSIZE_counter] = signals.max;
+		else if(calculate_vector1[BLOCKSIZE_counter] <= -signals.max)
+			calculate_vector1[BLOCKSIZE_counter] = -signals.max;*/
+		// tanh-Distortion
+		//calculate_vector1[BLOCKSIZE_counter] = tanh(3 * calculate_vector1[BLOCKSIZE_counter]);
+
+		// END EFFECTS------------------------------------------------------------------------------------------------
+
+		/*//scale output signal depeding on amount of voices
+		switch (signals.count){
+		case 1:
+			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
+			break;
+		case 2:
+			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)2);// -6 dB
+			break;
+		case 3:
+			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
+			break;
+		case 4:
+			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
+			break;
+		case 5:
+			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
+			break;
+		default:
+			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter];
+			break;
+		}*/
 
 		//if-clause to control the distance between two vector entrys
 		//			if (abs(output_vector1[BLOCKSIZE_counter]-output_vector1[BLOCKSIZE_counter-1]) > 20){
@@ -231,7 +270,8 @@ void Signal_Synthesis(){
 
 
 		//Signal adjustment to DAC
-		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+		//output_vector1[BLOCKSIZE_counter] = (calculate_vector1[BLOCKSIZE_counter] - (-signals.max)) * (4095 - 0) / (signals.max - (-signals.max)) + 0;
+		output_vector1[BLOCKSIZE_counter] = (uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
 
 	} //BLOCKSIZE for-Loop II
 
@@ -245,73 +285,143 @@ void Signal_Synthesis(){
 }//Signal Synthesis
 
 
+/** @brief generates a low frequency sine to be used for effects
+ *  @param effect: struct which contains the parameter for the effect which want to use the LFO
+ *
+ */
+void Signal_Synthesis_LFO(struct effects_LFO* effect) {
+
+	float frequency = effect->frequency;
+	uint8_t quarter = effect->quarter;
+	uint32_t index = effect->index;
+	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
+
+	// calculate ratio between LFO_LUT frequency and disired frequency
+	float frequency_ratio = frequency / LFO_FMIN;
+
+	//if(LFO_blocksizecounter == BLOCKSIZE) {
+	if(LFO_blocksizecounter == BLOCKSIZE/2) {
+		LFO_blocksizecounter = 0;
+	}
+	/*//DEBUG
+	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
+	if (outputBuffer_position == HALF_BLOCK){
+		BLOOCKSIZE_startIndex = 0;
+		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
+	}
+	else if(outputBuffer_position == FULL_BLOCK){
+		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+		BLOOCKSIZE_endIndex  = BLOCKSIZE;
+	}
+	for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {	// DEBUG*/
+
+		//for (int LFO_counter = 0; LFO_counter <BLOCKSIZE/2; LFO_counter++) {
+		// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
+		if(index  > LFO_ENDINDEX[0]) {
+			index = 0;
+			quarter++;
+			if (quarter > 3)
+				quarter = 0;
+		}
+
+		switch(quarter) {
+		case 0:
+			//effect_LFO[LFO_counter] = LFO[index];
+			effect_LFO[LFO_blocksizecounter] = LFO[index];	// DEBUG
+			break;
+		case 1:
+			//effect_LFO[LFO_counter] = LFO[LFO_ENDINDEX[0] - index];
+			effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];	// DEBUG
+			break;
+		case 2:
+			//effect_LFO[LFO_counter] = -LFO[index];
+			effect_LFO[LFO_blocksizecounter] = -LFO[index];	// DEBUG
+			break;
+		case 3:
+			//effect_LFO[LFO_counter] = -LFO[LFO_ENDINDEX[0] - index];
+			effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];	// DEBUG
+			break;
+		default:
+			break;
+		} // end switch-case
+		index = round((double)(index + frequency_ratio));
+
+		//DEBUG
+		//effect_LFO_output[BLOCKSIZE_counter] = (uint32_t)((effect_LFO[BLOCKSIZE_counter]+1)/2 * 3000 + 145);
+
+	//} //BLOCKSIZE for-Loop I
+
+	//LFO_blocksizecounter++;
+
+	//save current state into given effect struct
+	effect->lfo_blocksizecounter = LFO_blocksizecounter;
+	effect->index = index;
+	effect->quarter = quarter;
+}
+
 
 /** @brief generates a low frequency sine to be used for effects
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO
  *
  */
-void Signal_Synthesis_LFO(struct effects_LFO* effect){
+/*void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 
-		float frequency = effect->frequency;
-		uint8_t quarter = effect -> quarter;
-		uint32_t index = effect->index;
+	float frequency = effect->frequency;
+	uint8_t quarter = effect->quarter;
+	uint32_t index = effect->index;
 
-		//	 calculate ratio between LFO_LUT frequency and disired frequency
-			float frequency_ratio = frequency /LFO_FMIN;
+	// calculate ratio between LFO_LUT frequency and disired frequency
+	float frequency_ratio = frequency /LFO_FMIN;
 
+	//DEBUG
+	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
+	if (outputBuffer_position == HALF_BLOCK){
+		BLOOCKSIZE_startIndex = 0;
+		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
+	}
+	else if(outputBuffer_position == FULL_BLOCK){
+		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+		BLOOCKSIZE_endIndex  = BLOCKSIZE;
+	}
+	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {	// DEBUG
 
-			//DEBUG
-			/*
-		uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
-		if (outputBuffer_position == HALF_BLOCK){
-			BLOOCKSIZE_startIndex = 0;
-			BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
+		//for (int LFO_counter = 0; LFO_counter <BLOCKSIZE/2; LFO_counter++){
+		// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
+		if ( index  > LFO_ENDINDEX[0]){
+			index = 0;
+			quarter++;
+			if (quarter > 3)
+				quarter = 0;
 		}
-		else if(outputBuffer_position == FULL_BLOCK){
-			BLOOCKSIZE_startIndex = BLOCKSIZE/2;
-			BLOOCKSIZE_endIndex  = BLOCKSIZE;
-		}
 
-		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-			*/
+		switch(quarter){
+		case 0:
+			//effect_LFO[LFO_counter] = LFO[index];
+			effect_LFO[BLOCKSIZE_counter] = LFO[index];	// DEBUG
+			break;
+		case 1:
+			//effect_LFO[LFO_counter] = LFO[(LFO_ENDINDEX[0] - index)];
+			effect_LFO[BLOCKSIZE_counter] = LFO[(LFO_ENDINDEX[0] - index )];	// DEBUG
+			break;
+		case 2:
+			//effect_LFO[LFO_counter] = -LFO[index];
+			effect_LFO[BLOCKSIZE_counter] = -LFO[index];	// DEBUG
+			break;
+		case 3:
+			//effect_LFO[LFO_counter] = -LFO[(LFO_ENDINDEX[0] - index)];
+			effect_LFO[BLOCKSIZE_counter] = -LFO[(LFO_ENDINDEX[0] - index)];	// DEBUG
+			break;
+		default:
+			break;
+		} // end switch-case
+		index = round((double)(index + frequency_ratio));
 
-			for (int LFO_counter = 0; LFO_counter <BLOCKSIZE/2; LFO_counter++){
-					// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
-					if ( index  > LFO_ENDINDEX[0]){
-						index = 0;
-						quarter++;
-						if (quarter > 3)
-							quarter = 0;
-					}
+		//DEBUG
+		effect_LFO_output[BLOCKSIZE_counter] = (uint32_t)((effect_LFO[BLOCKSIZE_counter]+1)/2 * 3000 + 145);
 
-					switch(quarter){
-					case 0:
-						effect_LFO[LFO_counter] = LFO[(index)];
-						break;
-					case 1:
-						effect_LFO[LFO_counter] = LFO[(LFO_ENDINDEX[0] -index )];
-						break;
-					case 2:
-						effect_LFO[LFO_counter] = -LFO[(index)];
-						break;
-					case 3:
-						effect_LFO[LFO_counter] = -LFO[(LFO_ENDINDEX[0] -index)];
-						break;
-					default:
-						break;
-					} // end switch-case
-					index = round((double)(index + frequency_ratio));
+	} //BLOCKSIZE for-Loop I
 
-					//DEBUG
-//					effect_LFO_output[BLOCKSIZE_counter] = (uint32_t)((effect_LFO[BLOCKSIZE_counter]+1)/2 * 3000 + 145);
-
-		} //BLOCKSIZE for-Loop I
-
-		//save current state into given effect struct
-		effect -> index = index;
-		effect -> quarter = quarter;
-
-
-}
-
-
+	//save current state into given effect struct
+	effect -> index = index;
+	effect -> quarter = quarter;
+}*/

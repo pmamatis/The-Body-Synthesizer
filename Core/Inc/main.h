@@ -37,7 +37,7 @@ extern "C" {
 #include "signal_synthesis.h"
 #include "music_notes.h"
 #include "sinLUT.h"
-
+#include "effects.h"
 
 /* USER CODE END Includes */
 
@@ -73,6 +73,7 @@ void Error_Handler(void);
 
 /**@brief output array size */
 #define BLOCKSIZE 8192
+//#define BLOCKSIZE 2048
 
 //Variables
 
@@ -84,13 +85,22 @@ float calculate_vector1[BLOCKSIZE];
 uint32_t output_vector2[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
+struct effects_LFO tremollo;
 float effect_LFO[BLOCKSIZE/2];
-
+//float effect_LFO[BLOCKSIZE];	// DEBUG
+uint32_t effect_LFO_output[BLOCKSIZE];
 
 float sigFreq_sampleFreq_ratio;
 
-
-struct effects_LFO tremollo;
+/*// Basic Delay Effect Variables
+float *delayData; // Our own circular buffer of samples
+#define delayBufLength 1000 // Length of our delay buffer in samples
+uint32_t dpr, dpw; // Read/write pointers into delay buffer
+float delay_out;
+// User-adjustable effect parameters:
+float dryMix; // Level of the dry (undelayed) signal
+float wetMix; // Level of the wet (delayed) signal
+float feedback_level; // Feedback level (0 if no feedback)*/
 
 
 /** @brief enum for DMA Output buffer position */

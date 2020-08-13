@@ -87,7 +87,7 @@ struct effects_LFO{
 	uint32_t index;
 	uint8_t quarter;
 	float frequency;
-
+	uint32_t lfo_blocksizecounter;
 };
 
 
