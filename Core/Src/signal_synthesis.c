@@ -231,7 +231,9 @@ void Signal_Synthesis(){
 
 
 		//Signal adjustment to DAC
-		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+//		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+		*((uint32_t *)(&calculate_vector1[BLOCKSIZE_counter] )) = (uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+//
 
 	} //BLOCKSIZE for-Loop II
 

@@ -96,11 +96,11 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
   /* USER CODE END DAC_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_DAC_CLK_ENABLE();
-  
+
     __HAL_RCC_GPIOA_CLK_ENABLE();
-    /**DAC GPIO Configuration    
+    /**DAC GPIO Configuration
     PA4     ------> DAC_OUT1
-    PA5     ------> DAC_OUT2 
+    PA5     ------> DAC_OUT2
     */
     GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
@@ -117,7 +117,7 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
     hdma_dac2.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
     hdma_dac2.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
     hdma_dac2.Init.Mode = DMA_CIRCULAR;
-    hdma_dac2.Init.Priority = DMA_PRIORITY_VERY_HIGH;
+    hdma_dac2.Init.Priority = DMA_PRIORITY_HIGH;
     hdma_dac2.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
     if (HAL_DMA_Init(&hdma_dac2) != HAL_OK)
     {
@@ -166,10 +166,10 @@ void HAL_DAC_MspDeInit(DAC_HandleTypeDef* hdac)
   /* USER CODE END DAC_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_DAC_CLK_DISABLE();
-  
-    /**DAC GPIO Configuration    
+
+    /**DAC GPIO Configuration
     PA4     ------> DAC_OUT1
-    PA5     ------> DAC_OUT2 
+    PA5     ------> DAC_OUT2
     */
     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_4|GPIO_PIN_5);
 
@@ -265,11 +265,11 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
   /* USER CODE END USART3_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_USART3_CLK_ENABLE();
-  
+
     __HAL_RCC_GPIOD_CLK_ENABLE();
-    /**USART3 GPIO Configuration    
+    /**USART3 GPIO Configuration
     PD8     ------> USART3_TX
-    PD9     ------> USART3_RX 
+    PD9     ------> USART3_RX
     */
     GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -300,10 +300,10 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
   /* USER CODE END USART3_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_USART3_CLK_DISABLE();
-  
-    /**USART3 GPIO Configuration    
+
+    /**USART3 GPIO Configuration
     PD8     ------> USART3_TX
-    PD9     ------> USART3_RX 
+    PD9     ------> USART3_RX
     */
     HAL_GPIO_DeInit(GPIOD, GPIO_PIN_8|GPIO_PIN_9);
 

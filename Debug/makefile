@@ -15,6 +15,12 @@ RM := rm -rf
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(S_DEPS)),)
+-include $(S_DEPS)
+endif
+ifneq ($(strip $(S_UPPER_DEPS)),)
+-include $(S_UPPER_DEPS)
+endif
 ifneq ($(strip $(C_DEPS)),)
 -include $(C_DEPS)
 endif
@@ -40,8 +46,8 @@ Body-Synthesizer_STM32_F746ZG.bin \
 all: Body-Synthesizer_STM32_F746ZG.elf secondary-outputs
 
 # Tool invocations
-Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) E:\GIT\Body-Synthesizer\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld
-	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"E:\GIT\Body-Synthesizer\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) /media/paul/LINUX_MEM/GIT/UNI/Body-Synthesizer/Body-Synthesizer_STM32_F746ZG/STM32F746ZGTX_FLASH.ld
+	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/media/paul/LINUX_MEM/GIT/UNI/Body-Synthesizer/Body-Synthesizer_STM32_F746ZG/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
