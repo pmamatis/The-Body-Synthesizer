@@ -78,10 +78,10 @@ void Error_Handler(void);
 
 
 /** @brief DAC output array*/
-uint32_t output_vector1[BLOCKSIZE];
+//uint32_t output_vector1[BLOCKSIZE];
 float calculate_vector1[BLOCKSIZE];
 
-uint32_t output_vector2[BLOCKSIZE];
+//uint32_t output_vector2[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
 float effect_LFO[BLOCKSIZE/2];
@@ -90,7 +90,7 @@ float effect_LFO[BLOCKSIZE/2];
 float sigFreq_sampleFreq_ratio;
 
 
-struct effects_LFO tremollo;
+struct effects_LFO_t tremollo;
 
 
 /** @brief enum for DMA Output buffer position */

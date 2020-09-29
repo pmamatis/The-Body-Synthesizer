@@ -52,7 +52,7 @@
  * @param
  * @param
  * */
-struct signal{
+struct signal_t{
 	//globals
 	uint8_t count;
 	float max;
@@ -62,6 +62,7 @@ struct signal{
 	uint8_t freqIndex[MAX_SIGNAL_KOMBINATION];
 	uint32_t current_LUT_Index[MAX_SIGNAL_KOMBINATION];
 	uint8_t ID[MAX_SIGNAL_KOMBINATION];
+	uint8_t channel[MAX_SIGNAL_KOMBINATION];
 };
 /**@brief Array to monitor which ID's are taken, taken = 1; free = 0*/
 uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
@@ -82,7 +83,7 @@ enum effects_using_LFO{
 	TREMOLLO = 0,
 };
 
-struct effects_LFO{
+struct effects_LFO_t{
 	uint8_t name;
 	uint32_t index;
 	uint8_t quarter;
@@ -118,8 +119,8 @@ uint8_t output_Channel;
 uint8_t outputBuffer_position;
 
 
-struct signal signals1;
-struct signal signals2;
+struct signal_t signals1;
+struct signal_t signals2;
 
 
 //functions
@@ -128,10 +129,10 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac, uint8_t channel);
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 //void TEST(DAC_HandleTypeDef hdac);
-void Signal_Synthesis();
-void DeleteSignal(uint8_t signal_index);
-void NewSignal(uint8_t kind, uint8_t key, uint8_t octave);
-void Signal_Synthesis_LFO(struct effects_LFO* effect);
+void Signal_Synthesis(struct signal_t* signals);
+void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
+void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
+void Signal_Synthesis_LFO(struct effects_LFO_t* effect);
 
 #endif /* INC_SIGNALERZEUGUNG_H_ */
 

@@ -73,20 +73,20 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
  *  @param octave: defines in which octave the key is settled.
  *  @attention the combination of key and octave defines the frequency
  */
-void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
+void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave){
 
-	if (signals1.count <= MAX_SIGNAL_KOMBINATION){
-		signals1.count += 1;
-		uint8_t index = signals1.count-1;
+	if (signals -> count <= MAX_SIGNAL_KOMBINATION){
+		signals -> count += 1;
+		uint8_t index = (signals-> count)-1;
 
-		signals1.kind[index] = kind;
-		signals1.freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
-		signals1.freqIndex[index] = Get_Note_Index(key,octave);
-		signals1.current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
-		signals1.max = 0;
+		signals -> kind[index] = kind;
+		signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
+		signals -> freqIndex[index] = Get_Note_Index(key,octave);
+		signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
+		signals -> max = 0;
 		for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
 			if(!ID_array[NewSignal_count]){
-				signals1.ID[NewSignal_count] = NewSignal_count;
+				signals -> ID[NewSignal_count] = NewSignal_count;
 				ID_array[NewSignal_count] = 1;
 			}
 
@@ -99,41 +99,45 @@ void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
  * @param: signal_index: index of the signals which should be seleted
- * @attention if you wnat to delete two signals in a row, beware that the index of the second signal could have changed, e.g. signals1 contains three signals, you want to delete signals1[0] and signals1[1]. After using DeleteSignal(0) you need to use DeleteSignal(0) again, because signals1[1] became signals1[0] after first use  */
-void DeleteSignal(uint8_t signal_index){
+ * @attention if you wnat to delete two signals in a row, beware that the index of the second signal could have changed, e.g. signals1 contains three signals, you want to delete signals1[0] and signals1[1]. After using DeleteSignal(0) you need to use DeleteSignal(0) again, because signals1[1] became signals1[0] after first use
+ * @return None
+ *  */
+void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 	//free the signal ID
-	uint8_t tmp = signals1.ID[signal_index];
+	uint8_t tmp = signals -> ID[signal_index];
 	ID_array[tmp] = 0;
 
 	//shift signals too left
-	for (int delete_counter=signal_index; delete_counter < signals1.count;delete_counter++ ){
-		signals1.current_LUT_Index[delete_counter] = signals1.current_LUT_Index[delete_counter+1] ;
-		signals1.freq[delete_counter] = signals1.freq[delete_counter+1];
-		signals1.freqIndex[delete_counter] = signals1.freqIndex[delete_counter+1];
-		signals1.kind[delete_counter] = signals1.kind[delete_counter+1];
-		signals1.ID[delete_counter] = signals1.ID[delete_counter+1];
+	for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
+		signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
+		signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
+		signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
+		signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
+		signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
 
 	}
-	signals1.count-=1;
-	signals1.max = 0;
+	signals -> count-=1;
+	signals -> max = 0;
 }
 
 
 
 /** @brief generates a signal in the outputvector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
+ *	@param signal: is a signal_t struct which contains the tones to be played
+ *  @return None
  */
-void Signal_Synthesis(){
+void Signal_Synthesis(struct signal_t* signals){
 
 	//Variables
 	float addValue=0;
-	uint8_t count;
-	struct signal signals;
+	uint8_t count = signals -> count;
+//	struct signal signals_tmp;
 	// decide if Channel 1 or Channel 2
 	/**@TODO */
-	if (output_Channel == 1){
-		count = signals1.count;
-		signals = signals1;
-	}
+//	if (output_Channel == 1){
+//		count = signals1.count;
+//		signals = signals1;
+//	}
 	//		else if (output_Channel == 2){
 	//			count = signals2.count;
 	//			signals = signals2;
@@ -156,16 +160,16 @@ void Signal_Synthesis(){
 		addValue = 0;
 		//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
-			switch (signals.kind[j]) {
+			switch (signals -> kind[j]) {
 			case SIN:
 				//adds all SIN values from the signals to addValue
-				addValue = addValue + LUT[signals.current_LUT_Index[j]];
+				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 
 				//get index for the next sin value
-				signals.current_LUT_Index[j]++;
-				if (signals.current_LUT_Index[j] > LUT_ENDINDEX[signals.freqIndex[j]])
+				signals -> current_LUT_Index[j]++;
+				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
 				{
-					signals.current_LUT_Index[j] = LUT_STARTINDEX[signals1.freqIndex[j]];
+					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
 				}
 				break;
 			}//Switch-Case
@@ -174,8 +178,8 @@ void Signal_Synthesis(){
 
 
 		//maximum
-		if (signals.max < fabs((double)addValue)){
-			signals.max = fabs((double)addValue);
+		if (signals -> max < fabs((double)addValue)){
+			signals -> max = fabs((double)addValue);
 		}
 
 
@@ -194,9 +198,9 @@ void Signal_Synthesis(){
 
 		//norm the signal to -1...1
 		//		addValue = addValue/count;
-		calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/signals.max;
+		calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/signals -> max;
 		//scale output signal depeding on amount of voices
-				switch (signals.count){
+				switch (signals -> count){
 				case 1:
 					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
 					break;
@@ -240,8 +244,8 @@ void Signal_Synthesis(){
 
 
 	// save current LUT index into signals1,
-	for (int tmp_count = 0 ; tmp_count < signals.count; tmp_count++){
-		signals1.current_LUT_Index[tmp_count] = signals.current_LUT_Index[tmp_count];
+	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
+		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
 	}
 
 }//Signal Synthesis
@@ -252,7 +256,7 @@ void Signal_Synthesis(){
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO
  *
  */
-void Signal_Synthesis_LFO(struct effects_LFO* effect){
+void Signal_Synthesis_LFO(struct effects_LFO_t* effect){
 
 		float frequency = effect->frequency;
 		uint8_t quarter = effect -> quarter;

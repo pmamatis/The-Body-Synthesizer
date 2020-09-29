@@ -82,7 +82,7 @@ static void MX_USART3_UART_Init(void);
 void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = FULL_BLOCK;
 //	Signal_Synthesis_LFO(&tremollo);
-	Signal_Synthesis();
+	Signal_Synthesis(&signals1);
 
 
 }
@@ -91,7 +91,7 @@ void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
 //	Signal_Synthesis_LFO(&tremollo);
-	Signal_Synthesis();
+	Signal_Synthesis(&signals1);
 
 }
 
@@ -191,49 +191,49 @@ int c = 0;
 		c = c^1;*/
 
 //		//Example signal for test
-		NewSignal(SIN, 'C',0);
-		NewSignal(SIN, 'C',1);
-		NewSignal(SIN, 'C',2);
-		NewSignal(SIN, 'C',3);
-		NewSignal(SIN, 'C',4);
+		NewSignal(&signals1,SIN, 'C',0);
+		NewSignal(&signals1,SIN, 'C',1);
+		NewSignal(&signals1,SIN, 'C',2);
+		NewSignal(&signals1,SIN, 'C',3);
+		NewSignal(&signals1,SIN, 'C',4);
 
 		HAL_Delay(1000);
 
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
 		//NewSignal(SIN, 'C',5);
 
-		NewSignal(SIN, 'E',0);
-		NewSignal(SIN, 'E',1);
-		NewSignal(SIN, 'E',2);
-		NewSignal(SIN, 'E',3);
-		NewSignal(SIN, 'E',4);
+		NewSignal(&signals1,SIN, 'E',0);
+		NewSignal(&signals1,SIN, 'E',1);
+		NewSignal(&signals1,SIN, 'E',2);
+		NewSignal(&signals1,SIN, 'E',3);
+		NewSignal(&signals1,SIN, 'E',4);
 
 		HAL_Delay(1000);
 
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
 		//NewSignal(SIN, 'C',5);
 
-		NewSignal(SIN, 'G',0);
-		NewSignal(SIN, 'G',1);
-		NewSignal(SIN, 'G',2);
-		NewSignal(SIN, 'G',3);
-		NewSignal(SIN, 'G',4);
+		NewSignal(&signals1, SIN,  'G',0);
+		NewSignal(&signals1, SIN,  'G',1);
+		NewSignal(&signals1, SIN,  'G',2);
+		NewSignal(&signals1, SIN,  'G',3);
+		NewSignal(&signals1, SIN,  'G',4);
 
 		HAL_Delay(1000);
 
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
-		DeleteSignal(0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
+		DeleteSignal(&signals1,0);
 
 	}
   /* USER CODE END 3 */
