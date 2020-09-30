@@ -78,30 +78,33 @@ static void MX_USART3_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+
+/* DAC CHANNEL FUnktions */
 //DAC_CHANNEL_1
-void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-	outputBuffer_position = FULL_BLOCK;
-//	Signal_Synthesis_LFO(&tremollo);
-	Signal_Synthesis(&signals1);
-
-
-}
-
-
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
 //	Signal_Synthesis_LFO(&tremollo);
-	Signal_Synthesis(&signals1);
+	Signal_Synthesis(&signals1,1);
 
 }
+void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
+	outputBuffer_position = FULL_BLOCK;
+//	Signal_Synthesis_LFO(&tremollo);
+	Signal_Synthesis(&signals1,1);
+
+
+}
+
 
 //DAC_CHANNEL_2
 void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
-
+	outputBuffer_position = HALF_BLOCK;
+	Signal_Synthesis(&signals2,2);
 }
 
 void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
-
+	outputBuffer_position = FULL_BLOCK;
+	Signal_Synthesis(&signals2,2);
 }
 /* USER CODE END 0 */
 
@@ -153,21 +156,26 @@ int main(void)
 
 
 
-
+	// Start the DAC output  in DMA mode
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//Example signal for test
 
 
 
 
-//	NewSignal(SIN, 'A',0);
-//	NewSignal(SIN, 'A',1);
-//	NewSignal(SIN, 'A',2);
-//	NewSignal(SIN, 'A',3);
-//	NewSignal(SIN, 'A',4);
+			NewSignal(&signals1,SIN, 'C',0);
+			NewSignal(&signals1,SIN, 'C',1);
+			NewSignal(&signals1,SIN, 'C',2);
+			NewSignal(&signals1,SIN, 'C',3);
+			NewSignal(&signals1,SIN, 'C',4);
 
-	HAL_Delay(1000);
+			NewSignal(&signals2,SIN, 'C',0);
+			NewSignal(&signals2,SIN, 'C',1);
+			NewSignal(&signals2,SIN, 'C',2);
+			NewSignal(&signals2,SIN, 'C',3);
+			NewSignal(&signals2,SIN, 'C',4);
 	//starts the DAC output
 	//  HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1,(uint32_t)* output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
 
@@ -191,49 +199,54 @@ int c = 0;
 		c = c^1;*/
 
 //		//Example signal for test
-		NewSignal(&signals1,SIN, 'C',0);
-		NewSignal(&signals1,SIN, 'C',1);
-		NewSignal(&signals1,SIN, 'C',2);
-		NewSignal(&signals1,SIN, 'C',3);
-		NewSignal(&signals1,SIN, 'C',4);
-
-		HAL_Delay(1000);
-
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		//NewSignal(SIN, 'C',5);
-
-		NewSignal(&signals1,SIN, 'E',0);
-		NewSignal(&signals1,SIN, 'E',1);
-		NewSignal(&signals1,SIN, 'E',2);
-		NewSignal(&signals1,SIN, 'E',3);
-		NewSignal(&signals1,SIN, 'E',4);
-
-		HAL_Delay(1000);
-
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		//NewSignal(SIN, 'C',5);
-
-		NewSignal(&signals1, SIN,  'G',0);
-		NewSignal(&signals1, SIN,  'G',1);
-		NewSignal(&signals1, SIN,  'G',2);
-		NewSignal(&signals1, SIN,  'G',3);
-		NewSignal(&signals1, SIN,  'G',4);
-
-		HAL_Delay(1000);
-
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
-		DeleteSignal(&signals1,0);
+//		NewSignal(&signals1,SIN, 'C',0);
+//		NewSignal(&signals1,SIN, 'C',1);
+//		NewSignal(&signals1,SIN, 'C',2);
+//		NewSignal(&signals1,SIN, 'C',3);
+//		NewSignal(&signals1,SIN, 'C',4);
+//
+//		NewSignal(&signals2,SIN, 'C',0);
+//		NewSignal(&signals2,SIN, 'C',1);
+//		NewSignal(&signals2,SIN, 'C',2);
+//		NewSignal(&signals2,SIN, 'C',3);
+//		NewSignal(&signals2,SIN, 'C',4);
+//		HAL_Delay(1000);
+//
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		//NewSignal(SIN, 'C',5);
+//
+//		NewSignal(&signals1,SIN, 'E',0);
+//		NewSignal(&signals1,SIN, 'E',1);
+//		NewSignal(&signals1,SIN, 'E',2);
+//		NewSignal(&signals1,SIN, 'E',3);
+//		NewSignal(&signals1,SIN, 'E',4);
+//
+//		HAL_Delay(1000);
+//
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		//NewSignal(SIN, 'C',5);
+//
+//		NewSignal(&signals1, SIN,  'G',0);
+//		NewSignal(&signals1, SIN,  'G',1);
+//		NewSignal(&signals1, SIN,  'G',2);
+//		NewSignal(&signals1, SIN,  'G',3);
+//		NewSignal(&signals1, SIN,  'G',4);
+//
+//		HAL_Delay(1000);
+//
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
+//		DeleteSignal(&signals1,0);
 
 	}
   /* USER CODE END 3 */
@@ -504,7 +517,7 @@ static void MX_DMA_Init(void)
   HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
   /* DMA1_Stream6_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 
 }

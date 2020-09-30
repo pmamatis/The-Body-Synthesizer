@@ -124,24 +124,26 @@ void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 
 /** @brief generates a signal in the outputvector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
  *	@param signal: is a signal_t struct which contains the tones to be played
+ *	@param  output_Channel: decides if the Array connected to the DAC Channel one is filled or the array connected with the DAC channel two is filled
  *  @return None
  */
-void Signal_Synthesis(struct signal_t* signals){
+void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 	//Variables
 	float addValue=0;
 	uint8_t count = signals -> count;
-//	struct signal signals_tmp;
+
+
+
 	// decide if Channel 1 or Channel 2
-	/**@TODO */
-//	if (output_Channel == 1){
-//		count = signals1.count;
-//		signals = signals1;
-//	}
-	//		else if (output_Channel == 2){
-	//			count = signals2.count;
-	//			signals = signals2;
-	//		}
+	float* calculate_vector_tmp;
+
+	if (output_Channel == 1){
+		calculate_vector_tmp = calculate_vector1;
+	}
+	else if (output_Channel == 2){
+		calculate_vector_tmp = calculate_vector2;
+	}
 
 
 	//decide if first half of BLOCKSIZE or second half
@@ -186,7 +188,7 @@ void Signal_Synthesis(struct signal_t* signals){
 
 
 		//write into calculate vector
-		calculate_vector1[BLOCKSIZE_counter] = addValue;
+		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
 
 
 	} //BLOCKSIZE for-Loop I
@@ -198,28 +200,8 @@ void Signal_Synthesis(struct signal_t* signals){
 
 		//norm the signal to -1...1
 		//		addValue = addValue/count;
-		calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/signals -> max;
-		//scale output signal depeding on amount of voices
-				switch (signals -> count){
-				case 1:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
-					break;
-				case 2:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)2);// -6 dB
-					break;
-				case 3:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
-					break;
-				case 4:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
-					break;
-				case 5:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
-					break;
-				default:
-					calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter];
-					break;
-				}
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
+
 
 
 		//Effekte
@@ -234,9 +216,32 @@ void Signal_Synthesis(struct signal_t* signals){
 		//			}
 
 
+
+
+		//scale output signal depeding on amount of voices
+				switch (signals -> count){
+				case 1:
+					calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
+					break;
+				case 2:
+					calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
+					break;
+				case 3:
+					calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
+					break;
+				case 4:
+					calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
+					break;
+				case 5:
+					calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
+					break;
+				default:
+					calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
+					break;
+				}
 		//Signal adjustment to DAC
-//		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
-		*((uint32_t *)(&calculate_vector1[BLOCKSIZE_counter] )) = (uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+//		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
 //
 
 	} //BLOCKSIZE for-Loop II
