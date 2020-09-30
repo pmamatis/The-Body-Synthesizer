@@ -77,14 +77,12 @@ static void MX_USART3_UART_Init(void);
 void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = FULL_BLOCK;
 	//Signal_Synthesis_LFO(&tremollo);	// DEBUG
-	//Tremolo();
 	Signal_Synthesis();
 }
 
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
 	//Signal_Synthesis_LFO(&tremollo);	// DEBUG
-	//Tremolo();
 	Signal_Synthesis();
 }
 
@@ -141,9 +139,10 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 
 	tremollo.index = 0;
-	tremollo.frequency = 4;
+	tremollo.lfo_frequency = 2;
 	tremollo.quarter = 0;
 	tremollo.lfo_blocksizecounter = 0;
+	tremollo.lfo_depth = 0.5;
 
 	//Example signal for test
 	NewSignal(SIN, 'C', 1);

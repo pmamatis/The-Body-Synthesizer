@@ -192,15 +192,8 @@ void Signal_Synthesis(){
 
 		// BEGIN EFFECTS----------------------------------------------------------------------------------------------
 
-		// Tremolo
-		Signal_Synthesis_LFO(&tremollo);
-		float LFO_Depth = 1;
-		float tremolo_mod = (1 + LFO_Depth * effect_LFO[tremollo.lfo_blocksizecounter]);
-		calculate_vector1[BLOCKSIZE_counter] = (tremolo_mod * calculate_vector1[BLOCKSIZE_counter]) / (1+LFO_Depth);
-		// OHNE MODULATION DEPTH:
-		//calculate_vector1[BLOCKSIZE_counter] = effect_LFO[tremollo.lfo_blocksizecounter] * calculate_vector1[BLOCKSIZE_counter];
-		tremollo.lfo_blocksizecounter++;
-		//tremollo.index = round((double)(tremollo.index + (tremollo.frequency / LFO_FMIN)));
+		// call Tremolo
+		calculate_vector1[BLOCKSIZE_counter] = Tremolo(&tremollo, tremollo.lfo_depth, calculate_vector1[BLOCKSIZE_counter]);
 
 		/*// Basic Delay
 		// User-adjustable effect parameters:
@@ -279,14 +272,12 @@ void Signal_Synthesis(){
 
 	} //BLOCKSIZE for-Loop II
 
-
-
 	// save current LUT index into signals1,
 	for (int tmp_count = 0 ; tmp_count < signals.count; tmp_count++){
 		signals1.current_LUT_Index[tmp_count] = signals.current_LUT_Index[tmp_count];
 	}
 
-}//Signal Synthesis
+}
 
 
 /** @brief generates a low frequency sine to be used for effects
@@ -295,7 +286,7 @@ void Signal_Synthesis(){
  */
 void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 
-	float frequency = effect->frequency;
+	float frequency = effect->lfo_frequency;
 	uint8_t quarter = effect->quarter;
 	uint32_t index = effect->index;
 	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
@@ -303,59 +294,35 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 	// calculate ratio between LFO_LUT frequency and desired frequency
 	float frequency_ratio = frequency / LFO_FMIN;
 
-	//if(LFO_blocksizecounter == BLOCKSIZE) {
 	if(LFO_blocksizecounter == BLOCKSIZE/2) {
 		LFO_blocksizecounter = 0;
 	}
-	/*//DEBUG
-	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
-	if (outputBuffer_position == HALF_BLOCK){
-		BLOOCKSIZE_startIndex = 0;
-		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
+
+	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
+	if(index  > LFO_ENDINDEX[0]) {
+		index = 0;
+		quarter++;
+		if (quarter > 3)
+			quarter = 0;
 	}
-	else if(outputBuffer_position == FULL_BLOCK){
-		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
-		BLOOCKSIZE_endIndex  = BLOCKSIZE;
+
+	switch(quarter) {
+	case 0:
+		effect_LFO[LFO_blocksizecounter] = LFO[index];
+		break;
+	case 1:
+		effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];
+		break;
+	case 2:
+		effect_LFO[LFO_blocksizecounter] = -LFO[index];
+		break;
+	case 3:
+		effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];
+		break;
+	default:
+		break;
 	}
-	for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {	// DEBUG*/
-
-		//for (int LFO_counter = 0; LFO_counter <BLOCKSIZE/2; LFO_counter++) {
-		// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
-		if(index  > LFO_ENDINDEX[0]) {
-			index = 0;
-			quarter++;
-			if (quarter > 3)
-				quarter = 0;
-		}
-
-		switch(quarter) {
-		case 0:
-			//effect_LFO[LFO_counter] = LFO[index];
-			effect_LFO[LFO_blocksizecounter] = LFO[index];	// DEBUG
-			break;
-		case 1:
-			//effect_LFO[LFO_counter] = LFO[LFO_ENDINDEX[0] - index];
-			effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];	// DEBUG
-			break;
-		case 2:
-			//effect_LFO[LFO_counter] = -LFO[index];
-			effect_LFO[LFO_blocksizecounter] = -LFO[index];	// DEBUG
-			break;
-		case 3:
-			//effect_LFO[LFO_counter] = -LFO[LFO_ENDINDEX[0] - index];
-			effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];	// DEBUG
-			break;
-		default:
-			break;
-		} // end switch-case
-		index = round((double)(index + frequency_ratio));
-
-		//DEBUG
-		//effect_LFO_output[BLOCKSIZE_counter] = (uint32_t)((effect_LFO[BLOCKSIZE_counter]+1)/2 * 3000 + 145);
-
-	//} //BLOCKSIZE for-Loop I
-
-	//LFO_blocksizecounter++;
+	index = round((double)(index + frequency_ratio));
 
 	//save current state into given effect struct
 	effect->lfo_blocksizecounter = LFO_blocksizecounter;

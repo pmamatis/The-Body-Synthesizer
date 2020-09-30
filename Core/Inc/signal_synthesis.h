@@ -67,17 +67,7 @@ struct signal{
 uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
 
 
-
-
-
-
-
-
-
-//Effects
-
-
-
+/*//Effects
 enum effects_using_LFO{
 	TREMOLLO = 0,
 };
@@ -88,7 +78,7 @@ struct effects_LFO{
 	uint8_t quarter;
 	float frequency;
 	uint32_t lfo_blocksizecounter;
-};
+};*/
 
 
 

@@ -20,9 +20,14 @@ void tanh_Distortion_Process(double distortion_gain, uint32_t end) {
 	}
 }
 
-void Tremolo() {
+float Tremolo(struct effects_LFO* effect, float LFO_Depth, float calculate_vector) {
 	Signal_Synthesis_LFO(&tremollo);	// calculates new LFO value and saves it into effects_LFO
-	// ... tremolo effect
+	float tremolo_mod = (1 + LFO_Depth * effect_LFO[tremollo.lfo_blocksizecounter]);
+	//calculate_vector1[BLOCKSIZE_counter] = (tremolo_mod * calculate_vector1[BLOCKSIZE_counter]) / (1+LFO_Depth);
+	calculate_vector = (tremolo_mod * calculate_vector) / (1+LFO_Depth);
+	tremollo.lfo_blocksizecounter++;
+
+	return calculate_vector;
 }
 
 
