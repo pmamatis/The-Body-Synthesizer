@@ -194,7 +194,11 @@ void Signal_Synthesis(){
 
 		// Tremolo
 		Signal_Synthesis_LFO(&tremollo);
-		calculate_vector1[BLOCKSIZE_counter] = (0.5 + 0.5 * effect_LFO[tremollo.lfo_blocksizecounter]) * calculate_vector1[BLOCKSIZE_counter];
+		float LFO_Depth = 1;
+		float tremolo_mod = (1 + LFO_Depth * effect_LFO[tremollo.lfo_blocksizecounter]);
+		calculate_vector1[BLOCKSIZE_counter] = (tremolo_mod * calculate_vector1[BLOCKSIZE_counter]) / (1+LFO_Depth);
+		// OHNE MODULATION DEPTH:
+		//calculate_vector1[BLOCKSIZE_counter] = effect_LFO[tremollo.lfo_blocksizecounter] * calculate_vector1[BLOCKSIZE_counter];
 		tremollo.lfo_blocksizecounter++;
 		//tremollo.index = round((double)(tremollo.index + (tremollo.frequency / LFO_FMIN)));
 
@@ -296,7 +300,7 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 	uint32_t index = effect->index;
 	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
 
-	// calculate ratio between LFO_LUT frequency and disired frequency
+	// calculate ratio between LFO_LUT frequency and desired frequency
 	float frequency_ratio = frequency / LFO_FMIN;
 
 	//if(LFO_blocksizecounter == BLOCKSIZE) {

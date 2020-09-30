@@ -141,7 +141,7 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 
 	tremollo.index = 0;
-	tremollo.frequency = 1;
+	tremollo.frequency = 4;
 	tremollo.quarter = 0;
 	tremollo.lfo_blocksizecounter = 0;
 
