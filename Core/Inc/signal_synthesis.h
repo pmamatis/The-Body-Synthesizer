@@ -123,9 +123,11 @@ void DeleteSignal(uint8_t signal_index);
 void NewSignal(uint8_t kind, uint8_t key, uint8_t octave);
 void Signal_Synthesis_LFO(struct effects_LFO* effect);
 
+// functions for distortion effect to search nearest element in LUT
+unsigned int FindNearestIndex(float arr[], unsigned int arr_length, float target_value);
+// END: functions for distortion effect to search nearest element in LUT
+
+
 #endif /* INC_SIGNALERZEUGUNG_H_ */
-
-
-
 
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

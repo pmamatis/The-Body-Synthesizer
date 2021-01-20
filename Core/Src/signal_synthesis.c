@@ -192,48 +192,18 @@ void Signal_Synthesis(){
 
 		// BEGIN EFFECTS----------------------------------------------------------------------------------------------
 
-		// call Tremolo
+		// apply tremolo-effect
 		calculate_vector1[BLOCKSIZE_counter] = Tremolo(&tremollo, tremollo.lfo_depth, calculate_vector1[BLOCKSIZE_counter]);
 
-		/*// Basic Delay
-		// User-adjustable effect parameters:
-		dryMix = 0.5;
-		wetMix = 0.5;
-		feedback_level = 0;
+		// apply hard-clipping-distortion-effect
+		//calculate_vector1[BLOCKSIZE_counter] = HardClippingDistortion(&distortion, distortion.distortion_gain, calculate_vector1[BLOCKSIZE_counter]);
 
-		delay_out = (dryMix * calculate_vector1[BLOCKSIZE_counter] + wetMix * delayData[dpr]);
+		// apply atan-soft-clipping-distortion-effect
+		//atan_parameter = distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]+(10-aquidistance);
+		atan_parameter = (distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]) + 10;
+		distortion_index = round(atan_parameter/aquidistance);
+		calculate_vector1[BLOCKSIZE_counter] = 0.5*atan_LUT_y[distortion_index];
 
-		delayData[dpw] = calculate_vector1[BLOCKSIZE_counter] + (delayData[dpr] * feedback_level);
-		if (++dpr >= delayBufLength)
-			dpr = 0;
-		if (++dpw >= delayBufLength)
-			dpw = 0;
-
-		calculate_vector1[BLOCKSIZE_counter] = delay_out;*/
-
-		/*// Feedback-Echo
-		uint8_t BPM = 120;	// beats per minute
-		float BPS = BPM/60;	// beats per second
-		float SPB = 1/BPS;	// seconds per beat
-		// note duration = 1-quarter, 0.5-8th, 2-half note
-		float note_duration = 0.5;
-		uint32_t delay_samples = floor(note_duration * SPB * LUT_SR);  // floor is rounding the number
-		float gain = -0.5;
-		// Array-Indexing-method
-		if((BLOCKSIZE_counter-delay_samples) < 1)
-			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] + 0;
-		else
-			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] + gain * calculate_vector1[BLOCKSIZE_counter-delay_samples];*/
-
-		/*// Hard Clipping Distortion
-		double DistortionGain = 1.5;	// value between 1 and 20 (sine to squarewave)
-		calculate_vector1[BLOCKSIZE_counter] = DistortionGain * calculate_vector1[BLOCKSIZE_counter];
-		if(calculate_vector1[BLOCKSIZE_counter] >= signals.max)
-			calculate_vector1[BLOCKSIZE_counter] = signals.max;
-		else if(calculate_vector1[BLOCKSIZE_counter] <= -signals.max)
-			calculate_vector1[BLOCKSIZE_counter] = -signals.max;*/
-		// tanh-Distortion
-		//calculate_vector1[BLOCKSIZE_counter] = tanh(3 * calculate_vector1[BLOCKSIZE_counter]);
 
 		// END EFFECTS------------------------------------------------------------------------------------------------
 
@@ -278,7 +248,6 @@ void Signal_Synthesis(){
 	}
 
 }
-
 
 /** @brief generates a low frequency sine to be used for effects
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO
@@ -330,6 +299,53 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 	effect->quarter = quarter;
 }
 
+
+// functions for distortion effect to search nearest element in LUT
+
+/*
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+const int MAXX = 5;
+
+int findKey(float[], float);
+
+//function main
+
+int main(){
+
+	float RandNumbs[] = { 4, 8, 2, 20, 16};
+	float SearchKey = 18.0;
+	int NearestNum;
+
+	NearestNum = findKey(RandNumbs, SearchKey);
+
+	cout << "The index of the closest number to the entered number in the "
+			<< "array is " << NearestNum << endl;
+
+	return 0;
+}*/
+
+unsigned int FindNearestIndex(float arr[], unsigned int arr_length, float target_value) {
+
+	float diff = abs(target_value - arr[0]);
+	unsigned int index = 0;
+
+	for(int a=0; a<arr_length; a++) {
+		//if(diff > abs(target_value - arr[a])) {
+		diff = abs(target_value - arr[a]);
+		if(diff <= 0.0024) {
+			//diff = target_value - arr[a];
+			//index = a;
+			return a;
+		}
+	}
+
+	return index;
+}
+// END: functions for distortion effect to search nearest element in LUT
 
 /** @brief generates a low frequency sine to be used for effects
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO

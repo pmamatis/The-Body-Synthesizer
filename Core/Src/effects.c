@@ -7,17 +7,10 @@
 
 #include "effects.h"
 
-void tanh_Distortion_Process(double distortion_gain, uint32_t end) {
-	//	output = tanh(gain * input)
-	//	But any function like this which maps an unbounded input signal to an output in the range [-1,1] will produce some sort of saturation/distortion. To name a few others:
-	//	output = mod(gain*input+1,2)-1
-	//	output = abs(mod(2*gain*input+2,4)-2)-1
-	//	output = sin(gain*input)
-	//	output = input * input * input;
+float tanh_Distortion(double distortion_gain, float calculate_vector) {
+	calculate_vector = tanh(distortion_gain * calculate_vector);
 
-	for(int i=0; i<end; i++) {
-		calculate_vector1[i] = tanh(distortion_gain * calculate_vector1[i]);
-	}
+	return calculate_vector;
 }
 
 float Tremolo(struct effects_LFO* effect, float LFO_Depth, float calculate_vector) {
@@ -30,14 +23,41 @@ float Tremolo(struct effects_LFO* effect, float LFO_Depth, float calculate_vecto
 	return calculate_vector;
 }
 
+float HardClippingDistortion(struct effects_distortion* effect, float Distortion_Gain, float calculate_vector) {
+	if( Distortion_Gain * calculate_vector <= -1 ) {
+		calculate_vector = -1;
+	}
+	else if( (Distortion_Gain * calculate_vector > -1) && (Distortion_Gain * calculate_vector < 1) ) {
+		calculate_vector = Distortion_Gain * calculate_vector;
+	}
+	else if( Distortion_Gain * calculate_vector >= 1 ) {
+		calculate_vector = 1;
+	}
 
+	return calculate_vector;
+}
+
+
+/*void tanh_Distortion_Process(double distortion_gain, uint32_t end) {
+	//	output = tanh(gain * input)
+	//	But any function like this which maps an unbounded input signal to an output in the range [-1,1] will produce some sort of saturation/distortion. To name a few others:
+	//	output = mod(gain*input+1,2)-1
+	//	output = abs(mod(2*gain*input+2,4)-2)-1
+	//	output = sin(gain*input)
+	//	output = input * input * input;
+
+	for(int i=0; i<end; i++) {
+		calculate_vector1[i] = tanh(distortion_gain * calculate_vector1[i]);
+	}
+}*/
+
+// not in use
 void Tremolo_Process(double fsignal, double LFO_Depth, double LFO_Rate, uint32_t end,  UART_HandleTypeDef huart) {
 
 	char uart_buffer[32];
-
 	float lfo[end];
 
-	/* Assume first element as maximum and minimum */
+	// Assume first element as maximum and minimum
 	float max = calculate_vector1[0];
 	float min = calculate_vector1[0];
 
@@ -84,7 +104,6 @@ void Tremolo_Process(double fsignal, double LFO_Depth, double LFO_Rate, uint32_t
 		calculate_vector1[i] = (calculate_vector1[i] - min) * (1 - (-1)) / (max - min) + (-1);
 	}
 
-	int test=1;
 	/*for(int i=0; i<end; i++) {	// UART Debugging
 		sprintf(uart_buffer, "%f\n\r", calculate_vector[i]);
 		HAL_UART_Transmit(&huart, (uint8_t*) uart_buffer, sizeof(uart_buffer), HAL_MAX_DELAY);
