@@ -1,17 +1,7 @@
-
-
-
-
 #include "signal_synthesis.h"
-
-
-
-
 
 /** @brief maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal_sythesis.h and will be set in the Init function*/
 double maxValueDAC = DAC_MAX;
-
-
 
 /**@brief Init funtion for the signal_synthesis, must be used in order to use any other funtion of this .c
  * @param htim: timer-handler which controls the DAC, timer have to be connected with DAC
@@ -34,7 +24,6 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	SetTimerSettings(&htim, LUT_SR);
 	return HAL_TIM_Base_Start(&htim);
 }
-
 
 /**@brief Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler
  * @param htim: timer-handler which controls the DAC, timer have to be connected with DAC
@@ -65,8 +54,6 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 	//TIM6->PSC = prescaler-1;
 }
 
-
-
 /** @brief Constructor for a signal, adds a signal into the signals1 struct
  *  @param kind: kind of the signal, use signal_kind_enum
  *  @param key:  is string which is a note key from C to b
@@ -89,12 +76,8 @@ void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
 				signals1.ID[NewSignal_count] = NewSignal_count;
 				ID_array[NewSignal_count] = 1;
 			}
-
-
 		}
-
 	}
-
 }
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
@@ -193,16 +176,18 @@ void Signal_Synthesis(){
 		// BEGIN EFFECTS----------------------------------------------------------------------------------------------
 
 		// apply tremolo-effect
-		calculate_vector1[BLOCKSIZE_counter] = Tremolo(&tremollo, tremollo.lfo_depth, calculate_vector1[BLOCKSIZE_counter]);
+		//calculate_vector1[BLOCKSIZE_counter] = Tremolo(&tremollo, tremollo.lfo_depth, calculate_vector1[BLOCKSIZE_counter]);
+		//calculate_vector1[BLOCKSIZE_counter] = Tremolo(&tremollo, calculate_vector1[BLOCKSIZE_counter]);
 
 		// apply hard-clipping-distortion-effect
 		//calculate_vector1[BLOCKSIZE_counter] = HardClippingDistortion(&distortion, distortion.distortion_gain, calculate_vector1[BLOCKSIZE_counter]);
 
 		// apply atan-soft-clipping-distortion-effect
-		//atan_parameter = distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]+(10-aquidistance);
+		calculate_vector1[BLOCKSIZE_counter] = atanSoftClippingDistortion(&distortion, calculate_vector1[BLOCKSIZE_counter]);
+		/*//atan_parameter = distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]+(10-aquidistance);
 		atan_parameter = (distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]) + 10;
 		distortion_index = round(atan_parameter/aquidistance);
-		calculate_vector1[BLOCKSIZE_counter] = 0.5*atan_LUT_y[distortion_index];
+		calculate_vector1[BLOCKSIZE_counter] = 0.5*atan_LUT_y[distortion_index];	// scale down the amplitude*/
 
 
 		// END EFFECTS------------------------------------------------------------------------------------------------
@@ -299,53 +284,6 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 	effect->quarter = quarter;
 }
 
-
-// functions for distortion effect to search nearest element in LUT
-
-/*
-#include <iostream>
-#include <cmath>
-
-using namespace std;
-
-const int MAXX = 5;
-
-int findKey(float[], float);
-
-//function main
-
-int main(){
-
-	float RandNumbs[] = { 4, 8, 2, 20, 16};
-	float SearchKey = 18.0;
-	int NearestNum;
-
-	NearestNum = findKey(RandNumbs, SearchKey);
-
-	cout << "The index of the closest number to the entered number in the "
-			<< "array is " << NearestNum << endl;
-
-	return 0;
-}*/
-
-unsigned int FindNearestIndex(float arr[], unsigned int arr_length, float target_value) {
-
-	float diff = abs(target_value - arr[0]);
-	unsigned int index = 0;
-
-	for(int a=0; a<arr_length; a++) {
-		//if(diff > abs(target_value - arr[a])) {
-		diff = abs(target_value - arr[a]);
-		if(diff <= 0.0024) {
-			//diff = target_value - arr[a];
-			//index = a;
-			return a;
-		}
-	}
-
-	return index;
-}
-// END: functions for distortion effect to search nearest element in LUT
 
 /** @brief generates a low frequency sine to be used for effects
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO

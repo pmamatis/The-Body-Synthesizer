@@ -26,13 +26,14 @@ struct effects_LFO{
 
 struct effects_distortion{
 	float distortion_gain;
+	float atan_parameter;
+	unsigned int distortion_index;
 };
 
-void tanh_Distortion_Process(double distortion_gain, uint32_t end);	// not in use
-void Tremolo_Process(double fsignal, double LFO_Depth, double LFO_Rate, uint32_t end,  UART_HandleTypeDef huart);	// not in use
-float tanh_Distortion(double distortion_gain, float calculate_vector);	// not in use
 
+//float Tremolo(struct effects_LFO* effect, float calculate_vector);
 float Tremolo(struct effects_LFO* effect, float LFO_Depth, float calculate_vector);
 float HardClippingDistortion(struct effects_distortion* effect, float Distortion_Gain, float calculate_vector);
+float atanSoftClippingDistortion(struct effects_distortion* effect, float calculate_vector);
 
 #endif /* INC_EFFECTS_H_ */

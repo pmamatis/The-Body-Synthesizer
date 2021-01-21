@@ -77,13 +77,6 @@ void Error_Handler(void);
 
 //Variables
 
-// atan-LUTs calculated in MATLAB for maximum distortion-gain of 10 and BLOCKSIZE values
-float atan_LUT_x[BLOCKSIZE];
-float atan_LUT_y[BLOCKSIZE];
-float aquidistance;
-float atan_parameter;
-unsigned int distortion_index;
-
 /** @brief DAC output array*/
 uint32_t output_vector1[BLOCKSIZE];
 float calculate_vector1[BLOCKSIZE];
@@ -97,6 +90,8 @@ float effect_LFO[BLOCKSIZE/2];
 uint32_t effect_LFO_output[BLOCKSIZE];
 
 struct effects_distortion distortion;
+float atan_LUT_y[BLOCKSIZE];
+float aquidistance;
 
 float sigFreq_sampleFreq_ratio;
 

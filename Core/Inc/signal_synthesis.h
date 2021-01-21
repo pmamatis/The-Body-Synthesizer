@@ -11,13 +11,6 @@
 #ifndef INC_SIGNAL_SYNTHESIS_H_
 #define INC_SIGNAL_SYNTHESIS_H_
 
-
-
-
-
-
-
-
 #ifndef INC_SIGNALERZEUGUNG_H_
 #define INC_SIGNALERZEUGUNG_H_
 
@@ -27,10 +20,6 @@
 #include<stdlib.h>
 #include <stdarg.h>
 //#include  <string.h>
-
-
-
-
 
 /**@brief maximal amplitude of output voltage in millivolts*/
 #define AMPLITUDE 	2000
@@ -81,18 +70,11 @@ struct effects_LFO{
 };*/
 
 
-
-
-
-
-
-
-
-
 enum singnal_synthesis_enum{
 	note_key = 0,
 	mixed
 };
+
 /**@brief Signal kinds*/
 enum signal_kind_enum{
 	SIN = 1,
@@ -101,16 +83,13 @@ enum signal_kind_enum{
 	PWM,
 };
 
-
 //Variables
 uint8_t output_Channel;
 /** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
 uint8_t outputBuffer_position;
 
-
 struct signal signals1;
 struct signal signals2;
-
 
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
@@ -122,10 +101,6 @@ void Signal_Synthesis();
 void DeleteSignal(uint8_t signal_index);
 void NewSignal(uint8_t kind, uint8_t key, uint8_t octave);
 void Signal_Synthesis_LFO(struct effects_LFO* effect);
-
-// functions for distortion effect to search nearest element in LUT
-unsigned int FindNearestIndex(float arr[], unsigned int arr_length, float target_value);
-// END: functions for distortion effect to search nearest element in LUT
 
 
 #endif /* INC_SIGNALERZEUGUNG_H_ */
