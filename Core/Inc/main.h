@@ -64,6 +64,48 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ENTER_Pin GPIO_PIN_13
+#define ENTER_GPIO_Port GPIOC
+#define ENTER_EXTI_IRQn EXTI15_10_IRQn
+#define SD_CS_Pin GPIO_PIN_10
+#define SD_CS_GPIO_Port GPIOF
+#define Poti_Pin GPIO_PIN_0
+#define Poti_GPIO_Port GPIOC
+#define EMG_AC1_Pin GPIO_PIN_2
+#define EMG_AC1_GPIO_Port GPIOC
+#define EMG_DC1_Pin GPIO_PIN_3
+#define EMG_DC1_GPIO_Port GPIOC
+#define DISP_DC_Pin GPIO_PIN_0
+#define DISP_DC_GPIO_Port GPIOA
+#define DISP_RST_Pin GPIO_PIN_3
+#define DISP_RST_GPIO_Port GPIOA
+#define DISP_CLK_Pin GPIO_PIN_5
+#define DISP_CLK_GPIO_Port GPIOA
+#define VRx_Pin GPIO_PIN_6
+#define VRx_GPIO_Port GPIOA
+#define DISP_DIN_Pin GPIO_PIN_7
+#define DISP_DIN_GPIO_Port GPIOA
+#define VRy_Pin GPIO_PIN_0
+#define VRy_GPIO_Port GPIOB
+#define DISP_BUSY_Pin GPIO_PIN_1
+#define DISP_BUSY_GPIO_Port GPIOB
+#define SD_DI_MOSI_Pin GPIO_PIN_2
+#define SD_DI_MOSI_GPIO_Port GPIOB
+#define SW_Pin GPIO_PIN_0
+#define SW_GPIO_Port GPIOG
+#define Red_User_LED_Pin GPIO_PIN_14
+#define Red_User_LED_GPIO_Port GPIOB
+#define DISP_CS_Pin GPIO_PIN_8
+#define DISP_CS_GPIO_Port GPIOC
+#define BACK_Pin GPIO_PIN_9
+#define BACK_GPIO_Port GPIOC
+#define BACK_EXTI_IRQn EXTI9_5_IRQn
+#define SD_CLK_Pin GPIO_PIN_10
+#define SD_CLK_GPIO_Port GPIOC
+#define SD_DO_MISO_Pin GPIO_PIN_11
+#define SD_DO_MISO_GPIO_Port GPIOC
+#define Blue_User_LED_Pin GPIO_PIN_7
+#define Blue_User_LED_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 
