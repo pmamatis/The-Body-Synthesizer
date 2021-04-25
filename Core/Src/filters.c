@@ -16,7 +16,7 @@ float tempo[BLOCKSIZE];
 
 DSP_Status Filters_Init(){
 
-	SetupLowpass(&EQ_BAND1, 20, 0.707);
+	SetupLowpass(&EQ_BAND1, 100, 0.707);
 
 	return DSP_OK;
 }
