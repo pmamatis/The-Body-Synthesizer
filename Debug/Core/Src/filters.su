@@ -1,0 +1,7 @@
+filters.c:17:12:Filters_Init	8	static
+filters.c:25:12:SetupLowpass	40	static
+filters.c:39:12:SetupHighpass	40	static
+filters.c:53:12:SetupBandpass	32	static
+filters.c:61:12:ProcessFilterTest	24	static
+filters.c:80:12:ProcessFilter	48	static
+filters.c:128:12:ProcessBP	24	static

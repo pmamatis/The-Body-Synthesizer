@@ -1,0 +1,6 @@
+signal_synthesis.c:21:19:Signal_Synthesis_Init	24	static
+signal_synthesis.c:43:6:SetTimerSettings	48	static
+signal_synthesis.c:76:6:NewSignal	32	static
+signal_synthesis.c:103:6:DeleteSignal	24	static
+signal_synthesis.c:125:6:Signal_Synthesis	416	static
+signal_synthesis.c:255:6:Signal_Synthesis_LFO	48	static

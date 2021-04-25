@@ -1,0 +1,5 @@
+Music_notes.c:64:9:Get_Keyindex	24	static
+Music_notes.c:77:8:Get_Note_Frequency	40	static
+Music_notes.c:85:10:Get_Note_Index	24	static
+Music_notes.c:89:6:Play_Note	32	static
+Music_notes.c:99:6:Play_Chord	80	dynamic
