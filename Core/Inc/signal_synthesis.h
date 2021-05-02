@@ -40,6 +40,7 @@
 #define OFFSET 		145
 /**@brief 4096/3300 */
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
+
 /**@brief Maximum of SIgnals which can be played at the same time */
 #define MAX_SIGNAL_KOMBINATION 20
 
@@ -64,7 +65,7 @@ struct signal_t{
 	uint8_t ID[MAX_SIGNAL_KOMBINATION];
 	uint8_t channel[MAX_SIGNAL_KOMBINATION];
 };
-/**@brief Array to monitor which ID's are taken, taken = 1; free = 0*/
+/**@brief Array to monitor which ID's are taken, taken = 1; free = 0 */
 uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
 
 

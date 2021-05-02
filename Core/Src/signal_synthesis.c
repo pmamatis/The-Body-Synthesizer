@@ -82,7 +82,8 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 		signals -> kind[index] = kind;
 		signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
 		signals -> freqIndex[index] = Get_Note_Index(key,octave);
-		signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
+		signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
+		// signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
 		signals -> max = 0;
 		for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
 			if(!ID_array[NewSignal_count]){
@@ -157,7 +158,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
 	}
 
-	//Loop to for first signal synthesis and find maximum
+	//Loop I for first signal synthesis and find maximum
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 		addValue = 0;
 		//Loop to reach all Signals
@@ -191,21 +192,22 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
 
 
-	} //BLOCKSIZE for-Loop I
+	} //End for-Loop I
 
+// Effekte(calculate_vector_tmp);
 
-	//Loop to adjust the signal
+	//Loop II to adjust the signal
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 
-
+		/*limiter function*/
 		//norm the signal to -1...1
 		//		addValue = addValue/count;
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
-
+		
 
 
 		//Effekte
-
+//		Effekte(calculate_vector_tmp[BLOCKSIZE_counter]);
 
 
 
@@ -218,7 +220,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 
-		//scale output signal depeding on amount of voices
+		//scale output signal depending on amount of voices
 				switch (signals -> count){
 				case 1:
 					calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
@@ -244,7 +246,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
 //
 
-	} //BLOCKSIZE for-Loop II
+	} //End for-Loop II
 
 
 

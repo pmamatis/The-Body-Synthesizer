@@ -142,7 +142,21 @@ int main(void)
   MX_TIM6_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-	Signal_Synthesis_Init(htim8, hdac);
+
+  // INIT
+	if (Signal_Synthesis_Init(htim8, hdac) != HAL_OK){
+    while (1){
+
+    }
+    //print to LCD error
+  }
+   if (Filters_Init() == DSP_FAIL){
+     while(1){
+
+     }
+       //print to LCD error
+   }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

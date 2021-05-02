@@ -38,6 +38,11 @@ extern "C" {
 #include "music_notes.h"
 #include "sinLUT.h"
 
+// for filters
+#include "filters.h"
+#include "arm_math.h"
+#include "math_helper.h"
+
 
 /* USER CODE END Includes */
 
@@ -74,8 +79,11 @@ void Error_Handler(void);
 /**@brief output array size */
 #define BLOCKSIZE 8192
 
-//Variables
 
+
+
+
+//Variables
 
 /** @brief DAC output array*/
 //uint32_t output_vector1[BLOCKSIZE];
