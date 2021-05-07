@@ -32,4 +32,13 @@ typedef enum effects_t_enum{
  *********************************/
 uint8_t effect_order[MAX_EFFECTS];
 
+
+
+/*********************************
+ * @parameter	Functions
+ *********************************/
+void effects_init();
+void effects(float calculate_value);
+void effects_addEffect(effects_t_enum effect, uint8_t position);
+
 #endif /* __EFFECTS_H */
