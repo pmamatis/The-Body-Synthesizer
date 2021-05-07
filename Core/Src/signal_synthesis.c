@@ -208,7 +208,15 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		//Effekte
 		int x= 1;
-		uint8_t ret = ProcessFilter(&EQ_BAND1,  &calculate_vector_tmp[BLOCKSIZE_counter]);
+		if (output_Channel == 1) {
+//			ProcessFilter(&EQ_BAND1,  &calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		}
+		else{
+			ProcessFilter(&EQ_BAND2,  &calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		}
+
 		x = 2;
 		//		Effekte(calculate_vector_tmp[BLOCKSIZE_counter]);
 

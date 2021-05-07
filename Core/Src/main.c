@@ -171,17 +171,24 @@ int main(void)
 	//Example signal for test
 
 
-	NewSignal(&signals1,SIN, 'A',1);
 
-	//NewSignal(&signals1,SIN, 'C',0);
-//	NewSignal(&signals1,SIN, 'C',1);
-	//NewSignal(&signals1,SIN, 'C',2);
-	//NewSignal(&signals1,SIN, 'C',3);
-	//NewSignal(&signals1,SIN, 'C',4);
 
-	//NewSignal(&signals2,SIN, 'C',0);
-	//NewSignal(&signals2,SIN, 'C',1);
-	//NewSignal(&signals2,SIN, 'C',2);
+
+	NewSignal(&signals1,SIN, 'C',0);
+	NewSignal(&signals1,SIN, 'C',1);
+	NewSignal(&signals1,SIN, 'C',2);
+	NewSignal(&signals1,SIN, 'C',3);
+	NewSignal(&signals1,SIN, 'C',4);
+
+	NewSignal(&signals1,SIN, 'G',0);
+	NewSignal(&signals1,SIN, 'G',1);
+//	NewSignal(&signals1,SIN, 'G',2);
+//	NewSignal(&signals1,SIN, 'G',3);
+//	NewSignal(&signals1,SIN, 'G',4);
+
+//	  NewSignal(&signals2,SIN, 'C',0);
+//	  NewSignal(&signals2,SIN, 'C',1);
+//	  NewSignal(&signals2,SIN, 'C',2);
 	//NewSignal(&signals2,SIN, 'C',3);
 	//NewSignal(&signals2,SIN, 'C',4);
 	//starts the DAC output

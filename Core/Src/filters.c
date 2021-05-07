@@ -16,7 +16,7 @@ uint32_t samplerate = LUT_SR;
 DSP_Status Filters_Init(){
 
 	SetupLowpass(&EQ_BAND1, 100, 0.707);
-
+	SetupLowpass(&EQ_BAND2, 100, 0.707);
 	return DSP_OK;
 }
 
