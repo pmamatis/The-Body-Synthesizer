@@ -207,8 +207,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//Effekte
-		//ProcessFilter(EQ_BAND1,  *calculate_vector_tmp[BLOCKSIZE_counter]);
-
+		int x= 1;
+		uint8_t ret = ProcessFilter(&EQ_BAND1,  &calculate_vector_tmp[BLOCKSIZE_counter]);
+		x = 2;
 		//		Effekte(calculate_vector_tmp[BLOCKSIZE_counter]);
 
 
@@ -243,11 +244,12 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
 			break;
 		}
+
 		//Signal adjustment to DAC
 		//		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET );
 		//
-
+		x=3;
 	} //End for-Loop II
 
 
