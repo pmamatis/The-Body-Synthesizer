@@ -45,10 +45,18 @@ struct BQFilter LP_AA;
 /***************************
  * @brief		Enumeration for DSP Debugging
  ***************************/
-typedef enum DSP_Status{
+/*typedef enum DSP_Status{
 	DSP_FAIL = -1,
 	DSP_OK = 1
-} DSP_Status;
+} DSP_Status;*/
+
+/***************************
+ * @brief Enumeration for Filter Debugging
+ ***************************/
+typedef enum {
+	FILTER_FAIL = -1,
+	FILTER_OK = 1
+} Filter_Status;
 
 
 
@@ -56,14 +64,14 @@ typedef enum DSP_Status{
  * @parameter	Functions
  *********************************/
 
-DSP_Status Filters_Init();
+Filter_Status Filters_Init();
 
-DSP_Status SetupLowpass (struct BQFilter *LP, float cutoff, float Q);
-DSP_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q);
-DSP_Status SetupBandpass(struct BQFilter BP[2], float cutoff_LP, float cutoff_HP, float QLP, float QHP);
+Filter_Status SetupLowpass (struct BQFilter *LP, float cutoff, float Q);
+Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q);
+Filter_Status SetupBandpass(struct BQFilter BP[2], float cutoff_LP, float cutoff_HP, float QLP, float QHP);
 
-DSP_Status ProcessFilter(struct BQFilter *F,  float *data);
-DSP_Status ProcessBP    (struct BQFilter BP[2], float data[], uint16_t end);
+Filter_Status ProcessFilter(struct BQFilter *F,  float *data);
+Filter_Status ProcessBP    (struct BQFilter BP[2], float data[], uint16_t end);
 
 
 #endif /* INC_MUSIC_NOTES_H_ */

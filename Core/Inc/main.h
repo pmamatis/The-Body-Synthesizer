@@ -43,6 +43,11 @@ extern "C" {
 #include "arm_math.h"
 #include "math_helper.h"
 
+// for Tremolo
+#include "tremolo.h"
+
+// for distortion
+#include "distortion.h"
 
 /* USER CODE END Includes */
 
@@ -93,6 +98,10 @@ float calculate_vector1[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
 float effect_LFO[BLOCKSIZE/2];
+//uint32_t effect_LFO_output[BLOCKSIZE];
+
+float atan_LUT_y[BLOCKSIZE];
+float aquidistance;
 
 
 float sigFreq_sampleFreq_ratio;

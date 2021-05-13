@@ -1,13 +1,10 @@
 #include "effects.h"
 
-
-
 void effects_init(){
     for (int i = 0; i < MAX_EFFECTS; i++){
     	effect_order[i] = 0;
     }
 }
-
 
 void effects(float calculate_value){
 

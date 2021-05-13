@@ -207,17 +207,20 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//Effekte
-		int x= 1;
+		/*int x= 1;
 		if (output_Channel == 1) {
-//			ProcessFilter(&EQ_BAND1,  &calculate_vector_tmp[BLOCKSIZE_counter]);
-
+			// ProcessFilter(&EQ_BAND1,  &calculate_vector_tmp[BLOCKSIZE_counter]);
 		}
 		else{
 			ProcessFilter(&EQ_BAND2,  &calculate_vector_tmp[BLOCKSIZE_counter]);
-
 		}
 
-		x = 2;
+		x = 2;*/
+
+		ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessHardClippingDistortion(&HardClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+
 		//		Effekte(calculate_vector_tmp[BLOCKSIZE_counter]);
 
 
@@ -257,7 +260,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET );
 		//
-		x=3;
+		//x=3;
 	} //End for-Loop II
 
 
@@ -335,8 +338,6 @@ void Signal_Synthesis_LFO(struct effects_LFO_t* effect){
 	//save current state into given effect struct
 	effect -> index = index;
 	effect -> quarter = quarter;
-
-
 }
 
 

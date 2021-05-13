@@ -13,15 +13,15 @@
  * ------------------------------------------------------------------- */
 uint32_t samplerate = LUT_SR;
 
-DSP_Status Filters_Init(){
+Filter_Status Filters_Init(){
 
 	SetupLowpass(&EQ_BAND1, 100, 0.707);
 	SetupLowpass(&EQ_BAND2, 100, 0.707);
-	return DSP_OK;
+	return FILTER_OK;
 }
 
 
-DSP_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
+Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 
 	float w0 = tanf(M_PI * cutoff / samplerate);
 	float N = 1 / (w0 * w0 + w0 / Q + 1);
@@ -32,10 +32,10 @@ DSP_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 	LP->a1 = 2 * N * (w0 * w0 - 1);
 	LP->a2 = N * (w0 * w0 - w0 / Q + 1);
 
-	return DSP_OK;
+	return FILTER_OK;
 }
 
-DSP_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
+Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 
 	float w0 = tanf(M_PI * cutoff / samplerate);
 	float N = 1 / (w0 * w0 + w0 / Q + 1);
@@ -46,18 +46,18 @@ DSP_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 	HP->a1 = 2 * N * (w0 * w0 - 1);
 	HP->a2 = N * (w0 * w0 - w0 / Q + 1);
 
-	return DSP_OK;
+	return FILTER_OK;
 }
 
-DSP_Status SetupBandpass(struct BQFilter BP[2], float cutoff_LP, float cutoff_HP, float QLP, float QHP){
+Filter_Status SetupBandpass(struct BQFilter BP[2], float cutoff_LP, float cutoff_HP, float QLP, float QHP){
 
 	//SetupLowpass (BP[0], cutoff_LP, QHP);
 	//SetupHighpass(BP[1], cutoff_HP, QLP);
 
-	return DSP_OK;
+	return FILTER_OK;
 }
 
-DSP_Status ProcessFilter(struct BQFilter *F,  float *data){
+Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
 	float input = 0;
 	float out = 0;
@@ -71,15 +71,15 @@ DSP_Status ProcessFilter(struct BQFilter *F,  float *data){
 	F->z[0] = input;
 	*data = out;
 
-	return DSP_OK;
+	return FILTER_OK;
 
 }
 
 
-DSP_Status ProcessBP(struct BQFilter BP[2], float data[], uint16_t end){
+Filter_Status ProcessBP(struct BQFilter BP[2], float data[], uint16_t end){
 
 	//ProcessFilter(BP[0], data, end);
 	//ProcessFilter(BP[1], data, end);
 
-	return DSP_OK;
+	return FILTER_OK;
 }
