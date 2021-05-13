@@ -1,12 +1,12 @@
 /**
-  ******************************************************************************
-  * @file    signal_sythesis.c
-  * @author  Paul Mamatis
-  * @date 	27 Apr 2020
-  * @brief	Signal sythesis for HAL-Libary on Nucleo-144 F4.....
-  *
-  *@todo implement 	SAWTOOTH, TRIANGLE, PWM in signal_sythesis function
-*/
+ ******************************************************************************
+ * @file    signal_sythesis.c
+ * @author  Paul Mamatis
+ * @date 	27 Apr 2020
+ * @brief	Signal sythesis for HAL-Libary on Nucleo-144 F4.....
+ *
+ *@todo implement 	SAWTOOTH, TRIANGLE, PWM in signal_sythesis function
+ */
 
 #ifndef INC_SIGNAL_SYNTHESIS_H_
 #define INC_SIGNAL_SYNTHESIS_H_
@@ -36,7 +36,7 @@
 #define AMPLITUDE 	2000
 /**@brief digital DAC value for maximal output voltage (3,3V) */
 #define DAC_MAX 	4095
- /** @brief digital value for 100mV */
+/** @brief digital value for 100mV */
 #define OFFSET 		145
 /**@brief 4096/3300 */
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
@@ -89,22 +89,13 @@ struct effects_LFO_t{
 	uint32_t index;
 	uint8_t quarter;
 	float frequency;
-
 };
-
-
-
-
-
-
-
-
-
 
 enum singnal_synthesis_enum{
 	note_key = 0,
 	mixed
 };
+
 /**@brief Signal kinds*/
 enum signal_kind_enum{
 	SIN = 1,
@@ -133,7 +124,8 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
-void Signal_Synthesis_LFO(struct effects_LFO_t* effect);
+//void Signal_Synthesis_LFO(struct effects_LFO_t* effect);
+void Signal_Synthesis_LFO(struct effects_LFO* effect);
 
 #endif /* INC_SIGNALERZEUGUNG_H_ */
 

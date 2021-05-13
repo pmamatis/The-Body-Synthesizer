@@ -204,8 +204,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//		addValue = addValue/count;
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
 
-
-
 		//Effekte
 		/*int x= 1;
 		if (output_Channel == 1) {
@@ -217,13 +215,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		x = 2;*/
 
-		ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
 		//ProcessHardClippingDistortion(&HardClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		//ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-
-		//		Effekte(calculate_vector_tmp[BLOCKSIZE_counter]);
-
-
+		ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//if-clause to control the distance between two vector entrys
 		//			if (abs(output_vector1[BLOCKSIZE_counter]-output_vector1[BLOCKSIZE_counter-1]) > 20){
@@ -272,13 +266,61 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 }//Signal Synthesis
 
+/** @brief generates a low frequency sine to be used for effects
+ *  @param effect: struct which contains the parameter for the effect which want to use the LFO
+ *
+ */
+void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 
+	float frequency = effect->lfo_frequency;
+	uint8_t quarter = effect->quarter;
+	uint32_t index = effect->index;
+	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
+
+	// calculate ratio between LFO_LUT frequency and desired frequency
+	float frequency_ratio = frequency / LFO_FMIN;
+
+	if(LFO_blocksizecounter == BLOCKSIZE/2) {
+		LFO_blocksizecounter = 0;
+	}
+
+	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
+	if(index  > LFO_ENDINDEX[0]) {
+		index = 0;
+		quarter++;
+		if (quarter > 3)
+			quarter = 0;
+	}
+
+	switch(quarter) {
+	case 0:
+		effect_LFO[LFO_blocksizecounter] = LFO[index];
+		break;
+	case 1:
+		effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];
+		break;
+	case 2:
+		effect_LFO[LFO_blocksizecounter] = -LFO[index];
+		break;
+	case 3:
+		effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];
+		break;
+	default:
+		break;
+	}
+	index = round((double)(index + frequency_ratio));
+
+	//save current state into given effect struct
+	effect->lfo_blocksizecounter = LFO_blocksizecounter;
+	effect->index = index;
+	effect->quarter = quarter;
+}
 
 /** @brief generates a low frequency sine to be used for effects
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO
  *
  */
-void Signal_Synthesis_LFO(struct effects_LFO_t* effect){
+/*void Signal_Synthesis_LFO(struct effects_LFO_t* effect){
 
 	float frequency = effect->frequency;
 	uint8_t quarter = effect -> quarter;
@@ -289,19 +331,19 @@ void Signal_Synthesis_LFO(struct effects_LFO_t* effect){
 
 
 	//DEBUG
-	/*
-		uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
-		if (outputBuffer_position == HALF_BLOCK){
-			BLOOCKSIZE_startIndex = 0;
-			BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
-		}
-		else if(outputBuffer_position == FULL_BLOCK){
-			BLOOCKSIZE_startIndex = BLOCKSIZE/2;
-			BLOOCKSIZE_endIndex  = BLOCKSIZE;
-		}
+	//
+	//		uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
+	//		if (outputBuffer_position == HALF_BLOCK){
+	//			BLOOCKSIZE_startIndex = 0;
+	//			BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
+	//		}
+	//		else if(outputBuffer_position == FULL_BLOCK){
+	//			BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+	//			BLOOCKSIZE_endIndex  = BLOCKSIZE;
+	//		}
+	//
+	//		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 
-		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-	 */
 
 	for (int LFO_counter = 0; LFO_counter <BLOCKSIZE/2; LFO_counter++){
 		// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
@@ -338,6 +380,4 @@ void Signal_Synthesis_LFO(struct effects_LFO_t* effect){
 	//save current state into given effect struct
 	effect -> index = index;
 	effect -> quarter = quarter;
-}
-
-
+}*/

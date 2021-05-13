@@ -35,7 +35,7 @@ Distortion_Status SetupAtanSoftClippingDistortion(struct effects_distortion* Ata
 	AtanSoftClipping->distortion_gain = 10.0;
 	AtanSoftClipping->min_distortion_calculatevector = 0.0;
 	AtanSoftClipping->max_distortion_calculatevector = 0.0;
-	AtanSoftClipping-> atan_softclipping_option = 0;	// 0=optionA; 1=optionB
+	AtanSoftClipping-> atan_softclipping_option = 1;	// 0=optionA; 1=optionB; 2=optionC
 
 	// AtanSoftClipping Option A: 10 different distortion gain values, so the effect can be increased step-wise
 	AtanSoftClipping->atan_softclipping_distortion_max[0] = 0.392650008;	// distortion_gain = 1.0
@@ -73,7 +73,7 @@ Distortion_Status ProcessHardClippingDistortion(struct effects_distortion* HardC
 
 Distortion_Status ProcessAtanSoftClippingDistortion(struct effects_distortion* AtanSoftClipping, float* data) {
 
-	float calc = *data;
+	float32_t calc = *data;
 
 	if(AtanSoftClipping->atan_softclipping_option == 0) {	// optionA: use known values, which have been estimated (LUT-style)
 
@@ -118,6 +118,12 @@ Distortion_Status ProcessAtanSoftClippingDistortion(struct effects_distortion* A
 		calc = 0.5*atan_LUT_y[AtanSoftClipping->distortion_index];	// scale down the amplitude
 	}
 
+	else if(AtanSoftClipping->atan_softclipping_option == 2) {	// optionC
+		calc = tanh(AtanSoftClipping->distortion_gain * calc);
+	}
+	//float32_t arm_sin_f32 (float32_t x)
+	//float32_t arm_cos_f32 (float32_t x)
+	//calc = arm_sin_f32(calc) / arcm_cos_f32(calc);
 
 	*data = calc;
 

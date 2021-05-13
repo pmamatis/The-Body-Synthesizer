@@ -76,8 +76,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN Private defines */
 
-
-
 /**@brief number of support points for a single period*/
 #define SUPPORT_POINTS 20
 
