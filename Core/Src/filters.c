@@ -15,8 +15,25 @@ uint32_t samplerate = LUT_SR;
 
 Filter_Status Filters_Init(){
 
-	SetupLowpass(&EQ_BAND1, 100, 0.707);
-	SetupLowpass(&EQ_BAND2, 100, 0.707);
+	// BAND 1
+	SetupLowpass (&EQ_BAND1, 224, 0.707);
+
+	// BAND 2
+	SetupLowpass (&EQ_BAND2_LP, 224, 0.707);
+	SetupHighpass(&EQ_BAND2_HP, 224, 0.707);
+
+	// BAND 3
+	//SetupLowpass (&EQ_BAND3_LP, 224, 0.707);
+	//SetupHighpass(&EQ_BAND3_HP, 224, 0.707);
+
+	// BAND 4
+	//SetupLowpass (&EQ_BAND4_LP, 224, 0.707);
+	//SetupHighpass(&EQ_BAND4_HP, 224, 0.707);
+
+	// BAND 5
+	SetupHighpass(&EQ_BAND5, 224, 0.707);
+
+
 	return FILTER_OK;
 }
 
@@ -49,14 +66,6 @@ Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-Filter_Status SetupBandpass(struct BQFilter BP[2], float cutoff_LP, float cutoff_HP, float QLP, float QHP){
-
-	//SetupLowpass (BP[0], cutoff_LP, QHP);
-	//SetupHighpass(BP[1], cutoff_HP, QLP);
-
-	return FILTER_OK;
-}
-
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
 	float input = 0;
@@ -75,11 +84,3 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
 }
 
-
-Filter_Status ProcessBP(struct BQFilter BP[2], float data[], uint16_t end){
-
-	//ProcessFilter(BP[0], data, end);
-	//ProcessFilter(BP[1], data, end);
-
-	return FILTER_OK;
-}

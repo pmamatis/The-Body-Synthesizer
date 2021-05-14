@@ -26,11 +26,14 @@ struct BQFilter{
 };
 
 
-struct BQFilter EQ_BAND1;
-struct BQFilter EQ_BAND2;
-struct BQFilter EQ_BAND3;
-struct BQFilter EQ_BAND4;
-struct BQFilter EQ_BAND5;
+struct BQFilter EQ_BAND1;		// Lowpass
+struct BQFilter EQ_BAND2_LP;	// Bandpass 2
+struct BQFilter EQ_BAND2_HP;	// Bandpass 2
+struct BQFilter EQ_BAND3_LP;	// Bandpass 3
+struct BQFilter EQ_BAND3_HP;	// Bandpass 3
+struct BQFilter EQ_BAND4_LP;	// Bandpass 4
+struct BQFilter EQ_BAND4_HP;	// Bandpass 4
+struct BQFilter EQ_BAND5;		// Highpass
 
 struct BQFilter LP_WAH;
 struct BQFilter HP_WAH;
@@ -68,10 +71,8 @@ Filter_Status Filters_Init();
 
 Filter_Status SetupLowpass (struct BQFilter *LP, float cutoff, float Q);
 Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q);
-Filter_Status SetupBandpass(struct BQFilter BP[2], float cutoff_LP, float cutoff_HP, float QLP, float QHP);
 
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data);
-Filter_Status ProcessBP    (struct BQFilter BP[2], float data[], uint16_t end);
 
 
 #endif /* INC_MUSIC_NOTES_H_ */

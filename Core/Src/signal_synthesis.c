@@ -215,9 +215,34 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		x = 2;*/
 
+
+
+		// EQUALIZER
+		// BAND 1
+		//ProcessFilter(&EQ_BAND1,    &calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		// BAND 2
+		ProcessFilter(&EQ_BAND2_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		ProcessFilter(&EQ_BAND2_HP, &calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		// BAND 3
+		//ProcessFilter(&EQ_BAND3_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessFilter(&EQ_BAND3_HP, &calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		// BAND 4
+		//ProcessFilter(&EQ_BAND4_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessFilter(&EQ_BAND4_HP, &calculate_vector_tmp[BLOCKSIZE_counter]);
+
+
+		// BAND 5
+		//ProcessFilter(&EQ_BAND5,    &calculate_vector_tmp[BLOCKSIZE_counter]);
+
+
+
+
 		//ProcessHardClippingDistortion(&HardClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//if-clause to control the distance between two vector entrys
 		//			if (abs(output_vector1[BLOCKSIZE_counter]-output_vector1[BLOCKSIZE_counter-1]) > 20){

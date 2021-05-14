@@ -21,7 +21,7 @@ Tremolo_Status Tremolo_Init(void) {
 
 Tremolo_Status SetupTremolo(struct effects_LFO* Tremolo) {
 	Tremolo->index = 0;
-	Tremolo->lfo_frequency = 4;
+	Tremolo->lfo_frequency = 1;
 	Tremolo->quarter = 0;
 	Tremolo->lfo_blocksizecounter = 0;
 	Tremolo->lfo_depth = 0.75;
