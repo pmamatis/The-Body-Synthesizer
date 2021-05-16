@@ -84,7 +84,7 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 		signals -> freqIndex[index] = Get_Note_Index(key,octave);
 		signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
 		// signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
-		signals -> max = 0;
+		signals -> max = 1;
 		for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
 			if(!ID_array[NewSignal_count]){
 				signals -> ID[NewSignal_count] = NewSignal_count;
@@ -123,9 +123,10 @@ void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 
 
 
-/** @brief generates a signal in the outputvector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
+/** @brief generates a signal in the calculate_vector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
  *	@param signal: is a signal_t struct which contains the tones to be played
  *	@param  output_Channel: decides if the Array connected to the DAC Channel one is filled or the array connected with the DAC channel two is filled
+ *  @note Channel 1 is connected to calculate_vector1 and Channel 2 connected to calculate_vector2
  *  @return None
  */
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
@@ -137,7 +138,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 	// decide if Channel 1 or Channel 2
-	float* calculate_vector_tmp;
+	float* calculate_vector_tmp; // working aray
 
 	if (output_Channel == 1){
 		calculate_vector_tmp = calculate_vector1;
@@ -158,7 +159,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
 	}
 
-	//Loop I for first signal synthesis and find maximum
+	//Loop for signal synthesis
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 		addValue = 0;
 		//Loop to reach all Signals
@@ -179,81 +180,23 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		}// SIgnal counter for-loop
 
 
+		//write into calculate vector
+		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
+
+
+		/*limiter function*/
+		//norm the signal to -1...1
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
+
+
+		//Effekte
+		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+
 
 		//maximum
 		if (signals -> max < fabs((double)addValue)){
 			signals -> max = fabs((double)addValue);
 		}
-
-
-
-
-		//write into calculate vector
-		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
-
-
-	} //End for-Loop I
-
-	// Effekte(calculate_vector_tmp);
-
-	//Loop II to adjust the signal
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-
-		/*limiter function*/
-		//norm the signal to -1...1
-		//		addValue = addValue/count;
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
-
-		//Effekte
-		/*int x= 1;
-		if (output_Channel == 1) {
-			// ProcessFilter(&EQ_BAND1,  &calculate_vector_tmp[BLOCKSIZE_counter]);
-		}
-		else{
-			ProcessFilter(&EQ_BAND2,  &calculate_vector_tmp[BLOCKSIZE_counter]);
-		}
-
-		x = 2;*/
-
-
-
-		// EQUALIZER
-		//ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
-
-		// BAND 1
-		//ProcessFilter(&EQ_BAND1,    &calculate_vector_tmp[BLOCKSIZE_counter]);
-
-		// BAND 2
-		//ProcessFilter(&EQ_BAND2_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		//ProcessFilter(&EQ_BAND2_HP, &calculate_vector_tmp[BLOCKSIZE_counter]);
-
-		// BAND 3
-		//ProcessFilter(&EQ_BAND3_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		//ProcessFilter(&EQ_BAND3_HP, &calculate_vector_tmp[BLOCKSIZE_counter]);
-
-		// BAND 4
-		//ProcessFilter(&EQ_BAND4_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		//ProcessFilter(&EQ_BAND4_HP, &calculate_vector_tmp[BLOCKSIZE_counter]);
-
-
-		// BAND 5
-		//ProcessFilter(&EQ_BAND5,    &calculate_vector_tmp[BLOCKSIZE_counter]);
-
-
-
-
-		//ProcessHardClippingDistortion(&HardClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		//ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		//ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-
-		//if-clause to control the distance between two vector entrys
-		//			if (abs(output_vector1[BLOCKSIZE_counter]-output_vector1[BLOCKSIZE_counter-1]) > 20){
-		//				tmp[index_tmp] = BLOCKSIZE_counter;
-		//				index_tmp++;
-		//			}
-
-
-
 
 		//scale output signal depending on amount of voices
 		switch (signals -> count){
@@ -278,10 +221,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		}
 
 		//Signal adjustment to DAC
-		//		output_vector1[BLOCKSIZE_counter] =(uint32_t)((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET );
 		//
-		//x=3;
+
 	} //End for-Loop II
 
 

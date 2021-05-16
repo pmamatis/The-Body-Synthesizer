@@ -37,7 +37,7 @@ extern "C" {
 #include "signal_synthesis.h"
 #include "music_notes.h"
 #include "sinLUT.h"
-
+#include "effects.h"
 // for filters
 #include "filters.h"
 #include "arm_math.h"

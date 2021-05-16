@@ -143,10 +143,11 @@ int main(void)
 		}
 		//print to LCD error
 	}
-	if (Filters_Init() == FILTER_FAIL){
-		while(1){
+	effects_init();
 
-		}
+
+ if (Filters_Init() == DSP_FAIL){
+	 while(1){  }
 		//print to LCD error
 	}
 
@@ -162,109 +163,49 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
 
-	//huhu
+
 	// Start the DAC output  in DMA mode
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//Example signal for test
 
-	NewSignal(&signals1,SIN, 'A',0);	// 112 Hz
-	NewSignal(&signals1,SIN, 'A',1);	// 224 Hz
-	NewSignal(&signals1,SIN, 'A',2);	// 448 Hz
-	NewSignal(&signals1,SIN, 'A',3);	// 896 Hz
-	NewSignal(&signals1,SIN, 'E',4);	// 896 Hz
-	NewSignal(&signals1,SIN, 'A',4);	// 1792 Hz
-	NewSignal(&signals1,SIN, 'A',5);	// 3584 Hz
-
-
-
-	/*NewSignal(&signals1,SIN, 'C',1);
-	NewSignal(&signals1,SIN, 'C',2);
+//	NewSignal(&signals1,SIN, 'C',0);
+//	NewSignal(&signals1,SIN, 'C',1);
+//	NewSignal(&signals1,SIN, 'C',2);
 	NewSignal(&signals1,SIN, 'C',3);
 	NewSignal(&signals1,SIN, 'C',4);
-	NewSignal(&signals1,SIN, 'G',0);
-	NewSignal(&signals1,SIN, 'G',1);*/
-	//	NewSignal(&signals1,SIN, 'G',2);
-	//	NewSignal(&signals1,SIN, 'G',3);
-	//	NewSignal(&signals1,SIN, 'G',4);
+//
+//	NewSignal(&signals1,SIN, 'G',0);
+//	NewSignal(&signals1,SIN, 'G',1);
+//	NewSignal(&signals1,SIN, 'G',2);
+	NewSignal(&signals1,SIN, 'G',3);
+	NewSignal(&signals1,SIN, 'G',4);
 
 	//	  NewSignal(&signals2,SIN, 'C',0);
 	//	  NewSignal(&signals2,SIN, 'C',1);
 	//	  NewSignal(&signals2,SIN, 'C',2);
 	//NewSignal(&signals2,SIN, 'C',3);
 	//NewSignal(&signals2,SIN, 'C',4);
-	//starts the DAC output
-	//  HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1,(uint32_t)* output_vector1,BLOCKSIZE, DAC_ALIGN_12B_R);
 
+	effects_add(TREM, 0);
+	effects_add(TREM, 1);
+	effects_add(DIST, 3);
+	effects_add(EQ, 2);
+	effects_add(TREM, 4);
+	effects_add(TREM, 2);
 
-	int i =0;
-	int c = 0;
+	effects_add(DIST, 0);
+	effects_add(DIST, 0);
+	effects_add(DIST, 0);
+	effects_add(DIST, 0);
 	while (1)
-	{
-		//		Signal_Synthesis_LFO(&tremollo);
 
+	{
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		/*if (c ==0)
-				NewSignal(SIN, 'C',i);
-		else
-			    NewSignal(SIN, 'G',i);
-
-		HAL_Delay(10);
-		c = c^1;*/
-
-		//		//Example signal for test
-		//		NewSignal(&signals1,SIN, 'C',0);
-		//		NewSignal(&signals1,SIN, 'C',1);
-		//		NewSignal(&signals1,SIN, 'C',2);
-		//		NewSignal(&signals1,SIN, 'C',3);
-		//		NewSignal(&signals1,SIN, 'C',4);
-		//
-		//		NewSignal(&signals2,SIN, 'C',0);
-		//		NewSignal(&signals2,SIN, 'C',1);
-		//		NewSignal(&signals2,SIN, 'C',2);
-		//		NewSignal(&signals2,SIN, 'C',3);
-		//		NewSignal(&signals2,SIN, 'C',4);
-		//		HAL_Delay(1000);
-		//
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		//NewSignal(SIN, 'C',5);
-		//
-		//		NewSignal(&signals1,SIN, 'E',0);
-		//		NewSignal(&signals1,SIN, 'E',1);
-		//		NewSignal(&signals1,SIN, 'E',2);
-		//		NewSignal(&signals1,SIN, 'E',3);
-		//		NewSignal(&signals1,SIN, 'E',4);
-		//
-		//		HAL_Delay(1000);
-		//
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		//NewSignal(SIN, 'C',5);
-		//
-		//		NewSignal(&signals1, SIN,  'G',0);
-		//		NewSignal(&signals1, SIN,  'G',1);
-		//		NewSignal(&signals1, SIN,  'G',2);
-		//		NewSignal(&signals1, SIN,  'G',3);
-		//		NewSignal(&signals1, SIN,  'G',4);
-		//
-		//		HAL_Delay(1000);
-		//
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
-		//		DeleteSignal(&signals1,0);
 
 	}
   /* USER CODE END 3 */
