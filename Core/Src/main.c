@@ -169,9 +169,11 @@ int main(void)
 
 	//Example signal for test
 
-	NewSignal(&signals1,SIN, 'A',0);
-	NewSignal(&signals1,SIN, 'A',2);
+	//NewSignal(&signals1,SIN, 'A',0);
+	//NewSignal(&signals1,SIN, 'A',2);
 	NewSignal(&signals1,SIN, 'A',1);
+
+
 	/*NewSignal(&signals1,SIN, 'C',1);
 	NewSignal(&signals1,SIN, 'C',2);
 	NewSignal(&signals1,SIN, 'C',3);

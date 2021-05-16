@@ -16,11 +16,11 @@ uint32_t samplerate = LUT_SR;
 Filter_Status Filters_Init(){
 
 	// BAND 1
-	SetupLowpass (&EQ_BAND1, 224, 0.707);
+	SetupLowpass (&EQ_BAND1,    224, 0.707);
 
-	// BAND 2
-	SetupLowpass (&EQ_BAND2_LP, 224, 0.707);
-	SetupHighpass(&EQ_BAND2_HP, 224, 0.707);
+	// BAND 2: center frequency = 224
+	SetupLowpass (&EQ_BAND2_LP, 448, 0.707);
+	SetupHighpass(&EQ_BAND2_HP, 112, 0.707);
 
 	// BAND 3
 	//SetupLowpass (&EQ_BAND3_LP, 224, 0.707);
@@ -32,7 +32,6 @@ Filter_Status Filters_Init(){
 
 	// BAND 5
 	SetupHighpass(&EQ_BAND5, 224, 0.707);
-
 
 	return FILTER_OK;
 }
@@ -72,13 +71,46 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 	float out = 0;
 
 	input = *data;
-	//out = input * F.b0 + F.z[0] * F.b1 + F.z[1] * F.b2 - F.z[2] * F.a1 - F.z[3] * F.a2;
 	out = input * F->b0 + F->z[0] * F->b1 + F->z[1] * F->b2 - F->z[2] * F->a1 - F->z[3] * F->a2;
 	F->z[3] = F->z[2];
 	F->z[2] = out;
 	F->z[1] = F->z[0];
 	F->z[0] = input;
 	*data = out;
+
+	return FILTER_OK;
+
+}
+
+Filter_Status ProcessEQ(float *data){
+
+	float band1, band2, band3, band4, band5 = 0;
+
+	// BAND 1
+	//band1 = *data;
+	//ProcessFilter(&EQ_BAND1,    &band1);
+
+	// BAND 2
+	band2 = *data;
+	ProcessFilter(&EQ_BAND2_LP, &band2);
+	ProcessFilter(&EQ_BAND2_HP, &band2);
+
+	// BAND 3
+	//band3 = *data;
+	//ProcessFilter(&EQ_BAND3_LP, &band3);
+	//ProcessFilter(&EQ_BAND3_HP, &band3);
+
+	// BAND 4
+	//band4 = *data;
+	//ProcessFilter(&EQ_BAND4_LP, &band4);
+	//ProcessFilter(&EQ_BAND4_HP, &band4);
+
+	// BAND 5
+	//band5 = *data;
+	//ProcessFilter(&EQ_BAND5,    &band5);
+
+	// Write OUT
+	*data = band1 + band2 + band3 + band4 + band5;
 
 	return FILTER_OK;
 

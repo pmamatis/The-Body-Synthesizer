@@ -26,6 +26,7 @@ struct BQFilter{
 };
 
 
+// Equalizer
 struct BQFilter EQ_BAND1;		// Lowpass
 struct BQFilter EQ_BAND2_LP;	// Bandpass 2
 struct BQFilter EQ_BAND2_HP;	// Bandpass 2
@@ -73,6 +74,7 @@ Filter_Status SetupLowpass (struct BQFilter *LP, float cutoff, float Q);
 Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q);
 
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data);
+Filter_Status ProcessEQ    (float *data);
 
 
 #endif /* INC_MUSIC_NOTES_H_ */

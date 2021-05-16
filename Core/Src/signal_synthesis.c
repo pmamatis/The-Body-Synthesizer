@@ -218,12 +218,14 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		// EQUALIZER
+		ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
+
 		// BAND 1
 		//ProcessFilter(&EQ_BAND1,    &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// BAND 2
-		ProcessFilter(&EQ_BAND2_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		ProcessFilter(&EQ_BAND2_HP, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessFilter(&EQ_BAND2_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessFilter(&EQ_BAND2_HP, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// BAND 3
 		//ProcessFilter(&EQ_BAND3_LP, &calculate_vector_tmp[BLOCKSIZE_counter]);
