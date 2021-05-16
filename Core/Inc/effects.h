@@ -24,7 +24,7 @@ typedef enum effects_t_enum{
 
 
 /*********************************
- * @parameter	Variables
+ * @beief	Variables
  *********************************/
 
 /** Array filled with the effects in process order
@@ -34,7 +34,7 @@ effects_t_enum effect_order[MAX_EFFECTS];
 
 
 /*********************************
- * @parameter	Functions
+ * @brief	Functions
  *********************************/
 void effects_init();
 void effects_process(float* calculate_value);
