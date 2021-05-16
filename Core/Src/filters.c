@@ -99,33 +99,33 @@ Filter_Status ProcessEQ(float *data){
 	float band1, band2, band3, band4, band5 = 0;
 
 	// BAND 1
-	band1 = *data;
-	ProcessFilter(&EQ_BAND1,    &band1);
-	ProcessFilter(&EQ_BAND1,    &band1);
-	ProcessFilter(&EQ_BAND1,    &band1);
-	ProcessFilter(&EQ_BAND1,    &band1);
+//	band1 = *data;
+//	ProcessFilter(&EQ_BAND1,    &band1);
+//	ProcessFilter(&EQ_BAND1,    &band1);
+//	ProcessFilter(&EQ_BAND1,    &band1);
+//	ProcessFilter(&EQ_BAND1,    &band1);
 
-	// BAND 2
-	band2 = *data;
-	ProcessFilter(&EQ_BAND2_LP, &band2);
-	ProcessFilter(&EQ_BAND2_LP, &band2);
-	ProcessFilter(&EQ_BAND2_HP, &band2);
-	ProcessFilter(&EQ_BAND2_HP, &band2);
-
-	// BAND 3
-	band3 = *data;
-	ProcessFilter(&EQ_BAND3_LP, &band3);
-	ProcessFilter(&EQ_BAND3_LP, &band3);
-	ProcessFilter(&EQ_BAND3_HP, &band3);
-	ProcessFilter(&EQ_BAND3_HP, &band3);
-
-	// BAND 4
-	band4 = *data;
-	ProcessFilter(&EQ_BAND4_LP, &band4);
-	ProcessFilter(&EQ_BAND4_LP, &band4);
-	ProcessFilter(&EQ_BAND4_HP, &band4);
-	ProcessFilter(&EQ_BAND4_HP, &band4);
-
+//	// BAND 2
+//	band2 = *data;
+//	ProcessFilter(&EQ_BAND2_LP, &band2);
+//	ProcessFilter(&EQ_BAND2_LP, &band2);
+//	ProcessFilter(&EQ_BAND2_HP, &band2);
+//	ProcessFilter(&EQ_BAND2_HP, &band2);
+//
+//	// BAND 3
+//	band3 = *data;
+//	ProcessFilter(&EQ_BAND3_LP, &band3);
+//	ProcessFilter(&EQ_BAND3_LP, &band3);
+//	ProcessFilter(&EQ_BAND3_HP, &band3);
+//	ProcessFilter(&EQ_BAND3_HP, &band3);
+//
+//	// BAND 4
+//	band4 = *data;
+//	ProcessFilter(&EQ_BAND4_LP, &band4);
+//	ProcessFilter(&EQ_BAND4_LP, &band4);
+//	ProcessFilter(&EQ_BAND4_HP, &band4);
+//	ProcessFilter(&EQ_BAND4_HP, &band4);
+//
 	// BAND 5
 	band5 = *data;
 	ProcessFilter(&EQ_BAND5,    &band5);
@@ -134,7 +134,8 @@ Filter_Status ProcessEQ(float *data){
 	ProcessFilter(&EQ_BAND5,    &band5);
 
 	// Write OUT
-	*data = band1 + band2 + band3 + band4 + band5;
+//	*data = band1 + band2 + band3 + band4 + band5;
+	*data = band5;
 
 	return FILTER_OK;
 

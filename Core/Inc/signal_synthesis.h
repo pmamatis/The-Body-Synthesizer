@@ -102,6 +102,7 @@ enum signal_kind_enum{
 	SAWTOOTH,
 	TRIANGLE,
 	PWM,
+	NOISE
 };
 
 
@@ -117,15 +118,13 @@ struct signal_t signals2;
 
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
-//void Signal_Synthesis(uint8_t count,uint8_t signal_composition,...);
-HAL_StatusTypeDef Output_Signal(DAC_HandleTypeDef hdac, uint8_t channel);
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
-//void TEST(DAC_HandleTypeDef hdac);
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
-//void Signal_Synthesis_LFO(struct effects_LFO_t* effect);
-void Signal_Synthesis_LFO(struct effects_LFO* effect);
+
+void Signal_Synthesis_LFO(struct effects_LFO* effect)  ;
+float AWGN_generator();
 
 #endif /* INC_SIGNALERZEUGUNG_H_ */
 

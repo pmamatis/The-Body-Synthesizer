@@ -146,7 +146,7 @@ int main(void)
 	effects_init();
 
 
- if (Filters_Init() == DSP_FAIL){
+ if (Filters_Init() == FILTER_FAIL){
 	 while(1){  }
 		//print to LCD error
 	}
@@ -168,19 +168,23 @@ int main(void)
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
-	//Example signal for test
+//Example signal for test
+	NewSignal(&signals1,NOISE,'C',0);
+//	NewSignal(&signals1,NOISE,'C',0);
+//	NewSignal(&signals1,NOISE,'C',0);
+//	NewSignal(&signals1,NOISE,'C',0);
 
 //	NewSignal(&signals1,SIN, 'C',0);
 //	NewSignal(&signals1,SIN, 'C',1);
 //	NewSignal(&signals1,SIN, 'C',2);
-	NewSignal(&signals1,SIN, 'C',3);
-	NewSignal(&signals1,SIN, 'C',4);
-//
+//	NewSignal(&signals1,SIN, 'C',3);
+//	NewSignal(&signals1,SIN, 'C',4);
+
 //	NewSignal(&signals1,SIN, 'G',0);
 //	NewSignal(&signals1,SIN, 'G',1);
 //	NewSignal(&signals1,SIN, 'G',2);
-	NewSignal(&signals1,SIN, 'G',3);
-	NewSignal(&signals1,SIN, 'G',4);
+//	NewSignal(&signals1,SIN, 'G',3);
+//	NewSignal(&signals1,SIN, 'G',4);
 
 	//	  NewSignal(&signals2,SIN, 'C',0);
 	//	  NewSignal(&signals2,SIN, 'C',1);
@@ -188,17 +192,10 @@ int main(void)
 	//NewSignal(&signals2,SIN, 'C',3);
 	//NewSignal(&signals2,SIN, 'C',4);
 
-	effects_add(TREM, 0);
-	effects_add(TREM, 1);
-	effects_add(DIST, 3);
-	effects_add(EQ, 2);
-	effects_add(TREM, 4);
-	effects_add(TREM, 2);
 
-	effects_add(DIST, 0);
-	effects_add(DIST, 0);
-	effects_add(DIST, 0);
-	effects_add(DIST, 0);
+//effect chain
+//	effects_add(EQ, 0);
+
 	while (1)
 
 	{

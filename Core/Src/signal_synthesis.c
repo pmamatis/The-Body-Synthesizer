@@ -45,7 +45,7 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 	uint32_t Clock = HAL_RCC_GetHCLKFreq();	// system core clock HCLK
 	uint32_t values_length = 65536;
 	uint16_t prescaler;
-	uint32_t timerperiod;
+	uint32_t timerperiod = 0;
 
 	for(int i=1; i<values_length; i++) {
 
@@ -80,19 +80,31 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 		uint8_t index = (signals-> count)-1;
 
 		signals -> kind[index] = kind;
-		signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
-		signals -> freqIndex[index] = Get_Note_Index(key,octave);
-		signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
-		// signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
+		switch (kind){
+
+		case SIN:
+
+			signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
+			signals -> freqIndex[index] = Get_Note_Index(key,octave);
+			signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
+			// signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
+
+
+			break;
+		case NOISE:
+				signals -> freq[index] = 0;
+				signals -> freqIndex[index] = 0;
+				signals -> current_LUT_Index[index] = 0;
+			break;
+			}
+		}
 		signals -> max = 1;
+
 		for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
 			if(!ID_array[NewSignal_count]){
 				signals -> ID[NewSignal_count] = NewSignal_count;
 				ID_array[NewSignal_count] = 1;
 			}
-
-
-		}
 
 	}
 
@@ -138,7 +150,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 	// decide if Channel 1 or Channel 2
-	float* calculate_vector_tmp; // working aray
+	float* calculate_vector_tmp = 0; // working aray
 
 	if (output_Channel == 1){
 		calculate_vector_tmp = calculate_vector1;
@@ -149,9 +161,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 	//decide if first half of BLOCKSIZE or second half
-	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
+	uint16_t BLOOCKSIZE_startIndex=0, BLOOCKSIZE_endIndex=0;
 	if (outputBuffer_position == HALF_BLOCK){
-		BLOOCKSIZE_startIndex = 0;
+		BLOOCKSIZE_startIndex = 0; // nur für lesbarkeit
 		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
 	}
 	else if(outputBuffer_position == FULL_BLOCK){
@@ -175,6 +187,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				{
 					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
 				}
+				break;
+
+			case NOISE:
+				addValue += AWGN_generator();
 				break;
 			}//Switch-Case
 		}// SIgnal counter for-loop
@@ -285,68 +301,44 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 	effect->quarter = quarter;
 }
 
-/** @brief generates a low frequency sine to be used for effects
- *  @param effect: struct which contains the parameter for the effect which want to use the LFO
- *
- */
-/*void Signal_Synthesis_LFO(struct effects_LFO_t* effect){
 
-	float frequency = effect->frequency;
-	uint8_t quarter = effect -> quarter;
-	uint32_t index = effect->index;
-
-	//	 calculate ratio between LFO_LUT frequency and disired frequency
-	float frequency_ratio = frequency /LFO_FMIN;
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
 
-	//DEBUG
-	//
-	//		uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
-	//		if (outputBuffer_position == HALF_BLOCK){
-	//			BLOOCKSIZE_startIndex = 0;
-	//			BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
-	//		}
-	//		else if(outputBuffer_position == FULL_BLOCK){
-	//			BLOOCKSIZE_startIndex = BLOCKSIZE/2;
-	//			BLOOCKSIZE_endIndex  = BLOCKSIZE;
-	//		}
-	//
-	//		for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+/* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */
+float AWGN_generator()
+{
 
+  float temp1;
+  float temp2;
+  float result;
+  int p;
 
-	for (int LFO_counter = 0; LFO_counter <BLOCKSIZE/2; LFO_counter++){
-		// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
-		if ( index  > LFO_ENDINDEX[0]){
-			index = 0;
-			quarter++;
-			if (quarter > 3)
-				quarter = 0;
-		}
+  p = 1;
 
-		switch(quarter){
-		case 0:
-			effect_LFO[LFO_counter] = LFO[(index)];
-			break;
-		case 1:
-			effect_LFO[LFO_counter] = LFO[(LFO_ENDINDEX[0] -index )];
-			break;
-		case 2:
-			effect_LFO[LFO_counter] = -LFO[(index)];
-			break;
-		case 3:
-			effect_LFO[LFO_counter] = -LFO[(LFO_ENDINDEX[0] -index)];
-			break;
-		default:
-			break;
-		} // end switch-case
-		index = round((double)(index + frequency_ratio));
+  while( p > 0 )
+  {
+	temp2 = ( rand() / ( (float)RAND_MAX ) ); /*  rand() function generates an
+                                                       integer between 0 and  RAND_MAX,
+                                                       which is defined in stdlib.h.
+                                                   */
 
-		//DEBUG
-		//					effect_LFO_output[BLOCKSIZE_counter] = (uint32_t)((effect_LFO[BLOCKSIZE_counter]+1)/2 * 3000 + 145);
+    if ( temp2 == 0 )
+    {// temp2 is >= (RAND_MAX / 2)
+      p = 1;
+    }// end if
+    else
+    {// temp2 is < (RAND_MAX / 2)
+       p = -1;
+    }// end else
 
-	} //BLOCKSIZE for-Loop I
+  }// end while()
 
-	//save current state into given effect struct
-	effect -> index = index;
-	effect -> quarter = quarter;
-}*/
+  temp1 = cos( ( 2.0 * (float)PI ) * rand() / ( (float)RAND_MAX ) );
+  result = sqrt( -2.0 * log( temp2 ) ) * temp1;
+
+  return result;	// return the generated random sample to the caller
+
+}// end AWGN_generator()

@@ -1,12 +1,19 @@
 #include "effects.h"
 
+
+
 void effects_init(){
     for (int i = 0; i < MAX_EFFECTS; i++){
     	effect_order[i] = 0;
     }
 }
 
-
+/**
+ * processes all effects in the given order, order is determined through effect_order[i]
+ * @note access order throgh the functions:  effects_add(effects_t_enum effect, uint8_t position) to add effects
+ * 											 effects_delete(effects_t_enum effect, uint8_t position) to delete effects
+ * @param calculate_value:adress of a signle sample which should be effected
+ */
 void effects_process(float* calculate_value){
 
 
@@ -20,7 +27,7 @@ void effects_process(float* calculate_value){
             break;
         
         case EQ:
-        	/* code */
+        	ProcessEQ(calculate_value);
             break;
         case DIST:
             /* code */
@@ -62,7 +69,9 @@ void effects_add(effects_t_enum effect, uint8_t position){
 
 }
 
-
+/**
+ * Deletes an effect inside the effect_order[position]
+ */
 void effects_delete(effects_t_enum effect, uint8_t position){
 
 	if (position < MAX_EFFECTS){
