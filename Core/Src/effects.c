@@ -9,7 +9,7 @@ void effects_init(){
 }
 
 
-void effects(float calculate_value){
+void effects_process(float* calculate_value){
 
 
 
@@ -21,6 +21,9 @@ void effects(float calculate_value){
             /* code */
             break;
         
+        case EQ:
+        	/* code */
+            break;
         case DIST:
             /* code */
             break;
@@ -33,7 +36,13 @@ void effects(float calculate_value){
 
 }
 
-void effects_addEffect(effects_t_enum effect, uint8_t position){
+
+/**
+ * Inserts an entry in the effect_order[position], and shifts the other entrys to the right
+ * @param effect: wanted effect listed in the effects_t_enum
+ * @param position:
+ */
+void effects_add(effects_t_enum effect, uint8_t position){
 
 	if (position < MAX_EFFECTS){
 
@@ -46,6 +55,24 @@ void effects_addEffect(effects_t_enum effect, uint8_t position){
 			tmp = tmp2;
 
 
+
+		}
+	}
+	else {
+		//error @TODO
+	}
+
+}
+
+
+void effects_delete(effects_t_enum effect, uint8_t position){
+
+	if (position < MAX_EFFECTS){
+		if (effect == effect_order[position]){
+			effect_order[position] = 0;
+		}
+		else{
+			//print LCD( "diffrent Effect, really want to delete?" )
 		}
 	}
 	else {
