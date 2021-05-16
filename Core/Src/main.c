@@ -169,9 +169,14 @@ int main(void)
 
 	//Example signal for test
 
-	//NewSignal(&signals1,SIN, 'A',0);
-	//NewSignal(&signals1,SIN, 'A',2);
-	NewSignal(&signals1,SIN, 'A',1);
+	NewSignal(&signals1,SIN, 'A',0);	// 112 Hz
+	NewSignal(&signals1,SIN, 'A',1);	// 224 Hz
+	NewSignal(&signals1,SIN, 'A',2);	// 448 Hz
+	NewSignal(&signals1,SIN, 'A',3);	// 896 Hz
+	NewSignal(&signals1,SIN, 'E',4);	// 896 Hz
+	NewSignal(&signals1,SIN, 'A',4);	// 1792 Hz
+	NewSignal(&signals1,SIN, 'A',5);	// 3584 Hz
+
 
 
 	/*NewSignal(&signals1,SIN, 'C',1);

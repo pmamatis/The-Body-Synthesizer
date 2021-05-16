@@ -218,7 +218,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		// EQUALIZER
-		ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// BAND 1
 		//ProcessFilter(&EQ_BAND1,    &calculate_vector_tmp[BLOCKSIZE_counter]);

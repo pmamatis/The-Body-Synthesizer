@@ -1,9 +1,9 @@
 /*****************************
  * @file    filters.c
  * @author  Max Lehmer
- * @date 	 07 May 2020
- * @brief	 Filter-Library
- * @brief	 Based on Audio-EQ cookbook
+ * @date 	07 May 2020
+ * @brief	Filter-Library
+ * @brief	Based on Audio-EQ cookbook
  * @brief   https://github.com/libaudioverse/libaudioverse/blob/master/audio%20eq%20cookbook.txt
  ******************************/
 #include "filters.h"
@@ -13,25 +13,37 @@
  * ------------------------------------------------------------------- */
 uint32_t samplerate = LUT_SR;
 
+
 Filter_Status Filters_Init(){
 
-	// BAND 1
-	SetupLowpass (&EQ_BAND1,    224, 0.707);
+	/*****************************
+	 * Default corner frequencies
+	 *
+	 * @brief	Band 1: LP, to 200 Hz
+	 * @brief	Band 2: BP, 200 Hz to 800 Hz
+	 * @brief   Band 3: BP, 800 Hz to 2 kHz
+	 * @brief	Band 4: BP, 2 kHz to 4 kHz
+	 * @brief	Band 5: HP, from 4 kHz
+	 ******************************/
 
-	// BAND 2: center frequency = 224
-	SetupLowpass (&EQ_BAND2_LP, 448, 0.707);
-	SetupHighpass(&EQ_BAND2_HP, 112, 0.707);
+
+	// BAND 1
+	SetupLowpass (&EQ_BAND1,     200, 0.707);
+
+	// BAND 2:
+	SetupLowpass (&EQ_BAND2_LP,  800, 0.707);
+	SetupHighpass(&EQ_BAND2_HP,  200, 0.707);
 
 	// BAND 3
-	//SetupLowpass (&EQ_BAND3_LP, 224, 0.707);
-	//SetupHighpass(&EQ_BAND3_HP, 224, 0.707);
+	SetupLowpass (&EQ_BAND3_LP, 2000, 0.707);
+	SetupHighpass(&EQ_BAND3_HP,  800, 0.707);
 
 	// BAND 4
-	//SetupLowpass (&EQ_BAND4_LP, 224, 0.707);
-	//SetupHighpass(&EQ_BAND4_HP, 224, 0.707);
+	SetupLowpass (&EQ_BAND4_LP, 4000, 0.707);
+	SetupHighpass(&EQ_BAND4_HP, 2000, 0.707);
 
 	// BAND 5
-	SetupHighpass(&EQ_BAND5, 224, 0.707);
+	SetupHighpass(&EQ_BAND5,    4000, 0.707);
 
 	return FILTER_OK;
 }
@@ -87,27 +99,39 @@ Filter_Status ProcessEQ(float *data){
 	float band1, band2, band3, band4, band5 = 0;
 
 	// BAND 1
-	//band1 = *data;
-	//ProcessFilter(&EQ_BAND1,    &band1);
+	band1 = *data;
+	ProcessFilter(&EQ_BAND1,    &band1);
+	ProcessFilter(&EQ_BAND1,    &band1);
+	ProcessFilter(&EQ_BAND1,    &band1);
+	ProcessFilter(&EQ_BAND1,    &band1);
 
 	// BAND 2
 	band2 = *data;
 	ProcessFilter(&EQ_BAND2_LP, &band2);
+	ProcessFilter(&EQ_BAND2_LP, &band2);
+	ProcessFilter(&EQ_BAND2_HP, &band2);
 	ProcessFilter(&EQ_BAND2_HP, &band2);
 
 	// BAND 3
-	//band3 = *data;
-	//ProcessFilter(&EQ_BAND3_LP, &band3);
-	//ProcessFilter(&EQ_BAND3_HP, &band3);
+	band3 = *data;
+	ProcessFilter(&EQ_BAND3_LP, &band3);
+	ProcessFilter(&EQ_BAND3_LP, &band3);
+	ProcessFilter(&EQ_BAND3_HP, &band3);
+	ProcessFilter(&EQ_BAND3_HP, &band3);
 
 	// BAND 4
-	//band4 = *data;
-	//ProcessFilter(&EQ_BAND4_LP, &band4);
-	//ProcessFilter(&EQ_BAND4_HP, &band4);
+	band4 = *data;
+	ProcessFilter(&EQ_BAND4_LP, &band4);
+	ProcessFilter(&EQ_BAND4_LP, &band4);
+	ProcessFilter(&EQ_BAND4_HP, &band4);
+	ProcessFilter(&EQ_BAND4_HP, &band4);
 
 	// BAND 5
-	//band5 = *data;
-	//ProcessFilter(&EQ_BAND5,    &band5);
+	band5 = *data;
+	ProcessFilter(&EQ_BAND5,    &band5);
+	ProcessFilter(&EQ_BAND5,    &band5);
+	ProcessFilter(&EQ_BAND5,    &band5);
+	ProcessFilter(&EQ_BAND5,    &band5);
 
 	// Write OUT
 	*data = band1 + band2 + band3 + band4 + band5;
