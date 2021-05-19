@@ -1,10 +1,10 @@
 /**
-  ******************************************************************************
-  * @file    distortion.h
-  * @author  Marc Bielen
-  * @date 	 10 May 2020
-  * @brief	 Distortion-Library
-*/
+ ******************************************************************************
+ * @file    distortion.h
+ * @author  Marc Bielen
+ * @date 	 10 May 2020
+ * @brief	 Distortion-Library
+ */
 
 #ifndef INC_DISTORTION_H_
 #define INC_DISTORTION_H_
@@ -45,6 +45,22 @@ struct effects_distortion{
 	// distortion_gain = 10.0 -> +-0.735549986
 	float atan_softclipping_distortion_max[10];	// 10 different distortion gain values, so the effect can be increased step-wise
 };
+
+/*% softclipping-atan lookup-table generation in MATLAB
+	blocksize = 8192;
+	max_distortion_gain = 10;
+	values = linspace(-max_distortion_gain, max_distortion_gain, blocksize);
+	aquidistance = (2*max_distortion_gain) / (blocksize-1);
+	atan_LUT = atan(values);
+	atan_LUT_rounded = round(atan_LUT,4);  % runden und transponieren
+	tt = 1:blocksize;
+	figure(4)
+	plot(tt, atan_LUT_rounded); grid on
+	csvwrite('atan_LUT_y.txt',atan_LUT_rounded)
+	csvwrite('atan_LUT_x.txt',values)
+	dlmwrite('aquidistance.txt', aquidistance, 'delimiter', ',', 'precision', 15);*/
+extern const float aquidistance;
+extern const float atan_LUT_y[8192];
 
 struct effects_distortion HardClipping1;
 struct effects_distortion AtanSoftClipping1;

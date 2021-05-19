@@ -216,7 +216,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		x = 2;*/
 
 		//ProcessHardClippingDistortion(&HardClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
 		ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//if-clause to control the distance between two vector entrys
@@ -277,7 +277,7 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 	uint32_t index = effect->index;
 	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
 
-	// calculate ratio between LFO_LUT frequency and desired frequency
+	// calculate ratio between LFO frequency and minimum processable frequency
 	float frequency_ratio = frequency / LFO_FMIN;
 
 	if(LFO_blocksizecounter == BLOCKSIZE/2) {

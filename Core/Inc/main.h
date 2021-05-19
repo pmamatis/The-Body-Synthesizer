@@ -98,8 +98,8 @@ float calculate_vector2[BLOCKSIZE];
 float effect_LFO[BLOCKSIZE/2];
 //uint32_t effect_LFO_output[BLOCKSIZE];
 
-float atan_LUT_y[BLOCKSIZE];
-float aquidistance;
+//float atan_LUT_y[BLOCKSIZE];
+//float aquidistance;
 
 
 float sigFreq_sampleFreq_ratio;
