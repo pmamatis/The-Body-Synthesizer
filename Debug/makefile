@@ -41,7 +41,7 @@ all: Body-Synthesizer_STM32_F746ZG.elf secondary-outputs
 
 # Tool invocations
 Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) C:\Users\Marc\ Bielen\Documents\Studium\Master\ TU\ Berlin\6.\ Semester\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld
-	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Marc Bielen\Documents\Studium\Master TU Berlin\6. Semester\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static -L"C:\Users\Marc Bielen\Documents\Studium\Master TU Berlin\6. Semester\Body-Synthesizer_STM32_F746ZG\Middlewares\Third_Party\ARM_CMSIS\CMSIS\DSP\libs" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Marc Bielen\Documents\Studium\Master TU Berlin\6. Semester\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static -L"C:\Users\Marc Bielen\Documents\Studium\Master TU Berlin\6. Semester\Body-Synthesizer_STM32_F746ZG\Lib" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
