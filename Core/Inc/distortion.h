@@ -30,7 +30,7 @@ struct effects_distortion{
 	float distortion_gain;
 	float atan_parameter;
 	unsigned int distortion_index;
-	uint8_t atan_softclipping_option;
+	uint8_t softclipping_option;
 	float distortion_threshold;
 
 	// distortion_gain = 1.0 -> +-0.392650008
@@ -60,15 +60,15 @@ struct effects_distortion{
 	csvwrite('atan_LUT_x.txt',values)
 	dlmwrite('aquidistance.txt', aquidistance, 'delimiter', ',', 'precision', 15);*/
 extern const float aquidistance;
-extern const float atan_LUT_y[8192];
+extern const float atan_LUT_y[8192];	// blocksize = 8192
 
 struct effects_distortion HardClipping1;
-struct effects_distortion AtanSoftClipping1;
+struct effects_distortion SoftClipping1;
 
 Distortion_Status Distortion_Init(void);
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping);
-Distortion_Status SetupAtanSoftClippingDistortion(struct effects_distortion* AtanSoftClipping);
+Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping);
 Distortion_Status ProcessHardClippingDistortion(struct effects_distortion* HardClipping, float* data);
-Distortion_Status ProcessAtanSoftClippingDistortion(struct effects_distortion* AtanSoftClipping, float* data);
+Distortion_Status ProcessSoftClippingDistortion(struct effects_distortion* SoftClipping, float* data);
 
 #endif /* INC_DISTORTION_H_ */

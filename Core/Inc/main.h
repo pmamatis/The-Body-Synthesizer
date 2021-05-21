@@ -49,6 +49,8 @@ extern "C" {
 // for distortion
 #include "distortion.h"
 
+#define ARM_MATH_CM7
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

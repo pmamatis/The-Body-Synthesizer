@@ -216,8 +216,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		x = 2;*/
 
 		//ProcessHardClippingDistortion(&HardClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		//ProcessAtanSoftClippingDistortion(&AtanSoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		ProcessSoftClippingDistortion(&SoftClipping1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//ProcessTremolo(&Tremolo1, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//if-clause to control the distance between two vector entrys
 		//			if (abs(output_vector1[BLOCKSIZE_counter]-output_vector1[BLOCKSIZE_counter-1]) > 20){
