@@ -21,20 +21,34 @@
  *********************************/
 struct BQFilter{
 
-	float a1, a2, b0, b1, b2;
+	float a0, a1, a2, b0, b1, b2;
 	float z[4];
+	float x[2];
+	float y[2];
 };
 
 
 // Equalizer
-struct BQFilter EQ_BAND1;		// Lowpass
-struct BQFilter EQ_BAND2_LP;	// Bandpass 2
-struct BQFilter EQ_BAND2_HP;	// Bandpass 2
-struct BQFilter EQ_BAND3_LP;	// Bandpass 3
-struct BQFilter EQ_BAND3_HP;	// Bandpass 3
-struct BQFilter EQ_BAND4_LP;	// Bandpass 4
-struct BQFilter EQ_BAND4_HP;	// Bandpass 4
-struct BQFilter EQ_BAND5;		// Highpass
+struct BQFilter EQ_BAND1_I;
+struct BQFilter EQ_BAND1_II;
+
+struct BQFilter EQ_BAND2_LP_I;
+struct BQFilter EQ_BAND2_LP_II;
+struct BQFilter EQ_BAND2_HP_I;
+struct BQFilter EQ_BAND2_HP_II;
+
+struct BQFilter EQ_BAND3_LP_I;
+struct BQFilter EQ_BAND3_LP_II;
+struct BQFilter EQ_BAND3_HP_I;
+struct BQFilter EQ_BAND3_HP_II;
+
+struct BQFilter EQ_BAND4_LP_I;
+struct BQFilter EQ_BAND4_LP_II;
+struct BQFilter EQ_BAND4_HP_I;
+struct BQFilter EQ_BAND4_HP_II;
+
+struct BQFilter EQ_BAND5_I;
+struct BQFilter EQ_BAND5_II;
 
 struct BQFilter LP_WAH;
 struct BQFilter HP_WAH;
@@ -72,6 +86,7 @@ Filter_Status Filters_Init();
 
 Filter_Status SetupLowpass (struct BQFilter *LP, float cutoff, float Q);
 Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q);
+Filter_Status SetupBandpass(struct BQFilter *BP, float cutoff, float Q);
 
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data);
 Filter_Status ProcessEQ    (float *data);

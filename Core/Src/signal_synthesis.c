@@ -220,7 +220,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
 			break;
 		case 2:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/((float)2);// -6 dB
 			break;
 		case 3:
 			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB

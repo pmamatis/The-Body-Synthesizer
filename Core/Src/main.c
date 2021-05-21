@@ -169,12 +169,13 @@ int main(void)
 	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 //Example signal for test
-	NewSignal(&signals1,NOISE,'C',0);
+//  NewSignal(&signals1,NOISE,'C',0);
 //	NewSignal(&signals1,NOISE,'C',0);
 //	NewSignal(&signals1,NOISE,'C',0);
 //	NewSignal(&signals1,NOISE,'C',0);
 
-//	NewSignal(&signals1,SIN, 'C',0);
+	NewSignal(&signals1,SIN, 'F',1);
+	NewSignal(&signals1,SIN, 'A',4);
 //	NewSignal(&signals1,SIN, 'C',1);
 //	NewSignal(&signals1,SIN, 'C',2);
 //	NewSignal(&signals1,SIN, 'C',3);
@@ -194,7 +195,7 @@ int main(void)
 
 
 //effect chain
-//	effects_add(EQ, 0);
+	effects_add(EQ, 0);
 
 	while (1)
 
