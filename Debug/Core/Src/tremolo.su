@@ -1,0 +1,3 @@
+tremolo.c:15:16:Tremolo_Init	4	static
+tremolo.c:22:16:SetupTremolo	4	static
+tremolo.c:32:16:ProcessTremolo	24	static
