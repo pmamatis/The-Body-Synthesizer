@@ -32,10 +32,10 @@ struct BQFilter{
 struct BQFilter EQ_BAND1_I;
 struct BQFilter EQ_BAND1_II;
 
-struct BQFilter EQ_BAND2_LP_I;
-struct BQFilter EQ_BAND2_LP_II;
-struct BQFilter EQ_BAND2_HP_I;
-struct BQFilter EQ_BAND2_HP_II;
+struct BQFilter EQ_BAND2_I;
+struct BQFilter EQ_BAND2_II;
+struct BQFilter EQ_BAND2_III;
+struct BQFilter EQ_BAND2_IV;
 
 struct BQFilter EQ_BAND3_LP_I;
 struct BQFilter EQ_BAND3_LP_II;

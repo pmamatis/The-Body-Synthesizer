@@ -28,14 +28,14 @@ Filter_Status Filters_Init(){
 
 
 	// BAND 1 (200)
-	SetupLowpass (&EQ_BAND1_I,  448, 0.707);
-	SetupLowpass (&EQ_BAND1_II, 448, 0.707);
+	SetupLowpass (&EQ_BAND1_I,  178, 0.707);
+	SetupLowpass (&EQ_BAND1_II, 178, 0.707);
 
 	// BAND 2: 800 / 200
-	SetupLowpass (&EQ_BAND2_LP_I,  10000, 0.707);
-	SetupLowpass (&EQ_BAND2_LP_II, 10000, 0.707);
-	SetupHighpass(&EQ_BAND2_HP_I,  10000, 0.707);
-	SetupHighpass(&EQ_BAND2_HP_II, 10000, 0.707);
+	SetupBandpass(&EQ_BAND2_I,  1773, 0.707);
+	SetupBandpass(&EQ_BAND2_II, 1773, 0.707);
+	SetupBandpass(&EQ_BAND2_III,1773, 0.707);
+	SetupBandpass(&EQ_BAND2_IV, 1773, 0.707);
 
 	// BAND 3
 	SetupLowpass (&EQ_BAND3_LP_I,  2000, 0.707);
@@ -186,17 +186,17 @@ Filter_Status ProcessEQ(float *data){
 	float band1, band2, band3, band4, band5 = 0;
 
 	// BAND 1
-	band1 = *data;
-	ProcessFilter(&EQ_BAND1_I,  &band1);
-	ProcessFilter(&EQ_BAND1_II, &band1);
+//	band1 = *data;
+//	ProcessFilter(&EQ_BAND1_I,  &band1);
+//	ProcessFilter(&EQ_BAND1_II, &band1);
 
 
 	//	// BAND 2
 	band2 = *data;
-	ProcessFilter(&EQ_BAND2_LP_I,  &band2);
-	ProcessFilter(&EQ_BAND2_HP_I,  &band2);
-	ProcessFilter(&EQ_BAND2_LP_II, &band2);
-	ProcessFilter(&EQ_BAND2_HP_II, &band2);
+	ProcessFilter(&EQ_BAND2_I,  &band2);
+	ProcessFilter(&EQ_BAND2_II, &band2);
+	ProcessFilter(&EQ_BAND2_III,&band2);
+	ProcessFilter(&EQ_BAND2_IV, &band2);
 
 
 	//	// BAND 3

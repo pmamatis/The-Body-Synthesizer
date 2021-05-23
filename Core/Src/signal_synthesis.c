@@ -92,19 +92,19 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 
 			break;
 		case NOISE:
-				signals -> freq[index] = 0;
-				signals -> freqIndex[index] = 0;
-				signals -> current_LUT_Index[index] = 0;
+			signals -> freq[index] = 0;
+			signals -> freqIndex[index] = 0;
+			signals -> current_LUT_Index[index] = 0;
 			break;
-			}
 		}
-		signals -> max = 1;
+	}
+	signals -> max = 1;
 
-		for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
-			if(!ID_array[NewSignal_count]){
-				signals -> ID[NewSignal_count] = NewSignal_count;
-				ID_array[NewSignal_count] = 1;
-			}
+	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
+		if(!ID_array[NewSignal_count]){
+			signals -> ID[NewSignal_count] = NewSignal_count;
+			ID_array[NewSignal_count] = 1;
+		}
 
 	}
 
@@ -217,10 +217,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//scale output signal depending on amount of voices
 		switch (signals -> count){
 		case 1:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
 			break;
 		case 2:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/((float)2);// -6 dB
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
 			break;
 		case 3:
 			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
@@ -237,10 +237,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		}
 
 		//Signal adjustment to DAC
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET );
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
 		//
 
-	} //End for-Loop II
+	} //End for-Loop
 
 
 
@@ -311,34 +311,34 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 float AWGN_generator()
 {
 
-  float temp1;
-  float temp2;
-  float result;
-  int p;
+	float temp1;
+	float temp2;
+	float result;
+	int p;
 
-  p = 1;
+	p = 1;
 
-  while( p > 0 )
-  {
-	temp2 = ( rand() / ( (float)RAND_MAX ) ); /*  rand() function generates an
+	while( p > 0 )
+	{
+		temp2 = ( rand() / ( (float)RAND_MAX ) ); /*  rand() function generates an
                                                        integer between 0 and  RAND_MAX,
                                                        which is defined in stdlib.h.
-                                                   */
+		 */
 
-    if ( temp2 == 0 )
-    {// temp2 is >= (RAND_MAX / 2)
-      p = 1;
-    }// end if
-    else
-    {// temp2 is < (RAND_MAX / 2)
-       p = -1;
-    }// end else
+		if ( temp2 == 0 )
+		{// temp2 is >= (RAND_MAX / 2)
+			p = 1;
+		}// end if
+		else
+		{// temp2 is < (RAND_MAX / 2)
+			p = -1;
+		}// end else
 
-  }// end while()
+	}// end while()
 
-  temp1 = cos( ( 2.0 * (float)PI ) * rand() / ( (float)RAND_MAX ) );
-  result = sqrt( -2.0 * log( temp2 ) ) * temp1;
+	temp1 = cos( ( 2.0 * (float)PI ) * rand() / ( (float)RAND_MAX ) );
+	result = sqrt( -2.0 * log( temp2 ) ) * temp1;
 
-  return result;	// return the generated random sample to the caller
+	return result;	// return the generated random sample to the caller
 
 }// end AWGN_generator()
