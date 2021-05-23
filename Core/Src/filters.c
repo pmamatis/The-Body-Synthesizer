@@ -13,45 +13,48 @@
  * ------------------------------------------------------------------- */
 uint32_t samplerate = LUT_SR;
 
+float band1, band2, band3, band4, band5 = 0;
 
 Filter_Status Filters_Init(){
 
 	/*****************************
-	 * Default corner frequencies
+	 * Default corner / center frequencies
 	 *
-	 * @brief	Band 1: LP, to 200 Hz
-	 * @brief	Band 2: BP, 200 Hz to 800 Hz
-	 * @brief   Band 3: BP, 800 Hz to 2 kHz
-	 * @brief	Band 4: BP, 2 kHz to 4 kHz
-	 * @brief	Band 5: HP, from 4 kHz
+	 * @brief	Band 1: LP,  100 Hz, 	80 dB / Dec.
+	 * @brief	Band 2: BP,  200 Hz,	12 dB / Oct.
+	 * @brief   Band 3: BP,  400 Hz,	12 dB / Oct.
+	 * @brief	Band 4: BP,  800 Hz,	12 dB / Oct.
+	 * @brief	Band 5: BP, 1600 Hz,	12 dB / Oct.
+	 * @brief	Band 6: HP, 3200 Hz,	80 dB / Dec.
 	 ******************************/
 
 
-	// BAND 1 (200)
-	SetupLowpass (&EQ_BAND1_I,  178, 0.707);
-	SetupLowpass (&EQ_BAND1_II, 178, 0.707);
+	// BAND 1: LP 4th order
+	SetupLowpass (&EQ_BAND1_I,  200, 0.707);
+	SetupLowpass (&EQ_BAND1_II, 200, 0.707);
 
-	// BAND 2: 800 / 200
-	SetupBandpass(&EQ_BAND2_I,  1773, 0.707);
-	SetupBandpass(&EQ_BAND2_II, 1773, 0.707);
-	SetupBandpass(&EQ_BAND2_III,1773, 0.707);
-	SetupBandpass(&EQ_BAND2_IV, 1773, 0.707);
+	// BAND 2: BP 8th order
+	SetupBandpass(&EQ_BAND2_I,  400, 0.707);
+	SetupBandpass(&EQ_BAND2_II, 400, 0.707);
+	SetupBandpass(&EQ_BAND2_III,400, 0.707);
+	SetupBandpass(&EQ_BAND2_IV, 400, 0.707);
 
-	// BAND 3
-	SetupLowpass (&EQ_BAND3_LP_I,  2000, 0.707);
-	SetupLowpass (&EQ_BAND3_LP_II, 2000, 0.707);
-	SetupHighpass(&EQ_BAND3_HP_I,  800, 0.707);
-	SetupHighpass(&EQ_BAND3_HP_II, 800, 0.707);
+	// BAND 3: BP 8th order
+	SetupBandpass(&EQ_BAND3_I,  800, 0.707);
+	SetupBandpass(&EQ_BAND3_II, 800, 0.707);
+	SetupBandpass(&EQ_BAND3_III,800, 0.707);
+	SetupBandpass(&EQ_BAND3_IV, 800, 0.707);
 
-	// BAND 4
-	SetupLowpass (&EQ_BAND4_LP_I,  4000, 0.707);
-	SetupLowpass (&EQ_BAND4_LP_II, 4000, 0.707);
-	SetupHighpass(&EQ_BAND4_HP_I,  2000, 0.707);
-	SetupHighpass(&EQ_BAND4_HP_II, 2000, 0.707);
+	// BAND 4: BP 8th order
+	SetupBandpass(&EQ_BAND4_I,  1600, 0.707);
+	SetupBandpass(&EQ_BAND4_II, 1600, 0.707);
+	SetupBandpass(&EQ_BAND4_III,1600, 0.707);
+	SetupBandpass(&EQ_BAND4_IV, 1600, 0.707);
 
 	// BAND 5
-	SetupHighpass(&EQ_BAND5_I,  4000, 0.707);
-	SetupHighpass(&EQ_BAND5_II, 4000, 0.707);
+	SetupHighpass(&EQ_BAND5_I,  3200, 0.707);
+	SetupHighpass(&EQ_BAND5_II, 3200, 0.707);
+
 
 	return FILTER_OK;
 }
@@ -76,20 +79,6 @@ Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-//
-//Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
-//
-//	float w0 = tanf(M_PI * cutoff / samplerate);
-//	float N = 1 / (w0 * w0 + w0 / Q + 1);
-//
-//	LP->b0 = N * w0 * w0;
-//	LP->b1 = 2 * LP->b0;
-//	LP->b2 = LP->b0;
-//	LP->a1 = 2 * N * (w0 * w0 - 1);
-//	LP->a2 = N * (w0 * w0 - w0 / Q + 1);
-//
-//	return FILTER_OK;
-//}
 
 Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 
@@ -110,21 +99,6 @@ Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 
 	return FILTER_OK;
 }
-
-
-//Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
-//
-//	float w0 = tanf(M_PI * cutoff / samplerate);
-//	float N = 1 / (w0 * w0 + w0 / Q + 1);
-//
-//	HP->b0 = N;
-//	HP->b1 = -2 * HP->b0;
-//	HP->b2 = HP->b0;
-//	HP->a1 = 2 * N * (w0 * w0 - 1);
-//	HP->a2 = N * (w0 * w0 - w0 / Q + 1);
-//
-//	return FILTER_OK;
-//}
 
 
 Filter_Status SetupBandpass(struct BQFilter *BP, float cutoff, float Q){
@@ -154,7 +128,10 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 	float out = 0;
 
 	input = *data;
+
+	//out = (F->b0 / F->a0) * (input + (F->b1 / F->b0) * F->z[0] + (F->b2 / F->b0) * F->z[1] - (F->a1 / F->a0) * F->z[2] - (F->a2 / F->a0) * F->z[3]);
 	out = (F->b0 / F->a0) * input + (F->b1 / F->a0) * F->z[0] + (F->b2 / F->a0) * F->z[1] - (F->a1 / F->a0) * F->z[2] - (F->a2 / F->a0) * F->z[3];
+
 	F->z[3] = F->z[2];
 	F->z[2] = out;
 	F->z[1] = F->z[0];
@@ -164,67 +141,52 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 	return FILTER_OK;
 }
 
-//Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
-//
-//	float input = 0;
-//	float out = 0;
-//
-//	input = *data;
-//	out = input * F->b0 + F->z[0] * F->b1 + F->z[1] * F->b2 - F->z[2] * F->a1 - F->z[3] * F->a2;
-//	F->z[3] = F->z[2];
-//	F->z[2] = out;
-//	F->z[1] = F->z[0];
-//	F->z[0] = input;
-//	*data = out;
-//
-//	return FILTER_OK;
-//
-//}
 
 Filter_Status ProcessEQ(float *data){
 
-	float band1, band2, band3, band4, band5 = 0;
+	/*****************************
+	 * Processing EQ
+	 *
+	 * @brief	LP / HP: 	40 dB / Dec. per ProcessFilter() call
+	 * @brief	BP: 		 3 dB / Oct. per ProcessFilter() call
+	 *
+	 * @brief	Partly commented due to too low processor speed that causes glitches
+	 ******************************/
 
 	// BAND 1
-//	band1 = *data;
-//	ProcessFilter(&EQ_BAND1_I,  &band1);
-//	ProcessFilter(&EQ_BAND1_II, &band1);
+	band1 = *data;
+	ProcessFilter(&EQ_BAND1_I,  &band1);
+	ProcessFilter(&EQ_BAND1_II, &band1);
 
-
-	//	// BAND 2
+	// BAND 2
 	band2 = *data;
 	ProcessFilter(&EQ_BAND2_I,  &band2);
 	ProcessFilter(&EQ_BAND2_II, &band2);
-	ProcessFilter(&EQ_BAND2_III,&band2);
-	ProcessFilter(&EQ_BAND2_IV, &band2);
+	//	ProcessFilter(&EQ_BAND2_III,&band2);
+	//	ProcessFilter(&EQ_BAND2_IV, &band2);
 
+	// BAND 3
+	band3 = *data;
+	ProcessFilter(&EQ_BAND3_I,  &band3);
+	ProcessFilter(&EQ_BAND3_II, &band3);
+	//	ProcessFilter(&EQ_BAND3_III,&band3);
+	//	ProcessFilter(&EQ_BAND3_IV, &band3);
 
-	//	// BAND 3
-	//	band3 = *data;
-	//	ProcessFilter(&EQ_BAND3_LP, &band3);
-	//	ProcessFilter(&EQ_BAND3_LP, &band3);
-	//	ProcessFilter(&EQ_BAND3_HP, &band3);
-	//	ProcessFilter(&EQ_BAND3_HP, &band3);
-	//
-	//	// BAND 4
-	//	band4 = *data;
-	//	ProcessFilter(&EQ_BAND4_LP, &band4);
-	//	ProcessFilter(&EQ_BAND4_LP, &band4);
-	//	ProcessFilter(&EQ_BAND4_HP, &band4);
-	//	ProcessFilter(&EQ_BAND4_HP, &band4);
-	//
+	// BAND 4
+	band4 = *data;
+	ProcessFilter(&EQ_BAND4_I,  &band4);
+	ProcessFilter(&EQ_BAND4_II, &band4);
+	//	ProcessFilter(&EQ_BAND4_III,&band4);
+	//	ProcessFilter(&EQ_BAND4_IV, &band4);
+
 	// BAND 5
-	//	band5 = *data;
-	//	ProcessFilter(&EQ_BAND5,    &band5);
-	//	ProcessFilter(&EQ_BAND5,    &band5);
-	//	ProcessFilter(&EQ_BAND5,    &band5);
-	//	ProcessFilter(&EQ_BAND5,    &band5);
+	band5 = *data;
+	ProcessFilter(&EQ_BAND5_I,  &band5);
+	ProcessFilter(&EQ_BAND5_II, &band5);
 
 	// Write OUT
-	//	*data = band1 + band2 + band3 + band4 + band5;
-	*data = band2;
+	*data = band1 + band2 + band3 + band4 + band5;
 
 	return FILTER_OK;
-
 }
 

@@ -80,8 +80,8 @@ void Error_Handler(void);
 #define SUPPORT_POINTS 20
 
 /**@brief output array size */
-//#define BLOCKSIZE 8192 //42ms latenz
-#define BLOCKSIZE 8192/8 //10ms latenz
+//#define BLOCKSIZE 8192 //
+#define BLOCKSIZE 8192/4 // Latenz
 
 
 

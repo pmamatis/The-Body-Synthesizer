@@ -37,15 +37,15 @@ struct BQFilter EQ_BAND2_II;
 struct BQFilter EQ_BAND2_III;
 struct BQFilter EQ_BAND2_IV;
 
-struct BQFilter EQ_BAND3_LP_I;
-struct BQFilter EQ_BAND3_LP_II;
-struct BQFilter EQ_BAND3_HP_I;
-struct BQFilter EQ_BAND3_HP_II;
+struct BQFilter EQ_BAND3_I;
+struct BQFilter EQ_BAND3_II;
+struct BQFilter EQ_BAND3_III;
+struct BQFilter EQ_BAND3_IV;
 
-struct BQFilter EQ_BAND4_LP_I;
-struct BQFilter EQ_BAND4_LP_II;
-struct BQFilter EQ_BAND4_HP_I;
-struct BQFilter EQ_BAND4_HP_II;
+struct BQFilter EQ_BAND4_I;
+struct BQFilter EQ_BAND4_II;
+struct BQFilter EQ_BAND4_III;
+struct BQFilter EQ_BAND4_IV;
 
 struct BQFilter EQ_BAND5_I;
 struct BQFilter EQ_BAND5_II;
