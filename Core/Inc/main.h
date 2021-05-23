@@ -64,9 +64,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define ENTER_Pin GPIO_PIN_13
-#define ENTER_GPIO_Port GPIOC
-#define ENTER_EXTI_IRQn EXTI15_10_IRQn
+#define ENTER_USER_Pin GPIO_PIN_13
+#define ENTER_USER_GPIO_Port GPIOC
+#define ENTER_USER_EXTI_IRQn EXTI15_10_IRQn
 #define SD_CS_Pin GPIO_PIN_10
 #define SD_CS_GPIO_Port GPIOF
 #define Poti_Pin GPIO_PIN_0
@@ -93,6 +93,9 @@ void Error_Handler(void);
 #define SD_DI_MOSI_GPIO_Port GPIOB
 #define SW_Pin GPIO_PIN_0
 #define SW_GPIO_Port GPIOG
+#define ENTER_Pin GPIO_PIN_8
+#define ENTER_GPIO_Port GPIOE
+#define ENTER_EXTI_IRQn EXTI9_5_IRQn
 #define Red_User_LED_Pin GPIO_PIN_14
 #define Red_User_LED_GPIO_Port GPIOB
 #define DISP_CS_Pin GPIO_PIN_8
