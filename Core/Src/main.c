@@ -154,6 +154,8 @@ struct display_variables{
 
 	// Synthesizer Parameters
 	bool Voices_ONOFF[3];	// 3 Voices
+	uint8_t Voices_Note[3];		// 3 Voices
+	uint8_t Voices_Octave[3];		// 3 Voices
 	//...Weitere Synth-Parameter
 
 	uint16_t ADC2inputs[5];	// ADC input array
@@ -207,6 +209,8 @@ struct display_variables Display =
 		{false, false, false},	// ModuleCompleted
 		0,						// CurrentModule
 		{false, false, false},	// Voices_ONOFF
+		{},						// Voices_Note
+		{},						// Voices_Octave
 		//...Weitere Synth-Parameter
 
 		{},						// ADC2inputs
@@ -434,6 +438,10 @@ int main(void)
 	// Start Timer and ADC-DMA for ADC2
 	HAL_TIM_Base_Start(&htim6);
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 5);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1, BLOCKSIZE, DAC_ALIGN_12B_R);
+
+	//Example signal for test
+	NewSignal(SIN, 'C', 0);
 
 	// Patch-Selection-Startmenu
 	PatchSelectionMenu(&Display, paint, epd, frame_buffer);
@@ -453,11 +461,6 @@ int main(void)
 	tremollo.lfo_depth = 0.75;
 
 	distortion.distortion_gain = 5.0;	// max. distortion gain of 10 according to LUT created in MATLAB
-
-	//Example signal for test
-	//NewSignal(SIN, 'C', 1);
-
-	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1, BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	while (1)
 	{
@@ -1231,41 +1234,93 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 		while(Display->CurrentModule == 0) {
 
 			Paint_DrawStringAt(&paint, 1, 10, "Synthesis", &Font16, COLORED);
-			Paint_DrawStringAt(&paint, 1, 30, "V1 ON/OFF", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 50, "V1 Note/Octave", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 30, "Voice1 ON/OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 50, "Voice1 Note", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Voice1 Octave", &Font12, COLORED);
 
 			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
 			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
 			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
 
+			uint8_t note, last_note, last_octave;
+			char octave;
+
 			if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
 				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to Voice1 ON/OFF
 			}
 			else if( (Display->JoystickParameterPosition == 1) && (Display->VRy < Display->LowerLimit) ) {
-				Paint_DrawFilledRectangle(&paint, 110, 30, 150, 40, UNCOLORED);	// switch from Voice1 ON/OFF to Voice1 Note/Octave
+				Paint_DrawFilledRectangle(&paint, 110, 30, 150, 40, UNCOLORED);	// switch from Voice1 ON/OFF to Voice1 Note
 				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
 				Display->JoystickParameterPosition = 2;
 			}
 			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy > Display->UpperLimit) ) {
-				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Voice1 Note/Octave to Voice1 ON/OFF
+				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Voice1 Note to Voice1 ON/OFF
 				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);
 				Display->JoystickParameterPosition = 1;
 			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Voice1 Note to Voice1 Octave
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 3;
+			}
 			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy > Display->LowerLimit) && (Display->VRy < Display->UpperLimit) ) {
-				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);	// arrow to Voice1 Note/Octave
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);	// arrow to Voice1 Note
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 70, 150, 80, UNCOLORED);	// switch from Note1 Octave to Voice1 Note
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 2;
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);	// arrow to Voice1 Octave
 			}
 
-			// change parameters
-			if( (Display->JoystickParameterPosition == 1) && (Display->Poti_raw >= Display->ADC_FullRange/2) ) {
-				Paint_DrawFilledRectangle(&paint, 150, 30, 200, 200, UNCOLORED);
-				Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
-				Display->Voices_ONOFF[0] = true;
-			}
-			else if( (Display->JoystickParameterPosition == 1) && (Display->Poti_raw < Display->ADC_FullRange/2) ) {
-				Paint_DrawFilledRectangle(&paint, 150, 30, 200, 200, UNCOLORED);
+			// check state of the potentiometer and assign parameter value
+			// Voice1 ON/OFF
+			if( (Display->JoystickParameterPosition == 1) && (Display->Poti_raw < Display->ADC_FullRange/2) ) {
+				Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
 				Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
 				Display->Voices_ONOFF[0] = false;
 			}
+			else if( (Display->JoystickParameterPosition == 1) && (Display->Poti_raw >= Display->ADC_FullRange/2) ) {
+				Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+				Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
+				Display->Voices_ONOFF[0] = true;
+			}
+
+			// Voice1 Note
+			if(Display->JoystickParameterPosition == 2) {
+				Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
+				float noteindex = ((float)Display->Poti_raw/4096) * (sizeof(keys)/sizeof(keys[0]));	// length keys-array = 26 -> from Music_notes.c
+				note = keys[(uint8_t)noteindex];
+				Paint_DrawCharAt(&paint, 150, 50, note, &Font12, COLORED);
+				Display->Voices_Note[0] = note;	// assign Voice1 Note
+			}
+
+			// Voice1 Octave
+			if(Display->JoystickParameterPosition == 3) {
+				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
+				octave = (char) (((float)Display->Poti_raw/4096) * 6) + '0';	// cast to integer and convert integer to ascii
+				Paint_DrawCharAt(&paint, 150, 70, octave, &Font12, COLORED);
+				Display->Voices_Octave[0] = octave;	// assign Voice1 Octave
+			}
+
+			if(Display->Voices_ONOFF[0] == true) {	// if Voice1 ON
+				if( (last_note != note) || (last_octave != octave) ) {
+					//outputBuffer_position = HALF_BLOCK;
+					DeleteSignal(1);
+					uint8_t octave_ascii_to_int = octave - '0';
+//					Paint_DrawFilledRectangle(&paint, 150, 150, 200, 200, UNCOLORED);	// DEBUGGING
+//					Paint_DrawCharAt(&paint, 150, 150, octave_ascii_to_int, &Font12, COLORED);	// DEBUGGING
+					NewSignal(SIN, note, octave_ascii_to_int);	// create signal and assign selected parameters
+					outputBuffer_position = HALF_BLOCK;
+				}
+			}
+			/*else {
+				DeleteSignal(1);
+			}*/
+			last_note = note;
+			last_octave = octave;
 
 			// Display the frame_buffer
 			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
@@ -1283,541 +1338,6 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 		// #############################################
 		// ########### END SYNTHESIS SUBMENU ###########
 		// #############################################
-
-
-		/*// ################################
-		// ########## BEGIN VCO1 ##########
-		// ################################
-		//while(Patch->ModuleCompleted[0] == false) {
-		while(Patch->CurrentModule == 0) {
-
-			while(Patch->ModuleStateSelected[0] == false) {	// select VCO1 state (ON/OFF)
-
-				VRx = ADC2inputs[0];	// read joystick x-value
-
-				if( (JoystickParameterPosition == 1) && (VRx > LowerLimit) ) {			// stay at VCO1 ON
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);		// NECESSARY???
-					Paint_DrawStringAt(&paint, 10, 10, "VCO1 on", &Font16, COLORED);
-					//JoystickParameterPosition = 1;	// NECESSARY???
-				}
-				else if( (JoystickParameterPosition == 1) && (VRx < LowerLimit) ) {		// switch to VCO1 OFF
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "VCO1 off", &Font16, COLORED);
-					JoystickParameterPosition = 2;
-				}
-				else if( (JoystickParameterPosition == 2) && (VRx < UpperLimit) ) {		// stay at VCO1 OFF
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "VCO1 off", &Font16, COLORED);
-					//JoystickParameterPosition = 2;	// NECESSARY???
-				}
-				else if( (JoystickParameterPosition == 2) && (VRx > UpperLimit) ) {		// switch to VCO1 ON
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "VCO1 on", &Font16, COLORED);
-					JoystickParameterPosition = 1;
-				}
-				else {}
-
-				// check if VCO1 ON or OFF is selected
-				if( (JoystickParameterPosition == 1) && (ENTER == true) ) {
-					Patch->ModuleStateSelected[0] = true;
-					Patch->ModuleState[0] = true;	// VCO1 ON selected
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					Paint_Clear(&paint, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "VCO1 on picked", &Font16, COLORED);
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-					HAL_Delay(1000);	// necessary?
-					Paint_Clear(&paint, UNCOLORED);	// clear display
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-				}
-				else if( (JoystickParameterPosition == 2) && (ENTER == true) ) {
-					Patch->ModuleStateSelected[0] = true;
-					Patch->ModuleState[0] = false;	// VCO1 OFF selected
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					Paint_Clear(&paint, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "VCO1 off picked", &Font16, COLORED);
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-					HAL_Delay(1000);	// necessary?
-					Paint_Clear(&paint, UNCOLORED);	// clear display
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-				}
-				else {}
-
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-
-				// reset BACK-switch
-				//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
-				if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {
-					BACK = false;
-				}
-				// reset ENTER-switch
-				if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
-					ENTER = false;
-				}
-			}
-
-			while(Patch->ModuleParametersSelected[0] == false) {	// select VCO1 parameters
-
-				Poti_raw = ADC2inputs[2];	// read potentiometer
-				VRx = ADC2inputs[0];		// read joystick x-value
-
-				if(Patch->ModuleState[0] == true) {	// if VCO1 ON selected
-
-					if( (JoystickParameterPosition == 1) && (VRx > LowerLimit) ) {			// stay at VCO1 Waveform
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);		// NECESSARY???
-						Paint_DrawStringAt(&paint, 10, 10, "VCO1 Waveform", &Font16, COLORED);
-						if(Poti_raw < 1024) {
-							Patch->VCO1_Waveform = 1;	// Sine
-							Paint_DrawStringAt(&paint, 10, 40, "Sine", &Font16, COLORED);
-						}
-						else if( (Poti_raw >= 1024) && (Poti_raw < 2048) ) {
-							Patch->VCO1_Waveform = 2;	// Sawtooth
-							Paint_DrawStringAt(&paint, 10, 40, "Sawtooth", &Font16, COLORED);
-						}
-						else if( (Poti_raw >= 2048) && (Poti_raw < 3072) ) {
-							Patch->VCO1_Waveform = 3;	// Triangle
-							Paint_DrawStringAt(&paint, 10, 40, "Triangle", &Font16, COLORED);
-						}
-						else if( (Poti_raw >= 3072) && (Poti_raw < 4096) ) {
-							Patch->VCO1_Waveform = 4;	// PWM/Square
-							Paint_DrawStringAt(&paint, 10, 40, "PWM/Square", &Font16, COLORED);
-						}
-					}
-					else if( (JoystickParameterPosition == 1) && (VRx < LowerLimit) ) {		// switch to VCO1 Frequency
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "VCO1 Frequency", &Font16, COLORED);
-						JoystickParameterPosition = 2;
-						Patch->VCO1_Frequency = (uint16_t)(((float)Poti_raw/4095)*20000);	// 20000 = 20 kHz -> Full Scale
-						char vco1_freq[5];
-						sprintf(vco1_freq, "%d", Patch->VCO1_Frequency);
-						Paint_DrawStringAt(&paint, 10, 40, vco1_freq, &Font16, COLORED);
-					}
-					else if( (JoystickParameterPosition == 2) && (VRx < UpperLimit) ) {		// stay at VCO1 Frequency
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "VCO1 Frequency", &Font16, COLORED);
-						Patch->VCO1_Frequency = (uint16_t)(((float)Poti_raw/4095)*20000);	// 20000 = 20 kHz -> Full Scale
-						char vco1_freq[5];
-						sprintf(vco1_freq, "%d", Patch->VCO1_Frequency);
-						Paint_DrawStringAt(&paint, 10, 40, vco1_freq, &Font16, COLORED);
-					}
-					else if( (JoystickParameterPosition == 2) && (VRx > UpperLimit) ) {		// switch to VCO1 Waveform
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "VCO1 Waveform", &Font16, COLORED);
-						JoystickParameterPosition = 1;
-						if(Poti_raw < 1024) {
-							Patch->VCO1_Waveform = 1;	// Sine
-							Paint_DrawStringAt(&paint, 10, 40, "Sine", &Font16, COLORED);
-						}
-						else if( (Poti_raw >= 1024) && (Poti_raw < 2048) ) {
-							Patch->VCO1_Waveform = 2;	// Sawtooth
-							Paint_DrawStringAt(&paint, 10, 40, "Sawtooth", &Font16, COLORED);
-						}
-						else if( (Poti_raw >= 2048) && (Poti_raw < 3072) ) {
-							Patch->VCO1_Waveform = 3;	// Triangle
-							Paint_DrawStringAt(&paint, 10, 40, "Triangle", &Font16, COLORED);
-						}
-						else if( (Poti_raw >= 3072) && (Poti_raw < 4096) ) {
-							Patch->VCO1_Waveform = 4;	// PWM/Square
-							Paint_DrawStringAt(&paint, 10, 40, "PWM/Square", &Font16, COLORED);
-						}
-					}
-					else {}
-				}
-				else if(Patch->ModuleState[0] == false) {	// if VCO1 OFF selected
-					Patch->ModuleParametersSelected[0] = true;
-					//Patch->ModuleCompleted[0] = true;
-					Patch->CurrentModule = 1;				// CurrentModule = Tremolo
-				}
-
-				// Display the frame buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-
-				if(ENTER == true) {			// the VCO1-parameters were edited
-					Patch->ModuleParametersSelected[0] = true;
-					//Patch->ModuleCompleted[0] = true;
-					Patch->CurrentModule = 1;	// CurrentModule = Tremolo
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					HAL_Delay(1000);	// for safety, so the next parameter will not be picked accidentally
-				}
-				if(BACK == true) {	// if BACK-Switch was pressed
-					Patch->ModuleStateSelected[0] = false;
-					Patch->ModuleParametersSelected[0] = false;
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					HAL_Delay(1000);	// for safety, so the next parameter will not be picked accidentally
-					//BACK = false;	// ???
-					break;	// go back by one step in the display-menu
-				}
-				// reset BACK-switch
-				//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
-				if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {
-					BACK = false;
-				}
-				// reset ENTER-switch
-				if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
-					ENTER = false;
-				}
-			}
-		}
-		// ################################
-		// ########### END VCO1 ###########
-		// ################################
-
-
-		// ################################
-		// ######## BEGIN Tremolo #########
-		// ################################
-		//while(Patch->ModuleCompleted[1] == false) {
-		while(Patch->CurrentModule == 1) {
-
-			while(Patch->ModuleStateSelected[1] == false) {	// select Tremolo state (ON/OFF)
-
-				VRx = ADC2inputs[0];	// read joystick x-value
-
-				if( (JoystickParameterPosition == 1) && (VRx > LowerLimit) ) {			// stay at TREMOLO ON
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);		// NECESSARY???
-					Paint_DrawStringAt(&paint, 10, 10, "Tremolo on", &Font16, COLORED);
-				}
-				else if( (JoystickParameterPosition == 1) && (VRx < LowerLimit) ) {		// switch to TREMOLO OFF
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Tremolo off", &Font16, COLORED);
-					JoystickParameterPosition = 2;
-				}
-				else if( (JoystickParameterPosition == 2) && (VRx < UpperLimit) ) {		// stay at TREMOLO OFF
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Tremolo off", &Font16, COLORED);
-				}
-				else if( (JoystickParameterPosition == 2) && (VRx > UpperLimit) ) {		// switch to TREMOLO ON
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Tremolo on", &Font16, COLORED);
-					JoystickParameterPosition = 1;
-				}
-				else {}
-
-				// check if TREMOLO ON or OFF is selected
-				if( (JoystickParameterPosition == 1) && (ENTER == true) ) {
-					Patch->ModuleStateSelected[1] = true;
-					Patch->ModuleState[1] = true;	// TREMOLO ON selected
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					Paint_Clear(&paint, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Tremolo on picked", &Font16, COLORED);
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-					HAL_Delay(1000);	// necessary?
-					Paint_Clear(&paint, UNCOLORED);	// clear display
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-				}
-				else if( (JoystickParameterPosition == 2) && (ENTER == true) ) {
-					Patch->ModuleStateSelected[1] = true;
-					Patch->ModuleState[1] = false;	// TREMOLO OFF selected
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					Paint_Clear(&paint, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Tremolo off picked", &Font16, COLORED);
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-					HAL_Delay(1000);	// necessary?
-					Paint_Clear(&paint, UNCOLORED);	// clear display
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-				}
-				else {}
-
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-
-				// Go back to VCO1
-				if(BACK == true) {	// if BACK-Switch was pressed
-					Patch->ModuleStateSelected[0] = false;
-					Patch->ModuleParametersSelected[0] = false;
-					Patch->ModuleStateSelected[1] = false;		// NECESSARY???
-					Patch->ModuleParametersSelected[1] = false;	// NECESSARY???
-					Patch->CurrentModule = 0;		// CurrentModule = VCO1
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					HAL_Delay(1000);	// for safety, so the next parameter will not be picked accidentally
-					//BACK = false;	// ???
-					break;	// go back by one step in the display-menu
-				}
-
-				// reset BACK-switch
-				//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
-				if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {
-					BACK = false;
-				}
-				// reset ENTER-switch
-				if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
-					ENTER = false;
-				}
-			}
-
-			while( (Patch->ModuleParametersSelected[1] == false) && (Patch->CurrentModule == 1) ) {	// select TREMOLO parameters
-
-				Poti_raw = ADC2inputs[2];	// read potentiometer
-				VRx = ADC2inputs[0];		// read joystick x-value
-
-				if(Patch->ModuleState[1] == true) {	// if TREMOLO ON selected
-
-					if( (JoystickParameterPosition == 1) && (VRx > LowerLimit) ) {			// stay at TREMOLO LFO-RATE
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);		// NECESSARY???
-						Paint_DrawStringAt(&paint, 10, 10, "Tremolo LFO-Rate", &Font16, COLORED);
-						Patch->Tremolo_LFO_Rate = (uint8_t)(((float)Poti_raw/4095)*20);	// 20 Hz -> Full Scale
-						char tremolo_lfo_rate[5];
-						sprintf(tremolo_lfo_rate, "%d", Patch->Tremolo_LFO_Rate);
-						Paint_DrawStringAt(&paint, 10, 40, tremolo_lfo_rate, &Font16, COLORED);
-					}
-					else if( (JoystickParameterPosition == 1) && (VRx < LowerLimit) ) {		// switch to TREMOLO LFO-DEPTH
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "Tremolo LFO-Depth", &Font16, COLORED);
-						JoystickParameterPosition = 2;
-						Patch->Tremolo_LFO_Depth = ((float)Poti_raw/4095);	// 1.0 -> Full Scale
-						char tremolo_lfo_depth[5];
-						sprintf(tremolo_lfo_depth, "%f", Patch->Tremolo_LFO_Depth);
-						Paint_DrawStringAt(&paint, 10, 40, tremolo_lfo_depth, &Font16, COLORED);	// STRING NECESSARY???
-					}
-					else if( (JoystickParameterPosition == 2) && (VRx < UpperLimit) ) {		// stay at TREMOLO LFO-DEPTH
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "Tremolo LFO-Depth", &Font16, COLORED);
-						Patch->Tremolo_LFO_Depth = ((float)Poti_raw/4095);	// 1.0 -> Full Scale
-						char tremolo_lfo_depth[5];
-						sprintf(tremolo_lfo_depth, "%f", Patch->Tremolo_LFO_Depth);
-						Paint_DrawStringAt(&paint, 10, 40, tremolo_lfo_depth, &Font16, COLORED);	// STRING NECESSARY???
-					}
-					else if( (JoystickParameterPosition == 2) && (VRx > UpperLimit) ) {		// switch to TREMOLO LFO-RATE
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "Tremolo LFO-Rate", &Font16, COLORED);
-						JoystickParameterPosition = 1;
-						Patch->Tremolo_LFO_Rate = (uint8_t)(((float)Poti_raw/4095)*20);	// 20 Hz -> Full Scale
-						char tremolo_lfo_rate[5];
-						sprintf(tremolo_lfo_rate, "%d", Patch->Tremolo_LFO_Rate);
-						Paint_DrawStringAt(&paint, 10, 40, tremolo_lfo_rate, &Font16, COLORED);
-					}
-					else {}
-				}
-				else if(Patch->ModuleState[1] == false) {	// if TREMOLO OFF selected
-					Patch->ModuleParametersSelected[1] = true;
-					//Patch->ModuleCompleted[1] = true;
-					Patch->CurrentModule = 2;				// CurrentModule = Distortion
-				}
-
-				// Display the frame buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-
-				if(ENTER == true) {			// the Tremolo-parameters were edited
-					Patch->ModuleParametersSelected[1] = true;
-					//Patch->ModuleCompleted[1] = true;
-					Patch->CurrentModule = 2;	// CurrentModule = Distortion
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					HAL_Delay(1000);	// for safety, so the next parameter will not be picked accidentally
-				}
-				if(BACK == true) {	// if BACK-Switch was pressed
-					Patch->ModuleStateSelected[1] = false;
-					Patch->ModuleParametersSelected[1] = false;
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					HAL_Delay(1000);	// for safety, so the next parameter will not be picked accidentally
-					BACK = false;	// ???
-					break;	// go back by one step in the display-menu
-				}
-
-				// reset BACK-switch
-				//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
-				if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {
-					BACK = false;
-				}
-				// reset ENTER-switch
-				if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
-					ENTER = false;
-				}
-			}
-		}
-		// ################################
-		// ######### END Tremolo ##########
-		// ################################
-
-
-		// ################################
-		// ####### BEGIN Distortion #######
-		// ################################
-		//while(Patch->ModuleCompleted[2] == false) {
-		while(Patch->CurrentModule == 2) {
-
-			while(Patch->ModuleStateSelected[2] == false) {	// select Distortion state (ON/OFF)
-
-				VRx = ADC2inputs[0];	// read joystick x-value
-
-				if( (JoystickParameterPosition == 1) && (VRx > LowerLimit) ) {			// stay at DISTORTION ON
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);		// NECESSARY???
-					Paint_DrawStringAt(&paint, 10, 10, "Distortion on", &Font16, COLORED);
-				}
-				else if( (JoystickParameterPosition == 1) && (VRx < LowerLimit) ) {		// switch to DISTORTION OFF
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Distortion off", &Font16, COLORED);
-					JoystickParameterPosition = 2;
-				}
-				else if( (JoystickParameterPosition == 2) && (VRx < UpperLimit) ) {		// stay at DISTORTION OFF
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Distortion off", &Font16, COLORED);
-				}
-				else if( (JoystickParameterPosition == 2) && (VRx > UpperLimit) ) {			// switch to DISTORTION ON
-					Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Distortion on", &Font16, COLORED);
-					JoystickParameterPosition = 1;
-				}
-				else {}
-
-				// check if DISTORTION ON or OFF is selected
-				if( (JoystickParameterPosition == 1) && (ENTER == true) ) {
-					Patch->ModuleStateSelected[2] = true;
-					Patch->ModuleState[2] = true;	// DISTORTION ON selected
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					Paint_Clear(&paint, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Distortion on picked", &Font16, COLORED);
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-					HAL_Delay(1000);	// necessary?
-					Paint_Clear(&paint, UNCOLORED);	// clear display
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-				}
-				else if( (JoystickParameterPosition == 2) && (ENTER == true) ) {
-					Patch->ModuleStateSelected[2] = true;
-					Patch->ModuleState[2] = false;	// DISTORTION OFF selected
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					Paint_Clear(&paint, UNCOLORED);
-					Paint_DrawStringAt(&paint, 10, 10, "Distortion off picked", &Font16, COLORED);
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-					HAL_Delay(1000);	// necessary?
-					Paint_Clear(&paint, UNCOLORED);	// clear display
-					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-					EPD_DisplayFrame(&epd);
-				}
-				else {}
-
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-
-				// Go back to Tremolo
-				if(BACK == true) {	// if BACK-Switch was pressed
-					Patch->ModuleStateSelected[1] = false;
-					Patch->ModuleParametersSelected[1] = false;
-					Patch->ModuleStateSelected[2] = false;		// NECESSARY???
-					Patch->ModuleParametersSelected[2] = false;	// NECESSARY???
-					Patch->CurrentModule = 1;		// CurrentModule = Tremolo
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					HAL_Delay(1000);	// for safety, so the next parameter will not be picked accidentally
-					BACK = false;	// ???
-					break;	// go back by one step in the display-menu
-				}
-
-				// reset BACK-switch
-				//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
-				if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {
-					BACK = false;
-				}
-				// reset ENTER-switch
-				if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
-					ENTER = false;
-				}
-			}
-
-			while( (Patch->ModuleParametersSelected[2] == false) && (Patch->CurrentModule == 2) ) {	// select DISTORTION parameters
-
-				Poti_raw = ADC2inputs[2];	// read potentiometer
-				VRx = ADC2inputs[0];		// read joystick x-value
-
-				if(Patch->ModuleState[2] == true) {	// if DISTORTION ON selected
-
-					if( (JoystickParameterPosition == 1) && (VRx > LowerLimit) ) {			// stay at DISTORTION-TYPE
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);		// NECESSARY???
-						Paint_DrawStringAt(&paint, 10, 10, "Distortion Type", &Font16, COLORED);
-						if(Poti_raw < 2048) {
-							Patch->Distortion_Type = 1;	// Hard-Clipping
-							Paint_DrawStringAt(&paint, 10, 40, "Hard-Clipping", &Font16, COLORED);
-						}
-						else if( (Poti_raw >= 2048) && (Poti_raw < 4096) ) {
-							Patch->Distortion_Type = 2;	// atan-Soft-Clipping
-							Paint_DrawStringAt(&paint, 10, 40, "atan-Soft-Clipping", &Font16, COLORED);
-						}
-					}
-					else if( (JoystickParameterPosition == 1) && (VRx < LowerLimit) ) {		// switch to DISTORTION GAIN
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "Distortion Gain", &Font16, COLORED);
-						JoystickParameterPosition = 2;
-						Patch->Distortion_Gain = (uint8_t)(((float)Poti_raw/4095)*10);	// 10 -> Full Scale
-						char distortion_gain[5];
-						sprintf(distortion_gain, "%d", Patch->Distortion_Gain);
-						Paint_DrawStringAt(&paint, 10, 40, distortion_gain, &Font16, COLORED);	// STRING NECESSARY???
-					}
-					else if( (JoystickParameterPosition == 2) && (VRx < UpperLimit) ) {		// stay at DISTORTION GAIN
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "Distortion Gain", &Font16, COLORED);
-						Patch->Distortion_Gain = (uint8_t)(((float)Poti_raw/4095)*10);	// 10 -> Full Scale
-						char distortion_gain[5];
-						sprintf(distortion_gain, "%d", Patch->Distortion_Gain);
-						Paint_DrawStringAt(&paint, 10, 40, distortion_gain, &Font16, COLORED);	// STRING NECESSARY???
-					}
-					else if( (JoystickParameterPosition == 2) && (VRx > UpperLimit) ) {			// switch to DISTORTION TYPE
-						Paint_DrawFilledRectangle(&paint, 1, 1, 400, 400, UNCOLORED);
-						Paint_DrawStringAt(&paint, 10, 10, "Distortion Type", &Font16, COLORED);
-						JoystickParameterPosition = 1;
-						if(Poti_raw < 2048) {
-							Patch->Distortion_Type = 1;	// Hard-Clipping
-							Paint_DrawStringAt(&paint, 10, 40, "Hard-Clipping", &Font16, COLORED);
-						}
-						else if( (Poti_raw >= 2048) && (Poti_raw < 4096) ) {
-							Patch->Distortion_Type = 2;	// atan-Soft-Clipping
-							Paint_DrawStringAt(&paint, 10, 40, "atan-Soft-Clipping", &Font16, COLORED);
-						}
-					}
-					else {}
-				}
-				else if(Patch->ModuleState[2] == false) {	// if DISTORTION OFF selected
-					Patch->ModuleParametersSelected[2] = true;
-					//Patch->ModuleCompleted[2] = true;
-				}
-
-				// Display the frame buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-
-				if(ENTER == true) {			// the Distortion-parameters were edited
-					Patch->ModuleParametersSelected[2] = true;
-					//Patch->ModuleCompleted[2] = true;
-					Patch->CurrentModule = 3;	// CurrentModule still Distortion
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					HAL_Delay(1000);	// for safety, so the next parameter will not be picked accidentally
-				}
-				if(BACK == true) {	// if BACK-Switch was pressed
-					Patch->ModuleStateSelected[2] = false;
-					Patch->ModuleParametersSelected[2] = false;
-					JoystickParameterPosition = 1;	// reset JoystickParameterPosition for the following sub-menu
-					HAL_Delay(1000);	// for safety, so the next parameter will not be picked accidentally
-					BACK = false;	// ???
-					break;	// go back by one step in the display-menu
-				}
-
-				// reset BACK-switch
-				//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
-				if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {
-					BACK = false;
-				}
-				// reset ENTER-switch
-				if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
-					ENTER = false;
-				}
-			}
-		}
-		// ################################
-		// ####### END Distortion #########
-		// ################################*/
 	}
 }
 

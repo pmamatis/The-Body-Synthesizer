@@ -183,7 +183,7 @@ void Signal_Synthesis(){
 		//calculate_vector1[BLOCKSIZE_counter] = HardClippingDistortion(&distortion, distortion.distortion_gain, calculate_vector1[BLOCKSIZE_counter]);
 
 		// apply atan-soft-clipping-distortion-effect
-		calculate_vector1[BLOCKSIZE_counter] = atanSoftClippingDistortion(&distortion, calculate_vector1[BLOCKSIZE_counter]);
+		//calculate_vector1[BLOCKSIZE_counter] = atanSoftClippingDistortion(&distortion, calculate_vector1[BLOCKSIZE_counter]);
 		/*//atan_parameter = distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]+(10-aquidistance);
 		atan_parameter = (distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]) + 10;
 		distortion_index = round(atan_parameter/aquidistance);
