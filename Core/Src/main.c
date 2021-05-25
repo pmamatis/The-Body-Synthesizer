@@ -1242,8 +1242,8 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
 			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
 
-			uint8_t note, last_note, last_octave;
-			char octave;
+			uint8_t note, last_note;
+			char octave, last_octave;
 
 			if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
 				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to Voice1 ON/OFF
@@ -1300,25 +1300,36 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			// Voice1 Octave
 			if(Display->JoystickParameterPosition == 3) {
 				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
-				octave = (char) (((float)Display->Poti_raw/4096) * 6) + '0';	// cast to integer and convert integer to ascii
-				Paint_DrawCharAt(&paint, 150, 70, octave, &Font12, COLORED);
+				octave = (char) (((float)Display->Poti_raw/4096) * 6);
+				Paint_DrawCharAt(&paint, 150, 70, octave+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 				Display->Voices_Octave[0] = octave;	// assign Voice1 Octave
 			}
 
 			if(Display->Voices_ONOFF[0] == true) {	// if Voice1 ON
 				if( (last_note != note) || (last_octave != octave) ) {
-					//outputBuffer_position = HALF_BLOCK;
-					DeleteSignal(1);
-					uint8_t octave_ascii_to_int = octave - '0';
-//					Paint_DrawFilledRectangle(&paint, 150, 150, 200, 200, UNCOLORED);	// DEBUGGING
-//					Paint_DrawCharAt(&paint, 150, 150, octave_ascii_to_int, &Font12, COLORED);	// DEBUGGING
-					NewSignal(SIN, note, octave_ascii_to_int);	// create signal and assign selected parameters
+
+					/*if(signals1.count == 1) {
+						DeleteSignal(1);
+						NewSignal(SIN, note, octave);	// create signal and assign selected parameters
+						outputBuffer_position = HALF_BLOCK;
+					}
+
+					else if(signals1.count == 0) {
+						NewSignal(SIN, note, octave);	// create signal and assign selected parameters
+						outputBuffer_position = HALF_BLOCK;
+					}*/
+
+					if(signals1.count == 1)
+						DeleteSignal(1);
+
+					NewSignal(SIN, note, octave);	// create signal and assign selected parameters
 					outputBuffer_position = HALF_BLOCK;
 				}
 			}
-			/*else {
-				DeleteSignal(1);
-			}*/
+			else if(Display->Voices_ONOFF[0] == false) {	// if Voice1 OFF
+				if(signals1.count == 1)
+					DeleteSignal(1);
+			}
 			last_note = note;
 			last_octave = octave;
 
