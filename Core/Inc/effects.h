@@ -1,39 +1,37 @@
-/*
- * effects.h
- *
- *  Created on: 12.08.2020
- *      Author: Marc Bielen
- */
+#include "main.h"
 
 #ifndef INC_EFFECTS_H_
 #define INC_EFFECTS_H_
 
-#include "main.h"
+/*********************************
+ * @brief		Defines
+ *********************************/
+#define MAX_EFFECTS 10
 
-//Effects
-enum effects_using_LFO{
-	TREMOLLO = 0,
-};
+/***************************
+ * @brief		Enumeration for DSP Effects
+ ***************************/
+typedef enum effects_t_enum{
+	TREM = 1,     // Tremolo
+	DIST,         // Distortion
+	EQ			  //Equalizer
 
-struct effects_LFO{
-	uint8_t name;
-	uint32_t index;
-	uint8_t quarter;
-	float lfo_frequency;
-	uint32_t lfo_blocksizecounter;
-	float lfo_depth;
-};
-
-struct effects_distortion{
-	float distortion_gain;
-	float atan_parameter;
-	unsigned int distortion_index;
-};
+}effects_t_enum;
 
 
-//float Tremolo(struct effects_LFO* effect, float calculate_vector);
-float Tremolo(struct effects_LFO* effect, float LFO_Depth, float calculate_vector);
-float HardClippingDistortion(struct effects_distortion* effect, float Distortion_Gain, float calculate_vector);
-float atanSoftClippingDistortion(struct effects_distortion* effect, float calculate_vector);
+/*********************************
+ * @beief	Variables
+ *********************************/
 
-#endif /* INC_EFFECTS_H_ */
+/** Array filled with the effects in process order
+ */
+effects_t_enum effect_order[MAX_EFFECTS];
+
+/*********************************
+ * @brief	Functions
+ *********************************/
+void effects_init();
+void effects_process(float* calculate_value);
+void effects_add(effects_t_enum effect, uint8_t position);
+
+#endif /* __EFFECTS_H */

@@ -15,7 +15,6 @@
 
 #include "main.h"
 
-
 enum chord_type{
 	fifth= 0,
 	seventh,
@@ -31,9 +30,7 @@ enum sex_type{
 const char keys[26];
 
 uint8_t Get_Keyindex(char key);
-void Play_Note(char note, uint8_t octave, uint8_t channel);
 double Get_Note_Frequency(uint8_t index,uint8_t octave);
-void Play_Chord(char root_note,uint8_t sex, uint8_t octave, uint8_t chordtype);
 uint16_t Get_Note_Index(char key,uint8_t octave);
 
 

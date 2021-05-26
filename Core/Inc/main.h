@@ -38,6 +38,9 @@ extern "C" {
 #include "music_notes.h"
 #include "sinLUT.h"
 #include "effects.h"
+#include "filters.h"
+#include "tremolo.h"
+#include "distortion.h"
 
 /* USER CODE END Includes */
 
@@ -111,8 +114,6 @@ void Error_Handler(void);
 #define Blue_User_LED_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
-
-
 /**@brief number of support points for a single period*/
 #define SUPPORT_POINTS 20
 
@@ -123,33 +124,18 @@ void Error_Handler(void);
 //Variables
 
 /** @brief DAC output array*/
-uint32_t output_vector1[BLOCKSIZE];
+//uint32_t output_vector1[BLOCKSIZE];
 float calculate_vector1[BLOCKSIZE];
 
-uint32_t output_vector2[BLOCKSIZE];
+//uint32_t output_vector2[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
 struct effects_LFO tremollo;
 float effect_LFO[BLOCKSIZE/2];
 //float effect_LFO[BLOCKSIZE];	// DEBUG
-uint32_t effect_LFO_output[BLOCKSIZE];
-
-struct effects_distortion distortion;
-float atan_LUT_y[BLOCKSIZE];
-float aquidistance;
+//uint32_t effect_LFO_output[BLOCKSIZE];
 
 float sigFreq_sampleFreq_ratio;
-
-/*// Basic Delay Effect Variables
-float *delayData; // Our own circular buffer of samples
-#define delayBufLength 1000 // Length of our delay buffer in samples
-uint32_t dpr, dpw; // Read/write pointers into delay buffer
-float delay_out;
-// User-adjustable effect parameters:
-float dryMix; // Level of the dry (undelayed) signal
-float wetMix; // Level of the wet (delayed) signal
-float feedback_level; // Feedback level (0 if no feedback)*/
-
 
 /** @brief enum for DMA Output buffer position */
 enum outputBuffer_position_enum{

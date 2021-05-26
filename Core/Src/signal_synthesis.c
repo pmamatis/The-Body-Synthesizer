@@ -34,7 +34,7 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 	uint32_t Clock = HAL_RCC_GetHCLKFreq();	// system core clock HCLK
 	uint32_t values_length = 65536;
 	uint16_t prescaler;
-	uint32_t timerperiod;
+	uint32_t timerperiod = 0;
 
 	for(int i=1; i<values_length; i++) {
 
@@ -60,179 +60,176 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
  *  @param octave: defines in which octave the key is settled.
  *  @attention the combination of key and octave defines the frequency
  */
-void NewSignal(uint8_t kind, uint8_t key, uint8_t octave){
+void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave) {
 
-	if (signals1.count <= MAX_SIGNAL_KOMBINATION){
-		signals1.count += 1;
-		uint8_t index = signals1.count-1;
+	if (signals -> count <= MAX_SIGNAL_KOMBINATION){
+		signals -> count += 1;
+		uint8_t index = (signals-> count)-1;
 
-		signals1.kind[index] = kind;
-		signals1.freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
-		signals1.freqIndex[index] = Get_Note_Index(key,octave);
-		signals1.current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
-		signals1.max = 0;
-		for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
-			if(!ID_array[NewSignal_count]){
-				signals1.ID[NewSignal_count] = NewSignal_count;
-				ID_array[NewSignal_count] = 1;
-			}
+		signals -> kind[index] = kind;
+		switch (kind){
+
+		case SIN:
+
+			signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
+			signals -> freqIndex[index] = Get_Note_Index(key,octave);
+			signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
+			// signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
+
+
+			break;
+		case NOISE:
+			signals -> freq[index] = 0;
+			signals -> freqIndex[index] = 0;
+			signals -> current_LUT_Index[index] = 0;
+			break;
 		}
 	}
+	signals -> max = 1;
+
+	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
+		if(!ID_array[NewSignal_count]){
+			signals -> ID[NewSignal_count] = NewSignal_count;
+			ID_array[NewSignal_count] = 1;
+		}
+
+	}
+
 }
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
  * @param: signal_index: index of the signals which should be seleted
- * @attention if you wnat to delete two signals in a row, beware that the index of the second signal could have changed, e.g. signals1 contains three signals, you want to delete signals1[0] and signals1[1]. After using DeleteSignal(0) you need to use DeleteSignal(0) again, because signals1[1] became signals1[0] after first use  */
-void DeleteSignal(uint8_t signal_index){
+ * @attention if you wnat to delete two signals in a row, beware that the index of the second signal could have changed, e.g. signals1 contains three signals, you want to delete signals1[0] and signals1[1]. After using DeleteSignal(0) you need to use DeleteSignal(0) again, because signals1[1] became signals1[0] after first use
+ * @return None
+ *  */
+void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 	//free the signal ID
-	uint8_t tmp = signals1.ID[signal_index];
+	uint8_t tmp = signals -> ID[signal_index];
 	ID_array[tmp] = 0;
 
 	//shift signals too left
-	for (int delete_counter=signal_index; delete_counter < signals1.count;delete_counter++ ){
-		signals1.current_LUT_Index[delete_counter] = signals1.current_LUT_Index[delete_counter+1] ;
-		signals1.freq[delete_counter] = signals1.freq[delete_counter+1];
-		signals1.freqIndex[delete_counter] = signals1.freqIndex[delete_counter+1];
-		signals1.kind[delete_counter] = signals1.kind[delete_counter+1];
-		signals1.ID[delete_counter] = signals1.ID[delete_counter+1];
+	for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
+		signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
+		signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
+		signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
+		signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
+		signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
 
 	}
-	signals1.count-=1;
-	signals1.max = 0;
+	signals -> count-=1;
+	signals -> max = 0;
 }
 
-
-
-/** @brief generates a signal in the outputvector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
+/** @brief generates a signal in the calculate_vector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
+ *	@param signal: is a signal_t struct which contains the tones to be played
+ *	@param  output_Channel: decides if the Array connected to the DAC Channel one is filled or the array connected with the DAC channel two is filled
+ *  @note Channel 1 is connected to calculate_vector1 and Channel 2 connected to calculate_vector2
+ *  @return None
  */
-void Signal_Synthesis(){
+void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 
 	//Variables
 	float addValue=0;
-	uint8_t count;
-	struct signal signals;
-	// decide if Channel 1 or Channel 2
-	/**@TODO */
-	if (output_Channel == 1){
-		count = signals1.count;
-		signals = signals1;
-	}
-	//		else if (output_Channel == 2){
-	//			count = signals2.count;
-	//			signals = signals2;
-	//		}
+	uint8_t count = signals -> count;
 
+	// decide if Channel 1 or Channel 2
+	float* calculate_vector_tmp = 0; // working aray
+
+	if (output_Channel == 1){
+		calculate_vector_tmp = calculate_vector1;
+	}
+	else if (output_Channel == 2){
+		calculate_vector_tmp = calculate_vector2;
+	}
 
 	//decide if first half of BLOCKSIZE or second half
-	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
-	if(outputBuffer_position == HALF_BLOCK) {
-		BLOOCKSIZE_startIndex = 0;
-		BLOOCKSIZE_endIndex = BLOCKSIZE/2;
+	uint16_t BLOOCKSIZE_startIndex=0, BLOOCKSIZE_endIndex=0;
+	if (outputBuffer_position == HALF_BLOCK){
+		BLOOCKSIZE_startIndex = 0; // nur für lesbarkeit
+		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
 	}
-	else if(outputBuffer_position == FULL_BLOCK) {
+	else if(outputBuffer_position == FULL_BLOCK){
 		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
 	}
 
-	//Loop to for first signal synthesis and find maximum
-	for(int BLOCKSIZE_counter=BLOOCKSIZE_startIndex; BLOCKSIZE_counter<BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
+	//Loop for signal synthesis
+	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 		addValue = 0;
 		//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
-			switch (signals.kind[j]) {
+			switch (signals -> kind[j]) {
 			case SIN:
 				//adds all SIN values from the signals to addValue
-				addValue = addValue + LUT[signals.current_LUT_Index[j]];
+				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 
 				//get index for the next sin value
-				signals.current_LUT_Index[j]++;
-				if (signals.current_LUT_Index[j] > LUT_ENDINDEX[signals.freqIndex[j]])
+				signals -> current_LUT_Index[j]++;
+				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
 				{
-					signals.current_LUT_Index[j] = LUT_STARTINDEX[signals1.freqIndex[j]];
+					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
 				}
 				break;
-			} // Switch-Case
-		} // Signal counter for-loop
 
-		// maximum
-		if (signals.max < fabs((double)addValue)){
-			signals.max = fabs((double)addValue);
+			case NOISE:
+				addValue += AWGN_generator();
+				break;
+			}//Switch-Case
+		}// SIgnal counter for-loop
+
+
+		//write into calculate vector
+		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
+
+
+		/*limiter function*/
+		//norm the signal to -1...1
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
+
+
+		//Effekte
+		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+
+
+		//maximum
+		if (signals -> max < fabs((double)addValue)){
+			signals -> max = fabs((double)addValue);
 		}
 
-		// write into calculate vector
-		calculate_vector1[BLOCKSIZE_counter] = addValue;
-
-
-	} //BLOCKSIZE for-Loop I
-
-
-	//Loop to adjust the signal
-	for(int BLOCKSIZE_counter=BLOOCKSIZE_startIndex; BLOCKSIZE_counter<BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
-
-		//norm the signal to -1...1
-		// addValue = addValue/count;
-		calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/signals.max;
-
-		// BEGIN EFFECTS----------------------------------------------------------------------------------------------
-
-		// apply tremolo-effect
-		//calculate_vector1[BLOCKSIZE_counter] = Tremolo(&tremollo, tremollo.lfo_depth, calculate_vector1[BLOCKSIZE_counter]);
-		//calculate_vector1[BLOCKSIZE_counter] = Tremolo(&tremollo, calculate_vector1[BLOCKSIZE_counter]);
-
-		// apply hard-clipping-distortion-effect
-		//calculate_vector1[BLOCKSIZE_counter] = HardClippingDistortion(&distortion, distortion.distortion_gain, calculate_vector1[BLOCKSIZE_counter]);
-
-		// apply atan-soft-clipping-distortion-effect
-		//calculate_vector1[BLOCKSIZE_counter] = atanSoftClippingDistortion(&distortion, calculate_vector1[BLOCKSIZE_counter]);
-		/*//atan_parameter = distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]+(10-aquidistance);
-		atan_parameter = (distortion.distortion_gain * calculate_vector1[BLOCKSIZE_counter]) + 10;
-		distortion_index = round(atan_parameter/aquidistance);
-		calculate_vector1[BLOCKSIZE_counter] = 0.5*atan_LUT_y[distortion_index];	// scale down the amplitude*/
-
-
-		// END EFFECTS------------------------------------------------------------------------------------------------
-
-		/*//scale output signal depeding on amount of voices
-		switch (signals.count){
+		//scale output signal depending on amount of voices
+		switch (signals -> count){
 		case 1:
-			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter]/((float)2.37);// -7.5 dB
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
 			break;
 		case 2:
-			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)2);// -6 dB
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
 			break;
 		case 3:
-			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
 			break;
 		case 4:
-			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
 			break;
 		case 5:
-			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
 			break;
 		default:
-			calculate_vector1[BLOCKSIZE_counter] = calculate_vector1[BLOCKSIZE_counter];
+			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
 			break;
-		}*/
-
-		//if-clause to control the distance between two vector entrys
-		//			if (abs(output_vector1[BLOCKSIZE_counter]-output_vector1[BLOCKSIZE_counter-1]) > 20){
-		//				tmp[index_tmp] = BLOCKSIZE_counter;
-		//				index_tmp++;
-		//			}
-
+		}
 
 		//Signal adjustment to DAC
-		//output_vector1[BLOCKSIZE_counter] = (calculate_vector1[BLOCKSIZE_counter] - (-signals.max)) * (4095 - 0) / (signals.max - (-signals.max)) + 0;
-		output_vector1[BLOCKSIZE_counter] = (uint32_t)((calculate_vector1[BLOCKSIZE_counter]+1)/2 * maxValueDAC + OFFSET );
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
+		//
 
-	} //BLOCKSIZE for-Loop II
+	} //End for-Loop
 
 	// save current LUT index into signals1,
-	for (int tmp_count = 0 ; tmp_count < signals.count; tmp_count++){
-		signals1.current_LUT_Index[tmp_count] = signals.current_LUT_Index[tmp_count];
+	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
+		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
 	}
 
-}
+}//Signal Synthesis
 
 /** @brief generates a low frequency sine to be used for effects
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO
@@ -285,68 +282,42 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 }
 
 
-/** @brief generates a low frequency sine to be used for effects
- *  @param effect: struct which contains the parameter for the effect which want to use the LFO
- *
- */
-/*void Signal_Synthesis_LFO(struct effects_LFO* effect) {
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
-	float frequency = effect->frequency;
-	uint8_t quarter = effect->quarter;
-	uint32_t index = effect->index;
+/* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */
+float AWGN_generator()
+{
 
-	// calculate ratio between LFO_LUT frequency and disired frequency
-	float frequency_ratio = frequency /LFO_FMIN;
+	float temp1;
+	float temp2;
+	float result;
+	int p;
 
-	//DEBUG
-	uint16_t BLOOCKSIZE_startIndex, BLOOCKSIZE_endIndex;
-	if (outputBuffer_position == HALF_BLOCK){
-		BLOOCKSIZE_startIndex = 0;
-		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
-	}
-	else if(outputBuffer_position == FULL_BLOCK){
-		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
-		BLOOCKSIZE_endIndex  = BLOCKSIZE;
-	}
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {	// DEBUG
+	p = 1;
 
-		//for (int LFO_counter = 0; LFO_counter <BLOCKSIZE/2; LFO_counter++){
-		// check if end of LFO_LUT is reached, when yes increment qurter and set index to zero
-		if ( index  > LFO_ENDINDEX[0]){
-			index = 0;
-			quarter++;
-			if (quarter > 3)
-				quarter = 0;
-		}
+	while( p > 0 )
+	{
+		temp2 = ( rand() / ( (float)RAND_MAX ) ); /*  rand() function generates an
+                                                       integer between 0 and  RAND_MAX,
+                                                       which is defined in stdlib.h.
+		 */
 
-		switch(quarter){
-		case 0:
-			//effect_LFO[LFO_counter] = LFO[index];
-			effect_LFO[BLOCKSIZE_counter] = LFO[index];	// DEBUG
-			break;
-		case 1:
-			//effect_LFO[LFO_counter] = LFO[(LFO_ENDINDEX[0] - index)];
-			effect_LFO[BLOCKSIZE_counter] = LFO[(LFO_ENDINDEX[0] - index )];	// DEBUG
-			break;
-		case 2:
-			//effect_LFO[LFO_counter] = -LFO[index];
-			effect_LFO[BLOCKSIZE_counter] = -LFO[index];	// DEBUG
-			break;
-		case 3:
-			//effect_LFO[LFO_counter] = -LFO[(LFO_ENDINDEX[0] - index)];
-			effect_LFO[BLOCKSIZE_counter] = -LFO[(LFO_ENDINDEX[0] - index)];	// DEBUG
-			break;
-		default:
-			break;
-		} // end switch-case
-		index = round((double)(index + frequency_ratio));
+		if ( temp2 == 0 )
+		{// temp2 is >= (RAND_MAX / 2)
+			p = 1;
+		}// end if
+		else
+		{// temp2 is < (RAND_MAX / 2)
+			p = -1;
+		}// end else
 
-		//DEBUG
-		effect_LFO_output[BLOCKSIZE_counter] = (uint32_t)((effect_LFO[BLOCKSIZE_counter]+1)/2 * 3000 + 145);
+	}// end while()
 
-	} //BLOCKSIZE for-Loop I
+	temp1 = cos( ( 2.0 * (float)M_PI ) * rand() / ( (float)RAND_MAX ) );
+	result = sqrt( -2.0 * log( temp2 ) ) * temp1;
 
-	//save current state into given effect struct
-	effect -> index = index;
-	effect -> quarter = quarter;
-}*/
+	return result;	// return the generated random sample to the caller
+
+}// end AWGN_generator()
