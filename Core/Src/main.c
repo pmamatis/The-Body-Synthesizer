@@ -441,7 +441,7 @@ int main(void)
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, output_vector1, BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//Example signal for test
-	NewSignal(SIN, 'C', 0);
+	//NewSignal(SIN, 'C', 0);
 
 	// Patch-Selection-Startmenu
 	PatchSelectionMenu(&Display, paint, epd, frame_buffer);
@@ -1225,15 +1225,15 @@ void PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd,
 
 void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer) {
 
-	// Patch 1 selected
+	// PATCH 1 SELECTED
 	while(Display->PatchSelected[0] == true) {
 
 		// #############################################
-		// ########## BEGIN SYNTHESIS SUBMENU ##########
+		// ########### BEGIN VOICES SUBMENU ############
 		// #############################################
 		while(Display->CurrentModule == 0) {
 
-			Paint_DrawStringAt(&paint, 1, 10, "Synthesis", &Font16, COLORED);
+			Paint_DrawStringAt(&paint, 1, 10, "Voices", &Font16, COLORED);
 			Paint_DrawStringAt(&paint, 1, 30, "Voice1 ON/OFF", &Font12, COLORED);
 			Paint_DrawStringAt(&paint, 1, 50, "Voice1 Note", &Font12, COLORED);
 			Paint_DrawStringAt(&paint, 1, 70, "Voice1 Octave", &Font12, COLORED);
@@ -1308,17 +1308,6 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			if(Display->Voices_ONOFF[0] == true) {	// if Voice1 ON
 				if( (last_note != note) || (last_octave != octave) ) {
 
-					/*if(signals1.count == 1) {
-						DeleteSignal(1);
-						NewSignal(SIN, note, octave);	// create signal and assign selected parameters
-						outputBuffer_position = HALF_BLOCK;
-					}
-
-					else if(signals1.count == 0) {
-						NewSignal(SIN, note, octave);	// create signal and assign selected parameters
-						outputBuffer_position = HALF_BLOCK;
-					}*/
-
 					if(signals1.count == 1)
 						DeleteSignal(1);
 
@@ -1345,9 +1334,91 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
 				Display->ENTER = false;
 			}
+
+			if(Display->VRx < Display->LowerLimit) {
+				Display->CurrentModule = 1;	// forward to ADSR
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+
 		}
 		// #############################################
-		// ########### END SYNTHESIS SUBMENU ###########
+		// ############ END VOICES SUBMENU #############
+		// #############################################
+
+
+		// #############################################
+		// ############ BEGIN ADSR SUBMENU #############
+		// #############################################
+		while(Display->CurrentModule == 1) {
+
+			Paint_DrawStringAt(&paint, 1, 10, "ADSR", &Font16, COLORED);
+			Paint_DrawStringAt(&paint, 1, 30, "ADSR ON/OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 50, "Attack", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Delay", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 90, "Sustain", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 110, "Release", &Font12, COLORED);
+
+			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
+			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
+			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
+
+			// Display the frame_buffer
+			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+			EPD_DisplayFrame(&epd);
+
+			if(Display->VRx > Display->UpperLimit) {
+				Display->CurrentModule = 0;	// back to Voices
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+			/*else if(Display->VRx > Display->UpperLimit) {
+				Display->CurrentModule = 2;	// forward to EQ
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}*/
+
+		}
+		// #############################################
+		// ############# END ADSR SUBMENU ##############
+		// #############################################
+
+
+		// #############################################
+		// ########## BEGIN EQUALIZER SUBMENU ##########
+		// #############################################
+		while(Display->CurrentModule == 2) {
+
+			Paint_DrawStringAt(&paint, 1, 10, "Equalizer", &Font16, COLORED);
+			Paint_DrawStringAt(&paint, 1, 30, "Band1 ON/OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 50, "Q", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Gain", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 90, "Grenzfrequenz", &Font12, COLORED);
+
+			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
+			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
+			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
+
+			// Display the frame_buffer
+			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+			EPD_DisplayFrame(&epd);
+
+			if(Display->VRx < Display->LowerLimit) {
+				Display->CurrentModule = 1;	// back to ADSR
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+		}
+		// #############################################
+		// ########## END EQUALIZER SUBMENU ############
 		// #############################################
 	}
 }
