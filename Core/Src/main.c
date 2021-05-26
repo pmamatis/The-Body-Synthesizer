@@ -1376,13 +1376,13 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 				EPD_DisplayFrame(&epd);
 			}
-			/*else if(Display->VRx > Display->UpperLimit) {
+			else if(Display->VRx < Display->LowerLimit) {
 				Display->CurrentModule = 2;	// forward to EQ
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 				EPD_DisplayFrame(&epd);
-			}*/
+			}
 
 		}
 		// #############################################
@@ -1397,9 +1397,9 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 
 			Paint_DrawStringAt(&paint, 1, 10, "Equalizer", &Font16, COLORED);
 			Paint_DrawStringAt(&paint, 1, 30, "Band1 ON/OFF", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 50, "Q", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 70, "Gain", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 90, "Grenzfrequenz", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 50, "Band1 Q", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Band1 Gain", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 90, "Band1 Cutoff", &Font12, COLORED);
 
 			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
 			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
@@ -1409,8 +1409,15 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 			EPD_DisplayFrame(&epd);
 
-			if(Display->VRx < Display->LowerLimit) {
+			if(Display->VRx > Display->UpperLimit) {
 				Display->CurrentModule = 1;	// back to ADSR
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+			else if(Display->VRx < Display->LowerLimit) {
+				Display->CurrentModule = 3;	// forward to Distortion
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
@@ -1420,7 +1427,76 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 		// #############################################
 		// ########## END EQUALIZER SUBMENU ############
 		// #############################################
+
+
+		// #############################################
+		// ########## BEGIN DISTORTION SUBMENU #########
+		// #############################################
+		while(Display->CurrentModule == 3) {
+
+			Paint_DrawStringAt(&paint, 1, 10, "Distortion", &Font16, COLORED);
+			Paint_DrawStringAt(&paint, 1, 30, "Distortion ON/OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 50, "Distortion Type", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Distortion Gain", &Font12, COLORED);
+
+			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
+			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
+			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
+
+			// Display the frame_buffer
+			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+			EPD_DisplayFrame(&epd);
+
+			if(Display->VRx > Display->UpperLimit) {
+				Display->CurrentModule = 2;	// back to Equalizer
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+			else if(Display->VRx < Display->LowerLimit) {
+				Display->CurrentModule = 4;	// forward to Tremolo
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+		}
+		// #############################################
+		// ########## END DISTORTION SUBMENU ###########
+		// #############################################
+
+		// #############################################
+		// ########### BEGIN TREMOLO SUBMENU ###########
+		// #############################################
+		while(Display->CurrentModule == 4) {
+
+			Paint_DrawStringAt(&paint, 1, 10, "Tremolo", &Font16, COLORED);
+			Paint_DrawStringAt(&paint, 1, 30, "Tremolo ON/OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 50, "Tremolo Rate", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Tremolo Depth", &Font12, COLORED);
+
+			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
+			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
+			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
+
+			// Display the frame_buffer
+			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+			EPD_DisplayFrame(&epd);
+
+			if(Display->VRx > Display->UpperLimit) {
+				Display->CurrentModule = 3;	// back to Distortion
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+		}
+		// #############################################
+		// ########### END TREMOLO SUBMENU #############
+		// #############################################
 	}
+
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
