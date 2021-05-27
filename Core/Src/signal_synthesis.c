@@ -196,7 +196,7 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 			signals -> max = fabs((double)addValue);
 		}
 
-		//scale output signal depending on amount of voices
+		/*//scale output signal depending on amount of voices
 		switch (signals -> count){
 		case 1:
 			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
@@ -216,11 +216,10 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 		default:
 			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
 			break;
-		}
+		}*/
 
 		//Signal adjustment to DAC
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
-		//
 
 	} //End for-Loop
 

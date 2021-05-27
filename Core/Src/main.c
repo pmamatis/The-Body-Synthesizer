@@ -466,10 +466,10 @@ int main(void)
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	// Patch-Selection-Startmenu
-	//PatchSelectionMenu(&Display, paint, epd, frame_buffer);
+	PatchSelectionMenu(&Display, paint, epd, frame_buffer);
 
 	// Request parameters of the Patch
-	//SetPatchParameters(&Display, paint, epd, frame_buffer);
+	SetPatchParameters(&Display, paint, epd, frame_buffer);
 
 	/* USER CODE END 2 */
 
@@ -477,7 +477,7 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 
 	//Example signal for test
-	NewSignal(&signals1, SIN, 'C', 0);
+	//NewSignal(&signals1, SIN, 'C', 0);
 
 	//effect chain
 	//effects_add(EQ, 0);
