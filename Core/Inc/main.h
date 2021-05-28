@@ -41,6 +41,7 @@ extern "C" {
 #include "filters.h"
 #include "tremolo.h"
 #include "distortion.h"
+#include "adsr.h"
 
 /* USER CODE END Includes */
 

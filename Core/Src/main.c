@@ -372,6 +372,8 @@ int main(void)
 		//while(1);
 	}
 
+	adsr_linear_init(&envelope);
+
 	//--------------------------------------------------
 	/*char* textfile_list;	// find textfiles on sd card
 	sd_card_mount(huart3);
@@ -391,7 +393,7 @@ int main(void)
 	sd_card_unmount(huart3);*/
 	//--------------------------------------------------
 
-	// Display Init
+	/*// Display Init
 	EPD epd;
 	//EPD_Reset(&epd);
 
@@ -469,15 +471,18 @@ int main(void)
 	PatchSelectionMenu(&Display, paint, epd, frame_buffer);
 
 	// Request parameters of the Patch
-	SetPatchParameters(&Display, paint, epd, frame_buffer);
+	SetPatchParameters(&Display, paint, epd, frame_buffer);*/
 
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 
+	//HAL_TIM_Base_Start(&htim6);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+
 	//Example signal for test
-	//NewSignal(&signals1, SIN, 'C', 0);
+	NewSignal(&signals1, SIN, 'C', 1);
 
 	//effect chain
 	//effects_add(EQ, 0);

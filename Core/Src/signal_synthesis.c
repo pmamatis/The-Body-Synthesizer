@@ -154,7 +154,7 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 	}
 
 	//Loop for signal synthesis
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++) {
 		addValue = 0;
 		//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
@@ -165,9 +165,8 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 
 				//get index for the next sin value
 				signals -> current_LUT_Index[j]++;
-				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
-				{
-					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals->freqIndex[j]]) {
+					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals->freqIndex[j]];
 				}
 				break;
 
@@ -184,16 +183,20 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 
 		/*limiter function*/
 		//norm the signal to -1...1
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals->max;
 
 
 		//Effekte
 		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		// ADSR
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + 1;
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] * adsr_linear_process(&envelope);
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] - 1;
 
 
 		//maximum
-		if (signals -> max < fabs((double)addValue)){
-			signals -> max = fabs((double)addValue);
+		if (signals->max < fabs((double)addValue)) {
+			signals->max = fabs((double)addValue);
 		}
 
 		/*//scale output signal depending on amount of voices
