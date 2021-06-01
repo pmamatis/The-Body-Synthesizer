@@ -24,7 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
-  
+
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
 
@@ -57,6 +57,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern DMA_HandleTypeDef hdma_adc1;
 extern DMA_HandleTypeDef hdma_dac2;
 extern DMA_HandleTypeDef hdma_dac1;
 /* USER CODE BEGIN EV */
@@ -64,7 +65,7 @@ extern DMA_HandleTypeDef hdma_dac1;
 /* USER CODE END EV */
 
 /******************************************************************************/
-/*           Cortex-M7 Processor Interruption and Exception Handlers          */ 
+/*           Cortex-M7 Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
   * @brief This function handles Non maskable interrupt.
@@ -225,6 +226,20 @@ void DMA1_Stream6_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Stream6_IRQn 1 */
 
   /* USER CODE END DMA1_Stream6_IRQn 1 */
+}
+
+/**
+  * @brief This function handles DMA2 stream0 global interrupt.
+  */
+void DMA2_Stream0_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
+
+  /* USER CODE END DMA2_Stream0_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_adc1);
+  /* USER CODE BEGIN DMA2_Stream0_IRQn 1 */
+
+  /* USER CODE END DMA2_Stream0_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
