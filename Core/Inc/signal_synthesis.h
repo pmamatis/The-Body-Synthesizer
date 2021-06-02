@@ -11,26 +11,11 @@
 #ifndef INC_SIGNAL_SYNTHESIS_H_
 #define INC_SIGNAL_SYNTHESIS_H_
 
-
-
-
-
-
-
-
-#ifndef INC_SIGNALERZEUGUNG_H_
-#define INC_SIGNALERZEUGUNG_H_
-
 #include <math.h>
 #include "main.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include <stdarg.h>
-//#include  <string.h>
-
-
-
-
 
 /**@brief maximal amplitude of output voltage in millivolts*/
 #define AMPLITUDE 	2000
@@ -68,20 +53,14 @@ struct signal_t{
 /**@brief Array to monitor which ID's are taken, taken = 1; free = 0 */
 uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
 
-
-
-
-
-
-
-
-
 //Effects
+struct effects_lfo_t{
 
-
-
-enum effects_using_LFO{
-	TREMOLLO = 0,
+	uint32_t lfo_index;
+	uint8_t lfo_quarter;
+	float lfo_frequency;
+	uint32_t lfo_blocksizecounter;
+	float depth;
 };
 
 enum singnal_synthesis_enum{
@@ -116,12 +95,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 
-void Signal_Synthesis_LFO(struct effects_LFO_t* effect);
+void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
 float AWGN_generator();
-
-#endif /* INC_SIGNALERZEUGUNG_H_ */
-
-
-
 
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

@@ -23,19 +23,11 @@ typedef enum {
  * @brief		Tremolo struct
  * @parameter	Tremolo
  *********************************/
-struct effects_LFO{
-	uint8_t name;
-	uint32_t index;
-	uint8_t quarter;
-	float lfo_frequency;
-	uint32_t lfo_blocksizecounter;
-	float lfo_depth;
-};
 
-struct effects_LFO Tremolo1;
+struct effects_lfo_t Tremolo1;
 
 Tremolo_Status Tremolo_Init(void);
-Tremolo_Status SetupTremolo(struct effects_LFO* Tremolo);
-Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data);
+Tremolo_Status SetupTremolo(struct effects_lfo_t* Tremolo);
+Tremolo_Status ProcessTremolo(struct effects_lfo_t* Tremolo, float* data);
 
 #endif /* INC_TREMOLO_H_ */

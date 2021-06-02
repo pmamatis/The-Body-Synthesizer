@@ -23,15 +23,18 @@ void effects_process(float* calculate_value){
         switch (effect_order[i])
         {
         case TREM:
-            /* code */
+        	ProcessTremolo(&Tremolo1, calculate_value);
             break;
         
         case EQ:
         	ProcessEQ(calculate_value);
             break;
-        case DIST:
-            /* code */
+        case DIST_H:
+        	ProcessHardClippingDistortion(&HardClipping1, calculate_value);
             break;
+        case DIST_S:
+        	ProcessSoftClippingDistortion(&SoftClipping1, calculate_value);
+        	break;
         default:
             break;
         }

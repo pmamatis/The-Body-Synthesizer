@@ -193,7 +193,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				addValue += AWGN_generator();
 				break;
 			}//Switch-Case
-		}// SIgnal counter for-loop
+		}// Signal counter for-loop
 
 
 		//write into calculate vector
@@ -256,11 +256,11 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
  *
  */
 
-void Signal_Synthesis_LFO(struct effects_LFO_t* effect) {
+void Signal_Synthesis_LFO(struct effects_lfo_t* effect) {
 
-	float frequency = effect->frequency;
-	uint8_t quarter = effect->quarter;
-	uint32_t index = effect->index;
+	float frequency = effect->lfo_frequency;
+	uint8_t quarter = effect->lfo_quarter;
+	uint32_t index = effect->lfo_index;
 	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
 
 	// calculate ratio between LFO frequency and minimum processable frequency
@@ -298,8 +298,8 @@ void Signal_Synthesis_LFO(struct effects_LFO_t* effect) {
 
 	//save current state into given effect struct
 	effect->lfo_blocksizecounter = LFO_blocksizecounter;
-	effect->index = index;
-	effect->quarter = quarter;
+	effect->lfo_index = index;
+	effect->lfo_quarter = quarter;
 }
 
 
