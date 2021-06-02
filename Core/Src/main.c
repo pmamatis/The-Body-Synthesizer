@@ -208,9 +208,13 @@ int main(void)
 	while (1)
 
 	{
-	printf("AC: %i\r\n",emg_buffer[0]);
-	printf("DC: %i\r\n",emg_buffer[1]);
+
+	/* DEBUG */
+	printf("AC: %i\r\n",(int)emg_buffer[0]);
+	printf("DC: %i\r\n",(int)emg_buffer[1]);
 	HAL_Delay(200);
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

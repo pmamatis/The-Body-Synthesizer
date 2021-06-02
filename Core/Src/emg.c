@@ -15,3 +15,6 @@ HAL_StatusTypeDef emg_start_read(){
 	return HAL_ADC_Start_DMA(EMG_ADC, emg_buffer, EMG_READ_LENGTH);
 }
 
+HAL_StatusTypeDef emg_stop_read(){
+	return HAL_ADC_Stop_DMA(EMG_ADC);
+}
