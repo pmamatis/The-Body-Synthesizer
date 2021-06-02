@@ -154,9 +154,12 @@ struct display_variables{
 	uint8_t CurrentModule;
 
 	// Synthesizer Parameters
-	bool Voices_ONOFF[3];	// 3 Voices
-	uint8_t Voices_Note[3];		// 3 Voices
-	uint8_t Voices_Octave[3];		// 3 Voices
+	bool Voices_ONOFF[3];		// 3 Voices
+	uint8_t Voices_Note[3];
+	uint8_t Voices_Octave[3];
+	bool ADSR_ONOFF;			// 1 ADSR
+	float ADSR_Attack;
+	float ADSR_Decay;
 	//...Weitere Synth-Parameter
 
 	uint16_t ADC2inputs[5];	// ADC input array
@@ -201,8 +204,8 @@ struct display_variables{
 	uint8_t Distortion_Type;
 	uint8_t Distortion_Gain;
 };
-struct display_variables Display =
-{
+
+struct display_variables Display = {
 		{false, false, false},	// PatchSelected
 		{},						// ModuleState
 		{false, false, false},	// ModuleStateSelected
@@ -212,6 +215,9 @@ struct display_variables Display =
 		{false, false, false},	// Voices_ONOFF
 		{},						// Voices_Note
 		{},						// Voices_Octave
+		false,					// ADSR_ONOFF
+		0.0,					// ADSR_Attack
+		0.0,					// ADSR_Decay
 		//...Weitere Synth-Parameter
 
 		{},						// ADC2inputs
@@ -247,6 +253,7 @@ struct PatchControls {
 	char Parametername[8][20];	// 8 input-devices and max. 20 characters per input device
 	uint16_t ParameterValue[8];	// the parameter-value, which is used afterwards in the sound synthesis
 };
+
 struct PatchControls Patch1;
 
 /* USER CODE END PV */
@@ -277,7 +284,7 @@ void RequestPatchParameters(struct PatchControls *Patch1, bool* ChosenGadget, bo
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-//DAC_CHANNEL_1
+// DAC_CHANNEL_1
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
 	//	Signal_Synthesis_LFO(&tremollo);
@@ -289,7 +296,7 @@ void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	Signal_Synthesis(&signals1, 1);
 }
 
-/*//DAC_CHANNEL_2
+// DAC_CHANNEL_2
 void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
 	Signal_Synthesis(&signals2, 2);
@@ -298,7 +305,7 @@ void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = FULL_BLOCK;
 	Signal_Synthesis(&signals2, 2);
-}*/
+}
 
 /* USER CODE END 0 */
 
@@ -372,7 +379,11 @@ int main(void)
 		//while(1);
 	}
 
-	adsr_linear_init(&envelope);
+	//ADSR_Linear_Init(&envelope);
+	if(ADSR_Init() == ADSR_FAIL) {
+		printf("ADSR init failed\n");
+		//while(1);
+	}
 
 	//--------------------------------------------------
 	/*char* textfile_list;	// find textfiles on sd card
@@ -393,7 +404,7 @@ int main(void)
 	sd_card_unmount(huart3);*/
 	//--------------------------------------------------
 
-	/*// Display Init
+	// Display Init
 	EPD epd;
 	//EPD_Reset(&epd);
 
@@ -464,6 +475,7 @@ int main(void)
 	// Start Timer and ADC-DMA for ADC2
 	HAL_TIM_Base_Start(&htim6);
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 5);
+	// Start DAC-DMAs
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
@@ -471,18 +483,17 @@ int main(void)
 	PatchSelectionMenu(&Display, paint, epd, frame_buffer);
 
 	// Request parameters of the Patch
-	SetPatchParameters(&Display, paint, epd, frame_buffer);*/
+	SetPatchParameters(&Display, paint, epd, frame_buffer);
 
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 
-	//HAL_TIM_Base_Start(&htim6);
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//Example signal for test
-	NewSignal(&signals1, SIN, 'C', 1);
+	//NewSignal(&signals1, SIN, 'C', 1);
 
 	//effect chain
 	//effects_add(EQ, 0);
@@ -1333,15 +1344,16 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			// Voice1 Octave
 			if(Display->JoystickParameterPosition == 3) {
 				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
-				octave = (char) (((float)Display->Poti_raw/4096) * 6);
+				octave = (char) (((float)Display->Poti_raw/4096) * 6);	// 5 0ctaves
 				Paint_DrawCharAt(&paint, 150, 70, octave+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
-				Display->Voices_Octave[0] = octave;	// assign Voice1 Octave
+				Display->Voices_Octave[0] = (uint8_t)octave;	// assign Voice1 Octave
 			}
 
 			if(Display->Voices_ONOFF[0] == true) {	// if Voice1 ON
-				if( (last_note != note) || (last_octave != octave) ) {
 
-					if(signals1.count == 1)
+				if( (last_note != note) || (last_octave != octave) ) {	// if voice parameters changed
+
+					if(signals1.count == 1)		// Delete the last generated signal
 						DeleteSignal(&signals1, 1);
 
 					NewSignal(&signals1, SIN, note, octave);	// create signal and assign selected parameters
@@ -1370,6 +1382,7 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 
 			if(Display->VRx < Display->LowerLimit) {
 				Display->CurrentModule = 1;	// forward to ADSR
+				Display->JoystickParameterPosition = 1;	// Reset JoystickParameterPosition
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
@@ -1390,7 +1403,7 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			Paint_DrawStringAt(&paint, 1, 10, "ADSR", &Font16, COLORED);
 			Paint_DrawStringAt(&paint, 1, 30, "ADSR ON/OFF", &Font12, COLORED);
 			Paint_DrawStringAt(&paint, 1, 50, "Attack", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 70, "Delay", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Decay", &Font12, COLORED);
 			Paint_DrawStringAt(&paint, 1, 90, "Sustain", &Font12, COLORED);
 			Paint_DrawStringAt(&paint, 1, 110, "Release", &Font12, COLORED);
 
@@ -1398,9 +1411,100 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
 			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
 
+			char attack, last_attack, decay, last_decay;
+
+			if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to ADSR ON/OFF
+			}
+			else if( (Display->JoystickParameterPosition == 1) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 30, 150, 40, UNCOLORED);	// switch from ADSR ON/OFF to Attack
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 2;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Attack to ADSR ON/OFF
+				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 1;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Attack to Decay
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 3;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy > Display->LowerLimit) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);	// arrow to Attack
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 70, 150, 80, UNCOLORED);	// switch from Decay to Attack
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 2;
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);	// arrow to Decay
+			}
+
+			// check state of the potentiometer and assign parameter value
+			// ADSR ON/OFF
+			if( (Display->JoystickParameterPosition == 1) && (Display->Poti_raw < Display->ADC_FullRange/2) ) {
+				Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+				Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
+				Display->ADSR_ONOFF = false;
+			}
+			else if( (Display->JoystickParameterPosition == 1) && (Display->Poti_raw >= Display->ADC_FullRange/2) ) {
+				Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+				Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
+				Display->ADSR_ONOFF = true;
+			}
+
+			// ADSR Attack
+			if(Display->JoystickParameterPosition == 2) {
+				Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
+				//Display->ADSR_Attack = ((float)Display->Poti_raw/4096) * envelope.adsr_maximum_attack;
+				Display->ADSR_Attack = ((float)Display->Poti_raw/4096) * 0.25;
+				attack = Display->ADSR_Attack * 1000;	// conversion to milliseconds
+				Paint_DrawCharAt(&paint, 150, 50, attack, &Font12, COLORED);
+				//envelope.adsr_attack_time = Display->ADSR_Attack;
+				//Display->ADSR_Attack = attack;	// assign attack
+			}
+
+			// ADSR Decay
+			if(Display->JoystickParameterPosition == 3) {
+				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
+				Display->ADSR_Decay = ((float)Display->Poti_raw/4096) * envelope.adsr_maximum_decay;
+				decay = Display->ADSR_Decay * 1000;	// conversion to milliseconds
+				Paint_DrawCharAt(&paint, 150, 70, decay, &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
+				//envelope.adsr_decay_time = Display->ADSR_Decay;
+				//Display->ADSR_Decay = decay;	// assign decay
+			}
+
+			if(Display->ADSR_ONOFF == true) {	// if ADSR ON
+
+				// FLAG SETZEN FÜR PROCESSING???
+
+				if( (last_attack != attack) || (last_decay != decay) ) {	// if adsr parameters changed
+
+					envelope.adsr_attack_time = Display->ADSR_Attack;
+					envelope.adsr_decay_time = Display->ADSR_Decay;
+				}
+			}
+			else if(Display->ADSR_ONOFF == false) {	// if ADSR OFF
+				// FLAG SETZEN FÜR PROCESSING???
+			}
+			last_attack = attack;	// more tolerance? -> if-Abfrage!
+			last_decay = decay;
+
 			// Display the frame_buffer
 			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 			EPD_DisplayFrame(&epd);
+
+			// reset BACK-switch
+			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
+				Display->BACK = false;
+			}
+			// reset ENTER-switch
+			if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
+				Display->ENTER = false;
+			}
 
 			if(Display->VRx > Display->UpperLimit) {
 				Display->CurrentModule = 0;	// back to Voices

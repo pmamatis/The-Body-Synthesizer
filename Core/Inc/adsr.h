@@ -3,6 +3,14 @@
 
 #include "main.h"
 
+/***************************
+ * @brief Enumeration for Tremolo Debugging
+ ***************************/
+typedef enum {
+	ADSR_FAIL = -1,
+	ADSR_OK = 1
+} ADSR_Status;
+
 struct adsr {
 	uint32_t adsr_counter;
 	//int adsr_counter;
@@ -12,6 +20,9 @@ struct adsr {
 	float adsr_decay_time;
 	float adsr_sustain_amplitude;
 	float adsr_release_time;
+
+	float adsr_maximum_attack;
+	float adsr_maximum_decay;
 };
 
 struct adsr envelope;
@@ -26,9 +37,9 @@ rt: release time (s)
 cnt: time index
 cr: control rate
 returns: output control sample*/
-void adsr_linear_init(struct adsr* envelope);
-float adsr_linear_process(struct adsr* envelope);
-void adsr_log_init(struct adsr* envelope);
-float adsr_log_process(struct adsr* envelope);
+
+ADSR_Status ADSR_Init(void);
+ADSR_Status SetupADSR(struct adsr* envelope);
+float ADSR_Linear_Process(struct adsr* envelope);
 
 #endif

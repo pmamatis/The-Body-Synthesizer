@@ -11,10 +11,11 @@
 /***************************
  * @brief		Enumeration for DSP Effects
  ***************************/
-typedef enum effects_t_enum{
-	TREM = 1,     // Tremolo
-	DIST,         // Distortion
-	EQ			  //Equalizer
+typedef enum effects_t_enum {
+	TREM = 1,	// Tremolo
+	DIST,		// Distortion
+	EQ,			// Equalizer
+	ADSR		// ADSR
 
 }effects_t_enum;
 

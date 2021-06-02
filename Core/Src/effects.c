@@ -30,6 +30,11 @@ void effects_process(float* calculate_value){
 			/* code */
 			break;
 
+		case ADSR:
+			/*calculate_value = calculate_value + 1;	// necessary for ADSR processing
+			calculate_value = calculate_value * ADSR_Linear_Process(&envelope);
+			calculate_value = calculate_value - 1;*/
+
 		default:
 			break;
 
