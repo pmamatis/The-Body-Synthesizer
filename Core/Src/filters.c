@@ -34,22 +34,22 @@ Filter_Status Filters_Init(){
 	SetupLowpass (&EQ_BAND1_II, 200, 0.707);
 
 	// BAND 2: BP 8th order
-	SetupBandpass(&EQ_BAND2_I,  400, 0.707);
-	SetupBandpass(&EQ_BAND2_II, 400, 0.707);
-	SetupBandpass(&EQ_BAND2_III,400, 0.707);
-	SetupBandpass(&EQ_BAND2_IV, 400, 0.707);
+	SetupBandpassCPG(&EQ_BAND2_I,  400, 0.707);
+	SetupBandpassCPG(&EQ_BAND2_II, 400, 0.707);
+	SetupBandpassCPG(&EQ_BAND2_III,400, 0.707);
+	SetupBandpassCPG(&EQ_BAND2_IV, 400, 0.707);
 
 	// BAND 3: BP 8th order
-	SetupBandpass(&EQ_BAND3_I,  800, 0.707);
-	SetupBandpass(&EQ_BAND3_II, 800, 0.707);
-	SetupBandpass(&EQ_BAND3_III,800, 0.707);
-	SetupBandpass(&EQ_BAND3_IV, 800, 0.707);
+	SetupBandpassCPG(&EQ_BAND3_I,  800, 0.707);
+	SetupBandpassCPG(&EQ_BAND3_II, 800, 0.707);
+	SetupBandpassCPG(&EQ_BAND3_III,800, 0.707);
+	SetupBandpassCPG(&EQ_BAND3_IV, 800, 0.707);
 
 	// BAND 4: BP 8th order
-	SetupBandpass(&EQ_BAND4_I,  1600, 0.707);
-	SetupBandpass(&EQ_BAND4_II, 1600, 0.707);
-	SetupBandpass(&EQ_BAND4_III,1600, 0.707);
-	SetupBandpass(&EQ_BAND4_IV, 1600, 0.707);
+	SetupBandpassCPG(&EQ_BAND4_I,  1600, 0.707);
+	SetupBandpassCPG(&EQ_BAND4_II, 1600, 0.707);
+	SetupBandpassCPG(&EQ_BAND4_III,1600, 0.707);
+	SetupBandpassCPG(&EQ_BAND4_IV, 1600, 0.707);
 
 	// BAND 5
 	SetupHighpass(&EQ_BAND5_I,  3200, 0.707);
@@ -198,7 +198,6 @@ Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dB
 	float sin = sinf(w);
 	float cos = cosf(w);
 
-	float alpha = sin / (2 * Q);
 	float beta  = sqrtf(A)/Q;
 
 	LS->b0 =     A * ((A + 1) - (A - 1) * cos + beta * sin);
@@ -221,7 +220,6 @@ Filter_Status SetupHighShelf(struct BQFilter *HS, float cutoff, float Q, float d
 	float sin = sinf(w);
 	float cos = cosf(w);
 
-	float alpha = sin / (2 * Q);
 	float beta  = sqrtf(A)/Q;
 
 	HS->b0 =      A * ((A + 1) + (A - 1) * cos + beta * sin);

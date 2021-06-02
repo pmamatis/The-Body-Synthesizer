@@ -84,13 +84,6 @@ enum effects_using_LFO{
 	TREMOLLO = 0,
 };
 
-struct effects_LFO_t{
-	uint8_t name;
-	uint32_t index;
-	uint8_t quarter;
-	float frequency;
-};
-
 enum singnal_synthesis_enum{
 	note_key = 0,
 	mixed
@@ -123,7 +116,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 
-void Signal_Synthesis_LFO(struct effects_LFO* effect)  ;
+void Signal_Synthesis_LFO(struct effects_LFO_t* effect);
 float AWGN_generator();
 
 #endif /* INC_SIGNALERZEUGUNG_H_ */

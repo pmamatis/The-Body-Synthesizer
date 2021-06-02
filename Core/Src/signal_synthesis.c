@@ -255,9 +255,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO
  *
  */
-void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 
-	float frequency = effect->lfo_frequency;
+void Signal_Synthesis_LFO(struct effects_LFO_t* effect) {
+
+	float frequency = effect->frequency;
 	uint8_t quarter = effect->quarter;
 	uint32_t index = effect->index;
 	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
