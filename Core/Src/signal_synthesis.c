@@ -263,7 +263,7 @@ void Signal_Synthesis_LFO(struct effects_LFO_t* effect) {
 	uint32_t index = effect->index;
 	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
 
-	// calculate ratio between LFO_LUT frequency and desired frequency
+	// calculate ratio between LFO frequency and minimum processable frequency
 	float frequency_ratio = frequency / LFO_FMIN;
 
 	if(LFO_blocksizecounter == BLOCKSIZE/2) {

@@ -56,8 +56,6 @@ HAL_StatusTypeDef PWM_status_TIM1, PWM_status_TIM8;
 
 uint8_t sinIndex=0;
 
-float aquidistance = 0.00244170430960811;
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

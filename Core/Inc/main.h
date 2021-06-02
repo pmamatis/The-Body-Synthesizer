@@ -49,6 +49,8 @@ extern "C" {
 // for distortion
 #include "distortion.h"
 
+#define ARM_MATH_CM7
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -99,8 +101,8 @@ float calculate_vector2[BLOCKSIZE];
 float effect_LFO[BLOCKSIZE/2];
 //uint32_t effect_LFO_output[BLOCKSIZE];
 
-float atan_LUT_y[BLOCKSIZE];
-float aquidistance;
+//float atan_LUT_y[BLOCKSIZE];
+//float aquidistance;
 
 
 float sigFreq_sampleFreq_ratio;
