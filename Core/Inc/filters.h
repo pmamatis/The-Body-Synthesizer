@@ -84,9 +84,14 @@ typedef enum {
 
 Filter_Status Filters_Init();
 
-Filter_Status SetupLowpass (struct BQFilter *LP, float cutoff, float Q);
-Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q);
-Filter_Status SetupBandpass(struct BQFilter *BP, float cutoff, float Q);
+Filter_Status SetupLowpass    (struct BQFilter *LP, float cutoff, float Q);
+Filter_Status SetupHighpass   (struct BQFilter *HP, float cutoff, float Q);
+Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q);
+Filter_Status SetupBandpassCSG(struct BQFilter *BP, float cutoff, float Q);
+Filter_Status SetupNotch 	  (struct BQFilter *BP, float cutoff, float Q);
+Filter_Status SetupPeakingEQ  (struct BQFilter *BP, float cutoff, float Q, float dBGain);
+Filter_Status SetupLowShelf   (struct BQFilter *LS, float cutoff, float Q, float dBGain);
+Filter_Status SetupHighShelf  (struct BQFilter *HS, float cutoff, float Q, float dBGain);
 
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data);
 Filter_Status ProcessEQ    (float *data);

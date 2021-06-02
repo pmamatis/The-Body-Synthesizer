@@ -59,6 +59,8 @@ Filter_Status Filters_Init(){
 	return FILTER_OK;
 }
 
+
+// Lowpass Filter
 Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 
 	//float A = 1;
@@ -80,6 +82,7 @@ Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 }
 
 
+// Highpass Filter
 Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 
 	//float A = 1;
@@ -101,9 +104,9 @@ Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 }
 
 
-Filter_Status SetupBandpass(struct BQFilter *BP, float cutoff, float Q){
+// Constant Peak Gain Bandpass Filter
+Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q){
 
-	//float A = 1;
 	float w = 2 * M_PI * cutoff / samplerate;
 
 	float sin = sinf(w);
@@ -122,6 +125,116 @@ Filter_Status SetupBandpass(struct BQFilter *BP, float cutoff, float Q){
 }
 
 
+// Constant Skirt Gain Bandpass Filter
+Filter_Status SetupBandpassCSG(struct BQFilter *BP, float cutoff, float Q){
+
+	float w = 2 * M_PI * cutoff / samplerate;
+
+	float sin = sinf(w);
+	float cos = cosf(w);
+
+	float alpha = sin / (2 * Q);
+
+	BP->b0 = Q*alpha;
+	BP->b1 = 0;
+	BP->b2 = -Q*alpha;
+	BP->a0 = 1 + alpha;
+	BP->a1 = -2 * cos;
+	BP->a2 = 1 - alpha;
+
+	return FILTER_OK;
+}
+
+
+// Notch Filter
+Filter_Status SetupNotch(struct BQFilter *BP, float cutoff, float Q){
+
+	float w = 2 * M_PI * cutoff / samplerate;
+
+	float sin = sinf(w);
+	float cos = cosf(w);
+
+	float alpha = sin / (2 * Q);
+
+	BP->b0 = 1;
+	BP->b1 = -2 * cos;
+	BP->b2 = 1;
+	BP->a0 = 1 + alpha;
+	BP->a1 = -2 * cos;
+	BP->a2 = 1 - alpha;
+
+	return FILTER_OK;
+}
+
+
+// Peaking EQ Filter
+Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float dBGain){
+
+	float A = powf(10, dBGain / 40);
+	float w = 2 * M_PI * cutoff / samplerate;
+
+	float sin = sinf(w);
+	float cos = cosf(w);
+
+	float alpha = sin / (2 * Q);
+
+	BP->b0 = 1 + alpha * A;
+	BP->b1 = -2 * cos;
+	BP->b2 = 1 + alpha * A;
+	BP->a0 = 1 + alpha * A;
+	BP->a1 = -2 * cos;
+	BP->a2 = 1 - alpha / A;
+
+	return FILTER_OK;
+}
+
+
+// LowShelf Filter
+Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dBGain){
+
+	float A = powf(10, dBGain / 40);
+	float w = 2 * M_PI * cutoff / samplerate;
+
+	float sin = sinf(w);
+	float cos = cosf(w);
+
+	float alpha = sin / (2 * Q);
+	float beta  = sqrtf(A)/Q;
+
+	LS->b0 =     A * ((A + 1) - (A - 1) * cos + beta * sin);
+	LS->b1 = 2 * A * ((A - 1) - (A + 1) * cos);
+	LS->b2 =     A * ((A + 1) - (A - 1) * cos - beta * sin);
+	LS->a0 =          (A + 1) + (A - 1) * cos + beta * sin;
+	LS->a1 =    -2 * ((A - 1) + (A + 1) * cos);
+	LS->a2 =          (A + 1) + (A - 1) * cos - beta * sin;
+
+	return FILTER_OK;
+}
+
+
+// HighShelf Filter
+Filter_Status SetupHighShelf(struct BQFilter *HS, float cutoff, float Q, float dBGain){
+
+	float A = powf(10, dBGain / 40);
+	float w = 2 * M_PI * cutoff / samplerate;
+
+	float sin = sinf(w);
+	float cos = cosf(w);
+
+	float alpha = sin / (2 * Q);
+	float beta  = sqrtf(A)/Q;
+
+	HS->b0 =      A * ((A + 1) + (A - 1) * cos + beta * sin);
+	HS->b1 = -2 * A * ((A - 1) + (A + 1) * cos);
+	HS->b2 =      A * ((A + 1) + (A - 1) * cos - beta * sin);
+	HS->a0 =           (A + 1) - (A - 1) * cos + beta * sin;
+	HS->a1 =      2 * ((A - 1) - (A + 1) * cos);
+	HS->a2 =           (A + 1) - (A - 1) * cos - beta * sin;
+
+	return FILTER_OK;
+}
+
+
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
 	float input = 0;
@@ -129,7 +242,6 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
 	input = *data;
 
-	//out = (F->b0 / F->a0) * (input + (F->b1 / F->b0) * F->z[0] + (F->b2 / F->b0) * F->z[1] - (F->a1 / F->a0) * F->z[2] - (F->a2 / F->a0) * F->z[3]);
 	out = (F->b0 / F->a0) * input + (F->b1 / F->a0) * F->z[0] + (F->b2 / F->a0) * F->z[1] - (F->a1 / F->a0) * F->z[2] - (F->a2 / F->a0) * F->z[3];
 
 	F->z[3] = F->z[2];
