@@ -58,8 +58,6 @@ struct BQFilter LP_DELAY;
 
 struct BQFilter LP_AA;
 
-
-
 /***************************
  * @brief		Enumeration for DSP Debugging
  ***************************/

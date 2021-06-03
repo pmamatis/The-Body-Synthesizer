@@ -187,11 +187,7 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 
 
 		//Effekte
-		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		// ADSR
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + 1;	// necessary for ADSR processing
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] * ADSR_Linear_Process(&envelope);
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] - 1;
+		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 
 		//maximum

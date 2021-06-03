@@ -31,9 +31,10 @@ void effects_process(float* calculate_value){
 			break;
 
 		case ADSR:
-			/*calculate_value = calculate_value + 1;	// necessary for ADSR processing
-			calculate_value = calculate_value * ADSR_Linear_Process(&envelope);
-			calculate_value = calculate_value - 1;*/
+			*calculate_value = *calculate_value + 1;	// necessary for ADSR processing
+			*calculate_value = *calculate_value * ADSR_Linear_Process(&envelope);
+			*calculate_value = *calculate_value - 1;
+			break;
 
 		default:
 			break;
@@ -54,13 +55,10 @@ void effects_add(effects_t_enum effect, uint8_t position){
 		effects_t_enum tmp = effect_order[position];
 		effects_t_enum tmp2;
 		effect_order[position] = effect;
-		for (int i = position+1; i < MAX_EFFECTS;i++){
+		for (int i = position+1; i < MAX_EFFECTS;i++) {
 			tmp2 = effect_order[i];
 			effect_order[i] = tmp;
 			tmp = tmp2;
-
-
-
 		}
 	}
 	else {
@@ -72,7 +70,7 @@ void effects_add(effects_t_enum effect, uint8_t position){
 /**
  * Deletes an effect inside the effect_order[position]
  */
-void effects_delete(effects_t_enum effect, uint8_t position){
+void effects_delete(effects_t_enum effect, uint8_t position) {
 
 	if (position < MAX_EFFECTS){
 		if (effect == effect_order[position]){

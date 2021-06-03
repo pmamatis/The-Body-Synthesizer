@@ -34,5 +34,6 @@ effects_t_enum effect_order[MAX_EFFECTS];
 void effects_init();
 void effects_process(float* calculate_value);
 void effects_add(effects_t_enum effect, uint8_t position);
+void effects_delete(effects_t_enum effect, uint8_t position);
 
 #endif /* __EFFECTS_H */

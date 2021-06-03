@@ -13,15 +13,15 @@ ADSR_Status ADSR_Init(void) {
 ADSR_Status SetupADSR(struct adsr* envelope) {
 
 	envelope->adsr_counter = 0;
-	envelope->adsr_max_amp = 0.75;	// maximum value should be 1
-	envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
+	envelope->adsr_max_amp = 1.00;	// maximum value should be 1
+	envelope->adsr_duration_time = 3.0 * LUT_SR;	// first number in seconds
 	envelope->adsr_attack_time = 0.15 * LUT_SR;
 	envelope->adsr_decay_time = 0.3 * LUT_SR;
 	envelope->adsr_sustain_amplitude = 0.5;
 	envelope->adsr_release_time = 0.25 * LUT_SR;
 
-	envelope->adsr_maximum_attack = 0.25;	// in seconds; maximum 4.0 seconds, to display the value -> uint8_t
-	envelope->adsr_maximum_decay = 0.4;
+	envelope->adsr_maximum_attack = 1.00;	// in seconds; maximum 4.0 seconds, to display the value -> uint16_t
+	envelope->adsr_maximum_decay = 1.00;
 
 	return ADSR_OK;
 }

@@ -154,6 +154,7 @@ struct display_variables{
 	uint8_t CurrentModule;
 
 	// Synthesizer Parameters
+	uint8_t ActiveEffectsCounter;
 	bool Voices_ONOFF[3];		// 3 Voices
 	uint8_t Voices_Note[3];
 	uint8_t Voices_Octave[3];
@@ -212,6 +213,7 @@ struct display_variables Display = {
 		{false, false, false},	// ModuleParametersSelected
 		{false, false, false},	// ModuleCompleted
 		0,						// CurrentModule
+		0,						// ActiveEffectsCounter
 		{false, false, false},	// Voices_ONOFF
 		{},						// Voices_Note
 		{},						// Voices_Octave
@@ -276,7 +278,8 @@ static void MX_TIM4_Init(void);
 
 void Load_SD_File(uint8_t JoystickPatchPosition, uint16_t VRy, bool SW, Paint paint, EPD epd, unsigned char* frame_buffer);
 void PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
-void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
+//void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
+void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, Paint paint, EPD epd, unsigned char* frame_buffer);
 void RequestPatchParameters(struct PatchControls *Patch1, bool* ChosenGadget, bool* PatchParameterAssign, bool* Patch, Paint paint, EPD epd, unsigned char* frame_buffer);
 
 /* USER CODE END PFP */
@@ -480,10 +483,12 @@ int main(void)
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	// Patch-Selection-Startmenu
-	PatchSelectionMenu(&Display, paint, epd, frame_buffer);
+	//PatchSelectionMenu(&Display, paint, epd, frame_buffer);
 
 	// Request parameters of the Patch
-	SetPatchParameters(&Display, paint, epd, frame_buffer);
+	//SetPatchParameters(&Display, paint, epd, frame_buffer);	// OFF FOR DEBUGGING
+	//effects_add(ADSR, 0);
+	SetPatchParameters(&Display, &envelope, paint, epd, frame_buffer);
 
 	/* USER CODE END 2 */
 
@@ -497,14 +502,6 @@ int main(void)
 
 	//effect chain
 	//effects_add(EQ, 0);
-
-	/*tremollo.index = 0;
-	tremollo.lfo_frequency = 2;
-	tremollo.quarter = 0;
-	tremollo.lfo_blocksizecounter = 0;
-	tremollo.lfo_depth = 0.75;*/
-
-	//distortion.distortion_gain = 5.0;	// max. distortion gain of 10 according to LUT created in MATLAB
 
 	while (1)
 	{
@@ -1267,7 +1264,11 @@ void PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd,
 	}
 }
 
-void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer) {
+// void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer) {
+void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, Paint paint, EPD epd, unsigned char* frame_buffer) {
+
+	// FOR DEBUGGING!
+	Display->PatchSelected[0] = true;
 
 	// PATCH 1 SELECTED
 	while(Display->PatchSelected[0] == true) {
@@ -1411,7 +1412,7 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
 			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
 
-			char attack, last_attack, decay, last_decay;
+			uint16_t attack, last_attack, decay, last_decay;
 
 			if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
 				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to ADSR ON/OFF
@@ -1459,38 +1460,49 @@ void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd,
 			// ADSR Attack
 			if(Display->JoystickParameterPosition == 2) {
 				Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
-				//Display->ADSR_Attack = ((float)Display->Poti_raw/4096) * envelope.adsr_maximum_attack;
-				Display->ADSR_Attack = ((float)Display->Poti_raw/4096) * 0.25;
-				attack = Display->ADSR_Attack * 1000;	// conversion to milliseconds
-				Paint_DrawCharAt(&paint, 150, 50, attack, &Font12, COLORED);
-				//envelope.adsr_attack_time = Display->ADSR_Attack;
-				//Display->ADSR_Attack = attack;	// assign attack
+				Display->ADSR_Attack = ((float)Display->Poti_raw/4096) * envelope->adsr_maximum_attack;
+				char attack_string[9];
+				sprintf(attack_string, "%f", Display->ADSR_Attack);
+				Paint_DrawStringAt(&paint, 150, 50, attack_string, &Font12, COLORED);
+				attack = Display->ADSR_Attack * 1000;	// seconds to milliseconds
 			}
 
 			// ADSR Decay
 			if(Display->JoystickParameterPosition == 3) {
 				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
-				Display->ADSR_Decay = ((float)Display->Poti_raw/4096) * envelope.adsr_maximum_decay;
-				decay = Display->ADSR_Decay * 1000;	// conversion to milliseconds
-				Paint_DrawCharAt(&paint, 150, 70, decay, &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
-				//envelope.adsr_decay_time = Display->ADSR_Decay;
-				//Display->ADSR_Decay = decay;	// assign decay
+				Display->ADSR_Decay = ((float)Display->Poti_raw/4096) * envelope->adsr_maximum_decay;
+				char decay_string[9];
+				sprintf(decay_string, "%f", Display->ADSR_Decay);
+				Paint_DrawStringAt(&paint, 150, 70, decay_string, &Font12, COLORED);
+				decay = Display->ADSR_Decay * 1000;	// seconds to milliseconds
 			}
 
 			if(Display->ADSR_ONOFF == true) {	// if ADSR ON
 
-				// FLAG SETZEN FÜR PROCESSING???
+				//if( (last_attack != attack) || (last_decay != decay) ) {	// if adsr parameters changed
+				if( (abs(last_attack-attack) > 50) || (abs(last_decay-decay) > 50) ) {	// if adsr parameters changed significantly
 
-				if( (last_attack != attack) || (last_decay != decay) ) {	// if adsr parameters changed
+					envelope->adsr_attack_time = Display->ADSR_Attack * LUT_SR;
+					envelope->adsr_decay_time = Display->ADSR_Decay * LUT_SR;
 
-					envelope.adsr_attack_time = Display->ADSR_Attack;
-					envelope.adsr_decay_time = Display->ADSR_Decay;
+					if(Display->ActiveEffectsCounter > 0) {
+						effects_delete(ADSR, Display->ActiveEffectsCounter);
+						Display->ActiveEffectsCounter--;
+					}
+
+					Display->ActiveEffectsCounter++;
+					effects_add(ADSR, Display->ActiveEffectsCounter);
+
+					// Display->ADSREffectPosition = Display->ActiveEffectsCounter;
 				}
 			}
 			else if(Display->ADSR_ONOFF == false) {	// if ADSR OFF
-				// FLAG SETZEN FÜR PROCESSING???
+				if(Display->ActiveEffectsCounter > 0) {
+					effects_delete(ADSR, Display->ActiveEffectsCounter);	// stattdessen Display->ADSREffectPosition nutzen?
+					Display->ActiveEffectsCounter--;
+				}
 			}
-			last_attack = attack;	// more tolerance? -> if-Abfrage!
+			last_attack = attack;
 			last_decay = decay;
 
 			// Display the frame_buffer
