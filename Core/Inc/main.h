@@ -78,8 +78,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define EMG_AC_Pin GPIO_PIN_2
-#define EMG_AC_GPIO_Port GPIOC
 #define EMG_DC_Pin GPIO_PIN_3
 #define EMG_DC_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
