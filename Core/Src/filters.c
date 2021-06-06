@@ -13,6 +13,16 @@
  * ------------------------------------------------------------------- */
 uint32_t samplerate = LUT_SR;
 
+
+// Reinit variables
+uint32_t ADC_value = 5;
+uint32_t ADC_value_deb = 5;
+uint32_t flag = 0;
+
+float parameter;
+
+
+// Processing variables
 float band1, band2, band3, band4, band5 = 0;
 
 Filter_Status Filters_Init(){
@@ -28,53 +38,86 @@ Filter_Status Filters_Init(){
 	 * @brief	Band 6: HP, 3200 Hz,	80 dB / Dec.
 	 ******************************/
 
-	// BAND 1: High-shelf filter
-	SetupHighShelf(&EQ_BAND1_I,   106, 0.707, 0);
-	SetupHighShelf(&EQ_BAND1_II,  106, 0.707, 0);
-
-	// BAND 2: Peaking-EQ filter
-	SetupPeakingEQ(&EQ_BAND2_I,   400, 0.707, 0);
-	SetupPeakingEQ(&EQ_BAND2_II,  400, 0.707, 0);
-
-	// BAND 3: Peaking-EQ filter
-	SetupPeakingEQ(&EQ_BAND3_I,   800, 0.707, 0);
-	SetupPeakingEQ(&EQ_BAND3_II,  800, 0.707, 0);
-
-	// BAND 4: Peaking-EQ filter
-	SetupPeakingEQ(&EQ_BAND4_I,  1600, 0.707, 0);
-	SetupPeakingEQ(&EQ_BAND4_II, 1600, 0.707, 0);
-
-	// BAND 5: Low-Shelf filter
-	SetupLowShelf(&EQ_BAND5_I,    3200, 0.707, 0);
-	SetupLowShelf(&EQ_BAND5_II,   3200, 0.707, 0);
-
-
-
-	//	// BAND 1: LP 4th order
-	//	SetupLowpass (&EQ_BAND1_I,  200, 0.707);
-	//	SetupLowpass (&EQ_BAND1_II, 200, 0.707);
+	//	// BAND 1: High-shelf filter
+	//	SetupHighShelf(&EQ_BAND1_I,   200, 0.707, 0);
+	//	SetupHighShelf(&EQ_BAND1_II,  200, 0.707, 0);
 	//
-	//	// BAND 2: BP 8th order
-	//	SetupBandpassCPG(&EQ_BAND2_I,  400, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND2_II, 400, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND2_III,400, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND2_IV, 400, 0.707);
+	//	// BAND 2: Peaking-EQ filter
+	//	SetupPeakingEQ(&EQ_BAND2_I,   400, 0.707, 20);
+	//	SetupPeakingEQ(&EQ_BAND2_II,  400, 0.707, 1);
 	//
-	//	// BAND 3: BP 8th order
-	//	SetupBandpassCPG(&EQ_BAND3_I,  800, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND3_II, 800, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND3_III,800, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND3_IV, 800, 0.707);
+	//	// BAND 3: Peaking-EQ filter
+	//	SetupPeakingEQ(&EQ_BAND3_I,   800, 0.707, 0);
+	//	SetupPeakingEQ(&EQ_BAND3_II,  800, 0.707, 0);
 	//
-	//	// BAND 4: BP 8th order
-	//	SetupBandpassCPG(&EQ_BAND4_I,  1600, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND4_II, 1600, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND4_III,1600, 0.707);
-	//	SetupBandpassCPG(&EQ_BAND4_IV, 1600, 0.707);
+	//	// BAND 4: Peaking-EQ filter
+	//	SetupPeakingEQ(&EQ_BAND4_I,  1600, 0.707, 0);
+	//	SetupPeakingEQ(&EQ_BAND4_II, 1600, 0.707, 0);
 	//
-	//	// BAND 5
-	//	SetupHighpass(&EQ_BAND5_I,  3200, 0.707);
-	//	SetupHighpass(&EQ_BAND5_II, 3200, 0.707);
+	//	// BAND 5: Low-Shelf filter
+	//	SetupLowShelf(&EQ_BAND5_I,    3200, 0.707, 0);
+	//	SetupLowShelf(&EQ_BAND5_II,   3200, 0.707, 0);
+
+
+
+	// BAND 1: LP 4th order
+	SetupLowpass (&EQ_BAND1_I,  200, 0.707);
+	SetupLowpass (&EQ_BAND1_II, 200, 0.707);
+
+	// BAND 2: BP 8th order
+	SetupBandpassCPG(&EQ_BAND2_I,  400, 0.707);
+	SetupBandpassCPG(&EQ_BAND2_II, 400, 0.707);
+	SetupBandpassCPG(&EQ_BAND2_III,400, 0.707);
+	SetupBandpassCPG(&EQ_BAND2_IV, 400, 0.707);
+
+	// BAND 3: BP 8th order
+	SetupBandpassCPG(&EQ_BAND3_I,  800, 0.707);
+	SetupBandpassCPG(&EQ_BAND3_II, 800, 0.707);
+	SetupBandpassCPG(&EQ_BAND3_III,800, 0.707);
+	SetupBandpassCPG(&EQ_BAND3_IV, 800, 0.707);
+
+	// BAND 4: BP 8th order
+	SetupBandpassCPG(&EQ_BAND4_I,  1600, 0.707);
+	SetupBandpassCPG(&EQ_BAND4_II, 1600, 0.707);
+	SetupBandpassCPG(&EQ_BAND4_III,1600, 0.707);
+	SetupBandpassCPG(&EQ_BAND4_IV, 1600, 0.707);
+
+	// BAND 5
+	SetupHighpass(&EQ_BAND5_I,  3200, 0.707);
+	SetupHighpass(&EQ_BAND5_II, 3200, 0.707);
+
+	return FILTER_OK;
+}
+
+
+Filter_Status Filters_Reinit(){
+
+	// GND debouncing
+	if(ADC_value < 5) ADC_value = 5;
+
+	// General debouncing
+	if(ADC_value_deb + 5 <= ADC_value || ADC_value_deb - 5 >= ADC_value)
+	{
+		ADC_value_deb = ADC_value;
+		flag = 1;
+	}
+	// IF: Value changed
+	if(flag)
+	{
+		// Gain:
+		//parameter = (float)ADC_value * 20 / 4095;
+
+		// Cutoff:
+		parameter = (float)ADC_value * 4000 / 4095;
+
+		// Reinit
+		//SetupBandpassCPG(&EQ_BAND2_I, parameter, 0.707);
+		SetupLowpass(&EQ_BAND1_I, parameter, 0.707);
+		SetupLowpass(&EQ_BAND1_II, parameter, 0.707);
+		//SetupLowShelf(&EQ_BAND1_I, parameter, 0.707, 0);
+
+		flag = 0;
+	}
 
 	return FILTER_OK;
 }
@@ -110,40 +153,35 @@ Filter_Status ProcessEQ(float *data){
 	 * @brief	Partly commented due to too low processor speed that causes glitches
 	 ******************************/
 
-	// (*
-
-	float gain = 10*(float)testcutoff / 4095;
-
 	// BAND 1
 	band1 = *data;
-	//SetupHighShelf(&EQ_BAND1_I, 106, 0.707, gain);
 	ProcessFilter(&EQ_BAND1_I,  &band1);
-	//	ProcessFilter(&EQ_BAND1_II, &band1);
+	ProcessFilter(&EQ_BAND1_II, &band1);
 
 	// BAND 2
 	band2 = *data;
-	//	ProcessFilter(&EQ_BAND2_I,  &band2);
+	ProcessFilter(&EQ_BAND2_I,  &band2);
 	//	ProcessFilter(&EQ_BAND2_II, &band2);
 	//	ProcessFilter(&EQ_BAND2_III,&band2);
 	//	ProcessFilter(&EQ_BAND2_IV, &band2);
 
 	// BAND 3
 	band3 = *data;
-	//	ProcessFilter(&EQ_BAND3_I,  &band3);
+	//ProcessFilter(&EQ_BAND3_I,  &band3);
 	//	ProcessFilter(&EQ_BAND3_II, &band3);
 	//	ProcessFilter(&EQ_BAND3_III,&band3);
 	//	ProcessFilter(&EQ_BAND3_IV, &band3);
 
 	// BAND 4
 	band4 = *data;
-	//	ProcessFilter(&EQ_BAND4_I,  &band4);
+	//ProcessFilter(&EQ_BAND4_I,  &band4);
 	//	ProcessFilter(&EQ_BAND4_II, &band4);
 	//	ProcessFilter(&EQ_BAND4_III,&band4);
 	//	ProcessFilter(&EQ_BAND4_IV, &band4);
 
 	// BAND 5
 	band5 = *data;
-	//	ProcessFilter(&EQ_BAND5_I,  &band5);
+	//ProcessFilter(&EQ_BAND5_I,  &band5);
 	//	ProcessFilter(&EQ_BAND5_II, &band5);
 
 	// Write OUT
@@ -263,7 +301,8 @@ Filter_Status SetupNotch(struct BQFilter *BP, float cutoff, float Q){
 // Peaking EQ Filter
 Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float dBGain){
 
-	float A = powf(10, dBGain / 40);
+	float exp = dBGain / 40.0;
+	float A = powf(10, exp);
 	float w = 2 * M_PI * cutoff / samplerate;
 
 	float sin = sinf(w);
@@ -285,7 +324,8 @@ Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float d
 // LowShelf Filter
 Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dBGain){
 
-	float A = powf(10, dBGain / 40);
+	float exp = dBGain / 40;
+	float A = powf(10, exp);
 	float w = 2 * M_PI * cutoff / samplerate;
 
 	float sin = sinf(w);
@@ -307,7 +347,8 @@ Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dB
 // HighShelf Filter
 Filter_Status SetupHighShelf(struct BQFilter *HS, float cutoff, float Q, float dBGain){
 
-	float A = powf(10, dBGain / 40);
+	float exp = dBGain / 40;
+	float A = powf(10, exp);
 	float w = 2 * M_PI * cutoff / samplerate;
 
 	float sin = sinf(w);

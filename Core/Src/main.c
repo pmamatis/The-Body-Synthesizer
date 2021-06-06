@@ -56,7 +56,6 @@ UART_HandleTypeDef huart3;
 /* USER CODE BEGIN PV */
 HAL_StatusTypeDef PWM_status_TIM1, PWM_status_TIM8;
 
-uint32_t testcutoff=0;
 uint8_t sinIndex=0;
 
 /* USER CODE END PV */
@@ -174,13 +173,14 @@ int main(void)
 
 	// START: ADC for poti
 	HAL_TIM_Base_Start(&htim6);
-	HAL_ADC_Start_DMA(&hadc1, &testcutoff, 1);
+	HAL_ADC_Start_DMA(&hadc1, &ADC_value, 1);
 
 	//Example signal for test
 	NewSignal(&signals1,SIN,'g',0);
-	//	NewSignal(&signals1,SIN,'C',1);
-	//	NewSignal(&signals1,SIN,'g',2);
-	//	NewSignal(&signals1,SIN,'g',3);
+	NewSignal(&signals1,SIN,'g',1);
+	NewSignal(&signals1,SIN,'g',2);
+	NewSignal(&signals1,SIN,'g',3);
+	NewSignal(&signals1,SIN,'g',4);
 	//	NewSignal(&signals1,SIN,'g',4);
 	//	NewSignal(&signals1,SIN,'g',5);
 
@@ -192,7 +192,7 @@ int main(void)
 
 	//effect chain
 	//effects_add(TREM, 0);
-	//effects_add(EQ, 0);
+	effects_add(EQ, 0);
 
 
 	//ADC
@@ -200,8 +200,9 @@ int main(void)
 
 	while (1)
 	{
-//		printf("%i \r\n", testcutoff);
-//		HAL_Delay(100);
+		Filters_Reinit();
+		printf("%i \r\n", (int)parameter);
+		HAL_Delay(100);
 		//
 		//		effects_add(TREM, 0);
 		//		HAL_Delay(3000);

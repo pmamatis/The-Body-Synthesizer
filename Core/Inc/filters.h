@@ -23,9 +23,13 @@ struct BQFilter{
 
 	float a0, a1, a2, b0, b1, b2;
 	float z[4];
-	float x[2];
-	float y[2];
 };
+
+uint32_t ADC_value;
+uint32_t ADC_value_deb;
+uint32_t flag;
+
+float parameter;
 
 
 // Equalizer
@@ -83,6 +87,7 @@ typedef enum {
  *********************************/
 
 Filter_Status Filters_Init();
+Filter_Status Filters_Reinit();
 
 Filter_Status SetupLowpass    (struct BQFilter *LP, float cutoff, float Q);
 Filter_Status SetupHighpass   (struct BQFilter *HP, float cutoff, float Q);
@@ -95,6 +100,7 @@ Filter_Status SetupHighShelf  (struct BQFilter *HS, float cutoff, float Q, float
 
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data);
 Filter_Status ProcessEQ    (float *data);
+
 
 
 #endif /* INC_MUSIC_NOTES_H_ */
