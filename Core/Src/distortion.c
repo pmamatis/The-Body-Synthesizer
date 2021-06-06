@@ -17,25 +17,23 @@ const float atan_LUT_y[] = {-1.4711,-1.4711,-1.4711,-1.4711,-1.471,-1.471,-1.471
  *********************************/
 Distortion_Status Distortion_Init(void) {
 
-	SetupHardClippingDistortion(&HardClipping1);
-	SetupSoftClippingDistortion(&SoftClipping1);
+	SetupHardClippingDistortion(&HardClipping);
+	SetupSoftClippingDistortion(&SoftClipping);
 
 	return DISTORTION_OK;
 }
 
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping) {
 
-	//HardClipping->distortion_gain = 1.0;	// default -> no clipping
-	HardClipping->distortion_gain = 5.0;
+	HardClipping->distortion_gain = 1.0;	// default -> no clipping
+	HardClipping->distortion_maximum_gain = 9.0;
 
 	return DISTORTION_OK;
 }
 
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping) {
 
-	SoftClipping->last_distortion_gain = 0.0;	// MUSS ZU BEGINN VON distortion_gain ABWEICHEN!
-	//SoftClipping->distortion_gain = 1.0;
-	SoftClipping->distortion_gain = 3.0;
+	SoftClipping->distortion_gain = 1.0;
 	SoftClipping->min_distortion_calculatevector = 0.0;
 	SoftClipping->max_distortion_calculatevector = 0.0;
 	SoftClipping-> softclipping_option = 0;	// 0=optionA; 1=optionB; 2=optionC
@@ -51,6 +49,8 @@ Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftCli
 	SoftClipping->atan_softclipping_distortion_max[7] = 0.723200023;	// distortion_gain = 8.0
 	SoftClipping->atan_softclipping_distortion_max[8] = 0.730050027;	// distortion_gain = 9.0
 	SoftClipping->atan_softclipping_distortion_max[9] = 0.735549986;	// distortion_gain = 10.0
+
+	SoftClipping->distortion_maximum_gain = 9.0;
 
 	return DISTORTION_OK;
 }

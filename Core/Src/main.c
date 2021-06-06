@@ -161,6 +161,16 @@ struct display_variables{
 	bool ADSR_ONOFF;			// 1 ADSR
 	float ADSR_Attack;
 	float ADSR_Decay;
+	float ADSR_Sustain;
+	float ADSR_Release;
+	uint8_t ADSR_EffectPosition;
+	bool ADSR_EffectAdded;
+	bool Distortion_ONOFF;
+	bool Distortion_Type;
+	float Distortion_Gain;
+	uint8_t Distortion_EffectPosition;
+	bool Distortion_EffectAdded;
+	uint8_t EffectPosition;
 	//...Weitere Synth-Parameter
 
 	uint16_t ADC2inputs[5];	// ADC input array
@@ -198,12 +208,12 @@ struct display_variables{
 	bool BACK;		// state variable of the BACK-Button to go one step back in the display-menu
 	bool SW;		// state variable of the SW-Button of the Joystick
 
-	uint8_t VCO1_Waveform;
-	uint16_t VCO1_Frequency;
-	uint8_t Tremolo_LFO_Rate;
-	float Tremolo_LFO_Depth;
-	uint8_t Distortion_Type;
-	uint8_t Distortion_Gain;
+	//	uint8_t VCO1_Waveform;
+	//	uint16_t VCO1_Frequency;
+	//	uint8_t Tremolo_LFO_Rate;
+	//	float Tremolo_LFO_Depth;
+	//	uint8_t Distortion_Type;
+	//	uint8_t Distortion_Gain;
 };
 
 struct display_variables Display = {
@@ -215,11 +225,21 @@ struct display_variables Display = {
 		0,						// CurrentModule
 		0,						// ActiveEffectsCounter
 		{false, false, false},	// Voices_ONOFF
-		{},						// Voices_Note
-		{},						// Voices_Octave
+		{0, 0, 0},				// Voices_Note
+		{0, 0, 0},				// Voices_Octave
 		false,					// ADSR_ONOFF
 		0.0,					// ADSR_Attack
 		0.0,					// ADSR_Decay
+		1.0,					// ADSR_Sustain
+		0.0,					// ADSR_Release
+		0,						// ADSR_EffectPosition
+		false,					// ADSR_EffectAdded
+		false,					// Distortion_ONOFF
+		false,					// Distortion_Type
+		1.0,					// Distortion_Gain
+		0,						// Distortion_EffectPosition
+		false,					// Distortion_EffectAdded
+		0,						// EffectPosition
 		//...Weitere Synth-Parameter
 
 		{},						// ADC2inputs
@@ -278,9 +298,9 @@ static void MX_TIM4_Init(void);
 
 void Load_SD_File(uint8_t JoystickPatchPosition, uint16_t VRy, bool SW, Paint paint, EPD epd, unsigned char* frame_buffer);
 void PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
-//void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
-void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, Paint paint, EPD epd, unsigned char* frame_buffer);
-void RequestPatchParameters(struct PatchControls *Patch1, bool* ChosenGadget, bool* PatchParameterAssign, bool* Patch, Paint paint, EPD epd, unsigned char* frame_buffer);
+void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, struct effects_distortion* HardClipping, Paint paint, EPD epd, unsigned char* frame_buffer);
+//void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, Paint paint, EPD epd, unsigned char* frame_buffer);
+//void RequestPatchParameters(struct PatchControls *Patch1, bool* ChosenGadget, bool* PatchParameterAssign, bool* Patch, Paint paint, EPD epd, unsigned char* frame_buffer);
 
 /* USER CODE END PFP */
 
@@ -447,14 +467,14 @@ int main(void)
 	Paint_SetRotate(&paint, ROTATE_90);
 
 	// Reihenfolge der Eingabegeräte: Poti_raw, EMG_AC1, EMG_DC1, EMG_AC2, EMG_DC2, GyroX, GyroY, GyroZ
-	Display.VRx 			= Display.ADC2inputs[0];	// ADC2 values
-	Display.VRy 			= Display.ADC2inputs[1];
-	Display.Poti_raw 		= Display.ADC2inputs[2];
-	Display.Poti_percent 	= ((float)Display.Poti_raw/4096)*100.0;
-	Display.Poti_percent 	= (Display.Poti_percent > 100) ? 100 : Display.Poti_percent;	// Abfangen von Zahlen > 100
-	Display.Poti_percent 	= (Display.Poti_percent < 0) ? 0 : Display.Poti_percent;		// Abfangen von Zahlen < 0
-	Display.EMG_AC1 		= Display.ADC2inputs[3];
-	Display.EMG_DC1 		= Display.ADC2inputs[4];
+	//	Display.VRx 			= Display.ADC2inputs[0];	// ADC2 values
+	//	Display.VRy 			= Display.ADC2inputs[1];
+	//	Display.Poti_raw 		= Display.ADC2inputs[2];
+	//	Display.Poti_percent 	= ((float)Display.Poti_raw/4096)*100.0;
+	//	Display.Poti_percent 	= (Display.Poti_percent > 100) ? 100 : Display.Poti_percent;	// Abfangen von Zahlen > 100
+	//	Display.Poti_percent 	= (Display.Poti_percent < 0) ? 0 : Display.Poti_percent;		// Abfangen von Zahlen < 0
+	//	Display.EMG_AC1 		= Display.ADC2inputs[3];
+	//	Display.EMG_DC1 		= Display.ADC2inputs[4];
 
 	//	Display->EMG_AC2 	= Display->ADC3inputs[0];	// ADC3 values
 	//	Display->EMG_DC2 	= Display->ADC3inputs[1];
@@ -488,7 +508,8 @@ int main(void)
 	// Request parameters of the Patch
 	//SetPatchParameters(&Display, paint, epd, frame_buffer);	// OFF FOR DEBUGGING
 	//effects_add(ADSR, 0);
-	SetPatchParameters(&Display, &envelope, paint, epd, frame_buffer);
+	SetPatchParameters(&Display, &envelope, &HardClipping, paint, epd, frame_buffer);
+	//SetPatchParameters(&Display, &envelope, paint, epd, frame_buffer);
 
 	/* USER CODE END 2 */
 
@@ -1264,14 +1285,18 @@ void PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd,
 	}
 }
 
-// void SetPatchParameters(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer) {
-void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, Paint paint, EPD epd, unsigned char* frame_buffer) {
+//void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, Paint paint, EPD epd, unsigned char* frame_buffer) {
+void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, struct effects_distortion* HardClipping, Paint paint, EPD epd, unsigned char* frame_buffer) {
 
 	// FOR DEBUGGING!
 	Display->PatchSelected[0] = true;
 
 	// PATCH 1 SELECTED
 	while(Display->PatchSelected[0] == true) {
+
+		// order for patch 1
+		Display->Distortion_EffectPosition = 0;
+		Display->ADSR_EffectPosition = 1;
 
 		// #############################################
 		// ########### BEGIN VOICES SUBMENU ############
@@ -1334,19 +1359,17 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			}
 
 			// Voice1 Note
-			if(Display->JoystickParameterPosition == 2) {
+			else if(Display->JoystickParameterPosition == 2) {
 				Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
-				float noteindex = ((float)Display->Poti_raw/4096) * (sizeof(keys)/sizeof(keys[0]));	// length keys-array = 26 -> from Music_notes.c
+				float noteindex = ((float)Display->Poti_raw/4096) * (sizeof(keys)/sizeof(keys[0]));
 				note = keys[(uint8_t)noteindex];
-				Paint_DrawCharAt(&paint, 150, 50, note, &Font12, COLORED);
 				Display->Voices_Note[0] = note;	// assign Voice1 Note
 			}
 
 			// Voice1 Octave
-			if(Display->JoystickParameterPosition == 3) {
+			else if(Display->JoystickParameterPosition == 3) {
 				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
 				octave = (char) (((float)Display->Poti_raw/4096) * 6);	// 5 0ctaves
-				Paint_DrawCharAt(&paint, 150, 70, octave+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 				Display->Voices_Octave[0] = (uint8_t)octave;	// assign Voice1 Octave
 			}
 
@@ -1357,7 +1380,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 					if(signals1.count == 1)		// Delete the last generated signal
 						DeleteSignal(&signals1, 1);
 
-					NewSignal(&signals1, SIN, note, octave);	// create signal and assign selected parameters
+					NewSignal(&signals1, SIN, Display->Voices_Note[0], Display->Voices_Octave[0]);	// create signal and assign selected parameters
 					outputBuffer_position = HALF_BLOCK;
 				}
 			}
@@ -1368,6 +1391,8 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			last_note = note;
 			last_octave = octave;
 
+			Paint_DrawCharAt(&paint, 150, 50, note, &Font12, COLORED);
+			Paint_DrawCharAt(&paint, 150, 70, octave+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 			// Display the frame_buffer
 			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 			EPD_DisplayFrame(&epd);
@@ -1382,8 +1407,8 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			}
 
 			if(Display->VRx < Display->LowerLimit) {
-				Display->CurrentModule = 1;	// forward to ADSR
-				Display->JoystickParameterPosition = 1;	// Reset JoystickParameterPosition
+				Display->CurrentModule = 1;	// forward to Distortion
+				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
@@ -1397,9 +1422,152 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 
 
 		// #############################################
-		// ############ BEGIN ADSR SUBMENU #############
+		// ########## BEGIN DISTORTION SUBMENU #########
 		// #############################################
 		while(Display->CurrentModule == 1) {
+
+			Paint_DrawStringAt(&paint, 1, 10, "Distortion", &Font16, COLORED);
+			Paint_DrawStringAt(&paint, 1, 30, "Dist. ON/OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 50, "Type", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Gain", &Font12, COLORED);
+
+			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
+			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
+			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
+
+			char distortion_gain_string[9];
+			sprintf(distortion_gain_string, "%f", Display->Distortion_Gain);
+
+			if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to Distortion ON/OFF
+			}
+			else if( (Display->JoystickParameterPosition == 1) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 30, 150, 40, UNCOLORED);	// switch from Distortion ON/OFF to Type
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 2;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Type to Distortion ON/OFF
+				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 1;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Type to Gain
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 3;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy > Display->LowerLimit) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);	// arrow to Type
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 70, 150, 80, UNCOLORED);	// switch from Gain to Type
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 2;
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);	// arrow to Gain
+			}
+
+			// check state of the potentiometer and assign parameter value
+			// Distortion ON/OFF
+			if(Display->JoystickParameterPosition == 1) {
+
+				Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+
+				if(Display->Poti_raw < Display->ADC_FullRange/2) {
+					Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
+					Display->Distortion_ONOFF = false;
+				}
+				else if(Display->Poti_raw >= Display->ADC_FullRange/2) {
+					Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
+					Display->Distortion_ONOFF = true;
+				}
+			}
+
+			// Distortion Type
+			else if(Display->JoystickParameterPosition == 2) {
+
+				Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
+
+				if(Display->Poti_raw < Display->ADC_FullRange/2) {
+					Paint_DrawStringAt(&paint, 150, 50, "Soft Clipping", &Font12, COLORED);
+					Display->Distortion_Type = 1;
+				}
+				else if(Display->Poti_raw >= Display->ADC_FullRange/2) {
+					Paint_DrawStringAt(&paint, 150, 50, "Hard Clipping", &Font12, COLORED);
+					Display->Distortion_Type = 1;
+				}
+			}
+
+			// Distortion Gain
+			else if(Display->JoystickParameterPosition == 3) {
+
+				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
+
+				Display->Distortion_Gain = (((float)Display->Poti_raw/4096) * HardClipping->distortion_maximum_gain) + 1;	// +1 to prevent 0
+
+				sprintf(distortion_gain_string, "%f", Display->Distortion_Gain);
+			}
+
+			if(Display->Distortion_ONOFF == true) {	// if Distortion ON
+
+				HardClipping->distortion_gain = Display->Distortion_Gain;
+
+				if(Display->Distortion_EffectAdded == false) {	// if no distortion effect added yet
+
+					effects_add(DIST_H, Display->Distortion_EffectPosition);
+					Display->Distortion_EffectAdded = true;
+				}
+			}
+			else if(Display->Distortion_ONOFF == false) {	// if Distortion OFF
+
+				if(Display->Distortion_EffectAdded == true) {
+
+					effects_delete(DIST_H, Display->Distortion_EffectPosition);
+					Display->Distortion_EffectAdded = false;
+				}
+			}
+
+			Paint_DrawStringAt(&paint, 150, 70, distortion_gain_string, &Font12, COLORED);
+			// Display the frame_buffer
+			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+			EPD_DisplayFrame(&epd);
+
+			// reset BACK-switch
+			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
+				Display->BACK = false;
+			}
+			// reset ENTER-switch
+			if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
+				Display->ENTER = false;
+			}
+
+			if(Display->VRx > Display->UpperLimit) {
+				Display->CurrentModule = 0;	// back to Voices
+				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+			else if(Display->VRx < Display->LowerLimit) {
+				Display->CurrentModule = 2;	// forward to ADSR
+				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+		}
+		// #############################################
+		// ########## END DISTORTION SUBMENU ###########
+		// #############################################
+
+
+		// #############################################
+		// ############ BEGIN ADSR SUBMENU #############
+		// #############################################
+		while(Display->CurrentModule == 2) {
 
 			Paint_DrawStringAt(&paint, 1, 10, "ADSR", &Font16, COLORED);
 			Paint_DrawStringAt(&paint, 1, 30, "ADSR ON/OFF", &Font12, COLORED);
@@ -1412,7 +1580,14 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
 			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
 
-			uint16_t attack, last_attack, decay, last_decay;
+			char attack_string[9];
+			sprintf(attack_string, "%f", Display->ADSR_Attack);
+			char decay_string[9];
+			sprintf(decay_string, "%f", Display->ADSR_Decay);
+			char sustain_string[9];
+			sprintf(sustain_string, "%f", Display->ADSR_Sustain);
+			char release_string[9];
+			sprintf(release_string, "%f", Display->ADSR_Release);
 
 			if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
 				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to ADSR ON/OFF
@@ -1440,8 +1615,34 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
 				Display->JoystickParameterPosition = 2;
 			}
-			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy < Display->UpperLimit) ) {
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy > Display->LowerLimit) && (Display->VRy < Display->UpperLimit) ) {
 				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);	// arrow to Decay
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 70, 150, 80, UNCOLORED);	// switch from Decay to Sustain
+				Paint_DrawStringAt(&paint, 110, 90, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 4;
+			}
+			else if( (Display->JoystickParameterPosition == 4) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 90, 150, 100, UNCOLORED);	// switch from Sustain to Decay
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 3;
+			}
+			else if( (Display->JoystickParameterPosition == 4) && (Display->VRy > Display->LowerLimit) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 90, "<---", &Font12, COLORED);	// arrow to Sustain
+			}
+			else if( (Display->JoystickParameterPosition == 4) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 90, 150, 100, UNCOLORED);	// switch from Sustain to Release
+				Paint_DrawStringAt(&paint, 110, 110, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 5;
+			}
+			else if( (Display->JoystickParameterPosition == 5) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 110, 150, 120, UNCOLORED);	// switch from Release to Sustain
+				Paint_DrawStringAt(&paint, 110, 90, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 4;
+			}
+			else if( (Display->JoystickParameterPosition == 5) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 110, "<---", &Font12, COLORED);	// arrow to Release
 			}
 
 			// check state of the potentiometer and assign parameter value
@@ -1458,53 +1659,58 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			}
 
 			// ADSR Attack
-			if(Display->JoystickParameterPosition == 2) {
+			else if(Display->JoystickParameterPosition == 2) {
 				Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
 				Display->ADSR_Attack = ((float)Display->Poti_raw/4096) * envelope->adsr_maximum_attack;
-				char attack_string[9];
 				sprintf(attack_string, "%f", Display->ADSR_Attack);
-				Paint_DrawStringAt(&paint, 150, 50, attack_string, &Font12, COLORED);
-				attack = Display->ADSR_Attack * 1000;	// seconds to milliseconds
 			}
 
 			// ADSR Decay
-			if(Display->JoystickParameterPosition == 3) {
+			else if(Display->JoystickParameterPosition == 3) {
 				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
 				Display->ADSR_Decay = ((float)Display->Poti_raw/4096) * envelope->adsr_maximum_decay;
-				char decay_string[9];
 				sprintf(decay_string, "%f", Display->ADSR_Decay);
-				Paint_DrawStringAt(&paint, 150, 70, decay_string, &Font12, COLORED);
-				decay = Display->ADSR_Decay * 1000;	// seconds to milliseconds
+			}
+
+			// ADSR Sustain
+			else if(Display->JoystickParameterPosition == 4) {
+				Paint_DrawFilledRectangle(&paint, 150, 90, 200, 110, UNCOLORED);
+				Display->ADSR_Sustain = ((float)Display->Poti_raw/4096) * envelope->adsr_max_amp;
+				sprintf(sustain_string, "%f", Display->ADSR_Sustain);
+			}
+
+			// ADSR Release
+			else if(Display->JoystickParameterPosition == 5) {
+				Paint_DrawFilledRectangle(&paint, 150, 110, 200, 130, UNCOLORED);
+				Display->ADSR_Release = ((float)Display->Poti_raw/4096) * envelope->adsr_maximum_release;
+				sprintf(release_string, "%f", Display->ADSR_Release);
 			}
 
 			if(Display->ADSR_ONOFF == true) {	// if ADSR ON
 
-				//if( (last_attack != attack) || (last_decay != decay) ) {	// if adsr parameters changed
-				if( (abs(last_attack-attack) > 50) || (abs(last_decay-decay) > 50) ) {	// if adsr parameters changed significantly
+				envelope->adsr_attack_time = Display->ADSR_Attack * LUT_SR;
+				envelope->adsr_decay_time = Display->ADSR_Decay * LUT_SR;
+				envelope->adsr_sustain_amplitude = Display->ADSR_Sustain;
+				envelope->adsr_release_time = Display->ADSR_Release * LUT_SR;
 
-					envelope->adsr_attack_time = Display->ADSR_Attack * LUT_SR;
-					envelope->adsr_decay_time = Display->ADSR_Decay * LUT_SR;
-
-					if(Display->ActiveEffectsCounter > 0) {
-						effects_delete(ADSR, Display->ActiveEffectsCounter);
-						Display->ActiveEffectsCounter--;
-					}
-
-					Display->ActiveEffectsCounter++;
-					effects_add(ADSR, Display->ActiveEffectsCounter);
-
-					// Display->ADSREffectPosition = Display->ActiveEffectsCounter;
+				if(Display->ADSR_EffectAdded == false) {	// if no adsr effect added yet
+					effects_add(ADSR, Display->ADSR_EffectPosition);
+					Display->ADSR_EffectAdded = true;
 				}
 			}
 			else if(Display->ADSR_ONOFF == false) {	// if ADSR OFF
-				if(Display->ActiveEffectsCounter > 0) {
-					effects_delete(ADSR, Display->ActiveEffectsCounter);	// stattdessen Display->ADSREffectPosition nutzen?
-					Display->ActiveEffectsCounter--;
+
+				if(Display->ADSR_EffectAdded == true) {
+
+					effects_delete(ADSR, Display->ADSR_EffectPosition);
+					Display->ADSR_EffectAdded = false;
 				}
 			}
-			last_attack = attack;
-			last_decay = decay;
 
+			Paint_DrawStringAt(&paint, 150, 50, attack_string, &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 150, 70, decay_string, &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 150, 90, sustain_string, &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 150, 110, release_string, &Font12, COLORED);
 			// Display the frame_buffer
 			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 			EPD_DisplayFrame(&epd);
@@ -1519,14 +1725,16 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			}
 
 			if(Display->VRx > Display->UpperLimit) {
-				Display->CurrentModule = 0;	// back to Voices
+				Display->CurrentModule = 1;	// back to Distortion
+				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 				EPD_DisplayFrame(&epd);
 			}
 			else if(Display->VRx < Display->LowerLimit) {
-				Display->CurrentModule = 2;	// forward to EQ
+				Display->CurrentModule = 3;	// forward to Equalizer
+				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
@@ -1542,7 +1750,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 		// #############################################
 		// ########## BEGIN EQUALIZER SUBMENU ##########
 		// #############################################
-		while(Display->CurrentModule == 2) {
+		while(Display->CurrentModule == 3) {
 
 			Paint_DrawStringAt(&paint, 1, 10, "Equalizer", &Font16, COLORED);
 			Paint_DrawStringAt(&paint, 1, 30, "Band1 ON/OFF", &Font12, COLORED);
@@ -1559,45 +1767,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			EPD_DisplayFrame(&epd);
 
 			if(Display->VRx > Display->UpperLimit) {
-				Display->CurrentModule = 1;	// back to ADSR
-				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-			}
-			else if(Display->VRx < Display->LowerLimit) {
-				Display->CurrentModule = 3;	// forward to Distortion
-				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-			}
-		}
-		// #############################################
-		// ########## END EQUALIZER SUBMENU ############
-		// #############################################
-
-
-		// #############################################
-		// ########## BEGIN DISTORTION SUBMENU #########
-		// #############################################
-		while(Display->CurrentModule == 3) {
-
-			Paint_DrawStringAt(&paint, 1, 10, "Distortion", &Font16, COLORED);
-			Paint_DrawStringAt(&paint, 1, 30, "Distortion ON/OFF", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 50, "Distortion Type", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 70, "Distortion Gain", &Font12, COLORED);
-
-			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
-			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
-			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
-
-			// Display the frame_buffer
-			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-			EPD_DisplayFrame(&epd);
-
-			if(Display->VRx > Display->UpperLimit) {
-				Display->CurrentModule = 2;	// back to Equalizer
+				Display->CurrentModule = 2;	// back to Distortion
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
@@ -1612,8 +1782,9 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			}
 		}
 		// #############################################
-		// ########## END DISTORTION SUBMENU ###########
+		// ########## END EQUALIZER SUBMENU ############
 		// #############################################
+
 
 		// #############################################
 		// ########### BEGIN TREMOLO SUBMENU ###########
@@ -1634,7 +1805,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			EPD_DisplayFrame(&epd);
 
 			if(Display->VRx > Display->UpperLimit) {
-				Display->CurrentModule = 3;	// back to Distortion
+				Display->CurrentModule = 3;	// back to Equalizer
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
@@ -1708,9 +1879,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 		while( (ChosenGadget[0]==false) && (ChosenGadget[2]==false) && (ChosenGadget[5]==false)) {
 
-			Poti_raw		= ADC2inputs[2];
+			Poti_raw	= ADC2inputs[2];
 			EMG_DC1		= ADC2inputs[4];
-			//*GyroX			= ADC3inputs[2];
+			GyroX		= ADC3inputs[2];
 
 			if((abs(last_Poti_raw-Poti_raw)>=50))		ChosenGadget[0] = true;
 
@@ -1747,7 +1918,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 		last_Poti_raw 	= ADC2inputs[2];
 		last_EMG_DC1 	= ADC2inputs[4];
-		//*last_GyroX 	= ADC3inputs[2];
+		last_GyroX 		= ADC3inputs[2];
 
 		// VCF1 Cutoff-gadget-assignment
 		Paint_Clear(&paint, UNCOLORED);	// clear display
@@ -1762,7 +1933,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 			Poti_raw	= ADC2inputs[2];
 			EMG_DC1		= ADC2inputs[4];
-			//*GyroX			= ADC3inputs[2];
+			GyroX		= ADC3inputs[2];
 
 			if((abs(last_Poti_raw-Poti_raw)>=50))		ChosenGadget[0] = true;
 

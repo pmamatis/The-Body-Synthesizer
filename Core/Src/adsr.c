@@ -22,6 +22,7 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 
 	envelope->adsr_maximum_attack = 1.00;	// in seconds; maximum 4.0 seconds, to display the value -> uint16_t
 	envelope->adsr_maximum_decay = 1.00;
+	envelope->adsr_maximum_release = 0.50;
 
 	return ADSR_OK;
 }

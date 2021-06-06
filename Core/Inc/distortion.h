@@ -26,7 +26,6 @@ typedef enum {
 struct effects_distortion{
 	float min_distortion_calculatevector;
 	float max_distortion_calculatevector;
-	float last_distortion_gain;
 	float distortion_gain;
 	float atan_parameter;
 	unsigned int distortion_index;
@@ -44,6 +43,8 @@ struct effects_distortion{
 	// distortion_gain = 9.0 -> +-0.730050027
 	// distortion_gain = 10.0 -> +-0.735549986
 	float atan_softclipping_distortion_max[10];	// 10 different distortion gain values, so the effect can be increased step-wise
+
+	float distortion_maximum_gain;
 };
 
 /*% softclipping-atan lookup-table generation in MATLAB
@@ -62,8 +63,8 @@ struct effects_distortion{
 extern const float aquidistance;
 extern const float atan_LUT_y[8192];	// blocksize = 8192
 
-struct effects_distortion HardClipping1;
-struct effects_distortion SoftClipping1;
+struct effects_distortion HardClipping;
+struct effects_distortion SoftClipping;
 
 Distortion_Status Distortion_Init(void);
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping);

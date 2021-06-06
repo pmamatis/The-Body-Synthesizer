@@ -26,8 +26,12 @@ void effects_process(float* calculate_value){
 			ProcessEQ(calculate_value);
 			break;
 
-		case DIST:
-			/* code */
+		case DIST_H:
+			ProcessHardClippingDistortion(&HardClipping, calculate_value);
+			break;
+
+		case DIST_S:
+			ProcessSoftClippingDistortion(&SoftClipping, calculate_value);
 			break;
 
 		case ADSR:
@@ -48,7 +52,7 @@ void effects_process(float* calculate_value){
  * @param effect: wanted effect listed in the effects_t_enum
  * @param position:
  */
-void effects_add(effects_t_enum effect, uint8_t position){
+/*void effects_add(effects_t_enum effect, uint8_t position){
 
 	if (position < MAX_EFFECTS){
 
@@ -60,6 +64,16 @@ void effects_add(effects_t_enum effect, uint8_t position){
 			effect_order[i] = tmp;
 			tmp = tmp2;
 		}
+	}
+	else {
+		//error @TODO
+	}
+}*/
+void effects_add(effects_t_enum effect, uint8_t position) {
+
+	if (position < MAX_EFFECTS){
+
+		effect_order[position] = effect;
 	}
 	else {
 		//error @TODO

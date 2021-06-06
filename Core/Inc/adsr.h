@@ -1,10 +1,18 @@
+/**
+ ******************************************************************************
+ * @file    adsr.h
+ * @author  Marc Bielen
+ * @date 	28 May 2020
+ * @brief	ADSR-Library
+ */
+
 #ifndef ADSR_H
 #define ADSR_H
 
 #include "main.h"
 
 /***************************
- * @brief Enumeration for Tremolo Debugging
+ * @brief Enumeration for ADSR Debugging
  ***************************/
 typedef enum {
 	ADSR_FAIL = -1,
@@ -23,6 +31,7 @@ struct adsr {
 
 	float adsr_maximum_attack;
 	float adsr_maximum_decay;
+	float adsr_maximum_release;
 };
 
 struct adsr envelope;

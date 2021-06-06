@@ -13,7 +13,8 @@
  ***************************/
 typedef enum effects_t_enum {
 	TREM = 1,	// Tremolo
-	DIST,		// Distortion
+	DIST_S,		// Soft Clipping Distortion
+	DIST_H,		// Hard Clipping Distortion
 	EQ,			// Equalizer
 	ADSR		// ADSR
 
