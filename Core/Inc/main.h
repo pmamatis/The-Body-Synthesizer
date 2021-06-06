@@ -103,6 +103,8 @@ float effect_LFO[BLOCKSIZE/2];
 
 float sigFreq_sampleFreq_ratio;
 
+uint32_t testcutoff;
+
 /** @brief enum for DMA Output buffer position */
 enum outputBuffer_position_enum{
 	HALF_BLOCK = 0,

@@ -28,33 +28,126 @@ Filter_Status Filters_Init(){
 	 * @brief	Band 6: HP, 3200 Hz,	80 dB / Dec.
 	 ******************************/
 
+	// BAND 1: High-shelf filter
+	SetupHighShelf(&EQ_BAND1_I,   106, 0.707, 0);
+	SetupHighShelf(&EQ_BAND1_II,  106, 0.707, 0);
 
-	// BAND 1: LP 4th order
-	SetupLowpass (&EQ_BAND1_I,  200, 0.707);
-	SetupLowpass (&EQ_BAND1_II, 200, 0.707);
+	// BAND 2: Peaking-EQ filter
+	SetupPeakingEQ(&EQ_BAND2_I,   400, 0.707, 0);
+	SetupPeakingEQ(&EQ_BAND2_II,  400, 0.707, 0);
 
-	// BAND 2: BP 8th order
-	SetupBandpassCPG(&EQ_BAND2_I,  400, 0.707);
-	SetupBandpassCPG(&EQ_BAND2_II, 400, 0.707);
-	SetupBandpassCPG(&EQ_BAND2_III,400, 0.707);
-	SetupBandpassCPG(&EQ_BAND2_IV, 400, 0.707);
+	// BAND 3: Peaking-EQ filter
+	SetupPeakingEQ(&EQ_BAND3_I,   800, 0.707, 0);
+	SetupPeakingEQ(&EQ_BAND3_II,  800, 0.707, 0);
 
-	// BAND 3: BP 8th order
-	SetupBandpassCPG(&EQ_BAND3_I,  800, 0.707);
-	SetupBandpassCPG(&EQ_BAND3_II, 800, 0.707);
-	SetupBandpassCPG(&EQ_BAND3_III,800, 0.707);
-	SetupBandpassCPG(&EQ_BAND3_IV, 800, 0.707);
+	// BAND 4: Peaking-EQ filter
+	SetupPeakingEQ(&EQ_BAND4_I,  1600, 0.707, 0);
+	SetupPeakingEQ(&EQ_BAND4_II, 1600, 0.707, 0);
 
-	// BAND 4: BP 8th order
-	SetupBandpassCPG(&EQ_BAND4_I,  1600, 0.707);
-	SetupBandpassCPG(&EQ_BAND4_II, 1600, 0.707);
-	SetupBandpassCPG(&EQ_BAND4_III,1600, 0.707);
-	SetupBandpassCPG(&EQ_BAND4_IV, 1600, 0.707);
+	// BAND 5: Low-Shelf filter
+	SetupLowShelf(&EQ_BAND5_I,    3200, 0.707, 0);
+	SetupLowShelf(&EQ_BAND5_II,   3200, 0.707, 0);
+
+
+
+	//	// BAND 1: LP 4th order
+	//	SetupLowpass (&EQ_BAND1_I,  200, 0.707);
+	//	SetupLowpass (&EQ_BAND1_II, 200, 0.707);
+	//
+	//	// BAND 2: BP 8th order
+	//	SetupBandpassCPG(&EQ_BAND2_I,  400, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND2_II, 400, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND2_III,400, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND2_IV, 400, 0.707);
+	//
+	//	// BAND 3: BP 8th order
+	//	SetupBandpassCPG(&EQ_BAND3_I,  800, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND3_II, 800, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND3_III,800, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND3_IV, 800, 0.707);
+	//
+	//	// BAND 4: BP 8th order
+	//	SetupBandpassCPG(&EQ_BAND4_I,  1600, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND4_II, 1600, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND4_III,1600, 0.707);
+	//	SetupBandpassCPG(&EQ_BAND4_IV, 1600, 0.707);
+	//
+	//	// BAND 5
+	//	SetupHighpass(&EQ_BAND5_I,  3200, 0.707);
+	//	SetupHighpass(&EQ_BAND5_II, 3200, 0.707);
+
+	return FILTER_OK;
+}
+
+
+Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
+
+	float input = 0;
+	float out = 0;
+
+	input = *data;
+
+	out = (F->b0 / F->a0) * input + (F->b1 / F->a0) * F->z[0] + (F->b2 / F->a0) * F->z[1] - (F->a1 / F->a0) * F->z[2] - (F->a2 / F->a0) * F->z[3];
+
+	F->z[3] = F->z[2];
+	F->z[2] = out;
+	F->z[1] = F->z[0];
+	F->z[0] = input;
+	*data = out;
+
+	return FILTER_OK;
+}
+
+
+Filter_Status ProcessEQ(float *data){
+
+	/*****************************
+	 * Processing EQ
+	 *
+	 * @brief	LP / HP: 	40 dB / Dec. per ProcessFilter() call
+	 * @brief	BP: 		 3 dB / Oct. per ProcessFilter() call
+	 *
+	 * @brief	Partly commented due to too low processor speed that causes glitches
+	 ******************************/
+
+	// (*
+
+	float gain = 10*(float)testcutoff / 4095;
+
+	// BAND 1
+	band1 = *data;
+	//SetupHighShelf(&EQ_BAND1_I, 106, 0.707, gain);
+	ProcessFilter(&EQ_BAND1_I,  &band1);
+	//	ProcessFilter(&EQ_BAND1_II, &band1);
+
+	// BAND 2
+	band2 = *data;
+	//	ProcessFilter(&EQ_BAND2_I,  &band2);
+	//	ProcessFilter(&EQ_BAND2_II, &band2);
+	//	ProcessFilter(&EQ_BAND2_III,&band2);
+	//	ProcessFilter(&EQ_BAND2_IV, &band2);
+
+	// BAND 3
+	band3 = *data;
+	//	ProcessFilter(&EQ_BAND3_I,  &band3);
+	//	ProcessFilter(&EQ_BAND3_II, &band3);
+	//	ProcessFilter(&EQ_BAND3_III,&band3);
+	//	ProcessFilter(&EQ_BAND3_IV, &band3);
+
+	// BAND 4
+	band4 = *data;
+	//	ProcessFilter(&EQ_BAND4_I,  &band4);
+	//	ProcessFilter(&EQ_BAND4_II, &band4);
+	//	ProcessFilter(&EQ_BAND4_III,&band4);
+	//	ProcessFilter(&EQ_BAND4_IV, &band4);
 
 	// BAND 5
-	SetupHighpass(&EQ_BAND5_I,  3200, 0.707);
-	SetupHighpass(&EQ_BAND5_II, 3200, 0.707);
+	band5 = *data;
+	//	ProcessFilter(&EQ_BAND5_I,  &band5);
+	//	ProcessFilter(&EQ_BAND5_II, &band5);
 
+	// Write OUT
+	*data = band1;// + band2 + band3 + band4 + band5;
 
 	return FILTER_OK;
 }
@@ -232,71 +325,4 @@ Filter_Status SetupHighShelf(struct BQFilter *HS, float cutoff, float Q, float d
 	return FILTER_OK;
 }
 
-
-Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
-
-	float input = 0;
-	float out = 0;
-
-	input = *data;
-
-	out = (F->b0 / F->a0) * input + (F->b1 / F->a0) * F->z[0] + (F->b2 / F->a0) * F->z[1] - (F->a1 / F->a0) * F->z[2] - (F->a2 / F->a0) * F->z[3];
-
-	F->z[3] = F->z[2];
-	F->z[2] = out;
-	F->z[1] = F->z[0];
-	F->z[0] = input;
-	*data = out;
-
-	return FILTER_OK;
-}
-
-
-Filter_Status ProcessEQ(float *data){
-
-	/*****************************
-	 * Processing EQ
-	 *
-	 * @brief	LP / HP: 	40 dB / Dec. per ProcessFilter() call
-	 * @brief	BP: 		 3 dB / Oct. per ProcessFilter() call
-	 *
-	 * @brief	Partly commented due to too low processor speed that causes glitches
-	 ******************************/
-
-	// BAND 1
-	band1 = *data;
-	ProcessFilter(&EQ_BAND1_I,  &band1);
-//	ProcessFilter(&EQ_BAND1_II, &band1);
-
-	// BAND 2
-	band2 = *data;
-	ProcessFilter(&EQ_BAND2_I,  &band2);
-//	ProcessFilter(&EQ_BAND2_II, &band2);
-	//	ProcessFilter(&EQ_BAND2_III,&band2);
-	//	ProcessFilter(&EQ_BAND2_IV, &band2);
-
-	// BAND 3
-	band3 = *data;
-	ProcessFilter(&EQ_BAND3_I,  &band3);
-//	ProcessFilter(&EQ_BAND3_II, &band3);
-	//	ProcessFilter(&EQ_BAND3_III,&band3);
-	//	ProcessFilter(&EQ_BAND3_IV, &band3);
-
-	// BAND 4
-	band4 = *data;
-	ProcessFilter(&EQ_BAND4_I,  &band4);
-//	ProcessFilter(&EQ_BAND4_II, &band4);
-	//	ProcessFilter(&EQ_BAND4_III,&band4);
-	//	ProcessFilter(&EQ_BAND4_IV, &band4);
-
-	// BAND 5
-	band5 = *data;
-	ProcessFilter(&EQ_BAND5_I,  &band5);
-//	ProcessFilter(&EQ_BAND5_II, &band5);
-
-	// Write OUT
-	*data = band1 + band2 + band3 + band4 + band5;
-
-	return FILTER_OK;
-}
 
