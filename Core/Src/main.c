@@ -170,7 +170,11 @@ struct display_variables{
 	float Distortion_Gain;
 	uint8_t Distortion_EffectPosition;
 	bool Distortion_EffectAdded;
-	uint8_t EffectPosition;
+	bool Tremolo_ONOFF;
+	float Tremolo_Rate;
+	float Tremolo_Depth;
+	uint8_t Tremolo_EffectPosition;
+	bool Tremolo_EffectAdded;
 	//...Weitere Synth-Parameter
 
 	uint16_t ADC2inputs[5];	// ADC input array
@@ -207,13 +211,6 @@ struct display_variables{
 	bool ENTER;		// state variable of the ENTER-Button to go one step further in the display-menu
 	bool BACK;		// state variable of the BACK-Button to go one step back in the display-menu
 	bool SW;		// state variable of the SW-Button of the Joystick
-
-	//	uint8_t VCO1_Waveform;
-	//	uint16_t VCO1_Frequency;
-	//	uint8_t Tremolo_LFO_Rate;
-	//	float Tremolo_LFO_Depth;
-	//	uint8_t Distortion_Type;
-	//	uint8_t Distortion_Gain;
 };
 
 struct display_variables Display = {
@@ -239,7 +236,11 @@ struct display_variables Display = {
 		1.0,					// Distortion_Gain
 		0,						// Distortion_EffectPosition
 		false,					// Distortion_EffectAdded
-		0,						// EffectPosition
+		false,					// Tremolo_ONOFF
+		0.0,					// Tremolo_Rate
+		0.0,					// Tremolo_Depth
+		0,						// Tremolo_EffectPosition
+		false,					// Tremolo_EffectAdded
 		//...Weitere Synth-Parameter
 
 		{},						// ADC2inputs
@@ -278,6 +279,12 @@ struct PatchControls {
 
 struct PatchControls Patch1;
 
+uint16_t last_rate = 0;	// TEST
+uint16_t rate = 0;
+uint16_t last_depth = 0;
+uint16_t depth = 0;
+bool Recalc_LFO = false;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -298,7 +305,7 @@ static void MX_TIM4_Init(void);
 
 void Load_SD_File(uint8_t JoystickPatchPosition, uint16_t VRy, bool SW, Paint paint, EPD epd, unsigned char* frame_buffer);
 void PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
-void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, struct effects_distortion* HardClipping, Paint paint, EPD epd, unsigned char* frame_buffer);
+void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer);
 //void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, Paint paint, EPD epd, unsigned char* frame_buffer);
 //void RequestPatchParameters(struct PatchControls *Patch1, bool* ChosenGadget, bool* PatchParameterAssign, bool* Patch, Paint paint, EPD epd, unsigned char* frame_buffer);
 
@@ -310,13 +317,14 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 // DAC_CHANNEL_1
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
-	//	Signal_Synthesis_LFO(&tremollo);
 	Signal_Synthesis(&signals1, 1);
 }
 void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = FULL_BLOCK;
-	//	Signal_Synthesis_LFO(&tremollo);
 	Signal_Synthesis(&signals1, 1);
+
+	if(Recalc_LFO == true)
+		Signal_Synthesis_LFO(&Tremolo);
 }
 
 // DAC_CHANNEL_2
@@ -508,7 +516,7 @@ int main(void)
 	// Request parameters of the Patch
 	//SetPatchParameters(&Display, paint, epd, frame_buffer);	// OFF FOR DEBUGGING
 	//effects_add(ADSR, 0);
-	SetPatchParameters(&Display, &envelope, &HardClipping, paint, epd, frame_buffer);
+	SetPatchParameters(&Display, &envelope, &HardClipping, &Tremolo, paint, epd, frame_buffer);
 	//SetPatchParameters(&Display, &envelope, paint, epd, frame_buffer);
 
 	/* USER CODE END 2 */
@@ -1286,7 +1294,7 @@ void PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd,
 }
 
 //void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, Paint paint, EPD epd, unsigned char* frame_buffer) {
-void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, struct effects_distortion* HardClipping, Paint paint, EPD epd, unsigned char* frame_buffer) {
+void SetPatchParameters(struct display_variables* Display, struct adsr* envelope, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer) {
 
 	// FOR DEBUGGING!
 	Display->PatchSelected[0] = true;
@@ -1294,9 +1302,13 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 	// PATCH 1 SELECTED
 	while(Display->PatchSelected[0] == true) {
 
-		// order for patch 1
-		Display->Distortion_EffectPosition = 0;
-		Display->ADSR_EffectPosition = 1;
+		/*// order for patch 1
+		Display->Distortion_EffectPosition = 1;
+		Display->Tremolo_EffectPosition = 0;
+		Display->ADSR_EffectPosition = 2;*/
+		Display->Distortion_EffectPosition = 2;
+		Display->Tremolo_EffectPosition = 1;
+		Display->ADSR_EffectPosition = 3;
 
 		// #############################################
 		// ########### BEGIN VOICES SUBMENU ############
@@ -1424,7 +1436,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 		// #############################################
 		// ########## BEGIN DISTORTION SUBMENU #########
 		// #############################################
-		while(Display->CurrentModule == 1) {
+		while(Display->CurrentModule == 2) {
 
 			Paint_DrawStringAt(&paint, 1, 10, "Distortion", &Font16, COLORED);
 			Paint_DrawStringAt(&paint, 1, 30, "Dist. ON/OFF", &Font12, COLORED);
@@ -1543,7 +1555,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			}
 
 			if(Display->VRx > Display->UpperLimit) {
-				Display->CurrentModule = 0;	// back to Voices
+				Display->CurrentModule = 1;	// back to Voices
 				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
@@ -1551,7 +1563,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 				EPD_DisplayFrame(&epd);
 			}
 			else if(Display->VRx < Display->LowerLimit) {
-				Display->CurrentModule = 2;	// forward to ADSR
+				Display->CurrentModule = 3;	// forward to Tremolo
 				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
@@ -1565,9 +1577,157 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 
 
 		// #############################################
+		// ########### BEGIN TREMOLO SUBMENU ###########
+		// #############################################
+		while(Display->CurrentModule == 1) {
+
+			Paint_DrawStringAt(&paint, 1, 10, "Tremolo", &Font16, COLORED);
+			Paint_DrawStringAt(&paint, 1, 30, "Tremolo ON/OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 50, "Rate", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 1, 70, "Depth", &Font12, COLORED);
+
+			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
+			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
+			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
+
+			//uint16_t last_rate, rate, last_depth, depth;
+			char tremolo_rate_string[9];
+			//sprintf(tremolo_rate_string, "%f", Display->Tremolo_Rate);
+			char tremolo_depth_string[9];
+			//sprintf(tremolo_depth_string, "%f", Display->Tremolo_Depth);
+
+			if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to Tremolo ON/OFF
+			}
+			else if( (Display->JoystickParameterPosition == 1) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 30, 150, 40, UNCOLORED);	// switch from Tremolo ON/OFF to Rate
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 2;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Rate to Tremolo ON/OFF
+				Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 1;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy < Display->LowerLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 50, 150, 60, UNCOLORED);	// switch from Rate to Depth
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 3;
+			}
+			else if( (Display->JoystickParameterPosition == 2) && (Display->VRy > Display->LowerLimit) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);	// arrow to Rate
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy > Display->UpperLimit) ) {
+				Paint_DrawFilledRectangle(&paint, 110, 70, 150, 80, UNCOLORED);	// switch from Depth to Rate
+				Paint_DrawStringAt(&paint, 110, 50, "<---", &Font12, COLORED);
+				Display->JoystickParameterPosition = 2;
+			}
+			else if( (Display->JoystickParameterPosition == 3) && (Display->VRy < Display->UpperLimit) ) {
+				Paint_DrawStringAt(&paint, 110, 70, "<---", &Font12, COLORED);	// arrow to Depth
+			}
+
+			// check state of the potentiometer and assign parameter value
+			// Tremolo ON/OFF
+			if(Display->JoystickParameterPosition == 1) {
+
+				Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+
+				if(Display->Poti_raw < Display->ADC_FullRange/2) {
+					Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
+					Display->Tremolo_ONOFF = false;
+				}
+				else if(Display->Poti_raw >= Display->ADC_FullRange/2) {
+					Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
+					Display->Tremolo_ONOFF = true;
+				}
+			}
+
+			// Tremolo Rate
+			else if(Display->JoystickParameterPosition == 2) {
+
+				Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
+				Display->Tremolo_Rate = round( (((float)Display->Poti_raw/4096) * Tremolo->tremolo_maximum_rate) + 1);	// +1 to prevent 0
+				sprintf(tremolo_rate_string, "%f", Display->Tremolo_Rate);
+				rate = (uint16_t)(Display->Tremolo_Rate * 1000);
+			}
+
+			// Tremolo Depth
+			else if(Display->JoystickParameterPosition == 3) {
+
+				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
+				Display->Tremolo_Depth = ((float)Display->Poti_raw/4096) * Tremolo->tremolo_maximum_depth;
+				sprintf(tremolo_depth_string, "%f", Display->Tremolo_Depth);
+				depth = (uint16_t)(Display->Tremolo_Depth * 1000);
+			}
+
+			if(Display->Tremolo_ONOFF == true) {	// if Tremolo ON
+
+				Tremolo->lfo_frequency = Display->Tremolo_Rate;
+				Tremolo->lfo_depth = Display->Tremolo_Depth;
+
+				if( abs(last_rate-rate)>=1000 || abs(last_depth-depth)>100 ) {
+
+					Recalc_LFO = true;
+
+					if(Display->Tremolo_EffectAdded == false) {	// if no tremolo effect added yet
+
+						effects_add(TREM, Display->Tremolo_EffectPosition);
+						Display->Tremolo_EffectAdded = true;
+					}
+				}
+			}
+			else if(Display->Tremolo_ONOFF == false) {	// if Tremolo OFF
+
+				if(Display->Tremolo_EffectAdded == true) {
+
+					effects_delete(TREM, Display->Tremolo_EffectPosition);
+					Display->Tremolo_EffectAdded = false;
+				}
+			}
+			last_rate = rate;
+			last_depth = depth;
+
+			Paint_DrawStringAt(&paint, 150, 50, tremolo_rate_string, &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 150, 70, tremolo_depth_string, &Font12, COLORED);
+			// Display the frame_buffer
+			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+			EPD_DisplayFrame(&epd);
+
+			/*// reset BACK-switch
+			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
+				Display->BACK = false;
+			}
+			// reset ENTER-switch
+			if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// ENTER is false and LED turned off in case that ENTER is not pressed anymore
+				Display->ENTER = false;
+			}*/
+
+			if(Display->VRx > Display->UpperLimit) {
+				Display->CurrentModule = 0;	// back to Voices
+				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+			else if(Display->VRx < Display->LowerLimit) {
+				Display->CurrentModule = 2;	// forward to Tremolo
+				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
+				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+			}
+		}
+		// #############################################
+		// ########### END TREMOLO SUBMENU #############
+		// #############################################
+
+
+		// #############################################
 		// ############ BEGIN ADSR SUBMENU #############
 		// #############################################
-		while(Display->CurrentModule == 2) {
+		while(Display->CurrentModule == 3) {
 
 			Paint_DrawStringAt(&paint, 1, 10, "ADSR", &Font16, COLORED);
 			Paint_DrawStringAt(&paint, 1, 30, "ADSR ON/OFF", &Font12, COLORED);
@@ -1725,7 +1885,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			}
 
 			if(Display->VRx > Display->UpperLimit) {
-				Display->CurrentModule = 1;	// back to Distortion
+				Display->CurrentModule = 2;	// back to Tremolo
 				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
@@ -1733,7 +1893,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 				EPD_DisplayFrame(&epd);
 			}
 			else if(Display->VRx < Display->LowerLimit) {
-				Display->CurrentModule = 3;	// forward to Equalizer
+				Display->CurrentModule = 4;	// forward to Equalizer
 				Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
@@ -1750,7 +1910,7 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 		// #############################################
 		// ########## BEGIN EQUALIZER SUBMENU ##########
 		// #############################################
-		while(Display->CurrentModule == 3) {
+		while(Display->CurrentModule == 4) {
 
 			Paint_DrawStringAt(&paint, 1, 10, "Equalizer", &Font16, COLORED);
 			Paint_DrawStringAt(&paint, 1, 30, "Band1 ON/OFF", &Font12, COLORED);
@@ -1767,53 +1927,22 @@ void SetPatchParameters(struct display_variables* Display, struct adsr* envelope
 			EPD_DisplayFrame(&epd);
 
 			if(Display->VRx > Display->UpperLimit) {
-				Display->CurrentModule = 2;	// back to Distortion
+				Display->CurrentModule = 3;	// back to ADSR
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 				EPD_DisplayFrame(&epd);
 			}
-			else if(Display->VRx < Display->LowerLimit) {
-				Display->CurrentModule = 4;	// forward to Tremolo
+			/*else if(Display->VRx < Display->LowerLimit) {
+				Display->CurrentModule = 3;	// forward to Tremolo
 				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 				EPD_DisplayFrame(&epd);
-			}
+			}*/
 		}
 		// #############################################
 		// ########## END EQUALIZER SUBMENU ############
-		// #############################################
-
-
-		// #############################################
-		// ########### BEGIN TREMOLO SUBMENU ###########
-		// #############################################
-		while(Display->CurrentModule == 4) {
-
-			Paint_DrawStringAt(&paint, 1, 10, "Tremolo", &Font16, COLORED);
-			Paint_DrawStringAt(&paint, 1, 30, "Tremolo ON/OFF", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 50, "Tremolo Rate", &Font12, COLORED);
-			Paint_DrawStringAt(&paint, 1, 70, "Tremolo Depth", &Font12, COLORED);
-
-			Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
-			Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
-			Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
-
-			// Display the frame_buffer
-			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-			EPD_DisplayFrame(&epd);
-
-			if(Display->VRx > Display->UpperLimit) {
-				Display->CurrentModule = 3;	// back to Equalizer
-				Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
-			}
-		}
-		// #############################################
-		// ########### END TREMOLO SUBMENU #############
 		// #############################################
 	}
 

@@ -30,9 +30,12 @@ struct effects_LFO{
 	float lfo_frequency;
 	uint32_t lfo_blocksizecounter;
 	float lfo_depth;
+
+	float tremolo_maximum_rate;
+	float tremolo_maximum_depth;
 };
 
-struct effects_LFO Tremolo1;
+struct effects_LFO Tremolo;
 
 Tremolo_Status Tremolo_Init(void);
 Tremolo_Status SetupTremolo(struct effects_LFO* Tremolo);

@@ -14,21 +14,40 @@
  *********************************/
 Tremolo_Status Tremolo_Init(void) {
 
-	SetupTremolo(&Tremolo1);
+	SetupTremolo(&Tremolo);
 
 	return TREMOLO_OK;
 }
 
 Tremolo_Status SetupTremolo(struct effects_LFO* Tremolo) {
+
 	Tremolo->index = 0;
-	Tremolo->lfo_frequency = 4;
+	Tremolo->lfo_frequency = 0.00;
 	Tremolo->quarter = 0;
 	Tremolo->lfo_blocksizecounter = 0;
-	Tremolo->lfo_depth = 0.75;
+	Tremolo->lfo_depth = 0.00;
+
+	Tremolo->tremolo_maximum_rate = 9;
+	Tremolo->tremolo_maximum_depth = 1.00;
 
 	return TREMOLO_OK;
 }
 
+/*Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data) {
+
+	float calc = *data;
+	float depth = Tremolo->lfo_depth;
+	float blocksizecounter = Tremolo->lfo_blocksizecounter;
+
+	calc = ((1 + depth * effect_LFO[blocksizecounter]) * calc) / (1+depth);
+	blocksizecounter++;
+
+	Tremolo->lfo_depth = depth;
+	Tremolo->lfo_blocksizecounter = blocksizecounter;
+	*data = calc;
+
+	return TREMOLO_OK;
+}*/
 Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data) {
 
 	float calc = *data;

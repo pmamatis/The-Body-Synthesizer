@@ -1,4 +1,7 @@
 #include "signal_synthesis.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
 /** @brief maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal_sythesis.h and will be set in the Init function*/
 double maxValueDAC = DAC_MAX;
@@ -229,11 +232,58 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 
 }//Signal Synthesis
 
+void Signal_Synthesis_LFO(struct effects_LFO* effect) {
+
+	float frequency = effect->lfo_frequency;
+	uint8_t quarter = effect->quarter;
+	uint32_t index = effect->index;
+	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
+
+	// calculate ratio between LFO_LUT frequency and desired frequency
+	float frequency_ratio = frequency / LFO_FMIN;
+
+	/*if(LFO_blocksizecounter == BLOCKSIZE/2) {
+		LFO_blocksizecounter = 0;
+	}*/
+	for(LFO_blocksizecounter=0; LFO_blocksizecounter < BLOCKSIZE/2; LFO_blocksizecounter++) {
+		// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
+		if(index  > LFO_ENDINDEX[0]) {
+			index = 0;
+			quarter++;
+			if (quarter > 3)
+				quarter = 0;
+		}
+
+		switch(quarter) {
+		case 0:
+			effect_LFO[LFO_blocksizecounter] = LFO[index];
+			break;
+		case 1:
+			effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];
+			break;
+		case 2:
+			effect_LFO[LFO_blocksizecounter] = -LFO[index];
+			break;
+		case 3:
+			effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];
+			break;
+		default:
+			break;
+		}
+
+		index = round((double)(index + frequency_ratio));
+	}
+
+	//save current state into given effect struct
+	effect->lfo_blocksizecounter = LFO_blocksizecounter;
+	effect->index = index;
+	effect->quarter = quarter;
+}
 /** @brief generates a low frequency sine to be used for effects
  *  @param effect: struct which contains the parameter for the effect which want to use the LFO
  *
  */
-void Signal_Synthesis_LFO(struct effects_LFO* effect) {
+/*void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 
 	float frequency = effect->lfo_frequency;
 	uint8_t quarter = effect->quarter;
@@ -277,12 +327,7 @@ void Signal_Synthesis_LFO(struct effects_LFO* effect) {
 	effect->lfo_blocksizecounter = LFO_blocksizecounter;
 	effect->index = index;
 	effect->quarter = quarter;
-}
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+}*/
 
 /* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */
 float AWGN_generator()

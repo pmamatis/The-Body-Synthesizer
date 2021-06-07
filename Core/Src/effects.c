@@ -12,36 +12,41 @@ void effects_init(){
  * 											 effects_delete(effects_t_enum effect, uint8_t position) to delete effects
  * @param calculate_value:adress of a signle sample which should be effected
  */
-void effects_process(float* calculate_value){
+void effects_process(float* calculate_value) {
 
 	for (int i = 0; i < MAX_EFFECTS; i++) {
 
 		switch (effect_order[i]) {
 
 		case TREM:
-			/* code */
+			//Signal_Synthesis_LFO(&Tremolo);
+			*calculate_value = ((1 + Tremolo.lfo_depth * effect_LFO[Tremolo.lfo_blocksizecounter]) * *calculate_value) / (1+Tremolo.lfo_depth);
+			Tremolo.lfo_blocksizecounter++;
+			/*Signal_Synthesis_LFO(&Tremolo);
+			ProcessTremolo(&Tremolo, calculate_value);*/
+			//*calculate_value = 0.5 * *calculate_value;
 			break;
 
-		case EQ:
-			ProcessEQ(calculate_value);
-			break;
+			case EQ:
+				ProcessEQ(calculate_value);
+				break;
 
-		case DIST_H:
-			ProcessHardClippingDistortion(&HardClipping, calculate_value);
-			break;
+			case DIST_H:
+				ProcessHardClippingDistortion(&HardClipping, calculate_value);
+				break;
 
-		case DIST_S:
-			ProcessSoftClippingDistortion(&SoftClipping, calculate_value);
-			break;
+			case DIST_S:
+				ProcessSoftClippingDistortion(&SoftClipping, calculate_value);
+				break;
 
-		case ADSR:
-			*calculate_value = *calculate_value + 1;	// necessary for ADSR processing
-			*calculate_value = *calculate_value * ADSR_Linear_Process(&envelope);
-			*calculate_value = *calculate_value - 1;
-			break;
+			case ADSR:
+				*calculate_value = *calculate_value + 1;	// necessary for ADSR processing
+				*calculate_value = *calculate_value * ADSR_Linear_Process(&envelope);
+				*calculate_value = *calculate_value - 1;
+				break;
 
-		default:
-			break;
+			default:
+				break;
 
 		}
 	}
