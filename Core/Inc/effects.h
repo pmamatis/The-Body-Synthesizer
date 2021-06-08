@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdbool.h>
 
 #ifndef INC_EFFECTS_H_
 #define INC_EFFECTS_H_
@@ -28,6 +29,8 @@ typedef enum effects_t_enum {
 /** Array filled with the effects in process order
  */
 effects_t_enum effect_order[MAX_EFFECTS];
+float lfo_value;
+//bool process_trem;
 
 /*********************************
  * @brief	Functions

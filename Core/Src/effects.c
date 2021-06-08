@@ -19,41 +19,9 @@ void effects_process(float* calculate_value) {
 		switch (effect_order[i]) {
 
 		case TREM:
-			/*if(Tremolo->lfo_blocksizecounter == BLOCKSIZE/2) {
-				Tremolo->lfo_blocksizecounter = 0;
-				Tremolo->recalc_lfo = false;
-			}
-			if(Tremolo->tremolo_blocksizecounter == BLOCKSIZE/2)
-				Tremolo->tremolo_blocksizecounter = 0;
-
-			//			if(Tremolo.lfo_blocksizecounter == BLOCKSIZE) {
-			//				Tremolo.lfo_blocksizecounter = 0;
-			//				Tremolo.recalc_lfo = false;
-			//			}
-			//			if(Tremolo.tremolo_blocksizecounter == BLOCKSIZE)
-			//				Tremolo.tremolo_blocksizecounter = 0;
-			*calculate_value = ((1 + Tremolo->lfo_depth * effect_LFO[Tremolo->tremolo_blocksizecounter]) * *calculate_value) / (1+Tremolo->lfo_depth);
-			Tremolo->tremolo_blocksizecounter++;*/
-
-			/*//Signal_Synthesis_LFO(&Tremolo);
-			if(Tremolo.lfo_blocksizecounter == BLOCKSIZE/2) {
-				Tremolo.lfo_blocksizecounter = 0;
-				Tremolo.recalc_lfo = false;
-			}
-			if(Tremolo.tremolo_blocksizecounter == BLOCKSIZE/2)
-				Tremolo.tremolo_blocksizecounter = 0;
-
-			//			if(Tremolo.lfo_blocksizecounter == BLOCKSIZE) {
-			//				Tremolo.lfo_blocksizecounter = 0;
-			//				Tremolo.recalc_lfo = false;
-			//			}
-			//			if(Tremolo.tremolo_blocksizecounter == BLOCKSIZE)
-			//				Tremolo.tremolo_blocksizecounter = 0;
-			 *calculate_value = ((1 + Tremolo.lfo_depth * effect_LFO[Tremolo.tremolo_blocksizecounter]) * *calculate_value) / (1+Tremolo.lfo_depth);
-			Tremolo.tremolo_blocksizecounter++;*/
-			//Signal_Synthesis_LFO(&Tremolo);
-
-			//ProcessTremolo(&Tremolo, calculate_value);
+			/*lfo_value = LFO_SingleValueProcess(&Tremolo);
+			ProcessTremolo(&Tremolo, calculate_value, &lfo_value);*/
+			//process_trem = true;
 			break;
 
 		case EQ:
@@ -61,7 +29,7 @@ void effects_process(float* calculate_value) {
 			break;
 
 		case DIST_H:
-			ProcessHardClippingDistortion(&HardClipping, calculate_value);
+			//ProcessHardClippingDistortion(&HardClipping, calculate_value);
 			break;
 
 		case DIST_S:

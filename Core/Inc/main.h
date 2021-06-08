@@ -125,6 +125,9 @@ void Error_Handler(void);
 
 //Variables
 
+bool process_trem;
+bool process_dist;
+
 /** @brief DAC output array*/
 //uint32_t output_vector1[BLOCKSIZE];
 float calculate_vector1[BLOCKSIZE];

@@ -191,10 +191,12 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 
 		//Effekte
 		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		//ProcessTremolo(&Tremolo, &calculate_vector_tmp[BLOCKSIZE_counter]);
-
-		lfo_value = LFO_SingleValueProcess(&Tremolo);
-		ProcessTremolo(&Tremolo, &calculate_vector_tmp[BLOCKSIZE_counter], &lfo_value);
+		if(process_dist == true)
+			ProcessHardClippingDistortion(&HardClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		if(process_trem == true) {
+			lfo_value = LFO_SingleValueProcess(&Tremolo);
+			ProcessTremolo(&Tremolo, &calculate_vector_tmp[BLOCKSIZE_counter], &lfo_value);
+		}
 
 
 		//maximum
@@ -236,124 +238,42 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 
 }//Signal Synthesis
 
-/*void Signal_Synthesis_LFO(struct effects_LFO* effect) {
-
-	float frequency = effect->lfo_frequency;
-	uint8_t quarter = effect->quarter;
-	uint32_t index = effect->index;
-	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
-
-	// calculate ratio between LFO_LUT frequency and desired frequency
-	float frequency_ratio = frequency / LFO_FMIN;
-
-	uint16_t startIndex=0, endIndex=0;
-	if (outputBuffer_position == HALF_BLOCK){
-		startIndex = 0;
-		endIndex = (BLOCKSIZE/2);
-	}
-	else if(outputBuffer_position == FULL_BLOCK){
-		startIndex = BLOCKSIZE/2;
-		endIndex  = BLOCKSIZE;
-	}
-
-	for(LFO_blocksizecounter=startIndex; LFO_blocksizecounter < endIndex; LFO_blocksizecounter++) {
-		// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
-		if(index  > LFO_ENDINDEX[0]) {
-			index = 0;
-			quarter++;
-			if (quarter > 3)
-				quarter = 0;
-		}
-
-		switch(quarter) {
-		case 0:
-			effect_LFO[LFO_blocksizecounter] = LFO[index];
-			break;
-		case 1:
-			effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];
-			break;
-		case 2:
-			effect_LFO[LFO_blocksizecounter] = -LFO[index];
-			break;
-		case 3:
-			effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];
-			break;
-		default:
-			break;
-		}
-
-		index = round((double)(index + frequency_ratio));
-	}
-
-	if(outputBuffer_position == FULL_BLOCK)	// if whole array effect_LFO filled with data
-		effect->recalc_lfo = false;
-
-	//save current state into given effect struct
-	effect->lfo_blocksizecounter = LFO_blocksizecounter;
-	effect->index = index;
-	effect->quarter = quarter;
-}*/
-/*void Signal_Synthesis_LFO(struct effects_LFO* effect) {
-
-	float frequency = effect->lfo_frequency;
-	uint8_t quarter = effect->quarter;
-	uint32_t index = effect->index;
-	//uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
-
-	// calculate ratio between LFO_LUT frequency and desired frequency
-	float frequency_ratio = frequency / LFO_FMIN;
-
-	//decide if first half of BLOCKSIZE or second half
-	uint32_t startIndex=0, endIndex=0;
-	if (outputBuffer_position == HALF_BLOCK){
-		startIndex = 0; // nur für lesbarkeit
-		endIndex = BLOCKSIZE/2;
-	}
-	else if(outputBuffer_position == FULL_BLOCK){
-		startIndex = BLOCKSIZE/2;
-		endIndex  = BLOCKSIZE;
-	}
-
-	for(uint32_t LFO_blocksizecounter=startIndex; LFO_blocksizecounter<endIndex; LFO_blocksizecounter++) {
-		//for(uint32_t LFO_blocksizecounter=0; LFO_blocksizecounter <= BLOCKSIZE/2; LFO_blocksizecounter++) {
-		// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
-		if(index  > LFO_ENDINDEX[0]) {
-			index = 0;
-			quarter++;
-			if (quarter > 3)
-				quarter = 0;
-		}
-
-		switch(quarter) {
-		case 0:
-			effect_LFO[LFO_blocksizecounter] = LFO[index];
-			break;
-		case 1:
-			effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];
-			break;
-		case 2:
-			effect_LFO[LFO_blocksizecounter] = -LFO[index];
-			break;
-		case 3:
-			effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];
-			break;
-		default:
-			break;
-		}
-
-		index = round((double)(index + frequency_ratio));
-	}
-
-	//effect->recalc_lfo = false;
-
-	//save current state into given effect struct
-	//effect->lfo_blocksizecounter = LFO_blocksizecounter;
-	//effect->lfo_blocksizecounter = 0;
-	effect->index = index;
-	effect->quarter = quarter;
-}*/
-
 float LFO_SingleValueProcess(struct effects_LFO* effect) {
+
+	float effect_LFO;
+
+	// calculate ratio between LFO_LUT frequency and desired frequency
+	float frequency_ratio = effect->lfo_frequency / LFO_FMIN;
+
+	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
+	if(effect->index  > LFO_ENDINDEX[0]) {
+		effect->index = 0;
+		effect->quarter++;
+		if (effect->quarter > 3)
+			effect->quarter = 0;
+	}
+
+	switch(effect->quarter) {
+	case 0:
+		effect_LFO = LFO[effect->index];
+		break;
+	case 1:
+		effect_LFO = LFO[LFO_ENDINDEX[0] - effect->index];
+		break;
+	case 2:
+		effect_LFO = -LFO[effect->index];
+		break;
+	case 3:
+		effect_LFO = -LFO[LFO_ENDINDEX[0] - effect->index];
+		break;
+	default:
+		break;
+	}
+	effect->index = round((double)(effect->index + frequency_ratio));
+
+	return effect_LFO;
+}
+/*float LFO_SingleValueProcess(struct effects_LFO* effect) {
 
 	float effect_LFO;
 
@@ -397,7 +317,7 @@ float LFO_SingleValueProcess(struct effects_LFO* effect) {
 	effect->quarter = quarter;
 
 	return effect_LFO;
-}
+}*/
 
 
 /** @brief generates a low frequency sine to be used for effects

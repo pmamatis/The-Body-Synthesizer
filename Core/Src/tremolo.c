@@ -28,7 +28,7 @@ Tremolo_Status SetupTremolo(struct effects_LFO* Tremolo) {
 	Tremolo->lfo_blocksizecounter = 0;
 	Tremolo->tremolo_blocksizecounter = 0;
 	//Tremolo->lfo_depth = 0.00;
-	Tremolo->lfo_depth = 0.75;
+	Tremolo->lfo_depth = 0.50;
 	Tremolo->recalc_lfo = false;
 	Tremolo->tremolo_maximum_rate = 9;
 	Tremolo->tremolo_maximum_depth = 1.00;
@@ -36,21 +36,6 @@ Tremolo_Status SetupTremolo(struct effects_LFO* Tremolo) {
 	return TREMOLO_OK;
 }
 
-/*Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data) {
-
-	float calc = *data;
-	float depth = Tremolo->lfo_depth;
-	float blocksizecounter = Tremolo->lfo_blocksizecounter;
-
-	calc = ((1 + depth * effect_LFO[blocksizecounter]) * calc) / (1+depth);
-	blocksizecounter++;
-
-	Tremolo->lfo_depth = depth;
-	Tremolo->lfo_blocksizecounter = blocksizecounter;
- *data = calc;
-
-	return TREMOLO_OK;
-}*/
 /*Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data) {	// ORIGINAL!!!
 
 	float calc = *data;
@@ -67,21 +52,7 @@ Tremolo_Status SetupTremolo(struct effects_LFO* Tremolo) {
 	return TREMOLO_OK;
 }*/
 
-/*Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data) {
-
-	float calc = *data;
-
-	float lfo_value = LFO_SingleValueProcess(Tremolo);
-	//calc = ((1 + Tremolo->lfo_depth * lfo_value) * calc) / (1+Tremolo->lfo_depth);
-	//Tremolo->tremolo_blocksizecounter++;
-	calc = lfo_value;
-
- *data = calc;
-
-	return TREMOLO_OK;
-}*/
-
-Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data, float* lfo_data) {
+/*Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data, float* lfo_data) {
 
 	float calc = *data;
 	float lfo = *lfo_data;
@@ -91,6 +62,14 @@ Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data, float* l
 	//Tremolo->lfo_blocksizecounter++;
 
 	*data = calc;
+
+	return TREMOLO_OK;
+}*/
+
+Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data, float* lfo_data) {
+
+	float tremolo_mod = (1 + Tremolo->lfo_depth * *lfo_data);
+	*data = (tremolo_mod * *data) / (1+Tremolo->lfo_depth);
 
 	return TREMOLO_OK;
 }

@@ -84,7 +84,7 @@ enum signal_kind_enum{
 };
 
 //Variables
-float lfo_value;
+//float lfo_value;
 
 uint8_t output_Channel;
 /** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
