@@ -42,6 +42,7 @@ extern "C" {
 #include "tremolo.h"
 #include "distortion.h"
 #include "adsr.h"
+#include <stdbool.h>
 
 /* USER CODE END Includes */
 
@@ -131,9 +132,8 @@ float calculate_vector1[BLOCKSIZE];
 //uint32_t output_vector2[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
-struct effects_LFO tremollo;
-float effect_LFO[BLOCKSIZE/2];
-//float effect_LFO[BLOCKSIZE];	// DEBUG
+float effect_LFO[BLOCKSIZE/2];	// Original!!!
+//float effect_LFO[BLOCKSIZE];
 //uint32_t effect_LFO_output[BLOCKSIZE];
 
 float sigFreq_sampleFreq_ratio;

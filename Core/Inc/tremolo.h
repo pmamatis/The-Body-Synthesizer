@@ -10,6 +10,7 @@
 #define INC_TREMOLO_H_
 
 #include "main.h"
+#include <stdbool.h>
 
 /***************************
  * @brief Enumeration for Tremolo Debugging
@@ -29,8 +30,9 @@ struct effects_LFO{
 	uint8_t quarter;
 	float lfo_frequency;
 	uint32_t lfo_blocksizecounter;
+	uint32_t tremolo_blocksizecounter;
 	float lfo_depth;
-
+	bool recalc_lfo;
 	float tremolo_maximum_rate;
 	float tremolo_maximum_depth;
 };
@@ -39,6 +41,7 @@ struct effects_LFO Tremolo;
 
 Tremolo_Status Tremolo_Init(void);
 Tremolo_Status SetupTremolo(struct effects_LFO* Tremolo);
-Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data);
+//Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data);
+Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data, float* lfo_data);
 
 #endif /* INC_TREMOLO_H_ */

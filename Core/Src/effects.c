@@ -19,34 +19,63 @@ void effects_process(float* calculate_value) {
 		switch (effect_order[i]) {
 
 		case TREM:
+			/*if(Tremolo->lfo_blocksizecounter == BLOCKSIZE/2) {
+				Tremolo->lfo_blocksizecounter = 0;
+				Tremolo->recalc_lfo = false;
+			}
+			if(Tremolo->tremolo_blocksizecounter == BLOCKSIZE/2)
+				Tremolo->tremolo_blocksizecounter = 0;
+
+			//			if(Tremolo.lfo_blocksizecounter == BLOCKSIZE) {
+			//				Tremolo.lfo_blocksizecounter = 0;
+			//				Tremolo.recalc_lfo = false;
+			//			}
+			//			if(Tremolo.tremolo_blocksizecounter == BLOCKSIZE)
+			//				Tremolo.tremolo_blocksizecounter = 0;
+			*calculate_value = ((1 + Tremolo->lfo_depth * effect_LFO[Tremolo->tremolo_blocksizecounter]) * *calculate_value) / (1+Tremolo->lfo_depth);
+			Tremolo->tremolo_blocksizecounter++;*/
+
+			/*//Signal_Synthesis_LFO(&Tremolo);
+			if(Tremolo.lfo_blocksizecounter == BLOCKSIZE/2) {
+				Tremolo.lfo_blocksizecounter = 0;
+				Tremolo.recalc_lfo = false;
+			}
+			if(Tremolo.tremolo_blocksizecounter == BLOCKSIZE/2)
+				Tremolo.tremolo_blocksizecounter = 0;
+
+			//			if(Tremolo.lfo_blocksizecounter == BLOCKSIZE) {
+			//				Tremolo.lfo_blocksizecounter = 0;
+			//				Tremolo.recalc_lfo = false;
+			//			}
+			//			if(Tremolo.tremolo_blocksizecounter == BLOCKSIZE)
+			//				Tremolo.tremolo_blocksizecounter = 0;
+			 *calculate_value = ((1 + Tremolo.lfo_depth * effect_LFO[Tremolo.tremolo_blocksizecounter]) * *calculate_value) / (1+Tremolo.lfo_depth);
+			Tremolo.tremolo_blocksizecounter++;*/
 			//Signal_Synthesis_LFO(&Tremolo);
-			*calculate_value = ((1 + Tremolo.lfo_depth * effect_LFO[Tremolo.lfo_blocksizecounter]) * *calculate_value) / (1+Tremolo.lfo_depth);
-			Tremolo.lfo_blocksizecounter++;
-			/*Signal_Synthesis_LFO(&Tremolo);
-			ProcessTremolo(&Tremolo, calculate_value);*/
-			//*calculate_value = 0.5 * *calculate_value;
+
+			//ProcessTremolo(&Tremolo, calculate_value);
 			break;
 
-			case EQ:
-				ProcessEQ(calculate_value);
-				break;
+		case EQ:
+			ProcessEQ(calculate_value);
+			break;
 
-			case DIST_H:
-				ProcessHardClippingDistortion(&HardClipping, calculate_value);
-				break;
+		case DIST_H:
+			ProcessHardClippingDistortion(&HardClipping, calculate_value);
+			break;
 
-			case DIST_S:
-				ProcessSoftClippingDistortion(&SoftClipping, calculate_value);
-				break;
+		case DIST_S:
+			ProcessSoftClippingDistortion(&SoftClipping, calculate_value);
+			break;
 
-			case ADSR:
-				*calculate_value = *calculate_value + 1;	// necessary for ADSR processing
-				*calculate_value = *calculate_value * ADSR_Linear_Process(&envelope);
-				*calculate_value = *calculate_value - 1;
-				break;
+		case ADSR:
+			*calculate_value = *calculate_value + 1;	// necessary for ADSR processing
+			*calculate_value = *calculate_value * ADSR_Linear_Process(&envelope);
+			*calculate_value = *calculate_value - 1;
+			break;
 
-			default:
-				break;
+		default:
+			break;
 
 		}
 	}

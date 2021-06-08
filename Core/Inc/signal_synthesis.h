@@ -84,6 +84,8 @@ enum signal_kind_enum{
 };
 
 //Variables
+float lfo_value;
+
 uint8_t output_Channel;
 /** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
 uint8_t outputBuffer_position;
@@ -99,6 +101,7 @@ void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 
 void Signal_Synthesis_LFO(struct effects_LFO* effect);
+float LFO_SingleValueProcess(struct effects_LFO* effect);
 float AWGN_generator();
 
 //#endif /* INC_SIGNALERZEUGUNG_H_ */
