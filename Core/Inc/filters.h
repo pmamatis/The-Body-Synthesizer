@@ -53,8 +53,6 @@ struct BQFilter EQ_BAND4_IV;
 
 struct BQFilter EQ_BAND5_I;
 struct BQFilter EQ_BAND5_II;
-struct BQFilter EQ_BAND5_III;
-struct BQFilter EQ_BAND5_IV;
 
 struct BQFilter LP_WAH;
 struct BQFilter HP_WAH;
