@@ -176,7 +176,7 @@ int main(void)
 	HAL_ADC_Start_DMA(&hadc1, &ADC_value, 1);
 
 	//Example signal for test
-	NewSignal(&signals1,SIN,'g',0);
+	//NewSignal(&signals1,SIN,'g',0);
 	NewSignal(&signals1,SIN,'g',1);
 	NewSignal(&signals1,SIN,'g',2);
 	NewSignal(&signals1,SIN,'g',3);
