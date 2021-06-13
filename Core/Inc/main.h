@@ -72,6 +72,8 @@ void Error_Handler(void);
 #define ENTER_USER_Pin GPIO_PIN_13
 #define ENTER_USER_GPIO_Port GPIOC
 #define ENTER_USER_EXTI_IRQn EXTI15_10_IRQn
+#define Keyboard_Pin GPIO_PIN_7
+#define Keyboard_GPIO_Port GPIOF
 #define SD_CS_Pin GPIO_PIN_10
 #define SD_CS_GPIO_Port GPIOF
 #define Poti_Pin GPIO_PIN_0
