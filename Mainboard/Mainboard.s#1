@@ -1707,83 +1707,6 @@ In this library the device names are the same as the pin names of the symbols, t
 </deviceset>
 </devicesets>
 </library>
-<library name="SamacSys_Parts">
-<description>&lt;b&gt;https://componentsearchengine.com&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by SamacSys&lt;/author&gt;</description>
-<packages>
-<package name="RHDR6W76P0X254_1X6_1524X254X82">
-<description>&lt;b&gt;929850-01-06-RB&lt;/b&gt;&lt;br&gt;
-</description>
-<pad name="1" x="0" y="0" drill="1.25" diameter="1.875" shape="square"/>
-<pad name="2" x="2.54" y="0" drill="1.25" diameter="1.875"/>
-<pad name="3" x="5.08" y="0" drill="1.25" diameter="1.875"/>
-<pad name="4" x="7.62" y="0" drill="1.25" diameter="1.875"/>
-<pad name="5" x="10.16" y="0" drill="1.25" diameter="1.875"/>
-<pad name="6" x="12.7" y="0" drill="1.25" diameter="1.875"/>
-<text x="0" y="0" size="1.27" layer="25" align="center">&gt;NAME</text>
-<text x="0" y="0" size="1.27" layer="27" align="center">&gt;VALUE</text>
-<wire x1="-1.52" y1="-1.52" x2="-1.52" y2="1.555" width="0.05" layer="51"/>
-<wire x1="-1.52" y1="1.555" x2="14.255" y2="1.555" width="0.05" layer="51"/>
-<wire x1="14.255" y1="1.555" x2="14.255" y2="-1.52" width="0.05" layer="51"/>
-<wire x1="14.255" y1="-1.52" x2="-1.52" y2="-1.52" width="0.05" layer="51"/>
-<wire x1="-1.27" y1="-1.27" x2="-1.27" y2="1.27" width="0.1" layer="51"/>
-<wire x1="-1.27" y1="1.27" x2="13.97" y2="1.27" width="0.1" layer="51"/>
-<wire x1="13.97" y1="1.27" x2="13.97" y2="-1.27" width="0.1" layer="51"/>
-<wire x1="13.97" y1="-1.27" x2="-1.27" y2="-1.27" width="0.1" layer="51"/>
-<wire x1="0" y1="-1.27" x2="14.005" y2="-1.27" width="0.2" layer="21"/>
-<wire x1="14.005" y1="-1.27" x2="14.005" y2="1.305" width="0.2" layer="21"/>
-<wire x1="14.005" y1="1.305" x2="-1.27" y2="1.305" width="0.2" layer="21"/>
-<wire x1="-1.27" y1="1.305" x2="-1.27" y2="0" width="0.2" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="929850-01-06-RB">
-<wire x1="5.08" y1="2.54" x2="15.24" y2="2.54" width="0.254" layer="94"/>
-<wire x1="15.24" y1="-15.24" x2="15.24" y2="2.54" width="0.254" layer="94"/>
-<wire x1="15.24" y1="-15.24" x2="5.08" y2="-15.24" width="0.254" layer="94"/>
-<wire x1="5.08" y1="2.54" x2="5.08" y2="-15.24" width="0.254" layer="94"/>
-<text x="3.81" y="7.62" size="1.778" layer="95" align="center-left">&gt;NAME</text>
-<text x="3.81" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
-<pin name="1" x="0" y="0" length="middle"/>
-<pin name="2" x="0" y="-2.54" length="middle"/>
-<pin name="3" x="0" y="-5.08" length="middle"/>
-<pin name="4" x="0" y="-7.62" length="middle"/>
-<pin name="5" x="0" y="-10.16" length="middle"/>
-<pin name="6" x="0" y="-12.7" length="middle"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="929850-01-06-RB" prefix="J">
-<description>&lt;b&gt;Headers &amp; Wire Housings 6P STRT BRD MNT SKT 1 ROW 30MICRO" AU&lt;/b&gt;&lt;p&gt;
-Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Datasheet &lt;/a&gt;</description>
-<gates>
-<gate name="G$1" symbol="929850-01-06-RB" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="RHDR6W76P0X254_1X6_1524X254X82">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-<connect gate="G$1" pin="4" pad="4"/>
-<connect gate="G$1" pin="5" pad="5"/>
-<connect gate="G$1" pin="6" pad="6"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value="Headers &amp; Wire Housings 6P STRT BRD MNT SKT 1 ROW 30MICRO&quot; AU" constant="no"/>
-<attribute name="HEIGHT" value="8.26mm" constant="no"/>
-<attribute name="MANUFACTURER_NAME" value="3M" constant="no"/>
-<attribute name="MANUFACTURER_PART_NUMBER" value="929850-01-06-RB" constant="no"/>
-<attribute name="MOUSER_PART_NUMBER" value="517-929850-01-06-RB" constant="no"/>
-<attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/3M-Electronic-Solutions-Division/929850-01-06-RB?qs=s3by4FhMkp1OostaNDHGSw%3D%3D" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1814,6 +1737,7 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <part name="SUPPLY13" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY14" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY15" library="supply2" deviceset="GND" device=""/>
+<part name="SUPPLY22" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY24" library="supply2" deviceset="GND" device=""/>
 <part name="J2" library="640455-5" deviceset="640455-5" device=""/>
 <part name="J3" library="640455-2" deviceset="640455-2" device=""/>
@@ -1821,7 +1745,6 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <part name="J5" library="640455-4" deviceset="640455-4" device=""/>
 <part name="J6" library="SJ-3523-SMT-TR" deviceset="SJ-3523-SMT-TR" device=""/>
 <part name="J7" library="640455-2" deviceset="640455-2" device=""/>
-<part name="J8" library="SamacSys_Parts" deviceset="929850-01-06-RB" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1972,6 +1895,7 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <instance part="SUPPLY13" gate="GND" x="568.96" y="-43.18"/>
 <instance part="SUPPLY14" gate="GND" x="223.52" y="162.56"/>
 <instance part="SUPPLY15" gate="GND" x="381" y="167.64"/>
+<instance part="SUPPLY22" gate="GND" x="556.26" y="215.9"/>
 <instance part="SUPPLY24" gate="GND" x="281.94" y="256.54"/>
 <instance part="J2" gate="G$1" x="449.58" y="276.86" rot="R180"/>
 <instance part="J3" gate="G$1" x="508" y="276.86" rot="R180"/>
@@ -1979,7 +1903,6 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <instance part="J5" gate="G$1" x="388.62" y="231.14" rot="R180"/>
 <instance part="J6" gate="G$1" x="441.96" y="231.14"/>
 <instance part="J7" gate="G$1" x="497.84" y="233.68" rot="R180"/>
-<instance part="J8" gate="G$1" x="571.5" y="223.52" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -2031,11 +1954,6 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <wire x1="508" y1="231.14" x2="510.54" y2="231.14" width="0.1524" layer="91" style="longdash"/>
 <label x="510.54" y="231.14" size="1.27" layer="95" xref="yes"/>
 </segment>
-<segment>
-<pinref part="J8" gate="G$1" pin="6"/>
-<wire x1="571.5" y1="236.22" x2="574.04" y2="236.22" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="236.22" size="1.27" layer="95" xref="yes"/>
-</segment>
 </net>
 <net name="+5V" class="0">
 <segment>
@@ -2086,11 +2004,6 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <wire x1="518.16" y1="276.86" x2="520.7" y2="276.86" width="0.1524" layer="91" style="longdash"/>
 <label x="520.7" y="276.86" size="1.27" layer="95" xref="yes"/>
 </segment>
-<segment>
-<pinref part="J8" gate="G$1" pin="1"/>
-<wire x1="571.5" y1="223.52" x2="574.04" y2="223.52" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="223.52" size="1.27" layer="95" xref="yes"/>
-</segment>
 </net>
 <net name="UC_AUDIO_OUT" class="0">
 <segment>
@@ -2106,14 +2019,14 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <label x="401.32" y="233.68" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="GYRO_SCL" class="0">
+<net name="SCL" class="0">
 <segment>
 <pinref part="J5" gate="G$1" pin="2"/>
 <wire x1="398.78" y1="228.6" x2="401.32" y2="228.6" width="0.1524" layer="91" style="longdash"/>
 <label x="401.32" y="228.6" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="GYRO_SDA" class="0">
+<net name="SDA" class="0">
 <segment>
 <pinref part="J5" gate="G$1" pin="1"/>
 <wire x1="398.78" y1="226.06" x2="401.32" y2="226.06" width="0.1524" layer="91" style="longdash"/>
@@ -2137,34 +2050,6 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <pinref part="J7" gate="G$1" pin="2"/>
 <wire x1="508" y1="233.68" x2="510.54" y2="233.68" width="0.1524" layer="91" style="longdash"/>
 <label x="510.54" y="233.68" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="SD_DO" class="0">
-<segment>
-<pinref part="J8" gate="G$1" pin="5"/>
-<wire x1="571.5" y1="233.68" x2="574.04" y2="233.68" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="233.68" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="SD_CLK" class="0">
-<segment>
-<pinref part="J8" gate="G$1" pin="4"/>
-<wire x1="571.5" y1="231.14" x2="574.04" y2="231.14" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="231.14" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="SD_DI" class="0">
-<segment>
-<pinref part="J8" gate="G$1" pin="3"/>
-<wire x1="571.5" y1="228.6" x2="574.04" y2="228.6" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="228.6" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="SD_CS" class="0">
-<segment>
-<pinref part="J8" gate="G$1" pin="2"/>
-<wire x1="571.5" y1="226.06" x2="574.04" y2="226.06" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="226.06" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
