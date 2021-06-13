@@ -84,8 +84,6 @@ void Error_Handler(void);
 #define EMG_DC1_GPIO_Port GPIOC
 #define DISP_DC_Pin GPIO_PIN_0
 #define DISP_DC_GPIO_Port GPIOA
-#define DISP_RST_Pin GPIO_PIN_3
-#define DISP_RST_GPIO_Port GPIOA
 #define DISP_CLK_Pin GPIO_PIN_5
 #define DISP_CLK_GPIO_Port GPIOA
 #define VRx_Pin GPIO_PIN_6
@@ -98,6 +96,8 @@ void Error_Handler(void);
 #define DISP_BUSY_GPIO_Port GPIOB
 #define SD_DI_MOSI_Pin GPIO_PIN_2
 #define SD_DI_MOSI_GPIO_Port GPIOB
+#define DISP_RST_Pin GPIO_PIN_12
+#define DISP_RST_GPIO_Port GPIOF
 #define SW_Pin GPIO_PIN_0
 #define SW_GPIO_Port GPIOG
 #define ENTER_Pin GPIO_PIN_8
