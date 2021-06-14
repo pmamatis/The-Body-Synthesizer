@@ -1826,160 +1826,103 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <sheets>
 <sheet>
 <plain>
-<text x="385.318" y="278.892" size="1.27" layer="97" rot="R90">Floating</text>
-<wire x1="370.84" y1="299.72" x2="421.64" y2="299.72" width="0.508" layer="97" style="longdash"/>
-<wire x1="421.64" y1="299.72" x2="421.64" y2="259.08" width="0.508" layer="97" style="longdash"/>
-<wire x1="421.64" y1="259.08" x2="370.84" y2="259.08" width="0.508" layer="97" style="longdash"/>
-<wire x1="370.84" y1="259.08" x2="370.84" y2="299.72" width="0.508" layer="97" style="longdash"/>
-<text x="198.12" y="312.42" size="10.16" layer="97" align="center">Nucleo-Board &amp; Power-Supply</text>
-<text x="487.68" y="312.42" size="10.16" layer="97" align="center">Connectors</text>
-<text x="198.12" y="88.9" size="10.16" layer="97" align="center">Audio-Amplifiers</text>
-<text x="396.748" y="295.402" size="5.08" layer="97" rot="R180" align="center">Powerbank </text>
-<wire x1="383.54" y1="88.9" x2="434.34" y2="88.9" width="0.508" layer="97" style="longdash"/>
-<wire x1="434.34" y1="88.9" x2="434.34" y2="48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="434.34" y1="48.26" x2="383.54" y2="48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="383.54" y1="48.26" x2="383.54" y2="88.9" width="0.508" layer="97" style="longdash"/>
-<text x="429.768" y="87.122" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="441.96" y1="88.9" x2="492.76" y2="88.9" width="0.508" layer="97" style="longdash"/>
-<wire x1="492.76" y1="88.9" x2="492.76" y2="48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="492.76" y1="48.26" x2="441.96" y2="48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="441.96" y1="48.26" x2="441.96" y2="88.9" width="0.508" layer="97" style="longdash"/>
-<text x="488.188" y="87.122" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="500.38" y1="88.9" x2="551.18" y2="88.9" width="0.508" layer="97" style="longdash"/>
-<wire x1="551.18" y1="88.9" x2="551.18" y2="48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="551.18" y1="48.26" x2="500.38" y2="48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="500.38" y1="48.26" x2="500.38" y2="88.9" width="0.508" layer="97" style="longdash"/>
-<text x="546.608" y="87.122" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="558.8" y1="88.9" x2="609.6" y2="88.9" width="0.508" layer="97" style="longdash"/>
-<wire x1="609.6" y1="88.9" x2="609.6" y2="48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="609.6" y1="48.26" x2="558.8" y2="48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="558.8" y1="48.26" x2="558.8" y2="88.9" width="0.508" layer="97" style="longdash"/>
-<text x="605.028" y="87.122" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="383.54" y1="40.64" x2="434.34" y2="40.64" width="0.508" layer="97" style="longdash"/>
-<wire x1="434.34" y1="40.64" x2="434.34" y2="0" width="0.508" layer="97" style="longdash"/>
-<wire x1="434.34" y1="0" x2="383.54" y2="0" width="0.508" layer="97" style="longdash"/>
-<wire x1="383.54" y1="0" x2="383.54" y2="40.64" width="0.508" layer="97" style="longdash"/>
-<text x="429.768" y="38.862" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="441.96" y1="40.64" x2="492.76" y2="40.64" width="0.508" layer="97" style="longdash"/>
-<wire x1="492.76" y1="40.64" x2="492.76" y2="0" width="0.508" layer="97" style="longdash"/>
-<wire x1="492.76" y1="0" x2="441.96" y2="0" width="0.508" layer="97" style="longdash"/>
-<wire x1="441.96" y1="0" x2="441.96" y2="40.64" width="0.508" layer="97" style="longdash"/>
-<text x="488.188" y="38.862" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="500.38" y1="40.64" x2="551.18" y2="40.64" width="0.508" layer="97" style="longdash"/>
-<wire x1="551.18" y1="40.64" x2="551.18" y2="0" width="0.508" layer="97" style="longdash"/>
-<wire x1="551.18" y1="0" x2="500.38" y2="0" width="0.508" layer="97" style="longdash"/>
-<wire x1="500.38" y1="0" x2="500.38" y2="40.64" width="0.508" layer="97" style="longdash"/>
-<text x="546.608" y="38.862" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="558.8" y1="40.64" x2="609.6" y2="40.64" width="0.508" layer="97" style="longdash"/>
-<wire x1="609.6" y1="40.64" x2="609.6" y2="0" width="0.508" layer="97" style="longdash"/>
-<wire x1="609.6" y1="0" x2="558.8" y2="0" width="0.508" layer="97" style="longdash"/>
-<wire x1="558.8" y1="0" x2="558.8" y2="40.64" width="0.508" layer="97" style="longdash"/>
-<text x="605.028" y="38.862" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="383.54" y1="-7.62" x2="434.34" y2="-7.62" width="0.508" layer="97" style="longdash"/>
-<wire x1="434.34" y1="-7.62" x2="434.34" y2="-48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="434.34" y1="-48.26" x2="383.54" y2="-48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="383.54" y1="-48.26" x2="383.54" y2="-7.62" width="0.508" layer="97" style="longdash"/>
-<text x="429.768" y="-9.398" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="441.96" y1="-7.62" x2="492.76" y2="-7.62" width="0.508" layer="97" style="longdash"/>
-<wire x1="492.76" y1="-7.62" x2="492.76" y2="-48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="492.76" y1="-48.26" x2="441.96" y2="-48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="441.96" y1="-48.26" x2="441.96" y2="-7.62" width="0.508" layer="97" style="longdash"/>
-<text x="488.188" y="-9.398" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="500.38" y1="-7.62" x2="551.18" y2="-7.62" width="0.508" layer="97" style="longdash"/>
-<wire x1="551.18" y1="-7.62" x2="551.18" y2="-48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="551.18" y1="-48.26" x2="500.38" y2="-48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="500.38" y1="-48.26" x2="500.38" y2="-7.62" width="0.508" layer="97" style="longdash"/>
-<text x="546.608" y="-9.398" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="558.8" y1="-7.62" x2="609.6" y2="-7.62" width="0.508" layer="97" style="longdash"/>
-<wire x1="609.6" y1="-7.62" x2="609.6" y2="-48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="609.6" y1="-48.26" x2="558.8" y2="-48.26" width="0.508" layer="97" style="longdash"/>
-<wire x1="558.8" y1="-48.26" x2="558.8" y2="-7.62" width="0.508" layer="97" style="longdash"/>
-<text x="605.028" y="-9.398" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="152.4" y1="292.1" x2="256.54" y2="292.1" width="0.508" layer="97" style="longdash"/>
-<wire x1="256.54" y1="292.1" x2="256.54" y2="157.48" width="0.508" layer="97" style="longdash"/>
-<wire x1="256.54" y1="157.48" x2="152.4" y2="157.48" width="0.508" layer="97" style="longdash"/>
-<wire x1="152.4" y1="157.48" x2="152.4" y2="292.1" width="0.508" layer="97" style="longdash"/>
-<wire x1="370.84" y1="203.2" x2="421.64" y2="203.2" width="0.508" layer="97" style="longdash"/>
-<wire x1="421.64" y1="203.2" x2="421.64" y2="162.56" width="0.508" layer="97" style="longdash"/>
-<wire x1="421.64" y1="162.56" x2="370.84" y2="162.56" width="0.508" layer="97" style="longdash"/>
-<wire x1="370.84" y1="162.56" x2="370.84" y2="203.2" width="0.508" layer="97" style="longdash"/>
-<text x="394.208" y="198.882" size="5.08" layer="97" rot="R180" align="center">Display</text>
-<wire x1="429.26" y1="299.72" x2="480.06" y2="299.72" width="0.508" layer="97" style="longdash"/>
-<wire x1="480.06" y1="299.72" x2="480.06" y2="259.08" width="0.508" layer="97" style="longdash"/>
-<wire x1="480.06" y1="259.08" x2="429.26" y2="259.08" width="0.508" layer="97" style="longdash"/>
-<wire x1="429.26" y1="259.08" x2="429.26" y2="299.72" width="0.508" layer="97" style="longdash"/>
-<text x="455.168" y="295.402" size="5.08" layer="97" rot="R180" align="center">EMG / EKG</text>
-<wire x1="487.68" y1="299.72" x2="538.48" y2="299.72" width="0.508" layer="97" style="longdash"/>
-<wire x1="538.48" y1="299.72" x2="538.48" y2="259.08" width="0.508" layer="97" style="longdash"/>
-<wire x1="538.48" y1="259.08" x2="487.68" y2="259.08" width="0.508" layer="97" style="longdash"/>
-<wire x1="487.68" y1="259.08" x2="487.68" y2="299.72" width="0.508" layer="97" style="longdash"/>
-<text x="513.588" y="295.402" size="5.08" layer="97" rot="R180" align="center">Keyboard</text>
-<wire x1="546.1" y1="299.72" x2="596.9" y2="299.72" width="0.508" layer="97" style="longdash"/>
-<wire x1="596.9" y1="299.72" x2="596.9" y2="259.08" width="0.508" layer="97" style="longdash"/>
-<wire x1="596.9" y1="259.08" x2="546.1" y2="259.08" width="0.508" layer="97" style="longdash"/>
-<wire x1="546.1" y1="259.08" x2="546.1" y2="299.72" width="0.508" layer="97" style="longdash"/>
-<text x="572.008" y="295.402" size="5.08" layer="97" rot="R180" align="center">EQ-/VU-Meter</text>
-<wire x1="370.84" y1="251.46" x2="421.64" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<wire x1="421.64" y1="251.46" x2="421.64" y2="210.82" width="0.508" layer="97" style="longdash"/>
-<wire x1="421.64" y1="210.82" x2="370.84" y2="210.82" width="0.508" layer="97" style="longdash"/>
-<wire x1="370.84" y1="210.82" x2="370.84" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<text x="396.748" y="247.142" size="5.08" layer="97" rot="R180" align="center">Gyro / ACC</text>
-<wire x1="429.26" y1="251.46" x2="480.06" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<wire x1="480.06" y1="251.46" x2="480.06" y2="210.82" width="0.508" layer="97" style="longdash"/>
-<wire x1="480.06" y1="210.82" x2="429.26" y2="210.82" width="0.508" layer="97" style="longdash"/>
-<wire x1="429.26" y1="210.82" x2="429.26" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<text x="455.168" y="247.142" size="5.08" layer="97" rot="R180" align="center">Headphones</text>
-<wire x1="487.68" y1="251.46" x2="538.48" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<wire x1="538.48" y1="251.46" x2="538.48" y2="210.82" width="0.508" layer="97" style="longdash"/>
-<wire x1="538.48" y1="210.82" x2="487.68" y2="210.82" width="0.508" layer="97" style="longdash"/>
-<wire x1="487.68" y1="210.82" x2="487.68" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<text x="513.588" y="247.142" size="5.08" layer="97" rot="R180" align="center">Speaker</text>
-<wire x1="546.1" y1="251.46" x2="596.9" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<wire x1="596.9" y1="251.46" x2="596.9" y2="210.82" width="0.508" layer="97" style="longdash"/>
-<wire x1="596.9" y1="210.82" x2="546.1" y2="210.82" width="0.508" layer="97" style="longdash"/>
-<wire x1="546.1" y1="210.82" x2="546.1" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<text x="569.468" y="247.142" size="5.08" layer="97" rot="R180" align="center">SD-Card</text>
-<wire x1="271.78" y1="292.1" x2="322.58" y2="292.1" width="0.508" layer="97" style="longdash"/>
-<wire x1="322.58" y1="292.1" x2="322.58" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<wire x1="322.58" y1="251.46" x2="271.78" y2="251.46" width="0.508" layer="97" style="longdash"/>
-<wire x1="271.78" y1="251.46" x2="271.78" y2="292.1" width="0.508" layer="97" style="longdash"/>
-<text x="295.148" y="287.782" size="5.08" layer="97" rot="R180" align="center">-5V</text>
-<text x="464.82" y="218.44" size="1.27" layer="97">1 - Sleeve
+<text x="-5.08" y="88.9" size="10.16" layer="97" align="center">Nucleo-Board &amp; Power-Supply</text>
+<wire x1="-50.8" y1="68.58" x2="53.34" y2="68.58" width="0.508" layer="97" style="longdash"/>
+<wire x1="53.34" y1="68.58" x2="53.34" y2="-66.04" width="0.508" layer="97" style="longdash"/>
+<wire x1="53.34" y1="-66.04" x2="-50.8" y2="-66.04" width="0.508" layer="97" style="longdash"/>
+<wire x1="-50.8" y1="-66.04" x2="-50.8" y2="68.58" width="0.508" layer="97" style="longdash"/>
+<wire x1="68.58" y1="68.58" x2="119.38" y2="68.58" width="0.508" layer="97" style="longdash"/>
+<wire x1="119.38" y1="68.58" x2="119.38" y2="27.94" width="0.508" layer="97" style="longdash"/>
+<wire x1="119.38" y1="27.94" x2="68.58" y2="27.94" width="0.508" layer="97" style="longdash"/>
+<wire x1="68.58" y1="27.94" x2="68.58" y2="68.58" width="0.508" layer="97" style="longdash"/>
+<text x="91.948" y="64.262" size="5.08" layer="97" rot="R180" align="center">-5V</text>
+</plain>
+<instances>
+<instance part="A1" gate="G$1" x="0" y="-2.54"/>
+<instance part="FRAME2" gate="G$1" x="-134.62" y="-111.76"/>
+<instance part="FRAME2" gate="G$2" x="38.1" y="-111.76"/>
+<instance part="SUPPLY14" gate="GND" x="20.32" y="-60.96"/>
+<instance part="SUPPLY24" gate="GND" x="78.74" y="33.02"/>
+</instances>
+<busses>
+</busses>
+<nets>
+<net name="GND" class="0">
+<segment>
+<pinref part="A1" gate="G$1" pin="GND_CN11"/>
+<wire x1="17.78" y1="-55.88" x2="20.32" y2="-55.88" width="0.1524" layer="91" style="longdash"/>
+<pinref part="SUPPLY14" gate="GND" pin="GND"/>
+<wire x1="20.32" y1="-55.88" x2="20.32" y2="-58.42" width="0.1524" layer="91" style="longdash"/>
+</segment>
+</net>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<text x="-97.282" y="75.692" size="1.27" layer="97" rot="R90">Floating</text>
+<wire x1="-111.76" y1="96.52" x2="-60.96" y2="96.52" width="0.508" layer="97" style="longdash"/>
+<wire x1="-60.96" y1="96.52" x2="-60.96" y2="55.88" width="0.508" layer="97" style="longdash"/>
+<wire x1="-60.96" y1="55.88" x2="-111.76" y2="55.88" width="0.508" layer="97" style="longdash"/>
+<wire x1="-111.76" y1="55.88" x2="-111.76" y2="96.52" width="0.508" layer="97" style="longdash"/>
+<text x="5.08" y="109.22" size="10.16" layer="97" align="center">Connectors</text>
+<text x="-85.852" y="92.202" size="5.08" layer="97" rot="R180" align="center">Powerbank </text>
+<wire x1="-111.76" y1="0" x2="-60.96" y2="0" width="0.508" layer="97" style="longdash"/>
+<wire x1="-60.96" y1="0" x2="-60.96" y2="-40.64" width="0.508" layer="97" style="longdash"/>
+<wire x1="-60.96" y1="-40.64" x2="-111.76" y2="-40.64" width="0.508" layer="97" style="longdash"/>
+<wire x1="-111.76" y1="-40.64" x2="-111.76" y2="0" width="0.508" layer="97" style="longdash"/>
+<text x="-88.392" y="-4.318" size="5.08" layer="97" rot="R180" align="center">Display</text>
+<wire x1="-53.34" y1="96.52" x2="-2.54" y2="96.52" width="0.508" layer="97" style="longdash"/>
+<wire x1="-2.54" y1="96.52" x2="-2.54" y2="55.88" width="0.508" layer="97" style="longdash"/>
+<wire x1="-2.54" y1="55.88" x2="-53.34" y2="55.88" width="0.508" layer="97" style="longdash"/>
+<wire x1="-53.34" y1="55.88" x2="-53.34" y2="96.52" width="0.508" layer="97" style="longdash"/>
+<text x="-27.432" y="92.202" size="5.08" layer="97" rot="R180" align="center">EMG / EKG</text>
+<wire x1="5.08" y1="96.52" x2="55.88" y2="96.52" width="0.508" layer="97" style="longdash"/>
+<wire x1="55.88" y1="96.52" x2="55.88" y2="55.88" width="0.508" layer="97" style="longdash"/>
+<wire x1="55.88" y1="55.88" x2="5.08" y2="55.88" width="0.508" layer="97" style="longdash"/>
+<wire x1="5.08" y1="55.88" x2="5.08" y2="96.52" width="0.508" layer="97" style="longdash"/>
+<text x="30.988" y="92.202" size="5.08" layer="97" rot="R180" align="center">Keyboard</text>
+<wire x1="63.5" y1="96.52" x2="114.3" y2="96.52" width="0.508" layer="97" style="longdash"/>
+<wire x1="114.3" y1="96.52" x2="114.3" y2="55.88" width="0.508" layer="97" style="longdash"/>
+<wire x1="114.3" y1="55.88" x2="63.5" y2="55.88" width="0.508" layer="97" style="longdash"/>
+<wire x1="63.5" y1="55.88" x2="63.5" y2="96.52" width="0.508" layer="97" style="longdash"/>
+<text x="89.408" y="92.202" size="5.08" layer="97" rot="R180" align="center">EQ-/VU-Meter</text>
+<wire x1="-111.76" y1="48.26" x2="-60.96" y2="48.26" width="0.508" layer="97" style="longdash"/>
+<wire x1="-60.96" y1="48.26" x2="-60.96" y2="7.62" width="0.508" layer="97" style="longdash"/>
+<wire x1="-60.96" y1="7.62" x2="-111.76" y2="7.62" width="0.508" layer="97" style="longdash"/>
+<wire x1="-111.76" y1="7.62" x2="-111.76" y2="48.26" width="0.508" layer="97" style="longdash"/>
+<text x="-85.852" y="43.942" size="5.08" layer="97" rot="R180" align="center">Gyro / ACC</text>
+<wire x1="-53.34" y1="48.26" x2="-2.54" y2="48.26" width="0.508" layer="97" style="longdash"/>
+<wire x1="-2.54" y1="48.26" x2="-2.54" y2="7.62" width="0.508" layer="97" style="longdash"/>
+<wire x1="-2.54" y1="7.62" x2="-53.34" y2="7.62" width="0.508" layer="97" style="longdash"/>
+<wire x1="-53.34" y1="7.62" x2="-53.34" y2="48.26" width="0.508" layer="97" style="longdash"/>
+<text x="-27.432" y="43.942" size="5.08" layer="97" rot="R180" align="center">Headphones</text>
+<wire x1="5.08" y1="48.26" x2="55.88" y2="48.26" width="0.508" layer="97" style="longdash"/>
+<wire x1="55.88" y1="48.26" x2="55.88" y2="7.62" width="0.508" layer="97" style="longdash"/>
+<wire x1="55.88" y1="7.62" x2="5.08" y2="7.62" width="0.508" layer="97" style="longdash"/>
+<wire x1="5.08" y1="7.62" x2="5.08" y2="48.26" width="0.508" layer="97" style="longdash"/>
+<text x="30.988" y="43.942" size="5.08" layer="97" rot="R180" align="center">Speaker</text>
+<wire x1="63.5" y1="48.26" x2="114.3" y2="48.26" width="0.508" layer="97" style="longdash"/>
+<wire x1="114.3" y1="48.26" x2="114.3" y2="7.62" width="0.508" layer="97" style="longdash"/>
+<wire x1="114.3" y1="7.62" x2="63.5" y2="7.62" width="0.508" layer="97" style="longdash"/>
+<wire x1="63.5" y1="7.62" x2="63.5" y2="48.26" width="0.508" layer="97" style="longdash"/>
+<text x="86.868" y="43.942" size="5.08" layer="97" rot="R180" align="center">SD-Card</text>
+<text x="-17.78" y="15.24" size="1.27" layer="97">1 - Sleeve
 2 - Tip
 3 - Ring</text>
 </plain>
 <instances>
-<instance part="A1" gate="G$1" x="203.2" y="220.98"/>
-<instance part="J1" gate="G$1" x="396.24" y="279.4"/>
-<instance part="SUPPLY1" gate="GND" x="381" y="264.16"/>
-<instance part="FRAME2" gate="G$1" x="68.58" y="111.76"/>
-<instance part="FRAME2" gate="G$2" x="241.3" y="111.76"/>
-<instance part="FRAME3" gate="G$1" x="358.14" y="111.76"/>
-<instance part="FRAME3" gate="G$2" x="530.86" y="111.76"/>
-<instance part="FRAME4" gate="G$1" x="68.58" y="-111.76"/>
-<instance part="FRAME4" gate="G$2" x="241.3" y="-111.76"/>
-<instance part="SUPPLY2" gate="GND" x="393.7" y="53.34"/>
-<instance part="SUPPLY3" gate="GND" x="452.12" y="53.34"/>
-<instance part="SUPPLY4" gate="GND" x="510.54" y="53.34"/>
-<instance part="SUPPLY5" gate="GND" x="568.96" y="53.34"/>
-<instance part="SUPPLY6" gate="GND" x="393.7" y="5.08"/>
-<instance part="SUPPLY7" gate="GND" x="452.12" y="5.08"/>
-<instance part="SUPPLY8" gate="GND" x="510.54" y="5.08"/>
-<instance part="SUPPLY9" gate="GND" x="568.96" y="5.08"/>
-<instance part="SUPPLY10" gate="GND" x="393.7" y="-43.18"/>
-<instance part="SUPPLY11" gate="GND" x="452.12" y="-43.18"/>
-<instance part="SUPPLY12" gate="GND" x="510.54" y="-43.18"/>
-<instance part="SUPPLY13" gate="GND" x="568.96" y="-43.18"/>
-<instance part="SUPPLY14" gate="GND" x="223.52" y="162.56"/>
-<instance part="SUPPLY15" gate="GND" x="381" y="167.64"/>
-<instance part="SUPPLY24" gate="GND" x="281.94" y="256.54"/>
-<instance part="J2" gate="G$1" x="449.58" y="276.86" rot="R180"/>
-<instance part="J3" gate="G$1" x="508" y="276.86" rot="R180"/>
-<instance part="J4" gate="G$1" x="561.34" y="276.86" rot="R180"/>
-<instance part="J5" gate="G$1" x="388.62" y="231.14" rot="R180"/>
-<instance part="J6" gate="G$1" x="441.96" y="231.14"/>
-<instance part="J7" gate="G$1" x="497.84" y="233.68" rot="R180"/>
-<instance part="J8" gate="G$1" x="571.5" y="223.52" rot="R180"/>
+<instance part="J1" gate="G$1" x="-86.36" y="76.2"/>
+<instance part="SUPPLY1" gate="GND" x="-101.6" y="60.96"/>
+<instance part="FRAME3" gate="G$1" x="-124.46" y="-91.44"/>
+<instance part="FRAME3" gate="G$2" x="48.26" y="-91.44"/>
+<instance part="SUPPLY15" gate="GND" x="-101.6" y="-35.56"/>
+<instance part="J2" gate="G$1" x="-33.02" y="73.66" rot="R180"/>
+<instance part="J3" gate="G$1" x="25.4" y="73.66" rot="R180"/>
+<instance part="J4" gate="G$1" x="78.74" y="73.66" rot="R180"/>
+<instance part="J5" gate="G$1" x="-93.98" y="27.94" rot="R180"/>
+<instance part="J6" gate="G$1" x="-40.64" y="27.94"/>
+<instance part="J7" gate="G$1" x="15.24" y="30.48" rot="R180"/>
+<instance part="J8" gate="G$1" x="88.9" y="20.32" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -1987,186 +1930,275 @@ Source: &lt;a href="https://www.mouser.fr/datasheet/2/1/ts0815-31700.pdf"&gt; Da
 <net name="GND" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="GND"/>
-<wire x1="386.08" y1="276.86" x2="381" y2="276.86" width="0.1524" layer="91"/>
-<wire x1="381" y1="276.86" x2="381" y2="271.78" width="0.1524" layer="91"/>
+<wire x1="-96.52" y1="73.66" x2="-101.6" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="-101.6" y1="73.66" x2="-101.6" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="J1" gate="G$1" pin="SHIELD"/>
-<wire x1="381" y1="271.78" x2="386.08" y2="271.78" width="0.1524" layer="91"/>
+<wire x1="-101.6" y1="68.58" x2="-96.52" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="SUPPLY1" gate="GND" pin="GND"/>
-<wire x1="381" y1="271.78" x2="381" y2="266.7" width="0.1524" layer="91"/>
-<junction x="381" y="271.78"/>
-</segment>
-<segment>
-<pinref part="A1" gate="G$1" pin="GND_CN11"/>
-<wire x1="220.98" y1="167.64" x2="223.52" y2="167.64" width="0.1524" layer="91" style="longdash"/>
-<pinref part="SUPPLY14" gate="GND" pin="GND"/>
-<wire x1="223.52" y1="167.64" x2="223.52" y2="165.1" width="0.1524" layer="91" style="longdash"/>
+<wire x1="-101.6" y1="68.58" x2="-101.6" y2="63.5" width="0.1524" layer="91"/>
+<junction x="-101.6" y="68.58"/>
 </segment>
 <segment>
 <pinref part="J2" gate="G$1" pin="4"/>
-<wire x1="459.74" y1="279.4" x2="462.28" y2="279.4" width="0.1524" layer="91" style="longdash"/>
-<label x="462.28" y="279.4" size="1.27" layer="95" xref="yes"/>
+<wire x1="-22.86" y1="76.2" x2="-20.32" y2="76.2" width="0.1524" layer="91" style="longdash"/>
+<label x="-20.32" y="76.2" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J3" gate="G$1" pin="1"/>
-<wire x1="518.16" y1="274.32" x2="520.7" y2="274.32" width="0.1524" layer="91" style="longdash"/>
-<label x="520.7" y="274.32" size="1.27" layer="95" xref="yes"/>
+<wire x1="35.56" y1="71.12" x2="38.1" y2="71.12" width="0.1524" layer="91" style="longdash"/>
+<label x="38.1" y="71.12" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J4" gate="G$1" pin="2"/>
-<wire x1="571.5" y1="274.32" x2="574.04" y2="274.32" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="274.32" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="71.12" x2="91.44" y2="71.12" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="71.12" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J5" gate="G$1" pin="3"/>
-<wire x1="398.78" y1="231.14" x2="401.32" y2="231.14" width="0.1524" layer="91" style="longdash"/>
-<label x="401.32" y="231.14" size="1.27" layer="95" xref="yes"/>
+<wire x1="-83.82" y1="27.94" x2="-81.28" y2="27.94" width="0.1524" layer="91" style="longdash"/>
+<label x="-81.28" y="27.94" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J6" gate="G$1" pin="1"/>
-<wire x1="449.58" y1="233.68" x2="454.66" y2="233.68" width="0.1524" layer="91" style="longdash"/>
-<label x="454.66" y="233.68" size="1.27" layer="95" xref="yes"/>
+<wire x1="-33.02" y1="30.48" x2="-27.94" y2="30.48" width="0.1524" layer="91" style="longdash"/>
+<label x="-27.94" y="30.48" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J7" gate="G$1" pin="1"/>
-<wire x1="508" y1="231.14" x2="510.54" y2="231.14" width="0.1524" layer="91" style="longdash"/>
-<label x="510.54" y="231.14" size="1.27" layer="95" xref="yes"/>
+<wire x1="25.4" y1="27.94" x2="27.94" y2="27.94" width="0.1524" layer="91" style="longdash"/>
+<label x="27.94" y="27.94" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J8" gate="G$1" pin="6"/>
-<wire x1="571.5" y1="236.22" x2="574.04" y2="236.22" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="236.22" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="33.02" x2="91.44" y2="33.02" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="33.02" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="+5V" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="VBUS"/>
-<wire x1="386.08" y1="287.02" x2="381" y2="287.02" width="0.1524" layer="91"/>
-<label x="381" y="287.02" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="-96.52" y1="83.82" x2="-101.6" y2="83.82" width="0.1524" layer="91"/>
+<label x="-101.6" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J2" gate="G$1" pin="5"/>
-<wire x1="459.74" y1="281.94" x2="462.28" y2="281.94" width="0.1524" layer="91" style="longdash"/>
-<label x="462.28" y="281.94" size="1.27" layer="95" xref="yes"/>
+<wire x1="-22.86" y1="78.74" x2="-20.32" y2="78.74" width="0.1524" layer="91" style="longdash"/>
+<label x="-20.32" y="78.74" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J4" gate="G$1" pin="3"/>
-<wire x1="571.5" y1="276.86" x2="574.04" y2="276.86" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="276.86" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="73.66" x2="91.44" y2="73.66" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="DC_OUT" class="0">
 <segment>
 <pinref part="J2" gate="G$1" pin="3"/>
-<wire x1="459.74" y1="276.86" x2="462.28" y2="276.86" width="0.1524" layer="91" style="longdash"/>
-<label x="462.28" y="276.86" size="1.27" layer="95" xref="yes"/>
+<wire x1="-22.86" y1="73.66" x2="-20.32" y2="73.66" width="0.1524" layer="91" style="longdash"/>
+<label x="-20.32" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="AC_OUT" class="0">
 <segment>
 <pinref part="J2" gate="G$1" pin="2"/>
-<wire x1="459.74" y1="274.32" x2="462.28" y2="274.32" width="0.1524" layer="91" style="longdash"/>
-<label x="462.28" y="274.32" size="1.27" layer="95" xref="yes"/>
+<wire x1="-22.86" y1="71.12" x2="-20.32" y2="71.12" width="0.1524" layer="91" style="longdash"/>
+<label x="-20.32" y="71.12" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="-5V" class="0">
 <segment>
 <pinref part="J2" gate="G$1" pin="1"/>
-<wire x1="459.74" y1="271.78" x2="462.28" y2="271.78" width="0.1524" layer="91" style="longdash"/>
-<label x="462.28" y="271.78" size="1.27" layer="95" xref="yes"/>
+<wire x1="-22.86" y1="68.58" x2="-20.32" y2="68.58" width="0.1524" layer="91" style="longdash"/>
+<label x="-20.32" y="68.58" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J4" gate="G$1" pin="1"/>
-<wire x1="571.5" y1="271.78" x2="574.04" y2="271.78" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="271.78" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="68.58" x2="91.44" y2="68.58" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="68.58" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="3V3" class="0">
 <segment>
 <pinref part="J3" gate="G$1" pin="2"/>
-<wire x1="518.16" y1="276.86" x2="520.7" y2="276.86" width="0.1524" layer="91" style="longdash"/>
-<label x="520.7" y="276.86" size="1.27" layer="95" xref="yes"/>
+<wire x1="35.56" y1="73.66" x2="38.1" y2="73.66" width="0.1524" layer="91" style="longdash"/>
+<label x="38.1" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J8" gate="G$1" pin="1"/>
-<wire x1="571.5" y1="223.52" x2="574.04" y2="223.52" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="223.52" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="20.32" x2="91.44" y2="20.32" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="20.32" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="UC_AUDIO_OUT" class="0">
 <segment>
 <pinref part="J4" gate="G$1" pin="4"/>
-<wire x1="571.5" y1="279.4" x2="574.04" y2="279.4" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="279.4" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="76.2" x2="91.44" y2="76.2" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="76.2" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="VCC" class="0">
 <segment>
 <pinref part="J5" gate="G$1" pin="4"/>
-<wire x1="398.78" y1="233.68" x2="401.32" y2="233.68" width="0.1524" layer="91" style="longdash"/>
-<label x="401.32" y="233.68" size="1.27" layer="95" xref="yes"/>
+<wire x1="-83.82" y1="30.48" x2="-81.28" y2="30.48" width="0.1524" layer="91" style="longdash"/>
+<label x="-81.28" y="30.48" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="GYRO_SCL" class="0">
 <segment>
 <pinref part="J5" gate="G$1" pin="2"/>
-<wire x1="398.78" y1="228.6" x2="401.32" y2="228.6" width="0.1524" layer="91" style="longdash"/>
-<label x="401.32" y="228.6" size="1.27" layer="95" xref="yes"/>
+<wire x1="-83.82" y1="25.4" x2="-81.28" y2="25.4" width="0.1524" layer="91" style="longdash"/>
+<label x="-81.28" y="25.4" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="GYRO_SDA" class="0">
 <segment>
 <pinref part="J5" gate="G$1" pin="1"/>
-<wire x1="398.78" y1="226.06" x2="401.32" y2="226.06" width="0.1524" layer="91" style="longdash"/>
-<label x="401.32" y="226.06" size="1.27" layer="95" xref="yes"/>
+<wire x1="-83.82" y1="22.86" x2="-81.28" y2="22.86" width="0.1524" layer="91" style="longdash"/>
+<label x="-81.28" y="22.86" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="PREAMP_AUDIO_OUT" class="0">
 <segment>
 <pinref part="J6" gate="G$1" pin="2"/>
-<wire x1="449.58" y1="228.6" x2="452.12" y2="228.6" width="0.1524" layer="91" style="longdash"/>
+<wire x1="-33.02" y1="25.4" x2="-30.48" y2="25.4" width="0.1524" layer="91" style="longdash"/>
 <pinref part="J6" gate="G$1" pin="3"/>
-<wire x1="449.58" y1="231.14" x2="452.12" y2="231.14" width="0.1524" layer="91" style="longdash"/>
-<wire x1="452.12" y1="228.6" x2="452.12" y2="231.14" width="0.1524" layer="91" style="longdash"/>
-<wire x1="452.12" y1="231.14" x2="454.66" y2="231.14" width="0.1524" layer="91" style="longdash"/>
-<junction x="452.12" y="231.14"/>
-<label x="454.66" y="231.14" size="1.27" layer="95" xref="yes"/>
+<wire x1="-33.02" y1="27.94" x2="-30.48" y2="27.94" width="0.1524" layer="91" style="longdash"/>
+<wire x1="-30.48" y1="25.4" x2="-30.48" y2="27.94" width="0.1524" layer="91" style="longdash"/>
+<wire x1="-30.48" y1="27.94" x2="-27.94" y2="27.94" width="0.1524" layer="91" style="longdash"/>
+<junction x="-30.48" y="27.94"/>
+<label x="-27.94" y="27.94" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="POWERAMP_AUDIO_OUT" class="0">
 <segment>
 <pinref part="J7" gate="G$1" pin="2"/>
-<wire x1="508" y1="233.68" x2="510.54" y2="233.68" width="0.1524" layer="91" style="longdash"/>
-<label x="510.54" y="233.68" size="1.27" layer="95" xref="yes"/>
+<wire x1="25.4" y1="30.48" x2="27.94" y2="30.48" width="0.1524" layer="91" style="longdash"/>
+<label x="27.94" y="30.48" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="SD_DO" class="0">
 <segment>
 <pinref part="J8" gate="G$1" pin="5"/>
-<wire x1="571.5" y1="233.68" x2="574.04" y2="233.68" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="233.68" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="30.48" x2="91.44" y2="30.48" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="30.48" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="SD_CLK" class="0">
 <segment>
 <pinref part="J8" gate="G$1" pin="4"/>
-<wire x1="571.5" y1="231.14" x2="574.04" y2="231.14" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="231.14" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="27.94" x2="91.44" y2="27.94" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="27.94" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="SD_DI" class="0">
 <segment>
 <pinref part="J8" gate="G$1" pin="3"/>
-<wire x1="571.5" y1="228.6" x2="574.04" y2="228.6" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="228.6" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="25.4" x2="91.44" y2="25.4" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="25.4" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="SD_CS" class="0">
 <segment>
 <pinref part="J8" gate="G$1" pin="2"/>
-<wire x1="571.5" y1="226.06" x2="574.04" y2="226.06" width="0.1524" layer="91" style="longdash"/>
-<label x="574.04" y="226.06" size="1.27" layer="95" xref="yes"/>
+<wire x1="88.9" y1="22.86" x2="91.44" y2="22.86" width="0.1524" layer="91" style="longdash"/>
+<label x="91.44" y="22.86" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<text x="-10.16" y="91.44" size="10.16" layer="97" align="center">Audio-Amplifiers</text>
+</plain>
+<instances>
+<instance part="FRAME4" gate="G$1" x="-139.7" y="-109.22"/>
+<instance part="FRAME4" gate="G$2" x="33.02" y="-109.22"/>
+</instances>
+<busses>
+</busses>
+<nets>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<wire x1="-114.3" y1="66.04" x2="-63.5" y2="66.04" width="0.508" layer="97" style="longdash"/>
+<wire x1="-63.5" y1="66.04" x2="-63.5" y2="25.4" width="0.508" layer="97" style="longdash"/>
+<wire x1="-63.5" y1="25.4" x2="-114.3" y2="25.4" width="0.508" layer="97" style="longdash"/>
+<wire x1="-114.3" y1="25.4" x2="-114.3" y2="66.04" width="0.508" layer="97" style="longdash"/>
+<text x="-68.072" y="64.262" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="-55.88" y1="66.04" x2="-5.08" y2="66.04" width="0.508" layer="97" style="longdash"/>
+<wire x1="-5.08" y1="66.04" x2="-5.08" y2="25.4" width="0.508" layer="97" style="longdash"/>
+<wire x1="-5.08" y1="25.4" x2="-55.88" y2="25.4" width="0.508" layer="97" style="longdash"/>
+<wire x1="-55.88" y1="25.4" x2="-55.88" y2="66.04" width="0.508" layer="97" style="longdash"/>
+<text x="-9.652" y="64.262" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="2.54" y1="66.04" x2="53.34" y2="66.04" width="0.508" layer="97" style="longdash"/>
+<wire x1="53.34" y1="66.04" x2="53.34" y2="25.4" width="0.508" layer="97" style="longdash"/>
+<wire x1="53.34" y1="25.4" x2="2.54" y2="25.4" width="0.508" layer="97" style="longdash"/>
+<wire x1="2.54" y1="25.4" x2="2.54" y2="66.04" width="0.508" layer="97" style="longdash"/>
+<text x="48.768" y="64.262" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="60.96" y1="66.04" x2="111.76" y2="66.04" width="0.508" layer="97" style="longdash"/>
+<wire x1="111.76" y1="66.04" x2="111.76" y2="25.4" width="0.508" layer="97" style="longdash"/>
+<wire x1="111.76" y1="25.4" x2="60.96" y2="25.4" width="0.508" layer="97" style="longdash"/>
+<wire x1="60.96" y1="25.4" x2="60.96" y2="66.04" width="0.508" layer="97" style="longdash"/>
+<text x="107.188" y="64.262" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="-114.3" y1="17.78" x2="-63.5" y2="17.78" width="0.508" layer="97" style="longdash"/>
+<wire x1="-63.5" y1="17.78" x2="-63.5" y2="-22.86" width="0.508" layer="97" style="longdash"/>
+<wire x1="-63.5" y1="-22.86" x2="-114.3" y2="-22.86" width="0.508" layer="97" style="longdash"/>
+<wire x1="-114.3" y1="-22.86" x2="-114.3" y2="17.78" width="0.508" layer="97" style="longdash"/>
+<text x="-68.072" y="16.002" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="-55.88" y1="17.78" x2="-5.08" y2="17.78" width="0.508" layer="97" style="longdash"/>
+<wire x1="-5.08" y1="17.78" x2="-5.08" y2="-22.86" width="0.508" layer="97" style="longdash"/>
+<wire x1="-5.08" y1="-22.86" x2="-55.88" y2="-22.86" width="0.508" layer="97" style="longdash"/>
+<wire x1="-55.88" y1="-22.86" x2="-55.88" y2="17.78" width="0.508" layer="97" style="longdash"/>
+<text x="-9.652" y="16.002" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="2.54" y1="17.78" x2="53.34" y2="17.78" width="0.508" layer="97" style="longdash"/>
+<wire x1="53.34" y1="17.78" x2="53.34" y2="-22.86" width="0.508" layer="97" style="longdash"/>
+<wire x1="53.34" y1="-22.86" x2="2.54" y2="-22.86" width="0.508" layer="97" style="longdash"/>
+<wire x1="2.54" y1="-22.86" x2="2.54" y2="17.78" width="0.508" layer="97" style="longdash"/>
+<text x="48.768" y="16.002" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="60.96" y1="17.78" x2="111.76" y2="17.78" width="0.508" layer="97" style="longdash"/>
+<wire x1="111.76" y1="17.78" x2="111.76" y2="-22.86" width="0.508" layer="97" style="longdash"/>
+<wire x1="111.76" y1="-22.86" x2="60.96" y2="-22.86" width="0.508" layer="97" style="longdash"/>
+<wire x1="60.96" y1="-22.86" x2="60.96" y2="17.78" width="0.508" layer="97" style="longdash"/>
+<text x="107.188" y="16.002" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="-114.3" y1="-30.48" x2="-63.5" y2="-30.48" width="0.508" layer="97" style="longdash"/>
+<wire x1="-63.5" y1="-30.48" x2="-63.5" y2="-71.12" width="0.508" layer="97" style="longdash"/>
+<wire x1="-63.5" y1="-71.12" x2="-114.3" y2="-71.12" width="0.508" layer="97" style="longdash"/>
+<wire x1="-114.3" y1="-71.12" x2="-114.3" y2="-30.48" width="0.508" layer="97" style="longdash"/>
+<text x="-68.072" y="-32.258" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="-55.88" y1="-30.48" x2="-5.08" y2="-30.48" width="0.508" layer="97" style="longdash"/>
+<wire x1="-5.08" y1="-30.48" x2="-5.08" y2="-71.12" width="0.508" layer="97" style="longdash"/>
+<wire x1="-5.08" y1="-71.12" x2="-55.88" y2="-71.12" width="0.508" layer="97" style="longdash"/>
+<wire x1="-55.88" y1="-71.12" x2="-55.88" y2="-30.48" width="0.508" layer="97" style="longdash"/>
+<text x="-9.652" y="-32.258" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="2.54" y1="-30.48" x2="53.34" y2="-30.48" width="0.508" layer="97" style="longdash"/>
+<wire x1="53.34" y1="-30.48" x2="53.34" y2="-71.12" width="0.508" layer="97" style="longdash"/>
+<wire x1="53.34" y1="-71.12" x2="2.54" y2="-71.12" width="0.508" layer="97" style="longdash"/>
+<wire x1="2.54" y1="-71.12" x2="2.54" y2="-30.48" width="0.508" layer="97" style="longdash"/>
+<text x="48.768" y="-32.258" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+<wire x1="60.96" y1="-30.48" x2="111.76" y2="-30.48" width="0.508" layer="97" style="longdash"/>
+<wire x1="111.76" y1="-30.48" x2="111.76" y2="-71.12" width="0.508" layer="97" style="longdash"/>
+<wire x1="111.76" y1="-71.12" x2="60.96" y2="-71.12" width="0.508" layer="97" style="longdash"/>
+<wire x1="60.96" y1="-71.12" x2="60.96" y2="-30.48" width="0.508" layer="97" style="longdash"/>
+<text x="107.188" y="-32.258" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
+</plain>
+<instances>
+<instance part="SUPPLY2" gate="GND" x="-104.14" y="30.48"/>
+<instance part="SUPPLY3" gate="GND" x="-45.72" y="30.48"/>
+<instance part="SUPPLY4" gate="GND" x="12.7" y="30.48"/>
+<instance part="SUPPLY5" gate="GND" x="71.12" y="30.48"/>
+<instance part="SUPPLY6" gate="GND" x="-104.14" y="-17.78"/>
+<instance part="SUPPLY7" gate="GND" x="-45.72" y="-17.78"/>
+<instance part="SUPPLY8" gate="GND" x="12.7" y="-17.78"/>
+<instance part="SUPPLY9" gate="GND" x="71.12" y="-17.78"/>
+<instance part="SUPPLY10" gate="GND" x="-104.14" y="-66.04"/>
+<instance part="SUPPLY11" gate="GND" x="-45.72" y="-66.04"/>
+<instance part="SUPPLY12" gate="GND" x="12.7" y="-66.04"/>
+<instance part="SUPPLY13" gate="GND" x="71.12" y="-66.04"/>
+</instances>
+<busses>
+</busses>
+<nets>
 </nets>
 </sheet>
 </sheets>
