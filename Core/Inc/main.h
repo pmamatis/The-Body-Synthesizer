@@ -109,9 +109,9 @@ void Error_Handler(void);
 #define Button_Enter_Pin GPIO_PIN_8
 #define Button_Enter_GPIO_Port GPIOE
 #define DISP_CS_Pin GPIO_PIN_8
-#define DISP_CS_GPIO_Port GPIOA
+#define DISP_CS_GPIO_Port GPIOC
 #define Button_Back_Pin GPIO_PIN_9
-#define Button_Back_GPIO_Port GPIOA
+#define Button_Back_GPIO_Port GPIOC
 #define SD_CLK_Pin GPIO_PIN_10
 #define SD_CLK_GPIO_Port GPIOC
 #define SD_DO_MISO_Pin GPIO_PIN_11
