@@ -59,16 +59,13 @@
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc2;
-ADC_HandleTypeDef hadc3;
 DMA_HandleTypeDef hdma_adc2;
-DMA_HandleTypeDef hdma_adc3;
 
 DAC_HandleTypeDef hdac;
 DMA_HandleTypeDef hdma_dac1;
 
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi3;
-SPI_HandleTypeDef hspi6;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
@@ -125,7 +122,7 @@ struct display_variables{
 	//...Weitere Synth-Parameter
 
 	uint16_t ADC2inputs[5];	// ADC input arrays
-	uint16_t ADC3inputs[1];
+	//uint16_t ADC3inputs[1];
 	uint16_t LowerLimit;
 	uint16_t UpperLimit;
 	uint16_t ADC_FullRange;
@@ -199,7 +196,7 @@ struct display_variables Display = {
 		//...Weitere Synth-Parameter
 
 		{},						// ADC2inputs
-		{},						// ADC3inputs
+		//{},						// ADC3inputs
 		95,						// LowerLimit
 		4000,					// UpperLimit
 		4095,					// ADC_FullRange
@@ -270,9 +267,7 @@ static void MX_SPI3_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
-static void MX_ADC3_Init(void);
 static void MX_TIM1_Init(void);
-static void MX_SPI6_Init(void);
 /* USER CODE BEGIN PFP */
 
 void Load_SD_File(uint8_t JoystickPatchPosition, uint16_t VRy, bool SW, Paint paint, EPD epd, unsigned char* frame_buffer);
@@ -358,9 +353,7 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM4_Init();
   MX_FATFS_Init();
-  MX_ADC3_Init();
   MX_TIM1_Init();
-  MX_SPI6_Init();
   /* USER CODE BEGIN 2 */
 
 	if(Signal_Synthesis_Init(htim8, hdac) != HAL_OK) {
@@ -454,7 +447,7 @@ int main(void)
 	// Start Timer and ADC-DMA for ADC2
 	HAL_TIM_Base_Start(&htim6);
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 5);
-	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 1);
+	//HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 1);
 	// Start DAC-DMAs
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
@@ -636,56 +629,6 @@ static void MX_ADC2_Init(void)
 }
 
 /**
-  * @brief ADC3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_ADC3_Init(void)
-{
-
-  /* USER CODE BEGIN ADC3_Init 0 */
-
-  /* USER CODE END ADC3_Init 0 */
-
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN ADC3_Init 1 */
-
-  /* USER CODE END ADC3_Init 1 */
-  /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
-  */
-  hadc3.Instance = ADC3;
-  hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
-  hadc3.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc3.Init.ScanConvMode = ADC_SCAN_ENABLE;
-  hadc3.Init.ContinuousConvMode = DISABLE;
-  hadc3.Init.DiscontinuousConvMode = DISABLE;
-  hadc3.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
-  hadc3.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_TRGO;
-  hadc3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc3.Init.NbrOfConversion = 1;
-  hadc3.Init.DMAContinuousRequests = ENABLE;
-  hadc3.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
-  */
-  sConfig.Channel = ADC_CHANNEL_5;
-  sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_480CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN ADC3_Init 2 */
-
-  /* USER CODE END ADC3_Init 2 */
-
-}
-
-/**
   * @brief DAC Initialization Function
   * @param None
   * @retval None
@@ -800,46 +743,6 @@ static void MX_SPI3_Init(void)
   /* USER CODE BEGIN SPI3_Init 2 */
 
   /* USER CODE END SPI3_Init 2 */
-
-}
-
-/**
-  * @brief SPI6 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_SPI6_Init(void)
-{
-
-  /* USER CODE BEGIN SPI6_Init 0 */
-
-  /* USER CODE END SPI6_Init 0 */
-
-  /* USER CODE BEGIN SPI6_Init 1 */
-
-  /* USER CODE END SPI6_Init 1 */
-  /* SPI6 parameter configuration*/
-  hspi6.Instance = SPI6;
-  hspi6.Init.Mode = SPI_MODE_MASTER;
-  hspi6.Init.Direction = SPI_DIRECTION_1LINE;
-  hspi6.Init.DataSize = SPI_DATASIZE_4BIT;
-  hspi6.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi6.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi6.Init.NSS = SPI_NSS_SOFT;
-  hspi6.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-  hspi6.Init.FirstBit = SPI_FIRSTBIT_MSB;
-  hspi6.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi6.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi6.Init.CRCPolynomial = 7;
-  hspi6.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
-  hspi6.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
-  if (HAL_SPI_Init(&hspi6) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN SPI6_Init 2 */
-
-  /* USER CODE END SPI6_Init 2 */
 
 }
 
@@ -1180,9 +1083,6 @@ static void MX_DMA_Init(void)
   /* DMA1_Stream5_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
-  /* DMA2_Stream0_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
   /* DMA2_Stream2_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
@@ -1493,11 +1393,11 @@ void SetPatchParameters(struct display_variables* Display, struct BQFilter* Filt
 			last_octave = octave;
 
 			//////////////////////////////////////////////////////////////////////
-			Display->Keyboard_raw = Display->ADC3inputs[0];
+			/*Display->Keyboard_raw = Display->ADC2inputs[3];
 			char keyboard_string[9];
 			sprintf(keyboard_string, "%u", Display->Keyboard_raw);
 			Paint_DrawFilledRectangle(&paint, 150, 110, 200, 130, UNCOLORED);
-			Paint_DrawStringAt(&paint, 150, 110, keyboard_string, &Font12, COLORED);
+			Paint_DrawStringAt(&paint, 150, 110, keyboard_string, &Font12, COLORED);*/
 			//////////////////////////////////////////////////////////////////////
 
 			Paint_DrawCharAt(&paint, 150, 50, note, &Font12, COLORED);

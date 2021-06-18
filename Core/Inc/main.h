@@ -42,6 +42,7 @@ extern "C" {
 #include "tremolo.h"
 #include "distortion.h"
 #include "adsr.h"
+#include "keyboard.h"
 #include <stdbool.h>
 
 /* USER CODE END Includes */
@@ -72,24 +73,18 @@ void Error_Handler(void);
 #define ENTER_USER_Pin GPIO_PIN_13
 #define ENTER_USER_GPIO_Port GPIOC
 #define ENTER_USER_EXTI_IRQn EXTI15_10_IRQn
-#define Keyboard_Pin GPIO_PIN_7
-#define Keyboard_GPIO_Port GPIOF
 #define SD_CS_Pin GPIO_PIN_10
 #define SD_CS_GPIO_Port GPIOF
 #define Poti_Pin GPIO_PIN_0
 #define Poti_GPIO_Port GPIOC
-#define EMG_AC1_Pin GPIO_PIN_2
-#define EMG_AC1_GPIO_Port GPIOC
+#define KEYBOARD_ADC_Pin GPIO_PIN_2
+#define KEYBOARD_ADC_GPIO_Port GPIOC
 #define EMG_DC1_Pin GPIO_PIN_3
 #define EMG_DC1_GPIO_Port GPIOC
 #define DISP_DC_Pin GPIO_PIN_0
 #define DISP_DC_GPIO_Port GPIOA
-#define DISP_CLK_Pin GPIO_PIN_5
-#define DISP_CLK_GPIO_Port GPIOA
 #define VRx_Pin GPIO_PIN_6
 #define VRx_GPIO_Port GPIOA
-#define DISP_DIN_Pin GPIO_PIN_7
-#define DISP_DIN_GPIO_Port GPIOA
 #define VRy_Pin GPIO_PIN_0
 #define VRy_GPIO_Port GPIOB
 #define DISP_BUSY_Pin GPIO_PIN_1
@@ -114,6 +109,10 @@ void Error_Handler(void);
 #define SD_CLK_GPIO_Port GPIOC
 #define SD_DO_MISO_Pin GPIO_PIN_11
 #define SD_DO_MISO_GPIO_Port GPIOC
+#define DISP_CLK_Pin GPIO_PIN_3
+#define DISP_CLK_GPIO_Port GPIOB
+#define DISP_DIN_Pin GPIO_PIN_5
+#define DISP_DIN_GPIO_Port GPIOB
 #define Blue_User_LED_Pin GPIO_PIN_7
 #define Blue_User_LED_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */

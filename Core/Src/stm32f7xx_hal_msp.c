@@ -26,8 +26,6 @@
 /* USER CODE END Includes */
 extern DMA_HandleTypeDef hdma_adc2;
 
-extern DMA_HandleTypeDef hdma_adc3;
-
 extern DMA_HandleTypeDef hdma_dac1;
 
 /* Private typedef -----------------------------------------------------------*/
@@ -109,7 +107,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     PA6     ------> ADC2_IN6
     PB0     ------> ADC2_IN8
     */
-    GPIO_InitStruct.Pin = Poti_Pin|EMG_AC1_Pin|EMG_DC1_Pin;
+    GPIO_InitStruct.Pin = Poti_Pin|KEYBOARD_ADC_Pin|EMG_DC1_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
@@ -147,46 +145,6 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
 
   /* USER CODE END ADC2_MspInit 1 */
   }
-  else if(hadc->Instance==ADC3)
-  {
-  /* USER CODE BEGIN ADC3_MspInit 0 */
-
-  /* USER CODE END ADC3_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_ADC3_CLK_ENABLE();
-
-    __HAL_RCC_GPIOF_CLK_ENABLE();
-    /**ADC3 GPIO Configuration
-    PF7     ------> ADC3_IN5
-    */
-    GPIO_InitStruct.Pin = Keyboard_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(Keyboard_GPIO_Port, &GPIO_InitStruct);
-
-    /* ADC3 DMA Init */
-    /* ADC3 Init */
-    hdma_adc3.Instance = DMA2_Stream0;
-    hdma_adc3.Init.Channel = DMA_CHANNEL_2;
-    hdma_adc3.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    hdma_adc3.Init.PeriphInc = DMA_PINC_DISABLE;
-    hdma_adc3.Init.MemInc = DMA_MINC_ENABLE;
-    hdma_adc3.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
-    hdma_adc3.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
-    hdma_adc3.Init.Mode = DMA_CIRCULAR;
-    hdma_adc3.Init.Priority = DMA_PRIORITY_VERY_HIGH;
-    hdma_adc3.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
-    if (HAL_DMA_Init(&hdma_adc3) != HAL_OK)
-    {
-      Error_Handler();
-    }
-
-    __HAL_LINKDMA(hadc,DMA_Handle,hdma_adc3);
-
-  /* USER CODE BEGIN ADC3_MspInit 1 */
-
-  /* USER CODE END ADC3_MspInit 1 */
-  }
 
 }
 
@@ -213,7 +171,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
     PA6     ------> ADC2_IN6
     PB0     ------> ADC2_IN8
     */
-    HAL_GPIO_DeInit(GPIOC, Poti_Pin|EMG_AC1_Pin|EMG_DC1_Pin);
+    HAL_GPIO_DeInit(GPIOC, Poti_Pin|KEYBOARD_ADC_Pin|EMG_DC1_Pin);
 
     HAL_GPIO_DeInit(VRx_GPIO_Port, VRx_Pin);
 
@@ -224,25 +182,6 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
   /* USER CODE BEGIN ADC2_MspDeInit 1 */
 
   /* USER CODE END ADC2_MspDeInit 1 */
-  }
-  else if(hadc->Instance==ADC3)
-  {
-  /* USER CODE BEGIN ADC3_MspDeInit 0 */
-
-  /* USER CODE END ADC3_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_ADC3_CLK_DISABLE();
-
-    /**ADC3 GPIO Configuration
-    PF7     ------> ADC3_IN5
-    */
-    HAL_GPIO_DeInit(Keyboard_GPIO_Port, Keyboard_Pin);
-
-    /* ADC3 DMA DeInit */
-    HAL_DMA_DeInit(hadc->DMA_Handle);
-  /* USER CODE BEGIN ADC3_MspDeInit 1 */
-
-  /* USER CODE END ADC3_MspDeInit 1 */
   }
 
 }
@@ -346,17 +285,17 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     /* Peripheral clock enable */
     __HAL_RCC_SPI1_CLK_ENABLE();
 
-    __HAL_RCC_GPIOA_CLK_ENABLE();
+    __HAL_RCC_GPIOB_CLK_ENABLE();
     /**SPI1 GPIO Configuration
-    PA5     ------> SPI1_SCK
-    PA7     ------> SPI1_MOSI
+    PB3     ------> SPI1_SCK
+    PB5     ------> SPI1_MOSI
     */
     GPIO_InitStruct.Pin = DISP_CLK_Pin|DISP_DIN_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN SPI1_MspInit 1 */
 
@@ -395,30 +334,6 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
 
   /* USER CODE END SPI3_MspInit 1 */
   }
-  else if(hspi->Instance==SPI6)
-  {
-  /* USER CODE BEGIN SPI6_MspInit 0 */
-
-  /* USER CODE END SPI6_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_SPI6_CLK_ENABLE();
-
-    __HAL_RCC_GPIOG_CLK_ENABLE();
-    /**SPI6 GPIO Configuration
-    PG13     ------> SPI6_SCK
-    PG14     ------> SPI6_MOSI
-    */
-    GPIO_InitStruct.Pin = GPIO_PIN_13|GPIO_PIN_14;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF5_SPI6;
-    HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN SPI6_MspInit 1 */
-
-  /* USER CODE END SPI6_MspInit 1 */
-  }
 
 }
 
@@ -439,10 +354,10 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
     __HAL_RCC_SPI1_CLK_DISABLE();
 
     /**SPI1 GPIO Configuration
-    PA5     ------> SPI1_SCK
-    PA7     ------> SPI1_MOSI
+    PB3     ------> SPI1_SCK
+    PB5     ------> SPI1_MOSI
     */
-    HAL_GPIO_DeInit(GPIOA, DISP_CLK_Pin|DISP_DIN_Pin);
+    HAL_GPIO_DeInit(GPIOB, DISP_CLK_Pin|DISP_DIN_Pin);
 
   /* USER CODE BEGIN SPI1_MspDeInit 1 */
 
@@ -468,24 +383,6 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
   /* USER CODE BEGIN SPI3_MspDeInit 1 */
 
   /* USER CODE END SPI3_MspDeInit 1 */
-  }
-  else if(hspi->Instance==SPI6)
-  {
-  /* USER CODE BEGIN SPI6_MspDeInit 0 */
-
-  /* USER CODE END SPI6_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_SPI6_CLK_DISABLE();
-
-    /**SPI6 GPIO Configuration
-    PG13     ------> SPI6_SCK
-    PG14     ------> SPI6_MOSI
-    */
-    HAL_GPIO_DeInit(GPIOG, GPIO_PIN_13|GPIO_PIN_14);
-
-  /* USER CODE BEGIN SPI6_MspDeInit 1 */
-
-  /* USER CODE END SPI6_MspDeInit 1 */
   }
 
 }

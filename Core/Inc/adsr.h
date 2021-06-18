@@ -21,7 +21,6 @@ typedef enum {
 
 struct adsr {
 	uint32_t adsr_counter;
-	//int adsr_counter;
 	float adsr_max_amp;
 	float adsr_duration_time;
 	float adsr_attack_time;
@@ -32,23 +31,21 @@ struct adsr {
 	float adsr_maximum_attack;
 	float adsr_maximum_decay;
 	float adsr_maximum_release;
+
+	bool adsr_done;
+
+	uint32_t decay_counter;
+	uint32_t release_counter;
 };
 
 struct adsr envelope;
 
-/* adsr envelope.
-maxamp: maximum amplitude
-dur: total duration (s)
-at: attack time (s)
-dt: decay time (s)
-sus: sustain amplitude
-rt: release time (s)
-cnt: time index
-cr: control rate
-returns: output control sample*/
+//bool envelope_done;	// flag for keyboard to delete signal
 
 ADSR_Status ADSR_Init(void);
 ADSR_Status SetupADSR(struct adsr* envelope);
-float ADSR_Linear_Process(struct adsr* envelope);
+//void ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, struct signal_t* signals);
+void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value);
+extern inline float exp1(float x);
 
 #endif
