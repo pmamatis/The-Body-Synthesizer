@@ -585,7 +585,7 @@ static void MX_ADC2_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_6;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_480CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -1393,11 +1393,11 @@ void SetPatchParameters(struct display_variables* Display, struct BQFilter* Filt
 			last_octave = octave;
 
 			//////////////////////////////////////////////////////////////////////
-			/*Display->Keyboard_raw = Display->ADC2inputs[3];
+			Display->Keyboard_raw = Display->ADC2inputs[3];
 			char keyboard_string[9];
 			sprintf(keyboard_string, "%u", Display->Keyboard_raw);
 			Paint_DrawFilledRectangle(&paint, 150, 110, 200, 130, UNCOLORED);
-			Paint_DrawStringAt(&paint, 150, 110, keyboard_string, &Font12, COLORED);*/
+			Paint_DrawStringAt(&paint, 150, 110, keyboard_string, &Font12, COLORED);
 			//////////////////////////////////////////////////////////////////////
 
 			Paint_DrawCharAt(&paint, 150, 50, note, &Font12, COLORED);
