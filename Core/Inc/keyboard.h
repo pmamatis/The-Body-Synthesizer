@@ -11,9 +11,9 @@
 #include "main.h"
 
 /* defines */
-#define KEYBOARD_SR 100 //Hz
+#define KEYBOARD_SR 100 // in Hz
 
-// Define Notes
+// Define Notes (has to be calibrated for every keyboard)
 #define H_NOTE_ADC_VALUE 	4095
 #define AIS_NOTE_ADC_VALUE 	3800
 #define A_NOTE_ADC_VALUE 	3500
@@ -58,7 +58,7 @@ uint32_t keyboard_adc_value;
 void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler);
 HAL_StatusTypeDef keyboard_start_read();
 HAL_StatusTypeDef keyboard_stop_read();
-//void keyboard_process(uint16_t adc_value, struct signal_t* signals, struct adsr* envelope);
 void OnePress_keyboard_process(uint16_t adc_value, struct signal_t* signals, struct adsr* envelope);
+//void keyboard_process(uint16_t adc_value, struct signal_t* signals, struct adsr* envelope);
 
 #endif /* INC_KEYBOARD_H_ */
