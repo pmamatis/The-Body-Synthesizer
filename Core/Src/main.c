@@ -454,7 +454,7 @@ int main(void)
 	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 	EPD_DisplayFrame(&epd);
 
-	Paint_SetRotate(&paint, ROTATE_90);
+	Paint_SetRotate(&paint, ROTATE_270);
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
 	//keyboard_start_read();
