@@ -93,21 +93,21 @@ Text Label 2900 3600 0    50   ~ 0
 Text Label 2900 3900 0    50   ~ 0
 GND
 Text Label 5550 2000 0    50   ~ 0
-3,3V
-Text Label 5550 2100 0    50   ~ 0
-GND
-Text Label 5550 2200 0    50   ~ 0
-DIN
-Text Label 5550 2300 0    50   ~ 0
-CLK
-Text Label 5550 2400 0    50   ~ 0
-CS
-Text Label 5550 2500 0    50   ~ 0
-DC
-Text Label 5550 2600 0    50   ~ 0
-RST
-Text Label 5550 2700 0    50   ~ 0
 BUSY
+Text Label 5550 2100 0    50   ~ 0
+RST
+Text Label 5550 2200 0    50   ~ 0
+DC
+Text Label 5550 2300 0    50   ~ 0
+CS
+Text Label 5550 2400 0    50   ~ 0
+CLK
+Text Label 5550 2500 0    50   ~ 0
+DIN
+Text Label 5550 2600 0    50   ~ 0
+GND
+Text Label 5550 2700 0    50   ~ 0
+3,3V
 Text Notes 5750 2300 0    50   ~ 0
 WAVESHARE 1.54 INCH E-PAPER-DISPLAY
 Text Label 7250 3700 0    50   ~ 0
@@ -210,29 +210,29 @@ F 3 "~" H 3800 4800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Label 3450 1800 0    50   ~ 0
-3,3V
-Text Label 3450 1900 0    50   ~ 0
-GND
-Text Label 3450 2000 0    50   ~ 0
-DIN
-Text Label 3450 2100 0    50   ~ 0
-CLK
-Text Label 3450 2200 0    50   ~ 0
-CS
-Text Label 3450 2300 0    50   ~ 0
-DC
-Text Label 3450 2400 0    50   ~ 0
-RST
-Text Label 3450 2500 0    50   ~ 0
 BUSY
+Text Label 3450 1900 0    50   ~ 0
+RST
+Text Label 3450 2000 0    50   ~ 0
+DC
+Text Label 3450 2100 0    50   ~ 0
+CS
+Text Label 3450 2200 0    50   ~ 0
+CLK
+Text Label 3450 2300 0    50   ~ 0
+DIN
+Text Label 3450 2400 0    50   ~ 0
+GND
+Text Label 3450 2500 0    50   ~ 0
+3,3V
 Text Label 3450 2600 0    50   ~ 0
 POTI
 Text Label 3450 2700 0    50   ~ 0
-VRy
+SW
 Text Label 3450 2800 0    50   ~ 0
 VRx
 Text Label 3450 2900 0    50   ~ 0
-SW
+VRy
 Text Label 3450 3000 0    50   ~ 0
 BACK_BUTTON
 Text Label 3450 3100 0    50   ~ 0
