@@ -14,7 +14,7 @@
 /* manage your SPI handler below */
 extern SPI_HandleTypeDef hspi3;
 
-extern volatile uint8_t Timer1, Timer2;                    /* 10ms Timer decreasing every time */
+extern volatile uint8_t Timer1, Timer2;                 /* 10ms Timer decreasing every time */
 
 static volatile DSTATUS Stat = STA_NOINIT;              /* Disc Status Flag*/
 static uint8_t CardType;                                /* SD type 0:MMC, 1:SDC, 2:Block addressing */

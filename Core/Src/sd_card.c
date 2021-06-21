@@ -27,27 +27,35 @@ char* find_text_file (UART_HandleTypeDef huart) {
 
 	char txtfile_array_temp[100];
 
-    fresult = f_findfirst(&dj, &fno, "", "*.txt");  // Start to search for text files
+	fresult = f_findfirst(&dj, &fno, "", "*.txt");  // Start to search for text files
 
-    while (fresult == FR_OK && fno.fname[0]) {         	// Repeat while an item is found
+	while (fresult == FR_OK && fno.fname[0]) {         	// Repeat while an item is found
 
-    	strcpy(txtfile_array_temp, fno.fname);
-    	strcat(txtfile_array, txtfile_array_temp);
-        send_uart (fno.fname, huart);					// Print the object name
-        send_uart("\n\r", huart);
-        fresult = f_findnext(&dj, &fno);               	// Search for next item
-    }
+		strcpy(txtfile_array_temp, fno.fname);
+		strcat(txtfile_array, txtfile_array_temp);
+		send_uart (fno.fname, huart);					// Print the object name
+		send_uart("\n\r", huart);
+		fresult = f_findnext(&dj, &fno);               	// Search for next item
+	}
 
-    f_closedir(&dj);
+	f_closedir(&dj);
 
-    return txtfile_array;
+	return txtfile_array;
 }
 
 void sd_card_mount(UART_HandleTypeDef huart) {	// Mount SD Card (Einbinden der SD-Karte)
 
-	fresult = f_mount(&fs, "/", 1);
+	/*fresult = f_mount(&fs, "/", 1);
 	if (fresult != FR_OK) send_uart ("ERROR!!! in mounting SD CARD...\n\r", huart);
 	else send_uart("SD CARD MOUNTED successfully...\n\r", huart);
+
+	clear_buffer();*/
+
+	fresult = f_mount(&fs, "", 0);
+	if(fresult != FR_OK)
+		send_uart ("ERROR!!! in mounting SD CARD...\n\r", huart);
+	else
+		send_uart("SD CARD MOUNTED successfully...\n\r", huart);
 
 	clear_buffer();
 }
@@ -86,6 +94,10 @@ void sd_card_write_newfile(char *filename, char *filecontent, UART_HandleTypeDef
 
 	// Open file to write/ create a file if it doesn't exist
 	fresult = f_open(&fil, filename, FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
+	if (fresult == FR_OK)
+		send_uart ("File created and the data is written\n\r", huart);
+	else
+		send_uart ("File can not be created\n\r", huart);
 
 	// Writing text
 	f_puts(filecontent, &fil);
@@ -93,7 +105,10 @@ void sd_card_write_newfile(char *filename, char *filecontent, UART_HandleTypeDef
 	// Close file
 	fresult = f_close(&fil);
 
-	if (fresult == FR_OK)	send_uart ("File created and the data is written\n\r", huart);
+	if (fresult == FR_OK)
+		send_uart ("File created and the data is written\n\r", huart);
+	else
+		send_uart ("File can not be created\n\r", huart);
 
 	clear_buffer();
 }
