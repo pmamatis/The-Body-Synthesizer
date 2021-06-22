@@ -1,6 +1,6 @@
 Configuration	Body-Synthesizer_STM32_F746ZG
 STM32CubeMX 	6.2.1
-Date	06/21/2021
+Date	06/22/2021
 MCU	STM32F746ZGTx
 
 

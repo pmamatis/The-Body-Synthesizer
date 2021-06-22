@@ -190,7 +190,10 @@ void Signal_Synthesis(struct display_variables* Display, struct signal_t* signal
 
 		//Effekte
 		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		if(Display->Keyboardmode_ONOFF == true) {	// KEYBOARDMODE
+
+		OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		/*if(Display->Keyboardmode_ONOFF == true) {	// KEYBOARDMODE
 			OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 		}
 
@@ -202,13 +205,13 @@ void Signal_Synthesis(struct display_variables* Display, struct signal_t* signal
 				ProcessTremolo(&Tremolo, &calculate_vector_tmp[BLOCKSIZE_counter], &lfo_value);
 			}
 			//		if(process_adsr == true) {
-			//			/*calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + 1;	// necessary for ADSR processing
+			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + 1;	// necessary for ADSR processing
 			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] * ADSR_Linear_Process(&envelope);
-			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] - 1;*/
+			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] - 1;
 			//		}
 			if(process_filter == true)
 				ProcessFilter(&EQ_BAND1_I, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		}
+		}*/
 
 
 		//maximum

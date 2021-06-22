@@ -63,7 +63,7 @@ struct display_variables {
 	bool Filter_EffectAdded;
 	//...Weitere Synth-Parameter
 
-	uint16_t ADC1inputs[1];	// ADC input arrays
+	uint32_t ADC1input;			// ADC input arrays
 	uint16_t ADC2inputs[3];
 	uint16_t ADC3inputs[2];
 	uint16_t LowerLimit;

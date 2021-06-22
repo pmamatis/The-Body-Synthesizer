@@ -318,6 +318,9 @@ void TIM5_IRQHandler(void)
 	HAL_TIM_IRQHandler(&htim5);
 	/* USER CODE BEGIN TIM5_IRQn 1 */
 
+	//HAL_ADC_Start_DMA(KEYBOARD_ADC, &keyboard_adc_value, 1);
+	//HAL_ADC_Start_DMA(KEYBOARD_ADC, &Display.ADC1input, 1);
+
 	/* USER CODE END TIM5_IRQn 1 */
 }
 
@@ -328,7 +331,8 @@ void DMA2_Stream0_IRQHandler(void)
 {
 	/* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
 
-	OnePress_keyboard_process(Display.ADC1inputs[0], &signals1, &envelope);
+	OnePress_keyboard_process(Display.ADC1input, &signals1, &envelope);
+	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
 
 	/* USER CODE END DMA2_Stream0_IRQn 0 */
 	HAL_DMA_IRQHandler(&hdma_adc1);

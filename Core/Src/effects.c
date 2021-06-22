@@ -37,9 +37,7 @@ void effects_process(float* calculate_value) {
 			break;
 
 		case ADSR:
-			*calculate_value = *calculate_value + 1;	// necessary for ADSR processing
-			*calculate_value = *calculate_value * ADSR_Linear_Process(&envelope);
-			*calculate_value = *calculate_value - 1;
+			//OnePress_ADSR_Linear_Process(&envelope, calculate_value);
 			break;
 
 		default:

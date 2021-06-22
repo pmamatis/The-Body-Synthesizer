@@ -479,23 +479,24 @@ int main(void)
 
 	Paint_SetRotate(&paint, ROTATE_270);
 
-	// Start Timer and ADC-DMA for the keyboard (ADC1)
-	//keyboard_start_read();
-	HAL_TIM_Base_Start(&htim5);
-	//HAL_TIM_Base_Start_IT(&htim5);
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)Display.ADC1inputs, 1);
+	// Start DAC-DMA
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
-	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
+	// Start Timer and ADC-DMA for the keyboard (ADC1)
+	keyboard_start_read();
+	//HAL_TIM_Base_Start(&htim5);
+	HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
+
+	/*// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
 	HAL_TIM_Base_Start(&htim6);
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
 
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
 	HAL_TIM_Base_Start(&htim1);
-	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 2);
+	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 2);*/
 
-	// Start DAC-DMA
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
-	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	effects_add(ADSR, 0);
 
 	// Patch-Selection-Startmenu
 	//PatchSelectionMenu(&Display, paint, epd, frame_buffer);
@@ -507,21 +508,13 @@ int main(void)
 	process_filter = false;
 	SetPatchParameters(&Display, &EQ_BAND1_I, &envelope, &HardClipping, &Tremolo, paint, epd, frame_buffer);*/
 
-	SelectKeyboardmode(&Display, paint, epd, frame_buffer);
-	SetParameters(&Display, &signals1, &EQ_BAND1_I, &envelope, &HardClipping, &Tremolo, paint, epd, frame_buffer);
+	//SelectKeyboardmode(&Display, paint, epd, frame_buffer);
+	//SetParameters(&Display, &signals1, &EQ_BAND1_I, &envelope, &HardClipping, &Tremolo, paint, epd, frame_buffer);
 
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-
-	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
-
-	//Example signal for test
-	//NewSignal(&signals1, SIN, 'C', 1);
-
-	//effect chain
-	//effects_add(TREM, 0);
 
 	while(1) {
 		/* USER CODE END WHILE */

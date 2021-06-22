@@ -23,7 +23,8 @@ void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler
 HAL_StatusTypeDef keyboard_start_read() {
 	HAL_StatusTypeDef retval;
 	printf("start keyboard read....\r\n");
-	retval = HAL_TIM_Base_Start_IT(KEYBOARD_TIM);
+	//retval = HAL_TIM_Base_Start_IT(KEYBOARD_TIM);
+	retval = HAL_TIM_Base_Start(KEYBOARD_TIM);
 	//	retval = HAL_ADC_Start_DMA(KEYBOARD_ADC, keyboard_buffer, keyboard_READ_CHANNELS);
 	return retval;
 }
@@ -35,7 +36,7 @@ HAL_StatusTypeDef keyboard_stop_read() {
 	//	return HAL_ADC_Stop_DMA(KEYBOARD_ADC);
 }
 
-void OnePress_keyboard_process(uint16_t adc_value, struct signal_t* signals, struct adsr* envelope) {
+void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct adsr* envelope) {
 
 	if (adc_value > AIS_NOTE_ADC_VALUE){
 		printf("H\n\r");

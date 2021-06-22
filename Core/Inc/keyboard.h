@@ -58,7 +58,7 @@ uint32_t keyboard_adc_value;
 void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler);
 HAL_StatusTypeDef keyboard_start_read();
 HAL_StatusTypeDef keyboard_stop_read();
-void OnePress_keyboard_process(uint16_t adc_value, struct signal_t* signals, struct adsr* envelope);
+void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct adsr* envelope);
 //void keyboard_process(uint16_t adc_value, struct signal_t* signals, struct adsr* envelope);
 
 #endif /* INC_KEYBOARD_H_ */
