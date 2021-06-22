@@ -73,7 +73,6 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 		switch (kind){
 
 		case SIN:
-
 			signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
 			signals -> freqIndex[index] = Get_Note_Index(key,octave);
 			signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
@@ -129,7 +128,7 @@ void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
  *  @note Channel 1 is connected to calculate_vector1 and Channel 2 connected to calculate_vector2
  *  @return None
  */
-void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
+void Signal_Synthesis(struct display_variables* Display, struct signal_t* signals,uint8_t output_Channel) {
 
 	//Variables
 	float addValue=0;
@@ -191,19 +190,25 @@ void Signal_Synthesis(struct signal_t* signals, uint8_t output_Channel){
 
 		//Effekte
 		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		if(process_dist == true)
-			ProcessHardClippingDistortion(&HardClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		if(process_trem == true) {
-			lfo_value = LFO_SingleValueProcess(&Tremolo);
-			ProcessTremolo(&Tremolo, &calculate_vector_tmp[BLOCKSIZE_counter], &lfo_value);
+		if(Display->Keyboardmode_ONOFF == true) {	// KEYBOARDMODE
+			OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 		}
-		if(process_adsr == true) {
-			/*calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + 1;	// necessary for ADSR processing
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] * ADSR_Linear_Process(&envelope);
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] - 1;*/
+
+		else if(Display->Keyboardmode_ONOFF == false) {	// SYNTHESIZERMODE
+			if(process_dist == true)
+				ProcessHardClippingDistortion(&HardClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
+			if(process_trem == true) {
+				lfo_value = LFO_SingleValueProcess(&Tremolo);
+				ProcessTremolo(&Tremolo, &calculate_vector_tmp[BLOCKSIZE_counter], &lfo_value);
+			}
+			//		if(process_adsr == true) {
+			//			/*calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + 1;	// necessary for ADSR processing
+			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] * ADSR_Linear_Process(&envelope);
+			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] - 1;*/
+			//		}
+			if(process_filter == true)
+				ProcessFilter(&EQ_BAND1_I, &calculate_vector_tmp[BLOCKSIZE_counter]);
 		}
-		if(process_filter == true)
-			ProcessFilter(&EQ_BAND1_I, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 
 		//maximum

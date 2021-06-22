@@ -44,6 +44,7 @@ extern "C" {
 #include "adsr.h"
 #include "keyboard.h"
 #include <stdbool.h>
+#include "display.h"
 
 /* USER CODE END Includes */
 

@@ -21,6 +21,8 @@
 #include <stdarg.h>
 //#include  <string.h>
 
+#include "display.h"
+
 /**@brief maximal amplitude of output voltage in millivolts*/
 #define AMPLITUDE 	2000
 /**@brief digital DAC value for maximal output voltage (3,3V) */
@@ -96,7 +98,7 @@ struct signal_t signals2;
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
-void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
+void Signal_Synthesis(struct display_variables* Display, struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 

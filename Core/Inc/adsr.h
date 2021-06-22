@@ -30,6 +30,7 @@ struct adsr {
 
 	float adsr_maximum_attack;
 	float adsr_maximum_decay;
+	float adsr_maximum_sustaintime;
 	float adsr_maximum_release;
 
 	bool adsr_done;
