@@ -482,6 +482,7 @@ int main(void)
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
 	//keyboard_start_read();
 	HAL_TIM_Base_Start(&htim5);
+	//HAL_TIM_Base_Start_IT(&htim5);
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)Display.ADC1inputs, 1);
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
@@ -1682,7 +1683,7 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				sprintf(sustaintime_string, "%f", Display->Keyboard_SustainTime);
 				Paint_DrawStringAt(&paint, 150, 90, sustaintime_string, &Font12, COLORED);
 
-				//envelope->adsr_duration_time = (Display->Keyboard_AttackTime + Display->Keyboard_DecayTime + Display->Keyboard_SustainTime + Display->Keyboard_ReleaseTime) * LUT_SR;
+				envelope->adsr_duration_time = (Display->Keyboard_AttackTime + Display->Keyboard_DecayTime + Display->Keyboard_SustainTime + Display->Keyboard_ReleaseTime) * LUT_SR;
 				//envelope->adsr_duration_time = Display->Keyboard_SustainTime * LUT_SR;
 			}
 			// Sustain Level
@@ -1708,7 +1709,7 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 			EPD_DisplayFrame(&epd);
 
-			OnePress_keyboard_process(Display->ADC1inputs[0], signals, envelope);
+			//OnePress_keyboard_process(Display->ADC1inputs[0], signals, envelope);
 			//OnePress_ADSR_Linear_Process(envelope, float* calculate_value);
 		}
 
