@@ -23,9 +23,9 @@ void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler
 HAL_StatusTypeDef keyboard_start_read() {
 	HAL_StatusTypeDef retval;
 	printf("start keyboard read....\r\n");
-	//retval = HAL_TIM_Base_Start_IT(KEYBOARD_TIM);
-	retval = HAL_TIM_Base_Start(KEYBOARD_TIM);
-	//	retval = HAL_ADC_Start_DMA(KEYBOARD_ADC, keyboard_buffer, keyboard_READ_CHANNELS);
+	retval = HAL_TIM_Base_Start_IT(KEYBOARD_TIM);
+	//retval = HAL_TIM_Base_Start(KEYBOARD_TIM);
+	//retval = HAL_ADC_Start_DMA(KEYBOARD_ADC, &keyboard_adc_value, 1);
 	return retval;
 }
 

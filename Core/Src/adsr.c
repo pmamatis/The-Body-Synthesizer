@@ -121,19 +121,19 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value)
 			// attack period
 			if(envelope->adsr_counter <= envelope->adsr_attack_time) {
 				// linear:
-				calc = envelope->adsr_counter * (envelope->adsr_max_amp/envelope->adsr_attack_time);
+				//calc = envelope->adsr_counter * (envelope->adsr_max_amp/envelope->adsr_attack_time);
 				// exponential:
 				//calc = 0.006737947 * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));
-				//calc = (envelope->adsr_max_amp/(exp1(5))) * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));	// 5, because of 5*tau
+				calc = (envelope->adsr_max_amp/(exp1(5))) * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));	// 5, because of 5*tau
 			}
 
 			// decay period
 			else if(envelope->adsr_counter <= (envelope->adsr_attack_time + envelope->adsr_decay_time)) {
 				// linear:
-				calc = ((envelope->adsr_sustain_amplitude - envelope->adsr_max_amp)/envelope->adsr_decay_time) * (envelope->adsr_counter - envelope->adsr_attack_time) + envelope->adsr_max_amp;
+				//calc = ((envelope->adsr_sustain_amplitude - envelope->adsr_max_amp)/envelope->adsr_decay_time) * (envelope->adsr_counter - envelope->adsr_attack_time) + envelope->adsr_max_amp;
 				// exponential:
-				/*calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5)))/2)+0.5;
-				(envelope->decay_counter)++;*/
+				calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5)))/2)+0.5;
+				(envelope->decay_counter)++;
 			}
 
 			// sustain period
@@ -143,10 +143,10 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value)
 			// release period
 			else if(envelope->adsr_counter > (envelope->adsr_duration_time - envelope->adsr_release_time)) {
 				// linear:
-				calc = -(envelope->adsr_sustain_amplitude/envelope->adsr_release_time) * (envelope->adsr_counter - (envelope->adsr_duration_time - envelope->adsr_release_time)) + envelope->adsr_sustain_amplitude;
+				//calc = -(envelope->adsr_sustain_amplitude/envelope->adsr_release_time) * (envelope->adsr_counter - (envelope->adsr_duration_time - envelope->adsr_release_time)) + envelope->adsr_sustain_amplitude;
 				// exponential:
-				/*calc = envelope->adsr_sustain_amplitude * (1/exp1(envelope->release_counter/(envelope->adsr_release_time/5)));
-				(envelope->release_counter)++;*/
+				calc = envelope->adsr_sustain_amplitude * (1/exp1(envelope->release_counter/(envelope->adsr_release_time/5)));
+				(envelope->release_counter)++;
 			}
 		}
 
