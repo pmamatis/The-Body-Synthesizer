@@ -492,4 +492,3 @@ ProjectManager.DeviceId=STM32F746ZGTx
 ProjectManager.LibraryCopy=1
 PB1.GPIOParameters=GPIO_Label
 PA6.Locked=true
-isbadioc=false

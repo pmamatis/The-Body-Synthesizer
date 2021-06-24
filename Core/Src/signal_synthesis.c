@@ -191,9 +191,9 @@ void Signal_Synthesis(struct display_variables* Display, struct signal_t* signal
 		//Effekte
 		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
-		OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
-		/*if(Display->Keyboardmode_ONOFF == true) {	// KEYBOARDMODE
+		if(Display->Keyboardmode_ONOFF == true) {	// KEYBOARDMODE
 			OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 		}
 
@@ -211,7 +211,7 @@ void Signal_Synthesis(struct display_variables* Display, struct signal_t* signal
 			//		}
 			if(process_filter == true)
 				ProcessFilter(&EQ_BAND1_I, &calculate_vector_tmp[BLOCKSIZE_counter]);
-		}*/
+		}
 
 
 		//maximum
