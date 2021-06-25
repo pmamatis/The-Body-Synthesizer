@@ -440,11 +440,11 @@ int main(void)
 
 	keyboard_init(&hadc1, &htim5);
 
-//	EPD epd;
-//	EPD_Init(&epd, lut_full_update);
-//	Paint paint;
-//	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
-//	Paint_SetRotate(&paint, ROTATE_270);
+	//	EPD epd;
+	//	EPD_Init(&epd, lut_full_update);
+	//	Paint paint;
+	//	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
+	//	Paint_SetRotate(&paint, ROTATE_270);
 
 	// Display Init
 	EPD epd;
@@ -476,8 +476,8 @@ int main(void)
 	EPD_DisplayFrame(&epd);
 	EPD_SetFrameMemory(&epd, BLACKSCREEN, 0, 0, epd.width, epd.height);
 	EPD_DisplayFrame(&epd);
-//	EPD_DelayMs(&epd, 300);
-//	HAL_Delay(1000);
+	//	EPD_DelayMs(&epd, 300);
+	//	HAL_Delay(1000);
 
 	Paint_Clear(&paint, UNCOLORED);
 	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
@@ -527,8 +527,6 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-
-		//RequestPatchParameters(&Patch1, ChosenGadget, PatchParameterAssign, Patch, paint, epd, frame_buffer);
 
 	}
 	/* USER CODE END 3 */
@@ -1657,6 +1655,16 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				octave = (char) (((float)Display->Poti_raw/4096) * 6);	// 5 0ctaves
 				Display->Keyboard_Octave = (uint8_t)octave;	// assign Octave
 				Paint_DrawCharAt(&paint, 150, 30, octave+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
+//				if( last_octave != octave) {	// if octave changed
+//
+//					if(signals1.count == 1)		// Delete the last generated signal
+//						DeleteSignal(&signals1, 1);
+//
+//					NewSignal(&signals1, SIN, Display->Voices_Note[0], Display->Voices_Octave[0]);	// create signal and assign selected parameters
+//					outputBuffer_position = HALF_BLOCK;
+//				}
+//				last_note = note;
+//				last_octave = octave;
 			}
 			// Attack Time
 			else if(Display->JoystickParameterPosition == 2) {
