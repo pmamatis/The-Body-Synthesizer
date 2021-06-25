@@ -1691,7 +1691,8 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				sprintf(sustaintime_string, "%f", Display->Keyboard_SustainTime);
 				Paint_DrawStringAt(&paint, 150, 90, sustaintime_string, &Font12, COLORED);
 
-				envelope->adsr_duration_time = (Display->Keyboard_AttackTime + Display->Keyboard_DecayTime + Display->Keyboard_SustainTime + Display->Keyboard_ReleaseTime) * LUT_SR;
+				envelope->adsr_sustain_time = Display->Keyboard_SustainTime * LUT_SR;
+				//envelope->adsr_duration_time = (Display->Keyboard_AttackTime + Display->Keyboard_DecayTime + Display->Keyboard_SustainTime + Display->Keyboard_ReleaseTime) * LUT_SR;
 				//envelope->adsr_duration_time = Display->Keyboard_SustainTime * LUT_SR;
 			}
 			// Sustain Level

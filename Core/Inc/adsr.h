@@ -25,6 +25,7 @@ struct adsr {
 	float adsr_duration_time;
 	float adsr_attack_time;
 	float adsr_decay_time;
+	float adsr_sustain_time;
 	float adsr_sustain_amplitude;
 	float adsr_release_time;
 
