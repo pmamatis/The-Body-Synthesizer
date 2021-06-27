@@ -198,17 +198,15 @@ void Signal_Synthesis(struct display_variables* Display, struct signal_t* signal
 		}
 
 		else if(Display->Keyboardmode_ONOFF == false) {	// SYNTHESIZERMODE
-			if(process_dist == true)
+			if(process_dist_soft == true) {
+				ProcessSoftClippingDistortion(&SoftClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
+			}
+			if(process_dist_hard == true)
 				ProcessHardClippingDistortion(&HardClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
 			if(process_trem == true) {
 				lfo_value = LFO_SingleValueProcess(&Tremolo);
 				ProcessTremolo(&Tremolo, &calculate_vector_tmp[BLOCKSIZE_counter], &lfo_value);
 			}
-			//		if(process_adsr == true) {
-			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + 1;	// necessary for ADSR processing
-			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] * ADSR_Linear_Process(&envelope);
-			//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] - 1;
-			//		}
 			if(process_filter == true)
 				ProcessFilter(&EQ_BAND1_I, &calculate_vector_tmp[BLOCKSIZE_counter]);
 		}

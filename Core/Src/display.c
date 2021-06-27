@@ -105,7 +105,7 @@ Display_Status Display_Start(void) {
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 
 	// Display Init
-//	EPD epd;
+	//	EPD epd;
 	//EPD_Reset(&epd);
 
 	if (EPD_Init(&epd, lut_full_update) != 0) {
@@ -113,7 +113,7 @@ Display_Status Display_Start(void) {
 		//return -1;
 	}
 
-//	Paint paint;
+	//	Paint paint;
 	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
 	Paint_Clear(&paint, UNCOLORED);
 
@@ -281,7 +281,7 @@ Display_Status SelectKeyboardmode(struct display_variables* Display, Paint paint
 	return DISPLAY_OK;
 }
 
-void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer) {
+void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* SoftClipping, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer) {
 
 	while(Display->KeyboardmodeSelected == true) {
 
@@ -634,12 +634,16 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 					Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
 
 					if(Display->Poti_raw < Display->ADC_FullRange/2) {
-						Paint_DrawStringAt(&paint, 150, 50, "Soft Clipping", &Font12, COLORED);
-						Display->Distortion_Type = 1;
+						Paint_DrawStringAt(&paint, 150, 50, "Soft", &Font12, COLORED);
+						Display->Distortion_Type = 0;
+						process_dist_soft = true;
+						process_dist_hard = false;
 					}
 					else if(Display->Poti_raw >= Display->ADC_FullRange/2) {
-						Paint_DrawStringAt(&paint, 150, 50, "Hard Clipping", &Font12, COLORED);
+						Paint_DrawStringAt(&paint, 150, 50, "Hard", &Font12, COLORED);
 						Display->Distortion_Type = 1;
+						process_dist_soft = false;
+						process_dist_hard = true;
 					}
 				}
 
@@ -656,9 +660,13 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 					if( abs(Display->last_distortion_gain-Display->distortion_gain)>1000 ) {
 
-						HardClipping->distortion_gain = Display->Distortion_Gain;
+						if(Display->Distortion_Type == 0)
+							SoftClipping->distortion_gain = Display->Distortion_Gain;
+						else if(Display->Distortion_Type == 1)
+							HardClipping->distortion_gain = Display->Distortion_Gain;
 
-						process_dist = true;
+						//						HardClipping->distortion_gain = Display->Distortion_Gain;
+						//						process_dist_hard = true;
 
 						//					if(Display->Distortion_EffectAdded == false) {	// if no distortion effect added yet
 						//
@@ -669,7 +677,8 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				}
 				else if(Display->Distortion_ONOFF == false) {	// if Distortion OFF
 
-					process_dist = false;
+					process_dist_hard = false;
+					process_dist_soft = false;
 
 					//				if(Display->Distortion_EffectAdded == true) {
 					//

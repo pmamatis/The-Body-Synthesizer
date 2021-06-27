@@ -522,7 +522,7 @@ int main(void)
 	while(1) {
 
 		SelectKeyboardmode(&Display, paint, epd, frame_buffer);
-		SetParameters(&Display, &signals1, &EQ_BAND1_I, &envelope, &HardClipping, &Tremolo, paint, epd, frame_buffer);
+		SetParameters(&Display, &signals1, &EQ_BAND1_I, &envelope, &SoftClipping, &HardClipping, &Tremolo, paint, epd, frame_buffer);
 
 		/* USER CODE END WHILE */
 

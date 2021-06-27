@@ -36,7 +36,7 @@ Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftCli
 	SoftClipping->distortion_gain = 1.0;
 	SoftClipping->min_distortion_calculatevector = 0.0;
 	SoftClipping->max_distortion_calculatevector = 0.0;
-	SoftClipping-> softclipping_option = 0;	// 0=optionA; 1=optionB; 2=optionC
+	SoftClipping->softclipping_option = 2;	// 0=optionA; 1=optionB; 2=optionC
 
 	// SoftClipping Option A: 10 different distortion gain values, so the effect can be increased step-wise
 	SoftClipping->atan_softclipping_distortion_max[0] = 0.392650008;	// distortion_gain = 1.0

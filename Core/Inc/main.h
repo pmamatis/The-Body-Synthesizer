@@ -135,6 +135,8 @@ void Error_Handler(void);
 
 bool process_trem;
 bool process_dist;
+bool process_dist_soft;
+bool process_dist_hard;
 bool process_adsr;
 bool process_filter;
 
