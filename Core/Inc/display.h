@@ -11,6 +11,14 @@
 #include "main.h"
 #include <stdbool.h>
 
+#include "epd1in54.h"
+#include "epdif.h"
+#include "epdpaint.h"
+#include "imagedata.h"
+
+#define COLORED      0
+#define UNCOLORED    1
+
 typedef enum {
 	DISPLAY_FAIL = -1,
 	DISPLAY_OK = 1
@@ -61,7 +69,26 @@ struct display_variables {
 	float Filter_Q;
 	uint8_t Filter_EffectPosition;
 	bool Filter_EffectAdded;
-	//...Weitere Synth-Parameter
+	//...Weitere Synthesizer-Parameter
+
+	uint16_t last_rate;
+	uint16_t rate;
+	uint16_t last_depth;
+	uint16_t depth;
+	uint32_t last_cutoff;
+	uint32_t cutoff;
+	uint16_t last_Q;
+	uint16_t Q;
+	uint16_t last_distortion_gain;
+	uint16_t distortion_gain;
+	uint16_t last_attack;
+	uint16_t attack;
+	uint16_t last_decay;
+	uint16_t decay;
+	uint16_t last_sustain;
+	uint16_t sustain;
+	uint16_t last_release;
+	uint16_t release;
 
 	uint32_t ADC1input;			// ADC input arrays
 	uint16_t ADC2inputs[3];
@@ -99,7 +126,14 @@ struct display_variables {
 };
 
 struct display_variables Display;
+EPD epd;
+Paint paint;
+unsigned char* frame_buffer;
 
 Display_Status Display_Init(struct display_variables* Display);
+Display_Status Display_Start(void);
+Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
+Display_Status SelectKeyboardmode(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
+void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer);
 
 #endif /* INC_DISPLAY_H_ */
