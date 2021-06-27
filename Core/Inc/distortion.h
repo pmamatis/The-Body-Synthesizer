@@ -32,6 +32,8 @@ struct effects_distortion{
 	uint8_t softclipping_option;
 	float distortion_threshold;
 
+	bool atan_softclipping_option;
+
 	// distortion_gain = 1.0 -> +-0.392650008
 	// distortion_gain = 2.0 -> +-0.553650022
 	// distortion_gain = 3.0 -> +-0.624499977
@@ -69,7 +71,9 @@ struct effects_distortion SoftClipping;
 Distortion_Status Distortion_Init(void);
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping);
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping);
+Distortion_Status SetupAtanSoftClippingDistortion(struct effects_distortion* SoftClipping);
 Distortion_Status ProcessHardClippingDistortion(struct effects_distortion* HardClipping, float* data);
 Distortion_Status ProcessSoftClippingDistortion(struct effects_distortion* SoftClipping, float* data);
+Distortion_Status ProcessAtanSoftClippingDistortion(struct effects_distortion* SoftClipping, float* data);
 
 #endif /* INC_DISTORTION_H_ */

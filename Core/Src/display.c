@@ -629,7 +629,7 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				}
 
 				// Distortion Type
-				else if(Display->JoystickParameterPosition == 2) {	// SOFT CLIPPING DIDNT WORK!!!
+				else if(Display->JoystickParameterPosition == 2) {
 
 					Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
 
@@ -658,10 +658,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				if(Display->Distortion_ONOFF == true) {	// if Distortion ON
 
-					if( abs(Display->last_distortion_gain-Display->distortion_gain)>1000 ) {
+					if( abs(Display->last_distortion_gain-Display->distortion_gain)>250 ) {	// only changes when the difference in gain is at least 0.25
 
 						if(Display->Distortion_Type == 0)
-							SoftClipping->distortion_gain = Display->Distortion_Gain;
+							SoftClipping->distortion_gain = round(Display->Distortion_Gain);	// necessary only for soft clipping, because gain is increased in steps
 						else if(Display->Distortion_Type == 1)
 							HardClipping->distortion_gain = Display->Distortion_Gain;
 
@@ -813,7 +813,7 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 					Tremolo->lfo_frequency = Display->Tremolo_Rate;
 					Tremolo->lfo_depth = Display->Tremolo_Depth;
 
-					if( abs(Display->last_rate-Display->rate)>=1000 || abs(Display->last_depth-Display->depth)>=100 ) {
+					if( abs(Display->last_rate-Display->rate)>=250 || abs(Display->last_depth-Display->depth)>=25 ) {
 
 						process_trem = true;
 

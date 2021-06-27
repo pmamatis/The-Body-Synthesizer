@@ -199,7 +199,8 @@ void Signal_Synthesis(struct display_variables* Display, struct signal_t* signal
 
 		else if(Display->Keyboardmode_ONOFF == false) {	// SYNTHESIZERMODE
 			if(process_dist_soft == true) {
-				ProcessSoftClippingDistortion(&SoftClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
+				//ProcessSoftClippingDistortion(&SoftClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
+				ProcessAtanSoftClippingDistortion(&SoftClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
 			}
 			if(process_dist_hard == true)
 				ProcessHardClippingDistortion(&HardClipping, &calculate_vector_tmp[BLOCKSIZE_counter]);
