@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -68,6 +68,7 @@
 <layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="100" name="PRINT" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <schematic xreflabel="%F%N/%S.%C%R" xrefpart="/%S.%C%R">
 <libraries>
@@ -1990,11 +1991,11 @@ Source: &lt;a href=""&gt; Datasheet &lt;/a&gt;</description>
 <wire x1="12.72" y1="-3.11" x2="12.72" y2="-11.96" width="0.127" layer="21"/>
 <wire x1="12.72" y1="-11.96" x2="-12.72" y2="-11.96" width="0.127" layer="21"/>
 <wire x1="-12.72" y1="-11.96" x2="-12.72" y2="-3.11" width="0.127" layer="21"/>
-<text x="-11.43" y="0.635" size="1.27" layer="51">14</text>
+<text x="-11.43" y="0.635" size="1.016" layer="100">14</text>
 <text x="14.1272" y="-6.3679" size="1.27" layer="25">&gt;NAME</text>
 <text x="14.1272" y="-8.857" size="1.27" layer="27">&gt;VALUE</text>
-<text x="9.525" y="0.635" size="1.27" layer="51">2</text>
-<text x="9.525" y="-1.905" size="1.27" layer="21">1</text>
+<text x="9.525" y="0.635" size="1.016" layer="100">2</text>
+<text x="9.525" y="-1.905" size="1.016" layer="100">1</text>
 <polygon width="0.127" layer="39">
 <vertex x="-12.97" y="2.25"/>
 <vertex x="12.97" y="2.25"/>
@@ -2015,6 +2016,7 @@ Source: &lt;a href=""&gt; Datasheet &lt;/a&gt;</description>
 <pad name="12" x="-5.08" y="1.27" drill="1.1"/>
 <pad name="13" x="-7.62" y="-1.27" drill="1.1"/>
 <pad name="14" x="-7.62" y="1.27" drill="1.1"/>
+<text x="-11.43" y="-1.905" size="1.016" layer="100">13</text>
 </package>
 </packages>
 <symbols>
@@ -14387,7 +14389,7 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 </classes>
 <parts>
 <part name="A1" library="NUCLEO-F746ZG" deviceset="NUCLEO-F746ZG" device=""/>
-<part name="J1" library="USB3076-XX-X_REVC" deviceset="USB3076-XX-X_REVC" device=""/>
+<part name="J1" library="USB3076-XX-X_REVC" deviceset="USB3076-XX-X_REVC" device="" value="USB3076"/>
 <part name="SUPPLY1" library="supply2" deviceset="GND" device=""/>
 <part name="FRAME2" library="frames" deviceset="FRAME_A_L" device=""/>
 <part name="FRAME3" library="frames" deviceset="FRAME_A_L" device=""/>
@@ -14942,13 +14944,6 @@ and JP1 is not set.</text>
 <label x="93.98" y="68.58" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="3V3" class="0">
-<segment>
-<pinref part="J8" gate="G$1" pin="1"/>
-<wire x1="91.44" y1="20.32" x2="93.98" y2="20.32" width="0.1524" layer="91" style="longdash"/>
-<label x="93.98" y="20.32" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="DAC_OUT1" class="0">
 <segment>
 <pinref part="J4" gate="G$1" pin="4"/>
@@ -15090,6 +15085,11 @@ and JP1 is not set.</text>
 <pinref part="J3" gate="G$1" pin="2"/>
 <wire x1="22.86" y1="66.04" x2="40.64" y2="66.04" width="0.1524" layer="91"/>
 <label x="40.64" y="66.04" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J8" gate="G$1" pin="1"/>
+<wire x1="91.44" y1="20.32" x2="93.98" y2="20.32" width="0.1524" layer="91" style="longdash"/>
+<label x="93.98" y="20.32" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="JOYSTICK_SW" class="0">

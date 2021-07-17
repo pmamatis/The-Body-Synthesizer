@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
+<grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -68,6 +68,7 @@
 <layer number="96" name="Values" color="7" fill="1" visible="no" active="no"/>
 <layer number="97" name="Info" color="7" fill="1" visible="no" active="no"/>
 <layer number="98" name="Guide" color="6" fill="1" visible="no" active="no"/>
+<layer number="100" name="PRINT" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <board>
 <plain>
@@ -77,16 +78,137 @@
 <wire x1="0" y1="0" x2="150" y2="0" width="0" layer="20"/>
 <dimension x1="150" y1="0" x2="150" y2="100" x3="156" y3="50" textsize="1.778" layer="47"/>
 <dimension x1="150" y1="100" x2="0" y2="100" x3="75" y3="109" textsize="1.778" layer="47"/>
-<text x="69" y="117" size="5" layer="48">HEAD</text>
-<text x="72" y="-13" size="5" layer="48">FEET</text>
+<text x="75" y="123.5" size="5" layer="48">HEAD</text>
+<text x="72" y="-23" size="5" layer="48">FEET</text>
 <text x="173" y="51" size="5" layer="48">LEFT ARM</text>
-<text x="-49" y="51" size="5" layer="48">RIGHT ARM</text>
-<text x="7" y="14" size="2" layer="51">EMG</text>
-<text x="21" y="14" size="2" layer="51">GYRO</text>
-<text x="79" y="14" size="2" layer="51">EQ</text>
-<text x="108" y="14" size="2" layer="51">KEYS</text>
-<text x="121" y="15" size="2" layer="51">USER INTERFACE</text>
-<text x="62" y="14" size="2" layer="51">SPEAKER</text>
+<text x="-54.5" y="50.5" size="5" layer="48">RIGHT ARM</text>
+<text x="7.5" y="15" size="2" layer="100">EMG</text>
+<text x="21" y="15" size="2" layer="100">GYRO</text>
+<text x="79.5" y="16" size="2" layer="100">EQ</text>
+<text x="108" y="16" size="2" layer="100">KEYS</text>
+<text x="120.5" y="16" size="2" layer="100">USER INTERFACE</text>
+<text x="63" y="16" size="2" layer="100">SPEAKER</text>
+<text x="89.5" y="62.8" size="3" layer="100" font="vector" ratio="15" align="center">The
+Body-Synth</text>
+<wire x1="37.5" y1="89.2" x2="41.2" y2="79.9" width="0.4064" layer="100"/>
+<wire x1="41.2" y1="79.9" x2="88.3" y2="73.9" width="0.4064" layer="100" curve="122.090338"/>
+<wire x1="88.4" y1="74" x2="90.5" y2="76.5" width="0.4064" layer="100"/>
+<wire x1="90.5" y1="76.5" x2="106.8" y2="82.6" width="0.4064" layer="100" curve="-58.904459"/>
+<wire x1="106.8" y1="82.6" x2="112.5" y2="87.8" width="0.4064" layer="100" curve="102.616631"/>
+<wire x1="112.5" y1="42.1" x2="109.5" y2="52" width="0.4064" layer="100"/>
+<wire x1="109.5" y1="52" x2="88.3" y2="73.9" width="0.4064" layer="100" curve="54.422249"/>
+<wire x1="36.2" y1="40.9" x2="43.5" y2="46.1" width="0.4064" layer="100"/>
+<wire x1="43.5" y1="46.1" x2="88.4" y2="73.9" width="0.4064" layer="100" curve="-7.398983"/>
+<circle x="36.7" y="41.2" radius="2.920615625" width="0.4064" layer="100"/>
+<circle x="37.3" y="41.8" radius="4.7010625" width="0.4064" layer="100"/>
+<circle x="112" y="42.5" radius="2.920615625" width="0.4064" layer="100"/>
+<circle x="111.4" y="43.1" radius="4.7010625" width="0.4064" layer="100"/>
+<circle x="37.7" y="88.6" radius="2.920615625" width="0.4064" layer="100"/>
+<circle x="38.3" y="88" radius="4.7010625" width="0.4064" layer="100"/>
+<circle x="112.4" y="87.6" radius="2.920615625" width="0.4064" layer="100"/>
+<circle x="111.8" y="87" radius="4.7010625" width="0.4064" layer="100"/>
+<circle x="88.4" y="74.4" radius="2.920615625" width="0.4064" layer="100"/>
+<circle x="89" y="75" radius="4.7010625" width="0.4064" layer="100"/>
+<wire x1="103.5" y1="63.5" x2="106.5" y2="63.5" width="0.4064" layer="100"/>
+<wire x1="106.5" y1="63.5" x2="108.5" y2="65.5" width="0.4064" layer="100" curve="-90"/>
+<wire x1="108.5" y1="65.5" x2="110.5" y2="63.5" width="0.4064" layer="100" curve="-90"/>
+<wire x1="110.5" y1="63.5" x2="112.5" y2="63.5" width="0.4064" layer="100"/>
+<wire x1="112.5" y1="63.5" x2="113.5" y2="61.5" width="0.4064" layer="100"/>
+<wire x1="113.5" y1="61.5" x2="114.5" y2="76.5" width="0.4064" layer="100"/>
+<wire x1="114.5" y1="76.5" x2="115.5" y2="59" width="0.4064" layer="100"/>
+<wire x1="115.5" y1="59" x2="116.5" y2="63.5" width="0.4064" layer="100"/>
+<wire x1="116.5" y1="63.5" x2="120.5" y2="64.5" width="0.4064" layer="100"/>
+<wire x1="120.5" y1="64.5" x2="122.5" y2="66.5" width="0.4064" layer="100" curve="61.927592"/>
+<wire x1="122.5" y1="66.5" x2="126.5" y2="66.5" width="0.4064" layer="100" curve="-151.927682"/>
+<wire x1="126.5" y1="66.5" x2="129.5" y2="63.5" width="0.4064" layer="100" curve="61.927829"/>
+<wire x1="129.5" y1="63.5" x2="130.5" y2="63.5" width="0.4064" layer="100" curve="28.07215"/>
+<wire x1="130.5" y1="63.5" x2="131.5" y2="64" width="0.4064" layer="100" curve="25.057858"/>
+<wire x1="131.5" y1="64" x2="133" y2="64" width="0.4064" layer="100" curve="-78.188024"/>
+<wire x1="133" y1="64" x2="134" y2="63.5" width="0.4064" layer="100" curve="25.057952"/>
+<wire x1="134" y1="63.5" x2="136.5" y2="63.5" width="0.4064" layer="100"/>
+<text x="108" y="66.5" size="2" layer="100" font="vector" ratio="15">P</text>
+<text x="112.5" y="58.5" size="2" layer="100" font="vector" ratio="15">Q</text>
+<text x="115" y="55.5" size="2" layer="100" font="vector" ratio="15">S</text>
+<text x="114" y="77.5" size="2" layer="100" font="vector" ratio="15">R</text>
+<text x="124" y="69" size="2" layer="100" font="vector" ratio="15">T</text>
+<text x="132" y="65.5" size="2" layer="100" font="vector" ratio="15">U</text>
+<text x="140" y="64.5" size="2" layer="100" font="vector" ratio="15" rot="R180">B
+E
+R
+L
+I
+N</text>
+<text x="90" y="56" size="2" layer="100" font="vector" ratio="15" align="center">DSP-LAB SS21</text>
+<text x="5.5" y="12" size="1" layer="100" align="center">+
+5
+V</text>
+<text x="8" y="12" size="1" layer="100" align="center">G
+N
+D</text>
+<text x="10.5" y="12" size="1" layer="100" align="center">D
+C</text>
+<text x="13" y="12" size="1" layer="100" align="center">A
+C</text>
+<text x="15.5" y="12" size="1" layer="100" align="center">-
+5
+V</text>
+<text x="21" y="12" size="1" layer="100" align="center">V
+C
+C</text>
+<text x="23.5" y="12" size="1" layer="100" align="center">G
+N
+D</text>
+<text x="26" y="12" size="1" layer="100" align="center">S
+C
+L</text>
+<text x="28.5" y="12" size="1" layer="100" align="center">S
+D
+A</text>
+<text x="68.5" y="12" size="1" layer="100" align="center">O
+U
+T</text>
+<text x="71" y="12" size="1" layer="100" align="center">G
+N
+D</text>
+<text x="77.3" y="12" size="1" layer="100" align="center">O
+U
+T</text>
+<text x="79.8" y="12" size="1" layer="100" align="center">+
+5
+V</text>
+<text x="82.4" y="12" size="1" layer="100" align="center">G
+N
+D</text>
+<text x="85" y="12" size="1" layer="100" align="center">-
+5
+V</text>
+<text x="109.3" y="12" size="1" layer="100" align="center">P
+E
+N</text>
+<text x="111.8" y="12" size="1" layer="100" align="center">3
+V
+3</text>
+<text x="114.4" y="12" size="1" layer="100" align="center">G
+N
+D</text>
+<text x="6.5" y="70.5" size="1" layer="100">+3V3</text>
+<text x="6.5" y="68" size="1" layer="100">CS</text>
+<text x="6.5" y="65.5" size="1" layer="100">DI</text>
+<text x="6.5" y="63" size="1" layer="100">CLK</text>
+<text x="6.5" y="60.5" size="1" layer="100">DO</text>
+<text x="6.5" y="58" size="1" layer="100">GND</text>
+<text x="55.5" y="18.5" size="2" layer="100" align="center">HEAD-
+PHONES</text>
+<text x="62" y="2.5" size="1" layer="100" align="center">S
+L
+E</text>
+<text x="62" y="11.5" size="1" layer="100" align="center">T
+I
+P</text>
+<text x="49" y="4.5" size="1" layer="100" align="center">R
+I
+N
+G</text>
 </plain>
 <libraries>
 <library name="NUCLEO-F746ZG">
@@ -978,11 +1100,11 @@
 <wire x1="12.72" y1="-3.11" x2="12.72" y2="-11.96" width="0.127" layer="21"/>
 <wire x1="12.72" y1="-11.96" x2="-12.72" y2="-11.96" width="0.127" layer="21"/>
 <wire x1="-12.72" y1="-11.96" x2="-12.72" y2="-3.11" width="0.127" layer="21"/>
-<text x="-11.43" y="0.635" size="1.27" layer="51">14</text>
+<text x="-11.43" y="0.635" size="1.016" layer="100">14</text>
 <text x="14.1272" y="-6.3679" size="1.27" layer="25">&gt;NAME</text>
 <text x="14.1272" y="-8.857" size="1.27" layer="27">&gt;VALUE</text>
-<text x="9.525" y="0.635" size="1.27" layer="51">2</text>
-<text x="9.525" y="-1.905" size="1.27" layer="21">1</text>
+<text x="9.525" y="0.635" size="1.016" layer="100">2</text>
+<text x="9.525" y="-1.905" size="1.016" layer="100">1</text>
 <polygon width="0.127" layer="39">
 <vertex x="-12.97" y="2.25"/>
 <vertex x="12.97" y="2.25"/>
@@ -1003,6 +1125,7 @@
 <pad name="12" x="-5.08" y="1.27" drill="1.1"/>
 <pad name="13" x="-7.62" y="-1.27" drill="1.1"/>
 <pad name="14" x="-7.62" y="1.27" drill="1.1"/>
+<text x="-11.43" y="-1.905" size="1.016" layer="100">13</text>
 </package>
 </packages>
 </library>
@@ -2353,23 +2476,27 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="A1" library="NUCLEO-F746ZG" package="MODULE_NUCLEO-F746ZG" value="NUCLEO-F746ZG" x="75" y="65" rot="R90">
+<element name="A1" library="NUCLEO-F746ZG" package="MODULE_NUCLEO-F746ZG" value="NUCLEO-F746ZG" x="75" y="65" smashed="yes" rot="R90">
 <attribute name="PACKAGE" value="None" x="144.85" y="113.26" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="NUCLEO-F746ZG" x="144.85" y="113.26" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="AVAILABILITY" value="In Stock" x="144.85" y="113.26" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="144.85" y="113.26" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value=" STM32F746ZG, mbed-Enabled Development Nucleo-144 STM32F7 ARM® Cortex®-M7 MCU 32-Bit Embedded Evaluation Board " x="144.85" y="113.26" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="STMicroelectronics" x="144.85" y="113.26" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="10.75" y="30.83" size="1.778" layer="25"/>
+<attribute name="VALUE" x="10.75" y="28.83" size="1.778" layer="27" align="top-left"/>
 </element>
-<element name="J1" library="USB3076-XX-X_REVC" package="GCT_USB3076-XX-X_REVC" value="USB3076-XX-X_REVC" x="1.45" y="42.74" rot="R270">
+<element name="J1" library="USB3076-XX-X_REVC" package="GCT_USB3076-XX-X_REVC" value="USB3076" x="1.45" y="42.74" smashed="yes" rot="R270">
 <attribute name="PACKAGE" value="None" x="-144.6" y="2.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="USB3076-30-A" x="-144.6" y="2.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="AVAILABILITY" value="In Stock" x="-144.6" y="2.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PRICE" value="None" x="-144.6" y="2.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DESCRIPTION" value=" USB - micro B USB 2.0 Receptacle Connector 5 Position Surface Mount, Right Angle; Through Hole, 2.35mm profile, 5 Pins, Horizontal, Bottom mount " x="-144.6" y="2.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Global Connector Technology" x="-144.6" y="2.1" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="-10.550590625" y="44.870690625" size="2.03231875" layer="25" ratio="13" rot="SR0"/>
+<attribute name="VALUE" x="-15.051709375" y="41.70743125" size="2.032909375" layer="27" ratio="13" rot="SR0"/>
 </element>
-<element name="J2" library="640455-5" package="TE_640455-5" value="640455-5" x="15.65" y="8.22">
+<element name="J2" library="640455-5" package="TE_640455-5" value="640455-5" x="15.65" y="8.22" smashed="yes">
 <attribute name="PACKAGE" value="None" x="102.01" y="-5.75" size="1.778" layer="27" display="off"/>
 <attribute name="TE_PURCHASE_URL" value="https://www.te.com/usa-en/product-640455-5.html?te_bu=Cor&amp;te_type=disp&amp;te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&amp;elqCampaignId=32493" x="102.01" y="-5.75" size="1.778" layer="27" display="off"/>
 <attribute name="DIGI-KEY_PURCHASE_URL" value="https://www.digikey.de/product-detail/en/te-connectivity-amp-connectors/640455-5/A19453-ND/259000?utm_source=snapeda&amp;utm_medium=aggregator&amp;utm_campaign=symbol" x="102.01" y="-5.75" size="1.778" layer="27" display="off"/>
@@ -2378,8 +2505,10 @@ design rules under a new name.</description>
 <attribute name="COMMENT" value="640455-5" x="102.01" y="-5.75" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="TE Connectivity" x="102.01" y="-5.75" size="1.778" layer="27" display="off"/>
 <attribute name="DIGI-KEY_PART_NUMBER" value="A19453-ND" x="102.01" y="-5.75" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="4.22" y="-4.345" size="1.27" layer="25"/>
+<attribute name="VALUE" x="4.22" y="-6.505" size="1.27" layer="27"/>
 </element>
-<element name="J3" library="640455-3" package="TE_640455-3" value="640455-3" x="114.37" y="8.17">
+<element name="J3" library="640455-3" package="TE_640455-3" value="640455-3" x="114.37" y="8.17" smashed="yes">
 <attribute name="PACKAGE" value="None" x="114.37" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="114.37" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="640455-3" x="114.37" y="8.17" size="1.778" layer="27" display="off"/>
@@ -2389,8 +2518,10 @@ design rules under a new name.</description>
 <attribute name="COMMENT" value="640455-3" x="114.37" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/640455-3/?ref=eda" x="114.37" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="TE Connectivity" x="114.37" y="8.17" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="108.02" y="-4.395" size="1.27" layer="25"/>
+<attribute name="VALUE" x="108.02" y="-6.055" size="1.27" layer="27"/>
 </element>
-<element name="J4" library="640455-4" package="TE_640455-4" value="640455-4" x="84.95" y="8.17">
+<element name="J4" library="640455-4" package="TE_640455-4" value="640455-4" x="84.95" y="8.17" smashed="yes">
 <attribute name="PACKAGE" value="None" x="84.95" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="84.95" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="640455-4" x="84.95" y="8.17" size="1.778" layer="27" display="off"/>
@@ -2399,8 +2530,10 @@ design rules under a new name.</description>
 <attribute name="DESCRIPTION" value=" Headers &amp; Receptacles cable a placa 8 POS MONO SHAPE MKII TAB ASS'Y GW 750.N TYCO / TE CONNECTIVITY " x="84.95" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="COMMENT" value="640455-4" x="84.95" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="TE Connectivity" x="84.95" y="8.17" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="76.06" y="-4.395" size="1.27" layer="25"/>
+<attribute name="VALUE" x="76.06" y="-6.055" size="1.27" layer="27"/>
 </element>
-<element name="J5" library="640455-4" package="TE_640455-4" value="640455-4" x="29.15" y="8.17">
+<element name="J5" library="640455-4" package="TE_640455-4" value="640455-4" x="29.15" y="8.17" smashed="yes">
 <attribute name="PACKAGE" value="None" x="29.15" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="29.15" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="640455-4" x="29.15" y="8.17" size="1.778" layer="27" display="off"/>
@@ -2409,8 +2542,10 @@ design rules under a new name.</description>
 <attribute name="DESCRIPTION" value=" Headers &amp; Receptacles cable a placa 8 POS MONO SHAPE MKII TAB ASS'Y GW 750.N TYCO / TE CONNECTIVITY " x="29.15" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="COMMENT" value="640455-4" x="29.15" y="8.17" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="TE Connectivity" x="29.15" y="8.17" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="20.26" y="-4.395" size="1.27" layer="25"/>
+<attribute name="VALUE" x="20.26" y="-6.055" size="1.27" layer="27"/>
 </element>
-<element name="J6" library="SJ-3523-SMT-TR" package="CUI_SJ-3523-SMT-TR" value="SJ-3523-SMT-TR" x="55.62" y="3.44" rot="R90">
+<element name="J6" library="SJ-3523-SMT-TR" package="CUI_SJ-3523-SMT-TR" value="SJ-3523-SMT-TR" x="55.62" y="3.44" smashed="yes" rot="R90">
 <attribute name="PACKAGE" value="LGA-10 STMicroelectronics" x="55.62" y="3.44" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="SJ-3523-SMT-TR" x="55.62" y="3.44" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="AVAILABILITY" value="In Stock" x="55.62" y="3.44" size="1.778" layer="27" rot="R90" display="off"/>
@@ -2418,8 +2553,10 @@ design rules under a new name.</description>
 <attribute name="DESCRIPTION" value="3.5 mm, Stereo, Right Angle, Surface Mount (SMT), 3 Conductors, 0~1 Internal Switches, Audio Jack Connector" x="55.62" y="3.44" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="CUI Devices" x="55.62" y="3.44" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="CUI_PURCHASE_URL" value="https://www.cuidevices.com/product/interconnect/connectors/audio-connectors/jacks/sj-352x-smt-series?utm_source=snapeda.com&amp;utm_medium=referral&amp;utm_campaign=snapedaBOM" x="55.62" y="3.44" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="48.834309375" y="-4.810259375" size="1.27233125" layer="25"/>
+<attribute name="VALUE" x="48.73426875" y="-6.73181875" size="1.27228125" layer="27"/>
 </element>
-<element name="J7" library="640455-2" package="TE_640455-2" value="640455-2" x="71.08" y="8.23">
+<element name="J7" library="640455-2" package="TE_640455-2" value="640455-2" x="71.08" y="8.23" smashed="yes">
 <attribute name="PACKAGE" value="None" x="71.08" y="8.23" size="1.778" layer="27" display="off"/>
 <attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="71.08" y="8.23" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="640455-2" x="71.08" y="8.23" size="1.778" layer="27" display="off"/>
@@ -2429,96 +2566,211 @@ design rules under a new name.</description>
 <attribute name="COMMENT" value="640455-2" x="71.08" y="8.23" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/640455-2/?ref=eda" x="71.08" y="8.23" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="TE Connectivity" x="71.08" y="8.23" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="66.27" y="-4.335" size="1.27" layer="25"/>
+<attribute name="VALUE" x="66.27" y="-5.995" size="1.27" layer="27"/>
 </element>
-<element name="J8" library="SamacSys_Parts" package="RHDR6W76P0X254_1X6_1524X254X82" value="929850-01-06-RB" x="4" y="71" rot="R270">
+<element name="J8" library="SamacSys_Parts" package="RHDR6W76P0X254_1X6_1524X254X82" value="929850-01-06-RB" x="4" y="71" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="Headers &amp; Wire Housings 6P STRT BRD MNT SKT 1 ROW 30MICRO&quot; AU" x="4" y="71" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HEIGHT" value="8.26mm" x="4" y="71" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MOUSER_PART_NUMBER" value="517-929850-01-06-RB" x="4" y="71" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/3M-Electronic-Solutions-Division/929850-01-06-RB?qs=s3by4FhMkp1OostaNDHGSw%3D%3D" x="4" y="71" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="3M" x="4" y="71" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="929850-01-06-RB" x="4" y="71" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="4" y="71" size="1.27" layer="25" rot="R270" align="center"/>
+<attribute name="VALUE" x="1.5" y="64.5" size="1.27" layer="27" rot="R270" align="center"/>
 </element>
-<element name="J9" library="61201421721" package="61201421721" value="61201421721" x="133" y="12">
+<element name="J9" library="61201421721" package="61201421721" value="61201421721" x="133" y="12" smashed="yes">
 <attribute name="PACKAGE" value="None" x="133" y="12" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="61201421721" x="133" y="12" size="1.778" layer="27" display="off"/>
 <attribute name="AVAILABILITY" value="In Stock" x="133" y="12" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="133" y="12" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value=" Connector Header Through Hole, Right Angle 14 position 0.100 (2.54mm) " x="133" y="12" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Würth Elektronik" x="133" y="12" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="120.6272" y="-2.3679" size="1.27" layer="25"/>
+<attribute name="VALUE" x="120.6272" y="-3.857" size="1.27" layer="27"/>
 </element>
-<element name="IC1" library="SamacSys_Parts" package="SOIC127P600X175-8N" value="TL072CD" x="83" y="155" rot="R90">
+<element name="IC1" library="SamacSys_Parts" package="SOIC127P600X175-8N" value="TL072CD" x="83" y="155" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="Dual Low-Noise JFET-Input General-Purpose Operational Amplifier" x="83" y="155" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HEIGHT" value="1.75mm" x="83" y="155" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_PART_NUMBER" value="595-TL072CD" x="83" y="155" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.com/Search/Refine.aspx?Keyword=595-TL072CD" x="83" y="155" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="Texas Instruments" x="83" y="155" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="TL072CD" x="83" y="155" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="83" y="155" size="1.27" layer="25" rot="R90" align="center"/>
+<attribute name="VALUE" x="83" y="155" size="1.27" layer="27" rot="R90" align="center"/>
 </element>
-<element name="C1" library="rcl" package="C0603" value="100n" x="88" y="146" rot="R90"/>
-<element name="C2" library="rcl" package="C0603" value="100n" x="92" y="146" rot="R90"/>
-<element name="TS53YL104MR10" library="SamacSys_Parts" package="TS53YL203MR10" value="100k" x="89" y="139" rot="R90">
+<element name="C1" library="rcl" package="C0603" value="100n" x="88" y="146" smashed="yes" rot="R90">
+<attribute name="NAME" x="87.365" y="145.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="89.905" y="145.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C2" library="rcl" package="C0603" value="100n" x="92" y="146" smashed="yes" rot="R90">
+<attribute name="NAME" x="91.365" y="145.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="93.905" y="145.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="TS53YL104MR10" library="SamacSys_Parts" package="TS53YL203MR10" value="100k" x="89" y="139" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="Vishay TS53YL Series SMD Trimmer Resistor with Gull Wing Terminations, 20k +/-20% 1/4W +/-100ppm/C Top Adjust" x="89" y="139" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HEIGHT" value="2.7mm" x="89" y="139" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_PART_NUMBER" value="72-TS53YL-20K" x="89" y="139" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.com/Search/Refine.aspx?Keyword=72-TS53YL-20K" x="89" y="139" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="Vishay" x="89" y="139" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="TS53YL203MR10" x="89" y="139" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="89.125" y="139" size="1.27" layer="25" rot="R90" align="center"/>
+<attribute name="VALUE" x="89.125" y="139" size="1.27" layer="27" rot="R90" align="center"/>
 </element>
-<element name="R1" library="rcl" package="R0603" value="10k" x="97" y="133" rot="R90"/>
-<element name="C3" library="rcl" package="C0603" value="1u" x="101" y="133" rot="R90"/>
-<element name="R3" library="rcl" package="R0603" value="0" x="110" y="133" rot="R90"/>
-<element name="R4" library="rcl" package="R0603" value="NP_0" x="114" y="133" rot="R90"/>
-<element name="R2" library="rcl" package="R0603" value="0" x="118" y="133" rot="R90"/>
-<element name="R5" library="rcl" package="R0603" value="4k7" x="122" y="133" rot="R90"/>
-<element name="R6" library="rcl" package="R0603" value="15k" x="126" y="133" rot="R90"/>
-<element name="R7" library="rcl" package="R0603" value="33k" x="130" y="133" rot="R90"/>
-<element name="R8" library="rcl" package="R0603" value="100" x="134" y="133" rot="R90"/>
-<element name="C4" library="rcl" package="C0603" value="1u" x="138" y="133" rot="R90"/>
-<element name="R9" library="rcl" package="R0603" value="10k" x="143" y="133" rot="R90"/>
-<element name="R10" library="rcl" package="R0603" value="0" x="148" y="133" rot="R90"/>
-<element name="IC2" library="SamacSys_Parts" package="SOIC127P600X175-8N" value="LM386M-1_NOPB" x="154" y="136" rot="R90">
+<element name="R1" library="rcl" package="R0603" value="10k" x="97" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="96.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="98.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C3" library="rcl" package="C0603" value="1u" x="101" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="100.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="102.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R3" library="rcl" package="R0603" value="0" x="110" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="109.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="111.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R4" library="rcl" package="R0603" value="NP_0" x="114" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="113.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="115.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R2" library="rcl" package="R0603" value="0" x="118" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="117.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="119.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R5" library="rcl" package="R0603" value="4k7" x="122" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="121.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="123.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R6" library="rcl" package="R0603" value="15k" x="126" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="125.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="127.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R7" library="rcl" package="R0603" value="33k" x="130" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="129.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="131.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R8" library="rcl" package="R0603" value="100" x="134" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="133.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="135.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C4" library="rcl" package="C0603" value="1u" x="138" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="137.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="139.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R9" library="rcl" package="R0603" value="10k" x="143" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="142.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="144.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R10" library="rcl" package="R0603" value="0" x="148" y="133" smashed="yes" rot="R90">
+<attribute name="NAME" x="147.365" y="132.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="149.905" y="132.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="IC2" library="SamacSys_Parts" package="SOIC127P600X175-8N" value="LM386M-1_NOPB" x="154" y="136" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="Wide Input Voltage Low Power Audio Amplifier with Internal Gain" x="154" y="136" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HEIGHT" value="1.75mm" x="154" y="136" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_PART_NUMBER" value="926-LM386M-1/NOPB" x="154" y="136" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/Texas-Instruments/LM386M-1-NOPB?qs=QbsRYf82W3GaJvrwUmrW3g%3D%3D" x="154" y="136" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="Texas Instruments" x="154" y="136" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="LM386M-1/NOPB" x="154" y="136" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="154" y="136" size="1.27" layer="25" rot="R90" align="center"/>
+<attribute name="VALUE" x="154" y="136" size="1.27" layer="27" rot="R90" align="center"/>
 </element>
-<element name="C5" library="rcl" package="E2,5-5" value="100u" x="160" y="131" rot="R90"/>
-<element name="C6" library="rcl" package="E2,5-5" value="100u" x="163" y="102" rot="R270"/>
-<element name="C7" library="rcl" package="E2,5-5" value="1m" x="172" y="131" rot="R90"/>
-<element name="TS53YL104MR1" library="SamacSys_Parts" package="TS53YL203MR10" value="10k" x="169" y="123" rot="R90">
+<element name="C5" library="rcl" package="E2,5-5" value="100u" x="160" y="131" smashed="yes" rot="R90">
+<attribute name="NAME" x="158.73" y="133.413" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="162.413" y="133.413" size="1.27" layer="27" ratio="10" rot="R90"/>
+</element>
+<element name="C6" library="rcl" package="E2,5-5" value="100u" x="163" y="102" smashed="yes" rot="R270">
+<attribute name="NAME" x="164.27" y="99.587" size="1.27" layer="25" ratio="10" rot="R270"/>
+<attribute name="VALUE" x="160.587" y="99.587" size="1.27" layer="27" ratio="10" rot="R270"/>
+</element>
+<element name="C7" library="rcl" package="E2,5-5" value="1m" x="172" y="131" smashed="yes" rot="R90">
+<attribute name="NAME" x="170.73" y="133.413" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="174.413" y="133.413" size="1.27" layer="27" ratio="10" rot="R90"/>
+</element>
+<element name="TS53YL104MR1" library="SamacSys_Parts" package="TS53YL203MR10" value="10k" x="169" y="123" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="Vishay TS53YL Series SMD Trimmer Resistor with Gull Wing Terminations, 20k +/-20% 1/4W +/-100ppm/C Top Adjust" x="169" y="123" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HEIGHT" value="2.7mm" x="169" y="123" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_PART_NUMBER" value="72-TS53YL-20K" x="169" y="123" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.com/Search/Refine.aspx?Keyword=72-TS53YL-20K" x="169" y="123" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="Vishay" x="169" y="123" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="TS53YL203MR10" x="169" y="123" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="169.125" y="123" size="1.27" layer="25" rot="R90" align="center"/>
+<attribute name="VALUE" x="169.125" y="123" size="1.27" layer="27" rot="R90" align="center"/>
 </element>
-<element name="C8" library="rcl" package="C0603" value="100n" x="177" y="118" rot="R90"/>
-<element name="R11" library="rcl" package="R0603" value="NP_1k2" x="182" y="118" rot="R90"/>
-<element name="C9" library="rcl" package="C0603" value="NP_10u" x="187" y="118" rot="R90"/>
-<element name="R12" library="rcl" package="R0603" value="0" x="192" y="118" rot="R90"/>
-<element name="C10" library="rcl" package="E2,5-5" value="1m" x="198" y="119" rot="R90"/>
-<element name="R13" library="rcl" package="R0603" value="0" x="204" y="118" rot="R90"/>
-<element name="R14" library="rcl" package="R0603" value="10k" x="209" y="118" rot="R90"/>
-<element name="C11" library="rcl" package="C0603" value="1u" x="214" y="118" rot="R90"/>
-<element name="U1" library="MAX889RESA" package="SOIC127P600X175-8N" value="MAX889RESA" x="212" y="111" rot="R90">
+<element name="C8" library="rcl" package="C0603" value="100n" x="177" y="118" smashed="yes" rot="R90">
+<attribute name="NAME" x="176.365" y="117.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="178.905" y="117.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R11" library="rcl" package="R0603" value="NP_1k2" x="182" y="118" smashed="yes" rot="R90">
+<attribute name="NAME" x="181.365" y="117.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="183.905" y="117.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C9" library="rcl" package="C0603" value="NP_10u" x="187" y="118" smashed="yes" rot="R90">
+<attribute name="NAME" x="186.365" y="117.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="188.905" y="117.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R12" library="rcl" package="R0603" value="0" x="192" y="118" smashed="yes" rot="R90">
+<attribute name="NAME" x="191.365" y="117.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="193.905" y="117.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C10" library="rcl" package="E2,5-5" value="1m" x="198" y="119" smashed="yes" rot="R90">
+<attribute name="NAME" x="196.73" y="121.413" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="200.413" y="121.413" size="1.27" layer="27" ratio="10" rot="R90"/>
+</element>
+<element name="R13" library="rcl" package="R0603" value="0" x="204" y="118" smashed="yes" rot="R90">
+<attribute name="NAME" x="203.365" y="117.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="205.905" y="117.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R14" library="rcl" package="R0603" value="10k" x="209" y="118" smashed="yes" rot="R90">
+<attribute name="NAME" x="208.365" y="117.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="210.905" y="117.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C11" library="rcl" package="C0603" value="1u" x="214" y="118" smashed="yes" rot="R90">
+<attribute name="NAME" x="213.365" y="117.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="215.905" y="117.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="U1" library="MAX889RESA" package="SOIC127P600X175-8N" value="MAX889RESA" x="212" y="111" smashed="yes" rot="R90">
 <attribute name="PACKAGE" value="SOIC-8 Maxim" x="212" y="111" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="AVAILABILITY" value="In Stock" x="212" y="111" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="MAX889RESA+" x="212" y="111" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="212" y="111" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value=" Charge Pump Switching Regulator IC Negative Adjustable -2.5V 1 Output 200mA 8-SOIC (0.154, 3.90mm Width) " x="212" y="111" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="Maxim Integrated" x="212" y="111" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="214.697" y="107.03" size="1.27" layer="27" rot="R90" align="top-left"/>
+<attribute name="NAME" x="209.303" y="107.03" size="1.27" layer="25" rot="R90"/>
 </element>
-<element name="C12" library="rcl" package="C0603" value="4u7" x="219" y="108" rot="R90"/>
-<element name="R15" library="rcl" package="R0603" value="100k" x="224" y="108" rot="R90"/>
-<element name="C13" library="rcl" package="C0603" value="22u" x="229" y="108" rot="R90"/>
-<element name="R16" library="rcl" package="R0603" value="100k" x="234" y="108" rot="R90"/>
-<element name="C14" library="rcl" package="C0603" value="22u" x="239" y="108" rot="R90"/>
-<element name="R17" library="rcl" package="R0603" value="1Meg" x="244" y="108" rot="R90"/>
-<element name="R18" library="rcl" package="R0603" value="1Meg" x="249" y="108" rot="R90"/>
-<element name="R19" library="rcl" package="R0603" value="1Meg" x="254" y="108" rot="R90"/>
+<element name="C12" library="rcl" package="C0603" value="4u7" x="219" y="108" smashed="yes" rot="R90">
+<attribute name="NAME" x="218.365" y="107.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="220.905" y="107.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R15" library="rcl" package="R0603" value="100k" x="224" y="108" smashed="yes" rot="R90">
+<attribute name="NAME" x="223.365" y="107.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="225.905" y="107.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C13" library="rcl" package="C0603" value="22u" x="229" y="108" smashed="yes" rot="R90">
+<attribute name="NAME" x="228.365" y="107.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="230.905" y="107.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R16" library="rcl" package="R0603" value="100k" x="234" y="108" smashed="yes" rot="R90">
+<attribute name="NAME" x="233.365" y="107.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="235.905" y="107.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C14" library="rcl" package="C0603" value="22u" x="239" y="108" smashed="yes" rot="R90">
+<attribute name="NAME" x="238.365" y="107.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="240.905" y="107.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R17" library="rcl" package="R0603" value="1Meg" x="244" y="108" smashed="yes" rot="R90">
+<attribute name="NAME" x="243.365" y="107.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="245.905" y="107.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R18" library="rcl" package="R0603" value="1Meg" x="249" y="108" smashed="yes" rot="R90">
+<attribute name="NAME" x="248.365" y="107.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="250.905" y="107.365" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R19" library="rcl" package="R0603" value="1Meg" x="254" y="108" smashed="yes" rot="R90">
+<attribute name="NAME" x="253.365" y="107.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="255.905" y="107.365" size="1.27" layer="27" rot="R90"/>
+</element>
 </elements>
 <signals>
 <signal name="VDD_CN11">
@@ -2724,9 +2976,6 @@ design rules under a new name.</description>
 <wire x1="224" y1="108.85" x2="213.905" y2="113.475" width="0" layer="19" extent="1-1"/>
 <wire x1="229" y1="108.85" x2="224" y2="108.85" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="3V3">
-<contactref element="J8" pad="1"/>
-</signal>
 <signal name="VCC">
 <contactref element="J5" pad="4"/>
 </signal>
@@ -2816,8 +3065,10 @@ design rules under a new name.</description>
 <contactref element="J9" pad="8"/>
 <contactref element="A1" pad="CN11_16"/>
 <contactref element="J3" pad="2"/>
+<contactref element="J8" pad="1"/>
+<wire x1="111.83" y1="8.17" x2="133" y2="13.27" width="0" layer="19" extent="1-1"/>
 <wire x1="57.85" y1="35.79" x2="111.83" y2="8.17" width="0" layer="19" extent="1-1"/>
-<wire x1="133" y1="13.27" x2="57.85" y2="35.79" width="0" layer="19" extent="1-1"/>
+<wire x1="4" y1="71" x2="57.85" y2="35.79" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="JOYSTICK_SW">
 <contactref element="J9" pad="10"/>
@@ -3014,4 +3265,10 @@ design rules under a new name.</description>
 </signals>
 </board>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
