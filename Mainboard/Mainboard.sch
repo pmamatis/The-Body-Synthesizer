@@ -14483,6 +14483,8 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <part name="C23" library="rcl" deviceset="C-EU" device="C0603" value="1u"/>
 <part name="C24" library="rcl" deviceset="C-EU" device="C0603" value="1u"/>
 <part name="SUPPLY37" library="supply2" deviceset="GND" device=""/>
+<part name="C25" library="rcl" deviceset="C-EU" device="C0603" value="1u"/>
+<part name="C26" library="rcl" deviceset="C-EU" device="C0603" value="1u"/>
 </parts>
 <sheets>
 <sheet>
@@ -15757,6 +15759,14 @@ and JP1 is not set.</text>
 <attribute name="VALUE" x="77.216" y="-58.801" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="SUPPLY37" gate="GND" x="63.5" y="-68.58" rot="R270"/>
+<instance part="C25" gate="G$1" x="86.36" y="-63.5" smashed="yes" rot="R180">
+<attribute name="NAME" x="84.836" y="-56.261" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="84.836" y="-58.801" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="C26" gate="G$1" x="93.98" y="-63.5" smashed="yes" rot="R180">
+<attribute name="NAME" x="92.456" y="-56.261" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="92.456" y="-58.801" size="1.778" layer="96" rot="R180"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -15837,6 +15847,14 @@ and JP1 is not set.</text>
 <wire x1="71.12" y1="-68.58" x2="66.04" y2="-68.58" width="0.1524" layer="91"/>
 <junction x="71.12" y="-68.58"/>
 <pinref part="SUPPLY37" gate="GND" pin="GND"/>
+<pinref part="C26" gate="G$1" pin="1"/>
+<wire x1="93.98" y1="-66.04" x2="93.98" y2="-68.58" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="-68.58" x2="86.36" y2="-68.58" width="0.1524" layer="91"/>
+<junction x="78.74" y="-68.58"/>
+<pinref part="C25" gate="G$1" pin="1"/>
+<wire x1="86.36" y1="-68.58" x2="78.74" y2="-68.58" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="-66.04" x2="86.36" y2="-68.58" width="0.1524" layer="91"/>
+<junction x="86.36" y="-68.58"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -15899,6 +15917,14 @@ and JP1 is not set.</text>
 <wire x1="71.12" y1="-55.88" x2="63.5" y2="-55.88" width="0.1524" layer="91"/>
 <junction x="71.12" y="-55.88"/>
 <label x="63.5" y="-55.88" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="78.74" y1="-55.88" x2="86.36" y2="-55.88" width="0.1524" layer="91"/>
+<junction x="78.74" y="-55.88"/>
+<pinref part="C26" gate="G$1" pin="2"/>
+<wire x1="86.36" y1="-55.88" x2="93.98" y2="-55.88" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="-55.88" x2="93.98" y2="-58.42" width="0.1524" layer="91"/>
+<pinref part="C25" gate="G$1" pin="2"/>
+<wire x1="86.36" y1="-58.42" x2="86.36" y2="-55.88" width="0.1524" layer="91"/>
+<junction x="86.36" y="-55.88"/>
 </segment>
 </net>
 <net name="N$3" class="0">
