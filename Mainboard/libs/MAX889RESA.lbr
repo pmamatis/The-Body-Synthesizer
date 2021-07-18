@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -54,12 +54,13 @@
 <layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="100" name="PRINT" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <library>
 <packages>
 <package name="SOIC127P600X175-8N">
 <circle x="-4.445" y="2.495" radius="0.1" width="0.2" layer="21"/>
-<circle x="-4.445" y="2.495" radius="0.1" width="0.2" layer="51"/>
+<circle x="-4.445" y="2.495" radius="0.1" width="0.2" layer="100"/>
 <wire x1="-2" y1="2.5" x2="2" y2="2.5" width="0.127" layer="51"/>
 <wire x1="-2" y1="-2.5" x2="2" y2="-2.5" width="0.127" layer="51"/>
 <wire x1="-2" y1="2.52" x2="2" y2="2.52" width="0.127" layer="21"/>

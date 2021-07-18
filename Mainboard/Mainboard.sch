@@ -1761,8 +1761,8 @@ In this library the device names are the same as the pin names of the symbols, t
 <smd name="6" x="2.711" y="-0.635" dx="1.528" dy="0.65" layer="1"/>
 <smd name="7" x="2.711" y="0.635" dx="1.528" dy="0.65" layer="1"/>
 <smd name="8" x="2.711" y="1.905" dx="1.528" dy="0.65" layer="1"/>
-<text x="0" y="0" size="1.27" layer="25" align="center">&gt;NAME</text>
-<text x="0" y="0" size="1.27" layer="27" align="center">&gt;VALUE</text>
+<text x="0" y="5.08" size="1.27" layer="25" align="center">&gt;NAME</text>
+<text x="0" y="3.81" size="1.27" layer="27" align="center">&gt;VALUE</text>
 <wire x1="-3.725" y1="2.75" x2="3.725" y2="2.75" width="0.05" layer="51"/>
 <wire x1="3.725" y1="2.75" x2="3.725" y2="-2.75" width="0.05" layer="51"/>
 <wire x1="3.725" y1="-2.75" x2="-3.725" y2="-2.75" width="0.05" layer="51"/>
@@ -1772,11 +1772,7 @@ In this library the device names are the same as the pin names of the symbols, t
 <wire x1="1.948" y1="-2.452" x2="-1.948" y2="-2.452" width="0.1" layer="51"/>
 <wire x1="-1.948" y1="-2.452" x2="-1.948" y2="2.452" width="0.1" layer="51"/>
 <wire x1="-1.948" y1="1.182" x2="-0.678" y2="2.452" width="0.1" layer="51"/>
-<wire x1="-1.598" y1="2.452" x2="1.598" y2="2.452" width="0.2" layer="21"/>
-<wire x1="1.598" y1="2.452" x2="1.598" y2="-2.452" width="0.2" layer="21"/>
-<wire x1="1.598" y1="-2.452" x2="-1.598" y2="-2.452" width="0.2" layer="21"/>
-<wire x1="-1.598" y1="-2.452" x2="-1.598" y2="2.452" width="0.2" layer="21"/>
-<wire x1="-3.475" y1="2.58" x2="-1.948" y2="2.58" width="0.2" layer="21"/>
+<circle x="-4.3" y="2.9" radius="0.1" width="0.127" layer="100"/>
 </package>
 <package name="TS53YL203MR10">
 <description>&lt;b&gt;TS53YL203MR10-3&lt;/b&gt;&lt;br&gt;
@@ -14301,7 +14297,7 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <packages>
 <package name="SOIC127P600X175-8N">
 <circle x="-4.445" y="2.495" radius="0.1" width="0.2" layer="21"/>
-<circle x="-4.445" y="2.495" radius="0.1" width="0.2" layer="51"/>
+<circle x="-4.445" y="2.495" radius="0.1" width="0.2" layer="100"/>
 <wire x1="-2" y1="2.5" x2="2" y2="2.5" width="0.127" layer="51"/>
 <wire x1="-2" y1="-2.5" x2="2" y2="-2.5" width="0.127" layer="51"/>
 <wire x1="-2" y1="2.52" x2="2" y2="2.52" width="0.127" layer="21"/>
@@ -15287,14 +15283,14 @@ and JP1 is not set.</text>
 <label x="17.78" y="48.26" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="-91.44" y1="2.54" x2="-96.52" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="-96.52" y1="2.54" x2="-96.52" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="-96.52" y1="7.62" x2="-99.06" y2="7.62" width="0.1524" layer="91"/>
+<pinref part="R13" gate="G$1" pin="2"/>
+<wire x1="-99.06" y1="2.54" x2="-96.52" y2="2.54" width="0.1524" layer="91"/>
+<junction x="-96.52" y="2.54"/>
 <label x="-91.44" y="2.54" size="1.27" layer="95" xref="yes"/>
-<pinref part="C3" gate="G$1" pin="2"/>
-<wire x1="-58.42" y1="0" x2="-53.34" y2="0" width="0.1524" layer="91"/>
-<pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="-53.34" y1="-12.7" x2="-53.34" y2="0" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="1"/>
-<wire x1="-53.34" y1="0" x2="-40.64" y2="0" width="0.1524" layer="91"/>
-<junction x="-53.34" y="0"/>
 </segment>
 </net>
 <net name="-5V" class="0">
@@ -15481,17 +15477,6 @@ and JP1 is not set.</text>
 <label x="68.58" y="-5.08" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$18" class="0">
-<segment>
-<pinref part="R10" gate="G$1" pin="2"/>
-<wire x1="-91.44" y1="2.54" x2="-96.52" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="-96.52" y1="2.54" x2="-96.52" y2="7.62" width="0.1524" layer="91"/>
-<wire x1="-96.52" y1="7.62" x2="-99.06" y2="7.62" width="0.1524" layer="91"/>
-<pinref part="R13" gate="G$1" pin="2"/>
-<wire x1="-99.06" y1="2.54" x2="-96.52" y2="2.54" width="0.1524" layer="91"/>
-<junction x="-96.52" y="2.54"/>
-</segment>
-</net>
 <net name="DAC_OUT1" class="0">
 <segment>
 <pinref part="R10" gate="G$1" pin="1"/>
@@ -15570,6 +15555,17 @@ and JP1 is not set.</text>
 <pinref part="R13" gate="G$1" pin="1"/>
 <wire x1="-109.22" y1="2.54" x2="-111.76" y2="2.54" width="0.1524" layer="91"/>
 <label x="-111.76" y="2.54" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="C3" gate="G$1" pin="2"/>
+<pinref part="R5" gate="G$1" pin="1"/>
+<wire x1="-58.42" y1="0" x2="-53.34" y2="0" width="0.1524" layer="91"/>
+<pinref part="R1" gate="G$1" pin="2"/>
+<wire x1="-53.34" y1="0" x2="-40.64" y2="0" width="0.1524" layer="91"/>
+<wire x1="-53.34" y1="-12.7" x2="-53.34" y2="0" width="0.1524" layer="91"/>
+<junction x="-53.34" y="0"/>
 </segment>
 </net>
 </nets>
