@@ -440,46 +440,26 @@ int main(void)
 
 	keyboard_init(&hadc1, &htim5);
 
-	Display_Start();
+	//Display_Start(epd, paint);
+	//Display_Start();	// https://github.com/soonuse/epd-library-stm32
 
-	//	// Display Start
-	//	EPD epd;
-	//	//EPD_Reset(&epd);
-	//
-	//	if (EPD_Init(&epd, lut_full_update) != 0) {
-	//		printf("e-Paper init failed\n");
-	//		return -1;
-	//	}
-	//
-	//	Paint paint;
-	//	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
-	//	Paint_Clear(&paint, UNCOLORED);
-	//
-	//	if (EPD_Init(&epd, lut_partial_update) != 0) {
-	//		printf("e-Paper init failed\n");
-	//		return -1;
-	//	}
-	//
-	//	//	there are 2 memory areas embedded in the e-paper display
-	//	//	and once the display is refreshed, the memory area will be auto-toggled,
-	//	//	i.e. the next action of SetFrameMemory will set the other memory area
-	//	//	therefore you have to set the frame memory and refresh the display twice.
-	//
-	//	for(int i=0; i<EPD_WIDTH*EPD_HEIGHT; i++) {	// fill the BLACKSCREEN-array with values to show a black screen in the beginning
-	//		BLACKSCREEN[i] = 0X00;
-	//	}
-	//	EPD_SetFrameMemory(&epd, BLACKSCREEN, 0, 0, epd.width, epd.height);
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_SetFrameMemory(&epd, BLACKSCREEN, 0, 0, epd.width, epd.height);
-	//	EPD_DisplayFrame(&epd);
-	//	//	EPD_DelayMs(&epd, 300);
-	//	//	HAL_Delay(1000);
-	//
-	//	Paint_Clear(&paint, UNCOLORED);
-	//	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-	//	EPD_DisplayFrame(&epd);
-	//
-	//	Paint_SetRotate(&paint, ROTATE_270);
+
+	// you have to edit the startup_stm32fxxx.s file and set a big enough heap size
+	//unsigned char* frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
+	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
+	EPD_Init(&epd, lut_full_update);
+	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
+	Paint_SetRotate(&paint, ROTATE_270);
+	// Display the frame_buffer
+	EPD_SetFrameMemory(&epd, TU_LOGO, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+	EPD_DisplayFrame(&epd);
+	EPD_DelayMs(&epd, 2000);
+	Paint_Clear(&paint, UNCOLORED);
+	// Display the frame_buffer
+	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+	EPD_DisplayFrame(&epd);
+	EPD_Init(&epd, lut_partial_update);
+
 
 	// Start DAC-DMA
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
@@ -511,8 +491,8 @@ int main(void)
 	process_filter = false;
 	SetPatchParameters(&Display, &EQ_BAND1_I, &envelope, &HardClipping, &Tremolo, paint, epd, frame_buffer);*/
 
-	//	SelectKeyboardmode(&Display, paint, epd, frame_buffer);
-	//	SetParameters(&Display, &signals1, &EQ_BAND1_I, &envelope, &HardClipping, &Tremolo, paint, epd, frame_buffer);
+	//SelectKeyboardmode(&Display, paint, epd, frame_buffer);
+	//SetParameters(&Display, &signals1, &EQ_BAND1_I, &envelope, &HardClipping, &Tremolo, paint, epd, frame_buffer);
 
 	/* USER CODE END 2 */
 
@@ -873,12 +853,12 @@ static void MX_SPI1_Init(void)
 	/* SPI1 parameter configuration*/
 	hspi1.Instance = SPI1;
 	hspi1.Init.Mode = SPI_MODE_MASTER;
-	hspi1.Init.Direction = SPI_DIRECTION_1LINE;
+	hspi1.Init.Direction = SPI_DIRECTION_2LINES;
 	hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
 	hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
 	hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
 	hspi1.Init.NSS = SPI_NSS_SOFT;
-	hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
+	hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
 	hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
 	hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
 	hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;

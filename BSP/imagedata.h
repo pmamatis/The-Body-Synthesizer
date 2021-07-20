@@ -28,7 +28,7 @@
 extern const unsigned char IMAGE_DATA[];
 extern const unsigned char ST_LOGO[];
 extern const unsigned char TU_LOGO[];
-extern unsigned char BLACKSCREEN[];
+extern unsigned char START_IMAGE[];
 
 /* FILE END */
 

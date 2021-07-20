@@ -974,4 +974,4 @@ const unsigned char TU_LOGO[] = {
 		0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00
 };
 
-unsigned char BLACKSCREEN[EPD_WIDTH*EPD_HEIGHT];
+unsigned char START_IMAGE[EPD_WIDTH*EPD_HEIGHT];

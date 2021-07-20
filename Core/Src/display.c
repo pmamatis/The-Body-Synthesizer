@@ -88,7 +88,10 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->ADC_FullRange = 4095;					// ADC_FullRange
 
 	Display->JoystickPatchPosition = 1;				// JoystickPatchPosition
+	Display->JoystickModePosition = 1;				// JoystickModePosition
+	Display->last_JoystickModePosition = 0;			// last_JoystickModePosition
 	Display->JoystickParameterPosition = 1;			// JoystickParameterPosition
+	Display->last_JoystickParameterPosition = 0;	// last_JoystickParameterPosition
 
 	Display->ENTER_Debounce_State = true;			// ENTER_Debounce_State
 	Display->BACK_Debounce_State = true;			// BACK_Debounce_State
@@ -100,7 +103,60 @@ Display_Status Display_Init(struct display_variables* Display) {
 	return DISPLAY_OK;
 }
 
+//Display_Status Display_Start(EPD epd, Paint paint) {
 Display_Status Display_Start(void) {
+
+	EPD epd;
+	Paint paint;
+
+	// you have to edit the startup_stm32fxxx.s file and set a big enough heap size
+	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
+
+	// Display Init
+	// EPD epd;
+	EPD_Reset(&epd);
+
+	//	if (EPD_Init(&epd, lut_full_update) != 0) {
+	//		printf("e-Paper init failed\n");
+	//		//return -1;
+	//	}
+
+	EPD_Init(&epd, lut_full_update);
+
+	//	Paint paint;
+	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
+	//Paint_Clear(&paint, UNCOLORED);
+
+	//	if (EPD_Init(&epd, lut_partial_update) != 0) {
+	//		printf("e-Paper init failed\n");
+	//		//return -1;
+	//	}
+
+	Paint_SetRotate(&paint, ROTATE_270);
+
+	EPD_ClearFrameMemory(&epd, 0xFF);	// clear SRAM of the frame memory
+
+	//	there are 2 memory areas embedded in the e-paper display
+	//	and once the display is refreshed, the memory area will be auto-toggled,
+	//	i.e. the next action of SetFrameMemory will set the other memory area
+	//	therefore you have to set the frame memory and refresh the display twice.
+	//	for(int i=0; i<EPD_WIDTH*EPD_HEIGHT; i++) {	// fill the BLACKSCREEN-array with values to show a black screen in the beginning
+	//		BLACKSCREEN[i] = 0X00;
+	//	}
+	//	EPD_SetFrameMemory(&epd, BLACKSCREEN, 0, 0, epd.width, epd.height);
+	EPD_DisplayFrame(&epd);	// display data from SRAM in e-paper module
+	//	EPD_SetFrameMemory(&epd, BLACKSCREEN, 0, 0, epd.width, epd.height);
+	//	EPD_DisplayFrame(&epd);
+	//	EPD_DelayMs(&epd, 300);
+
+	//Paint_Clear(&paint, UNCOLORED);
+	//EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+	//EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, epd.width, epd.height);
+	//EPD_DisplayFrame(&epd);
+
+	return DISPLAY_OK;
+}
+/*Display_Status Display_Start(void) {
 	// you have to edit the startup_stm32fxxx.s file and set a big enough heap size
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 
@@ -144,7 +200,7 @@ Display_Status Display_Start(void) {
 	Paint_SetRotate(&paint, ROTATE_270);
 
 	return DISPLAY_OK;
-}
+}*/
 
 Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer) {
 
@@ -261,11 +317,13 @@ Display_Status SelectKeyboardmode(struct display_variables* Display, Paint paint
 			Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
 			Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
 			Display->Keyboardmode_ONOFF = false;
+			Display->JoystickModePosition = 1;
 		}
 		else if(Display->Poti_raw >= Display->ADC_FullRange/2) {
 			Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
 			Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
 			Display->Keyboardmode_ONOFF = true;
+			Display->JoystickModePosition = 2;
 		}
 
 		if(Display->VRx < Display->LowerLimit) {
@@ -273,9 +331,13 @@ Display_Status SelectKeyboardmode(struct display_variables* Display, Paint paint
 			Paint_Clear(&paint, UNCOLORED);	// clear display
 		}
 
-		// Display the frame_buffer
-		EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-		EPD_DisplayFrame(&epd);
+		if(Display->JoystickModePosition != Display->last_JoystickModePosition) {
+			// Display the frame_buffer
+			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+			EPD_DisplayFrame(&epd);
+			EPD_Init(&epd, lut_partial_update);
+			Display->last_JoystickModePosition = Display->JoystickModePosition;
+		}
 	}
 
 	return DISPLAY_OK;
@@ -428,9 +490,13 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				envelope->adsr_release_time = Display->Keyboard_ReleaseTime * LUT_SR;
 			}
 
-			// Display the frame_buffer
-			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-			EPD_DisplayFrame(&epd);
+			if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+				// Display the frame_buffer
+				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				EPD_DisplayFrame(&epd);
+				EPD_Init(&epd, lut_partial_update);
+				Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+			}
 
 			//OnePress_keyboard_process(Display->ADC1inputs[0], signals, envelope);
 			//OnePress_ADSR_Linear_Process(envelope, float* calculate_value);
@@ -442,6 +508,9 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			Display->Distortion_EffectPosition = 0;
 			Display->Tremolo_EffectPosition = 1;
 			Display->Filter_EffectPosition = 2;
+
+			Display->last_JoystickParameterPosition = 0;
+			Display->JoystickParameterPosition = 1;
 
 			// #############################################
 			// ########### BEGIN VOICES SUBMENU ############
@@ -538,9 +607,20 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				Paint_DrawCharAt(&paint, 150, 50, note, &Font12, COLORED);
 				Paint_DrawCharAt(&paint, 150, 70, octave+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
+
+				if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+					// Display the frame_buffer
+					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
+					Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+				}
+
+				//				// Display the frame_buffer
+				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				//				EPD_DisplayFrame(&epd);
+				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				//				EPD_DisplayFrame(&epd);
 
 				//			// reset BACK-switch
 				//			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
@@ -553,11 +633,13 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				if(Display->VRx < Display->LowerLimit) {
 					Display->CurrentModule = 1;	// forward to Distortion
+					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
 				}
 			}
 			// #############################################
@@ -689,9 +771,18 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				Display->last_distortion_gain = Display->distortion_gain;
 
 				Paint_DrawStringAt(&paint, 150, 70, distortion_gain_string, &Font12, COLORED);
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
+
+				if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+					// Display the frame_buffer
+					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
+					Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+				}
+
+				//				// Display the frame_buffer
+				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				//				EPD_DisplayFrame(&epd);
 
 				//			// reset BACK-switch
 				//			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
@@ -704,19 +795,23 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				if(Display->VRx > Display->UpperLimit) {
 					Display->CurrentModule = 0;	// back to Voices
+					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
 				}
 				else if(Display->VRx < Display->LowerLimit) {
 					Display->CurrentModule = 2;	// forward to Tremolo
+					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
 				}
 			}
 			// #############################################
@@ -839,9 +934,18 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				Paint_DrawStringAt(&paint, 150, 50, tremolo_rate_string, &Font12, COLORED);
 				Paint_DrawStringAt(&paint, 150, 70, tremolo_depth_string, &Font12, COLORED);
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
+
+				if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+					// Display the frame_buffer
+					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
+					Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+				}
+
+				//				// Display the frame_buffer
+				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				//				EPD_DisplayFrame(&epd);
 
 				//			// reset BACK-switch
 				//			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
@@ -854,19 +958,23 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				if(Display->VRx > Display->UpperLimit) {
 					Display->CurrentModule = 1;	// back to Distortion
+					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
 				}
 				else if(Display->VRx < Display->LowerLimit) {
 					Display->CurrentModule = 3;	// forward to Equalizer
+					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
 				}
 			}
 			// #############################################
@@ -991,17 +1099,28 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				Paint_DrawStringAt(&paint, 150, 50, filter_cutoff_string, &Font12, COLORED);
 				Paint_DrawStringAt(&paint, 150, 70, filter_Q_string, &Font12, COLORED);
-				// Display the frame_buffer
-				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				EPD_DisplayFrame(&epd);
+
+				if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+					// Display the frame_buffer
+					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
+					Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+				}
+
+				//				// Display the frame_buffer
+				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+				//				EPD_DisplayFrame(&epd);
 
 				if(Display->VRx > Display->UpperLimit) {
 					Display->CurrentModule = 2;	// back to Tremolo
+					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
 					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
+					EPD_Init(&epd, lut_partial_update);
 				}
 			}
 			// #############################################
