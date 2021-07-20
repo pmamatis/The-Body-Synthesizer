@@ -2722,11 +2722,11 @@ Alles was hier bemängelt wird, sollte nochmal überprüft und angepasst werden.
 <signal name="3V3">
 <wire x1="112" y1="18" x2="112" y2="21.0976" width="1.016" layer="1"/>
 <wire x1="109.7" y1="23.3976" x2="112" y2="21.0976" width="1.016" layer="1"/>
-<wire x1="14.2976" y1="23.3976" x2="109.7" y2="23.3976" width="1.016" layer="1"/>
+<wire x1="12.2976" y1="23.3976" x2="109.7" y2="23.3976" width="1.016" layer="1"/>
 <contactref element="J1" pad="2"/>
 <contactref element="C1" pad="2"/>
-<wire x1="6" y1="13.75" x2="6" y2="15.1" width="1.016" layer="1"/>
-<wire x1="6" y1="15.1" x2="14.2976" y2="23.3976" width="1.016" layer="1"/>
+<wire x1="6" y1="13.75" x2="6" y2="17.1" width="1.016" layer="1"/>
+<wire x1="6" y1="17.1" x2="12.2976" y2="23.3976" width="1.016" layer="1"/>
 <wire x1="5.99" y1="13.76" x2="6" y2="13.75" width="0.8128" layer="1"/>
 <wire x1="3.2" y1="13.76" x2="5.99" y2="13.76" width="1.016" layer="1"/>
 <contactref element="R13" pad="1"/>
