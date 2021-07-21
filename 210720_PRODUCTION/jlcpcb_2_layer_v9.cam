@@ -44,8 +44,7 @@
                     "filename_format": "%N.GTL",
                     "layers": [
                         1,
-                        18,
-                        17
+                        18
                     ],
                     "name": "Top Copper",
                     "polarity": "positive",
@@ -62,7 +61,6 @@
                     "filename_format": "%N.GBL",
                     "layers": [
                         16,
-                        17,
                         18
                     ],
                     "name": "Bottom Copper",
@@ -78,7 +76,8 @@
                     },
                     "filename_format": "%N.GTS",
                     "layers": [
-                        29
+                        29,
+                        17
                     ],
                     "name": "Soldermask Top",
                     "polarity": "positive",
