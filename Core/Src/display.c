@@ -9,96 +9,105 @@
 
 Display_Status Display_Init(struct display_variables* Display) {
 
-	Display->PatchSelected[0] = false;				// PatchSelected
+	Display->PatchSelected[0] = false;
 	Display->PatchSelected[1] = false;
 	Display->PatchSelected[2] = false;
 
-	Display->ModuleStateSelected[0] = false;		// ModuleStateSelected
+	Display->ModuleStateSelected[0] = false;
 	Display->ModuleStateSelected[1] = false;
 	Display->ModuleStateSelected[2] = false;
 
-	Display->ModuleParametersSelected[0] = false;	// ModuleParametersSelected
+	Display->ModuleParametersSelected[0] = false;
 	Display->ModuleParametersSelected[1] = false;
 	Display->ModuleParametersSelected[2] = false;
 
-	Display->ModuleCompleted[0] = false;			// ModuleCompleted
+	Display->ModuleCompleted[0] = false;
 	Display->ModuleCompleted[1] = false;
 	Display->ModuleCompleted[2] = false;
 
-	Display->CurrentModule = 0;						// CurrentModule
+	Display->CurrentModule = 0;
 
-	Display->KeyboardmodeSelected = false;			// KeyboardmodeSelected
+	Display->KeyboardmodeSelected = false;
 
-	Display->Keyboardmode_ONOFF = false;			// Keyboardmode_ONOFF
+	Display->Keyboardmode_ONOFF = false;
 
-	Display->ActiveEffectsCounter = 0;				// ActiveEffectsCounter
+	Display->ActiveEffectsCounter = 0;
 
-	Display->Voices_ONOFF[0] = false;				// Voices_ONOFF
+	Display->Voices_ONOFF[0] = false;
 	Display->Voices_ONOFF[1] = false;
 	Display->Voices_ONOFF[2] = false;
+	Display->last_Voices_ONOFF[0] = true;
+	Display->last_Voices_ONOFF[1] = true;
+	Display->last_Voices_ONOFF[2] = true;
 
-	Display->ADSR_ONOFF = false;					// ADSR_ONOFF
-	Display->ADSR_Attack = 0.0;						// ADSR_Attack
-	Display->ADSR_Decay = 0.0;						// ADSR_Decay
-	Display->ADSR_Sustain = 1.0;					// ADSR_Sustain
-	Display->ADSR_Release = 0.0;					// ADSR_Release
-	Display->ADSR_EffectPosition = 0;				// ADSR_EffectPosition
-	Display->ADSR_EffectAdded = false;				// ADSR_EffectAdded
+	Display->ADSR_ONOFF = false;
+	Display->ADSR_Attack = 0.0;
+	Display->ADSR_Decay = 0.0;
+	Display->ADSR_Sustain = 1.0;
+	Display->ADSR_Release = 0.0;
+	Display->ADSR_EffectPosition = 0;
+	Display->ADSR_EffectAdded = false;
 
-	Display->Distortion_ONOFF = false;				// Distortion_ONOFF
-	Display->Distortion_Type = false;				// Distortion_Type
-	Display->Distortion_Gain = 1.0;					// Distortion_Gain
-	Display->Distortion_EffectPosition = 0;			// Distortion_EffectPosition
-	Display->Distortion_EffectAdded = false;		// Distortion_EffectAdded
+	Display->Distortion_ONOFF = false;
+	Display->last_Distortion_ONOFF = true;
+	Display->last_Distortion_Type = true;
+	Display->Distortion_Type = false;
+	Display->Distortion_Gain = 1.0;
+	Display->Distortion_EffectPosition = 0;
+	Display->Distortion_EffectAdded = false;
 
-	Display->Tremolo_ONOFF = false;					// Tremolo_ONOFF
-	Display->Tremolo_Rate = 0.0;					// Tremolo_Rate
-	Display->Tremolo_Depth = 0.0;					// Tremolo_Depth
-	Display->Tremolo_EffectPosition = 0;			// Tremolo_EffectPosition
-	Display->Tremolo_EffectAdded = false;			// Tremolo_EffectAdded
+	Display->Tremolo_ONOFF = false;
+	Display->Tremolo_Rate = 0.0;
+	Display->Tremolo_Depth = 0.0;
+	Display->Tremolo_EffectPosition = 0;
+	Display->Tremolo_EffectAdded = false;
 
-	Display->Filter_ONOFF = false;					// Filter_ONOFF
-	Display->Filter_Cutoff = 1.0;					// Filter_Cutoff
-	Display->Filter_Q = 1.0;						// Filter_Q
-	Display->Filter_EffectPosition = 0;				// Filter_EffectPosition
-	Display->Filter_EffectAdded = false;			// Filter_EffectAdded
+	Display->Filter_ONOFF = false;
+	Display->Filter_Cutoff = 1.0;
+	Display->Filter_Q = 1.0;
+	Display->Filter_EffectPosition = 0;
+	Display->Filter_EffectAdded = false;
 	// Weitere Synthesizer-Parameter...
 
-	Display->last_rate = 0;
+	Display->last_note = 1;				// last values have to be different in the beginning, to make sure that display will be refreshed when page is updated
+	Display->note = 0;
+	Display->last_octave = 1;
+	Display->octave = 0;
+	Display->last_rate = 1;
 	Display->rate = 0;
-	Display->last_depth = 0;
+	Display->last_depth = 1;
 	Display->depth = 0;
-	Display->last_cutoff = 0;
+	Display->last_cutoff = 1;
 	Display->cutoff = 0;
-	Display->last_Q = 0;
+	Display->last_Q = 1;
 	Display->Q = 0;
-	Display->last_distortion_gain = 0;
+	Display->last_distortion_gain = 1;
 	Display->distortion_gain = 0;
-	Display->last_attack = 0;
+	Display->last_attack = 1;
 	Display->attack = 0;
-	Display->last_decay = 0;
+	Display->last_decay = 1;
 	Display->decay = 0;
-	Display->last_sustain = 0;
+	Display->last_sustain = 1;
 	Display->sustain = 0;
-	Display->last_release = 0;
+	Display->last_release = 1;
 	Display->release = 0;
 
-	Display->LowerLimit = 95;						// LowerLimit
-	Display->UpperLimit = 4000;						// UpperLimit
-	Display->ADC_FullRange = 4095;					// ADC_FullRange
+	Display->LowerLimit = 95;
+	Display->UpperLimit = 4000;
+	Display->ADC_FullRange = 4095;
 
-	Display->JoystickPatchPosition = 1;				// JoystickPatchPosition
-	Display->JoystickModePosition = 1;				// JoystickModePosition
-	Display->last_JoystickModePosition = 0;			// last_JoystickModePosition
-	Display->JoystickParameterPosition = 1;			// JoystickParameterPosition
-	Display->last_JoystickParameterPosition = 0;	// last_JoystickParameterPosition
+	Display->JoystickPatchPosition = 1;
+	Display->JoystickModePosition = 1;
+	Display->last_JoystickModePosition = 0;
+	Display->JoystickParameterPosition = 1;
+	Display->last_JoystickParameterPosition = 0;
 
-	Display->ENTER_Debounce_State = true;			// ENTER_Debounce_State
-	Display->BACK_Debounce_State = true;			// BACK_Debounce_State
-	Display->SW_Debounce_State = true;				// SW_Debounce_State
-	Display->ENTER = false;							// ENTER
-	Display->BACK = false;							// BACK
-	Display->SW = false;							// SW
+	Display->ENTER_Debounce_State = true;
+	Display->BACK_Debounce_State = true;
+	Display->SW_Debounce_State = true;
+	Display->ENTER = false;
+	Display->BACK = false;
+	Display->SW = false;
 
 	return DISPLAY_OK;
 }
@@ -328,7 +337,11 @@ Display_Status SelectKeyboardmode(struct display_variables* Display, Paint paint
 
 		if(Display->VRx < Display->LowerLimit) {
 			Display->KeyboardmodeSelected = true;
-			Paint_Clear(&paint, UNCOLORED);	// clear display
+			Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
+			// Display the frame_buffer
+			EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+			EPD_DisplayFrame(&epd);
+			EPD_Init(&epd, lut_partial_update);
 		}
 
 		if(Display->JoystickModePosition != Display->last_JoystickModePosition) {
@@ -446,6 +459,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			else if(Display->JoystickParameterPosition == 2) {
 				Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
 				Display->Keyboard_AttackTime = (((float)Display->Poti_raw/4096) * envelope->adsr_maximum_attack) + 0.05;
+
+				// round value to 2 decimal points, so the display does not update permanently
+				Display->Keyboard_AttackTime = round(Display->Keyboard_AttackTime * 100)/100;
+
 				sprintf(attacktime_string, "%f", Display->Keyboard_AttackTime);
 				Paint_DrawStringAt(&paint, 150, 50, attacktime_string, &Font12, COLORED);
 
@@ -455,6 +472,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			else if(Display->JoystickParameterPosition == 3) {
 				Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
 				Display->Keyboard_DecayTime = (((float)Display->Poti_raw/4096) * envelope->adsr_maximum_decay);
+
+				// round value to 2 decimal points, so the display does not update permanently
+				Display->Keyboard_DecayTime = round(Display->Keyboard_DecayTime * 100)/100;
+
 				sprintf(decaytime_string, "%f", Display->Keyboard_DecayTime);
 				Paint_DrawStringAt(&paint, 150, 70, decaytime_string, &Font12, COLORED);
 
@@ -464,6 +485,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			else if(Display->JoystickParameterPosition == 4) {
 				Paint_DrawFilledRectangle(&paint, 150, 90, 200, 110, UNCOLORED);
 				Display->Keyboard_SustainTime = (((float)Display->Poti_raw/4096) * envelope->adsr_maximum_sustaintime);
+
+				// round value to 2 decimal points, so the display does not update permanently
+				Display->Keyboard_SustainTime = round(Display->Keyboard_SustainTime * 100)/100;
+
 				sprintf(sustaintime_string, "%f", Display->Keyboard_SustainTime);
 				Paint_DrawStringAt(&paint, 150, 90, sustaintime_string, &Font12, COLORED);
 
@@ -475,6 +500,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			else if(Display->JoystickParameterPosition == 5) {
 				Paint_DrawFilledRectangle(&paint, 150, 110, 200, 130, UNCOLORED);
 				Display->Keyboard_SustainLevel = (((float)Display->Poti_raw/4096) * envelope->adsr_max_amp);
+
+				// round value to 2 decimal points, so the display does not update permanently
+				Display->Keyboard_SustainLevel = round(Display->Keyboard_SustainLevel * 100)/100;
+
 				sprintf(sustainlevel_string, "%f", Display->Keyboard_SustainLevel);
 				Paint_DrawStringAt(&paint, 150, 110, sustainlevel_string, &Font12, COLORED);
 
@@ -484,19 +513,35 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			else if(Display->JoystickParameterPosition == 6) {
 				Paint_DrawFilledRectangle(&paint, 150, 130, 200, 150, UNCOLORED);
 				Display->Keyboard_ReleaseTime = (((float)Display->Poti_raw/4096) * envelope->adsr_maximum_release);
+
+				// round value to 2 decimal points, so the display does not update permanently
+				Display->Keyboard_ReleaseTime = round(Display->Keyboard_ReleaseTime * 100)/100;
+
 				sprintf(releasetime_string, "%f", Display->Keyboard_ReleaseTime);
 				Paint_DrawStringAt(&paint, 150, 130, releasetime_string, &Font12, COLORED);
 
 				envelope->adsr_release_time = Display->Keyboard_ReleaseTime * LUT_SR;
 			}
 
-			if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+			if( (Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) ||\
+					(Display->last_Keyboard_Octave != Display->Keyboard_Octave) ||\
+					(Display->last_Keyboard_AttackTime != Display->Keyboard_AttackTime) ||\
+					(Display->last_Keyboard_DecayTime != Display->Keyboard_DecayTime) ||\
+					(Display->last_Keyboard_SustainTime != Display->Keyboard_SustainTime) ||\
+					(Display->last_Keyboard_SustainLevel != Display->Keyboard_SustainLevel) ||\
+					(Display->last_Keyboard_ReleaseTime != Display->Keyboard_ReleaseTime)) {
 				// Display the frame_buffer
 				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 				EPD_DisplayFrame(&epd);
 				EPD_Init(&epd, lut_partial_update);
-				Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
 			}
+			Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+			Display->last_Keyboard_Octave = Display->Keyboard_Octave;
+			Display->last_Keyboard_AttackTime = Display->Keyboard_AttackTime;
+			Display->last_Keyboard_DecayTime = Display->Keyboard_DecayTime;
+			Display->last_Keyboard_SustainTime = Display->Keyboard_SustainTime;
+			Display->last_Keyboard_SustainLevel = Display->Keyboard_SustainLevel;
+			Display->last_Keyboard_ReleaseTime = Display->Keyboard_ReleaseTime;
 
 			//OnePress_keyboard_process(Display->ADC1inputs[0], signals, envelope);
 			//OnePress_ADSR_Linear_Process(envelope, float* calculate_value);
@@ -509,8 +554,8 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			Display->Tremolo_EffectPosition = 1;
 			Display->Filter_EffectPosition = 2;
 
-			Display->last_JoystickParameterPosition = 0;
-			Display->JoystickParameterPosition = 1;
+			//			Display->last_JoystickParameterPosition = 0;
+			//			Display->JoystickParameterPosition = 1;
 
 			// #############################################
 			// ########### BEGIN VOICES SUBMENU ############
@@ -525,9 +570,6 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
 				Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
 				Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
-
-				uint8_t note, last_note;
-				char octave, last_octave;
 
 				if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
 					Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to Voice1 ON/OFF
@@ -576,20 +618,20 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				else if(Display->JoystickParameterPosition == 2) {
 					Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
 					float noteindex = ((float)Display->Poti_raw/4096) * (sizeof(keys)/sizeof(keys[0]));
-					note = keys[(uint8_t)noteindex];
-					Display->Voices_Note[0] = note;	// assign Voice1 Note
+					Display->note = keys[(uint8_t)noteindex];
+					Display->Voices_Note[0] = Display->note;	// assign Voice1 Note
 				}
 
 				// Voice1 Octave
 				else if(Display->JoystickParameterPosition == 3) {
 					Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
-					octave = (char) (((float)Display->Poti_raw/4096) * 6);	// 5 0ctaves
-					Display->Voices_Octave[0] = (uint8_t)octave;	// assign Voice1 Octave
+					Display->octave = (char) (((float)Display->Poti_raw/4096) * 6);	// 5 0ctaves
+					Display->Voices_Octave[0] = (uint8_t)Display->octave;	// assign Voice1 Octave
 				}
 
 				if(Display->Voices_ONOFF[0] == true) {	// if Voice1 ON
 
-					if( (last_note != note) || (last_octave != octave) ) {	// if voice parameters changed
+					if( (Display->last_note != Display->note) || (Display->last_octave != Display->octave) ) {	// if voice parameters changed
 
 						if(signals1.count == 1)		// Delete the last generated signal
 							DeleteSignal(&signals1, 1);
@@ -602,25 +644,23 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 					if(signals1.count == 1)
 						DeleteSignal(&signals1, 1);
 				}
-				last_note = note;
-				last_octave = octave;
 
-				Paint_DrawCharAt(&paint, 150, 50, note, &Font12, COLORED);
-				Paint_DrawCharAt(&paint, 150, 70, octave+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
+				Paint_DrawCharAt(&paint, 150, 50, Display->note, &Font12, COLORED);
+				Paint_DrawCharAt(&paint, 150, 70, Display->octave+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 
-				if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+				if( (Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) ||\
+						(Display->last_Voices_ONOFF[0] != Display->Voices_ONOFF[0]) ||\
+						(Display->last_note != Display->note) ||\
+						(Display->last_octave != Display->octave) ) {
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
 					EPD_Init(&epd, lut_partial_update);
-					Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
 				}
-
-				//				// Display the frame_buffer
-				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				//				EPD_DisplayFrame(&epd);
-				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				//				EPD_DisplayFrame(&epd);
+				Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+				Display->last_Voices_ONOFF[0] = Display->Voices_ONOFF[0];
+				Display->last_note = Display->note;
+				Display->last_octave = Display->octave;
 
 				//			// reset BACK-switch
 				//			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
@@ -633,9 +673,9 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				if(Display->VRx < Display->LowerLimit) {
 					Display->CurrentModule = 1;	// forward to Distortion
-					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
+					Display->last_note = Display->note++;	// set last_note unequal note to make sure, that the display will be updated, when we switch back from distortion to voices
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
-					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
@@ -734,6 +774,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 					Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
 					Display->Distortion_Gain = (((float)Display->Poti_raw/4096) * HardClipping->distortion_maximum_gain) + 1;	// +1 to prevent 0
+
+					// round value to 1 decimal point, so the display does not update permanently
+					Display->Distortion_Gain = round(Display->Distortion_Gain);
+
 					sprintf(distortion_gain_string, "%f", Display->Distortion_Gain);
 					Display->distortion_gain = (uint16_t)(Display->Distortion_Gain * 1000);
 				}
@@ -751,7 +795,6 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 						//						process_dist_hard = true;
 
 						//					if(Display->Distortion_EffectAdded == false) {	// if no distortion effect added yet
-						//
 						//						effects_add(DIST_H, Display->Distortion_EffectPosition);
 						//						Display->Distortion_EffectAdded = true;
 						//					}
@@ -763,26 +806,26 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 					process_dist_soft = false;
 
 					//				if(Display->Distortion_EffectAdded == true) {
-					//
 					//					effects_delete(DIST_H, Display->Distortion_EffectPosition);
 					//					Display->Distortion_EffectAdded = false;
 					//				}
 				}
-				Display->last_distortion_gain = Display->distortion_gain;
 
 				Paint_DrawStringAt(&paint, 150, 70, distortion_gain_string, &Font12, COLORED);
 
-				if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+				if( (Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) ||\
+						(Display->last_Distortion_ONOFF != Display->Distortion_ONOFF) ||\
+						(Display->last_Distortion_Type != Display->Distortion_Type) ||\
+						(Display->last_distortion_gain != Display->distortion_gain) ) {
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
 					EPD_Init(&epd, lut_partial_update);
-					Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
 				}
-
-				//				// Display the frame_buffer
-				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				//				EPD_DisplayFrame(&epd);
+				Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+				Display->last_Distortion_ONOFF = Display->Distortion_ONOFF;
+				Display->last_Distortion_Type = Display->Distortion_Type;
+				Display->last_distortion_gain = Display->distortion_gain;
 
 				//			// reset BACK-switch
 				//			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
@@ -795,9 +838,9 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				if(Display->VRx > Display->UpperLimit) {
 					Display->CurrentModule = 0;	// back to Voices
-					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
-					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+					Display->last_distortion_gain = Display->distortion_gain++;	// set last_distortion_gain unequal distortion_gain to make sure, that the display will be updated, when we switch from voices to distortion
+					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
@@ -805,9 +848,9 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				}
 				else if(Display->VRx < Display->LowerLimit) {
 					Display->CurrentModule = 2;	// forward to Tremolo
-					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
-					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+					Display->last_distortion_gain = Display->distortion_gain++;	// set last_distortion_gain unequal distortion_gain to make sure, that the display will be updated, when we switch back from tremolo to distortion
+					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
@@ -833,11 +876,8 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
 				Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
 
-				//uint16_t last_rate, rate, last_depth, depth;
 				char tremolo_rate_string[9];
-				//sprintf(tremolo_rate_string, "%f", Display->Tremolo_Rate);
 				char tremolo_depth_string[9];
-				//sprintf(tremolo_depth_string, "%f", Display->Tremolo_Depth);
 
 				if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
 					Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to Tremolo ON/OFF
@@ -890,6 +930,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 					Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
 					Display->Tremolo_Rate = round( (((float)Display->Poti_raw/4096) * Tremolo->tremolo_maximum_rate) + 1);	// +1 to prevent 0
+
+					// round value to 2 decimal points, so the display does not update permanently
+					Display->Tremolo_Rate = round(Display->Tremolo_Rate * 100)/100;
+
 					sprintf(tremolo_rate_string, "%f", Display->Tremolo_Rate);
 					Display->rate = (uint16_t)(Display->Tremolo_Rate * 1000);
 				}
@@ -899,6 +943,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 					Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
 					Display->Tremolo_Depth = ((float)Display->Poti_raw/4096) * Tremolo->tremolo_maximum_depth;
+
+					// round value to 2 decimal points, so the display does not update permanently
+					Display->Tremolo_Depth = round(Display->Tremolo_Depth * 100)/100;
+
 					sprintf(tremolo_depth_string, "%f", Display->Tremolo_Depth);
 					Display->depth = (uint16_t)(Display->Tremolo_Depth * 1000);
 				}
@@ -913,7 +961,6 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 						process_trem = true;
 
 						//					if(Display->Tremolo_EffectAdded == false) {	// if no tremolo effect added yet
-						//
 						//						effects_add(TREM, Display->Tremolo_EffectPosition);
 						//						Display->Tremolo_EffectAdded = true;
 						//					}
@@ -924,28 +971,25 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 					process_trem = false;
 
 					//				if(Display->Tremolo_EffectAdded == true) {
-					//
 					//					effects_delete(TREM, Display->Tremolo_EffectPosition);
 					//					Display->Tremolo_EffectAdded = false;
 					//				}
 				}
-				Display->last_rate = Display->rate;
-				Display->last_depth = Display->depth;
 
 				Paint_DrawStringAt(&paint, 150, 50, tremolo_rate_string, &Font12, COLORED);
 				Paint_DrawStringAt(&paint, 150, 70, tremolo_depth_string, &Font12, COLORED);
 
-				if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+				if( (Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) ||\
+						(Display->last_rate != Display->rate) ||\
+						(Display->last_depth != Display->depth) ) {
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
 					EPD_Init(&epd, lut_partial_update);
-					Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
 				}
-
-				//				// Display the frame_buffer
-				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				//				EPD_DisplayFrame(&epd);
+				Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+				Display->last_rate = Display->rate;
+				Display->last_depth = Display->depth;
 
 				//			// reset BACK-switch
 				//			if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {		// BACK is false and LED turned off in case that BACK-Button is not pressed anymore
@@ -958,9 +1002,9 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 				if(Display->VRx > Display->UpperLimit) {
 					Display->CurrentModule = 1;	// back to Distortion
-					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
-					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+					Display->last_rate = Display->rate++;	// set last_rate unequal rate to make sure, that the display will be updated, when we switch from distortion to tremolo
+					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
@@ -968,9 +1012,9 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				}
 				else if(Display->VRx < Display->LowerLimit) {
 					Display->CurrentModule = 3;	// forward to Equalizer
-					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
-					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+					Display->last_rate = Display->rate++;	// set last_rate unequal rate to make sure, that the display will be updated, when we switch from equalizer to tremolo
+					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
@@ -995,16 +1039,14 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 				Paint_DrawStringAt(&paint, 1, 10, "Tiefpassfilter", &Font16, COLORED);
 				Paint_DrawStringAt(&paint, 1, 30, "Filter ON/OFF", &Font12, COLORED);
 				Paint_DrawStringAt(&paint, 1, 50, "Cutoff", &Font12, COLORED);
-				Paint_DrawStringAt(&paint, 1, 70, "Güte", &Font12, COLORED);
+				Paint_DrawStringAt(&paint, 1, 70, "Guetefaktor", &Font12, COLORED);
 
 				Display->VRx = Display->ADC2inputs[0];		// read joystick x-value
 				Display->VRy = Display->ADC2inputs[1];		// read joystick y-value
 				Display->Poti_raw = Display->ADC2inputs[2];	// read poti-value
 
 				char filter_cutoff_string[9];
-				//sprintf(filter_cutoff_string, "%f", Display->Filter_Cutoff);
 				char filter_Q_string[9];
-				//sprintf(filter_Q_string, "%f", Display->Filter_Q);
 
 				if( (Display->JoystickParameterPosition == 1) && (Display->VRy > Display->LowerLimit) ) {
 					Paint_DrawStringAt(&paint, 110, 30, "<---", &Font12, COLORED);	// arrow to Filter ON/OFF
@@ -1057,6 +1099,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 					Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
 					Display->Filter_Cutoff = round( (((float)Display->Poti_raw/4096) * 4000) + 1);	// +1 to prevent 0; 4000 Hz maximum cutoff
+
+					// round value to 2 decimal points, so the display does not update permanently
+					Display->Filter_Cutoff = round(Display->Filter_Cutoff * 100)/100;
+
 					sprintf(filter_cutoff_string, "%f", Display->Filter_Cutoff);
 					Display->cutoff = (uint16_t)(Display->Filter_Cutoff * 1000);
 				}
@@ -1066,6 +1112,10 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 
 					Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
 					Display->Filter_Q = (float)Display->Poti_raw/4096;	// maximum Q of 1
+
+					// round value to 2 decimal points, so the display does not update permanently
+					Display->Filter_Q = round(Display->Filter_Q * 100)/100;
+
 					sprintf(filter_Q_string, "%f", Display->Filter_Q);
 					Display->Q = (uint16_t)(Display->Filter_Q * 1000);
 				}
@@ -1079,7 +1129,6 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 						process_filter = true;
 
 						//					if(Display->Filter_EffectAdded == false) {	// if no filter effect added yet
-						//
 						//						effects_add(EQ, Display->Filter_EffectPosition);
 						//						Display->Filter_EffectAdded = true;
 						//					}
@@ -1094,29 +1143,27 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 					//					Display->Filter_EffectAdded = false;
 					//				}
 				}
-				Display->last_cutoff = Display->cutoff;
-				Display->last_Q = Display->Q;
 
 				Paint_DrawStringAt(&paint, 150, 50, filter_cutoff_string, &Font12, COLORED);
 				Paint_DrawStringAt(&paint, 150, 70, filter_Q_string, &Font12, COLORED);
 
-				if(Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) {
+				if( (Display->last_JoystickParameterPosition != Display->JoystickParameterPosition) ||\
+						(Display->last_cutoff != Display->cutoff) ||\
+						(Display->last_Q != Display->Q) ) {
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);
 					EPD_Init(&epd, lut_partial_update);
-					Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
 				}
-
-				//				// Display the frame_buffer
-				//				EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-				//				EPD_DisplayFrame(&epd);
+				Display->last_JoystickParameterPosition = Display->JoystickParameterPosition;
+				Display->last_cutoff = Display->cutoff;
+				Display->last_Q = Display->Q;
 
 				if(Display->VRx > Display->UpperLimit) {
 					Display->CurrentModule = 2;	// back to Tremolo
-					Display->last_JoystickParameterPosition = 0;	// reset last_JoystickParameterPosition
 					Display->JoystickParameterPosition = 1;	// reset JoystickParameterPosition
-					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+					Display->last_Q = Display->Q++;	// set last_Q unequal Q to make sure, that the display will be updated, when we switch from tremolo to equalizer
+					Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 					// Display the frame_buffer
 					EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 					EPD_DisplayFrame(&epd);

@@ -35,16 +35,23 @@ struct display_variables {
 	// Keyboard Parameters
 	bool KeyboardmodeSelected;
 	bool Keyboardmode_ONOFF;
+	uint8_t last_Keyboard_Octave;
 	uint8_t Keyboard_Octave;
+	float last_Keyboard_AttackTime;
 	float Keyboard_AttackTime;
+	float last_Keyboard_DecayTime;
 	float Keyboard_DecayTime;
+	float last_Keyboard_SustainTime;
 	float Keyboard_SustainTime;
+	float last_Keyboard_SustainLevel;
 	float Keyboard_SustainLevel;
+	float last_Keyboard_ReleaseTime;
 	float Keyboard_ReleaseTime;
 
 	// Synthesizer Parameters
 	uint8_t ActiveEffectsCounter;
 	bool Voices_ONOFF[3];		// 3 Voices
+	bool last_Voices_ONOFF[3];
 	uint8_t Voices_Note[3];
 	uint8_t Voices_Octave[3];
 	bool ADSR_ONOFF;			// 1 ADSR
@@ -55,6 +62,8 @@ struct display_variables {
 	uint8_t ADSR_EffectPosition;
 	bool ADSR_EffectAdded;
 	bool Distortion_ONOFF;
+	bool last_Distortion_ONOFF;
+	bool last_Distortion_Type;
 	bool Distortion_Type;
 	float Distortion_Gain;
 	uint8_t Distortion_EffectPosition;
@@ -71,6 +80,10 @@ struct display_variables {
 	bool Filter_EffectAdded;
 	//...Weitere Synthesizer-Parameter
 
+	uint8_t last_note;
+	uint8_t note;
+	char last_octave;
+	char octave;
 	uint16_t last_rate;
 	uint16_t rate;
 	uint16_t last_depth;
