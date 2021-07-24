@@ -147,8 +147,7 @@ Paint paint;
 unsigned char* frame_buffer;
 
 Display_Status Display_Init(struct display_variables* Display);
-Display_Status Display_Start(void);
-//Display_Status Display_Start(EPD epd, Paint paint);
+Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer);
 Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
 Display_Status SelectKeyboardmode(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
 void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* SoftClipping, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer);

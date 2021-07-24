@@ -112,56 +112,21 @@ Display_Status Display_Init(struct display_variables* Display) {
 	return DISPLAY_OK;
 }
 
-//Display_Status Display_Start(EPD epd, Paint paint) {
-Display_Status Display_Start(void) {
+Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer) {
 
-	EPD epd;
-	Paint paint;
-
-	// you have to edit the startup_stm32fxxx.s file and set a big enough heap size
-	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-
-	// Display Init
-	// EPD epd;
-	EPD_Reset(&epd);
-
-	//	if (EPD_Init(&epd, lut_full_update) != 0) {
-	//		printf("e-Paper init failed\n");
-	//		//return -1;
-	//	}
-
-	EPD_Init(&epd, lut_full_update);
-
-	//	Paint paint;
-	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
-	//Paint_Clear(&paint, UNCOLORED);
-
-	//	if (EPD_Init(&epd, lut_partial_update) != 0) {
-	//		printf("e-Paper init failed\n");
-	//		//return -1;
-	//	}
-
-	Paint_SetRotate(&paint, ROTATE_270);
-
-	EPD_ClearFrameMemory(&epd, 0xFF);	// clear SRAM of the frame memory
-
-	//	there are 2 memory areas embedded in the e-paper display
-	//	and once the display is refreshed, the memory area will be auto-toggled,
-	//	i.e. the next action of SetFrameMemory will set the other memory area
-	//	therefore you have to set the frame memory and refresh the display twice.
-	//	for(int i=0; i<EPD_WIDTH*EPD_HEIGHT; i++) {	// fill the BLACKSCREEN-array with values to show a black screen in the beginning
-	//		BLACKSCREEN[i] = 0X00;
-	//	}
-	//	EPD_SetFrameMemory(&epd, BLACKSCREEN, 0, 0, epd.width, epd.height);
-	EPD_DisplayFrame(&epd);	// display data from SRAM in e-paper module
-	//	EPD_SetFrameMemory(&epd, BLACKSCREEN, 0, 0, epd.width, epd.height);
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_DelayMs(&epd, 300);
-
-	//Paint_Clear(&paint, UNCOLORED);
-	//EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-	//EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, epd.width, epd.height);
-	//EPD_DisplayFrame(&epd);
+	//frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
+	EPD_Init(epd, lut_full_update);
+	Paint_Init(paint, frame_buffer, epd->width, epd->height);
+	Paint_SetRotate(paint, ROTATE_270);
+	// Display the frame_buffer to show the TU Berlin-logo
+	EPD_SetFrameMemory(epd, TU_LOGO, 0, 0, Paint_GetWidth(paint), Paint_GetHeight(paint));
+	EPD_DisplayFrame(epd);
+	EPD_DelayMs(epd, 1000);
+	Paint_Clear(paint, UNCOLORED);
+	// Display the frame_buffer to show a white screen
+	EPD_SetFrameMemory(epd, frame_buffer, 0, 0, Paint_GetWidth(paint), Paint_GetHeight(paint));
+	EPD_DisplayFrame(epd);
+	EPD_Init(epd, lut_partial_update);
 
 	return DISPLAY_OK;
 }
