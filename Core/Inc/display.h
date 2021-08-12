@@ -24,6 +24,13 @@ typedef enum {
 	DISPLAY_OK = 1
 } Display_Status;
 
+
+typedef enum {
+	NONE = -1,
+	KEYBOARD = 0,
+	BODYSYNTH = 1
+}synth_mode_t;
+
 struct display_variables {
 	bool PatchSelected[3];	// arrays for 3 Modules for each patch
 	bool ModuleState[3];
@@ -31,6 +38,9 @@ struct display_variables {
 	bool ModuleParametersSelected[3];
 	bool ModuleCompleted[3];
 	uint8_t CurrentModule;
+
+	//MODE
+	synth_mode_t mode;
 
 	// Keyboard Parameters
 	bool KeyboardmodeSelected;
@@ -103,14 +113,15 @@ struct display_variables {
 	uint16_t last_release;
 	uint16_t release;
 
-	uint32_t ADC1input;			// ADC input arrays
+	// ADC input arrays
+	uint32_t ADC1input;
 	uint16_t ADC2inputs[3];
 	uint16_t ADC3inputs[2];
+
+	// Joystick-variables
 	uint16_t LowerLimit;
 	uint16_t UpperLimit;
 	uint16_t ADC_FullRange;
-
-	// Joystick-variables
 	uint16_t VRx;
 	uint16_t VRy;
 	uint8_t JoystickPatchPosition;
@@ -118,7 +129,23 @@ struct display_variables {
 	uint8_t last_JoystickModePosition;
 	uint8_t JoystickParameterPosition;
 	uint8_t last_JoystickParameterPosition;
+	uint16_t last_joystick_x;
+	uint16_t last_joystick_y;
+	uint16_t UpdateThreshold;
 
+	//Draw Parameters
+	bool arrow_flag;
+	uint8_t arrow_start_x_position;
+	uint8_t arrow_end_x_position;
+	uint8_t value_start_x_position;
+	uint8_t value_end_x_position;
+	uint8_t row_start_x_position;
+	uint8_t row_end_x_position;
+
+	//Page parameter
+	int8_t pagePosition;
+	uint8_t page_max;
+	uint8_t page_min;
 	// Potentiometer-variables
 	uint16_t Poti_raw;
 	float Poti_percent;
@@ -141,6 +168,8 @@ struct display_variables {
 	bool SW;		// state variable of the SW-Button of the Joystick
 };
 
+
+
 struct display_variables Display;
 EPD epd;
 Paint paint;
@@ -149,7 +178,20 @@ unsigned char* frame_buffer;
 Display_Status Display_Init(struct display_variables* Display);
 Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer);
 Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
-Display_Status SelectKeyboardmode(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
 void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* SoftClipping, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer);
+
+
+//Display draw functions
+void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition);
+void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition);
+void DISPLAY_SwitchPageLeft(void);
+void DISPLAY_SwitchPageRight(void);
+void DISPLAY_Update(void);
+
+//Page functions
+void DISPLAY_processing();
+Display_Status p_StartingMenu(unsigned char* frame_buffer);
+void p_Dummy() ;
+
 
 #endif /* INC_DISPLAY_H_ */
