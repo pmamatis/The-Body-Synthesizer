@@ -23,42 +23,42 @@
 <layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
 <layer number="14" name="Route14" color="22" fill="1" visible="no" active="no"/>
 <layer number="15" name="Route15" color="23" fill="1" visible="no" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
-<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
-<layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
-<layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
-<layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
-<layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
+<layer number="34" name="bFinish" color="6" fill="6" visible="yes" active="yes"/>
+<layer number="35" name="tGlue" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="36" name="bGlue" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
-<layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
-<layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
-<layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
+<layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
+<layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
-<layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="no" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="no" active="no"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="no" active="no"/>
@@ -69,7 +69,7 @@
 <layer number="97" name="Info" color="7" fill="1" visible="no" active="no"/>
 <layer number="98" name="Guide" color="6" fill="1" visible="no" active="no"/>
 <layer number="99" name="SpiceOrder" color="5" fill="1" visible="no" active="no"/>
-<layer number="100" name="PRINT" color="7" fill="1" visible="no" active="yes"/>
+<layer number="100" name="PRINT" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <board>
 <plain>
@@ -2814,23 +2814,23 @@ Your Multi-CB Team
 <attribute name="VALUE" x="75.1634" y="34.2509" size="1.27" layer="28" rot="MR180"/>
 </element>
 <element name="C33" library="rcl" package="C0603" value="200u" x="2.7122" y="37.3" smashed="yes">
-<attribute name="NAME" x="3.867796875" y="39.459996875" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="1.159996875" y="38.932203125" size="1.016" layer="25" font="vector" rot="R90"/>
 <attribute name="VALUE" x="0.8872" y="36.215" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C34" library="rcl" package="C0603" value="100u" x="26.088253125" y="38" smashed="yes">
-<attribute name="NAME" x="27.462746875" y="40.561" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="27.162746875" y="41.061" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="28.113253125" y="40.305" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C35" library="rcl" package="C0603" value="100u" x="48.20113125" y="38" smashed="yes">
-<attribute name="NAME" x="49.385" y="40.21613125" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="52.685" y="39.41613125" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="47.26613125" y="37.105" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C36" library="rcl" package="C0603" value="100u" x="72.083371875" y="38" smashed="yes">
-<attribute name="NAME" x="73.280496875" y="40.13613125" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="77.280496875" y="40.23613125" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="70.758371875" y="35.175" size="1.27" layer="27"/>
 </element>
 <element name="C37" library="rcl" package="C0603" value="200u" x="95.55113125" y="38" smashed="yes">
-<attribute name="NAME" x="96.74386875" y="40.13825625" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="96.64386875" y="40.23825625" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="94.91613125" y="36.095" size="1.27" layer="27"/>
 </element>
 <element name="C38" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C0603" package3d_urn="urn:adsk.eagle:package:23616/2" value="100n" x="2.4972" y="33.6951" smashed="yes" rot="MR270">
@@ -2848,7 +2848,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-79.279840625" y="104.11" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-79.279840625" y="104.11" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-79.279840625" y="104.11" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-0.46844375" y="32.48385" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="-0.36844375" y="31.28385" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-79.279840625" y="104.11" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-79.279840625" y="104.11" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-79.279840625" y="104.11" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2858,7 +2858,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-36.80886875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-36.80886875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-36.80886875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="27.794821875" y="20.44844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="29.894821875" y="23.64844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-36.80886875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-36.80886875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-36.80886875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2868,7 +2868,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Zener Diode 3.3V 500mW ±5% Surface Mount SOD-123 " x="25.1356875" y="2.95" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Diodes Inc." x="25.1356875" y="2.95" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="MMSZ5226B-7-F" x="25.1356875" y="2.95" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-0.55916875" y="36.986996875" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="0.45916875" y="33.313003125" size="1.016" layer="25" font="vector" rot="R90"/>
 <attribute name="PACKAGE" value="SOD-123 Diodes Inc." x="25.1356875" y="2.95" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="25.1356875" y="2.95" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMSZ5226B-7-F/?ref=eda" x="25.1356875" y="2.95" size="1.778" layer="27" display="off"/>
@@ -2878,7 +2878,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Zener Diode 3.3V 500mW ±5% Surface Mount SOD-123 " x="61.143371875" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Diodes Inc." x="61.143371875" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="MMSZ5226B-7-F" x="61.143371875" y="3.25" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="33.040128125" y="36.233621875" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="31.240128125" y="37.433621875" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-123 Diodes Inc." x="61.143371875" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="61.143371875" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMSZ5226B-7-F/?ref=eda" x="61.143371875" y="3.25" size="1.778" layer="27" display="off"/>
@@ -2888,7 +2888,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Zener Diode 3.3V 500mW ±5% Surface Mount SOD-123 " x="96.076628125" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Diodes Inc." x="96.076628125" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="MMSZ5226B-7-F" x="96.076628125" y="3.25" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="48.59763125" y="32.92314375" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="51.72314375" y="35.60236875" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="PACKAGE" value="SOD-123 Diodes Inc." x="96.076628125" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="96.076628125" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMSZ5226B-7-F/?ref=eda" x="96.076628125" y="3.25" size="1.778" layer="27" display="off"/>
@@ -2898,7 +2898,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Zener Diode 3.3V 500mW ±5% Surface Mount SOD-123 " x="132.60113125" y="3.35" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Diodes Inc." x="132.60113125" y="3.35" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="MMSZ5226B-7-F" x="132.60113125" y="3.35" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="73.86763125" y="36.398640625" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="74.06763125" y="36.398640625" size="1.016" layer="25" font="vector"/>
 <attribute name="PACKAGE" value="SOD-123 Diodes Inc." x="132.60113125" y="3.35" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="132.60113125" y="3.35" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMSZ5226B-7-F/?ref=eda" x="132.60113125" y="3.35" size="1.778" layer="27" display="off"/>
@@ -2908,7 +2908,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Zener Diode 3.3V 500mW ±5% Surface Mount SOD-123 " x="168.80113125" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Diodes Inc." x="168.80113125" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="MMSZ5226B-7-F" x="168.80113125" y="3.25" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="100.64236875" y="37.181359375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="100.54236875" y="37.581359375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-123 Diodes Inc." x="168.80113125" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="168.80113125" y="3.25" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMSZ5226B-7-F/?ref=eda" x="168.80113125" y="3.25" size="1.778" layer="27" display="off"/>
@@ -2918,7 +2918,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-44.19886875" y="95.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-44.19886875" y="95.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-44.19886875" y="95.47" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="27.954821875" y="16.91844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="29.954821875" y="20.11844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-44.19886875" y="95.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-44.19886875" y="95.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-44.19886875" y="95.47" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2928,7 +2928,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-52.04886875" y="91.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-52.04886875" y="91.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-52.04886875" y="91.97" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="27.634821875" y="13.3851875" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="27.865178125" y="15.6148125" size="1.016" layer="25" font="vector"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-52.04886875" y="91.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-52.04886875" y="91.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-52.04886875" y="91.97" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2938,7 +2938,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-37.54886875" y="109.42" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-37.54886875" y="109.42" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-37.54886875" y="109.42" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="48.615178125" y="29.82155625" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="52.084821875" y="30.67844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-37.54886875" y="109.42" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-37.54886875" y="109.42" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-37.54886875" y="109.42" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2948,7 +2948,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-44.95886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-44.95886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-44.95886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="50.754821875" y="27.4851875" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="49.745178125" y="26.2148125" size="1.016" layer="25" font="vector"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-44.95886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-44.95886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-44.95886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2958,7 +2958,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="9.13113125" y="114.75" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="9.13113125" y="114.75" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="9.13113125" y="114.75" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="24.4551875" y="31.075178125" size="1.016" layer="25" font="vector" rot="R90"/>
+<attribute name="NAME" x="27.975178125" y="29.7448125" size="1.016" layer="25" font="vector"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="9.13113125" y="114.75" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="9.13113125" y="114.75" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="9.13113125" y="114.75" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2968,7 +2968,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="23.50113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="23.50113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="23.50113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="50.524821875" y="23.85844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="52.124821875" y="23.75844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="23.50113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="23.50113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="23.50113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2978,7 +2978,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="16.07113125" y="104.1" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="16.07113125" y="104.1" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="16.07113125" y="104.1" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="50.294821875" y="20.31844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="51.894821875" y="20.21844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="16.07113125" y="104.1" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="16.07113125" y="104.1" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="16.07113125" y="104.1" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2988,7 +2988,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="8.33113125" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="8.33113125" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="8.33113125" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="50.314821875" y="16.86844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="51.914821875" y="16.66844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="8.33113125" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="8.33113125" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="8.33113125" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2998,7 +2998,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-86.459025" y="101.04" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-86.459025" y="101.04" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-86.459025" y="101.04" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-0.07844375" y="29.184665625" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="2.184665625" y="27.37844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-86.459025" y="101.04" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-86.459025" y="101.04" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-86.459025" y="101.04" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3008,7 +3008,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="1.026628125" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="1.026628125" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="1.026628125" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="50.58031875" y="13.20844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="51.68031875" y="13.20844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="1.026628125" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="1.026628125" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="1.026628125" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3018,7 +3018,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="16.76113125" y="114.5" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="16.76113125" y="114.5" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="16.76113125" y="114.5" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="71.8029375" y="32.969315625" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="73.7029375" y="32.969315625" size="1.016" layer="25" font="vector"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="16.76113125" y="114.5" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="16.76113125" y="114.5" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="16.76113125" y="114.5" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3028,7 +3028,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="9.15113125" y="111.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="9.15113125" y="111.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="9.15113125" y="111.05" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="73.9070625" y="30.600684375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="75.4070625" y="30.600684375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="9.15113125" y="111.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="9.15113125" y="111.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="9.15113125" y="111.05" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3038,7 +3038,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="1.60113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="1.60113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="1.60113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="73.9670625" y="27.060684375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="75.3670625" y="27.060684375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="1.60113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="1.60113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="1.60113125" y="107.55" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3048,7 +3048,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-4.27886875" y="104" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-4.27886875" y="104" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-4.27886875" y="104" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="75.4070625" y="23.490684375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="72.2070625" y="23.890684375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-4.27886875" y="104" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-4.27886875" y="104" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-4.27886875" y="104" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3058,7 +3058,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-13.833371875" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-13.833371875" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-13.833371875" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="71.935178125" y="19.147053125" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="74.835178125" y="19.147053125" size="1.016" layer="25" font="vector"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-13.833371875" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-13.833371875" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-13.833371875" y="100.55" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3068,7 +3068,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-21.393371875" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-21.393371875" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-21.393371875" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="73.74031875" y="16.62844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="75.44031875" y="16.52844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-21.393371875" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-21.393371875" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-21.393371875" y="97.05" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3078,7 +3078,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="78.313371875" y="119.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="78.313371875" y="119.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="78.313371875" y="119.63" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="92.63155625" y="33.1970625" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="92.73155625" y="30.7970625" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="78.313371875" y="119.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="78.313371875" y="119.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="78.313371875" y="119.63" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3088,7 +3088,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-13.36628125" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-13.36628125" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-13.36628125" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="1.7799125" y="24.872590625" size="1.016" layer="25" font="vector" rot="R90"/>
+<attribute name="NAME" x="0.972590625" y="22.8200875" size="1.016" layer="25" font="vector"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-13.36628125" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-13.36628125" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-13.36628125" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3098,7 +3098,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="71.06113125" y="116.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="71.06113125" y="116.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="71.06113125" y="116.13" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="92.77155625" y="29.764821875" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="92.87155625" y="27.564821875" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="71.06113125" y="116.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="71.06113125" y="116.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="71.06113125" y="116.13" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3108,7 +3108,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="63.57113125" y="112.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="63.57113125" y="112.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="63.57113125" y="112.63" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="92.87155625" y="26.394821875" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="92.77155625" y="23.994821875" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="63.57113125" y="112.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="63.57113125" y="112.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="63.57113125" y="112.63" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3118,7 +3118,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="55.64113125" y="109.14" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="55.64113125" y="109.14" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="55.64113125" y="109.14" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="92.78155625" y="22.604821875" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="99.404821875" y="20.21844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="55.64113125" y="109.14" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="55.64113125" y="109.14" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="55.64113125" y="109.14" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3128,7 +3128,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="47.976628125" y="105.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="47.976628125" y="105.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="47.976628125" y="105.63" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="97.24031875" y="16.92844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="99.44031875" y="16.72844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="47.976628125" y="105.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="47.976628125" y="105.63" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="47.976628125" y="105.63" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3138,7 +3138,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="40.186628125" y="102.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="40.186628125" y="102.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="40.186628125" y="102.13" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="97.27031875" y="13.42844375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="99.37031875" y="13.02844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="40.186628125" y="102.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="40.186628125" y="102.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="40.186628125" y="102.13" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3148,7 +3148,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-20.995696875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-20.995696875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-20.995696875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="0.90155625" y="22.62799375" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="2.42799375" y="20.29844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-20.995696875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-20.995696875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-20.995696875" y="98.97" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3158,7 +3158,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-29.08886875" y="92.17" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-29.08886875" y="92.17" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-29.08886875" y="92.17" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="0.43155625" y="15.174821875" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="2.374821875" y="13.16844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-29.08886875" y="92.17" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-29.08886875" y="92.17" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-29.08886875" y="92.17" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3168,7 +3168,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-36.73886875" y="95.72" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-36.73886875" y="95.72" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-36.73886875" y="95.72" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="0.36155625" y="18.964821875" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="2.364821875" y="16.83844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-36.73886875" y="95.72" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-36.73886875" y="95.72" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-36.73886875" y="95.72" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3178,7 +3178,7 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-21.58886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-21.58886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-21.58886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="23.26155625" y="29.414821875" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="26.014821875" y="30.73844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-21.58886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-21.58886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-21.58886875" y="105.97" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3188,13 +3188,13 @@ Your Multi-CB Team
 <attribute name="DESCRIPTION" value=" Diode Standard 75V 150mA Surface Mount SOD-323F " x="-29.03886875" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="-29.03886875" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="1N4148WS" x="-29.03886875" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="23.44155625" y="25.824821875" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="29.724821875" y="27.15844375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="SOD-323FL-2 ON Semiconductor" x="-29.03886875" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-29.03886875" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/1N4148WS/?ref=eda" x="-29.03886875" y="102.47" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="LD1" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="22.5" y="36.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="23.680496875" y="38.272759375" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="22.780496875" y="38.372759375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="26" x="108.86" y="97.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="23.135" y="38.545" size="1.27" layer="27" rot="R180"/>
 </element>
@@ -3209,12 +3209,12 @@ Your Multi-CB Team
 <attribute name="VALUE" x="45.635" y="8.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD13" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="68" y="36.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="68.935" y="37.425" size="1.016" layer="25" font="vector" rot="R90"/>
+<attribute name="NAME" x="66.335" y="33.525" size="1.016" layer="25" font="vector" rot="R90"/>
 <attribute name="POPULARITY" value="26" x="92.13" y="54.42" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="68.635" y="38.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD14" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="68" y="30.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="67.185" y="34.585" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="67.085" y="34.785" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="POPULARITY" value="26" x="92.13" y="52.23" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="68.635" y="32.545" size="1.27" layer="27" rot="R180"/>
 </element>
@@ -3234,42 +3234,42 @@ Your Multi-CB Team
 <attribute name="VALUE" x="68.635" y="14.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD18" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="68" y="6.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="69.965" y="5.925" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="69.765" y="5.325" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="26" x="92.13" y="43.47" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="68.635" y="8.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD19" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="91" y="36.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="89.255" y="37.315" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="89.255" y="37.915" size="1.016" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="26" x="115.13" y="77.28" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="91.635" y="38.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD2" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="22.5" y="30.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="22.525" y="31.335" size="1.016" layer="25" font="vector" rot="R90"/>
+<attribute name="NAME" x="22.525" y="31.835" size="1.016" layer="25" font="vector" rot="R90"/>
 <attribute name="POPULARITY" value="26" x="108.86" y="95.41" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="23.135" y="32.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD20" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="91" y="30.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="90.165" y="34.675" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="89.865" y="34.875" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="POPULARITY" value="26" x="115.13" y="75.09" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="91.635" y="32.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD21" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="91" y="24.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="90.115" y="28.555" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="89.415" y="28.755" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="POPULARITY" value="26" x="115.13" y="72.9" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="91.635" y="26.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD22" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="91" y="18.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="90.185" y="22.655" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="89.585" y="22.955" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="POPULARITY" value="26" x="115.13" y="70.71" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="91.635" y="20.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD23" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="91" y="12.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="92.395" y="13.975" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="89.595" y="16.875" size="1.016" layer="25" font="vector" rot="R270"/>
 <attribute name="POPULARITY" value="26" x="115.13" y="68.52" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="91.635" y="14.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD24" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="91" y="6.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="92.535" y="6.005" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="91.635" y="6.005" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="26" x="115.13" y="66.33" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="91.635" y="8.545" size="1.27" layer="27" rot="R180"/>
 </element>
@@ -3304,12 +3304,12 @@ Your Multi-CB Team
 <attribute name="VALUE" x="23.135" y="26.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD30" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="115" y="36.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="113.495" y="37.335" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="114.195" y="37.435" size="1.016" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="26" x="139.13" y="119.19" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="115.635" y="38.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LD12" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="45" y="36.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="46.545" y="38.265" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="45.165" y="32.655" size="1.016" layer="25" font="vector" rot="R90"/>
 <attribute name="POPULARITY" value="26" x="69.13" y="123" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="45.635" y="38.545" size="1.27" layer="27" rot="R180"/>
 </element>
@@ -3352,13 +3352,13 @@ Your Multi-CB Team
 <attribute name="VALUE" x="18.2222" y="36.7101" size="1.27" layer="28" rot="MR180"/>
 </element>
 <element name="R100" library="rcl" package="R0603" value="1K" x="101.79113125" y="25" smashed="yes" rot="R180">
-<attribute name="NAME" x="103.56613125" y="27.015" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="103.06613125" y="27.115" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R101" library="rcl" package="R0603" value="1K" x="101.81113125" y="28.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="100.34386875" y="29.535" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="103.435" y="29.65613125" size="1.016" layer="25" font="vector" rot="R270"/>
 </element>
 <element name="R102" library="rcl" package="R0603" value="1K" x="101.66113125" y="32" smashed="yes" rot="R180">
-<attribute name="NAME" x="100.07386875" y="33.105" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="100.505" y="36.42613125" size="1.016" layer="25" font="vector" rot="R270"/>
 </element>
 <element name="R11" library="rcl" package="R0603" value="3.3k" x="19.7269" y="37.3792" smashed="yes" rot="MR90">
 <attribute name="NAME" x="21.9581" y="38.5458" size="1.016" layer="26" font="vector" rot="MR270"/>
@@ -3469,11 +3469,11 @@ Your Multi-CB Team
 <attribute name="VALUE" x="18.911628125" y="8.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R44" library="rcl" package="R0603" value="1K" x="18.806628125" y="12.94" smashed="yes" rot="R180">
-<attribute name="NAME" x="20.241628125" y="14.965" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="20.341628125" y="11.765" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="19.441628125" y="14.845" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R45" library="rcl" package="R0603" value="1K" x="18.496628125" y="18.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="19.361628125" y="20.685" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="20.261628125" y="17.385" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="19.131628125" y="20.545" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R46" library="rcl" package="R0603" value="1K" x="18.566628125" y="24.64" smashed="yes" rot="R180">
@@ -3481,11 +3481,11 @@ Your Multi-CB Team
 <attribute name="VALUE" x="19.261628125" y="27.085" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R47" library="rcl" package="R0603" value="1K" x="18.496628125" y="30.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="19.74386875" y="32.690496875" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="18.74386875" y="29.190496875" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="19.301628125" y="33.115" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R48" library="rcl" package="R0603" value="1K" x="18.656628125" y="36.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="19.68386875" y="38.790496875" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="19.78386875" y="38.890496875" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="19.531628125" y="39.105" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R49" library="rcl" package="R0603" value="1K" x="10.226628125" y="14.65" smashed="yes" rot="R180">
@@ -3497,23 +3497,23 @@ Your Multi-CB Team
 <attribute name="VALUE" x="29.1899" y="26.0622" size="1.27" layer="28" rot="MR180"/>
 </element>
 <element name="R50" library="rcl" package="R0603" value="1K" x="9.806628125" y="18.25" smashed="yes" rot="R180">
-<attribute name="NAME" x="8.728371875" y="19.465" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="7.728371875" y="19.365" size="1.016" layer="25" font="vector"/>
 <attribute name="VALUE" x="10.441628125" y="20.155" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R51" library="rcl" package="R0603" value="1K" x="9.556628125" y="21.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="10.681628125" y="23.615" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="10.181628125" y="23.715" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="10.191628125" y="23.405" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R52" library="rcl" package="R0603" value="1K" x="9.455284375" y="25" smashed="yes" rot="R180">
-<attribute name="NAME" x="10.780284375" y="27.095" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="10.080284375" y="27.195" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="10.090284375" y="26.905" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R53" library="rcl" package="R0603" value="1K" x="9.42860625" y="28.65" smashed="yes" rot="R180">
-<attribute name="NAME" x="11.115" y="30.13360625" size="1.016" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="9.93360625" y="30.785" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="10.55360625" y="31.065" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R54" library="rcl" package="R0603" value="1K" x="9.412759375" y="32" smashed="yes" rot="R180">
-<attribute name="NAME" x="8.272240625" y="33.11795625" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="7.472240625" y="33.11795625" size="1.016" layer="25" font="vector"/>
 <attribute name="VALUE" x="10.097759375" y="34.675" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R55" library="rcl" package="R0603" value="1K" x="40.576628125" y="6.64" smashed="yes" rot="R180">
@@ -3523,7 +3523,7 @@ Your Multi-CB Team
 <attribute name="NAME" x="42.061628125" y="11.395" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R57" library="rcl" package="R0603" value="1K" x="40.856628125" y="18.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="42.011628125" y="17.435" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="42.411628125" y="17.335" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R58" library="rcl" package="R0603" value="1K" x="41.016628125" y="24.64" smashed="yes" rot="R180">
 <attribute name="NAME" x="42.321628125" y="26.875" size="1.016" layer="25" font="vector" rot="R180"/>
@@ -3539,30 +3539,30 @@ Your Multi-CB Team
 <attribute name="NAME" x="42.63386875" y="35.450496875" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R61" library="rcl" package="R0603" value="1K" x="31.726628125" y="14.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="32.961628125" y="16.605" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="33.161628125" y="16.705" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R62" library="rcl" package="R0603" value="1K" x="31.676628125" y="18" smashed="yes" rot="R180">
-<attribute name="NAME" x="32.851628125" y="20.175" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="33.051628125" y="20.375" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="32.311628125" y="19.905" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R63" library="rcl" package="R0603" value="1K" x="31.683371875" y="21.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="32.858371875" y="23.605" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="33.258371875" y="23.905" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R64" library="rcl" package="R0603" value="1K" x="31.816628125" y="25" smashed="yes" rot="R180">
-<attribute name="NAME" x="32.991628125" y="26.995" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="33.191628125" y="27.195" size="1.016" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="32.451628125" y="26.905" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="R65" library="rcl" package="R0603" value="1K" x="31.796628125" y="28.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="30.581628125" y="29.605" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="30.881628125" y="29.705" size="1.016" layer="25" font="vector"/>
 </element>
 <element name="R66" library="rcl" package="R0603" value="1K" x="31.886628125" y="32" smashed="yes" rot="R180">
 <attribute name="NAME" x="30.788371875" y="33.1927375" size="1.016" layer="25" font="vector"/>
 </element>
 <element name="R67" library="rcl" package="R0603" value="1K" x="63.536628125" y="6.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="64.741628125" y="5.455" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="65.041628125" y="5.255" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R68" library="rcl" package="R0603" value="1K" x="63.386628125" y="12.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="64.941628125" y="11.435" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="64.741628125" y="11.135" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R69" library="rcl" package="R0603" value="1K" x="63.386628125" y="18.64" smashed="yes" rot="R180">
 <attribute name="NAME" x="64.821628125" y="17.245" size="1.016" layer="25" font="vector" rot="R180"/>
@@ -3590,78 +3590,78 @@ Your Multi-CB Team
 <attribute name="NAME" x="53.251628125" y="22.732759375" size="1.016" layer="25" font="vector"/>
 </element>
 <element name="R76" library="rcl" package="R0603" value="1K" x="54.33886875" y="25" smashed="yes" rot="R180">
-<attribute name="NAME" x="53.458371875" y="26.187240625" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="53.058371875" y="26.287240625" size="1.016" layer="25" font="vector"/>
 </element>
 <element name="R77" library="rcl" package="R0603" value="1K" x="54.31886875" y="28.5" smashed="yes" rot="R180">
 <attribute name="NAME" x="53.258371875" y="29.797240625" size="1.016" layer="25" font="vector"/>
 </element>
 <element name="R78" library="rcl" package="R0603" value="1K" x="54.40113125" y="32" smashed="yes" rot="R180">
-<attribute name="NAME" x="55.608371875" y="34.187240625" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="54.887240625" y="33.291628125" size="1.016" layer="25" font="vector" rot="R90"/>
 </element>
 <element name="R79" library="rcl" package="R0603" value="1K" x="86.456628125" y="6.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="87.561628125" y="8.815" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="87.861628125" y="9.015" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R8" library="rcl" package="R0603" value="10K" x="14.6849" y="30.9572" smashed="yes" rot="MR90">
 <attribute name="NAME" x="13.0222" y="38.5901" size="1.016" layer="26" font="vector" rot="MR180"/>
 <attribute name="VALUE" x="12.7799" y="30.3222" size="1.27" layer="28" rot="MR90"/>
 </element>
 <element name="R80" library="rcl" package="R0603" value="1K" x="86.526628125" y="12.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="87.781628125" y="14.725" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="87.781628125" y="14.925" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R81" library="rcl" package="R0603" value="1K" x="86.596628125" y="18.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="87.821628125" y="20.785" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="88.021628125" y="22.985" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R82" library="rcl" package="R0603" value="1K" x="86.546628125" y="24.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="87.871628125" y="26.745" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="87.971628125" y="26.845" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R83" library="rcl" package="R0603" value="1K" x="87.006628125" y="32.74" smashed="yes" rot="R180">
-<attribute name="NAME" x="88.181628125" y="31.615" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="88.381628125" y="34.915" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R84" library="rcl" package="R0603" value="1K" x="86.736628125" y="36.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="85.95386875" y="34.560496875" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="86.05386875" y="34.460496875" size="1.016" layer="25" font="vector"/>
 </element>
 <element name="R85" library="rcl" package="R0603" value="1K" x="77.81113125" y="14.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="78.72613125" y="13.365" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="77.92613125" y="13.065" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R86" library="rcl" package="R0603" value="1K" x="77.74113125" y="18" smashed="yes" rot="R180">
 <attribute name="NAME" x="78.90613125" y="16.665" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R87" library="rcl" package="R0603" value="1K" x="78.51113125" y="21.45" smashed="yes" rot="R180">
-<attribute name="NAME" x="77.58386875" y="22.565" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="77.78386875" y="19.165" size="1.016" layer="25" font="vector"/>
 </element>
 <element name="R88" library="rcl" package="R0603" value="1K" x="77.84113125" y="25" smashed="yes" rot="R180">
 <attribute name="NAME" x="79.28613125" y="27.145" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R89" library="rcl" package="R0603" value="1K" x="78.01113125" y="28.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="79.23613125" y="30.515" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="78.63613125" y="30.615" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R9" library="rcl" package="R0603" value="3K" x="15.5609" y="34.7726" smashed="yes" rot="MR180">
 <attribute name="NAME" x="15.7141" y="36.0824" size="1.016" layer="26" font="vector" rot="MR0"/>
 <attribute name="VALUE" x="14.9259" y="36.6776" size="1.27" layer="28" rot="MR180"/>
 </element>
 <element name="R90" library="rcl" package="R0603" value="1K" x="78.13113125" y="32" smashed="yes" rot="R180">
-<attribute name="NAME" x="77.04386875" y="33.065" size="1.016" layer="25" font="vector"/>
+<attribute name="NAME" x="77.165" y="35.55613125" size="1.016" layer="25" font="vector" rot="R270"/>
 </element>
 <element name="R91" library="rcl" package="R0603" value="1K" x="110.866628125" y="6.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="111.981628125" y="8.795" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="112.081628125" y="8.895" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R92" library="rcl" package="R0603" value="1K" x="110.916628125" y="12.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="112.091628125" y="14.775" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="112.291628125" y="14.775" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R93" library="rcl" package="R0603" value="1K" x="110.986628125" y="18.64" smashed="yes" rot="R180">
 <attribute name="NAME" x="112.261628125" y="20.775" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R94" library="rcl" package="R0603" value="1K" x="110.956628125" y="24.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="112.121628125" y="26.735" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="112.321628125" y="26.735" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R95" library="rcl" package="R0603" value="1K" x="110.666628125" y="30.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="111.971628125" y="32.745" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="111.971628125" y="32.845" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R96" library="rcl" package="R0603" value="1K" x="111.016628125" y="36.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="112.301628125" y="35.545" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="112.201628125" y="35.445" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R97" library="rcl" package="R0603" value="1K" x="101.57113125" y="14.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="102.92613125" y="16.535" size="1.016" layer="25" font="vector" rot="R180"/>
+<attribute name="NAME" x="102.52613125" y="16.635" size="1.016" layer="25" font="vector" rot="R180"/>
 </element>
 <element name="R98" library="rcl" package="R0603" value="1K" x="101.64113125" y="18" smashed="yes" rot="R180">
 <attribute name="NAME" x="102.89613125" y="20.135" size="1.016" layer="25" font="vector" rot="R180"/>
