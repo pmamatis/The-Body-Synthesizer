@@ -472,6 +472,7 @@ int main(void)
 	//HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
+	SetTimerSettings(&htim6, 20);	// Timer 6 default: 2000 Hz
 	HAL_TIM_Base_Start(&htim6);
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
 

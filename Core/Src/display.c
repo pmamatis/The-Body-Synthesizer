@@ -7,6 +7,10 @@
 
 #include "display.h"
 
+// for int8_t to string conversion to print the current page
+#include <stdio.h>
+#include <stdlib.h>
+
 Display_Status Display_Init(struct display_variables* Display ) {
 
 	Display->PatchSelected[0] = false;
@@ -29,7 +33,6 @@ Display_Status Display_Init(struct display_variables* Display ) {
 
 	//Mode
 	Display->mode = NONE;
-
 
 	Display->KeyboardmodeSelected = false;
 
@@ -147,40 +150,50 @@ Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer
 	EPD_DisplayFrame(epd);
 	EPD_Init(epd, lut_partial_update);
 
+	DISPLAY_processing();
 	DISPLAY_DrawArrow(1);
+	DISPLAY_Update();
+
 
 	return DISPLAY_OK;
 }
 
 
 
-void DISPLAY_processing(void){
+void DISPLAY_processing(void) {
 
-	switch(Display.mode){
+	switch(Display.mode) {
 	case NONE:
 		p_StartingMenu(frame_buffer);
 		break;
 
 	case BODYSYNTH:
-		Display.page_max = 4; // must be cahnegd for every added case
-		switch(Display.pagePosition){
+		Display.page_max = 4; // must be changed for every added case
+		switch(Display.pagePosition) {
 		case 1:
-			//voices
+			// Voices
 			p_Dummy();
 			break;
 		case 2:
+			// Distortion
+			// ...
 			break;
 		case 3:
-
+			// Tremolo
+			// ...
 			break;
-
+		case 4:
+			// Equalizer
+			// ...
+			break;
 		}
 		break;
+
 		case KEYBOARD:
-			Display.page_max = 1; // must be cahnegd for every added case
+			Display.page_max = 1; // must be changed for every added case
 			switch(Display.pagePosition){
 			case 1:
-				//		p_KeyboardSetParamters();
+				// p_KeyboardSetParameters();
 				break;
 			}
 			break;
@@ -340,35 +353,35 @@ Display_Status p_StartingMenu(unsigned char* frame_buffer) {
 	Paint_DrawStringAt(&paint, 1, 30, "Keyboardmode", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, 1, 50, "Synthesizermode", &Font12, COLORED);
 
-//	while(Display.KeyboardmodeSelected == false) {
+	//	while(Display.KeyboardmodeSelected == false) {
 
-		//		Display.VRx = Display.ADC2inputs[0];		// read joystick-x-value
-		//		Display.Poti_raw = Display.ADC2inputs[2];	// read poti-value
+	//		Display.VRx = Display.ADC2inputs[0];		// read joystick-x-value
+	//		Display.Poti_raw = Display.ADC2inputs[2];	// read poti-value
 
 
 
-		//		if(Display->Poti_raw < Display->ADC_FullRange/2) {
-		//			Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
-		//			Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
-		//			Display->Keyboardmode_ONOFF = false;
-		//			Display->JoystickModePosition = 1;
-		//		}
-		//		else if(Display->Poti_raw >= Display->ADC_FullRange/2) {
-		//			Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
-		//			Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
-		//			Display->Keyboardmode_ONOFF = true;
-		//			Display->JoystickModePosition = 2;
-		//			}
+	//		if(Display->Poti_raw < Display->ADC_FullRange/2) {
+	//			Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+	//			Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
+	//			Display->Keyboardmode_ONOFF = false;
+	//			Display->JoystickModePosition = 1;
+	//		}
+	//		else if(Display->Poti_raw >= Display->ADC_FullRange/2) {
+	//			Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+	//			Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
+	//			Display->Keyboardmode_ONOFF = true;
+	//			Display->JoystickModePosition = 2;
+	//			}
 
-		switch(Display.JoystickParameterPosition) {
-		case 1:
-			Display.mode = KEYBOARD;
-			break;
-		case 2:
-			Display.mode = BODYSYNTH;
-			break;
-		}
-//	}
+	switch(Display.JoystickParameterPosition) {
+	case 1:
+		Display.mode = KEYBOARD;
+		break;
+	case 2:
+		Display.mode = BODYSYNTH;
+		break;
+	}
+	//	}
 
 	//Display->KeyboardmodeSelected = true;
 	//		Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
@@ -1208,7 +1221,7 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 void DISPLAY_Update(void) {
 	//	if( abs(Display.ADC2inputs[0]-Display.last_joystick_x) > Display.UpdateThreshold ||\
 	//			abs(Display.ADC2inputs[1]-Display.last_joystick_y) > Display.UpdateThreshold) {
-//	Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
+	//	Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 	EPD_DisplayFrame(&epd);
 	EPD_Init(&epd, lut_partial_update);
@@ -1217,7 +1230,7 @@ void DISPLAY_Update(void) {
 
 
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition) {
-	switch (JoystickParameterPosition){
+	switch(JoystickParameterPosition) {
 	case 1:
 		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, 30, "<--", &Font12, COLORED);
 		break;
@@ -1248,8 +1261,8 @@ void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition) {
 	}
 }
 
-void DISPLAY_DeleteArrow(uint8_t JoystickParameterPosition){
-	switch (JoystickParameterPosition){
+void DISPLAY_DeleteArrow(uint8_t JoystickParameterPosition) {
+	switch(JoystickParameterPosition) {
 	case 1:
 		Paint_DrawFilledRectangle(&paint, Display.arrow_start_x_position, 30, Display.arrow_end_x_position, 40, UNCOLORED);
 		break;
@@ -1282,12 +1295,10 @@ void DISPLAY_DeleteArrow(uint8_t JoystickParameterPosition){
 
 
 void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition){
+
 	//always use font 12 for arrow draws, to ensure a page can have 9 parameters
-
-
 	DISPLAY_DeleteArrow(*JoystickParameterPosition);
-	switch (*JoystickParameterPosition){
-
+	switch(*JoystickParameterPosition) {
 	case 1:
 		break;
 	case 2:
@@ -1357,23 +1368,161 @@ void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition){
 	DISPLAY_DrawArrow(*JoystickParameterPosition);
 }
 
+void DISPLAY_PrintCurrentPage(void) {
+	char current_page;
+	itoa(Display.pagePosition, current_page, 10);
+	Paint_DrawStringAt(&paint, 180, 1, current_page, &Font12, COLORED);
+	DISPLAY_Update();
+}
+
 void DISPLAY_SwitchPageLeft() {
 
 	Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 
-	if (Display.pagePosition > Display.page_min){
+	if (Display.pagePosition > Display.page_min) {
 		Display.pagePosition = Display.pagePosition-1;
 	}
 	else if (Display.pagePosition == Display.page_min)
 		Display.mode = NONE;
+
+	DISPLAY_PrintCurrentPage();
 }
 
 void DISPLAY_SwitchPageRight() {
 
 	Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 
-	if (Display.pagePosition < Display.page_max){
+	if (Display.pagePosition < Display.page_max) {
 		Display.pagePosition = Display.pagePosition+1;
+	}
+
+	DISPLAY_PrintCurrentPage();
+}
+
+void p_Voices(void) {
+	//Header
+	char headerstring[] = "VOICES";
+	Paint_DrawStringAt(&paint, 1, 10, headerstring, &Font16, COLORED);
+
+	//row cases
+	char str_1[] = "Voice1 ON/OFF";
+	char str_2[] = "Voice1 Note";
+	char str_3[] = "Voice1 Octave";
+	char str_4[] = "Voice2 ON/OFF";
+	char str_5[] = "Voice2 Note";
+	char str_6[] = "Voice2 Octave";
+	char str_7[] = "Voice3 ON/OFF";
+	char str_8[] = "Voice3 Note";
+	char str_9[] = "Voice3 Octave";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 30, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 50, str_2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 70, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 90, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 110, str_5, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 130, str_6, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 150, str_7, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 170, str_8, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 190, str_9, &Font12, COLORED);
+
+	//	// Voice1 Note
+	//	else if(Display.JoystickParameterPosition == 2) {
+	//		Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
+	//		float noteindex = ((float)Display.Poti_raw/4096) * (sizeof(keys)/sizeof(keys[0]));
+	//		Display.note = keys[(uint8_t)noteindex];
+	//		Display.Voices_Note[0] = Display.note;	// assign Voice1 Note
+	//	}
+	//
+	//	// Voice1 Octave
+	//	else if(Display.JoystickParameterPosition == 3) {
+	//		Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
+	//		Display.octave = (char) (((float)Display.Poti_raw/4096) * 6);	// 5 0ctaves
+	//		Display.Voices_Octave[0] = (uint8_t)Display.octave;	// assign Voice1 Octave
+	//	}
+
+
+	switch (Display.JoystickParameterPosition){
+	case 1:
+		Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+		if(Display.Poti_raw < Display.ADC_FullRange/2) {
+			Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
+			Display.Voices_ONOFF[0] = false;
+		}
+		else if(Display.Poti_raw >= Display.ADC_FullRange/2) {
+			Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
+			Display.Voices_ONOFF[0] = true;
+		}
+		break;
+	case 2:
+
+		break;
+	case 3:
+
+		break;
+	case 4:
+
+		break;
+	case 5:
+
+		break;
+	case 6:
+
+		break;
+	case 7:
+
+		break;
+	case 8:
+		break;
+	case 9:
+		break;
+	}
+}
+
+
+void p_Distortion(void) {
+	// Header line
+	char headerstring[] = "DISTORTION";
+	Paint_DrawStringAt(&paint, 1, 10, headerstring, &Font16, COLORED);
+
+	// row cases
+	char str_1[] = "Distortion ON/OFF";
+	char str_2[] = "Distortion Type";
+	char str_3[] = "Distortion Gain";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 30, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 50, str_2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, 70, str_3, &Font12, COLORED);
+
+	//	// Voice1 Note
+	//	else if(Display.JoystickParameterPosition == 2) {
+	//		Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
+	//		float noteindex = ((float)Display.Poti_raw/4096) * (sizeof(keys)/sizeof(keys[0]));
+	//		Display.note = keys[(uint8_t)noteindex];
+	//		Display.Voices_Note[0] = Display.note;	// assign Voice1 Note
+	//	}
+	//
+	//	// Voice1 Octave
+	//	else if(Display.JoystickParameterPosition == 3) {
+	//		Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
+	//		Display.octave = (char) (((float)Display.Poti_raw/4096) * 6);	// 5 0ctaves
+	//		Display.Voices_Octave[0] = (uint8_t)Display.octave;	// assign Voice1 Octave
+	//	}
+
+
+	switch (Display.JoystickParameterPosition){
+	case 1:
+		Paint_DrawFilledRectangle(&paint, 150, 30, 200, 50, UNCOLORED);
+		if(Display.Poti_raw < Display.ADC_FullRange/2) {
+			Paint_DrawStringAt(&paint, 150, 30, "OFF", &Font12, COLORED);
+			Display.Distortion_ONOFF = false;
+		}
+		else if(Display.Poti_raw >= Display.ADC_FullRange/2) {
+			Paint_DrawStringAt(&paint, 150, 30, "ON", &Font12, COLORED);
+			Display.Distortion_ONOFF = true;
+		}
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
 	}
 }
 
@@ -1402,9 +1551,6 @@ void p_Dummy() {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, 170, str_8, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, 190, str_9, &Font12, COLORED);
 
-
-
-	//
 	//	// Voice1 Note
 	//	else if(Display.JoystickParameterPosition == 2) {
 	//		Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);

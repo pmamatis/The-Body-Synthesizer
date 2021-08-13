@@ -381,24 +381,27 @@ void DMA2_Stream1_IRQHandler(void)
 void DMA2_Stream2_IRQHandler(void)
 {
 	/* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
-	if (Display.arrow_flag == true){	// just in case we would not use the arrow, this flag should be false
-		if (Display.ADC2inputs[1] <=  Display.LowerLimit){
+
+	if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
+		if (Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
 			DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
 			DISPLAY_processing();
 			DISPLAY_Update();
 		}
-		else if (Display.ADC2inputs[1] >=  Display.UpperLimit){
+		else if (Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
 			DISPLAY_ArrowUp(&(Display.JoystickParameterPosition));
 			DISPLAY_processing();
 			DISPLAY_Update();
 		}
 	}
-	if(Display.ADC2inputs[0] >= Display.UpperLimit) {	// switch to the left page
+	if(Display.ADC2inputs[0] > Display.UpperLimit) {	// switch to the left page
 		DISPLAY_SwitchPageLeft();
+		DISPLAY_processing();
 		DISPLAY_Update();
 	}
-	else if(Display.ADC2inputs[0] <= Display.LowerLimit) {	// switch to the right page
+	else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// switch to the right page
 		DISPLAY_SwitchPageRight();
+		DISPLAY_processing();
 		DISPLAY_Update();
 	}
 

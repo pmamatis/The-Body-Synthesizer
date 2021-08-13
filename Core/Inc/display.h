@@ -187,11 +187,14 @@ void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition);
 void DISPLAY_SwitchPageLeft(void);
 void DISPLAY_SwitchPageRight(void);
 void DISPLAY_Update(void);
+void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 
 //Page functions
-void DISPLAY_processing();
+void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
-void p_Dummy() ;
+void p_Voices(void);
+void p_Distortion(void);
+void p_Dummy(void);
 
 
 #endif /* INC_DISPLAY_H_ */
