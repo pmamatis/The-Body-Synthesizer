@@ -64,6 +64,7 @@ struct display_variables {
 	bool last_Voices_ONOFF[3];
 	uint8_t Voices_Note[3];
 	uint8_t Voices_Octave[3];
+	float noteindex;
 	bool ADSR_ONOFF;			// 1 ADSR
 	float ADSR_Attack;
 	float ADSR_Decay;

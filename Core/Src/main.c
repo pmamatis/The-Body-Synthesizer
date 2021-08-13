@@ -465,8 +465,8 @@ int main(void)
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 
-	NewSignal(&signals1, SIN, 'C', 4);
-	NewSignal(&signals1, SIN, 'G', 4);
+//	NewSignal(&signals1, SIN, 'C', 4);
+//	NewSignal(&signals1, SIN, 'G', 4);
 
 	//effects_add(ADSR, 0);
 

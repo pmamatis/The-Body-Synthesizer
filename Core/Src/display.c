@@ -116,10 +116,10 @@ Display_Status Display_Init(struct display_variables* Display ) {
 	Display->arrow_flag = true;
 	Display->arrow_start_x_position = 180;
 	Display->arrow_end_x_position = 200;
-	Display-> value_start_x_position = 150;
-	Display-> value_end_x_position= Display->arrow_start_x_position-1;
-	Display-> row_start_x_position= 1;
-	Display-> row_end_x_position= Display-> value_start_x_position-1;
+	Display->value_start_x_position = 150;
+	Display->value_end_x_position= Display->arrow_start_x_position-1;
+	Display->row_start_x_position= 1;
+	Display->row_end_x_position= Display-> value_start_x_position-1;
 	//Page parameter
 	Display->pagePosition = 0;
 	Display->page_min = 0;
@@ -546,38 +546,100 @@ void p_Voices(void) {
 
 	switch(Display.JoystickParameterPosition) {
 	case 1:
+		// Voice1 ON/OFF
 		Display.Poti_Threshold = 50;	// threshold for ON/OFF
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 30, Display.value_end_x_position, 50, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 30, Display.value_end_x_position, 40, UNCOLORED);
 		if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
-			Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, "OFF", &Font12, COLORED);
 			Display.Voices_ONOFF[0] = false;
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, "OFF", &Font12, COLORED);
 		}
 		else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
-			Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, "ON", &Font12, COLORED);
 			Display.Voices_ONOFF[0] = true;
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, "ON", &Font12, COLORED);
 		}
 		break;
 	case 2:
-
+		// Voice1 Note
+		Display.Poti_Threshold = 1;
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 50, Display.value_end_x_position, 60, UNCOLORED);
+		Display.noteindex = ((float)Display.ADC2inputs[2]/4096) * (sizeof(keys)/sizeof(keys[0]));
+		//Display.note = keys[(uint8_t)Display.noteindex];
+		//Display.Voices_Note[0] = Display.note;	// assign Voice1 Note
+		Display.Voices_Note[0] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+		Paint_DrawCharAt(&paint, Display.value_start_x_position, 50, Display.Voices_Note[0], &Font12, COLORED);
 		break;
 	case 3:
-
+		// Voice1 Octave
+		Display.Poti_Threshold = 1;
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 70, Display.value_end_x_position, 80, UNCOLORED);
+		//Display.octave = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
+		//Display.Voices_Octave[0] = (uint8_t)Display.octave;	// assign Voice1 Octave
+		Display.Voices_Octave[0] = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
+		Paint_DrawCharAt(&paint, Display.value_start_x_position, 70, Display.Voices_Octave[0]+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 		break;
 	case 4:
-
+		// Voice2 ON/OFF
+		Display.Poti_Threshold = 50;	// threshold for ON/OFF
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 90, Display.value_end_x_position, 100, UNCOLORED);
+		if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
+			Display.Voices_ONOFF[1] = false;
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, 90, "OFF", &Font12, COLORED);
+		}
+		else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
+			Display.Voices_ONOFF[1] = true;
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, 90, "ON", &Font12, COLORED);
+		}
 		break;
 	case 5:
-
+		// Voice2 Note
+		Display.Poti_Threshold = 1;
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 110, Display.value_end_x_position, 120, UNCOLORED);
+		Display.noteindex = ((float)Display.ADC2inputs[2]/4096) * (sizeof(keys)/sizeof(keys[0]));
+		//Display.note = keys[(uint8_t)Display.noteindex];
+		//Display.Voices_Note[0] = Display.note;	// assign Voice1 Note
+		Display.Voices_Note[1] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+		Paint_DrawCharAt(&paint, Display.value_start_x_position, 110, Display.Voices_Note[1], &Font12, COLORED);
 		break;
 	case 6:
-
+		// Voice2 Octave
+		Display.Poti_Threshold = 1;
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 130, Display.value_end_x_position, 140, UNCOLORED);
+		//Display.octave = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
+		//Display.Voices_Octave[0] = (uint8_t)Display.octave;	// assign Voice1 Octave
+		Display.Voices_Octave[1] = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
+		Paint_DrawCharAt(&paint, Display.value_start_x_position, 130, Display.Voices_Octave[1]+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 		break;
 	case 7:
-
+		// Voice3 ON/OFF
+		Display.Poti_Threshold = 50;	// threshold for ON/OFF
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 150, Display.value_end_x_position, 160, UNCOLORED);
+		if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
+			Display.Voices_ONOFF[2] = false;
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, 150, "OFF", &Font12, COLORED);
+		}
+		else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
+			Display.Voices_ONOFF[2] = true;
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, 150, "ON", &Font12, COLORED);
+		}
 		break;
 	case 8:
+		// Voice3 Note
+		Display.Poti_Threshold = 1;
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 170, Display.value_end_x_position, 180, UNCOLORED);
+		Display.noteindex = ((float)Display.ADC2inputs[2]/4096) * (sizeof(keys)/sizeof(keys[0]));
+		//Display.note = keys[(uint8_t)Display.noteindex];
+		//Display.Voices_Note[0] = Display.note;	// assign Voice1 Note
+		Display.Voices_Note[2] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+		Paint_DrawCharAt(&paint, Display.value_start_x_position, 170, Display.Voices_Note[2], &Font12, COLORED);
 		break;
 	case 9:
+		// Voice3 Octave
+		Display.Poti_Threshold = 1;
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 190, Display.value_end_x_position, 200, UNCOLORED);
+		//Display.octave = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
+		//Display.Voices_Octave[0] = (uint8_t)Display.octave;	// assign Voice1 Octave
+		Display.Voices_Octave[2] = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
+		Paint_DrawCharAt(&paint, Display.value_start_x_position, 190, Display.Voices_Octave[2]+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 		break;
 	default:
 		break;
