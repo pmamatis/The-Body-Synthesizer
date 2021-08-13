@@ -464,6 +464,10 @@ int main(void)
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
+
+	NewSignal(&signals1, SIN, 'C', 4);
+	NewSignal(&signals1, SIN, 'G', 4);
+
 	//effects_add(ADSR, 0);
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
@@ -1407,6 +1411,26 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+//printf()
+int io_putchar(int ch)
+{
+ uint8_t c[1];
+ c[0] = ch & 0x00FF;
+ HAL_UART_Transmit(&huart3, &*c, 1, 10);
+ return ch;
+}
+
+int _write(int file,char *ptr, int len)
+{
+ int DataIdx;
+ for(DataIdx= 0; DataIdx< len; DataIdx++)
+ {
+ io_putchar(*ptr++);
+ }
+return len;
+}
+//printf() end
 
 /*void SetPatchParameters(struct display_variables* Display, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer) {
 

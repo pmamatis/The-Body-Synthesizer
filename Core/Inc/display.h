@@ -88,6 +88,7 @@ struct display_variables {
 	float Filter_Q;
 	uint8_t Filter_EffectPosition;
 	bool Filter_EffectAdded;
+	uint16_t lastState;
 	//...Weitere Synthesizer-Parameter
 
 	uint8_t last_note;
@@ -150,6 +151,8 @@ struct display_variables {
 	uint16_t Poti_raw;
 	float Poti_percent;
 	int progress_bar;
+	uint16_t last_Poti;
+	uint16_t Poti_Threshold;
 
 	// EMG-Sensor-variables
 	uint16_t EMG_DC;
@@ -194,6 +197,7 @@ void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
 void p_Voices(void);
 void p_Distortion(void);
+void p_KeyboardSetParameters(void);
 void p_Dummy(void);
 
 

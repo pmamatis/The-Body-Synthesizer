@@ -382,6 +382,7 @@ void DMA2_Stream2_IRQHandler(void)
 {
 	/* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
 
+	// arrow up or down
 	if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
 		if (Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
 			DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
@@ -394,18 +395,29 @@ void DMA2_Stream2_IRQHandler(void)
 			DISPLAY_Update();
 		}
 	}
+
+	// switch page left or right
 	if(Display.ADC2inputs[0] > Display.UpperLimit) {	// switch to the left page
 		DISPLAY_SwitchPageLeft();
 		DISPLAY_processing();
+		Display.JoystickParameterPosition = 1;
+		DISPLAY_DrawArrow(1);
 		DISPLAY_Update();
 	}
 	else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// switch to the right page
 		DISPLAY_SwitchPageRight();
 		DISPLAY_processing();
+		Display.JoystickParameterPosition = 1;
+		DISPLAY_DrawArrow(1);
 		DISPLAY_Update();
 	}
 
-//	DISPLAY_Update();
+	//printf("%i\r\n", Display.ADC2inputs[2]);
+	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
+		DISPLAY_processing();
+		DISPLAY_Update();
+		Display.last_Poti = Display.ADC2inputs[2];
+	}
 
 	/* USER CODE END DMA2_Stream2_IRQn 0 */
 	HAL_DMA_IRQHandler(&hdma_adc2);
