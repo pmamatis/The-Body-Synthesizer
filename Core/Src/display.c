@@ -528,22 +528,6 @@ void p_Voices(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, 170, str_8, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, 190, str_9, &Font12, COLORED);
 
-	//	// Voice1 Note
-	//	else if(Display.JoystickParameterPosition == 2) {
-	//		Paint_DrawFilledRectangle(&paint, 150, 50, 200, 70, UNCOLORED);
-	//		float noteindex = ((float)Display.Poti_raw/4096) * (sizeof(keys)/sizeof(keys[0]));
-	//		Display.note = keys[(uint8_t)noteindex];
-	//		Display.Voices_Note[0] = Display.note;	// assign Voice1 Note
-	//	}
-	//
-	//	// Voice1 Octave
-	//	else if(Display.JoystickParameterPosition == 3) {
-	//		Paint_DrawFilledRectangle(&paint, 150, 70, 200, 90, UNCOLORED);
-	//		Display.octave = (char) (((float)Display.Poti_raw/4096) * 6);	// 5 0ctaves
-	//		Display.Voices_Octave[0] = (uint8_t)Display.octave;	// assign Voice1 Octave
-	//	}
-
-
 	switch(Display.JoystickParameterPosition) {
 	case 1:
 		// Voice1 ON/OFF
@@ -644,6 +628,20 @@ void p_Voices(void) {
 	default:
 		break;
 	}
+
+//	if(Display->Voices_ONOFF[0] == true) {	// if Voice1 ON
+//		if( (Display->last_note != Display->note) || (Display->last_octave != Display->octave) ) {	// if voice parameters changed
+//			if(signals1.count == 1)		// Delete the last generated signal
+//				DeleteSignal(&signals1, 1);
+//
+//			NewSignal(&signals1, SIN, Display->Voices_Note[0], Display->Voices_Octave[0]);	// create signal and assign selected parameters
+//			outputBuffer_position = HALF_BLOCK;
+//		}
+//	}
+//	else if(Display->Voices_ONOFF[0] == false) {	// if Voice1 OFF
+//		if(signals1.count == 1)
+//			DeleteSignal(&signals1, 1);
+//	}
 }
 
 
