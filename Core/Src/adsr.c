@@ -50,7 +50,7 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value)
 
 	if(keyboard_pressed_flag == true) {
 
-		float calc;
+		float calc = 0;
 
 		envelope->adsr_duration_time = envelope->adsr_attack_time + envelope->adsr_decay_time + envelope->adsr_sustain_time + envelope->adsr_release_time;
 

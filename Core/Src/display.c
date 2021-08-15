@@ -262,14 +262,13 @@ void DISPLAY_processing(void) {
 	return DISPLAY_OK;
 }*/
 
+/** @brief this function updates the display
+ *
+ */
 void DISPLAY_Update(void) {
-	//	if( abs(Display.ADC2inputs[0]-Display.last_joystick_x) > Display.UpdateThreshold ||\
-	//			abs(Display.ADC2inputs[1]-Display.last_joystick_y) > Display.UpdateThreshold) {
-	//	Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);
 	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 	EPD_DisplayFrame(&epd);
 	EPD_Init(&epd, lut_partial_update);
-	//	}
 }
 
 
@@ -943,7 +942,7 @@ Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint
 	return DISPLAY_OK;
 }
 
-void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* SoftClipping, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer) {
+/*void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* SoftClipping, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer) {
 
 	while(Display->KeyboardmodeSelected == true) {
 
@@ -1762,4 +1761,4 @@ void SetParameters(struct display_variables* Display, struct signal_t* signals, 
 			// #############################################
 		}
 	}
-}
+}*/

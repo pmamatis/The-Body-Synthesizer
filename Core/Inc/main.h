@@ -33,7 +33,6 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "stm32f7xx_hal.h"
 #include "signal_synthesis.h"
 #include "music_notes.h"
 #include "sinLUT.h"
@@ -43,6 +42,12 @@ extern "C" {
 #include "filters.h"
 #include "arm_math.h"
 #include "math_helper.h"
+
+// for ADSR
+#include "adsr.h"
+
+// for Keyboard
+#include "keyboard.h"
 
 // for tremolo
 #include "tremolo.h"
@@ -78,10 +83,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define EMG_AC_Pin GPIO_PIN_2
-#define EMG_AC_GPIO_Port GPIOC
-#define EMG_DC_Pin GPIO_PIN_3
-#define EMG_DC_GPIO_Port GPIOC
+#define ENTER_USER_Pin GPIO_PIN_13
+#define ENTER_USER_GPIO_Port GPIOC
+#define ENTER_USER_EXTI_IRQn EXTI15_10_IRQn
+#define GYRO_I2C_SDA_Pin GPIO_PIN_0
 #define GYRO_I2C_SDA_GPIO_Port GPIOF
 #define GYRO_I2C_SCL_Pin GPIO_PIN_1
 #define GYRO_I2C_SCL_GPIO_Port GPIOF

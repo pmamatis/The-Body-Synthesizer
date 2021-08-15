@@ -208,7 +208,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//Effekte
 		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
-
 		//maximum
 		if (signals -> max < fabs((double)addValue)){
 			signals -> max = fabs((double)addValue);
@@ -303,9 +302,41 @@ void Signal_Synthesis_LFO(struct effects_lfo_t* effect) {
 }
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+float LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
+
+	float effect_LFO = 0;
+
+	// calculate ratio between LFO_LUT frequency and desired frequency
+	float frequency_ratio = lfo->lfo_frequency / LFO_FMIN;
+
+	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
+	if(lfo->lfo_index  > LFO_ENDINDEX[0]) {
+		lfo->lfo_index = 0;
+		lfo->lfo_quarter++;
+		if (lfo->lfo_quarter > 3)
+			lfo->lfo_quarter = 0;
+	}
+
+	switch(lfo->lfo_quarter) {
+	case 0:
+		effect_LFO = LFO[lfo->lfo_index];
+		break;
+	case 1:
+		effect_LFO = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+		break;
+	case 2:
+		effect_LFO = -LFO[lfo->lfo_index];
+		break;
+	case 3:
+		effect_LFO = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+		break;
+	default:
+		break;
+	}
+	lfo->lfo_index = round((double)(lfo->lfo_index + frequency_ratio));
+
+	return effect_LFO;
+}
 
 
 /* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */

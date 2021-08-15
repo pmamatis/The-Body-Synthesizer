@@ -19,7 +19,7 @@ typedef enum {
 	ADSR_OK = 1
 } ADSR_Status;
 
-struct adsr {
+ struct adsr {
 	uint32_t adsr_counter;
 	float adsr_max_amp;
 	float adsr_duration_time;
