@@ -58,6 +58,9 @@ extern "C" {
 // EMG
 #include "emg.h"
 
+// Display
+#include "display.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
