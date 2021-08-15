@@ -1,10 +1,10 @@
 /**
-  ******************************************************************************
-  * @file    filters.h
-  * @author  Max Lehmer
-  * @date 	 07 May 2020
-  * @brief	 Filter-Library
-*/
+ ******************************************************************************
+ * @file    filters.h
+ * @author  Max Lehmer
+ * @date 	 07 May 2020
+ * @brief	 Filter-Library
+ */
 
 #ifndef INC_FILTERS_H_
 #define INC_FILTERS_H_
@@ -57,8 +57,6 @@ struct BQFilter LP_REVERB;
 struct BQFilter LP_DELAY;
 
 struct BQFilter LP_AA;
-
-
 
 /***************************
  * @brief		Enumeration for DSP Debugging

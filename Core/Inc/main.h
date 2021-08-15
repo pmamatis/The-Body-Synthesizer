@@ -38,7 +38,7 @@ extern "C" {
 #include "music_notes.h"
 #include "sinLUT.h"
 #include "effects.h"
-
+#include "filters.h"
 // for filters
 #include "filters.h"
 #include "arm_math.h"
@@ -82,6 +82,53 @@ void Error_Handler(void);
 #define EMG_AC_GPIO_Port GPIOC
 #define EMG_DC_Pin GPIO_PIN_3
 #define EMG_DC_GPIO_Port GPIOC
+#define GYRO_I2C_SDA_GPIO_Port GPIOF
+#define GYRO_I2C_SCL_Pin GPIO_PIN_1
+#define GYRO_I2C_SCL_GPIO_Port GPIOF
+#define ADC_EMG_DC_Pin GPIO_PIN_6
+#define ADC_EMG_DC_GPIO_Port GPIOF
+#define ADC_EMG_AC_Pin GPIO_PIN_7
+#define ADC_EMG_AC_GPIO_Port GPIOF
+#define SD_CS_Pin GPIO_PIN_10
+#define SD_CS_GPIO_Port GPIOF
+#define Poti_Pin GPIO_PIN_0
+#define Poti_GPIO_Port GPIOC
+#define KEYBOARD_ADC_Pin GPIO_PIN_2
+#define KEYBOARD_ADC_GPIO_Port GPIOC
+#define DISP_DC_Pin GPIO_PIN_0
+#define DISP_DC_GPIO_Port GPIOA
+#define VRx_Pin GPIO_PIN_6
+#define VRx_GPIO_Port GPIOA
+#define VRy_Pin GPIO_PIN_0
+#define VRy_GPIO_Port GPIOB
+#define DISP_BUSY_Pin GPIO_PIN_1
+#define DISP_BUSY_GPIO_Port GPIOB
+#define SD_DI_MOSI_Pin GPIO_PIN_2
+#define SD_DI_MOSI_GPIO_Port GPIOB
+#define DISP_RST_Pin GPIO_PIN_12
+#define DISP_RST_GPIO_Port GPIOF
+#define SW_Pin GPIO_PIN_0
+#define SW_GPIO_Port GPIOG
+#define ENTER_Pin GPIO_PIN_8
+#define ENTER_GPIO_Port GPIOE
+#define ENTER_EXTI_IRQn EXTI9_5_IRQn
+#define Red_User_LED_Pin GPIO_PIN_14
+#define Red_User_LED_GPIO_Port GPIOB
+#define DISP_CS_Pin GPIO_PIN_8
+#define DISP_CS_GPIO_Port GPIOC
+#define BACK_Pin GPIO_PIN_9
+#define BACK_GPIO_Port GPIOC
+#define BACK_EXTI_IRQn EXTI9_5_IRQn
+#define SD_CLK_Pin GPIO_PIN_10
+#define SD_CLK_GPIO_Port GPIOC
+#define SD_DO_MISO_Pin GPIO_PIN_11
+#define SD_DO_MISO_GPIO_Port GPIOC
+#define DISP_CLK_Pin GPIO_PIN_3
+#define DISP_CLK_GPIO_Port GPIOB
+#define DISP_DIN_Pin GPIO_PIN_5
+#define DISP_DIN_GPIO_Port GPIOB
+#define Blue_User_LED_Pin GPIO_PIN_7
+#define Blue_User_LED_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /**@brief number of support points for a single period*/
@@ -93,6 +140,12 @@ void Error_Handler(void);
 
 //Variables
 
+bool process_trem;
+bool process_dist;
+bool process_dist_soft;
+bool process_dist_hard;
+bool process_adsr;
+bool process_filter;
 /** @brief DAC output array*/
 //uint32_t output_vector1[BLOCKSIZE];
 float calculate_vector1[BLOCKSIZE];
@@ -100,7 +153,8 @@ float calculate_vector1[BLOCKSIZE];
 //uint32_t output_vector2[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
-float effect_LFO[BLOCKSIZE/2];
+float effect_LFO[BLOCKSIZE/2];	// Original!!!
+//uint32_t effect_LFO_output[BLOCKSIZE];
 //uint32_t effect_LFO_output[BLOCKSIZE];
 
 float sigFreq_sampleFreq_ratio;

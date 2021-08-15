@@ -29,12 +29,12 @@ extern "C" {
 #define WAV_FORMAT_EXTENSIBLE 0xfffe
 
 typedef enum {
-    WAV_OK,           /* no error */
-    WAV_ERROR_NOMEM,  /* malloc failed */
-    WAV_ERROR_OS,     /* error when {wave} called a stdio function */
-    WAV_ERROR_FORMAT, /* not a wave file or unsupported wave format */
-    WAV_ERROR_MODE,   /* incorrect mode when opening the wave file or calling mode-specific API */
-    WAV_ERROR_PARAM,  /* incorrect parameter passed to the API function */
+	WAV_OK,           /* no error */
+	WAV_ERROR_NOMEM,  /* malloc failed */
+	WAV_ERROR_OS,     /* error when {wave} called a stdio function */
+	WAV_ERROR_FORMAT, /* not a wave file or unsupported wave format */
+	WAV_ERROR_MODE,   /* incorrect mode when opening the wave file or calling mode-specific API */
+	WAV_ERROR_PARAM,  /* incorrect parameter passed to the API function */
 } WavError;
 
 typedef struct _WavFile WavFile;
@@ -51,7 +51,7 @@ typedef struct _WavFile WavFile;
 WavFile* wav_open(const char* filename, const char* mode);
 int      wav_close(WavFile* self);
 WavFile* wav_reopen(WavFile* self, const char* filename, const char* mode);
-	
+
 /** function:       wave_read
  *  description:    Read a block of samples from the wave file
  *  parameters:

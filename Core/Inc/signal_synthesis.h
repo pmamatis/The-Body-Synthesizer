@@ -16,6 +16,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <stdarg.h>
+#include "display.h"
 
 /**@brief maximal amplitude of output voltage in millivolts*/
 #define AMPLITUDE 	2000
@@ -53,6 +54,17 @@ struct signal_t{
 /**@brief Array to monitor which ID's are taken, taken = 1; free = 0 */
 uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
 
+//Effects//Effects
+enum effects_using_LFO{
+	TREMOLLO = 0,
+};
+
+struct effects_LFO_t{
+	uint8_t name;
+	uint32_t index;
+	uint8_t quarter;
+	float frequency;
+};
 //Effects
 struct effects_lfo_t{
 
@@ -61,7 +73,6 @@ struct effects_lfo_t{
 	float lfo_frequency;
 	uint32_t lfo_blocksizecounter;
 	float depth;
-};
 
 enum singnal_synthesis_enum{
 	note_key = 0,
@@ -77,16 +88,15 @@ enum signal_kind_enum{
 	NOISE
 };
 
-
 //Variables
+//float lfo_value;
+
 uint8_t output_Channel;
 /** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
 uint8_t outputBuffer_position;
 
-
 struct signal_t signals1;
 struct signal_t signals2;
-
 
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
@@ -94,8 +104,10 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
+void Signal_Synthesis_LFO(struct effects_LFO* effect);
+float LFO_SingleValueProcess(struct effects_LFO* effect);
+float AWGN_generator();
 
-void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
 float AWGN_generator();
 
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

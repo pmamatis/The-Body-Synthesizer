@@ -14,7 +14,7 @@ void effects_init(){
  * 											 effects_delete(effects_t_enum effect, uint8_t position) to delete effects
  * @param calculate_value:adress of a signle sample which should be effected
  */
-void effects_process(float* calculate_value){
+void effects_process(float* calculate_value) {
 
 
 
@@ -35,6 +35,7 @@ void effects_process(float* calculate_value){
         case DIST_S:
         	ProcessSoftClippingDistortion(&SoftClipping1, calculate_value);
         	break;
+
         default:
             break;
         }
@@ -61,10 +62,17 @@ void effects_add(effects_t_enum effect, uint8_t position){
 			tmp2 = effect_order[i];
 			effect_order[i] = tmp;
 			tmp = tmp2;
-
-
-
 		}
+	}
+	else {
+		//error @TODO
+	}
+}*/
+void effects_add(effects_t_enum effect, uint8_t position) {
+
+	if (position < MAX_EFFECTS){
+
+		effect_order[position] = effect;
 	}
 	else {
 		//error @TODO
@@ -75,7 +83,7 @@ void effects_add(effects_t_enum effect, uint8_t position){
 /**
  * Deletes an effect inside the effect_order[position]
  */
-void effects_delete(effects_t_enum effect, uint8_t position){
+void effects_delete(effects_t_enum effect, uint8_t position) {
 
 	if (position < MAX_EFFECTS){
 		if (effect == effect_order[position]){

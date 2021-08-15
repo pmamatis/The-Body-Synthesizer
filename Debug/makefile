@@ -9,9 +9,15 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include Middlewares/Third_Party/FatFs/src/option/subdir.mk
+-include Middlewares/Third_Party/FatFs/src/subdir.mk
+-include Fonts/subdir.mk
+-include FATFS/Target/subdir.mk
+-include FATFS/App/subdir.mk
 -include Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
+-include BSP/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -61,8 +67,8 @@ all: main-build
 main-build: Body-Synthesizer_STM32_F746ZG.elf secondary-outputs
 
 # Tool invocations
-Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) /media/paul/LINUX_MEM/Uni/Git\ Repos/Body-Synthesizer_STM32_F746ZG/Body-Synthesizer_STM32_F746ZG/Body-Synthesizer_STM32_F746ZG/STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/media/paul/LINUX_MEM/Uni/Git Repos/Body-Synthesizer_STM32_F746ZG/Body-Synthesizer_STM32_F746ZG/Body-Synthesizer_STM32_F746ZG/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) C:\Users\Marc\ Bielen\Documents\Studium\Master\ TU\ Berlin\6.\ Semester\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Marc Bielen\Documents\Studium\Master TU Berlin\6. Semester\Body-Synthesizer_STM32_F746ZG\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdbool.h>
 
 #ifndef INC_EFFECTS_H_
 #define INC_EFFECTS_H_
@@ -8,18 +9,16 @@
  *********************************/
 #define MAX_EFFECTS 10
 
-
-
-
-
 /***************************
  * @brief		Enumeration for DSP Effects
  ***************************/
-typedef enum effects_t_enum{
-    TREM = 1,     	// Tremolo
-    DIST_H,       	// Hard Clipping Distortion
-	DIST_S,			// Soft Clipping Distortion
-    EQ			  	// Equalizer
+typedef enum effects_t_enum {
+	TREM = 1,	// Tremolo
+	DIST_S,		// Soft Clipping Distortion
+	DIST_H,		// Hard Clipping Distortion
+	EQ,			// Equalizer
+	ADSR		// ADSR
+
 }effects_t_enum;
 
 
@@ -30,8 +29,8 @@ typedef enum effects_t_enum{
 /** Array filled with the effects in process order
  */
 effects_t_enum effect_order[MAX_EFFECTS];
-
-
+float lfo_value;
+//bool process_trem;
 
 /*********************************
  * @brief	Functions

@@ -15,7 +15,6 @@
 
 #include "main.h"
 
-
 enum chord_type{
 	fifth= 0,
 	seventh,

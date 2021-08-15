@@ -26,12 +26,13 @@ typedef enum {
 struct effects_distortion{
 	float min_distortion_calculatevector;
 	float max_distortion_calculatevector;
-	float last_distortion_gain;
 	float distortion_gain;
 	float atan_parameter;
 	unsigned int distortion_index;
 	uint8_t softclipping_option;
 	float distortion_threshold;
+
+	bool atan_softclipping_option;
 
 	// distortion_gain = 1.0 -> +-0.392650008
 	// distortion_gain = 2.0 -> +-0.553650022
@@ -44,6 +45,8 @@ struct effects_distortion{
 	// distortion_gain = 9.0 -> +-0.730050027
 	// distortion_gain = 10.0 -> +-0.735549986
 	float atan_softclipping_distortion_max[10];	// 10 different distortion gain values, so the effect can be increased step-wise
+
+	float distortion_maximum_gain;
 };
 
 /*% softclipping-atan lookup-table generation in MATLAB
@@ -68,7 +71,9 @@ struct effects_distortion SoftClipping1;
 Distortion_Status Distortion_Init(void);
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping);
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping);
+Distortion_Status SetupAtanSoftClippingDistortion(struct effects_distortion* SoftClipping);
 Distortion_Status ProcessHardClippingDistortion(struct effects_distortion* HardClipping, float* data);
 Distortion_Status ProcessSoftClippingDistortion(struct effects_distortion* SoftClipping, float* data);
+Distortion_Status ProcessAtanSoftClippingDistortion(struct effects_distortion* SoftClipping, float* data);
 
 #endif /* INC_DISTORTION_H_ */
