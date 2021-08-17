@@ -1,16 +1,7 @@
-
-
-
-
 #include "signal_synthesis.h"
-
-
-
-
 
 /** @brief maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal_sythesis.h and will be set in the Init function*/
 double maxValueDAC = DAC_MAX;
-
 
 
 /**@brief Init funtion for the signal_synthesis, must be used in order to use any other funtion of this .c

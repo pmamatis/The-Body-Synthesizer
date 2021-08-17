@@ -172,8 +172,6 @@ struct display_variables {
 	bool SW;		// state variable of the SW-Button of the Joystick
 };
 
-
-
 struct display_variables Display;
 EPD epd;
 Paint paint;
@@ -197,8 +195,10 @@ void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
 void p_Voices(void);
-void p_Distortion(void);
-void p_KeyboardSetParameters(void);
+void p_Distortion(struct effects_distortion* HardClipping);
+void p_Tremolo(struct Tremolo_t* Tremolo);
+void p_Equalizer(void);
+void p_KeyboardSetParameters(struct adsr* envelope);
 void p_Dummy(void);
 
 

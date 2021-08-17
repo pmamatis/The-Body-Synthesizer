@@ -105,6 +105,4 @@ void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
 float LFO_SingleValueProcess(struct effects_lfo_t* effect);
 float AWGN_generator(void);
 
-
-
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

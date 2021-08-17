@@ -65,8 +65,8 @@ struct effects_distortion{
 extern const float aquidistance;
 extern const float atan_LUT_y[8192];	// blocksize = 8192
 
-struct effects_distortion HardClipping1;
-struct effects_distortion SoftClipping1;
+struct effects_distortion HardClipping;
+struct effects_distortion SoftClipping;
 
 Distortion_Status Distortion_Init(void);
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping);

@@ -15,15 +15,15 @@
  *********************************/
 Distortion_Status Distortion_Init(void) {
 
-	SetupHardClippingDistortion(&HardClipping1);
-	SetupAtanSoftClippingDistortion(&SoftClipping1);
+	SetupHardClippingDistortion(&HardClipping);
+	SetupAtanSoftClippingDistortion(&SoftClipping);
 
 	return DISTORTION_OK;
 }
 
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping) {
 
-	HardClipping->distortion_gain = 5.0;	// default -> no clipping
+	HardClipping->distortion_gain = 1.0;	// default -> no clipping
 	HardClipping->distortion_maximum_gain = 9.0;
 
 	return DISTORTION_OK;
@@ -33,7 +33,7 @@ Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftCli
 
 	//SoftClipping->last_distortion_gain = 0.0;	// MUSS ZU BEGINN VON distortion_gain ABWEICHEN!
 	//SoftClipping->distortion_gain = 1.0;
-	SoftClipping->distortion_gain = 6.0;
+	SoftClipping->distortion_gain = 1.0;
 	SoftClipping->min_distortion_calculatevector = 0.0;
 	SoftClipping->max_distortion_calculatevector = 0.0;
 	SoftClipping->softclipping_option = 2;	// 0=optionA; 1=optionB; 2=optionC
