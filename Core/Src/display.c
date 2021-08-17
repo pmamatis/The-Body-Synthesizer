@@ -15,7 +15,7 @@
  * @param Display: display struct
  * @return returns display status flag
  */
-Display_Status Display_Init(struct display_variables* Display ) {
+Display_Status Display_Init(struct display_variables* Display) {
 
 	Display->PatchSelected[0] = false;
 	Display->PatchSelected[1] = false;

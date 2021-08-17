@@ -1,5 +1,5 @@
 #include "effects.h"
-
+#include "display.h"
 
 void effects_init(void) {
 
@@ -7,7 +7,6 @@ void effects_init(void) {
 		effect_order[i] = 0;
 	}
 }
-
 
 /**
  * processes all effects in the given order, order is determined through effect_order[i]
@@ -17,24 +16,29 @@ void effects_init(void) {
  */
 void effects_process(float* calculate_value) {
 
-	for(int i=0; i<MAX_EFFECTS; i++) {
-		switch(effect_order[i]) {
-		case TREM:
-			lfo_value = LFO_SingleValueProcess(&lfo);
-			ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
-			break;
-		case EQ:
-			ProcessEQ(calculate_value);
-			break;
-		case DIST_H:
-			ProcessHardClippingDistortion(&HardClipping, calculate_value);
-			break;
-		case DIST_S:
-			ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
-			break;
-		default:
-			break;
+	if(Display.mode == BODYSYNTH) {
+		for(int i=0; i<MAX_EFFECTS; i++) {
+			switch(effect_order[i]) {
+			case TREM:
+				lfo_value = LFO_SingleValueProcess(&lfo);
+				ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
+				break;
+			case EQ:
+				ProcessEQ(calculate_value);
+				break;
+			case DIST_H:
+				ProcessHardClippingDistortion(&HardClipping, calculate_value);
+				break;
+			case DIST_S:
+				ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
+				break;
+			default:
+				break;
+			}
 		}
+	}
+	else if(Display.mode == KEYBOARD) {
+		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
 	}
 }
 

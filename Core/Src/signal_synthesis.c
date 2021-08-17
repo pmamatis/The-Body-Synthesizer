@@ -197,34 +197,35 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//Effekte
-		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//maximum
 		if (signals -> max < fabs((double)addValue)){
 			signals -> max = fabs((double)addValue);
 		}
 
-		//scale output signal depending on amount of voices
-		switch (signals -> count){
-		case 1:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
-			break;
-		case 2:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
-			break;
-		case 3:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
-			break;
-		case 4:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
-			break;
-		case 5:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
-			break;
-		default:
-			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
-			break;
-		}
+//		//scale output signal depending on amount of voices
+//		switch (signals -> count){
+//		case 1:
+//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
+//			break;
+//		case 2:
+//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
+//			break;
+//		case 3:
+//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
+//			break;
+//		case 4:
+//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
+//			break;
+//		case 5:
+//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
+//			break;
+//		default:
+//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
+//			break;
+//		}
 
 		//Signal adjustment to DAC
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3

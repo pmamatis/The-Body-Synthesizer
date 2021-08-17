@@ -272,7 +272,6 @@ int main(void)
 	//	EPD_DisplayFrame(&epd);
 	//	EPD_Init(&epd, lut_partial_update);
 
-
 	// Start DAC-DMA
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
@@ -304,7 +303,7 @@ int main(void)
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
 	keyboard_start_read();
-	HAL_TIM_Base_Start(&htim5);
+	//HAL_TIM_Base_Start(&htim5);
 	HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)

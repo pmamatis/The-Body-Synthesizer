@@ -351,7 +351,7 @@ void DMA2_Stream0_IRQHandler(void)
   /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
 
 	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
-	if(Display.Keyboardmode_ONOFF == true)
+	if(Display.mode == KEYBOARD)
 		OnePress_keyboard_process(Display.ADC1input, &signals1, &envelope, &Display);
 
   /* USER CODE END DMA2_Stream0_IRQn 0 */
