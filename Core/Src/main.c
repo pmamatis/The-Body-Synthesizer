@@ -123,7 +123,6 @@ static void MX_I2C2_Init(void);
 /* DAC CHANNEL FUnktions */
 //DAC_CHANNEL_1
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-
 	outputBuffer_position = HALF_BLOCK;
 	Signal_Synthesis(&signals1, 1);
 }
@@ -304,7 +303,7 @@ int main(void)
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
 	keyboard_start_read();
 	//HAL_TIM_Base_Start(&htim5);
-	HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
+	//HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
 	SetTimerSettings(&htim6, 20);	// Timer 6 default: 2000 Hz
@@ -314,7 +313,6 @@ int main(void)
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
 	HAL_TIM_Base_Start(&htim1);
 	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 2);
-
 
 	// Patch-Selection-Startmenu
 	//PatchSelectionMenu(&Display, paint, epd, frame_buffer);
