@@ -24,7 +24,7 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 	envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
 	envelope->adsr_attack_time = 0.1 * LUT_SR;
 	envelope->adsr_decay_time = 0.05 * LUT_SR;
-	envelope->adsr_sustain_time = 1.00 * LUT_SR;
+	envelope->adsr_sustain_time = 0.15 * LUT_SR;
 	envelope->adsr_sustain_amplitude = 0.5;
 	envelope->adsr_release_time = 0.05 * LUT_SR;
 
