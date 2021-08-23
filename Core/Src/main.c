@@ -305,12 +305,14 @@ int main(void)
 	HAL_TIM_Base_Start(&htim1);
 	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 2);
 
+
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 
 	while(1) {
+
 
 		/* USER CODE END WHILE */
 
