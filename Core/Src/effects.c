@@ -44,22 +44,25 @@ void effects_process(float* calculate_value) {
 
 
 /**
- * Inserts an entry in the effect_order[position], and shifts the other entrys to the right
+ * Inserts an entry in the effect_order[position]
  * @param effect: wanted effect listed in the effects_t_enum
- * @param position:
+ * @param position: position in the effect chain
  */
 void effects_add(effects_t_enum effect, uint8_t position) {
 
 	if(position < MAX_EFFECTS) {
+		effect_order[position] = effect;
 
+		/*
 		effects_t_enum tmp = effect_order[position];
 		effects_t_enum tmp2;
-		effect_order[position] = effect;
+
 		for(int i=position+1; i<MAX_EFFECTS; i++) {
 			tmp2 = effect_order[i];
 			effect_order[i] = tmp;
 			tmp = tmp2;
 		}
+		*/
 	}
 	else {
 		//error @TODO

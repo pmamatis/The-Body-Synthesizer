@@ -182,7 +182,7 @@ Filter_Status ProcessEQ(float *data){
 
 	// BAND 2
 	band2 = *data;
-	//  ProcessFilter(&EQ_BAND2_I,  &band2);
+	ProcessFilter(&EQ_BAND2_I,  &band2);
 	//  ProcessFilter(&EQ_BAND2_II, &band2);
 	//	ProcessFilter(&EQ_BAND2_III,&band2);
 	//	ProcessFilter(&EQ_BAND2_IV, &band2);
@@ -190,21 +190,21 @@ Filter_Status ProcessEQ(float *data){
 
 	// BAND 3
 	band3 = *data;
-	//  ProcessFilter(&EQ_BAND3_I,  &band3);
+	ProcessFilter(&EQ_BAND3_I,  &band3);
 	//	ProcessFilter(&EQ_BAND3_II, &band3);
 	//	ProcessFilter(&EQ_BAND3_III,&band3);
 	//	ProcessFilter(&EQ_BAND3_IV, &band3);
 
 	// BAND 4
 	band4 = *data;
-	//  ProcessFilter(&EQ_BAND4_I,  &band4);
+	ProcessFilter(&EQ_BAND4_I,  &band4);
 	//	ProcessFilter(&EQ_BAND4_II, &band4);
 	//	ProcessFilter(&EQ_BAND4_III,&band4);
 	//	ProcessFilter(&EQ_BAND4_IV, &band4);
 
 	// BAND 5
 	band5 = *data;
-	//  ProcessFilter(&EQ_BAND5_I,  &band5);
+	ProcessFilter(&EQ_BAND5_I,  &band5);
 	//	ProcessFilter(&EQ_BAND5_II, &band5);
 
 	// Write OUT

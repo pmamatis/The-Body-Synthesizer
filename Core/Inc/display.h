@@ -19,6 +19,19 @@
 #define COLORED      0
 #define UNCOLORED    1
 
+
+typedef enum {
+	CASE1 = 30,
+	CASE2 = 50,
+	CASE3 =	70,
+	CASE4 =	90,
+	CASE5 =	110,
+	CASE6 =	130,
+	CASE7 =	150,
+	CASE8 =	170,
+	CASE9 =	190,
+}y_row_value;
+
 typedef enum {
 	DISPLAY_FAIL = -1,
 	DISPLAY_OK = 1
@@ -65,6 +78,8 @@ struct display_variables {
 	char Voices_Note[3];
 	char Voices_Octave[3];
 	float noteindex;
+
+	//ADSR
 	bool ADSR_ONOFF;			// 1 ADSR
 	float ADSR_Attack;
 	float ADSR_Decay;
@@ -72,6 +87,8 @@ struct display_variables {
 	float ADSR_Release;
 	uint8_t ADSR_EffectPosition;
 	bool ADSR_EffectAdded;
+
+	//Distortion
 	bool Distortion_ONOFF;
 	bool last_Distortion_ONOFF;
 	bool last_Distortion_Type;
@@ -79,14 +96,19 @@ struct display_variables {
 	float Distortion_Gain;
 	uint8_t Distortion_EffectPosition;
 	bool Distortion_EffectAdded;
+
+	//Tremolo
 	bool Tremolo_ONOFF;
 	float Tremolo_Rate;
 	float Tremolo_Depth;
 	uint8_t Tremolo_EffectPosition;
 	bool Tremolo_EffectAdded;
-	bool Filter_ONOFF;
-	float Filter_Cutoff;
-	float Filter_Q;
+
+	//Filter
+	bool Filter_ONOFF[5];
+	float Filter_Cutoff[5];
+	float Filter_Q[5];
+	uint8_t currentBand;
 	uint8_t Filter_EffectPosition;
 	bool Filter_EffectAdded;
 	uint16_t lastState;
@@ -200,6 +222,6 @@ void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_Equalizer(void);
 void p_KeyboardSetParameters(struct adsr* envelope);
 void p_Dummy(void);
-
+void p_Equalizer_overview();
 
 #endif /* INC_DISPLAY_H_ */

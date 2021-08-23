@@ -20,7 +20,9 @@
  * @parameter	BQFilter
  *********************************/
 struct BQFilter{
-
+	float Q;
+	float cutoff;
+	float dBGain;
 	float a0, a1, a2, b0, b1, b2;
 	float z[4];
 };
@@ -34,25 +36,17 @@ float parameter;
 
 // Equalizer
 struct BQFilter EQ_BAND1_I;
-struct BQFilter EQ_BAND1_II;
 
 struct BQFilter EQ_BAND2_I;
 struct BQFilter EQ_BAND2_II;
-struct BQFilter EQ_BAND2_III;
-struct BQFilter EQ_BAND2_IV;
 
 struct BQFilter EQ_BAND3_I;
 struct BQFilter EQ_BAND3_II;
-struct BQFilter EQ_BAND3_III;
-struct BQFilter EQ_BAND3_IV;
 
 struct BQFilter EQ_BAND4_I;
 struct BQFilter EQ_BAND4_II;
-struct BQFilter EQ_BAND4_III;
-struct BQFilter EQ_BAND4_IV;
 
 struct BQFilter EQ_BAND5_I;
-struct BQFilter EQ_BAND5_II;
 
 struct BQFilter LP_WAH;
 struct BQFilter HP_WAH;
