@@ -13,7 +13,8 @@
 
 #define II_MAX_VOICES 3
 
+uint8_t ii_voice_IDs[II_MAX_VOICES];
 
-void II_Display(void);
+uint8_t II_Display_Voices(void);
 
 #endif /* INC_INPUT_INTERFACES_H_ */
