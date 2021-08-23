@@ -129,12 +129,14 @@ void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 // DAC_CHANNEL_2
 void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
-	Signal_Synthesis(&signals2, 2);
+	//Signal_Synthesis(&signals2, 2);
+	Signal_Synthesis(&signals1, 1);
 }
 
 void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = FULL_BLOCK;
-	Signal_Synthesis(&signals2, 2);
+	//Signal_Synthesis(&signals2, 2);
+	Signal_Synthesis(&signals1, 1);
 }
 
 /* USER CODE END 0 */
@@ -266,9 +268,9 @@ int main(void)
 	//	EPD_Init(&epd, lut_partial_update);
 
 	// Start DAC-DMA
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
-
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,NOISE,'C',0);

@@ -46,7 +46,8 @@ struct effects_distortion{
 	// distortion_gain = 10.0 -> +-0.735549986
 	float atan_softclipping_distortion_max[10];	// 10 different distortion gain values, so the effect can be increased step-wise
 
-	float distortion_maximum_gain;
+	//float distortion_maximum_gain;
+	uint8_t distortion_maximum_gain;
 };
 
 /*% softclipping-atan lookup-table generation in MATLAB

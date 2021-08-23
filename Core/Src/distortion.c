@@ -24,7 +24,7 @@ Distortion_Status Distortion_Init(void) {
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping) {
 
 	HardClipping->distortion_gain = 1.0;	// default -> no clipping
-	HardClipping->distortion_maximum_gain = 9.0;
+	HardClipping->distortion_maximum_gain = 9;
 
 	return DISTORTION_OK;
 }

@@ -41,16 +41,16 @@ Filter_Status Filters_Init(){
 	SetupLowShelf(&EQ_BAND1_I,      266, 0.707, -20);
 
 	// BAND 2: Peaking-EQ / Notch-Filter
-	//SetupPeakingEQ(&EQ_BAND2_I,   400, 0.707, 0);
-	//SetupNotch	(&EQ_BAND2_I,  	400, 0.707	 );
+	SetupPeakingEQ(&EQ_BAND2_I,   400, 0.707, 0);
+	SetupNotch	(&EQ_BAND2_I,  	400, 0.707	 );
 
 	// BAND 3: Peaking-EQ / Notch-Filter
-	//SetupPeakingEQ(&EQ_BAND2_I,   800, 0.707, 0);
-	//SetupNotch	(&EQ_BAND2_I,  	800, 0.707	 );
+	SetupPeakingEQ(&EQ_BAND3_I,   800, 0.707, 0);
+	SetupNotch	(&EQ_BAND3_I,  	800, 0.707	 );
 
 	// BAND 4: Peaking-EQ / Notch-Filter
-	//SetupPeakingEQ(&EQ_BAND2_I,  1600, 0.707, 0);
-	//SetupNotch	(&EQ_BAND2_I,  1600, 0.707	 );
+	SetupPeakingEQ(&EQ_BAND4_I,  1600, 0.707, 0);
+	SetupNotch	(&EQ_BAND4_I,  1600, 0.707	 );
 
 	// BAND 5: High-Shelf filter
 	SetupHighShelf(&EQ_BAND5_I,    3200, 0.707, 0);
