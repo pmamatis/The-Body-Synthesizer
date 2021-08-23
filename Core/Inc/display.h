@@ -93,21 +93,22 @@ struct display_variables {
 	bool last_Distortion_ONOFF;
 	bool last_Distortion_Type;
 	bool Distortion_Type;
-	float Distortion_Gain;
+	//float Distortion_Gain;
+	uint8_t Distortion_Gain;
 	uint8_t Distortion_EffectPosition;
 	bool Distortion_EffectAdded;
 
 	//Tremolo
 	bool Tremolo_ONOFF;
-	float Tremolo_Rate;
+	//float Tremolo_Rate;
+	uint8_t Tremolo_Rate;
 	float Tremolo_Depth;
 	uint8_t Tremolo_EffectPosition;
 	bool Tremolo_EffectAdded;
-
-	//Filter
 	bool Filter_ONOFF[5];
 	float Filter_Cutoff[5];
 	float Filter_Q[5];
+	float Filter_Gain[5];
 	uint8_t currentBand;
 	uint8_t Filter_EffectPosition;
 	bool Filter_EffectAdded;
@@ -219,7 +220,7 @@ Display_Status p_StartingMenu(unsigned char* frame_buffer);
 void p_Voices(void);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
-void p_Equalizer(void);
+void p_Equalizer_Settings(struct BQFilter* EQ_BAND1, struct BQFilter* EQ_BAND2, struct BQFilter* EQ_BAND3, struct BQFilter* EQ_BAND4, struct BQFilter* EQ_BAND5);
 void p_KeyboardSetParameters(struct adsr* envelope);
 void p_Dummy(void);
 void p_Equalizer_overview();
