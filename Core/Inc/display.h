@@ -220,7 +220,7 @@ Display_Status p_StartingMenu(unsigned char* frame_buffer);
 void p_Voices(void);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
-void p_Equalizer_Settings(struct BQFilter* EQ_BAND1, struct BQFilter* EQ_BAND2, struct BQFilter* EQ_BAND3, struct BQFilter* EQ_BAND4, struct BQFilter* EQ_BAND5);
+void p_Equalizer_Settings();
 void p_KeyboardSetParameters(struct adsr* envelope);
 void p_Dummy(void);
 void p_Equalizer_overview();
