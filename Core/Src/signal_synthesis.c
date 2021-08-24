@@ -197,8 +197,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//Effekte
-		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//maximum
 		if (signals -> max < fabs((double)addValue)){
@@ -228,8 +227,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 //		}
 
 		//Signal adjustment to DAC
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
-		//
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + 0); // +1.5 fir middle of 0-3V3
+		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET); // +1.5 fir middle of 0-3V3
 
 	} //End for-Loop
 
