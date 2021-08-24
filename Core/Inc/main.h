@@ -162,6 +162,10 @@ float calculate_vector1[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
 float effect_LFO[BLOCKSIZE/2];	// Original!!!
+
+ //buffer for oszi
+uint32_t sync_buffer[BLOCKSIZE];
+
 //uint32_t effect_LFO_output[BLOCKSIZE];
 //uint32_t effect_LFO_output[BLOCKSIZE];
 

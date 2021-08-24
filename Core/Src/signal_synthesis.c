@@ -152,86 +152,104 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 	//decide if first half of BLOCKSIZE or second half
-	uint16_t BLOOCKSIZE_startIndex=0, BLOOCKSIZE_endIndex=0;
+	uint16_t BLOOCKSIZE_startIndex=0, BLOOCKSIZE_endIndex=0, ADC_BLOOCKSIZE_startIndex=0, ADC_BLOOCKSIZE_endIndex=0;
 	if (outputBuffer_position == HALF_BLOCK){
 		BLOOCKSIZE_startIndex = 0; // nur für lesbarkeit
 		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
+
+		ADC_BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+		ADC_BLOOCKSIZE_endIndex = BLOCKSIZE;
 	}
 	else if(outputBuffer_position == FULL_BLOCK){
 		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
+
+		ADC_BLOOCKSIZE_startIndex = 0;
+		ADC_BLOOCKSIZE_endIndex = BLOCKSIZE/2;
 	}
 
-	//Loop for signal synthesis
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-		addValue = 0;
-		//Loop to reach all Signals
-		for (int j = 0; j < count;j++){
-			switch (signals -> kind[j]) {
-			case SIN:
-				//adds all SIN values from the signals to addValue
-				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 
-				//get index for the next sin value
-				signals -> current_LUT_Index[j]++;
-				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
-				{
-					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
-				}
-				break;
+//	for(int i = BLOOCKSIZE_startIndex; i < BLOOCKSIZE_endIndex; i++){
+		for(int i = 0; i < BLOCKSIZE; i++){
 
-			case NOISE:
-				addValue += AWGN_generator();
-				break;
-			}//Switch-Case
-		}// Signal counter for-loop
+
+
+
+		*((uint32_t *)(&calculate_vector_tmp[i] )) = sync_buffer[i];
+//			*((uint32_t *)(&calculate_vector_tmp[i] )) = 3000;
+	}
+
+//	//Loop for signal synthesis
+//	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+//		addValue = 0;
+//		//Loop to reach all Signals
+//		for (int j = 0; j < count;j++){
+//			switch (signals -> kind[j]) {
+//			case SIN:
+//				//adds all SIN values from the signals to addValue
+//				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
+//
+//				//get index for the next sin value
+//				signals -> current_LUT_Index[j]++;
+//				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
+//				{
+//					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+//				}
+//				break;
+//
+//			case NOISE:
+//				addValue += AWGN_generator();
+//				break;
+//			}//Switch-Case
+//		}// Signal counter for-loop
 
 
 		//write into calculate vector
-		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
+		//calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
 
 
 		/*limiter function*/
 		//norm the signal to -1...1
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
+		//calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
 
 
 		//Effekte
 		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		//OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//maximum
 		if (signals -> max < fabs((double)addValue)){
 			signals -> max = fabs((double)addValue);
 		}
 
-//		//scale output signal depending on amount of voices
-//		switch (signals -> count){
-//		case 1:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
-//			break;
-//		case 2:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
-//			break;
-//		case 3:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
-//			break;
-//		case 4:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
-//			break;
-//		case 5:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
-//			break;
-//		default:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
-//			break;
-//		}
+		//		//scale output signal depending on amount of voices
+		//		switch (signals -> count){
+		//		case 1:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
+		//			break;
+		//		case 2:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
+		//			break;
+		//		case 3:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
+		//			break;
+		//		case 4:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
+		//			break;
+		//		case 5:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
+		//			break;
+		//		default:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
+		//			break;
+		//		}
 
 		//Signal adjustment to DAC
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
+		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((((float)emg_buffer[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
+		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
 		//
 
-	} //End for-Loop
+	//} //End for-Loop
 
 
 

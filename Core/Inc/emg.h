@@ -11,7 +11,7 @@
 #include "main.h"
 
 /* defines */
-#define EMG_READ_LENGTH 2
+#define EMG_READ_LENGTH 8192/4
 //#define EMG_SR 100 //Hz
 
 /* Variables */
