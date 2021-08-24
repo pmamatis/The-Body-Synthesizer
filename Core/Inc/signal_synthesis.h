@@ -48,7 +48,7 @@ struct signal_t{
 	double freq[MAX_SIGNAL_KOMBINATION];
 	uint8_t freqIndex[MAX_SIGNAL_KOMBINATION];
 	uint32_t current_LUT_Index[MAX_SIGNAL_KOMBINATION];
-	uint8_t ID[MAX_SIGNAL_KOMBINATION];
+	int8_t ID[MAX_SIGNAL_KOMBINATION];
 	uint8_t channel[MAX_SIGNAL_KOMBINATION];
 };
 /**@brief Array to monitor which ID's are taken, taken = 1; free = 0 */

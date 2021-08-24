@@ -417,6 +417,12 @@ void DMA2_Stream2_IRQHandler(void)
 		DISPLAY_processing();
 		DISPLAY_Update();
 		Display.last_Poti = Display.ADC2inputs[2];
+		Display.poti_moved =true;
+		II_Display_Effects();
+		II_Display_Voices();
+	}
+	else{
+		Display.poti_moved =false;
 	}
 
   /* USER CODE END DMA2_Stream2_IRQn 0 */

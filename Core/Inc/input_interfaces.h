@@ -16,5 +16,6 @@
 uint8_t ii_voice_IDs[II_MAX_VOICES];
 
 uint8_t II_Display_Voices(void);
+uint8_t II_Display_Effects(void);
 
 #endif /* INC_INPUT_INTERFACES_H_ */

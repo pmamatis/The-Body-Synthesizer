@@ -20,7 +20,9 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	//Sets all taken ID to zero
 	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++){
 		ID_array[Signal_Synthesis_Init_count]=0;
+		signals1.ID[Signal_Synthesis_Init_count] = -1;
 	}
+
 	//Inits and starts timer connected with DAC
 	SetTimerSettings(&htim, LUT_SR);
 	return HAL_TIM_Base_Start(&htim);
@@ -66,8 +68,8 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
  */
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave){
 
-	if (signals -> count <= MAX_SIGNAL_KOMBINATION){
-		signals -> count += 1;
+	if (signals -> count < MAX_SIGNAL_KOMBINATION){
+		signals -> count ++;
 		uint8_t index = (signals-> count)-1;
 
 		signals -> kind[index] = kind;
@@ -88,17 +90,21 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 			signals -> current_LUT_Index[index] = 0;
 			break;
 		}
-	}
+
 	signals -> max = 1;
 
-	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
+	//give ID
+	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION ;NewSignal_count++){
 		if(!ID_array[NewSignal_count]){
-			signals -> ID[NewSignal_count] = NewSignal_count;
+			signals -> ID[signals->count] = NewSignal_count;
 			ID_array[NewSignal_count] = 1;
+			break;
 		}
 
 	}
+	printf("created Signal with \n\r ID:%i , sig amt:%i\r\n",signals -> ID[signals->count], signals->count);
 
+	}
 }
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
@@ -108,20 +114,30 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
  *  */
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 	//free the signal ID
-	uint8_t tmp = signals -> ID[signal_index];
-	ID_array[tmp] = 0;
+	if (signals->count > 0){
+		uint8_t tmp = signals -> ID[signal_index];
+		ID_array[tmp] = 0;
+		printf("deleted Signal with \r\nID:%i , sig amt:%i\r\n",tmp, signals->count);
+		//shift signals too left
+		for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
+			signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
+			signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
+			signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
+			signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
+			signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
 
-	//shift signals too left
-	for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
-		signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
-		signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
-		signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
-		signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
-		signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
+		}
+		//delete last signal
+		signals -> current_LUT_Index[signals -> count] = 0 ;
+		signals -> freq[signals -> count] = 0;
+		signals -> freqIndex[signals -> count] = 0;
+		signals -> kind[signals -> count] = 0 ;
+		signals -> ID[signals -> count]  = 0 ;
 
+
+		signals -> count--;
+		signals -> max = 0;
 	}
-	signals -> count-=1;
-	signals -> max = 0;
 }
 
 
@@ -227,8 +243,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 //		}
 
 		//Signal adjustment to DAC
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + 0); // +1.5 fir middle of 0-3V3
-		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET); // +1.5 fir middle of 0-3V3
+//		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + 0); // +1.5 fir middle of 0-3V3
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET); // +1.5 fir middle of 0-3V3
 
 	} //End for-Loop
 

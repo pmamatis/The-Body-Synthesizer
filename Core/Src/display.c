@@ -42,13 +42,15 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->Keyboardmode_ONOFF = false;
 
 	Display->ActiveEffectsCounter = 0;
+	//VOICES
+	for (int i =0; i < 3;i++){
+		Display -> Voices_Created[i] = false;
+		Display -> Voices_ONOFF[i] = false;
+	}
 
-	Display->Voices_ONOFF[0] = false;
-	Display->Voices_ONOFF[1] = false;
-	Display->Voices_ONOFF[2] = false;
-	Display->last_Voices_ONOFF[0] = true;
-	Display->last_Voices_ONOFF[1] = true;
-	Display->last_Voices_ONOFF[2] = true;
+
+
+
 
 	Display->ADSR_ONOFF = false;
 	Display->ADSR_Attack = 0.0;
@@ -461,7 +463,7 @@ void DISPLAY_processing(void) {
 	//		break;
 
 	case BODYSYNTH:
-		Display.page_max = 6; // must be changed for every added case
+Display.page_max = 6; // must be changed for every added case
 
 		switch(Display.pagePosition) {
 		case 0:
@@ -490,6 +492,7 @@ void DISPLAY_processing(void) {
 				break;
 			default:
 				p_Equalizer_Settings();
+				Display.page_max = 5;
 				break;
 			}
 			break;
@@ -650,6 +653,7 @@ void p_Voices(void) {
 	default:
 		break;
 	}
+
 
 }
 

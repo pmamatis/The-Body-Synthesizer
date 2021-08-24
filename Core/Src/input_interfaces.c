@@ -15,23 +15,33 @@ uint8_t II_Display_Voices(void){
 	for (uint8_t ii_i=0; ii_i < II_MAX_VOICES;ii_i++){
 
 		//create Signal and save its ID
-		if (Display.Voices_ONOFF[ii_i] == true && signals1.count < II_MAX_VOICES){
+		if (Display.Voices_ONOFF[ii_i] == true && Display.Voices_Created[ii_i] == false){
 			NewSignal(&signals1, SIN, Display.Voices_Note[ii_i],Display.Voices_Octave[ii_i]);
 			ii_voice_IDs[ii_i] = signals1.ID[signals1.count];
+//			printf("saved ID = %i\r\n", ii_voice_IDs[ii_i]);
+			Display.Voices_Created[ii_i] = true;
+//			printf("Voice %i created\r\n", ii_i);
 		}
 		//Delete signal with its ID
-		else if (Display.Voices_ONOFF[ii_i]==false &&  signals1.count > 0){
+		else if (Display.Voices_ONOFF[ii_i]==false && Display.Voices_Created[ii_i] == true){
 			uint8_t find_ID_counter = 0;
-			while (ii_voice_IDs != signals1.ID[find_ID_counter]){
+			while (ii_voice_IDs[ii_i] != signals1.ID[find_ID_counter]){
 				find_ID_counter ++;
+//				printf("in while %i \r\n", find_ID_counter);
 				if (find_ID_counter > MAX_SIGNAL_KOMBINATION){
-					printf("Voice deletion error!\r\n");
+//					printf("Voice deletion error!\r\n");
 					return 0;
 				}
+			}
+//			printf("deleted ID = %i\r\n", signals1.ID[find_ID_counter]);
 			DeleteSignal(&signals1, find_ID_counter);
+//			printf("Voice %i deleted \r\n", ii_i);
+			Display.Voices_Created[ii_i] = false;
+
+
 			}
 		}
-	}
+
 	return 1;
 }
 
@@ -63,21 +73,62 @@ uint8_t II_Display_Effects(void){
 	}
 
 	//Filter
-	if (Display.Filter_ONOFF == true){
-		effects_add(EQ, 3);
 
-//		SetupLowShelf(EQ_BAND1_I, Display.Filter_Cutoff[], Q, dBGain)
+
+	if (Display.currentBand > 0){
+
+		if (Display.Filter_ONOFF[Display.currentBand] == true){
+			effects_add(EQ, 2);
+
+//			if (Display.poti_moved == true){
+			switch(Display.currentBand){
+
+			case 1:
+				// BAND 1: Low-Shelf filter
+				SetupLowShelf(&EQ_BAND1_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
+				break;
+
+			case 2:
+				// BAND 2: Peaking-EQ / Notch-Filter
+
+
+				SetupPeakingEQ(&EQ_BAND2_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
+				SetupNotch	(&EQ_BAND2_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand]);
+				break;
+
+			case 3:
+				// BAND 3: Peaking-EQ / Notch-Filter
+				SetupPeakingEQ(&EQ_BAND3_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
+				SetupNotch	(&EQ_BAND3_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand]);
+				break;
+
+			case 4:
+				// BAND 4: Peaking-EQ / Notch-Filter
+				SetupPeakingEQ(&EQ_BAND4_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
+				SetupNotch	(&EQ_BAND4_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand]);
+				break;
+
+			case 5:
+				// BAND 5: High-Shelf filter
+				SetupHighShelf(&EQ_BAND5_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
+				break;
+
+			}
+
+
+
+
+			//		SetupLowShelf(EQ_BAND1_I, Display.Filter_Cutoff[], Q, dBGain)
+
+//		}
+		}
+		else if (Display.Filter_ONOFF == false){
+			effects_delete(EQ, 2);
+
+			//		SetupNotch(BP, cutoff, Q)
+		}
 
 	}
-	else if (Display.Filter_ONOFF == false){
-		effects_delete(TREM, 1);
-		Display.Filter_Cutoff;
-		Display.Filter_Q;
-
-//		SetupNotch(BP, cutoff, Q)
-	}
-
-
 
 
 	return 1;

@@ -60,6 +60,7 @@ extern "C" {
 
 // Display
 #include "display.h"
+#include "input_interfaces.h"
 
 /* USER CODE END Includes */
 

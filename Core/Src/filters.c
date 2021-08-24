@@ -136,10 +136,10 @@ Filter_Status Filters_Reinit(){
 
 
 		// REINIT:
-		//SetupLowShelf (&EQ_BAND1_I, 1680, 0.707, parameter);
-		//SetupHighShelf(&EQ_BAND1_I, parameter, 0.707, -20);
-		//SetupPeakingEQ(&EQ_BAND2_I, 3360, 	     1, parameter);
-		//SetupNotch(&EQ_BAND2_I, parameter, 0.707);
+		SetupLowShelf (&EQ_BAND1_I, 1680, 0.707, parameter);
+		SetupHighShelf(&EQ_BAND1_I, parameter, 0.707, -20);
+		SetupPeakingEQ(&EQ_BAND2_I, 3360, 	     1, parameter);
+		SetupNotch(&EQ_BAND2_I, parameter, 0.707);
 
 
 

@@ -74,10 +74,10 @@ struct display_variables {
 	// Synthesizer Parameters
 	uint8_t ActiveEffectsCounter;
 	bool Voices_ONOFF[3];		// 3 Voices
-	bool last_Voices_ONOFF[3];
 	char Voices_Note[3];
 	char Voices_Octave[3];
 	float noteindex;
+	bool Voices_Created[3];
 
 	//ADSR
 	bool ADSR_ONOFF;			// 1 ADSR
@@ -171,13 +171,14 @@ struct display_variables {
 	int8_t pagePosition;
 	uint8_t page_max;
 	uint8_t page_min;
+
 	// Potentiometer-variables
 	uint16_t Poti_raw;
 	float Poti_percent;
 	int progress_bar;
 	uint16_t last_Poti;
 	uint16_t Poti_Threshold;
-
+	bool poti_moved;
 	// EMG-Sensor-variables
 	uint16_t EMG_DC;
 	uint16_t EMG_AC;
