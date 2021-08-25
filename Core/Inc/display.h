@@ -32,6 +32,13 @@ typedef enum {
 	CASE9 =	190,
 }y_row_value;
 
+
+/** Difference of starting point and end point for Value-row
+ */
+#define VALUE_ROW_LENGTH 10
+
+
+
 typedef enum {
 	DISPLAY_FAIL = -1,
 	DISPLAY_OK = 1
@@ -41,7 +48,8 @@ typedef enum {
 typedef enum {
 	NONE = -1,
 	KEYBOARD = 0,
-	BODYSYNTH = 1
+	BODYSYNTH = 1,
+	GYRO
 }synth_mode_t;
 
 struct display_variables {
@@ -187,13 +195,18 @@ struct display_variables {
 	uint16_t GyroX;
 	uint16_t GyroY;
 	uint16_t GyroZ;
-
+	uint8_t Gyro_select;
+	bool Gyro_ON;
 	bool ENTER_Debounce_State;
 	bool BACK_Debounce_State;
 	bool SW_Debounce_State;
 	bool ENTER;		// state variable of the ENTER-Button to go one step further in the display-menu
 	bool BACK;		// state variable of the BACK-Button to go one step back in the display-menu
 	bool SW;		// state variable of the SW-Button of the Joystick
+
+
+	//page value strings
+	char value_str_dummy[9][5];
 };
 
 struct display_variables Display;
@@ -225,5 +238,8 @@ void p_Equalizer_Settings();
 void p_KeyboardSetParameters(struct adsr* envelope);
 void p_Dummy(void);
 void p_Equalizer_overview();
+void p_Gyro(void);
+
+
 
 #endif /* INC_DISPLAY_H_ */

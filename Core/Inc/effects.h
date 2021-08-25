@@ -17,8 +17,8 @@ typedef enum effects_t_enum{
 	DIST_S,		// Soft Clipping Distortion
 	DIST_H,		// Hard Clipping Distortion
 	EQ,			// Equalizer
-	ADSR		// ADSR
-
+	ADSR,		// ADSR
+	VOICES
 }effects_t_enum;
 
 

@@ -70,12 +70,15 @@ I2C_HandleTypeDef hi2c2;
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi3;
 SPI_HandleTypeDef hspi4;
+DMA_HandleTypeDef hdma_spi4_rx;
+DMA_HandleTypeDef hdma_spi4_tx;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
 TIM_HandleTypeDef htim6;
+TIM_HandleTypeDef htim7;
 TIM_HandleTypeDef htim8;
 
 UART_HandleTypeDef huart2;
@@ -105,6 +108,7 @@ static void MX_TIM5_Init(void);
 static void MX_ADC3_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_SPI4_Init(void);
+static void MX_TIM7_Init(void);
 /* USER CODE BEGIN PFP */
 
 //void Load_SD_File(uint8_t JoystickPatchPosition, uint16_t VRy, bool SW, Paint paint, EPD epd, unsigned char* frame_buffer);
@@ -193,6 +197,7 @@ int main(void)
   MX_ADC3_Init();
   MX_I2C2_Init();
   MX_SPI4_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
 
 	//--------------------------------------------------	SD CARD
@@ -211,7 +216,7 @@ int main(void)
 	//sd_card_remove_file("ir.txt", huart3);
 	sd_card_unmount(huart3);*/
 	//--------------------------------------------------
-	printf("hello \r\n");
+	printf("***Bodysynthesizer*** \r\n");
 
 	if(Signal_Synthesis_Init(htim8, hdac) != HAL_OK) {
 		printf("Signal Synthesis init failed\n");
@@ -249,6 +254,10 @@ int main(void)
 	}
 
 	keyboard_init(&hadc1, &htim5);
+
+	//Gyros SPI
+	spiC_Init(&hspi4, &htim7);
+
 
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
@@ -298,8 +307,8 @@ int main(void)
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
 	keyboard_start_read();
-	//HAL_TIM_Base_Start(&htim5);
-	//HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
+	HAL_TIM_Base_Start(&htim5);
+	HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
 	SetTimerSettings(&htim6, 20);	// Timer 6 default: 2000 Hz
@@ -307,8 +316,10 @@ int main(void)
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
 
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
-	HAL_TIM_Base_Start(&htim1);
-	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 2);
+//	HAL_TIM_Base_Start(&htim1);
+//	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 2);
+
+
 
   /* USER CODE END 2 */
 
@@ -316,6 +327,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
 	while(1) {
+//		printf("Gyro: \r\n");
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -749,16 +761,16 @@ static void MX_SPI4_Init(void)
   hspi4.Init.Mode = SPI_MODE_MASTER;
   hspi4.Init.Direction = SPI_DIRECTION_2LINES;
   hspi4.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi4.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi4.Init.CLKPolarity = SPI_POLARITY_HIGH;
   hspi4.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi4.Init.NSS = SPI_NSS_SOFT;
-  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
   hspi4.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi4.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi4.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
   hspi4.Init.CRCPolynomial = 7;
   hspi4.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
-  hspi4.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  hspi4.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
   if (HAL_SPI_Init(&hspi4) != HAL_OK)
   {
     Error_Handler();
@@ -990,6 +1002,44 @@ static void MX_TIM6_Init(void)
 }
 
 /**
+  * @brief TIM7 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM7_Init(void)
+{
+
+  /* USER CODE BEGIN TIM7_Init 0 */
+
+  /* USER CODE END TIM7_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM7_Init 1 */
+
+  /* USER CODE END TIM7_Init 1 */
+  htim7.Instance = TIM7;
+  htim7.Init.Prescaler = 0;
+  htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim7.Init.Period = 65535;
+  htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM7_Init 2 */
+
+  /* USER CODE END TIM7_Init 2 */
+
+}
+
+/**
   * @brief TIM8 Initialization Function
   * @param None
   * @retval None
@@ -1163,6 +1213,12 @@ static void MX_DMA_Init(void)
   /* DMA2_Stream2_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
+  /* DMA2_Stream3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
+  /* DMA2_Stream4_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream4_IRQn);
 
 }
 

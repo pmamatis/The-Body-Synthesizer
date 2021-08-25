@@ -135,4 +135,30 @@ uint8_t II_Display_Effects(void){
 
 }
 
+void II_processGyro(void){
 
+	if (Display.Gyro_ON == true){
+
+		switch(sensorData.tilt_detecded){
+		case TILT_RIGHT:
+
+			break;
+
+		case TILT_LEFT:
+
+			break;
+		case TILT_FRONT:
+
+			break;
+		case TILT_BACK:
+
+			break;
+		case TILT_NONE:
+
+			break;
+		default:
+			break;
+		}
+	}
+
+}

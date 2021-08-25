@@ -42,7 +42,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("H\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'H', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -50,7 +50,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("B\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'B', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -58,7 +58,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("A\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'A', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -66,7 +66,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("GIS\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'g', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -74,7 +74,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("G\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'G', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -82,7 +82,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("FIS\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'f', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -90,7 +90,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("F\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'F', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -98,7 +98,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("E\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'E', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -106,7 +106,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("DIS\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'd', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -114,7 +114,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("D\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'D', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -122,7 +122,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("CIS\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'c', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}
@@ -130,7 +130,7 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("C\n\r");
 		if (keyboard_pressed_flag == false){
 			NewSignal(signals, SIN, 'C', Display->Keyboard_Octave);
-			keyboard_ID = signals->ID[(signals->count)-1];
+			keyboard_ID = signals->ID[(signals->count)];
 			keyboard_pressed_flag = true;
 		}
 	}

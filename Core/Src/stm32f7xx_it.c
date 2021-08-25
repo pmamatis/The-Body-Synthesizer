@@ -76,9 +76,13 @@ extern ADC_HandleTypeDef hadc2;
 extern ADC_HandleTypeDef hadc3;
 extern DMA_HandleTypeDef hdma_dac1;
 extern DMA_HandleTypeDef hdma_dac2;
+extern DMA_HandleTypeDef hdma_spi4_rx;
+extern DMA_HandleTypeDef hdma_spi4_tx;
+extern SPI_HandleTypeDef hspi4;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim5;
+extern TIM_HandleTypeDef htim7;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -344,6 +348,40 @@ void TIM5_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles TIM7 global interrupt.
+  */
+void TIM7_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM7_IRQn 0 */
+
+  /* USER CODE END TIM7_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim7);
+  /* USER CODE BEGIN TIM7_IRQn 1 */
+//  HAL_SPI_TransmitReceive_IT(&SensorSPI, pTxData, pRxData, sizeof(sensor_data_t));
+//  HAL_SPI_Receive(&hspi4, pRxData, sizeof(sensor_data_t), 100);
+	HAL_SPI_TransmitReceive(hSensorSPI, pTxData, pRxData, sizeof(sensor_data_t),100);
+
+  __disable_irq();
+  memcpy(&sensorData,&pRxData, sizeof(sensor_data_t));
+	__enable_irq();
+
+//printf("******\r\n");
+//
+//
+//for (int i = 0; i<sizeof(sensor_data_t);i++){
+//	printf("%i,",pRxData[i]);
+//}
+//
+//printf("\r\n");
+//	printf("gyro init: %i\r\n",sensorData.gyro_initilized);
+//	printf("tilt: %i\r\n",sensorData.tilt_detecded);
+//printf("\r\n");
+//printf("\r\n");
+
+  /* USER CODE END TIM7_IRQn 1 */
+}
+
+/**
   * @brief This function handles DMA2 stream0 global interrupt.
   */
 void DMA2_Stream0_IRQHandler(void)
@@ -371,7 +409,6 @@ void DMA2_Stream1_IRQHandler(void)
   /* USER CODE END DMA2_Stream1_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_adc3);
   /* USER CODE BEGIN DMA2_Stream1_IRQn 1 */
-
   /* USER CODE END DMA2_Stream1_IRQn 1 */
 }
 
@@ -413,11 +450,12 @@ void DMA2_Stream2_IRQHandler(void)
 	}
 
 	//printf("%i\r\n", Display.ADC2inputs[2]);
+Display.Poti_Threshold = 20;
 	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
+		Display.poti_moved =true;
 		DISPLAY_processing();
 		DISPLAY_Update();
 		Display.last_Poti = Display.ADC2inputs[2];
-		Display.poti_moved =true;
 		II_Display_Effects();
 		II_Display_Voices();
 	}
@@ -430,6 +468,47 @@ void DMA2_Stream2_IRQHandler(void)
   /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
 
   /* USER CODE END DMA2_Stream2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles DMA2 stream3 global interrupt.
+  */
+void DMA2_Stream3_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA2_Stream3_IRQn 0 */
+
+  /* USER CODE END DMA2_Stream3_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_spi4_rx);
+  /* USER CODE BEGIN DMA2_Stream3_IRQn 1 */
+
+  /* USER CODE END DMA2_Stream3_IRQn 1 */
+}
+
+/**
+  * @brief This function handles DMA2 stream4 global interrupt.
+  */
+void DMA2_Stream4_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA2_Stream4_IRQn 0 */
+
+  /* USER CODE END DMA2_Stream4_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_spi4_tx);
+  /* USER CODE BEGIN DMA2_Stream4_IRQn 1 */
+
+  /* USER CODE END DMA2_Stream4_IRQn 1 */
+}
+
+/**
+  * @brief This function handles SPI4 global interrupt.
+  */
+void SPI4_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPI4_IRQn 0 */
+
+  /* USER CODE END SPI4_IRQn 0 */
+  HAL_SPI_IRQHandler(&hspi4);
+  /* USER CODE BEGIN SPI4_IRQn 1 */
+  /* USER CODE END SPI4_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
