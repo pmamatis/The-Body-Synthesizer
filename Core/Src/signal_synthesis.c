@@ -169,39 +169,35 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	}
 
 
-//	for(int i = BLOOCKSIZE_startIndex; i < BLOOCKSIZE_endIndex; i++){
-		for(int i = 0; i < BLOCKSIZE; i++){
+	//	for(int i = BLOOCKSIZE_startIndex; i < BLOOCKSIZE_endIndex; i++){
+	//	for(int i = 0; i < BLOCKSIZE; i++){
+	//
+	//
+	//	}
 
-
-
-
-		*((uint32_t *)(&calculate_vector_tmp[i] )) = sync_buffer[i];
-//			*((uint32_t *)(&calculate_vector_tmp[i] )) = 3000;
-	}
-
-//	//Loop for signal synthesis
-//	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-//		addValue = 0;
-//		//Loop to reach all Signals
-//		for (int j = 0; j < count;j++){
-//			switch (signals -> kind[j]) {
-//			case SIN:
-//				//adds all SIN values from the signals to addValue
-//				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
-//
-//				//get index for the next sin value
-//				signals -> current_LUT_Index[j]++;
-//				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
-//				{
-//					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
-//				}
-//				break;
-//
-//			case NOISE:
-//				addValue += AWGN_generator();
-//				break;
-//			}//Switch-Case
-//		}// Signal counter for-loop
+	//Loop for signal synthesis
+	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+		//		addValue = 0;
+		//		//Loop to reach all Signals
+		//		for (int j = 0; j < count;j++){
+		//			switch (signals -> kind[j]) {
+		//			case SIN:
+		//				//adds all SIN values from the signals to addValue
+		//				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
+		//
+		//				//get index for the next sin value
+		//				signals -> current_LUT_Index[j]++;
+		//				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
+		//				{
+		//					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+		//				}
+		//				break;
+		//
+		//			case NOISE:
+		//				addValue += AWGN_generator();
+		//				break;
+		//			}//Switch-Case
+		//		}// Signal counter for-loop
 
 
 		//write into calculate vector
@@ -218,9 +214,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//maximum
-		if (signals -> max < fabs((double)addValue)){
-			signals -> max = fabs((double)addValue);
-		}
+		//		if (signals -> max < fabs((double)addValue)){
+		//			signals -> max = fabs((double)addValue);
+		//		}
 
 		//		//scale output signal depending on amount of voices
 		//		switch (signals -> count){
@@ -244,19 +240,45 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//			break;
 		//		}
 
+
+		if(sync_buffer[BLOCKSIZE_counter] > detectionThreshold && toggleCounter > toggleThreshold){
+
+			peak = 1;
+			printf("peak");
+			toggleCounter = 0;
+		}
+
+		if(peak){
+
+			HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
+			peak = 0;
+			toggled = 1;
+		}
+
+		if(toggleCounter > toggleThreshold && toggled == 1){
+
+			HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
+		}
+
+
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = sync_buffer[BLOCKSIZE_counter];
+		//			*((uint32_t *)(&calculate_vector_tmp[i] )) = 3000;
+
+		toggleCounter = toggleCounter + 1;
+
 		//Signal adjustment to DAC
 		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((((float)emg_buffer[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
 		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
 		//
 
-	//} //End for-Loop
+	} //End for-Loop
 
 
 
 	// save current LUT index into signals1,
-	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
-		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
-	}
+	//		for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
+	//			signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
+	//		}
 
 }//Signal Synthesis
 

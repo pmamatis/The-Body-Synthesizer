@@ -7,6 +7,7 @@
 
 #include "emg.h"
 
+
 void emg_init(ADC_HandleTypeDef *ADC_Handler){
 	EMG_ADC = ADC_Handler;
 }

@@ -303,6 +303,14 @@ int main(void)
 //	HAL_TIM_Base_Start(&htim6);
 //	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
 
+	// EMG Init
+	detectionThreshold = 600;
+	peak = 0;
+	toggled = 0;
+	toggleCounter = 4800;
+	toggleThreshold = 4800;
+
+
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
 	HAL_TIM_Base_Start(&htim1);
 	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)emg_buffer, BLOCKSIZE);
@@ -316,6 +324,10 @@ int main(void)
 	while(1) {
 
 
+//		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
+//		HAL_Delay(50);
+//		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
+//		HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

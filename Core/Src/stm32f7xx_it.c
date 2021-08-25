@@ -377,6 +377,10 @@ void DMA2_Stream1_IRQHandler(void)
 
 		sync_buffer[i] = emg_buffer[i];
 
+		if(sync_buffer[i] > 250){
+
+		}
+
 	}
 	__enable_irq();
 	/* USER CODE END DMA2_Stream1_IRQn 1 */
