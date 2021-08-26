@@ -145,6 +145,14 @@ Display_Status Display_Init(struct display_variables* Display) {
 
 	//Display value init/reset values
 	strcpy(Display->value_str_dummy[0],"OFF");
+	strcpy(Display->value_str_dummy[1],"C");
+	strcpy(Display->value_str_dummy[2],"0");
+	strcpy(Display->value_str_dummy[3],"OFF");
+	strcpy(Display->value_str_dummy[4],"");
+	strcpy(Display->value_str_dummy[5],"");
+	strcpy(Display->value_str_dummy[6],"");
+	strcpy(Display->value_str_dummy[7],"");
+	strcpy(Display->value_str_dummy[8],"");
 //	Display->value_str_dummy[1] = "Dummy";
 //	Display->value_str_dummy[2] = "123";
 	return DISPLAY_OK;
@@ -1155,135 +1163,109 @@ void p_Dummy(void) {
 	//row cases
 	char str_1[] = "label 1";
 	char str_2[] = "label 2";
-	char str_3[] = "Voice1 Octave";
-	char str_4[] = "Voice2 ON/OFF";
-	char str_5[] = "Voice2 Note";
-	char str_6[] = "Voice2 Octave";
-	char str_7[] = "Voice3 ON/OFF";
-	char str_8[] = "Voice3 Note";
-	char str_9[] = "Voice3 Octave";
+	char str_3[] = "label 3";
+	char str_4[] = "label 4";
+//	char str_5[] = "";
+//	char str_6[] = "";
+//	char str_7[] = "";
+//	char str_8[] = "";
+//	char str_9[] = "";
 
 	//print info row
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE9, str_9, &Font12, COLORED);
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE9, str_9, &Font12, COLORED);
 
 
 	//string for chnaging the value strings
 
 
-	//Potentiometer Input in %
-	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange *100;
-//	printf("%i\r\n",potVal);
 
-	//check if potetiometer has been moved
+
+	//check if potentiometer has been moved
 	if (Display.poti_moved == true){
 
+		//Potentiometer Input in %
+		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange *100;
+
+		char write_str[5];
 
 		switch(Display.JoystickParameterPosition) {
 		case 1:
+			/* ON-OFF-Decision
+			 */
+
 			// fill value line with uncolored rectangle
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
 
-			if(potVal < 50) {	// Potentiometer: Display.ADC2inputs[2]
-//				printf("%i\r\n",potval);
+			if(potVal < 50) {
+
 				//Value to be set
 				Display.Voices_ONOFF[0] = false;
 
-				//value display
+			//value display
 				char write_str[] = "OFF";
-				strcpy(Display.value_str_dummy[0],"OFF");
+				strcpy(Display.value_str_dummy[0],write_str);
 			}
-			else if(potVal >= 50) {	// Potentiometer: Display.ADC2inputs[2]
+			else if(potVal >= 50) {
 
 				//Value to be set
 				Display.Voices_ONOFF[0] = false;
 
 				//value display
 				char write_str[] = "ON";
-				strcpy(Display.value_str_dummy[0],"ON");
+				strcpy(Display.value_str_dummy[0],write_str);
 			}
 			break;
 		case 2:
-			// Voice1 Note
-			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2 + VALUE_ROW_LENGTH, UNCOLORED);
-			Display.noteindex = ((float)Display.ADC2inputs[2]/4096) * (sizeof(keys)/sizeof(keys[0]));
+			/* Processing with floats
+			 */
 
-			Display.Voices_Note[0] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
-			Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE2, Display.Voices_Note[0], &Font12, COLORED);
+			// fill value line with uncolored rectangle
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2 + VALUE_ROW_LENGTH, UNCOLORED);
+
+			//Value to be set
+//			Display.Voices_ONOFF[0] = false;
+
+
+
+			//display the value
+			//prints a float value
+			float printFloat = potVal;
+			sprintf(write_str,"%f", printFloat);
+			memcpy(Display.value_str_dummy[1],write_str,3); //float can only displayed with two digits after dot
+
 			break;
 		case 3:
-			// Voice1 Octave
-			Display.Poti_Threshold = 1;
+			/* Processing with Int
+			 */
+
+			// fill value line with uncolored rectangle
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3 + VALUE_ROW_LENGTH, UNCOLORED);
-			Display.Voices_Octave[0] = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
-			Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE3, Display.Voices_Octave[0]+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
+
+			//Value to be set
+			//			Display.Voices_ONOFF[0] = false;
+
+
+			//display the value
+			//prints an int value
+			uint8_t printInt = (uint)(potVal);
+			sprintf(write_str,"%i", printInt);
+			memcpy(Display.value_str_dummy[1],write_str,3); //float can only displayed with two digits after dot
 			break;
+
 		case 4:
-			// Voice2 ON/OFF
-			Display.Poti_Threshold = 50;	// threshold for ON/OFF
+			// fill value line with uncolored rectangle
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4 + VALUE_ROW_LENGTH, UNCOLORED);
-			if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
-				Display.Voices_ONOFF[1] = false;
-				Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, "OFF", &Font12, COLORED);
-			}
-			else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
-				Display.Voices_ONOFF[1] = true;
-				Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, "ON", &Font12, COLORED);
-			}
-			break;
-		case 5:
-			// Voice2 Note
-			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5 + VALUE_ROW_LENGTH, UNCOLORED);
-			Display.noteindex = ((float)Display.ADC2inputs[2]/4096) * (sizeof(keys)/sizeof(keys[0]));
 
-			Display.Voices_Note[1] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
-			Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE5, Display.Voices_Note[1], &Font12, COLORED);
 			break;
-		case 6:
-			// Voice2 Octave
-			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6 + VALUE_ROW_LENGTH, UNCOLORED);
-
-			Display.Voices_Octave[1] = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
-			Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE6, Display.Voices_Octave[1]+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
-			break;
-		case 7:
-			// Voice3 ON/OFF
-			Display.Poti_Threshold = 50;	// threshold for ON/OFF
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7 + VALUE_ROW_LENGTH, UNCOLORED);
-			if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
-				Display.Voices_ONOFF[2] = false;
-				Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, "OFF", &Font12, COLORED);
-			}
-			else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
-				Display.Voices_ONOFF[2] = true;
-				Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, "ON", &Font12, COLORED);
-			}
-			break;
-		case 8:
-			// Voice3 Note
-			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8 + VALUE_ROW_LENGTH, UNCOLORED);
-			Display.noteindex = ((float)Display.ADC2inputs[2]/4096) * (sizeof(keys)/sizeof(keys[0]));
-			Display.Voices_Note[2] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
-			Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE8, Display.Voices_Note[2], &Font12, COLORED);
-			break;
-		case 9:
-			// Voice3 Octave
-			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE9, Display.value_end_x_position, CASE9 + VALUE_ROW_LENGTH, UNCOLORED);
-			Display.Voices_Octave[2] = (char)(((float)Display.ADC2inputs[2]/4096) * 6);	// 5 0ctaves
-			Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE9, Display.Voices_Octave[2]+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
-			break;
+//
 		default:
 			break;
 		}
@@ -1291,6 +1273,14 @@ void p_Dummy(void) {
 	}
 	//print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_dummy[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_dummy[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_dummy[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_dummy[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_dummy[4], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_dummy[5], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_dummy[6], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_dummy[7], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE9, Display.value_str_dummy[8], &Font12, COLORED);
 
 }
 
