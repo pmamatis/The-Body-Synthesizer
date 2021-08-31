@@ -1,6 +1,6 @@
 Configuration	Body-Synthesizer_STM32_F746ZG
-STM32CubeMX 	6.2.1
-Date	06/22/2021
+STM32CubeMX 	5.6.1
+Date	08/31/2021
 MCU	STM32F746ZGTx
 
 
@@ -16,8 +16,8 @@ DAC	DAC_OUT1	DAC_OUT1	PA4
 DAC	DAC_OUT2	DAC_OUT2	PA5
 I2C2	I2C	I2C2_SCL	PF1
 I2C2	I2C	I2C2_SDA	PF0
-SPI1	Half-Duplex Master	SPI1_MOSI	PB5
-SPI1	Half-Duplex Master	SPI1_SCK	PB3
+SPI1	Transmit Only Master	SPI1_MOSI	PB5
+SPI1	Transmit Only Master	SPI1_SCK	PB3
 SPI3	Full-Duplex Master	SPI3_MISO	PC11
 SPI3	Full-Duplex Master	SPI3_MOSI	PB2
 SPI3	Full-Duplex Master	SPI3_SCK	PC10
@@ -77,8 +77,8 @@ DAC	DAC_OUT1	DAC_OUT1	PA4
 DAC	DAC_OUT2	DAC_OUT2	PA5
 I2C2	I2C	I2C2_SCL	PF1
 I2C2	I2C	I2C2_SDA	PF0
-SPI1	Half-Duplex Master	SPI1_MOSI	PB5
-SPI1	Half-Duplex Master	SPI1_SCK	PB3
+SPI1	Transmit Only Master	SPI1_MOSI	PB5
+SPI1	Transmit Only Master	SPI1_SCK	PB3
 SPI3	Full-Duplex Master	SPI3_MISO	PC11
 SPI3	Full-Duplex Master	SPI3_MOSI	PB2
 SPI3	Full-Duplex Master	SPI3_SCK	PC10
@@ -134,7 +134,7 @@ SOFTWARE PROJECT
 
 Project Settings : 
 Project Name : Body-Synthesizer_STM32_F746ZG
-Project Folder : C:\Users\Marc Bielen\Documents\Studium\Master TU Berlin\6. Semester\Body-Synthesizer_STM32_F746ZG
+Project Folder : C:\Users\Max\Documents\GIT\Body-Synthesizer_STM32_F746ZG
 Toolchain / IDE : STM32CubeIDE
 Firmware Package Name and Version : STM32Cube FW_F7 V1.16.0
 

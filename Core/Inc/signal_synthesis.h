@@ -91,6 +91,7 @@ float lfo_value;
 uint8_t output_Channel;
 /** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
 uint8_t outputBuffer_position;
+uint8_t inputBuffer_position;
 
 struct signal_t signals1;
 struct signal_t signals2;
