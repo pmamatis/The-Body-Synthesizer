@@ -1,5 +1,0 @@
-distortion.c:18:19:Distortion_Init	8	static
-distortion.c:26:19:SetupHardClippingDistortion	0	static
-distortion.c:34:19:SetupSoftClippingDistortion	8	static
-distortion.c:58:19:ProcessHardClippingDistortion	0	static
-distortion.c:77:19:ProcessSoftClippingDistortion	24	static
