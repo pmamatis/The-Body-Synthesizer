@@ -1,4 +1,0 @@
-signal_synthesis.c:22:19:Signal_Synthesis_Init	32	static
-signal_synthesis.c:59:7:Signal_Synthesis	224	dynamic
-signal_synthesis.c:219:19:Output_Signal	48	static
-signal_synthesis.c:236:6:TEST	40	static
