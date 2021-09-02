@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="mm" altunit="mm"/>
+<grid distance="10" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -79,7 +79,7 @@
 <dimension x1="155" y1="115" x2="-5" y2="115" x3="75" y3="124" textsize="1.778" layer="47"/>
 <text x="69" y="137.5" size="5" layer="48">HEAD</text>
 <text x="72" y="-23" size="5" layer="48">FEET</text>
-<text x="178" y="66" size="5" layer="48">LEFT ARM</text>
+<text x="188" y="66" size="5" layer="48">LEFT ARM</text>
 <text x="-64.25" y="61.925" size="5" layer="48">RIGHT ARM</text>
 <text x="7.5" y="16" size="2" layer="100">EMG</text>
 <text x="22.5" y="16" size="2" layer="100">GYRO</text>
@@ -2827,15 +2827,15 @@ Your Multi-CB Team
 <attribute name="NAME" x="129.635" y="39.365" size="0.5" layer="25" rot="R180"/>
 <attribute name="VALUE" x="129.635" y="38.705" size="0.5" layer="27" rot="R180"/>
 </element>
-<element name="R17" library="rcl" package="R0603" value="1Meg" x="107.4" y="43" smashed="yes" rot="R90">
+<element name="R17" library="rcl" package="R0603" value="100k" x="107.4" y="43" smashed="yes" rot="R90">
 <attribute name="NAME" x="108.035" y="40.865" size="0.5" layer="25" rot="R180"/>
 <attribute name="VALUE" x="108.035" y="41.405" size="0.5" layer="27" rot="R180"/>
 </element>
-<element name="R18" library="rcl" package="R0603" value="1Meg" x="109.9" y="43" smashed="yes" rot="R90">
+<element name="R18" library="rcl" package="R0603" value="100k" x="109.9" y="43" smashed="yes" rot="R90">
 <attribute name="NAME" x="110.535" y="40.865" size="0.5" layer="25" rot="R180"/>
 <attribute name="VALUE" x="110.535" y="41.405" size="0.5" layer="27" rot="R180"/>
 </element>
-<element name="R19" library="rcl" package="R0603" value="1Meg" x="53.8" y="116.6" smashed="yes">
+<element name="R19" library="rcl" package="R0603" value="100k" x="53.8" y="116.6" smashed="yes">
 <attribute name="NAME" x="51.665" y="115.965" size="0.5" layer="25" rot="R90"/>
 <attribute name="VALUE" x="52.205" y="115.965" size="0.5" layer="27" rot="R90"/>
 </element>
@@ -3240,16 +3240,16 @@ Your Multi-CB Team
 <wire x1="8.03" y1="2.85" x2="18.4" y2="2.85" width="1.2" layer="1"/>
 <wire x1="18.4" y1="2.85" x2="20.4" y2="2.85" width="1.2" layer="1"/>
 <polygon width="0.4" layer="1" spacing="0.2" isolate="0.2" thermals="no">
-<vertex x="-15" y="130"/>
-<vertex x="-15" y="-10"/>
-<vertex x="170" y="-10"/>
-<vertex x="170" y="130"/>
+<vertex x="-65" y="150"/>
+<vertex x="-65" y="-30"/>
+<vertex x="220" y="-30"/>
+<vertex x="220" y="150"/>
 </polygon>
 <polygon width="0.4" layer="16" spacing="0.2" isolate="0.2" thermals="no">
-<vertex x="-10" y="125"/>
-<vertex x="160" y="125"/>
-<vertex x="160" y="-15"/>
-<vertex x="-10" y="-15"/>
+<vertex x="-70" y="155"/>
+<vertex x="230" y="155"/>
+<vertex x="230" y="-35"/>
+<vertex x="-70" y="-35"/>
 </polygon>
 <via x="36.1" y="19.9" extent="1-16" drill="0.2"/>
 <via x="41.3" y="18.5" extent="1-16" drill="0.2"/>

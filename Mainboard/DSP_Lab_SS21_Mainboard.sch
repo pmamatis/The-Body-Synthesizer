@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -14391,17 +14391,6 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <part name="FRAME3" library="frames" deviceset="FRAME_A_L" device=""/>
 <part name="FRAME4" library="frames" deviceset="FRAME_A_L" device=""/>
 <part name="SUPPLY2" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY3" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY4" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY6" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY7" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY8" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY9" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY10" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY11" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY12" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY13" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY14" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY24" library="supply2" deviceset="GND" device=""/>
 <part name="J2" library="640455-5" deviceset="640455-5" device=""/>
@@ -14467,9 +14456,9 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <part name="R16" library="rcl" deviceset="R-EU_" device="R0603" value="100k"/>
 <part name="C14" library="rcl" deviceset="C-EU" device="C0603" value="22u"/>
 <part name="SUPPLY35" library="supply2" deviceset="GND" device=""/>
-<part name="R17" library="rcl" deviceset="R-EU_" device="R0603" value="1Meg"/>
-<part name="R18" library="rcl" deviceset="R-EU_" device="R0603" value="1Meg"/>
-<part name="R19" library="rcl" deviceset="R-EU_" device="R0603" value="1Meg"/>
+<part name="R17" library="rcl" deviceset="R-EU_" device="R0603" value="100k"/>
+<part name="R18" library="rcl" deviceset="R-EU_" device="R0603" value="100k"/>
+<part name="R19" library="rcl" deviceset="R-EU_" device="R0603" value="100k"/>
 <part name="C15" library="rcl" deviceset="C-EU" device="C0603" value="1u"/>
 <part name="C16" library="rcl" deviceset="C-EU" device="C0603" value="1u"/>
 <part name="C17" library="rcl" deviceset="C-EU" device="C0603" value="1u"/>
@@ -15590,61 +15579,6 @@ and JP1 is not set.</text>
 <wire x1="27.94" y1="35.56" x2="-33.02" y2="35.56" width="0.508" layer="97" style="longdash"/>
 <wire x1="-33.02" y1="35.56" x2="-33.02" y2="88.9" width="0.508" layer="97" style="longdash"/>
 <text x="-2.032" y="82.042" size="5.08" layer="97" rot="R180" align="center">Anti-floating PDs</text>
-<wire x1="223.52" y1="68.58" x2="274.32" y2="68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="274.32" y1="68.58" x2="274.32" y2="27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="274.32" y1="27.94" x2="223.52" y2="27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="223.52" y1="27.94" x2="223.52" y2="68.58" width="0.508" layer="97" style="longdash"/>
-<text x="269.748" y="66.802" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="281.94" y1="68.58" x2="332.74" y2="68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="332.74" y1="68.58" x2="332.74" y2="27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="332.74" y1="27.94" x2="281.94" y2="27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="281.94" y1="27.94" x2="281.94" y2="68.58" width="0.508" layer="97" style="longdash"/>
-<text x="328.168" y="66.802" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="340.36" y1="68.58" x2="391.16" y2="68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="391.16" y1="68.58" x2="391.16" y2="27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="391.16" y1="27.94" x2="340.36" y2="27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="340.36" y1="27.94" x2="340.36" y2="68.58" width="0.508" layer="97" style="longdash"/>
-<text x="386.588" y="66.802" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="165.1" y1="20.32" x2="215.9" y2="20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="215.9" y1="20.32" x2="215.9" y2="-20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="215.9" y1="-20.32" x2="165.1" y2="-20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="165.1" y1="-20.32" x2="165.1" y2="20.32" width="0.508" layer="97" style="longdash"/>
-<text x="211.328" y="18.542" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="223.52" y1="20.32" x2="274.32" y2="20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="274.32" y1="20.32" x2="274.32" y2="-20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="274.32" y1="-20.32" x2="223.52" y2="-20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="223.52" y1="-20.32" x2="223.52" y2="20.32" width="0.508" layer="97" style="longdash"/>
-<text x="269.748" y="18.542" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="281.94" y1="20.32" x2="332.74" y2="20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="332.74" y1="20.32" x2="332.74" y2="-20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="332.74" y1="-20.32" x2="281.94" y2="-20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="281.94" y1="-20.32" x2="281.94" y2="20.32" width="0.508" layer="97" style="longdash"/>
-<text x="328.168" y="18.542" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="340.36" y1="20.32" x2="391.16" y2="20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="391.16" y1="20.32" x2="391.16" y2="-20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="391.16" y1="-20.32" x2="340.36" y2="-20.32" width="0.508" layer="97" style="longdash"/>
-<wire x1="340.36" y1="-20.32" x2="340.36" y2="20.32" width="0.508" layer="97" style="longdash"/>
-<text x="386.588" y="18.542" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="165.1" y1="-27.94" x2="215.9" y2="-27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="215.9" y1="-27.94" x2="215.9" y2="-68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="215.9" y1="-68.58" x2="165.1" y2="-68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="165.1" y1="-68.58" x2="165.1" y2="-27.94" width="0.508" layer="97" style="longdash"/>
-<text x="211.328" y="-29.718" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="223.52" y1="-27.94" x2="274.32" y2="-27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="274.32" y1="-27.94" x2="274.32" y2="-68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="274.32" y1="-68.58" x2="223.52" y2="-68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="223.52" y1="-68.58" x2="223.52" y2="-27.94" width="0.508" layer="97" style="longdash"/>
-<text x="269.748" y="-29.718" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="281.94" y1="-27.94" x2="332.74" y2="-27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="332.74" y1="-27.94" x2="332.74" y2="-68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="332.74" y1="-68.58" x2="281.94" y2="-68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="281.94" y1="-68.58" x2="281.94" y2="-27.94" width="0.508" layer="97" style="longdash"/>
-<text x="328.168" y="-29.718" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
-<wire x1="340.36" y1="-27.94" x2="391.16" y2="-27.94" width="0.508" layer="97" style="longdash"/>
-<wire x1="391.16" y1="-27.94" x2="391.16" y2="-68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="391.16" y1="-68.58" x2="340.36" y2="-68.58" width="0.508" layer="97" style="longdash"/>
-<wire x1="340.36" y1="-68.58" x2="340.36" y2="-27.94" width="0.508" layer="97" style="longdash"/>
-<text x="386.588" y="-29.718" size="5.08" layer="97" rot="R180" align="center">Micro-USB </text>
 <text x="5.08" y="99.06" size="10.16" layer="97" align="center">Misc</text>
 <wire x1="-121.92" y1="88.9" x2="-40.64" y2="88.9" width="0.508" layer="97" style="longdash"/>
 <wire x1="-40.64" y1="88.9" x2="-40.64" y2="15.24" width="0.508" layer="97" style="longdash"/>
@@ -15669,17 +15603,6 @@ and JP1 is not set.</text>
 </plain>
 <instances>
 <instance part="SUPPLY2" gate="GND" x="10.16" y="40.64"/>
-<instance part="SUPPLY3" gate="GND" x="233.68" y="33.02"/>
-<instance part="SUPPLY4" gate="GND" x="292.1" y="33.02"/>
-<instance part="SUPPLY5" gate="GND" x="350.52" y="33.02"/>
-<instance part="SUPPLY6" gate="GND" x="175.26" y="-15.24"/>
-<instance part="SUPPLY7" gate="GND" x="233.68" y="-15.24"/>
-<instance part="SUPPLY8" gate="GND" x="292.1" y="-15.24"/>
-<instance part="SUPPLY9" gate="GND" x="350.52" y="-15.24"/>
-<instance part="SUPPLY10" gate="GND" x="175.26" y="-63.5"/>
-<instance part="SUPPLY11" gate="GND" x="233.68" y="-63.5"/>
-<instance part="SUPPLY12" gate="GND" x="292.1" y="-63.5"/>
-<instance part="SUPPLY13" gate="GND" x="350.52" y="-63.5"/>
 <instance part="FRAME1" gate="G$1" x="-134.62" y="-104.14"/>
 <instance part="SUPPLY24" gate="GND" x="-55.88" y="35.56"/>
 <instance part="U1" gate="A" x="-76.2" y="50.8"/>
