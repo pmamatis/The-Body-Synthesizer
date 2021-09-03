@@ -14,7 +14,7 @@
 
 // Common Sample Length & Time Signature
 #define sample_length 40000
-#define FourFour 4
+#define FourFour 16
 #define ThreeFour 12
 
 // Tempo
@@ -32,6 +32,9 @@ uint32_t counter_clap [FourFour];
 
 // Flag
 uint32_t flag_kick[FourFour];
+uint32_t flag_hihat[FourFour];
+uint32_t flag_clap[FourFour];
+
 
 // Timing positions
 uint32_t timing_kick [FourFour];

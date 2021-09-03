@@ -28,6 +28,8 @@ HAL_StatusTypeDef Drum_Computer_Init(){
 
 		// Flag
 		flag_kick[i] = 0;
+		flag_hihat[i] = 0;
+		flag_clap[i] = 0;
 
 		// Counter
 		counter_kick [i] = 0;
@@ -38,21 +40,22 @@ HAL_StatusTypeDef Drum_Computer_Init(){
 		timing_kick [i] = 0;
 		timing_hihat[i] = 0;
 		timing_clap [i] = 0;
-		timing_position_in_samples[i] = (i + 1) * (MasterClock / FourFour) * (60 / BPM);
+		timing_position_in_samples[i] = 4 * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
 
 	// Timing Init
-	timing_complete = 4 * MasterClock * (60 / BPM);
-
 	timing_kick[0]  = 1;
-	//	timing_kick[4]  = 1;
-	//	timing_kick[8]  = 1;
-	//	timing_kick[12] = 1;
+	timing_kick[4]  = 1;
+	timing_kick[8]  = 1;
+	timing_kick[12] = 1;
 
 	timing_hihat[2]  = 1;
-	//	timing_hihat[6]  = 1;
-	//	timing_hihat[10] = 1;
-	//	timing_hihat[14] = 1;
+	timing_hihat[6]  = 1;
+	timing_hihat[10] = 1;
+	timing_hihat[14] = 1;
+
+	timing_clap[4] = 1;
+	timing_clap[12] = 1;
 
 	return HAL_OK;
 }
@@ -69,40 +72,16 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 
 		flag_kick[drum_index] = 1;
 
-		//		uint32_t drum_index_pre[3];
-		//
-		//		for(int i = 0; i < 3; i++){
-		//
-		//			if(drum_index - (i + 1) < 0){
-		//
-		//				drum_index_pre[i] = drum_index - (i + 1) + FourFour;
-		//			}
-		//			else{
-		//
-		//				drum_index_pre[i] = drum_index - (i + 1);
-		//			}
-		//			if(timing_kick[drum_index_pre[i]]){
-		//
-		//				kick = kick + kick_LUT[counter_kick[drum_index_pre[i]]];
-		//				counter_kick[drum_index_pre[i]]++;
-		//				//avg_counter++;
-		//
-		//				if(counter_kick[drum_index_pre[i]] > sample_length - 1){
-		//
-		//					counter_kick[drum_index_pre[i]] = 0;
-		//				}
-		//			}
-		//		}
+	}
+	if(timing_hihat[drum_index] == 1){
 
-//		kick = kick_LUT[counter_kick[drum_index]];  // avg_counter;
-//		counter_kick[drum_index]++;
-//
-//		if(counter_kick[drum_index] == sample_length - 1){
-//
-//			counter_kick[drum_index] = 0;
-//		}
-//
-//		drums = kick;//+ hihat + clap;
+		flag_hihat[drum_index] = 1;
+
+	}
+	if(timing_clap[drum_index] == 1){
+
+		flag_clap[drum_index] = 1;
+
 	}
 
 	Drum_Computer_CalcSample();
@@ -124,18 +103,86 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 }
 
 HAL_StatusTypeDef Drum_Computer_CalcSample() {
-	for(int i=0; i<FourFour; i++) {
-		if(flag_kick[i] == 1) {
-			kick = kick+kick_LUT[counter_kick[i]];
 
+	for(int i=0; i<FourFour; i++) {
+
+		if(flag_kick[i] == 1) {
+
+			kick = kick + kick_LUT[counter_kick[i]];
 			counter_kick[i]++;
+
 			if(counter_kick[i] == sample_length - 1){
+
 				counter_kick[i] = 0;
 				flag_kick[i] = 0;
 			}
 		}
+		if(flag_hihat[i] == 1) {
+
+			hihat = hihat + closed_hh_LUT[counter_hihat[i]];
+			counter_hihat[i]++;
+
+			if(counter_hihat[i] == sample_length - 1){
+
+				counter_hihat[i] = 0;
+				flag_hihat[i] = 0;
+			}
+		}
+		if(flag_clap[i] == 1) {
+
+			clap = clap + clap_LUT[counter_clap[i]];
+			counter_clap[i]++;
+
+			if(counter_clap[i] == sample_length - 1){
+
+				counter_clap[i] = 0;
+				flag_clap[i] = 0;
+			}
+		}
 	}
-	drums = kick;
+	drums = kick + hihat + clap;
 
 	return HAL_OK;
 }
+
+
+
+
+
+
+
+
+//		uint32_t drum_index_pre[3];
+//
+//		for(int i = 0; i < 3; i++){
+//
+//			if(drum_index - (i + 1) < 0){
+//
+//				drum_index_pre[i] = drum_index - (i + 1) + FourFour;
+//			}
+//			else{
+//
+//				drum_index_pre[i] = drum_index - (i + 1);
+//			}
+//			if(timing_kick[drum_index_pre[i]]){
+//
+//				kick = kick + kick_LUT[counter_kick[drum_index_pre[i]]];
+//				counter_kick[drum_index_pre[i]]++;
+//				//avg_counter++;
+//
+//				if(counter_kick[drum_index_pre[i]] > sample_length - 1){
+//
+//					counter_kick[drum_index_pre[i]] = 0;
+//				}
+//			}
+//		}
+
+//		kick = kick_LUT[counter_kick[drum_index]];  // avg_counter;
+//		counter_kick[drum_index]++;
+//
+//		if(counter_kick[drum_index] == sample_length - 1){
+//
+//			counter_kick[drum_index] = 0;
+//		}
+//
+//		drums = kick;//+ hihat + clap;
