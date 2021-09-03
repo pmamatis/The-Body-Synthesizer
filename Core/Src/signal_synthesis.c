@@ -204,16 +204,17 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//write into calculate vector
-		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
+		Drum_Computer_Process();
+		calculate_vector_tmp[BLOCKSIZE_counter] = 2*drums; //addValue + drums;
 
 
 		/*limiter function*/
 		//norm the signal to -1...1
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
+		//calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];//signals -> max;
 
 
 		//Effekte
-		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//maximum
 		if (signals -> max < fabs((double)addValue)){
@@ -241,6 +242,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 //			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
 //			break;
 //		}
+
+
 
 		//Signal adjustment to DAC
 //		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + 0); // +1.5 fir middle of 0-3V3

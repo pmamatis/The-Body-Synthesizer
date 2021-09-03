@@ -252,6 +252,10 @@ int main(void)
 		printf("Display init failed\n");
 		//while(1);
 	}
+
+	if(Drum_Computer_Init() != HAL_OK){
+		printf("Drum init failed\n");
+	}
 //
 //	keyboard_init(&hadc1, &htim5);
 //
@@ -289,7 +293,7 @@ int main(void)
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,SIN, 'C',0);
 	//NewSignal(&signals1,SIN, 'C',1);
-	NewSignal(&signals1,SIN, 'C',2);
+	//NewSignal(&signals1,SIN, 'C',2);
 	//NewSignal(&signals1,SIN, 'C',3);
 	//NewSignal(&signals1,SIN, 'C',4);
 	//NewSignal(&signals1,SIN, 'G',0);

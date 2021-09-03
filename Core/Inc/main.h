@@ -65,6 +65,9 @@ extern "C" {
 //Gyroskop SPI
 #include "SPI_Connection.h"
 
+// Drum Computer
+#include "drum_computer.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

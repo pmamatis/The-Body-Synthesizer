@@ -14,12 +14,15 @@
 
 // Common Sample Length & Time Signature
 #define sample_length 40000
-#define FourFour 16
+#define FourFour 4
 #define ThreeFour 12
 
 // Tempo
 float BPM;
 uint32_t MasterClock;
+
+// Index
+uint32_t drum_index;
 
 // Counter
 uint32_t counter_master;
@@ -27,13 +30,25 @@ uint32_t counter_kick [FourFour];
 uint32_t counter_hihat[FourFour];
 uint32_t counter_clap [FourFour];
 
+// Flag
+uint32_t flag_kick[FourFour];
+
 // Timing positions
 uint32_t timing_kick [FourFour];
 uint32_t timing_hihat[FourFour];
 uint32_t timing_clap [FourFour];
+uint32_t timing_position_in_samples[FourFour];
+uint32_t timing_complete;
+
+// Sound bins
+float kick;
+float hihat;
+float clap;
+float drums;
 
 // Methods
 HAL_StatusTypeDef Drum_Computer_Init();
 HAL_StatusTypeDef Drum_Computer_Process();
+HAL_StatusTypeDef Drum_Computer_CalcSample();
 
 #endif /* INC_DRUM_COMPUTER_H_ */
