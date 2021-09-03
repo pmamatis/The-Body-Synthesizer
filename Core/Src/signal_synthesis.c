@@ -243,12 +243,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 //		}
 
 		//Signal adjustment to DAC
-//		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + 0); // +1.5 fir middle of 0-3V3
+//		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + 0); // no offset for keyboardmode
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET); // +1.5 fir middle of 0-3V3
 
 	} //End for-Loop
-
-
 
 	// save current LUT index into signals1,
 	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){

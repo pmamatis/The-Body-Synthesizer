@@ -537,109 +537,61 @@ Display_Status p_StartingMenu(unsigned char* frame_buffer) {
 void DISPLAY_processing(void) {
 
 	switch(Display.mode) {
-	//	case NONE:
-	//		p_StartingMenu(frame_buffer);
-	//		break;
+	//		case NONE:
+	//			p_StartingMenu(frame_buffer);
+	//			break;
 
-	// BODYSYNTH-MODE
 	case BODYSYNTH:
-		Display.page_max = 10; // must be changed for every added case
+		Display.page_max = 5; // must be changed for every added case
 
 		switch(Display.pagePosition) {
 		case 0:
 			p_StartingMenu(frame_buffer);
 			break;
 		case 1:
-			// Voices
 			p_Voices_overview();
 			break;
 		case 2:
 			switch(Display.currentVoice) {
 			case 0:
-				// next effect: ADSR
-				Display.pagePosition = 3;	// go to p_ADSR_overview
 				p_ADSR_overview(&envelope);
-				DISPLAY_PrintCurrentPage();
 				break;
 			default:
 				p_Voices_Settings();
-//				Display.page_max = 2;
+				Display.page_max = 2;
 				break;
 			}
 			break;
 			case 3:
-				// ADSR
-				p_ADSR_overview(&envelope);
-				break;
-			case 4:
 				switch(Display.currentADSR) {
 				case 0:
-					// next effect: EQ
-					Display.pagePosition = 5;
 					p_Equalizer_overview();
-					DISPLAY_PrintCurrentPage();
 					break;
 				default:
 					p_ADSR_Settings();
+					Display.page_max = 3;
 					break;
 				}
 				break;
-				case 5:
-					// Equalizer
-					p_Equalizer_overview();
-					break;
-				case 6:
-					switch(Display.currentBand){
+				case 4:
+					switch(Display.currentBand) {
 					case 0:
-						// next effect: Distortion
-						Display.pagePosition = 7;
-						//p_Distortion_overview();
 						p_Distortion(&HardClipping);
-						DISPLAY_PrintCurrentPage();
 						break;
 					default:
 						p_Equalizer_Settings();
-						//Display.pagePosition = 6;
+						Display.page_max = 4;
 						break;
 					}
 					break;
-					case 7:
-						// Distortion
-						//p_Distortion_overview();
-						p_Distortion(&HardClipping);
+					case 5:
+						p_Tremolo(&Tremolo);
 						break;
-					case 8:
-						switch(Display.currentDistortion) {
-						case 0:
-							// next effect: Tremolo
-							Display.pagePosition = 9;
-							//p_Tremolo_overview();
-							p_Tremolo(&Tremolo);
-							DISPLAY_PrintCurrentPage();
-							break;
-						default:
-							//p_Distortion_Settings();
-							break;
-						}
+					default:
 						break;
-						case 9:
-							// Tremolo
-							//p_Tremolo_overview();
-							p_Tremolo(&Tremolo);
-							break;
-						case 10:
-							// next effect: ?
-							Display.pagePosition = 11;
-							//p_Dummy();
-							DISPLAY_PrintCurrentPage();
-							break;
-						default:
-							//p_Tremolo_Settings();
-							break;
 		}
 		break;
 
-		// KEYBOARD-MODE
 		case KEYBOARD:
 			Display.page_max = 1; // must be changed for every added case
 			switch(Display.pagePosition) {
@@ -654,10 +606,165 @@ void DISPLAY_processing(void) {
 			}
 			break;
 
-			default:
+			case GYRO:
+				Display.page_max = 2; // must be changed for every added case
+				switch (Display.pagePosition) {
+				case 1:
+					p_Gyro();
+					break;
+				case 2:
+					switch (Display.Gyro_select) {
+					case EQ:
+
+						break;
+					case TREM:
+
+						break;
+
+					case DIST_H:
+
+						break;
+					default:
+						break;
+					}
+					break;
+					default:
+						break;
+				}
+
 				break;
+				default:
+					break;
 	}
 }
+
+///** @brief this function is the main processing function of the display
+// *
+// */
+//void DISPLAY_processing(void) {
+//
+//	switch(Display.mode) {
+//	//	case NONE:
+//	//		p_StartingMenu(frame_buffer);
+//	//		break;
+//
+//	// BODYSYNTH-MODE
+//	case BODYSYNTH:
+//		Display.page_max = 10; // must be changed for every added case
+//
+//		switch(Display.pagePosition) {
+//		case 0:
+//			p_StartingMenu(frame_buffer);
+//			break;
+//		case 1:
+//			// Voices
+//			p_Voices_overview();
+//			break;
+//		case 2:
+//			switch(Display.currentVoice) {
+//			case 0:
+//				// next effect: ADSR
+//				//Display.pagePosition = 3;	// go to p_ADSR_overview
+//				p_ADSR_overview(&envelope);
+//				DISPLAY_PrintCurrentPage();
+//				break;
+//			default:
+//				p_Voices_Settings();
+////				Display.page_max = 2;
+//				break;
+//			}
+//			break;
+//			case 3:
+//				// ADSR
+//				p_ADSR_overview(&envelope);
+//				break;
+//			case 4:
+//				switch(Display.currentADSR) {
+//				case 0:
+//					// next effect: EQ
+//					//Display.pagePosition = 5;
+//					p_Equalizer_overview();
+//					DISPLAY_PrintCurrentPage();
+//					break;
+//				default:
+//					p_ADSR_Settings();
+//					break;
+//				}
+//				break;
+//				case 5:
+//					// Equalizer
+//					p_Equalizer_overview();
+//					break;
+//				case 6:
+//					switch(Display.currentBand){
+//					case 0:
+//						// next effect: Distortion
+////						Display.pagePosition = 7;
+//						//p_Distortion_overview();
+//						p_Distortion(&HardClipping);
+//						DISPLAY_PrintCurrentPage();
+//						break;
+//					default:
+//						p_Equalizer_Settings();
+//						//Display.pagePosition = 6;
+//						break;
+//					}
+//					break;
+//					case 7:
+//						// Distortion
+//						//p_Distortion_overview();
+//						p_Distortion(&HardClipping);
+//						break;
+//					case 8:
+//						switch(Display.currentDistortion) {
+//						case 0:
+//							// next effect: Tremolo
+////							Display.pagePosition = 9;
+//							//p_Tremolo_overview();
+//							p_Tremolo(&Tremolo);
+//							DISPLAY_PrintCurrentPage();
+//							break;
+//						default:
+//							//p_Distortion_Settings();
+//							break;
+//						}
+//						break;
+//						case 9:
+//							// Tremolo
+//							//p_Tremolo_overview();
+//							p_Tremolo(&Tremolo);
+//							break;
+//						case 10:
+//							// next effect: ?
+////							Display.pagePosition = 11;
+//							//p_Dummy();
+//							DISPLAY_PrintCurrentPage();
+//							break;
+//						default:
+//							//p_Tremolo_Settings();
+//							break;
+//		}
+//		break;
+//
+//		// KEYBOARD-MODE
+//		case KEYBOARD:
+//			Display.page_max = 1; // must be changed for every added case
+//			switch(Display.pagePosition) {
+//			case 0:
+//				p_StartingMenu(frame_buffer);
+//				break;
+//			case 1:
+//				p_KeyboardSetParameters(&envelope);
+//				break;
+//			default:
+//				break;
+//			}
+//			break;
+//
+//			default:
+//				break;
+//	}
+//}
 
 /** @brief this function edits the ON/OFF settings of the Voices
  *
@@ -957,18 +1064,18 @@ void p_ADSR_overview(struct adsr* envelope) {
 void p_ADSR_Settings(void) {
 
 	//Header line
-	char headerstring[] = "ADSR ";
-	char headerstring_2[5];
-	itoa(Display.currentADSR, headerstring_2, 10);
-	strcat(headerstring, headerstring_2);
+	char headerstring[] = "ADSR";
+	//char headerstring_2[5];
+	//itoa(Display.currentADSR, headerstring_2, 10);
+	//strcat(headerstring, headerstring_2);
 	Paint_DrawStringAt(&paint, 1, 10, headerstring, &Font16, COLORED);
 
 	//row cases
-	char str_1[] = "Attack Time Source";
-	char str_2[] = "Decay Time Source";
-	char str_3[] = "Sustain Time Source";
-	char str_4[] = "Sustain Level Source";
-	char str_5[] = "Release Time Source";
+	char str_1[] = "A. Time Source";
+	char str_2[] = "D. Time Source";
+	char str_3[] = "S. Time Source";
+	char str_4[] = "S. Level Source";
+	char str_5[] = "R. Time Source";
 	char str_6[] = "";
 	char str_7[] = "";
 	char str_8[] = "";
@@ -989,42 +1096,42 @@ void p_ADSR_Settings(void) {
 		case 1:
 			// Attack Time Source
 			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, 70, Display.value_end_x_position, 80, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE1, Display.value_end_x_position, CASE1+10, UNCOLORED);
 			uint8_t mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 			Display.ADSR_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, 70, source_names[mode_number], &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE1, source_names[mode_number], &Font12, COLORED);
 			break;
 		case 2:
 			// Decay Time Source
 			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, 70, Display.value_end_x_position, 80, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+10, UNCOLORED);
 			uint8_t mode_number2 = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 			Display.ADSR_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, 70, source_names[mode_number2], &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, source_names[mode_number2], &Font12, COLORED);
 			break;
 		case 3:
 			// Sustain Time Source
 			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, 90, Display.value_end_x_position, 100, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE3, Display.value_end_x_position, CASE3+10, UNCOLORED);
 			uint8_t mode_number3 = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 			Display.ADSR_Sources[2] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, 90, source_names[mode_number3], &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE3, source_names[mode_number3], &Font12, COLORED);
 			break;
 		case 4:
 			// Sustain Level Source
 			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, 110, Display.value_end_x_position, 120, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE4, Display.value_end_x_position, CASE4+10, UNCOLORED);
 			uint8_t mode_number4 = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 			Display.ADSR_Sources[3] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, 90, source_names[mode_number4], &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE4, source_names[mode_number4], &Font12, COLORED);
 			break;
 		case 5:
 			// Release Time Source
 			Display.Poti_Threshold = 1;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, 130, Display.value_end_x_position, 140, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE5, Display.value_end_x_position, CASE5+10, UNCOLORED);
 			uint8_t mode_number5 = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 			Display.ADSR_Sources[4] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, 90, source_names[mode_number5], &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE5, source_names[mode_number5], &Font12, COLORED);
 			break;
 		default:
 			break;
@@ -1194,47 +1301,47 @@ void p_Equalizer_Settings(void) {
 	case 1:
 		// Q-Factor
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 30, Display.value_end_x_position, 40, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+10, UNCOLORED);
 		Display.Filter_Q[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * filter_maximum_Q);
 		sprintf(filter_Q_string, "%.2f", Display.Filter_Q[Display.currentBand-1]);
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, filter_Q_string, &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, filter_Q_string, &Font12, COLORED);
 		break;
 	case 2:
 		// Cutoff
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, 50, Display.value_end_x_position, 60, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+10, UNCOLORED);
 		Display.Filter_Cutoff[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * filter_maximum_cutoff);
 		sprintf(filter_cutoff_string, "%.2f", Display.Filter_Cutoff[Display.currentBand-1]);
-		Paint_DrawStringAt(&paint, Display.value_start_x_position-20, 50, filter_cutoff_string, &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, filter_cutoff_string, &Font12, COLORED);
 		break;
 	case 3:
 		// Gain
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 70, Display.value_end_x_position, 80, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+10, UNCOLORED);
 		Display.Filter_Gain[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * filter_maximum_gain);
 		sprintf(filter_gain_string, "%.2f", Display.Filter_Gain[Display.currentBand-1]);
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 70, filter_gain_string, &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, filter_gain_string, &Font12, COLORED);
 		break;
 	case 4:
 		// Q-Factor Source
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 90, Display.value_end_x_position, 100, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE4, Display.value_end_x_position, CASE4+10, UNCOLORED);
 		uint8_t mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 		Display.EQ_Q_factor_Sources[Display.currentBand-1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 90, source_names[mode_number], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE4, source_names[mode_number], &Font12, COLORED);
 		break;
 	case 5:
 		// Cutoff Source
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 110, Display.value_end_x_position, 120, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE5, Display.value_end_x_position, CASE5+10, UNCOLORED);
 		uint8_t mode_number2 = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 		Display.EQ_Cutoff_Sources[Display.currentBand-1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 110, source_names[mode_number2], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE5, source_names[mode_number2], &Font12, COLORED);
 		break;
 	case 6:
 		// Gain Source
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 130, Display.value_end_x_position, 140, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE6, Display.value_end_x_position, CASE6+10, UNCOLORED);
 		uint8_t mode_number3 = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 		Display.EQ_Gain_Sources[Display.currentBand-1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 130, source_names[mode_number3], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE6, source_names[mode_number3], &Font12, COLORED);
 		break;
 	default:
 		break;
@@ -1265,13 +1372,13 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 	switch (Display.JoystickParameterPosition){
 	case 1:	// Distortion ON/OFF
 		Display.Poti_Threshold = 50;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 30, Display.value_end_x_position, 40, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+10, UNCOLORED);
 		if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {
-			Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, "OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, "OFF", &Font12, COLORED);
 			Display.Distortion_ONOFF = false;
 		}
 		else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {
-			Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, "ON", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, "ON", &Font12, COLORED);
 			Display.Distortion_ONOFF = true;
 		}
 		break;
@@ -1289,16 +1396,16 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 		//		break;
 	case 2:	// Distortion Gain
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 50, Display.value_end_x_position, 60, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+10, UNCOLORED);
 		Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * HardClipping->distortion_maximum_gain) + 1;
-		Paint_DrawCharAt(&paint, Display.value_start_x_position, 50, Display.Distortion_Gain+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
+		Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE2, Display.Distortion_Gain+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 		break;
 	case 3:	// Distortion Gain Source
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 70, Display.value_end_x_position, 80, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+10, UNCOLORED);
 		uint8_t mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 		Display.Distortion_Sources = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 70, source_names[mode_number], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, source_names[mode_number], &Font12, COLORED);
 		break;
 	case 4:
 		// TODO: RESET OF DISTORTION..
@@ -1335,47 +1442,47 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	case 1:
 		// Tremolo ON/OFF
 		Display.Poti_Threshold = 50;	// threshold for ON/OFF
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 30, Display.value_end_x_position, 40, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+10, UNCOLORED);
 		if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
 			Display.Tremolo_ONOFF = false;
-			Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, "OFF", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, "OFF", &Font12, COLORED);
 		}
 		else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {	// Potentiometer: Display.ADC2inputs[2]
 			Display.Tremolo_ONOFF = true;
-			Paint_DrawStringAt(&paint, Display.value_start_x_position, 30, "ON", &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, "ON", &Font12, COLORED);
 		}
 		break;
 	case 2:
 		// Tremolo Rate
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 50, Display.value_end_x_position, 60, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+10, UNCOLORED);
 		Display.Tremolo_Rate = (((float)Display.ADC2inputs[2]/4096) * Tremolo->tremolo_maximum_rate) + 1;
-		Paint_DrawCharAt(&paint, Display.value_start_x_position, 50, Display.Tremolo_Rate+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
+		Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE2, Display.Tremolo_Rate+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 		break;
 	case 3:
 		// Tremolo Depth
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 70, Display.value_end_x_position, 80, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+10, UNCOLORED);
 		Display.Tremolo_Depth = (((float)Display.ADC2inputs[2]/4096) * Tremolo->tremolo_maximum_depth);
 		char tremolo_depth_string[5];
 		sprintf(tremolo_depth_string, "%.2f", Display.Tremolo_Depth);
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 70, tremolo_depth_string, &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, tremolo_depth_string, &Font12, COLORED);
 		break;
 	case 4:
 		// Tremolo Rate Source
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 90, Display.value_end_x_position, 100, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+10, UNCOLORED);
 		uint8_t mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 		Display.Tremolo_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 90, source_names[mode_number], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, source_names[mode_number], &Font12, COLORED);
 		break;
 	case 5:
 		// Tremolo Depth Source
 		Display.Poti_Threshold = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 110, Display.value_end_x_position, 120, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+10, UNCOLORED);
 		uint8_t mode_number2 = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
 		Display.Tremolo_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LEFT+1)));
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, 110, source_names[mode_number2], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, source_names[mode_number2], &Font12, COLORED);
 		break;
 	case 6:
 		// TODO: RESET OF TREMOLO..
