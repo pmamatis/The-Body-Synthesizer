@@ -252,15 +252,15 @@ int main(void)
 		printf("Display init failed\n");
 		//while(1);
 	}
-
-	keyboard_init(&hadc1, &htim5);
-
-	//Gyros SPI
-	spiC_Init(&hspi4, &htim7);
-
-
-	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
+//
+//	keyboard_init(&hadc1, &htim5);
+//
+//	//Gyros SPI
+//	spiC_Init(&hspi4, &htim7);
+//
+//
+//	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
+//	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//	//you have to edit the startup_stm32fxxx.s file and set a big enough heap size
@@ -282,14 +282,14 @@ int main(void)
 	// Start DAC-DMA
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,SIN, 'C',0);
 	//NewSignal(&signals1,SIN, 'C',1);
-	//NewSignal(&signals1,SIN, 'C',2);
+	NewSignal(&signals1,SIN, 'C',2);
 	//NewSignal(&signals1,SIN, 'C',3);
 	//NewSignal(&signals1,SIN, 'C',4);
 	//NewSignal(&signals1,SIN, 'G',0);
@@ -306,14 +306,14 @@ int main(void)
 	//effects_add(DIST_S, 0);
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
-	keyboard_start_read();
-	HAL_TIM_Base_Start(&htim5);
-	HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
+//	keyboard_start_read();
+//	HAL_TIM_Base_Start(&htim5);
+//	HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
-	SetTimerSettings(&htim6, 20);	// Timer 6 default: 2000 Hz
-	HAL_TIM_Base_Start(&htim6);
-	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
+//	SetTimerSettings(&htim6, 20);	// Timer 6 default: 2000 Hz
+//	HAL_TIM_Base_Start(&htim6);
+//	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
 
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
 //	HAL_TIM_Base_Start(&htim1);
