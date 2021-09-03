@@ -119,7 +119,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 		}
 		if(flag_hihat[i] == 1) {
 
-			hihat = hihat + closed_hh_LUT[counter_hihat[i]];
+			hihat = hihat + open_hh_LUT[counter_hihat[i]];
 			counter_hihat[i]++;
 
 			if(counter_hihat[i] == sample_length - 1){
