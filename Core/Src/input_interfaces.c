@@ -5,46 +5,110 @@
  *      Author: Marc Bielen
  */
 
-
 #include "input_interfaces.h"
+
+///** @brief Creates the Signals given throzgh the Display-Interput
+// * retval: 0 Error
+// * 		   1 Success
+// */
+//uint8_t II_Display_Voices(void){
+//	for (uint8_t ii_i=0; ii_i < II_MAX_VOICES;ii_i++){
+//
+//		//create Signal and save its ID
+//		if (Display.Voices_ONOFF[ii_i] == true && Display.Voices_Created[ii_i] == false){
+//			NewSignal(&signals1, SIN, Display.Voices_Note[ii_i],Display.Voices_Octave[ii_i]);
+//			ii_voice_IDs[ii_i] = signals1.ID[signals1.count];
+////			printf("saved ID = %i\r\n", ii_voice_IDs[ii_i]);
+//			Display.Voices_Created[ii_i] = true;
+////			printf("Voice %i created\r\n", ii_i);
+//		}
+//		//Delete signal with its ID
+//		else if (Display.Voices_ONOFF[ii_i]==false && Display.Voices_Created[ii_i] == true){
+//			uint8_t find_ID_counter = 0;
+//			while (ii_voice_IDs[ii_i] != signals1.ID[find_ID_counter]){
+//				find_ID_counter ++;
+////				printf("in while %i \r\n", find_ID_counter);
+//				if (find_ID_counter > MAX_SIGNAL_KOMBINATION){
+////					printf("Voice deletion error!\r\n");
+//					return 0;
+//				}
+//			}
+////			printf("deleted ID = %i\r\n", signals1.ID[find_ID_counter]);
+//			DeleteSignal(&signals1, find_ID_counter);
+////			printf("Voice %i deleted \r\n", ii_i);
+//			Display.Voices_Created[ii_i] = false;
+//
+//
+//			}
+//		}
+//
+//	return 1;
+//}
+
 /** @brief Creates the Signals given throzgh the Display-Interput
  * retval: 0 Error
  * 		   1 Success
  */
-uint8_t II_Display_Voices(void){
-	for (uint8_t ii_i=0; ii_i < II_MAX_VOICES;ii_i++){
+uint8_t II_Display_Voices(void) {
+
+	for(uint8_t ii_i=0; ii_i < II_MAX_VOICES; ii_i++) {
 
 		//create Signal and save its ID
-		if (Display.Voices_ONOFF[ii_i] == true && Display.Voices_Created[ii_i] == false){
+		if (Display.Voices_ONOFF[ii_i] == true && Display.Voices_Created[ii_i] == false) {
 			NewSignal(&signals1, SIN, Display.Voices_Note[ii_i],Display.Voices_Octave[ii_i]);
+			//outputBuffer_position = HALF_BLOCK;	// reset the buffer position
 			ii_voice_IDs[ii_i] = signals1.ID[signals1.count];
-//			printf("saved ID = %i\r\n", ii_voice_IDs[ii_i]);
+			//printf("saved ID = %i\r\n", ii_voice_IDs[ii_i]);
 			Display.Voices_Created[ii_i] = true;
-//			printf("Voice %i created\r\n", ii_i);
+			//printf("Voice %i created\r\n", ii_i);
+			//printf("Note %c\r\n", Display.Voices_Note[ii_i]);
+			//printf("Octave %c\r\n", Display.Voices_Octave[ii_i]);
 		}
 		//Delete signal with its ID
-		else if (Display.Voices_ONOFF[ii_i]==false && Display.Voices_Created[ii_i] == true){
+		else if (Display.Voices_ONOFF[ii_i]==false && Display.Voices_Created[ii_i] == true) {
 			uint8_t find_ID_counter = 0;
-			while (ii_voice_IDs[ii_i] != signals1.ID[find_ID_counter]){
+			while (ii_voice_IDs[ii_i] != signals1.ID[find_ID_counter]) {
 				find_ID_counter ++;
-//				printf("in while %i \r\n", find_ID_counter);
+				//				printf("in while %i \r\n", find_ID_counter);
 				if (find_ID_counter > MAX_SIGNAL_KOMBINATION){
-//					printf("Voice deletion error!\r\n");
+					//					printf("Voice deletion error!\r\n");
 					return 0;
 				}
 			}
-//			printf("deleted ID = %i\r\n", signals1.ID[find_ID_counter]);
+			//printf("deleted ID = %i\r\n", signals1.ID[find_ID_counter]);
 			DeleteSignal(&signals1, find_ID_counter);
-//			printf("Voice %i deleted \r\n", ii_i);
+			//printf("Voice %i deleted \r\n", ii_i);
 			Display.Voices_Created[ii_i] = false;
+		}
 
 
+		// if note or octave is changed, the old signal should be exchanged with the new one
+		else if (Display.Voices_ONOFF[ii_i] == true && Display.Voices_Created[ii_i] == true) {
+			if( (Display.last_Voices_Note[ii_i] != Display.Voices_Note[ii_i]) || (Display.last_Voices_Octave[ii_i] != Display.Voices_Octave[ii_i]) ) {
+				uint8_t find_ID_counter_2 = 0;
+				while (ii_voice_IDs[ii_i] != signals1.ID[find_ID_counter_2]) {
+					find_ID_counter_2++;
+					if (find_ID_counter_2 > MAX_SIGNAL_KOMBINATION){
+						return 0;
+					}
+				}
+				//printf("deleted ID = %i\r\n", signals1.ID[find_ID_counter_2]);
+				DeleteSignal(&signals1, find_ID_counter_2);
+				//printf("Voice %i deleted \r\n", ii_i);
+				NewSignal(&signals1, SIN, Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i]);
+				ii_voice_IDs[ii_i] = signals1.ID[signals1.count];
+				//outputBuffer_position = HALF_BLOCK;	// reset the buffer position
+				//printf("Voice %i created\r\n", ii_i);
+				//printf("Note %c\r\n", Display.Voices_Note[ii_i]);
+				//printf("Octave %c\r\n", Display.Voices_Octave[ii_i]);
+				Display.last_Voices_Note[ii_i] = Display.Voices_Note[ii_i];
+				Display.last_Voices_Octave[ii_i] = Display.Voices_Octave[ii_i];
 			}
 		}
+	}
 
 	return 1;
 }
-
 
 /**@brief parses the information from the Display-input to the strcuts of the effects
  * retval: 0 Error
@@ -80,7 +144,7 @@ uint8_t II_Display_Effects(void){
 		if (Display.Filter_ONOFF[Display.currentBand] == true){
 			effects_add(EQ, 2);
 
-//			if (Display.poti_moved == true){
+			//			if (Display.poti_moved == true){
 			switch(Display.currentBand){
 
 			case 1:
@@ -120,7 +184,7 @@ uint8_t II_Display_Effects(void){
 
 			//		SetupLowShelf(EQ_BAND1_I, Display.Filter_Cutoff[], Q, dBGain)
 
-//		}
+			//		}
 		}
 		else if (Display.Filter_ONOFF == false){
 			effects_delete(EQ, 2);
