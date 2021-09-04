@@ -210,11 +210,16 @@ int main(void)
 
 	sd_card_mount(huart3);
 	sd_card_free_space(huart3);
+	sd_card_read("909_Rimshot.txt", huart3);
+
 	//sd_card_write_newfile("test.txt", "0,2,4", huart3);
 	//sd_card_write_appendfile("ir.txt", "93,94", huart3);
-	sd_card_read("test.txt", huart3);
+	//sd_card_read("test.txt", huart3);
+	//sd_card_read("Marc.txt", huart3);
 	//sd_card_remove_file("ir.txt", huart3);
 	sd_card_unmount(huart3);
+
+
 	//--------------------------------------------------
 	printf("***Bodysynthesizer*** \r\n");
 

@@ -203,9 +203,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		}// Signal counter for-loop
 
 
-		//write into calculate vector
-		Drum_Computer_Process();
-		calculate_vector_tmp[BLOCKSIZE_counter] = 2*drums; //addValue + drums;
+		// DRUMCOMPUTER
+		// write into calculate vector
+		//Drum_Computer_Process();
+		//calculate_vector_tmp[BLOCKSIZE_counter] = 2*drums; //addValue + drums;
 
 
 		/*limiter function*/

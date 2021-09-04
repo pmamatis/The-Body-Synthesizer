@@ -35,7 +35,6 @@ uint32_t flag_kick[FourFour];
 uint32_t flag_hihat[FourFour];
 uint32_t flag_clap[FourFour];
 
-
 // Timing positions
 uint32_t timing_kick [FourFour];
 uint32_t timing_hihat[FourFour];

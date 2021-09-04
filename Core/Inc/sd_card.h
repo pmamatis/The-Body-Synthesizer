@@ -19,7 +19,7 @@ FATFS fs;  // file system
 FIL fil; // File
 FILINFO fno;
 FRESULT fresult;  // result
-char txtfile_array[100];	// could be also higher if necessary
+char txtfile_array[40000];	// could be also higher if necessary
 UINT br, bw;  // File read/write count
 DIR dj;	// directory object
 
