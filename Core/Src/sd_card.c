@@ -151,9 +151,19 @@ void sd_card_read(char *filename, UART_HandleTypeDef huart) {
 		send_uart ("file is open and the data is shown below\n\r", huart);
 
 	// Read data from the file - Please see the function details for the arguments
-	f_read (&fil, buffer, f_size(&fil), &br);
-	send_uart(buffer, huart);
-	send_uart("\n\r", huart);
+
+	uint32_t cycles = (uint32_t)f_size(&fil) / 8;
+
+
+	for(int i = 0; i < cycles; i++) {
+
+		f_read (&fil, buffer, 8, &br);
+		br = br + 8;
+		send_uart(buffer, huart);
+		send_uart("\n\r", huart);
+		send_uart("____", huart);
+		send_uart("\n\r", huart);
+	}
 
 	// Close file
 	f_close(&fil);
