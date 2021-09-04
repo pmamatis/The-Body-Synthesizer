@@ -49,7 +49,7 @@ void sd_card_write_newfile(char *filename, char *filecontent, UART_HandleTypeDef
 
 void sd_card_write_appendfile(char *filename, char *filecontent, UART_HandleTypeDef huart);
 
-void sd_card_read(char *filename, UART_HandleTypeDef huart);
+void sd_card_read(char *filename, float *LUT, UART_HandleTypeDef huart);
 
 void sd_card_remove_file(char *filename, UART_HandleTypeDef huart);
 

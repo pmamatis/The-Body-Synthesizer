@@ -53,7 +53,7 @@ float rimshot;
 float drums;
 
 // Methods
-HAL_StatusTypeDef Drum_Computer_Init();
+HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart);
 HAL_StatusTypeDef Drum_Computer_Process();
 HAL_StatusTypeDef Drum_Computer_CalcSample();
 

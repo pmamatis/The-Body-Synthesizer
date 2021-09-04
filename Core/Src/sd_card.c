@@ -136,7 +136,7 @@ void sd_card_write_appendfile(char *filename, char *filecontent, UART_HandleType
 	clear_buffer();
 }
 
-void sd_card_read(char *filename, UART_HandleTypeDef huart) {
+void sd_card_read(char *filename, float *LUT, UART_HandleTypeDef huart) {
 	// FA_READ - Specifies read access to the object. Data can be read from the file.
 	// FA_WRITE - Specifies write access to the object. Data can be written to the file. Combine with FA_READ for read-write access.
 	// FA_OPEN_EXISTING - Opens the file. The function fails if the file is not existing. (Default)
@@ -152,14 +152,13 @@ void sd_card_read(char *filename, UART_HandleTypeDef huart) {
 
 	// Read data from the file - Please see the function details for the arguments
 
-	uint32_t cycles = (uint32_t)f_size(&fil) / BUFFER_SIZE;
-	uint32_t NoSamples = 100;
+	uint32_t Cycles = (uint32_t)f_size(&fil) / BUFFER_SIZE; // 400
 	uint32_t NoLength = 10;
+	uint32_t NoSamples = 100;
 
-	float audiosample[NoSamples];
 	char SampleTemp[NoLength];
 
-	for(int i = 0; i < cycles; i++) {
+	for(int i = 0; i < Cycles; i++) {
 
 		f_read (&fil, buffer, BUFFER_SIZE, &br);
 		br = br + BUFFER_SIZE;
@@ -170,19 +169,14 @@ void sd_card_read(char *filename, UART_HandleTypeDef huart) {
 
 				SampleTemp[k] = buffer[j*NoLength+k];
 			}
-			audiosample[j] = atof(SampleTemp);
+			LUT[i*NoSamples+j] = atof(SampleTemp)-1;
 		}
-
-//		printf("%f", audiosample);
-//		printf("\n\r");
-//		send_uart(audiosample, huart);
-//		send_uart("___", huart);
-//		send_uart("\n\r", huart);
 	}
 
 	// Close file
 	f_close(&fil);
 
+	// Clear buffer
 	clear_buffer();
 }
 

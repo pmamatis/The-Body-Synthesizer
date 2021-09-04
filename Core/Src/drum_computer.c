@@ -8,7 +8,7 @@
 #include "drum_computer.h"
 
 
-HAL_StatusTypeDef Drum_Computer_Init(){
+HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 
 	// Tempo
 	BPM = 130;	// at SR of 96000 Hz and sample length of 40000 -> 144 BPM Maximum
@@ -47,6 +47,28 @@ HAL_StatusTypeDef Drum_Computer_Init(){
 		timing_position_in_samples[i] = 4 * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
 
+	// LUT Init
+	//	sd_card_mount(huart);
+	//	sd_card_free_space(huart);
+	//	sd_card_read("909_Rimshot.txt", &rimshot_LUT, huart);
+	//	sd_card_unmount(huart);
+
+	sd_card_mount(huart);
+	sd_card_free_space(huart);
+	sd_card_read("909_Kick.txt", &kick_LUT, huart);
+	sd_card_unmount(huart);
+
+//	sd_card_mount(huart);
+//	sd_card_free_space(huart);
+//	sd_card_read("909_Clap.txt", &clap_LUT, huart);
+//	sd_card_unmount(huart);
+
+	sd_card_mount(huart);
+	sd_card_free_space(huart);
+	sd_card_read("909_OpenHihat.txt", &open_hh_LUT, huart);
+	sd_card_unmount(huart);
+
+
 	// Timing Init
 	timing_kick[0]  = 1;
 	timing_kick[4]  = 1;
@@ -61,6 +83,9 @@ HAL_StatusTypeDef Drum_Computer_Init(){
 	timing_clap[4] = 1;
 	timing_clap[12] = 1;
 
+	timing_rimshot[2] = 1;
+	timing_rimshot[6] = 1;
+	timing_rimshot[10] = 1;
 	timing_rimshot[14] = 1;
 
 	return HAL_OK;
@@ -140,32 +165,32 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 				flag_hihat[i] = 0;
 			}
 		}
-		if(flag_clap[i] == 1) {
+//		if(flag_clap[i] == 1) {
+//
+//			clap = clap + clap_LUT[counter_clap[i]];
+//			counter_clap[i]++;
+//
+//			if(counter_clap[i] == sample_length - 1){
+//
+//				counter_clap[i] = 0;
+//				flag_clap[i] = 0;
+//			}
+//		}
+		//		if(flag_rimshot[i] == 1) {
+			//
+			//			rimshot = rimshot + rimshot_LUT[counter_rimshot[i]];
+		//			counter_rimshot[i]++;
+		//
+		//			if(counter_rimshot[i] == sample_length - 1){
+		//
+		//				counter_rimshot[i] = 0;
+		//				flag_rimshot[i] = 0;
+		//			}
+//	}
+}
+drums = kick + hihat + clap + rimshot;
 
-			clap = clap + clap_LUT[counter_clap[i]];
-			counter_clap[i]++;
-
-			if(counter_clap[i] == sample_length - 1){
-
-				counter_clap[i] = 0;
-				flag_clap[i] = 0;
-			}
-		}
-		if(flag_kick[i] == 1) {
-
-			rimshot = rimshot + kick_LUT[counter_kick[i]];
-			counter_rimshot[i]++;
-
-			if(counter_rimshot[i] == sample_length - 1){
-
-				counter_rimshot[i] = 0;
-				flag_rimshot[i] = 0;
-			}
-		}
-	}
-	drums = kick + hihat + clap + rimshot;
-
-	return HAL_OK;
+return HAL_OK;
 }
 
 
