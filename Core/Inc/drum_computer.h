@@ -29,16 +29,19 @@ uint32_t counter_master;
 uint32_t counter_kick [FourFour];
 uint32_t counter_hihat[FourFour];
 uint32_t counter_clap [FourFour];
+uint32_t counter_rimshot [FourFour];
 
 // Flag
 uint32_t flag_kick[FourFour];
 uint32_t flag_hihat[FourFour];
 uint32_t flag_clap[FourFour];
+uint32_t flag_rimshot[FourFour];
 
 // Timing positions
 uint32_t timing_kick [FourFour];
 uint32_t timing_hihat[FourFour];
 uint32_t timing_clap [FourFour];
+uint32_t timing_rimshot [FourFour];
 uint32_t timing_position_in_samples[FourFour];
 uint32_t timing_complete;
 
@@ -46,6 +49,7 @@ uint32_t timing_complete;
 float kick;
 float hihat;
 float clap;
+float rimshot;
 float drums;
 
 // Methods

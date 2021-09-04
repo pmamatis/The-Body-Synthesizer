@@ -28,7 +28,7 @@ FATFS *pfs;
 DWORD fre_clust;
 uint32_t total, free_space;
 
-#define BUFFER_SIZE 128	// should be bigger for even bigger files
+#define BUFFER_SIZE 1000	// should be bigger for even bigger files
 char buffer[BUFFER_SIZE];  // to store strings..
 
 int bufsize (char *buf);

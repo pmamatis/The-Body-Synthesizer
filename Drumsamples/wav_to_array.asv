@@ -1,0 +1,117 @@
+clear all; close all; clc
+
+[clap,clap_SR] = audioread('909_Clap.wav');
+% sound(clap,clap_SR);
+clap = clap';
+clap = clap(1,1:40000);
+%figure(1);
+% plot(clap); grid on
+% title('Clap');
+% pause(1)
+
+[closed_hh,closed_hh_SR] = audioread('909_ClosedHihat.wav');
+% sound(closed_hh,closed_hh_SR);
+closed_hh = closed_hh';
+closed_hh = closed_hh(1,1:40000);
+% figure(2);
+% plot(closed_hh); grid on
+% title('Closed Hihat');
+% pause(1)
+
+[kick,kick_SR] = audioread('909_Kick.wav');
+% sound(kick,kick_SR);
+kick = kick';
+kick = kick(1,1:40000);
+% figure(3);
+% plot(kick); grid on
+% title('Kick');
+% pause(1)
+
+format long;
+
+[rimshot,rimshot_SR] = audioread('909_Rimshot.wav');
+% sound(rimshot,rimshot_SR);
+rimshot = rimshot'; 
+rimshot = rimshot(1,1:40000);
+
+% digitsOld = digits(8);
+% rimshot8 = vpa(rimshot);
+
+format long;
+
+%rimshot = vpa(rimshot, 8);
+% for i=1:40000
+%     rimshot_offset(i) = rimshot(i) + 1.11111111;
+% end
+
+% figure(3);
+% plot(rimshot); grid on
+% title('Rimshot');
+% pause(1)
+
+rimshot_str = string(rimshot);
+
+for i = 1:40000
+    
+    rimshot_str(1,i) = sprintf('%1.8f',rimshot_str(1,i));
+end
+
+
+% save LUT data into C-files
+precision = 8;  % precision of Nachkommastelle
+
+%% TXT-file
+fid = fopen('909_Rimshot.txt','w');
+
+for i=1:40000
+    fprintf(fid,'%1.8f',rimshot_str(i));
+    fprintf(fid,',');
+end
+%fprintf(fid,'%1.8f',rimshot_str);
+fclose(fid);
+
+%dlmwrite('909_Rimshot.txt',rimshot_str,'delimiter',',', 'precision', precision,'-append');
+
+%% C-file
+dlmwrite('wav_LUT.c','#include "wav_LUT.h"','delimiter','', 'precision', precision);
+
+% Clap
+dlmwrite('wav_LUT.c','const float clap_LUT[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append');
+dlmwrite('wav_LUT.c',clap,'delimiter',',', 'precision', precision,'-append');
+dlmwrite('wav_LUT.c','};','delimiter','', 'precision', precision,'-append');
+
+% Closed Hihat
+dlmwrite('wav_LUT.c','const float closed_hh_LUT[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append');
+dlmwrite('wav_LUT.c',closed_hh,'delimiter',',', 'precision', precision,'-append');
+dlmwrite('wav_LUT.c','};','delimiter','', 'precision', precision,'-append');
+
+% Kick
+dlmwrite('wav_LUT.c','const float kick_LUT[] __attribute__ ((section(".rodata"))) = {','delimiter','', 'precision', precision,'-append');
+dlmwrite('wav_LUT.c',kick,'delimiter',',', 'precision', precision,'-append');
+dlmwrite('wav_LUT.c','};','delimiter','', 'precision', precision,'-append');
+
+%% H-file
+%include Guard
+dlmwrite('wav_LUT.h','#ifndef INC_WAV_LUT_H_','delimiter','', 'precision', precision);
+dlmwrite('wav_LUT.h','#define INC_WAV_LUT_H_','delimiter','', 'precision', precision,'-append')
+dlmwrite('wav_LUT.h','//includes ','delimiter','', 'precision', precision,'-append');
+
+% defines
+dlmwrite('wav_LUT.h','//defines ','delimiter','', 'precision', precision,'-append');
+% Clap SR
+dlmwrite('wav_LUT.h',['#define CLAP_SR ',num2str(clap_SR)],'delimiter','', 'precision', precision,'-append');
+% Closed Hihat SR
+dlmwrite('wav_LUT.h',['#define CLOSED_HH_SR ',num2str(closed_hh_SR)],'delimiter','', 'precision', precision,'-append');
+% Kick SR
+dlmwrite('wav_LUT.h',['#define KICK_SR ',num2str(kick_SR)],'delimiter','', 'precision', precision,'-append');
+
+%variables
+dlmwrite('wav_LUT.h','//variables','delimiter','', 'precision', precision,'-append');
+% Clap LUT
+dlmwrite('wav_LUT.h',['const float clap_LUT[',num2str(length(clap)),'];'],'delimiter','', 'precision', precision,'-append');
+% Closed Hihat LUT
+dlmwrite('wav_LUT.h',['const float closed_hh_LUT[',num2str(length(closed_hh)),'];'],'delimiter','', 'precision', precision,'-append');
+% Kick LUT
+dlmwrite('wav_LUT.h',['const float kick_LUT[',num2str(length(kick)),'];'],'delimiter','', 'precision', precision,'-append');
+
+dlmwrite('wav_LUT.h','#endif','delimiter','', 'precision', precision,'-append');

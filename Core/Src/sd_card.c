@@ -152,17 +152,32 @@ void sd_card_read(char *filename, UART_HandleTypeDef huart) {
 
 	// Read data from the file - Please see the function details for the arguments
 
-	uint32_t cycles = (uint32_t)f_size(&fil) / 8;
+	uint32_t cycles = (uint32_t)f_size(&fil) / BUFFER_SIZE;
+	uint32_t NoSamples = 100;
+	uint32_t NoLength = 10;
 
+	float audiosample[NoSamples];
+	char SampleTemp[NoLength];
 
 	for(int i = 0; i < cycles; i++) {
 
-		f_read (&fil, buffer, 8, &br);
-		br = br + 8;
-		send_uart(buffer, huart);
-		send_uart("\n\r", huart);
-		send_uart("____", huart);
-		send_uart("\n\r", huart);
+		f_read (&fil, buffer, BUFFER_SIZE, &br);
+		br = br + BUFFER_SIZE;
+
+		for(int j = 0; j < NoSamples; j++) {
+
+			for(int k = 0; k < NoLength; k++){
+
+				SampleTemp[k] = buffer[j*NoLength+k];
+			}
+			audiosample[j] = atof(SampleTemp);
+		}
+
+//		printf("%f", audiosample);
+//		printf("\n\r");
+//		send_uart(audiosample, huart);
+//		send_uart("___", huart);
+//		send_uart("\n\r", huart);
 	}
 
 	// Close file

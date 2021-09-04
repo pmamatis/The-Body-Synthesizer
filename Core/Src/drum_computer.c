@@ -19,6 +19,7 @@ HAL_StatusTypeDef Drum_Computer_Init(){
 	kick = 0;
 	hihat = 0;
 	clap = 0;
+	rimshot = 0;
 	drums = 0;
 
 	// Index
@@ -30,16 +31,19 @@ HAL_StatusTypeDef Drum_Computer_Init(){
 		flag_kick[i] = 0;
 		flag_hihat[i] = 0;
 		flag_clap[i] = 0;
+		flag_rimshot[i] = 0;
 
 		// Counter
 		counter_kick [i] = 0;
 		counter_hihat[i] = 0;
 		counter_clap [i] = 0;
+		counter_rimshot [i] = 0;
 
 		// Timing positions
 		timing_kick [i] = 0;
 		timing_hihat[i] = 0;
 		timing_clap [i] = 0;
+		timing_rimshot [i] = 0;
 		timing_position_in_samples[i] = 4 * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
 
@@ -57,6 +61,8 @@ HAL_StatusTypeDef Drum_Computer_Init(){
 	timing_clap[4] = 1;
 	timing_clap[12] = 1;
 
+	timing_rimshot[14] = 1;
+
 	return HAL_OK;
 }
 
@@ -65,6 +71,7 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 	kick = 0;
 	clap = 0;
 	hihat = 0;
+	rimshot = 0;
 
 	//uint32_t avg_counter = 0;
 
@@ -81,6 +88,11 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 	if(timing_clap[drum_index] == 1){
 
 		flag_clap[drum_index] = 1;
+
+	}
+	if(timing_rimshot[drum_index] == 1){
+
+		flag_rimshot[drum_index] = 1;
 
 	}
 
@@ -139,8 +151,19 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 				flag_clap[i] = 0;
 			}
 		}
+		if(flag_kick[i] == 1) {
+
+			rimshot = rimshot + kick_LUT[counter_kick[i]];
+			counter_rimshot[i]++;
+
+			if(counter_rimshot[i] == sample_length - 1){
+
+				counter_rimshot[i] = 0;
+				flag_rimshot[i] = 0;
+			}
+		}
 	}
-	drums = kick + hihat + clap;
+	drums = kick + hihat + clap + rimshot;
 
 	return HAL_OK;
 }
