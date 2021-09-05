@@ -22,7 +22,10 @@
  */
 #define VALUE_ROW_LENGTH 10
 
+#define NUMBER_OF_SOURCES 5
+
 typedef enum {
+	CASE0 = 10,
 	CASE1 = 30,
 	CASE2 = 50,
 	CASE3 =	70,
@@ -47,26 +50,26 @@ typedef enum {
 }synth_mode_t;
 
 typedef enum {
-	GYRO_LEFT = 0,
-	GYRO_RIGHT,
-	GYRO_FRONT,
-	GYRO_BACK,
+	GYRO_LR = 0,
+	GYRO_FB,
 	EMG,
 	EKG,
 	POTI
 }source_t;
 
-static const char * const source_names[] = {
-		[GYRO_LEFT] = "Gyro L",
-		[GYRO_RIGHT] = "Gyro R",
-		[GYRO_FRONT] = "Gyro F",
-		[GYRO_BACK] = "Gyro B",
-		[EMG] = "EMG",
-		[EKG] = "EKG",
-		[POTI] = "POTI"
-};
+//static const char * const source_names[] = {
+//		[GYRO_LEFT] = "Gyro L",
+//		[GYRO_RIGHT] = "Gyro R",
+//		[GYRO_FRONT] = "Gyro F",
+//		[GYRO_BACK] = "Gyro B",
+//		[EMG] = "EMG",
+//		[EKG] = "EKG",
+//		[POTI] = "POTI"
+//};
 
 struct display_variables {
+	char source_names[NUMBER_OF_SOURCES][10];	// assumption: maximum length of 10 characters for a each source name
+
 	bool PatchSelected[3];	// arrays for 3 Modules for each patch
 	bool ModuleState[3];
 	bool ModuleStateSelected[3];
@@ -106,10 +109,11 @@ struct display_variables {
 
 	//ADSR
 	bool ADSR_ONOFF;			// 1 ADSR
-	float ADSR_Attack;
-	float ADSR_Decay;
-	float ADSR_Sustain;
-	float ADSR_Release;
+	float ADSR_Attacktime;
+	float ADSR_Decaytime;
+	float ADSR_Sustaintime;
+	float ADSR_Sustainlevel;
+	float ADSR_Releasetime;
 	uint8_t ADSR_EffectPosition;
 	bool ADSR_EffectAdded;
 	uint8_t currentADSR;
@@ -236,7 +240,16 @@ struct display_variables {
 	source_t Distortion_Sources;				// sources for gain
 	source_t Tremolo_Sources[2];				// sources for rate and depth
 	//page value strings
-	char value_str_dummy[9][5];
+	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
+	char value_str_voices_overview[9][10];
+	char value_str_voices_settings[3][9][10];
+	char value_str_adsr_overview[9][10];
+	char value_str_adsr_settings[9][10];
+	char value_str_equalizer_overview[9][10];
+	char value_str_equalizer_settings[5][9][10];
+	char value_str_distortion[9][10];
+	char value_str_tremolo[9][10];
+	char value_str_keyboardmode[9][10];
 };
 
 struct display_variables Display;
@@ -271,7 +284,6 @@ void p_Equalizer_Settings(void);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_KeyboardSetParameters(struct adsr* envelope);
-void p_Gyro(void);
 void p_Dummy(void);
 
 #endif /* INC_DISPLAY_H_ */

@@ -449,9 +449,10 @@ void DMA2_Stream2_IRQHandler(void)
 		DISPLAY_Update();
 	}
 
-	//printf("%i\r\n", Display.ADC2inputs[2]);
-	Display.Poti_Threshold = 15;
+	//	printf("%i\r\n", Display.ADC2inputs[2]);
+	Display.Poti_Threshold = 50;
 	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
+		//printf("Poti triggered\r\n");
 		Display.poti_moved = true;
 		DISPLAY_processing();
 		DISPLAY_Update();
@@ -459,7 +460,7 @@ void DMA2_Stream2_IRQHandler(void)
 		II_Display_Effects();
 		II_Display_Voices();
 	}
-	else{
+	else {
 		Display.poti_moved = false;
 	}
 

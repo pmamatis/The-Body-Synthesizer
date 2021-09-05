@@ -118,9 +118,9 @@ static void MX_TIM7_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+// DAC CHANNEL Functions
+
 // DAC_CHANNEL_1
-/* DAC CHANNEL FUnktions */
-//DAC_CHANNEL_1
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
 	Signal_Synthesis(&signals1, 1);
