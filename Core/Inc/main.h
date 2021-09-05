@@ -68,6 +68,9 @@ extern "C" {
 // Drum Computer
 #include "drum_computer.h"
 
+// SD-Card
+//#include "sd_card.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

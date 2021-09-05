@@ -48,25 +48,25 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	}
 
 	// LUT Init
-	//	sd_card_mount(huart);
-	//	sd_card_free_space(huart);
+	sd_card_mount(huart);
+	sd_card_free_space(huart);
 	//	sd_card_read("909_Rimshot.txt", &rimshot_LUT, huart);
 	//	sd_card_unmount(huart);
 
-	sd_card_mount(huart);
-	sd_card_free_space(huart);
-	sd_card_read("909_Kick.txt", &kick_LUT, huart);
-	sd_card_unmount(huart);
+	//	sd_card_mount(huart);
+	//	sd_card_free_space(huart);
+	//	sd_card_read("909_Kick.txt", &kick_LUT, huart);
+	//	sd_card_unmount(huart);
 
-//	sd_card_mount(huart);
-//	sd_card_free_space(huart);
-//	sd_card_read("909_Clap.txt", &clap_LUT, huart);
-//	sd_card_unmount(huart);
+	//	sd_card_mount(huart);
+	//	sd_card_free_space(huart);
+	//	sd_card_read("909_Clap.txt", &clap_LUT, huart);
+	//	sd_card_unmount(huart);
 
-	sd_card_mount(huart);
-	sd_card_free_space(huart);
-	sd_card_read("909_OpenHihat.txt", &open_hh_LUT, huart);
-	sd_card_unmount(huart);
+	//	sd_card_mount(huart);
+	//	sd_card_free_space(huart);
+	//	sd_card_read("909_OpenHihat.txt", &open_hh_LUT, huart);
+	//	sd_card_unmount(huart);
 
 
 	// Timing Init
@@ -121,7 +121,11 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 
 	}
 
-	Drum_Computer_CalcSample();
+	//	sd_card_mount(huart);
+	//	sd_card_free_space(huart);
+	//	sd_card_read("909_OpenHihat.txt", &open_hh_LUT, huart);
+	//	sd_card_unmount(huart);
+	Drum_Computer_CalcSampleFromSD();
 
 	if(counter_master > timing_position_in_samples[drum_index]){
 
@@ -139,24 +143,78 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 	return HAL_OK;
 }
 
-HAL_StatusTypeDef Drum_Computer_CalcSample() {
+//HAL_StatusTypeDef Drum_Computer_CalcSample() {
+//
+//	for(int i=0; i<FourFour; i++) {
+//
+//		if(flag_kick[i] == 1) {
+//
+//			kick = kick + kick_LUT[counter_kick[i]];
+//			counter_kick[i]++;
+//
+//			if(counter_kick[i] == sample_length - 1){
+//
+//				counter_kick[i] = 0;
+//				flag_kick[i] = 0;
+//			}
+//		}
+//		if(flag_hihat[i] == 1) {
+//
+//			hihat = hihat + open_hh_LUT[counter_hihat[i]];
+//			counter_hihat[i]++;
+//
+//			if(counter_hihat[i] == sample_length - 1){
+//
+//				counter_hihat[i] = 0;
+//				flag_hihat[i] = 0;
+//			}
+//		}
+////		if(flag_clap[i] == 1) {
+////
+////			clap = clap + clap_LUT[counter_clap[i]];
+////			counter_clap[i]++;
+////
+////			if(counter_clap[i] == sample_length - 1){
+////
+////				counter_clap[i] = 0;
+////				flag_clap[i] = 0;
+////			}
+////		}
+//		//		if(flag_rimshot[i] == 1) {
+//			//
+//			//			rimshot = rimshot + rimshot_LUT[counter_rimshot[i]];
+//		//			counter_rimshot[i]++;
+//		//
+//		//			if(counter_rimshot[i] == sample_length - 1){
+//		//
+//		//				counter_rimshot[i] = 0;
+//		//				flag_rimshot[i] = 0;
+//		//			}
+////	}
+//}
+//drums = kick + hihat + clap + rimshot;
+//
+//return HAL_OK;
+//}
+
+HAL_StatusTypeDef Drum_Computer_CalcSampleFromSD() {
 
 	for(int i=0; i<FourFour; i++) {
 
-		if(flag_kick[i] == 1) {
-
-			kick = kick + kick_LUT[counter_kick[i]];
-			counter_kick[i]++;
-
-			if(counter_kick[i] == sample_length - 1){
-
-				counter_kick[i] = 0;
-				flag_kick[i] = 0;
-			}
-		}
+//		if(flag_kick[i] == 1) {
+//
+//			kick = kick + sd_card_read_sample("909_Kick.txt");
+//			counter_kick[i]++;
+//
+//			if(counter_kick[i] == sample_length - 1){
+//
+//				counter_kick[i] = 0;
+//				flag_kick[i] = 0;
+//			}
+//		}
 		if(flag_hihat[i] == 1) {
 
-			hihat = hihat + open_hh_LUT[counter_hihat[i]];
+			hihat = hihat + sd_card_read_sample("909_OpenHihat.txt");
 			counter_hihat[i]++;
 
 			if(counter_hihat[i] == sample_length - 1){
@@ -165,20 +223,20 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 				flag_hihat[i] = 0;
 			}
 		}
-//		if(flag_clap[i] == 1) {
-//
-//			clap = clap + clap_LUT[counter_clap[i]];
-//			counter_clap[i]++;
-//
-//			if(counter_clap[i] == sample_length - 1){
-//
-//				counter_clap[i] = 0;
-//				flag_clap[i] = 0;
-//			}
-//		}
+		//		if(flag_clap[i] == 1) {
+		//
+		//			clap = clap + clap_LUT[counter_clap[i]];
+		//			counter_clap[i]++;
+		//
+		//			if(counter_clap[i] == sample_length - 1){
+		//
+		//				counter_clap[i] = 0;
+		//				flag_clap[i] = 0;
+		//			}
+		//		}
 		//		if(flag_rimshot[i] == 1) {
-			//
-			//			rimshot = rimshot + rimshot_LUT[counter_rimshot[i]];
+		//
+		//			rimshot = rimshot + rimshot_LUT[counter_rimshot[i]];
 		//			counter_rimshot[i]++;
 		//
 		//			if(counter_rimshot[i] == sample_length - 1){
@@ -186,14 +244,12 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 		//				counter_rimshot[i] = 0;
 		//				flag_rimshot[i] = 0;
 		//			}
-//	}
+		//	}
+	}
+	drums = kick + hihat + clap + rimshot;
+
+	return HAL_OK;
 }
-drums = kick + hihat + clap + rimshot;
-
-return HAL_OK;
-}
-
-
 
 
 

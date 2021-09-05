@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include "wav_LUT.h"
 
+
 // Common Sample Length & Time Signature
 #define sample_length 40000
 #define FourFour 16
@@ -56,5 +57,6 @@ float drums;
 HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart);
 HAL_StatusTypeDef Drum_Computer_Process();
 HAL_StatusTypeDef Drum_Computer_CalcSample();
+HAL_StatusTypeDef Drum_Computer_CalcSampleFromSD();
 
 #endif /* INC_DRUM_COMPUTER_H_ */

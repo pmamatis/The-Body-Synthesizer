@@ -180,6 +180,42 @@ void sd_card_read(char *filename, float *LUT, UART_HandleTypeDef huart) {
 	clear_buffer();
 }
 
+float sd_card_read_sample(char *filename) {
+	// FA_READ - Specifies read access to the object. Data can be read from the file.
+	// FA_WRITE - Specifies write access to the object. Data can be written to the file. Combine with FA_READ for read-write access.
+	// FA_OPEN_EXISTING - Opens the file. The function fails if the file is not existing. (Default)
+	// FA_CREATE_NEW - Creates a new file. The function fails with FR_EXIST if the file is existing.
+	// FA_CREATE_ALWAYS - Creates a new file. If the file is existing, it will be truncated and overwritten.
+	// FA_OPEN_ALWAYS - Opens the file if it is existing. If not, a new file will be created.
+	// FA_OPEN_APPEND - Same as FA_OPEN_ALWAYS except the read/write pointer is set end of the file.
+
+	// Open file to read
+	fresult = f_open(&fil, filename, FA_READ);
+	//	if (fresult == FR_OK)
+	//		send_uart ("file is open and the data is shown below\n\r", huart);
+
+	// Read data from the file - Please see the function details for the arguments
+	uint32_t NoLength = 10;
+
+	char SampleTemp[NoLength];
+
+	f_read (&fil, buffer, NoLength, &br);
+	br = br + NoLength;
+
+	for(int k = 0; k < NoLength; k++){
+
+		SampleTemp[k] = buffer[k];
+	}
+
+	// Close file
+	f_close(&fil);
+
+	// Clear buffer
+	clear_buffer();
+
+	return atof(SampleTemp)-1;
+}
+
 void sd_card_remove_file(char *filename, UART_HandleTypeDef huart) {
 
 	strcat("/",filename);
