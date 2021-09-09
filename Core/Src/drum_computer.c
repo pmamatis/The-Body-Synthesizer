@@ -103,16 +103,16 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	timing_DS3[5] = 0;
 	timing_DS3[6] = 0;
 	timing_DS3[7] = 0;
-
-	// LowTom
-	timing_DS4[0] = 0;
-	timing_DS4[1] = 0;
-	timing_DS4[2] = 1;
-	timing_DS4[3] = 1;
-	timing_DS4[4] = 0;
-	timing_DS4[5] = 0;
-	timing_DS4[6] = 0;
-	timing_DS4[7] = 1;
+//
+//	// LowTom
+//	timing_DS4[0] = 0;
+//	timing_DS4[1] = 0;
+//	timing_DS4[2] = 1;
+//	timing_DS4[3] = 1;
+//	timing_DS4[4] = 0;
+//	timing_DS4[5] = 0;
+//	timing_DS4[6] = 0;
+//	timing_DS4[7] = 1;
 
 	return HAL_OK;
 }
@@ -248,6 +248,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 		}
 	}
 	drums = DS1s + DS2s + DS3s + DS4s;
+	ProcessFilter(&EQ_BAND1_I,  &drums);
 
 	return HAL_OK;
 }

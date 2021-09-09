@@ -114,8 +114,6 @@ void Error_Handler(void);
 #define SD_CS_GPIO_Port GPIOF
 #define Poti_Pin GPIO_PIN_0
 #define Poti_GPIO_Port GPIOC
-#define KEYBOARD_ADC_Pin GPIO_PIN_2
-#define KEYBOARD_ADC_GPIO_Port GPIOC
 #define DISP_DC_Pin GPIO_PIN_0
 #define DISP_DC_GPIO_Port GPIOA
 #define VRx_Pin GPIO_PIN_6
