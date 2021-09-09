@@ -13,8 +13,7 @@
 #include "wav_LUT.h"
 
 // Common Sample Length & Time Signature
-#define sample_length 40000
-#define FourFour 16
+#define FourFour 8
 #define ThreeFour 12
 
 // Tempo
@@ -26,30 +25,35 @@ uint32_t drum_index;
 
 // Counter
 uint32_t counter_master;
-uint32_t counter_kick [FourFour];
-uint32_t counter_hihat[FourFour];
-uint32_t counter_clap [FourFour];
-uint32_t counter_rimshot [FourFour];
+uint32_t counter_DS1[FourFour];
+uint32_t counter_DS2[FourFour];
+uint32_t counter_DS3[FourFour];
+uint32_t counter_DS4[FourFour];
+
+// Oversampling
+uint32_t OS_DS1[FourFour];
+uint32_t OS_DS2[FourFour];
+uint32_t OS_DS3[FourFour];
+uint32_t OS_DS4[FourFour];
 
 // Flag
-uint32_t flag_kick[FourFour];
-uint32_t flag_hihat[FourFour];
-uint32_t flag_clap[FourFour];
-uint32_t flag_rimshot[FourFour];
+uint32_t flag_DS1[FourFour];
+uint32_t flag_DS2[FourFour];
+uint32_t flag_DS3[FourFour];
+uint32_t flag_DS4[FourFour];
 
 // Timing positions
-uint32_t timing_kick [FourFour];
-uint32_t timing_hihat[FourFour];
-uint32_t timing_clap [FourFour];
-uint32_t timing_rimshot [FourFour];
+uint32_t timing_DS1[FourFour];
+uint32_t timing_DS2[FourFour];
+uint32_t timing_DS3[FourFour];
+uint32_t timing_DS4[FourFour];
 uint32_t timing_position_in_samples[FourFour];
-uint32_t timing_complete;
 
 // Sound bins
-float kick;
-float hihat;
-float clap;
-float rimshot;
+float DS1s;
+float DS2s;
+float DS3s;
+float DS4s;
 float drums;
 
 // Methods
