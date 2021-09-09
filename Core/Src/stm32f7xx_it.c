@@ -419,50 +419,50 @@ void DMA2_Stream2_IRQHandler(void)
 {
 	/* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
 
-	// arrow up or down
-	if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
-		if (Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
-			DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
-			DISPLAY_processing();
-			DISPLAY_Update();
-		}
-		else if (Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
-			DISPLAY_ArrowUp(&(Display.JoystickParameterPosition));
-			DISPLAY_processing();
-			DISPLAY_Update();
-		}
-	}
-
-	// switch page left or right
-	if(Display.ADC2inputs[0] > Display.UpperLimit) {	// switch to the left page
-		DISPLAY_SwitchPageLeft();
-		DISPLAY_processing();
-		Display.JoystickParameterPosition = 1;
-		DISPLAY_DrawArrow(1);
-		DISPLAY_Update();
-	}
-	else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// switch to the right page
-		DISPLAY_SwitchPageRight();
-		DISPLAY_processing();
-		Display.JoystickParameterPosition = 1;
-		DISPLAY_DrawArrow(1);
-		DISPLAY_Update();
-	}
-
-	//	printf("%i\r\n", Display.ADC2inputs[2]);
-	Display.Poti_Threshold = 50;
-	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
-		//printf("Poti triggered\r\n");
-		Display.poti_moved = true;
-		DISPLAY_processing();
-		DISPLAY_Update();
-		Display.last_Poti = Display.ADC2inputs[2];
-		II_Display_Effects();
-		II_Display_Voices();
-	}
-	else {
-		Display.poti_moved = false;
-	}
+//	// arrow up or down
+//	if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
+//		if (Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
+//			DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
+//			DISPLAY_processing();
+//			DISPLAY_Update();
+//		}
+//		else if (Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
+//			DISPLAY_ArrowUp(&(Display.JoystickParameterPosition));
+//			DISPLAY_processing();
+//			DISPLAY_Update();
+//		}
+//	}
+//
+//	// switch page left or right
+//	if(Display.ADC2inputs[0] > Display.UpperLimit) {	// switch to the left page
+//		DISPLAY_SwitchPageLeft();
+//		DISPLAY_processing();
+//		Display.JoystickParameterPosition = 1;
+//		DISPLAY_DrawArrow(1);
+//		DISPLAY_Update();
+//	}
+//	else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// switch to the right page
+//		DISPLAY_SwitchPageRight();
+//		DISPLAY_processing();
+//		Display.JoystickParameterPosition = 1;
+//		DISPLAY_DrawArrow(1);
+//		DISPLAY_Update();
+//	}
+//
+//	//	printf("%i\r\n", Display.ADC2inputs[2]);
+//	Display.Poti_Threshold = 50;
+//	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
+//		//printf("Poti triggered\r\n");
+//		Display.poti_moved = true;
+//		DISPLAY_processing();
+//		DISPLAY_Update();
+//		Display.last_Poti = Display.ADC2inputs[2];
+//		II_Display_Effects();
+//		II_Display_Voices();
+//	}
+//	else {
+//		Display.poti_moved = false;
+//	}
 
 	/* USER CODE END DMA2_Stream2_IRQn 0 */
 	HAL_DMA_IRQHandler(&hdma_adc2);

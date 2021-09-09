@@ -259,6 +259,61 @@ int main(void)
 	spiC_Init(&hspi4, &htim7);
 
 
+
+
+	//	EPD epd;
+	//	if (EPD_Init(&epd, lut_full_update) != 0) {
+	//		printf("e-Paper init failed\n");
+	//		return -1;
+	//	}
+	//
+	//	Paint paint;
+	//	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
+	//	Paint_Clear(&paint, UNCOLORED);
+	//
+	//	/* For simplicity, the arguments are explicit numerical coordinates */
+	//	/* Write strings to the buffer */
+	//	Paint_DrawFilledRectangle(&paint, 0, 6, 200, 26, COLORED);
+	//	Paint_DrawStringAt(&paint, 28, 10, "Hello world!", &Font16, UNCOLORED);
+	//	Paint_DrawStringAt(&paint, 30, 30, "e-Paper Demo", &Font16, COLORED);
+	//
+	//	/* Draw something to the frame buffer */
+	//	Paint_DrawRectangle(&paint, 10, 60, 50, 110, COLORED);
+	//	Paint_DrawLine(&paint, 10, 60, 50, 110, COLORED);
+	//	Paint_DrawLine(&paint, 50, 60, 10, 110, COLORED);
+	//	Paint_DrawCircle(&paint, 120, 80, 30, COLORED);
+	//	Paint_DrawFilledRectangle(&paint, 10, 130, 50, 180, COLORED);
+	//	Paint_DrawFilledCircle(&paint, 120, 150, 30, COLORED);
+	//
+	//	/* Display the frame_buffer */
+	//	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+	//	EPD_DisplayFrame(&epd);
+	//	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+	//	EPD_DisplayFrame(&epd);
+	//	EPD_DelayMs(&epd, 1000);
+	//
+	//	if (EPD_Init(&epd, lut_partial_update) != 0) {
+	//		printf("e-Paper init failed\n");
+	//		return -1;
+	//	}
+	//	/**
+	//	 *  there are 2 memory areas embedded in the e-paper display
+	//	 *  and once the display is refreshed, the memory area will be auto-toggled,
+	//	 *  i.e. the next action of SetFrameMemory will set the other memory area
+	//	 *  therefore you have to set the frame memory and refresh the display twice.
+	//	 */
+	//	//	EPD_SetFrameMemory(&epd, IMAGE_DATA, 0, 0, epd.width, epd.height);
+	//	//	EPD_DisplayFrame(&epd);
+	//	//	EPD_SetFrameMemory(&epd, IMAGE_DATA, 0, 0, epd.width, epd.height);
+	//	//	EPD_DisplayFrame(&epd);
+	//	EPD_SetFrameMemory(&epd, CLAP_ICON, 0, 0, 40, 37);
+	//	EPD_DisplayFrame(&epd);
+	//	EPD_SetFrameMemory(&epd, CLAP_ICON, 0, 0, 40, 37);
+	//	EPD_DisplayFrame(&epd);
+
+
+
+
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
@@ -277,6 +332,8 @@ int main(void)
 	//	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 	//	EPD_DisplayFrame(&epd);
 	//	EPD_Init(&epd, lut_partial_update);
+
+	Display_Drumcomputer_Icons(frame_buffer);
 
 	// Start DAC-DMA
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
@@ -324,12 +381,9 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 
 	while(1) {
-		//		printf("Gyro: \r\n");
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-
-		/* USER CODE END WHILE */
 	}
 	/* USER CODE END 3 */
 }

@@ -28,8 +28,10 @@
 extern const unsigned char IMAGE_DATA[];
 extern const unsigned char ST_LOGO[];
 extern const unsigned char TU_LOGO[];
-extern unsigned char START_IMAGE[];
+extern const unsigned char CLAP_ICON[];
+extern const unsigned char SNARE_ICON[];
+extern const unsigned char DRUMS_ICON[];
+extern const unsigned char DRUMS_ICON_GEDREHT[];
+//extern unsigned char START_IMAGE[];
 
 /* FILE END */
-
-

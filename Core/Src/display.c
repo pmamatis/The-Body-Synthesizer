@@ -253,6 +253,7 @@ Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer
 	EPD_Init(epd, lut_full_update);
 	Paint_Init(paint, frame_buffer, epd->width, epd->height);
 	Paint_SetRotate(paint, ROTATE_270);
+	//Paint_SetRotate(paint, ROTATE_90);
 	// Display the frame_buffer to show the TU Berlin-logo
 	EPD_SetFrameMemory(epd, TU_LOGO, 0, 0, Paint_GetWidth(paint), Paint_GetHeight(paint));
 	EPD_DisplayFrame(epd);
@@ -263,9 +264,19 @@ Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer
 	EPD_DisplayFrame(epd);
 	EPD_Init(epd, lut_partial_update);
 
-	DISPLAY_processing();
-	DISPLAY_DrawArrow(1);
+	//	DISPLAY_processing();
+	//	DISPLAY_DrawArrow(1);
 	DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
+
+Display_Status Display_Drumcomputer_Icons(unsigned char* frame_buffer) {
+
+	EPD_SetFrameMemory(&epd, DRUMS_ICON_GEDREHT, 0, 200-48, 200, 48);
+	EPD_DisplayFrame(&epd);
+
+
 
 	return DISPLAY_OK;
 }

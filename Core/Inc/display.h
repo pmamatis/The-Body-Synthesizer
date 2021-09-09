@@ -271,6 +271,9 @@ void DISPLAY_SwitchPageRight(void);
 void DISPLAY_Update(void);
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 
+//Display Drum Computer
+Display_Status Display_Drumcomputer_Icons(unsigned char* frame_buffer);
+
 //Page functions
 void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
