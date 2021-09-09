@@ -238,6 +238,12 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_tremolo[7],"");
 	strcpy(Display->value_str_tremolo[8],"");
 
+	// Drummachine
+	Display->CurrentDrumstep = 1;
+	Display->NumberOfDrumsteps = 8;
+	Display->CurrentSampleRow = 1;
+	Display->MaxNumberOfSamples = 4;
+
 	return DISPLAY_OK;
 }
 
@@ -271,14 +277,189 @@ Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer
 	return DISPLAY_OK;
 }
 
-Display_Status Display_Drumcomputer_Icons(unsigned char* frame_buffer) {
+Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer) {
 
-	EPD_SetFrameMemory(&epd, DRUMS_ICON_GEDREHT, 0, 200-48, 200, 48);
-	EPD_DisplayFrame(&epd);
+	//	EPD_SetFrameMemory(&epd, DRUMS_ICON_GEDREHT, 0, 200-48, 200, 48);
+	//	EPD_DisplayFrame(&epd);
+	//	EPD_Init(&epd, lut_partial_update);
 
-
+	Paint_DrawStringAt(&paint, 1, CASE0, "DRUMCOMPUTER", &Font16, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE1+5, "Kick", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE2+5, "Snare", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE3+5, "Clap", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE4+5, "Op.HH", &Font12, COLORED);
 
 	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps) {
+
+	Paint_DrawRectangle(&paint, STEP1, CASE1, 200, CASE1+20, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE2, 200, CASE2+20, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE3, 200, CASE3+20, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE4, 200, CASE4+20, COLORED);
+
+	if(Display.NumberOfDrumsteps == 8) {	// at the moment the drum machine is limited to 8 steps
+		Paint_DrawRectangle(&paint, STEP1, CASE1, STEP2, CASE5, COLORED);
+		Paint_DrawRectangle(&paint, STEP2, CASE1, STEP3, CASE5, COLORED);
+		Paint_DrawRectangle(&paint, STEP3, CASE1, STEP4, CASE5, COLORED);
+		Paint_DrawRectangle(&paint, STEP4, CASE1, STEP5, CASE5, COLORED);
+		Paint_DrawRectangle(&paint, STEP5, CASE1, STEP6, CASE5, COLORED);
+		Paint_DrawRectangle(&paint, STEP6, CASE1, STEP7, CASE5, COLORED);
+		Paint_DrawRectangle(&paint, STEP7, CASE1, STEP8, CASE5, COLORED);
+		Paint_DrawRectangle(&paint, STEP8, CASE1, STEP8+20, CASE5, COLORED);
+	}
+
+	DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_SetDrumcomputerStep(void) {
+
+	uint8_t filledrectangle_subtract = 5;
+	Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+
+	DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_CurrentDrumcomputerStep(void) {
+
+	uint8_t rectangle_subtract = 3;
+
+	switch(Display.CurrentSampleRow) {
+	case 1:	// Sample1 Row
+		switch(Display.CurrentDrumstep) {
+		case 1:	// Step 1..
+			Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE1+rectangle_subtract, STEP1+20-rectangle_subtract, CASE1+20-rectangle_subtract, COLORED);
+			break;
+		case 2:
+			Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE1+rectangle_subtract, STEP2+20-rectangle_subtract, CASE1+20-rectangle_subtract, COLORED);
+			break;
+		case 3:
+			Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE1+rectangle_subtract, STEP3+20-rectangle_subtract, CASE1+20-rectangle_subtract, COLORED);
+			break;
+		case 4:
+			Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE1+rectangle_subtract, STEP4+20-rectangle_subtract, CASE1+20-rectangle_subtract, COLORED);
+			break;
+		case 5:
+			Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE1+rectangle_subtract, STEP5+20-rectangle_subtract, CASE1+20-rectangle_subtract, COLORED);
+			break;
+		case 6:
+			Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE1+rectangle_subtract, STEP6+20-rectangle_subtract, CASE1+20-rectangle_subtract, COLORED);
+			break;
+		case 7:
+			Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE1+rectangle_subtract, STEP7+20-rectangle_subtract, CASE1+20-rectangle_subtract, COLORED);
+			break;
+		case 8:	// ..Step 8
+			Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE1+rectangle_subtract, STEP8+20-rectangle_subtract, CASE1+20-rectangle_subtract, COLORED);
+			break;
+		default:
+			break;
+		}
+		break;
+		case 2:	// Sample2 Row
+			switch(Display.CurrentDrumstep) {
+			case 1:	// Step 1..
+				Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE2+rectangle_subtract, STEP1+20-rectangle_subtract, CASE2+20-rectangle_subtract, COLORED);
+				break;
+			case 2:
+				Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE2+rectangle_subtract, STEP2+20-rectangle_subtract, CASE2+20-rectangle_subtract, COLORED);
+				break;
+			case 3:
+				Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE2+rectangle_subtract, STEP3+20-rectangle_subtract, CASE2+20-rectangle_subtract, COLORED);
+				break;
+			case 4:
+				Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE2+rectangle_subtract, STEP4+20-rectangle_subtract, CASE2+20-rectangle_subtract, COLORED);
+				break;
+			case 5:
+				Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE2+rectangle_subtract, STEP5+20-rectangle_subtract, CASE2+20-rectangle_subtract, COLORED);
+				break;
+			case 6:
+				Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE2+rectangle_subtract, STEP6+20-rectangle_subtract, CASE2+20-rectangle_subtract, COLORED);
+				break;
+			case 7:
+				Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE2+rectangle_subtract, STEP7+20-rectangle_subtract, CASE2+20-rectangle_subtract, COLORED);
+				break;
+			case 8:	// ..Step 8
+				Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE2+rectangle_subtract, STEP8+20-rectangle_subtract, CASE2+20-rectangle_subtract, COLORED);
+				break;
+			default:
+				break;
+			}
+			break;
+			case 3:	// Sample 3 Row
+				switch(Display.CurrentDrumstep) {
+				case 1:	// Step 1..
+					Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE3+rectangle_subtract, STEP1+20-rectangle_subtract, CASE3+20-rectangle_subtract, COLORED);
+					break;
+				case 2:
+					Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE3+rectangle_subtract, STEP2+20-rectangle_subtract, CASE3+20-rectangle_subtract, COLORED);
+					break;
+				case 3:
+					Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE3+rectangle_subtract, STEP3+20-rectangle_subtract, CASE3+20-rectangle_subtract, COLORED);
+					break;
+				case 4:
+					Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE3+rectangle_subtract, STEP4+20-rectangle_subtract, CASE3+20-rectangle_subtract, COLORED);
+					break;
+				case 5:
+					Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE3+rectangle_subtract, STEP5+20-rectangle_subtract, CASE3+20-rectangle_subtract, COLORED);
+					break;
+				case 6:
+					Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE3+rectangle_subtract, STEP6+20-rectangle_subtract, CASE3+20-rectangle_subtract, COLORED);
+					break;
+				case 7:
+					Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE3+rectangle_subtract, STEP7+20-rectangle_subtract, CASE3+20-rectangle_subtract, COLORED);
+					break;
+				case 8:	// ..Step 8
+					Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE3+rectangle_subtract, STEP8+20-rectangle_subtract, CASE3+20-rectangle_subtract, COLORED);
+					break;
+				default:
+					break;
+				}
+				break;
+				case 4:	// Sample 4 Row
+					switch(Display.CurrentDrumstep) {
+					case 1:	// Step 1..
+						Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE4+rectangle_subtract, STEP1+20-rectangle_subtract, CASE4+20-rectangle_subtract, COLORED);
+						break;
+					case 2:
+						Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE4+rectangle_subtract, STEP2+20-rectangle_subtract, CASE4+20-rectangle_subtract, COLORED);
+						break;
+					case 3:
+						Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE4+rectangle_subtract, STEP3+20-rectangle_subtract, CASE4+20-rectangle_subtract, COLORED);
+						break;
+					case 4:
+						Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE4+rectangle_subtract, STEP4+20-rectangle_subtract, CASE4+20-rectangle_subtract, COLORED);
+						break;
+					case 5:
+						Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE4+rectangle_subtract, STEP5+20-rectangle_subtract, CASE4+20-rectangle_subtract, COLORED);
+						break;
+					case 6:
+						Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE4+rectangle_subtract, STEP6+20-rectangle_subtract, CASE4+20-rectangle_subtract, COLORED);
+						break;
+					case 7:
+						Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE4+rectangle_subtract, STEP7+20-rectangle_subtract, CASE4+20-rectangle_subtract, COLORED);
+						break;
+					case 8:	// ..Step 8
+						Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE4+rectangle_subtract, STEP8+20-rectangle_subtract, CASE4+20-rectangle_subtract, COLORED);
+						break;
+					default:
+						break;
+					}
+					break;
+					default:
+						break;
+	}
+
+	DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
+
+DISPLAY_Status DISPLAY_DeleteRectangle(void) {
 }
 
 /** @brief this function updates the display

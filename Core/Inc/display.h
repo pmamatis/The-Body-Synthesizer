@@ -34,8 +34,19 @@ typedef enum {
 	CASE6 =	130,
 	CASE7 =	150,
 	CASE8 =	170,
-	CASE9 =	190,
-}y_row_value;
+	CASE9 =	190
+} y_row_value;
+
+typedef enum {
+	STEP1 = 40,
+	STEP2 = 60,
+	STEP3 = 80,
+	STEP4 = 100,
+	STEP5 = 120,
+	STEP6 = 140,
+	STEP7 = 160,
+	STEP8 = 180
+} drumcomputer_step_coordinate;
 
 typedef enum {
 	DISPLAY_FAIL = -1,
@@ -250,6 +261,12 @@ struct display_variables {
 	char value_str_distortion[9][10];
 	char value_str_tremolo[9][10];
 	char value_str_keyboardmode[9][10];
+
+	// Drummachine
+	uint8_t CurrentDrumstep;
+	uint8_t NumberOfDrumsteps;
+	uint8_t CurrentSampleRow;
+	uint8_t MaxNumberOfSamples;
 };
 
 struct display_variables Display;
@@ -272,7 +289,11 @@ void DISPLAY_Update(void);
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 
 //Display Drum Computer
-Display_Status Display_Drumcomputer_Icons(unsigned char* frame_buffer);
+Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer);
+Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
+Display_Status DISPLAY_SetDrumcomputerStep(void);
+Display_Status DISPLAY_CurrentDrumcomputerStep(void);
+DISPLAY_Status DISPLAY_DeleteRectangle(void);
 
 //Page functions
 void DISPLAY_processing(void);

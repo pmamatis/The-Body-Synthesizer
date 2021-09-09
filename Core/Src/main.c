@@ -333,7 +333,11 @@ int main(void)
 	//	EPD_DisplayFrame(&epd);
 	//	EPD_Init(&epd, lut_partial_update);
 
-	Display_Drumcomputer_Icons(frame_buffer);
+	// Drumcomputer
+	Display_DrawDrumcomputerIcons(frame_buffer);
+	DISPLAY_DrawDrumcomputerPatternFrame(8);
+	DISPLAY_SetDrumcomputerStep();
+//	DISPLAY_CurrentDrumcomputerStep();
 
 	// Start DAC-DMA
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
