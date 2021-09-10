@@ -258,62 +258,7 @@ int main(void)
 	//Gyros SPI
 	spiC_Init(&hspi4, &htim7);
 
-
-
-
-	//	EPD epd;
-	//	if (EPD_Init(&epd, lut_full_update) != 0) {
-	//		printf("e-Paper init failed\n");
-	//		return -1;
-	//	}
-	//
-	//	Paint paint;
-	//	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
-	//	Paint_Clear(&paint, UNCOLORED);
-	//
-	//	/* For simplicity, the arguments are explicit numerical coordinates */
-	//	/* Write strings to the buffer */
-	//	Paint_DrawFilledRectangle(&paint, 0, 6, 200, 26, COLORED);
-	//	Paint_DrawStringAt(&paint, 28, 10, "Hello world!", &Font16, UNCOLORED);
-	//	Paint_DrawStringAt(&paint, 30, 30, "e-Paper Demo", &Font16, COLORED);
-	//
-	//	/* Draw something to the frame buffer */
-	//	Paint_DrawRectangle(&paint, 10, 60, 50, 110, COLORED);
-	//	Paint_DrawLine(&paint, 10, 60, 50, 110, COLORED);
-	//	Paint_DrawLine(&paint, 50, 60, 10, 110, COLORED);
-	//	Paint_DrawCircle(&paint, 120, 80, 30, COLORED);
-	//	Paint_DrawFilledRectangle(&paint, 10, 130, 50, 180, COLORED);
-	//	Paint_DrawFilledCircle(&paint, 120, 150, 30, COLORED);
-	//
-	//	/* Display the frame_buffer */
-	//	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_DelayMs(&epd, 1000);
-	//
-	//	if (EPD_Init(&epd, lut_partial_update) != 0) {
-	//		printf("e-Paper init failed\n");
-	//		return -1;
-	//	}
-	//	/**
-	//	 *  there are 2 memory areas embedded in the e-paper display
-	//	 *  and once the display is refreshed, the memory area will be auto-toggled,
-	//	 *  i.e. the next action of SetFrameMemory will set the other memory area
-	//	 *  therefore you have to set the frame memory and refresh the display twice.
-	//	 */
-	//	//	EPD_SetFrameMemory(&epd, IMAGE_DATA, 0, 0, epd.width, epd.height);
-	//	//	EPD_DisplayFrame(&epd);
-	//	//	EPD_SetFrameMemory(&epd, IMAGE_DATA, 0, 0, epd.width, epd.height);
-	//	//	EPD_DisplayFrame(&epd);
-	//	EPD_SetFrameMemory(&epd, CLAP_ICON, 0, 0, 40, 37);
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_SetFrameMemory(&epd, CLAP_ICON, 0, 0, 40, 37);
-	//	EPD_DisplayFrame(&epd);
-
-
-
-
+	// Display Start
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
@@ -337,12 +282,11 @@ int main(void)
 	Display_DrawDrumcomputerIcons(frame_buffer);
 	DISPLAY_DrawDrumcomputerPatternFrame(8);
 	DISPLAY_SetDrumcomputerStep();
-//	DISPLAY_CurrentDrumcomputerStep();
 
 	// Start DAC-DMA
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1, BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,NOISE,'C',0);
@@ -947,9 +891,9 @@ static void MX_TIM4_Init(void)
 
 	/* USER CODE END TIM4_Init 1 */
 	htim4.Instance = TIM4;
-	htim4.Init.Prescaler = 4;
+	htim4.Init.Prescaler = 199;
 	htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim4.Init.Period = 59999;
+	htim4.Init.Period = 53999;
 	htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 	htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 	if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
@@ -1307,11 +1251,11 @@ static void MX_GPIO_Init(void)
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(DISP_CS_GPIO_Port, DISP_CS_Pin, GPIO_PIN_RESET);
 
-	/*Configure GPIO pins : ENTER_USER_Pin BACK_Pin */
-	GPIO_InitStruct.Pin = ENTER_USER_Pin|BACK_Pin;
+	/*Configure GPIO pin : ENTER_USER_Pin */
+	GPIO_InitStruct.Pin = ENTER_USER_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+	HAL_GPIO_Init(ENTER_USER_GPIO_Port, &GPIO_InitStruct);
 
 	/*Configure GPIO pins : SD_CS_Pin DISP_RST_Pin */
 	GPIO_InitStruct.Pin = SD_CS_Pin|DISP_RST_Pin;
@@ -1341,7 +1285,7 @@ static void MX_GPIO_Init(void)
 
 	/*Configure GPIO pin : ENTER_Pin */
 	GPIO_InitStruct.Pin = ENTER_Pin;
-	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	HAL_GPIO_Init(ENTER_GPIO_Port, &GPIO_InitStruct);
 
@@ -1358,6 +1302,12 @@ static void MX_GPIO_Init(void)
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(DISP_CS_GPIO_Port, &GPIO_InitStruct);
+
+	/*Configure GPIO pin : BACK_Pin */
+	GPIO_InitStruct.Pin = BACK_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(BACK_GPIO_Port, &GPIO_InitStruct);
 
 	/* EXTI interrupt init*/
 	HAL_NVIC_SetPriority(EXTI9_5_IRQn, 1, 0);
@@ -2168,13 +2118,24 @@ int _write(int file,char *ptr, int len)
 	}
 }*/
 
+// GPIO-Button Debouncing
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
+	// set drummachine steps
 	if((GPIO_Pin == BACK_Pin) && (Display.BACK_Debounce_State == true)) {
-		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led
+
+		// invert/toggle state of the drum matrix entry, where the cursor points at at the moment
+		Display.DrumMatrix[Display.CurrentSampleRow][Display.CurrentDrumstep] = !Display.DrumMatrix[Display.CurrentSampleRow][Display.CurrentDrumstep];
+
+		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
 		Display.BACK_Debounce_State = false;
 	}
+	//	if((GPIO_Pin == BACK_Pin) && (Display.BACK_Debounce_State == true)) {
+	//		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led
+	//		HAL_TIM_Base_Start_IT(&htim2);
+	//		Display.BACK_Debounce_State = false;
+	//	}
 	else if((GPIO_Pin == ENTER_Pin) && (Display.ENTER_Debounce_State == true)) {
 		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);
@@ -2194,14 +2155,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 	if(htim->Instance == TIM2) {
 		//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {
-		if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {
+		if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {	// check regarding pullup/pulldown
 			Display.BACK = true;
 			Display.BACK_Debounce_State = true;
 			HAL_TIM_Base_Stop_IT(&htim2);
 		}
 	}
 	else if(htim->Instance == TIM4) {
-		if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_SET) {
+		//if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_SET) {
+		if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// check regarding pullup/pulldown
 			Display.ENTER = true;
 			Display.ENTER_Debounce_State = true;
 			HAL_TIM_Base_Stop_IT(&htim4);

@@ -21,8 +21,9 @@
 /** Difference of starting point and end point for Value-row
  */
 #define VALUE_ROW_LENGTH 10
-
 #define NUMBER_OF_SOURCES 5
+#define NUMBER_OF_DRUMSTEPS 8
+#define MAX_NUMBER_OF_SAMPLES 4
 
 typedef enum {
 	CASE0 = 10,
@@ -250,7 +251,7 @@ struct display_variables {
 	source_t EQ_Gain_Sources[5];				// sources for gain of 5 frequency bands
 	source_t Distortion_Sources;				// sources for gain
 	source_t Tremolo_Sources[2];				// sources for rate and depth
-	//page value strings
+	// page value strings
 	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
 	char value_str_voices_overview[9][10];
 	char value_str_voices_settings[3][9][10];
@@ -263,10 +264,11 @@ struct display_variables {
 	char value_str_keyboardmode[9][10];
 
 	// Drummachine
-	uint8_t CurrentDrumstep;
-	uint8_t NumberOfDrumsteps;
 	uint8_t CurrentSampleRow;
-	uint8_t MaxNumberOfSamples;
+	//uint8_t MaxNumberOfSamples;
+	uint8_t CurrentDrumstep;
+	//uint8_t NumberOfDrumsteps;
+	bool DrumMatrix[MAX_NUMBER_OF_SAMPLES][NUMBER_OF_DRUMSTEPS];
 };
 
 struct display_variables Display;
@@ -280,7 +282,7 @@ Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint
 //void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* SoftClipping, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer);
 
 
-//Display draw functions
+// Display draw functions
 void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition);
 void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition);
 void DISPLAY_SwitchPageLeft(void);
@@ -288,14 +290,15 @@ void DISPLAY_SwitchPageRight(void);
 void DISPLAY_Update(void);
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 
-//Display Drum Computer
+// Display Drum Computer
 Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer);
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
 Display_Status DISPLAY_SetDrumcomputerStep(void);
-Display_Status DISPLAY_CurrentDrumcomputerStep(void);
-DISPLAY_Status DISPLAY_DeleteRectangle(void);
+Display_Status DISPLAY_DeleteDrumcomputerStep(void);
+Display_Status DISPLAY_SetDrumcomputerStepCursor(void);
+Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void);
 
-//Page functions
+// Page functions
 void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
 //void p_Voices(void);
