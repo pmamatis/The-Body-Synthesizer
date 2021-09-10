@@ -457,7 +457,7 @@ Display.Poti_Threshold = 20;
 		DISPLAY_processing();
 		DISPLAY_Update();
 		Display.last_Poti = Display.ADC2inputs[2];
-		II_Display_Effects();
+//		II_Display_Effects();
 		II_Display_Voices();
 	}
 	else{

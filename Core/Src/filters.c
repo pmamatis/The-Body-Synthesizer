@@ -40,10 +40,10 @@ Filter_Status Filters_Init(){
 	 ******************************/
 
 	// BAND 1: Low-Shelf filter
-	SetupLowShelf(&EQ_BAND1_I,      266, 0.707, -20);
+//	SetupLowShelf(&EQ_BAND1_I,      266, 0.707, -20);
 
 //	// BAND 2: Peaking-EQ / Notch-Filter
-//	SetupPeakingEQ(&EQ_BAND2_I,   400, 0.707, 0);
+//	SetupPeakingEQ(&EQ_BAND2_I,   400, 0.707, 20);
 //	SetupNotch	(&EQ_BAND2_I,  	400, 0.707	 );
 //
 //	// BAND 3: Peaking-EQ / Notch-Filter
@@ -76,7 +76,7 @@ Filter_Status Filters_Init(){
 	//	SetupLowpass (&EQ_BAND1_II, 200, 0.707);
 	//
 	//	// BAND 2: BP 8th order
-	//	SetupBandpassCPG(&EQ_BAND2_I,  400, 0.707);
+	SetupBandpassCPG(&EQ_BAND2_I,  400, 20);
 	//	SetupBandpassCPG(&EQ_BAND2_II, 400, 0.707);
 	//	SetupBandpassCPG(&EQ_BAND2_III,400, 0.707);
 	//	SetupBandpassCPG(&EQ_BAND2_IV, 400, 0.707);
@@ -135,18 +135,16 @@ Filter_Status Filters_Reinit(){
 		 * @brief	Ranging from 0 to 4000Hz
 		 ******************************/
 		//parameter = (float)ADC_value * 4000 / 4095;
-		cutoff = (float)ADC_value/128;
+		cutoff = (float)ADC_value;
 
 		// REINIT:
-		SetupLowShelf (&EQ_BAND1_I, cutoff, 20, -20);
+		//SetupLowShelf (&EQ_BAND1_I, cutoff, 20, -20);
 //		SetupHighShelf(&EQ_BAND1_I, parameter, 0.707, -20);
-//		SetupPeakingEQ(&EQ_BAND2_I, 3360, 	     1, parameter);
+//		SetupPeakingEQ(&EQ_BAND2_I, cutoff, 	     10, 20);
 //		SetupNotch(&EQ_BAND2_I, parameter, 0.707);
 
 
-
-
-		//SetupBandpassCPG(&EQ_BAND2_I,  parameter, 0.707);
+		SetupBandpassCPG(&EQ_BAND2_I,  cutoff, 0.707);
 		//SetupHighpass   (&EQ_BAND1_I,  parameter, 0.707);
 		//SetupHighpass   (&EQ_BAND1_II, parameter, 0.707);
 
@@ -178,13 +176,14 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 Filter_Status ProcessEQ(float *data){
 
 	// BAND 1
-	band1 = *data;
-	ProcessFilter(&EQ_BAND1_I,  &band1);
+//	band1 = *data;
+//	ProcessFilter(&EQ_BAND1_I,  &band1);
 	//ProcessFilter(&EQ_BAND1_II, &band1);
 
 //	// BAND 2
-//	band2 = *data;
-//	ProcessFilter(&EQ_BAND2_I,  &band2);
+	band2 = *data;
+	ProcessFilter(&EQ_BAND2_I,  &band2);
+	ProcessFilter(&EQ_BAND2_I,  &band2);
 //	//  ProcessFilter(&EQ_BAND2_II, &band2);
 //	//	ProcessFilter(&EQ_BAND2_III,&band2);
 //	//	ProcessFilter(&EQ_BAND2_IV, &band2);
@@ -210,7 +209,7 @@ Filter_Status ProcessEQ(float *data){
 //	//	ProcessFilter(&EQ_BAND5_II, &band5);
 
 	// Write OUT
-	*data = band1;// + band2 + band3 + band4 + band5;
+	*data = band2;// + band2 + band3 + band4 + band5;
 
 	return FILTER_OK;
 }

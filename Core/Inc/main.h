@@ -155,7 +155,7 @@ void Error_Handler(void);
 
 /**@brief output array size */
 //#define BLOCKSIZE 8192 //
-#define BLOCKSIZE 8192/2 // Latenz
+#define BLOCKSIZE 8192/8 // Latenz
 
 //Variables
 

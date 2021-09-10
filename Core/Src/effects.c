@@ -17,34 +17,35 @@ void effects_init(void) {
 void effects_process(float* calculate_value) {
 
 
-if(effect_order[0] == EQ)
-	ProcessEQ(calculate_value);
+	//if(effect_order[0] == EQ)
+	ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
+	//ProcessEQ(calculate_value);
 
 
-//	if(Display.mode == BODYSYNTH) {
-//		for(int i=0; i<MAX_EFFECTS; i++) {
-//			switch(effect_order[i]) {
-////			case TREM:
-////				lfo_value = LFO_SingleValueProcess(&lfo);
-////				ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
-////				break;
-//			case EQ:
-//				ProcessEQ(calculate_value);
-//				break;
-////			case DIST_H:
-////				ProcessHardClippingDistortion(&HardClipping, calculate_value);
-//////				break;
-////			case DIST_S:
-////				ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
-////				break;
-//			default:
-//				break;
-//			}
-//		}
-//	}
-//	else if(Display.mode == KEYBOARD) {
-////		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
-//	}
+	//	if(Display.mode == BODYSYNTH) {
+	//		for(int i=0; i<MAX_EFFECTS; i++) {
+	//			switch(effect_order[i]) {
+	////			case TREM:
+	////				lfo_value = LFO_SingleValueProcess(&lfo);
+	////				ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
+	////				break;
+	//			case EQ:
+	//				ProcessEQ(calculate_value);
+	//				break;
+	////			case DIST_H:
+	////				ProcessHardClippingDistortion(&HardClipping, calculate_value);
+	//////				break;
+	////			case DIST_S:
+	////				ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
+	////				break;
+	//			default:
+	//				break;
+	//			}
+	//		}
+	//	}
+	//	else if(Display.mode == KEYBOARD) {
+	////		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
+	//	}
 }
 
 
@@ -67,7 +68,7 @@ void effects_add(effects_t_enum effect, uint8_t position) {
 			effect_order[i] = tmp;
 			tmp = tmp2;
 		}
-		*/
+		 */
 	}
 	else {
 		//error @TODO
