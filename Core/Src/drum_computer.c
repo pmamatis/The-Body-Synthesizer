@@ -179,12 +179,13 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 
 			DS1s = DS1s + DS1[counter_DS1[i]];
 			OS_DS1[i]++;
+			counter_DS1[i]++;
 
-			if(OS_DS1[i] == 4){
+			/*if(OS_DS1[i] == 4){
 
 				counter_DS1[i]++;
 				OS_DS1[i] = 0;
-			}
+			}*/
 
 			if(counter_DS1[i] == D909_S1_L - 1){
 
@@ -197,12 +198,14 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 
 			DS2s = DS2s + DS2[counter_DS2[i]];
 			OS_DS2[i]++;
+			counter_DS2[i]++;
 
+			/*
 			if(OS_DS2[i] == 4){
 
 				counter_DS2[i]++;
 				OS_DS2[i] = 0;
-			}
+			}*/
 
 			if(counter_DS2[i] == D909_S2_L - 1){
 
@@ -215,12 +218,14 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 
 			DS3s = DS3s + DS3[counter_DS3[i]];
 			OS_DS3[i]++;
+			counter_DS3[i]++;
 
+			/*
 			if(OS_DS3[i] == 4){
 
 				counter_DS3[i]++;
 				OS_DS3[i] = 0;
-			}
+			}*/
 
 			if(counter_DS3[i] == D909_S3_L - 1){
 
@@ -233,12 +238,14 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 
 			DS4s = DS4s + DS4[counter_DS4[i]];
 			OS_DS4[i]++;
+			counter_DS4[i]++;
 
+			/*
 			if(OS_DS4[i] == 4){
 
 				counter_DS4[i]++;
 				OS_DS4[i] = 0;
-			}
+			}*/
 
 			if(counter_DS4[i] == D909_S4_L - 1){
 
