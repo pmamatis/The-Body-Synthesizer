@@ -77,7 +77,7 @@ Filter_Status Filters_Init(){
 	//
 	//	// BAND 2: BP 8th order
 	SetupBandpassCPG(&EQ_BAND2_I,  400, 20);
-	//	SetupBandpassCPG(&EQ_BAND2_II, 400, 0.707);
+	//SetupBandpassCPG(&EQ_BAND2_II, 400, 20);
 	//	SetupBandpassCPG(&EQ_BAND2_III,400, 0.707);
 	//	SetupBandpassCPG(&EQ_BAND2_IV, 400, 0.707);
 	//
@@ -135,7 +135,7 @@ Filter_Status Filters_Reinit(){
 		 * @brief	Ranging from 0 to 4000Hz
 		 ******************************/
 		//parameter = (float)ADC_value * 4000 / 4095;
-		cutoff = (float)ADC_value;
+		cutoff = (float)ADC_value/8;
 
 		// REINIT:
 		//SetupLowShelf (&EQ_BAND1_I, cutoff, 20, -20);
@@ -144,7 +144,8 @@ Filter_Status Filters_Reinit(){
 //		SetupNotch(&EQ_BAND2_I, parameter, 0.707);
 
 
-		SetupBandpassCPG(&EQ_BAND2_I,  cutoff, 0.707);
+		SetupBandpassCPG(&EQ_BAND2_I,  cutoff, 20);
+		//SetupBandpassCPG(&EQ_BAND2_II, cutoff, 20);
 		//SetupHighpass   (&EQ_BAND1_I,  parameter, 0.707);
 		//SetupHighpass   (&EQ_BAND1_II, parameter, 0.707);
 
@@ -183,7 +184,7 @@ Filter_Status ProcessEQ(float *data){
 //	// BAND 2
 	band2 = *data;
 	ProcessFilter(&EQ_BAND2_I,  &band2);
-	ProcessFilter(&EQ_BAND2_I,  &band2);
+	//ProcessFilter(&EQ_BAND2_II, &band2);
 //	//  ProcessFilter(&EQ_BAND2_II, &band2);
 //	//	ProcessFilter(&EQ_BAND2_III,&band2);
 //	//	ProcessFilter(&EQ_BAND2_IV, &band2);

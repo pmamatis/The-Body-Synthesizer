@@ -247,7 +247,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 			}
 		}
 	}
-	drums = 2*DS1s + DS2s + DS3s + DS4s;
+	drums = DS1s + DS2s + DS3s + DS4s;
 
 	//ProcessFilter(&EQ_BAND1_I,  &drums);
 

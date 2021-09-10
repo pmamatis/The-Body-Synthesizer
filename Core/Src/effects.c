@@ -18,8 +18,10 @@ void effects_process(float* calculate_value) {
 
 
 	//if(effect_order[0] == EQ)
-	ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
-	//ProcessEQ(calculate_value);
+	ProcessEQ(calculate_value);
+	//lfo_value = LFO_SingleValueProcess(&lfo);
+	//ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
+	ProcessHardClippingDistortion(&HardClipping, calculate_value);
 
 
 	//	if(Display.mode == BODYSYNTH) {

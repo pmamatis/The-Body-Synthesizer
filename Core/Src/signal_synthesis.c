@@ -205,25 +205,28 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		// DRUMCOMPUTER
 		// write into calculate vector
-		//Drum_Computer_Process();
+
 		//TEST
-		//calculate_vector_tmp[BLOCKSIZE_counter] = 1 * addValue; //0.2 * addValue; //2*drums; //addValue + drums;
-
-
-
-		/*limiter function*/
-		//norm the signal to -1...1
-		calculate_vector_tmp[BLOCKSIZE_counter] = addValue; // + calculate_vector_tmp[BLOCKSIZE_counter];//signals -> max;
-
+		calculate_vector_tmp[BLOCKSIZE_counter] = 0.05 * addValue; //0.2 * addValue; //2*drums; //addValue + drums;
 
 		//Effekte
 		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
+		Drum_Computer_Process();
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + drums;
+
+		/*limiter function*/
+		//norm the signal to -1...1
+		//calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] / signals -> max;// signals->max; // + calculate_vector_tmp[BLOCKSIZE_counter];//signals -> max;
+
+
+
+
 
 		//maximum
-		//		if (signals -> max < fabs((double)addValue)){
-		//			signals -> max = fabs((double)addValue);
-		//		}
+//		if (signals -> max < fabs((double)addValue)){
+//			signals -> max = fabs((double)addValue);
+//		}
 
 		//		//scale output signal depending on amount of voices
 		//		switch (signals -> count){
