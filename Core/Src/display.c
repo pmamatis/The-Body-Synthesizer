@@ -324,7 +324,165 @@ Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps) {
 Display_Status DISPLAY_SetDrumcomputerStep(void) {
 
 	uint8_t filledrectangle_subtract = 5;
-	Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+	//Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+	//	Display.DrumMatrix[Display.CurrentSampleRow][Display.CurrentDrumstep]
+
+	switch(Display.CurrentSampleRow) {
+	case 1:	// Sample1 Row
+		switch(Display.CurrentDrumstep) {
+		case 1:	// Step 1..
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+				Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+			break;
+		case 2:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+				Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+			break;
+		case 3:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+				Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+			break;
+		case 4:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+				Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+			break;
+		case 5:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+				Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+			break;
+		case 6:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+				Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+			break;
+		case 7:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+				Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+			break;
+		case 8:	// ..Step 8
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+				Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, COLORED);
+			break;
+		default:
+			break;
+		}
+		break;
+		case 2:	// Sample2 Row
+			switch(Display.CurrentDrumstep) {
+			case 1:	// Step 1..
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+					Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, COLORED);
+				break;
+			case 2:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+					Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, COLORED);
+				break;
+			case 3:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+					Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, COLORED);
+				break;
+			case 4:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+					Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, COLORED);
+				break;
+			case 5:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+					Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, COLORED);
+				break;
+			case 6:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+					Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, COLORED);
+				break;
+			case 7:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+					Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, COLORED);
+				break;
+			case 8:	// ..Step 8
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+					Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, COLORED);
+				break;
+			default:
+				break;
+			}
+			break;
+			case 3:	// Sample 3 Row
+				switch(Display.CurrentDrumstep) {
+				case 1:	// Step 1..
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+						Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
+					break;
+				case 2:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+						Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
+					break;
+				case 3:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+						Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
+					break;
+				case 4:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+						Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
+					break;
+				case 5:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+						Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
+					break;
+				case 6:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+						Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
+					break;
+				case 7:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+						Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
+					break;
+				case 8:	// ..Step 8
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+						Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
+					break;
+				default:
+					break;
+				}
+				break;
+				case 4:	// Sample 4 Row
+					switch(Display.CurrentDrumstep) {
+					case 1:	// Step 1..
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+							Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
+						break;
+					case 2:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+							Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
+						break;
+					case 3:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+							Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
+						break;
+					case 4:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+							Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
+						break;
+					case 5:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+							Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
+						break;
+					case 6:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+							Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
+						break;
+					case 7:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+							Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
+						break;
+					case 8:	// ..Step 8
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
+							Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
+						break;
+					default:
+						break;
+					}
+					break;
+					default:
+						break;
+	}
 
 	DISPLAY_Update();
 
@@ -334,7 +492,164 @@ Display_Status DISPLAY_SetDrumcomputerStep(void) {
 Display_Status DISPLAY_DeleteDrumcomputerStep(void) {
 
 	uint8_t filledrectangle_subtract = 5;
-	Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+	//Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+
+	switch(Display.CurrentSampleRow) {
+	case 1:	// Sample1 Row
+		switch(Display.CurrentDrumstep) {
+		case 1:	// Step 1..
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+				Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+			break;
+		case 2:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+				Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+			break;
+		case 3:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+				Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+			break;
+		case 4:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+				Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+			break;
+		case 5:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+				Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+			break;
+		case 6:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+				Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+			break;
+		case 7:
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+				Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+			break;
+		case 8:	// ..Step 8
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+				Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+			break;
+		default:
+			break;
+		}
+		break;
+		case 2:	// Sample2 Row
+			switch(Display.CurrentDrumstep) {
+			case 1:	// Step 1..
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+					Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, UNCOLORED);
+				break;
+			case 2:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+					Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, UNCOLORED);
+				break;
+			case 3:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+					Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, UNCOLORED);
+				break;
+			case 4:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+					Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, UNCOLORED);
+				break;
+			case 5:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+					Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, UNCOLORED);
+				break;
+			case 6:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+					Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, UNCOLORED);
+				break;
+			case 7:
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+					Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, UNCOLORED);
+				break;
+			case 8:	// ..Step 8
+				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+					Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE2+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE2+20-filledrectangle_subtract, UNCOLORED);
+				break;
+			default:
+				break;
+			}
+			break;
+			case 3:	// Sample 3 Row
+				switch(Display.CurrentDrumstep) {
+				case 1:	// Step 1..
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+						Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, UNCOLORED);
+					break;
+				case 2:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+						Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, UNCOLORED);
+					break;
+				case 3:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+						Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, UNCOLORED);
+					break;
+				case 4:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+						Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, UNCOLORED);
+					break;
+				case 5:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+						Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, UNCOLORED);
+					break;
+				case 6:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+						Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, UNCOLORED);
+					break;
+				case 7:
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+						Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, UNCOLORED);
+					break;
+				case 8:	// ..Step 8
+					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+						Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, UNCOLORED);
+					break;
+				default:
+					break;
+				}
+				break;
+				case 4:	// Sample 4 Row
+					switch(Display.CurrentDrumstep) {
+					case 1:	// Step 1..
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+							Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, UNCOLORED);
+						break;
+					case 2:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+							Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, UNCOLORED);
+						break;
+					case 3:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+							Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, UNCOLORED);
+						break;
+					case 4:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+							Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, UNCOLORED);
+						break;
+					case 5:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+							Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, UNCOLORED);
+						break;
+					case 6:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+							Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, UNCOLORED);
+						break;
+					case 7:
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+							Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, UNCOLORED);
+						break;
+					case 8:	// ..Step 8
+						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false)
+							Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, UNCOLORED);
+						break;
+					default:
+						break;
+					}
+					break;
+					default:
+						break;
+	}
 
 	DISPLAY_Update();
 

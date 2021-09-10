@@ -440,6 +440,8 @@ void DMA2_Stream2_IRQHandler(void)
 		if(Display.CurrentDrumstep < NUMBER_OF_DRUMSTEPS)	// Display.CurrentDrumStep should be maximum the number of drumsteps
 			Display.CurrentDrumstep++;
 	}
+	DISPLAY_SetDrumcomputerStep();
+	DISPLAY_DeleteDrumcomputerStep();
 	DISPLAY_SetDrumcomputerStepCursor();
 
 	//	// arrow up or down
