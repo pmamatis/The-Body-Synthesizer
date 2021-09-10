@@ -2,7 +2,7 @@ clear
 %% global parameters 
 a  = 2^(1/12);
 f0 = 65.40639;
-SR = 96000; %sample rate
+SR = 48000; %sample rate
 dt = 1/SR;
 
 %% normal LUT
