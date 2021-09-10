@@ -79,7 +79,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	timing_DS1[1] = 0;
 	timing_DS1[2] = 0;
 	timing_DS1[3] = 0;
-	timing_DS1[4] = 1;
+	timing_DS1[4] = 0;
 	timing_DS1[5] = 0;
 	timing_DS1[6] = 0;
 	timing_DS1[7] = 0;
@@ -95,14 +95,14 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	timing_DS2[7] = 0;
 
 	// Clap
-	timing_DS3[0] = 0;
-	timing_DS3[1] = 0;
-	timing_DS3[2] = 0;
-	timing_DS3[3] = 0;
-	timing_DS3[4] = 1;
-	timing_DS3[5] = 0;
-	timing_DS3[6] = 0;
-	timing_DS3[7] = 0;
+//	timing_DS3[0] = 0;
+//	timing_DS3[1] = 0;
+//	timing_DS3[2] = 0;
+//	timing_DS3[3] = 0;
+//	timing_DS3[4] = 1;
+//	timing_DS3[5] = 0;
+//	timing_DS3[6] = 0;
+//	timing_DS3[7] = 0;
 //
 //	// LowTom
 //	timing_DS4[0] = 0;

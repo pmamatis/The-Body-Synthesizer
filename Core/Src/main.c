@@ -335,7 +335,7 @@ int main(void)
 	while(1) {
 
 
-		printf("%f \r\n", (float)ADC_value);
+		//printf("%f \r\n", (float)ADC_value);
 		//HAL_Delay(500);
     /* USER CODE END WHILE */
 
