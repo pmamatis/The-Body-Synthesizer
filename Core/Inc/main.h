@@ -90,12 +90,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define F4_CLK_Pin GPIO_PIN_2
-#define F4_CLK_GPIO_Port GPIOE
-#define F4_MISO_Pin GPIO_PIN_5
-#define F4_MISO_GPIO_Port GPIOE
-#define F4_MOSI_Pin GPIO_PIN_6
-#define F4_MOSI_GPIO_Port GPIOE
+#define F4_SPI_CLK_Pin GPIO_PIN_2
+#define F4_SPI_CLK_GPIO_Port GPIOE
+#define F4_SPI_MISO_Pin GPIO_PIN_5
+#define F4_SPI_MISO_GPIO_Port GPIOE
+#define F4_SPI_MOSI_Pin GPIO_PIN_6
+#define F4_SPI_MOSI_GPIO_Port GPIOE
 #define ENTER_USER_Pin GPIO_PIN_13
 #define ENTER_USER_GPIO_Port GPIOC
 #define ENTER_USER_EXTI_IRQn EXTI15_10_IRQn

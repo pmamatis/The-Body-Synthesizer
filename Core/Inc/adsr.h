@@ -20,7 +20,7 @@ typedef enum {
 } ADSR_Status;
 
  struct adsr {
-	uint32_t adsr_counter;
+	float adsr_counter;
 	float adsr_max_amp;
 	float adsr_duration_time;
 	float adsr_attack_time;
@@ -36,8 +36,8 @@ typedef enum {
 
 	bool adsr_done;
 
-	uint32_t decay_counter;
-	uint32_t release_counter;
+	float decay_counter;
+	float release_counter;
 };
 
 struct adsr envelope;

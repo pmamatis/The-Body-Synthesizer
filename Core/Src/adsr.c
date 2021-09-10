@@ -21,12 +21,13 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 
 	envelope->adsr_counter = 0;
 	envelope->adsr_max_amp = 1.00;	// maximum value should be 1
-	envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
+//	envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
 	envelope->adsr_attack_time = 0.1 * LUT_SR;
 	envelope->adsr_decay_time = 0.05 * LUT_SR;
 	envelope->adsr_sustain_time = 0.15 * LUT_SR;
 	envelope->adsr_sustain_amplitude = 0.5;
 	envelope->adsr_release_time = 0.05 * LUT_SR;
+	envelope->adsr_duration_time = envelope->adsr_attack_time + envelope->adsr_decay_time + envelope->adsr_sustain_time + envelope->adsr_release_time;
 
 	//	envelope->adsr_maximum_attack = (envelope->adsr_duration_time/4) / LUT_SR;	// in seconds; maximum 4.0 seconds (-> 4*LUT_SR), to display the value -> uint16_t
 	//	envelope->adsr_maximum_decay = (envelope->adsr_duration_time/4) / LUT_SR;
@@ -42,19 +43,20 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 
 	envelope->decay_counter = 0;
 	envelope->release_counter = 0;
-
+	printf("envelope->adsr_duration_time: %f\r\n",envelope->adsr_duration_time);
 	return ADSR_OK;
 }
 
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value) {
 
-	if(keyboard_pressed_flag == true) {
+	if(keyboard_pressed_flag == true){//||emg_triggerd_flag == true) {
 
 		float calc = 0;
 
 		envelope->adsr_duration_time = envelope->adsr_attack_time + envelope->adsr_decay_time + envelope->adsr_sustain_time + envelope->adsr_release_time;
 
 		if(envelope->adsr_counter < envelope->adsr_duration_time) { // if time < total duration
+
 
 			// attack period
 			if(envelope->adsr_counter <= envelope->adsr_attack_time) {
@@ -91,10 +93,13 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value)
 		}
 
 		else if(envelope->adsr_counter >= envelope->adsr_duration_time) {
+			printf("counter %f\n\r",envelope->adsr_counter );
+			printf("dur Time: %f\r\n",envelope->adsr_duration_time);
 			envelope->adsr_counter = 0;	// restart
 			//envelope->decay_counter = 0;
 			envelope->release_counter = 0;
 			envelope->adsr_done = true;
+			printf("adsr DONE**********\r\n");
 		}
 
 		// update time counter

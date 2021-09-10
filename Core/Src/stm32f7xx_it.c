@@ -79,10 +79,13 @@ extern DMA_HandleTypeDef hdma_dac2;
 extern DMA_HandleTypeDef hdma_spi4_rx;
 extern DMA_HandleTypeDef hdma_spi4_tx;
 extern SPI_HandleTypeDef hspi4;
+extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim5;
 extern TIM_HandleTypeDef htim7;
+extern TIM_HandleTypeDef htim8;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -289,6 +292,20 @@ void EXTI9_5_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles TIM1 break interrupt and TIM9 global interrupt.
+  */
+void TIM1_BRK_TIM9_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 0 */
+
+  /* USER CODE END TIM1_BRK_TIM9_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim1);
+  /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 1 */
+
+  /* USER CODE END TIM1_BRK_TIM9_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM2 global interrupt.
   */
 void TIM2_IRQHandler(void)
@@ -300,6 +317,21 @@ void TIM2_IRQHandler(void)
   /* USER CODE BEGIN TIM2_IRQn 1 */
 
   /* USER CODE END TIM2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM3 global interrupt.
+  */
+void TIM3_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM3_IRQn 0 */
+II_Display_Voices();
+II_Display_Effects();
+  /* USER CODE END TIM3_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim3);
+  /* USER CODE BEGIN TIM3_IRQn 1 */
+
+  /* USER CODE END TIM3_IRQn 1 */
 }
 
 /**
@@ -331,6 +363,20 @@ void EXTI15_10_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
+  */
+void TIM8_TRG_COM_TIM14_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 0 */
+
+  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim8);
+  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
+
+  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM5 global interrupt.
   */
 void TIM5_IRQHandler(void)
@@ -357,26 +403,26 @@ void TIM7_IRQHandler(void)
   /* USER CODE END TIM7_IRQn 0 */
   HAL_TIM_IRQHandler(&htim7);
   /* USER CODE BEGIN TIM7_IRQn 1 */
-//  HAL_SPI_TransmitReceive_IT(&SensorSPI, pTxData, pRxData, sizeof(sensor_data_t));
-//  HAL_SPI_Receive(&hspi4, pRxData, sizeof(sensor_data_t), 100);
+	//  HAL_SPI_TransmitReceive_IT(&SensorSPI, pTxData, pRxData, sizeof(sensor_data_t));
+	//  HAL_SPI_Receive(&hspi4, pRxData, sizeof(sensor_data_t), 100);
 	HAL_SPI_TransmitReceive(hSensorSPI, pTxData, pRxData, sizeof(sensor_data_t),100);
 
-  __disable_irq();
-  memcpy(&sensorData,&pRxData, sizeof(sensor_data_t));
+	__disable_irq();
+	memcpy(&sensorData,&pRxData, sizeof(sensor_data_t));
 	__enable_irq();
 
-//printf("******\r\n");
+//	printf("******\r\n");
 //
 //
-//for (int i = 0; i<sizeof(sensor_data_t);i++){
-//	printf("%i,",pRxData[i]);
-//}
+//	for (int i = 0; i<sizeof(sensor_data_t);i++){
+//		printf("%i,",pRxData[i]);
+//	}
 //
-//printf("\r\n");
-//	printf("gyro init: %i\r\n",sensorData.gyro_initilized);
-//	printf("tilt: %i\r\n",sensorData.tilt_detecded);
-//printf("\r\n");
-//printf("\r\n");
+//	printf("\r\n");
+//		printf("gyro init: %i\r\n",sensorData.gyro_initilized);
+//		printf("tilt: %i\r\n",sensorData.tilt_detected);
+//	printf("\r\n");
+//	printf("\r\n");
 
   /* USER CODE END TIM7_IRQn 1 */
 }
@@ -389,7 +435,7 @@ void DMA2_Stream0_IRQHandler(void)
   /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
 
 	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
-	if(Display.mode == KEYBOARD)
+//	if(Display.mode == KEYBOARD)
 		OnePress_keyboard_process(Display.ADC1input, &signals1, &envelope, &Display);
 
   /* USER CODE END DMA2_Stream0_IRQn 0 */
@@ -418,7 +464,7 @@ void DMA2_Stream1_IRQHandler(void)
 void DMA2_Stream2_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
-
+//	printf("inside Button IT\r\n");
 	// arrow up or down
 	if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
 		if (Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
@@ -450,18 +496,18 @@ void DMA2_Stream2_IRQHandler(void)
 	}
 
 	//printf("%i\r\n", Display.ADC2inputs[2]);
-Display.Poti_Threshold = 20;
+	Display.Poti_Threshold = 15;
 	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
-		Display.poti_moved =true;
+		Display.poti_moved = true;
 		DISPLAY_processing();
 		DISPLAY_Update();
 		Display.last_Poti = Display.ADC2inputs[2];
-		II_Display_Effects();
-		II_Display_Voices();
+
 	}
 	else{
-		Display.poti_moved =false;
+		Display.poti_moved = false;
 	}
+
 
   /* USER CODE END DMA2_Stream2_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_adc2);

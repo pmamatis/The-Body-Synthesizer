@@ -21,7 +21,7 @@ typedef enum  tilt_direction_t{
 typedef struct sensor_data{
  uint8_t	dump_zeroes_start[3];
  uint8_t gyro_initilized;
- uint8_t tilt_detecded;
+ uint8_t tilt_detected;
  uint8_t	dump_zeroes_end[3];
 }sensor_data_t;
 #pragma pack(pop)

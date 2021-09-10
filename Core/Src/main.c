@@ -75,6 +75,7 @@ DMA_HandleTypeDef hdma_spi4_tx;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
 TIM_HandleTypeDef htim6;
@@ -109,6 +110,7 @@ static void MX_ADC3_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_SPI4_Init(void);
 static void MX_TIM7_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 //void Load_SD_File(uint8_t JoystickPatchPosition, uint16_t VRy, bool SW, Paint paint, EPD epd, unsigned char* frame_buffer);
@@ -118,7 +120,27 @@ static void MX_TIM7_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-// DAC_CHANNEL_1
+
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
+
+	inputBuffer_position = HALF_BLOCK;
+	if(hadc->Instance == ADC3){
+//				HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
+		emg_peak_detection();
+
+	}
+}
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
+
+	inputBuffer_position = FULL_BLOCK;
+	if(hadc->Instance == ADC3){
+		//		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
+		emg_peak_detection();
+	}
+}
+
+
 /* DAC CHANNEL FUnktions */
 //DAC_CHANNEL_1
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
@@ -198,6 +220,7 @@ int main(void)
   MX_I2C2_Init();
   MX_SPI4_Init();
   MX_TIM7_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
 	//--------------------------------------------------	SD CARD
@@ -218,6 +241,11 @@ int main(void)
 	//--------------------------------------------------
 	printf("***Bodysynthesizer*** \r\n");
 
+
+	/* INIT FUNCTIONS************************
+	 *
+	 */
+	printf("Begin Init\r\n");
 	if(Signal_Synthesis_Init(htim8, hdac) != HAL_OK) {
 		printf("Signal Synthesis init failed\n");
 		//while(1);
@@ -258,37 +286,63 @@ int main(void)
 	//Gyros SPI
 	spiC_Init(&hspi4, &htim7);
 
+	//EMG init
+	emg_init(&hadc3,&htim1);
+
+
+	printf("End Init\r\n");
+
+
+
+	/* START FUNCTIONS *******************
+	 * */
+
+	printf("Begin Start Functions\r\n");
+	//Start Display
 
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
-	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
-	//	//you have to edit the startup_stm32fxxx.s file and set a big enough heap size
-	//	//unsigned char* frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	//	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	//	EPD_Init(&epd, lut_full_update);
-	//	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
-	//	Paint_SetRotate(&paint, ROTATE_270);
-	//	// Display the frame_buffer
-	//	EPD_SetFrameMemory(&epd, TU_LOGO, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_DelayMs(&epd, 1000);
-	//	Paint_Clear(&paint, UNCOLORED);
-	//	// Display the frame_buffer
-	//	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_Init(&epd, lut_partial_update);
 
 	// Start DAC-DMA
+	printf("start DAC\r\n");
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+
+
+
+	// Start Timer and ADC-DMA for the keyboard (ADC1)
+	keyboard_start_read();
+
+
+	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
+	SetTimerSettings(&htim6, 20);	// Timer 6 default: 2000 Hz
+	printf("start Button ADC\r\n");
+	HAL_TIM_Base_Start(&htim6);
+	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
+
+	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
+	emg_start_read();
+
+
+	//Start Interface
+	II_startInterface(&htim3);
+
+
+	printf("End Start Functions\r\n");
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+
 
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,SIN, 'C',0);
-	//NewSignal(&signals1,SIN, 'C',1);
+//	NewSignal(&signals1,SIN, 'C',1);
 	//NewSignal(&signals1,SIN, 'C',2);
 	//NewSignal(&signals1,SIN, 'C',3);
 	//NewSignal(&signals1,SIN, 'C',4);
@@ -297,7 +351,7 @@ int main(void)
 	//NewSignal(&signals1,SIN, 'G',2);
 	//NewSignal(&signals1,SIN, 'G',3);
 	//NewSignal(&signals1,SIN, 'G',4);
-	//NewSignal(&signals2,SIN, 'C',1);
+//	NewSignal(&signals2,SIN, 'C',1);
 	//NewSignal(&signals2,SIN, 'C',2);
 	//NewSignal(&signals2,SIN, 'C',3);
 	//NewSignal(&signals2,SIN, 'C',4);
@@ -305,29 +359,33 @@ int main(void)
 	//effects_add(EQ, 0);
 	//effects_add(DIST_S, 0);
 
-	// Start Timer and ADC-DMA for the keyboard (ADC1)
-	keyboard_start_read();
-	HAL_TIM_Base_Start(&htim5);
-	HAL_ADC_Start_DMA(&hadc1, &Display.ADC1input, 1);
 
-	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
-	SetTimerSettings(&htim6, 20);	// Timer 6 default: 2000 Hz
-	HAL_TIM_Base_Start(&htim6);
-	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
+	/* Manuel setings
+	 *
+	 */
+	Display.mode = BODYSYNTH;
 
-	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
-//	HAL_TIM_Base_Start(&htim1);
-//	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)Display.ADC3inputs, 2);
+	Display.Voices_Note[0] = 'C';
+	Display.Voices_Octave[0] = 2;
+	Display.Voices_ONOFF[0] = true;
+//	Display.Voice_Note_Sources[0] = EKG;
+//	Display.Voice_Note_Sources[0] = GYRO_FB;
+	Display.Voice_Note_Sources[0] = POTI;
 
+//	Display.Distortion_ONOFF = true;
+	Display.Distortion_Gain = 5;
+//	Display.Distortion_Sources = GYRO_LR;
+//	Display.Tremolo_ONOFF = true;
+//	Display.Tremolo_Sources[0] = GYRO_FB;
+//	Display.Tremolo_Sources[1] = GYRO_LR;
+	Display.Tremolo_Depth = 1;
+	Display.Tremolo_Rate = 3;
 
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
+//HAL_Delay(1000);
 	while(1) {
-//		printf("Gyro: \r\n");
+		//		printf("Gyro: \r\n");
+
+//	HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -541,7 +599,7 @@ static void MX_ADC3_Init(void)
   hadc3.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
   hadc3.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_TRGO;
   hadc3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc3.Init.NbrOfConversion = 2;
+  hadc3.Init.NbrOfConversion = 1;
   hadc3.Init.DMAContinuousRequests = ENABLE;
   hadc3.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc3) != HAL_OK)
@@ -550,17 +608,9 @@ static void MX_ADC3_Init(void)
   }
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
   */
-  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Channel = ADC_CHANNEL_5;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
-  */
-  sConfig.Channel = ADC_CHANNEL_5;
-  sConfig.Rank = ADC_REGULAR_RANK_2;
   if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -870,6 +920,51 @@ static void MX_TIM2_Init(void)
   /* USER CODE BEGIN TIM2_Init 2 */
 
   /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 0;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 65535;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
 
 }
 
@@ -1205,7 +1300,7 @@ static void MX_DMA_Init(void)
   HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
   /* DMA2_Stream0_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
   /* DMA2_Stream1_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream1_IRQn, 1, 0);
@@ -1214,10 +1309,10 @@ static void MX_DMA_Init(void)
   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
   /* DMA2_Stream3_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
   /* DMA2_Stream4_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream4_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream4_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream4_IRQn);
 
 }

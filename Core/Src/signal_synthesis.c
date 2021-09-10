@@ -20,9 +20,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	//Sets all taken ID to zero
 	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++){
 		ID_array[Signal_Synthesis_Init_count]=0;
-		signals1.ID[Signal_Synthesis_Init_count] = -1;
 	}
-
 	//Inits and starts timer connected with DAC
 	SetTimerSettings(&htim, LUT_SR);
 	return HAL_TIM_Base_Start(&htim);
@@ -66,12 +64,12 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
  *  @param octave: defines in which octave the key is settled.
  *  @attention the combination of key and octave defines the frequency
  */
-void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave){
+void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID){
 
-	if (signals -> count < MAX_SIGNAL_KOMBINATION){
-		signals -> count ++;
+	if (signals -> count <= MAX_SIGNAL_KOMBINATION){
+		signals -> count += 1;
 		uint8_t index = (signals-> count)-1;
-
+		signals -> ID[index]= ID;
 		signals -> kind[index] = kind;
 		switch (kind){
 
@@ -90,21 +88,18 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 			signals -> current_LUT_Index[index] = 0;
 			break;
 		}
-
+	}
 	signals -> max = 1;
 
-	//give ID
-	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION ;NewSignal_count++){
-		if(!ID_array[NewSignal_count]){
-			signals -> ID[signals->count] = NewSignal_count;
-			ID_array[NewSignal_count] = 1;
-			break;
-		}
+//	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
+//		if(!ID_array[NewSignal_count]){
+//			signals -> ID[NewSignal_count] = NewSignal_count;
+//			ID_array[NewSignal_count] = 1;
+//		}
+//
+//	}
 
-	}
-	printf("created Signal with \n\r ID:%i , sig amt:%i\r\n",signals -> ID[signals->count], signals->count);
 
-	}
 }
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
@@ -114,33 +109,35 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
  *  */
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 	//free the signal ID
-	if (signals->count > 0){
-		uint8_t tmp = signals -> ID[signal_index];
-		ID_array[tmp] = 0;
-		printf("deleted Signal with \r\nID:%i , sig amt:%i\r\n",tmp, signals->count);
-		//shift signals too left
-		for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
-			signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
-			signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
-			signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
-			signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
-			signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
+	uint8_t tmp = signals -> ID[signal_index];
+	ID_array[tmp] = 0;
 
-		}
-		//delete last signal
-		signals -> current_LUT_Index[signals -> count] = 0 ;
-		signals -> freq[signals -> count] = 0;
-		signals -> freqIndex[signals -> count] = 0;
-		signals -> kind[signals -> count] = 0 ;
-		signals -> ID[signals -> count]  = 0 ;
+	//shift signals too left
+	for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
+		signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
+		signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
+		signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
+		signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
+		signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
 
-
-		signals -> count--;
-		signals -> max = 0;
 	}
+	signals -> count-=1;
+	signals -> max = 0;
 }
-
-
+/** converts an signal ID into its Index
+ * @param : ID of the wanted signal
+ * @retval: Index of the signal with the given ID, or -1 when ID was not found
+ */
+uint8_t IDtoIndex(uint8_t ID){
+	uint8_t find_ID_counter = 0;
+	while (ID != signals1.ID[find_ID_counter]) {
+		find_ID_counter ++;
+		if (find_ID_counter > MAX_SIGNAL_KOMBINATION){
+			return -1;
+		}
+	}
+	return find_ID_counter;
+}
 
 /** @brief generates a signal in the calculate_vector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
  *	@param signal: is a signal_t struct which contains the tones to be played
@@ -176,31 +173,34 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	else if(outputBuffer_position == FULL_BLOCK){
 		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
+
 	}
+
+
 
 	//Loop for signal synthesis
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-		addValue = 0;
-		//Loop to reach all Signals
-		for (int j = 0; j < count;j++){
-			switch (signals -> kind[j]) {
-			case SIN:
-				//adds all SIN values from the signals to addValue
-				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
+				addValue = 0;
+				//Loop to reach all Signals
+				for (int j = 0; j < count;j++){
+					switch (signals -> kind[j]) {
+					case SIN:
+						//adds all SIN values from the signals to addValue
+						addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 
-				//get index for the next sin value
-				signals -> current_LUT_Index[j]++;
-				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
-				{
-					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
-				}
-				break;
+						//get index for the next sin value
+						signals -> current_LUT_Index[j]++;
+						if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
+						{
+							signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+						}
+						break;
 
-			case NOISE:
-				addValue += AWGN_generator();
-				break;
-			}//Switch-Case
-		}// Signal counter for-loop
+					case NOISE:
+						addValue += AWGN_generator();
+						break;
+					}//Switch-Case
+				}// Signal counter for-loop
 
 
 		//write into calculate vector
@@ -214,46 +214,50 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		//Effekte
 		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//maximum
-		if (signals -> max < fabs((double)addValue)){
-			signals -> max = fabs((double)addValue);
-		}
+				if (signals -> max < fabs((double)addValue)){
+					signals -> max = fabs((double)addValue);
+				}
 
-//		//scale output signal depending on amount of voices
-//		switch (signals -> count){
-//		case 1:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
-//			break;
-//		case 2:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
-//			break;
-//		case 3:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
-//			break;
-//		case 4:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
-//			break;
-//		case 5:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
-//			break;
-//		default:
-//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
-//			break;
-//		}
+		//		//scale output signal depending on amount of voices
+		//		switch (signals -> count){
+		//		case 1:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
+		//			break;
+		//		case 2:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
+		//			break;
+		//		case 3:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
+		//			break;
+		//		case 4:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
+		//			break;
+		//		case 5:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
+		//			break;
+		//		default:
+		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
+		//			break;
+		//		}
+
+
 
 		//Signal adjustment to DAC
-//		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + 0); // +1.5 fir middle of 0-3V3
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET); // +1.5 fir middle of 0-3V3
+		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((((float)emg_buffer[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
+		//
 
 	} //End for-Loop
 
 
 
 	// save current LUT index into signals1,
-	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
-		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
-	}
+			for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
+				signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
+			}
 
 }//Signal Synthesis
 

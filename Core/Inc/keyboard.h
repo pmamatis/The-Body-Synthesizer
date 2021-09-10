@@ -12,6 +12,7 @@
 
 /* defines */
 #define KEYBOARD_SR 100 // in Hz
+#define KEYBOARD_VOICE_ID 3
 
 // Define Notes (has to be calibrated for every keyboard)
 #define H_NOTE_ADC_VALUE 	4095

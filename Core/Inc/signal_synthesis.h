@@ -34,10 +34,10 @@
  * @param count: amount of signals
  * @param max: global Maximum of all added Signals, set to zero when construct or destruct a Signal
  * @param kind:
+ * @param freq:
+ * @param freqIndex:
  * @param
- * @param
- * @param
- * @param
+ * @param ID: indicates the Signal where it comes from. 0-2 Synthesizer Voices. 3-5 Keyboard notes,
  * */
 struct signal_t{
 	//globals
@@ -48,7 +48,8 @@ struct signal_t{
 	double freq[MAX_SIGNAL_KOMBINATION];
 	uint8_t freqIndex[MAX_SIGNAL_KOMBINATION];
 	uint32_t current_LUT_Index[MAX_SIGNAL_KOMBINATION];
-	int8_t ID[MAX_SIGNAL_KOMBINATION];
+	//ID's 0-2 Synthesizer Voices. 3-5 Keyboard notes,
+	uint8_t ID[MAX_SIGNAL_KOMBINATION];
 	uint8_t channel[MAX_SIGNAL_KOMBINATION];
 };
 /**@brief Array to monitor which ID's are taken, taken = 1; free = 0 */
@@ -100,9 +101,11 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
-void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
+//void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
+void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID);
 void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
 float LFO_SingleValueProcess(struct effects_lfo_t* effect);
 float AWGN_generator(void);
+uint8_t IDtoIndex(uint8_t ID);
 
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

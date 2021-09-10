@@ -37,7 +37,10 @@ void effects_process(float* calculate_value) {
 			}
 		}
 	}
-	else if(Display.mode == KEYBOARD) {
+//	else if(Display.mode == KEYBOARD) {
+//		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
+//	}
+	 if(emg_triggerd_flag || keyboard_pressed_flag) {
 		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
 	}
 }
