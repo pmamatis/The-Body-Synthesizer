@@ -290,18 +290,18 @@ int main(void)
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
-	//NewSignal(&signals1,NOISE,'C',0);
-	//NewSignal(&signals1,NOISE,'C',0);
-	//NewSignal(&signals1,NOISE,'C',0);
+//	NewSignal(&signals1,NOISE,'C',0);
+//	NewSignal(&signals1,NOISE,'C',0);
+//	NewSignal(&signals1,NOISE,'C',0);
 //	//NewSignal(&signals1,SIN, 'C',0);
-//	NewSignal(&signals1,SIN, 'C',1);
-//	NewSignal(&signals1,SIN, 'C',2);
-//	NewSignal(&signals1,SIN, 'C',3);
-////	//NewSignal(&signals1,SIN, 'C',4);
+	NewSignal(&signals1,SIN, 'C',1);
+	NewSignal(&signals1,SIN, 'C',2);
+	NewSignal(&signals1,SIN, 'C',3);
+//	NewSignal(&signals1,SIN, 'C',4);
 ////	//NewSignal(&signals1,SIN, 'G',0);
-//	NewSignal(&signals1,SIN, 'E',1);
-//	NewSignal(&signals1,SIN, 'E',2);
-//	NewSignal(&signals1,SIN, 'E',3);
+	NewSignal(&signals1,SIN, 'E',1);
+	NewSignal(&signals1,SIN, 'E',2);
+	NewSignal(&signals1,SIN, 'E',3);
 ////
 //	NewSignal(&signals1,SIN, 'G',1);
 //	NewSignal(&signals1,SIN, 'G',2);

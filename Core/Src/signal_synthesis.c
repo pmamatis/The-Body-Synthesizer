@@ -198,16 +198,14 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 			case NOISE:
 
-				//				addValue = (float)rand()/sizeof(float);
-				//				addValue = addValue * 2.0 - 1.0;
+				addValue += (2*(float)rand()/sizeof(float))-1;
+
 				//addValue += AWGN_generator();
 				break;
 			}//Switch-Case
 		}// Signal counter for-loop
 
 
-
-		addValue = (2*(float)rand()/sizeof(float))-1;
 		calculate_vector_tmp[BLOCKSIZE_counter] = addValue; //0.2 * addValue; //2*drums; //addValue + drums;
 
 		//Effekte
