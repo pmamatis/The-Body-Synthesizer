@@ -137,6 +137,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->page_max = 10;
 
 	Display->ENTER_Debounce_State = true;
+	Display->lastBACK_Debounce_State = true;
 	Display->BACK_Debounce_State = true;
 	Display->SW_Debounce_State = true;
 	Display->ENTER = false;
@@ -239,8 +240,10 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_tremolo[8],"");
 
 	// Drummachine
+	Display->lastCurrentSampleRow = 1;
 	Display->CurrentSampleRow = 1;
 	//Display->MaxNumberOfSamples = 4;
+	Display->lastCurrentDrumstep = 1;
 	Display->CurrentDrumstep = 1;
 	//Display->NumberOfDrumsteps = 8;
 
@@ -249,6 +252,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 			Display->DrumMatrix[i][j] = false;
 		}
 	}
+	Display->UpdateDisplay = false;
 
 	return DISPLAY_OK;
 }
@@ -484,7 +488,7 @@ Display_Status DISPLAY_SetDrumcomputerStep(void) {
 						break;
 	}
 
-	DISPLAY_Update();
+	//DISPLAY_Update();
 
 	return DISPLAY_OK;
 }
@@ -651,7 +655,7 @@ Display_Status DISPLAY_DeleteDrumcomputerStep(void) {
 						break;
 	}
 
-	DISPLAY_Update();
+	//DISPLAY_Update();
 
 	return DISPLAY_OK;
 }

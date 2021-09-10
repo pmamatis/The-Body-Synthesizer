@@ -236,6 +236,7 @@ struct display_variables {
 	uint8_t Gyro_select;
 	bool Gyro_ON;
 	bool ENTER_Debounce_State;
+	bool lastBACK_Debounce_State;
 	bool BACK_Debounce_State;
 	bool SW_Debounce_State;
 	bool ENTER;		// state variable of the ENTER-Button to go one step further in the display-menu
@@ -264,11 +265,14 @@ struct display_variables {
 	char value_str_keyboardmode[9][10];
 
 	// Drummachine
+	uint8_t lastCurrentSampleRow;
 	uint8_t CurrentSampleRow;
 	//uint8_t MaxNumberOfSamples;
+	uint8_t lastCurrentDrumstep;
 	uint8_t CurrentDrumstep;
 	//uint8_t NumberOfDrumsteps;
 	bool DrumMatrix[MAX_NUMBER_OF_SAMPLES][NUMBER_OF_DRUMSTEPS];
+	bool UpdateDisplay;
 };
 
 struct display_variables Display;
