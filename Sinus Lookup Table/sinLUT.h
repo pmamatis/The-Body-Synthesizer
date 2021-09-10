@@ -21,6 +21,7 @@ const uint32_t LUT_ENDINDEX[73];
 const uint32_t LUT_STARTINDEX[73];
 const uint32_t LUT_SUPPORTPOINTS[73];
 const float LUT_FREQUENCYS[73];
+const float LFO[46500];
 const uint32_t LFO_ENDINDEX[5];
 const uint32_t LFO_STARTINDEX[5];
 const uint32_t LFO_SUPPORTPOINTS[5];

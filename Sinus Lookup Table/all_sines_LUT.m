@@ -235,7 +235,7 @@ dlmwrite('sinLUT.h',['const uint32_t LUT_SUPPORTPOINTS[',num2str(length(FandBS(:
 dlmwrite('sinLUT.h',['const float LUT_FREQUENCYS[',num2str(length(FandBS(:,1))),'];'],'delimiter','', 'precision', precision,'-append'); 
 
 %LFO
-%dlmwrite('sinLUT.h',['const float LFO[',num2str(length(LFO_Array)),'];'],'delimiter','', 'precision', precision,'-append');
+dlmwrite('sinLUT.h',['const float LFO[',num2str(length(LFO_Array)),'];'],'delimiter','', 'precision', precision,'-append');
 dlmwrite('sinLUT.h',['const uint32_t LFO_ENDINDEX[',num2str(length(FandBS_LFO(:,4))),'];'],'delimiter','', 'precision', precision,'-append') ;
 dlmwrite('sinLUT.h',['const uint32_t LFO_STARTINDEX[',num2str(length(FandBS_LFO(:,3))),'];'],'delimiter','', 'precision', precision,'-append');  
 dlmwrite('sinLUT.h',['const uint32_t LFO_SUPPORTPOINTS[',num2str(length(FandBS_LFO(:,2))),'];'],'delimiter','', 'precision', precision,'-append'); 
