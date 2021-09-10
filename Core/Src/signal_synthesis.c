@@ -197,23 +197,26 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				break;
 
 			case NOISE:
-				addValue += AWGN_generator();
+
+				//				addValue = (float)rand()/sizeof(float);
+				//				addValue = addValue * 2.0 - 1.0;
+				//addValue += AWGN_generator();
 				break;
 			}//Switch-Case
 		}// Signal counter for-loop
 
 
-		// DRUMCOMPUTER
-		// write into calculate vector
 
-		//TEST
-		calculate_vector_tmp[BLOCKSIZE_counter] = 0.05 * addValue; //0.2 * addValue; //2*drums; //addValue + drums;
+		addValue = (2*(float)rand()/sizeof(float))-1;
+		calculate_vector_tmp[BLOCKSIZE_counter] = addValue; //0.2 * addValue; //2*drums; //addValue + drums;
 
 		//Effekte
 		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
-		Drum_Computer_Process();
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + drums;
+		// DRUMCOMPUTER
+		// write into calculate vector
+		//Drum_Computer_Process();
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
 
 		/*limiter function*/
 		//norm the signal to -1...1
@@ -224,9 +227,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//maximum
-//		if (signals -> max < fabs((double)addValue)){
-//			signals -> max = fabs((double)addValue);
-//		}
+		//		if (signals -> max < fabs((double)addValue)){
+		//			signals -> max = fabs((double)addValue);
+		//		}
 
 		//		//scale output signal depending on amount of voices
 		//		switch (signals -> count){

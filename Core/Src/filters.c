@@ -135,7 +135,7 @@ Filter_Status Filters_Reinit(){
 		 * @brief	Ranging from 0 to 4000Hz
 		 ******************************/
 		//parameter = (float)ADC_value * 4000 / 4095;
-		cutoff = (float)ADC_value/8;
+		cutoff = (float)ADC_value;
 
 		// REINIT:
 		//SetupLowShelf (&EQ_BAND1_I, cutoff, 20, -20);
