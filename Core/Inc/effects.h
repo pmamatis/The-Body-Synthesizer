@@ -7,7 +7,7 @@
 /*********************************
  * @brief		Defines
  *********************************/
-#define MAX_EFFECTS 10
+#define MAX_EFFECTS 4
 
 /***************************
  * @brief		Enumeration for DSP Effects

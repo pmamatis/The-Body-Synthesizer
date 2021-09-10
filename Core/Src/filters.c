@@ -15,8 +15,9 @@ uint32_t samplerate = LUT_SR;
 
 
 // Reinit variables
-uint32_t ADC_value = 5;
-uint32_t ADC_value_deb = 5;
+uint32_t ADC_value = 50;
+uint32_t ADC_value_deb = 50;
+uint32_t ADC_value_thresh = 50;
 uint32_t flag = 0;
 
 float parameter = 0;
@@ -103,10 +104,10 @@ Filter_Status Filters_Init(){
 Filter_Status Filters_Reinit(){
 
 	// GND debouncing
-	if(ADC_value < 5) ADC_value = 5;
+	if(ADC_value < ADC_value_thresh) ADC_value = ADC_value_thresh;
 
 	// General debouncing
-	if(ADC_value_deb + 5 <= ADC_value || ADC_value_deb - 5 >= ADC_value)
+	if(ADC_value_deb + ADC_value_thresh <= ADC_value || ADC_value_deb - ADC_value_thresh >= ADC_value)
 	{
 		ADC_value_deb = ADC_value;
 		flag = 1;
@@ -134,10 +135,10 @@ Filter_Status Filters_Reinit(){
 		 * @brief	Ranging from 0 to 4000Hz
 		 ******************************/
 		//parameter = (float)ADC_value * 4000 / 4095;
-		cutoff = (float)ADC_value/4;
+		cutoff = (float)ADC_value/128;
 
 		// REINIT:
-		SetupLowShelf (&EQ_BAND1_I, cutoff, 0.707, -20);
+		SetupLowShelf (&EQ_BAND1_I, cutoff, 20, -20);
 //		SetupHighShelf(&EQ_BAND1_I, parameter, 0.707, -20);
 //		SetupPeakingEQ(&EQ_BAND2_I, 3360, 	     1, parameter);
 //		SetupNotch(&EQ_BAND2_I, parameter, 0.707);

@@ -294,9 +294,9 @@ int main(void)
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,SIN, 'C',0);
-	//NewSignal(&signals1,SIN, 'C',1);
-	//NewSignal(&signals1,SIN, 'C',2);
-	//NewSignal(&signals1,SIN, 'C',3);
+//	NewSignal(&signals1,SIN, 'C',1);
+	NewSignal(&signals1,SIN, 'C',2);
+//	NewSignal(&signals1,SIN, 'C',3);
 	//NewSignal(&signals1,SIN, 'C',4);
 	//NewSignal(&signals1,SIN, 'G',0);
 	//NewSignal(&signals1,SIN, 'G',1);
@@ -334,7 +334,7 @@ int main(void)
 
 	while(1) {
 
-		Filters_Reinit();
+
 		printf("%f \r\n", (float)ADC_value);
 		//HAL_Delay(500);
     /* USER CODE END WHILE */
