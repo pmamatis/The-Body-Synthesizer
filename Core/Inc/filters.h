@@ -48,7 +48,7 @@ struct BQFilter EQ_BAND4_II;
 
 struct BQFilter EQ_BAND5_I;
 
-//struct BQFilter LP_WAH;
+struct BQFilter BP_WAHWAH;
 //struct BQFilter HP_WAH;
 //
 //struct BQFilter LP_REVERB;

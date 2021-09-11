@@ -14,16 +14,22 @@
  *********************************/
 WahWah_Status WahWah_Init(struct WahWah_t *WahWah) {
 
+	WahWah->lfo = &lfo_wahwah;
+	WahWah->bandpass = &BP_WAHWAH;
+
 	WahWah->lfo->lfo_index     = 0;
 	WahWah->lfo->lfo_quarter   = 0;
-	WahWah->lfo->lfo_depth     = 0.8;	// [0, 1]
-	WahWah->lfo->lfo_frequency = 8;	// [0.125, 0.25, 0.5, 1, 2, 4, 8]
+	WahWah->lfo->lfo_depth     = 1;	// [0, 1]
+	WahWah->lfo->lfo_frequency = 2;	// [0.125, 0.25, 0.5, 1, 2, 4, 8]
 
 	WahWah->range        = 200;
-	WahWah->mid_freq     = 200;
+	WahWah->mid_freq     = 350;
 	WahWah->mid_freq_mod = 0;
 
-	SetupBandpassCPG(WahWah->bandpass, WahWah->mid_freq, 10);
+	WahWah->reinit_counter = 0;
+	WahWah->bandpass->Q = 0.707;
+
+	SetupBandpassCPG(WahWah->bandpass, WahWah->mid_freq, WahWah->bandpass->Q);
 
 	return WAHWAH_OK;
 }
@@ -35,19 +41,30 @@ WahWah_Status WahWah_Init(struct WahWah_t *WahWah) {
  * @param lfo_value: current lfo value
  */
 
-WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float* data){
+WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float *data){
 
+	// FETCH: actual LFO value
 	LFO_SingleValueProcess(WahWah->lfo);
 
-//	WahWah->mid_freq_mod = WahWah->mid_freq + (WahWah->range / 2) * WahWah->lfo->lfo_data;
-//
-//	SetupBandpassCPG(WahWah->bandpass, WahWah->mid_freq_mod, 10);
-//
-//	ProcessFilter(WahWah->bandpass, data);
+	// MODULATE: mid frequency of bandpass with poti
+	WahWah->mid_freq = (((float)ADC_value / 4095) * 2000) + WahWah->range / 2;
 
-	float wahwah_mod = (1 + WahWah->lfo->lfo_depth * WahWah->lfo->lfo_data);
-	*data = (wahwah_mod * *data) / (1 + WahWah->lfo->lfo_depth);
+	// MODULATE: mid frequency of bandpass with a certain range and lfo amplitude
+	WahWah->mid_freq_mod = WahWah->mid_freq + (WahWah->range / 2) * WahWah->lfo->lfo_data;
 
+	// FETCH: Q from ADC
+	//WahWah->bandpass->Q = (((float)ADC_value / 4095) * 10) + 0.01;
+
+	// RESET: Filter after 1000 samples (with SR = 24k Hz >> 24 times a second)
+	if(WahWah->reinit_counter == 1){
+
+		SetupBandpassCPG(WahWah->bandpass, WahWah->mid_freq_mod, WahWah->bandpass->Q);
+		WahWah->reinit_counter = 0;
+	}
+
+	WahWah->reinit_counter++;
+
+	ProcessFilter(WahWah->bandpass, data);
 
 	return WAHWAH_OK;
 }

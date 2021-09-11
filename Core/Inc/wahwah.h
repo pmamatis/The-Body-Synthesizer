@@ -33,6 +33,8 @@ struct WahWah_t{
 	float mid_freq_mod;
 	float range;
 
+	uint32_t reinit_counter;
+
 };
 
 struct WahWah_t WahWah;
