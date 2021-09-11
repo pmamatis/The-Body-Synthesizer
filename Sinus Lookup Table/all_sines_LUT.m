@@ -2,7 +2,7 @@ clear
 %% global parameters 
 a  = 2^(1/12);
 f0 = 65.40639;
-SR = 48000; %sample rate
+SR = 24000; %sample rate
 dt = 1/SR;
 
 %% normal LUT
@@ -74,8 +74,8 @@ FandBS = [fn, BS, start_ind, end_ind];
 %% LFO calculation (kann auf viertel Periode reduziert werden)
 %parameter
 %LFO_ind=[1,13,20,25,32,37,41,44,46,49,61,73,80,85]'; %ausgewählte frequenzen
-anzahlFrequenzen = 4;
-startFrequenz = 0.5;
+anzahlFrequenzen = 6;
+startFrequenz = 0.125;
 
 %variables init
 LFO_Array = [];
