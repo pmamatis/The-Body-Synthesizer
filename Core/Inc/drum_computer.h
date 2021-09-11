@@ -60,5 +60,6 @@ float drums;
 HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart);
 HAL_StatusTypeDef Drum_Computer_Process();
 HAL_StatusTypeDef Drum_Computer_CalcSample();
+HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse();
 
 #endif /* INC_DRUM_COMPUTER_H_ */

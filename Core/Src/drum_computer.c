@@ -11,7 +11,7 @@
 HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 
 	// INIT: Tempo, SR, Counter
-	BPM = 130;						// at SR of 96000 Hz and sample length of 40000 -> 144 BPM Maximum
+	BPM = 100;
 	MasterClock = LUT_SR;
 	counter_master = 0;
 
@@ -54,7 +54,8 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 		timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
 
-	/*
+
+
 	// INIT: 909 LUTs
 	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
 	sd_card_mount(huart);
@@ -72,8 +73,9 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_mount(huart);
 	sd_card_read("909_LowTom.txt", &DS4, huart);
 	sd_card_unmount(huart);
-	*/
 
+
+	/*
 	// INIT: Rock Loud LUTs
 	// POSSIBLE: Kick, Hihat, Snare, Ride
 	sd_card_mount(huart);
@@ -91,6 +93,26 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_mount(huart);
 	sd_card_read("Rock_loud_Ride.txt", &DS4, huart);
 	sd_card_unmount(huart);
+
+
+	// INIT: Rock LUTs
+	// POSSIBLE: Kick, Hihat, Snare, Ride
+	sd_card_mount(huart);
+	sd_card_read("Rock_Kick.txt", &DS1, huart);
+	sd_card_unmount(huart);
+
+	sd_card_mount(huart);
+	sd_card_read("Rock_Hihat.txt", &DS2, huart);
+	sd_card_unmount(huart);
+
+	sd_card_mount(huart);
+	sd_card_read("Rock_Snare.txt", &DS3, huart);
+	sd_card_unmount(huart);
+
+	sd_card_mount(huart);
+	sd_card_read("Rock_Ride.txt", &DS4, huart);
+	sd_card_unmount(huart);
+*/
 
 
 	// INIT: Timing
@@ -168,7 +190,7 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 
 
 	// CALC: each drumsample
-	Drum_Computer_CalcSample();
+	Drum_Computer_CalcSample_Reverse();
 
 
 	// SET: drum index
@@ -207,7 +229,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 				OS_DS1[i] = 0;
 			}*/
 
-			if(counter_DS1[i] == D909_S1_L - 1){
+			if(counter_DS1[i] == DS_L - 1){
 
 				counter_DS1[i] = 0;
 				flag_DS1[i]    = 0;
@@ -227,7 +249,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 				OS_DS2[i] = 0;
 			}*/
 
-			if(counter_DS2[i] == D909_S2_L - 1){
+			if(counter_DS2[i] == DS_L - 1){
 
 				counter_DS2[i] = 0;
 				flag_DS2[i]    = 0;
@@ -247,7 +269,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 				OS_DS3[i] = 0;
 			}*/
 
-			if(counter_DS3[i] == D909_S3_L - 1){
+			if(counter_DS3[i] == DS_L - 1){
 
 				counter_DS3[i] = 0;
 				flag_DS3[i]    = 0;
@@ -267,7 +289,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 				OS_DS4[i] = 0;
 			}*/
 
-			if(counter_DS4[i] == D909_S4_L - 1){
+			if(counter_DS4[i] == DS_L - 1){
 
 				counter_DS4[i] = 0;
 				flag_DS4[i]    = 0;
@@ -276,7 +298,95 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 	}
 	drums = 1.5 * DS1s + DS2s + DS3s + DS4s;
 
-	//ProcessFilter(&EQ_BAND1_I,  &drums);
+
+	return HAL_OK;
+}
+
+HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse() {
+
+	for(int i = 0; i < FourFour; i++) {
+
+		// Drumsample 1
+		if(flag_DS1[i] == 1) {
+
+			DS1s = DS1s + DS1[10000-counter_DS1[i]];
+			OS_DS1[i]++;
+			counter_DS1[i]++;
+
+			/*if(OS_DS1[i] == 4){
+
+				counter_DS1[i]++;
+				OS_DS1[i] = 0;
+			}*/
+
+			if(counter_DS1[i] == DS_L - 1){
+
+				counter_DS1[i] = 0;
+				flag_DS1[i]    = 0;
+			}
+		}
+		// Drumsample 2
+		if(flag_DS2[i] == 1) {
+
+			DS2s = DS2s + DS2[10000-counter_DS2[i]];
+			OS_DS2[i]++;
+			counter_DS2[i]++;
+
+			/*
+			if(OS_DS2[i] == 4){
+
+				counter_DS2[i]++;
+				OS_DS2[i] = 0;
+			}*/
+
+			if(counter_DS2[i] == DS_L - 1){
+
+				counter_DS2[i] = 0;
+				flag_DS2[i]    = 0;
+			}
+		}
+		// Drumsample 3
+		if(flag_DS3[i] == 1) {
+
+			DS3s = DS3s + DS3[10000-counter_DS3[i]];
+			OS_DS3[i]++;
+			counter_DS3[i]++;
+
+			/*
+			if(OS_DS3[i] == 4){
+
+				counter_DS3[i]++;
+				OS_DS3[i] = 0;
+			}*/
+
+			if(counter_DS3[i] == DS_L - 1){
+
+				counter_DS3[i] = 0;
+				flag_DS3[i]    = 0;
+			}
+		}
+		// Drumsample 4
+		if(flag_DS4[i] == 1) {
+
+			DS4s = DS4s + DS4[10000-counter_DS4[i]];
+			OS_DS4[i]++;
+			counter_DS4[i]++;
+
+			/*
+			if(OS_DS4[i] == 4){
+
+				counter_DS4[i]++;
+				OS_DS4[i] = 0;
+			}*/
+
+			if(counter_DS4[i] == DS_L - 1){
+
+				counter_DS4[i] = 0;
+				flag_DS4[i]    = 0;
+			}
+		}
+	}
+	drums = 1.5 * DS1s + DS2s + DS3s + DS4s;
 
 	return HAL_OK;
 }

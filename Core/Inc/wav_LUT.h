@@ -2,15 +2,12 @@
 #define INC_WAV_LUT_H_
 
 // Drummachine 909
-# define D909_S1_L 40000/4
-# define D909_S2_L 40000/4
-# define D909_S3_L 40000/4
-# define D909_S4_L 40000/4
+# define DS_L 10000
 
 // Sample bins
-float DS1[D909_S1_L];
-float DS2[D909_S2_L];
-float DS3[D909_S3_L];
-float DS4[D909_S4_L];
+float DS1[DS_L];
+float DS2[DS_L];
+float DS3[DS_L];
+float DS4[DS_L];
 
 #endif

@@ -24,7 +24,7 @@ Tremolo_Status SetupTremolo(struct Tremolo_t* Tremolo) {
 
 
 	Tremolo->lfo_data->lfo_index = 0;
-	Tremolo->lfo_data->lfo_frequency = 1.00;	// was 4
+	Tremolo->lfo_data->lfo_frequency = 8.00;	// was 4
 	//Tremolo->lfo_frequency = 4.00;
 	Tremolo->lfo_data->lfo_quarter = 0;
 	Tremolo->lfo_data->lfo_blocksizecounter = 0;
