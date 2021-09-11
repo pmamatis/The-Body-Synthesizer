@@ -74,7 +74,7 @@ FandBS = [fn, BS, start_ind, end_ind];
 %% LFO calculation (kann auf viertel Periode reduziert werden)
 %parameter
 %LFO_ind=[1,13,20,25,32,37,41,44,46,49,61,73,80,85]'; %ausgewählte frequenzen
-anzahlFrequenzen = 6;
+anzahlFrequenzen = 8;
 startFrequenz = 0.125;
 
 %variables init
@@ -87,7 +87,8 @@ BS_LFO =  zeros(length(fn_LFO),1);
 
 %calculation
 indexOffset = log2(startFrequenz);
-for i = 0:anzahlFrequenzen
+% loop start index depends on smalles frequency of desire (0.125 = 2^-3)
+for i = 0:anzahlFrequenzen-1
     fn_LFO(i+1,1) = 2^(i+indexOffset);
 end
 
