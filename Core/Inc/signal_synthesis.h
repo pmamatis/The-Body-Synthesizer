@@ -70,7 +70,8 @@ struct effects_lfo_t{
 	float lfo_depth;
 };
 
-//struct effects_lfo_t lfo;
+struct effects_lfo_t lfo_tremolo;
+struct effects_lfo_t lfo_wahwah;
 
 enum singnal_synthesis_enum{
 	note_key = 0,

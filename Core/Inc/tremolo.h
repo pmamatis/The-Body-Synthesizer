@@ -26,13 +26,14 @@ typedef enum {
  *********************************/
 struct Tremolo_t{
 
-	struct effects_lfo_t* lfo;
+	struct effects_lfo_t *lfo;
 
 	float tremolo_maximum_rate;
 	float tremolo_maximum_depth;
 };
 
 struct Tremolo_t Tremolo;
+
 
 Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo);
 Tremolo_Status ProcessTremolo(struct Tremolo_t* Tremolo, float* data);
