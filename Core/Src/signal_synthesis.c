@@ -186,7 +186,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			switch (signals -> kind[j]) {
 			case SIN:
 				//adds all SIN values from the signals to addValue
-				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
+				addValue += LUT[signals -> current_LUT_Index[j]];
 
 				//get index for the next sin value
 				signals -> current_LUT_Index[j]++;
@@ -198,7 +198,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 			case NOISE:
 
-				addValue += (2*(float)rand()/sizeof(float))-1;
+				addValue += (2*(float)rand()/sizeof(int))-1;
 
 				//addValue += AWGN_generator();
 				break;
@@ -219,7 +219,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// DRUMCOMPUTER
 		// write into calculate vector
 		Drum_Computer_Process();
-		calculate_vector_tmp[BLOCKSIZE_counter] = 1 * drums;// + 4 * calculate_vector_tmp[BLOCKSIZE_counter];
+		calculate_vector_tmp[BLOCKSIZE_counter] = 1 * drums + 4 * calculate_vector_tmp[BLOCKSIZE_counter];
 
 
 
