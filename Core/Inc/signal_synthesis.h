@@ -64,12 +64,13 @@ struct effects_lfo_t{
 
 	uint32_t lfo_index;
 	uint8_t lfo_quarter;
-	float lfo_frequency;
 	uint32_t lfo_blocksizecounter;
+	float lfo_frequency;
+	float lfo_data;
 	float lfo_depth;
 };
 
-struct effects_lfo_t lfo;
+//struct effects_lfo_t lfo;
 
 enum singnal_synthesis_enum{
 	note_key = 0,
@@ -102,7 +103,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
-float LFO_SingleValueProcess(struct effects_lfo_t* effect);
+void LFO_SingleValueProcess(struct effects_lfo_t* lfo);
 float AWGN_generator(void);
 
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

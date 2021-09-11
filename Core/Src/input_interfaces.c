@@ -64,8 +64,8 @@ uint8_t II_Display_Effects(void){
 	//Tremolo
 	if (Display.Tremolo_ONOFF == true){
 		effects_add(TREM, 1);
-		Tremolo.lfo_data->lfo_depth = Display.Tremolo_Depth;
-		Tremolo.lfo_data->lfo_frequency = Display.Tremolo_Rate;
+		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
+		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 
 	}
 	else if (Display.Distortion_ONOFF == false){

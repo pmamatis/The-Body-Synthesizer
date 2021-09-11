@@ -81,8 +81,6 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 			signals -> freqIndex[index] = Get_Note_Index(key,octave);
 			signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
 			// signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
-
-
 			break;
 		case NOISE:
 			signals -> freq[index] = 0;
@@ -218,8 +216,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		// DRUMCOMPUTER
 		// write into calculate vector
-		Drum_Computer_Process();
-		calculate_vector_tmp[BLOCKSIZE_counter] = 1 * drums + 4 * calculate_vector_tmp[BLOCKSIZE_counter];
+		//Drum_Computer_Process();
+		calculate_vector_tmp[BLOCKSIZE_counter] = 4 * calculate_vector_tmp[BLOCKSIZE_counter]; //  1 * drums +
 
 
 
@@ -322,9 +320,9 @@ void Signal_Synthesis_LFO(struct effects_lfo_t* effect) {
 }
 
 
-float LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
+void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
-	float effect_LFO = 0;
+	lfo->lfo_data = 0;
 
 	// calculate ratio between LFO_LUT frequency and desired frequency
 	float frequency_ratio = lfo->lfo_frequency / LFO_FMIN;
@@ -339,23 +337,21 @@ float LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 	switch(lfo->lfo_quarter) {
 	case 0:
-		effect_LFO = LFO[lfo->lfo_index];
+		lfo->lfo_data = LFO[lfo->lfo_index];
 		break;
 	case 1:
-		effect_LFO = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+		lfo->lfo_data = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
 		break;
 	case 2:
-		effect_LFO = -LFO[lfo->lfo_index];
+		lfo->lfo_data = -LFO[lfo->lfo_index];
 		break;
 	case 3:
-		effect_LFO = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+		lfo->lfo_data = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
 		break;
 	default:
 		break;
 	}
 	lfo->lfo_index = round((double)(lfo->lfo_index + frequency_ratio));
-
-	return effect_LFO;
 }
 
 

@@ -25,18 +25,16 @@ typedef enum {
  * @parameter	Tremolo
  *********************************/
 struct Tremolo_t{
-	struct effects_lfo_t* lfo_data;
-	uint32_t tremolo_blocksizecounter;
-	bool recalc_lfo;
+
+	struct effects_lfo_t* lfo;
+
 	float tremolo_maximum_rate;
 	float tremolo_maximum_depth;
 };
 
 struct Tremolo_t Tremolo;
 
-Tremolo_Status Tremolo_Init(void);
-Tremolo_Status SetupTremolo(struct Tremolo_t* Tremolo);
-//Tremolo_Status ProcessTremolo(struct effects_LFO* Tremolo, float* data);
-Tremolo_Status ProcessTremolo(struct Tremolo_t* Tremolo, float* data, float* lfo_value);
+Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo);
+Tremolo_Status ProcessTremolo(struct Tremolo_t* Tremolo, float* data);
 
 #endif /* INC_TREMOLO_H_ */

@@ -48,13 +48,13 @@ struct BQFilter EQ_BAND4_II;
 
 struct BQFilter EQ_BAND5_I;
 
-struct BQFilter LP_WAH;
-struct BQFilter HP_WAH;
-
-struct BQFilter LP_REVERB;
-struct BQFilter LP_DELAY;
-
-struct BQFilter LP_AA;
+//struct BQFilter LP_WAH;
+//struct BQFilter HP_WAH;
+//
+//struct BQFilter LP_REVERB;
+//struct BQFilter LP_DELAY;
+//
+//struct BQFilter LP_AA;
 
 
 

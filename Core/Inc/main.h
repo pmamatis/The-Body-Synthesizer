@@ -55,6 +55,9 @@ extern "C" {
 // for distortion
 #include "distortion.h"
 
+// for wahwah
+//#include "wahwah.h"
+
 // EMG
 #include "emg.h"
 

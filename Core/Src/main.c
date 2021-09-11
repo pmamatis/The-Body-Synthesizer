@@ -234,7 +234,7 @@ int main(void)
 	}
 	//SetupLowpass(&EQ_BAND1_I, 200, 0.707);
 
-	if(Tremolo_Init() == TREMOLO_FAIL) {
+	if(Tremolo_Init(&Tremolo) == TREMOLO_FAIL) {
 		printf("Tremolo init failed\n");
 		//while(1);
 	}
