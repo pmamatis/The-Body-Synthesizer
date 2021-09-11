@@ -263,6 +263,7 @@ struct display_variables {
 	char value_str_distortion[9][10];
 	char value_str_tremolo[9][10];
 	char value_str_keyboardmode[9][10];
+	char value_str_drumcomputer[2][10];
 
 	// Drummachine
 	uint8_t lastCurrentSampleRow;
@@ -273,6 +274,9 @@ struct display_variables {
 	//uint8_t NumberOfDrumsteps;
 	bool DrumMatrix[MAX_NUMBER_OF_SAMPLES][NUMBER_OF_DRUMSTEPS];
 	bool UpdateDisplay;
+	bool Drumcomputer_ONOFF;
+	bool EditDrums;
+	uint8_t currentDrumcomputer;
 };
 
 struct display_variables Display;
@@ -295,6 +299,8 @@ void DISPLAY_Update(void);
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 
 // Display Drum Computer
+Display_Status p_Drumcomputer_overview(void);
+Display_Status p_Drumcomputer_Settings(void);
 Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer);
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
 Display_Status DISPLAY_SetDrumcomputerStep(void);

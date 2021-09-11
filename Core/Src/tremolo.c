@@ -22,7 +22,6 @@ Tremolo_Status Tremolo_Init(void) {
 
 Tremolo_Status SetupTremolo(struct Tremolo_t* Tremolo) {
 
-
 	Tremolo->lfo_data->lfo_index = 0;
 	Tremolo->lfo_data->lfo_frequency = 4.00;
 	//Tremolo->lfo_frequency = 4.00;

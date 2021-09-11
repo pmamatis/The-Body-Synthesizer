@@ -120,29 +120,29 @@ static void MX_TIM7_Init(void);
 
 // DAC CHANNEL Functions
 
-//// DAC_CHANNEL_1
-//void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-//	outputBuffer_position = HALF_BLOCK;
-//	Signal_Synthesis(&signals1, 1);
-//}
-//
-//void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-//	outputBuffer_position = FULL_BLOCK;
-//	Signal_Synthesis(&signals1,1);
-//}
-//
-//// DAC_CHANNEL_2
-//void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
-//	outputBuffer_position = HALF_BLOCK;
-//	//Signal_Synthesis(&signals2, 2);
-//	Signal_Synthesis(&signals1, 1);
-//}
-//
-//void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
-//	outputBuffer_position = FULL_BLOCK;
-//	//Signal_Synthesis(&signals2, 2);
-//	Signal_Synthesis(&signals1, 1);
-//}
+// DAC_CHANNEL_1
+void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
+	outputBuffer_position = HALF_BLOCK;
+	Signal_Synthesis(&signals1, 1);
+}
+
+void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
+	outputBuffer_position = FULL_BLOCK;
+	Signal_Synthesis(&signals1,1);
+}
+
+// DAC_CHANNEL_2
+void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
+	outputBuffer_position = HALF_BLOCK;
+	//Signal_Synthesis(&signals2, 2);
+	Signal_Synthesis(&signals1, 1);
+}
+
+void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
+	outputBuffer_position = FULL_BLOCK;
+	//Signal_Synthesis(&signals2, 2);
+	Signal_Synthesis(&signals1, 1);
+}
 
 /* USER CODE END 0 */
 
@@ -278,9 +278,9 @@ int main(void)
 	//	EPD_DisplayFrame(&epd);
 	//	EPD_Init(&epd, lut_partial_update);
 
-	// Drumcomputer
-	Display_DrawDrumcomputerIcons(frame_buffer);
-	DISPLAY_DrawDrumcomputerPatternFrame(8);
+	//	// Drumcomputer
+	//	Display_DrawDrumcomputerIcons(frame_buffer);
+	//	DISPLAY_DrawDrumcomputerPatternFrame(8);
 
 	// Start DAC-DMA
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
@@ -1309,7 +1309,7 @@ static void MX_GPIO_Init(void)
 	HAL_GPIO_Init(BACK_GPIO_Port, &GPIO_InitStruct);
 
 	/* EXTI interrupt init*/
-	HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+	HAL_NVIC_SetPriority(EXTI9_5_IRQn, 1, 0);
 	HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);

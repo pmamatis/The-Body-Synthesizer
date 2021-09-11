@@ -419,90 +419,91 @@ void DMA2_Stream2_IRQHandler(void)
 {
 	/* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
 
-	// DRUM MACHINE MODE
-	if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
+	// Start Drumcomputer Processing
+	if(Display.EditDrums == true) {
+
+		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
+			DISPLAY_Update();
+			Display.UpdateDisplay = false;
+		}
+
+		if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick down
+			DISPLAY_DeleteDrumcomputerStepCursor();
+			if (Display.CurrentSampleRow < MAX_NUMBER_OF_SAMPLES)	// Display.CurrentSampleRow should be maximum the number of loaded samples
+				Display.CurrentSampleRow++;
+			DISPLAY_SetDrumcomputerStepCursor();
+		}
+		else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick up
+			DISPLAY_DeleteDrumcomputerStepCursor();
+			if (Display.CurrentSampleRow > 1)	// Display.CurrentSampleRow should be minimum 1
+				Display.CurrentSampleRow--;
+			DISPLAY_SetDrumcomputerStepCursor();
+		}
+		if(Display.ADC2inputs[0] > Display.UpperLimit) {	// joystick left
+			DISPLAY_DeleteDrumcomputerStepCursor();
+			if (Display.CurrentDrumstep > 1)	// Display.CurrentDrumstep should be minimum 1
+				Display.CurrentDrumstep--;
+			DISPLAY_SetDrumcomputerStepCursor();
+		}
+		else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// joystick right
+			DISPLAY_DeleteDrumcomputerStepCursor();
+			if(Display.CurrentDrumstep < NUMBER_OF_DRUMSTEPS)	// Display.CurrentDrumStep should be maximum the number of drumsteps
+				Display.CurrentDrumstep++;
+			DISPLAY_SetDrumcomputerStepCursor();
+		}
+
+		Display.lastCurrentDrumstep = Display.CurrentDrumstep;
+		Display.lastCurrentSampleRow = Display.CurrentSampleRow;
+	}
+	// END Drumcomputer Processing
+
+	else if(Display.EditDrums == false) {
+		// arrow up or down
+		if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
+			if (Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
+				DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
+				DISPLAY_processing();
+				DISPLAY_Update();
+			}
+			else if (Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
+				DISPLAY_ArrowUp(&(Display.JoystickParameterPosition));
+				DISPLAY_processing();
+				DISPLAY_Update();
+			}
+		}
+		// switch page left or right
+		if(Display.ADC2inputs[0] > Display.UpperLimit) {	// switch to the left page
+			DISPLAY_SwitchPageLeft();
+			//		Display.JoystickParameterPosition = 1;
+			DISPLAY_processing();
+			Display.JoystickParameterPosition = 1;
+			DISPLAY_DrawArrow(1);
+			DISPLAY_Update();
+		}
+		else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// switch to the right page
+			DISPLAY_SwitchPageRight();
+			//		Display.JoystickParameterPosition = 1;
+			DISPLAY_processing();
+			Display.JoystickParameterPosition = 1;
+			DISPLAY_DrawArrow(1);
+			DISPLAY_Update();
+		}
+	}
+
+	//	printf("%i\r\n", Display.ADC2inputs[2]);
+	Display.Poti_Threshold = 50;
+	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
+		//printf("Poti triggered\r\n");
+		Display.poti_moved = true;
+		DISPLAY_processing();
 		DISPLAY_Update();
-		Display.UpdateDisplay = false;
+		Display.last_Poti = Display.ADC2inputs[2];
+		II_Display_Effects();
+		II_Display_Voices();
 	}
-
-	if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick down
-		DISPLAY_DeleteDrumcomputerStepCursor();
-		if (Display.CurrentSampleRow < MAX_NUMBER_OF_SAMPLES)	// Display.CurrentSampleRow should be maximum the number of loaded samples
-			Display.CurrentSampleRow++;
-		DISPLAY_SetDrumcomputerStepCursor();
+	else {
+		Display.poti_moved = false;
 	}
-	else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick up
-		DISPLAY_DeleteDrumcomputerStepCursor();
-		if (Display.CurrentSampleRow > 1)	// Display.CurrentSampleRow should be minimum 1
-			Display.CurrentSampleRow--;
-		DISPLAY_SetDrumcomputerStepCursor();
-	}
-	if(Display.ADC2inputs[0] > Display.UpperLimit) {	// joystick left
-		DISPLAY_DeleteDrumcomputerStepCursor();
-		if (Display.CurrentDrumstep > 1)	// Display.CurrentDrumstep should be minimum 1
-			Display.CurrentDrumstep--;
-		DISPLAY_SetDrumcomputerStepCursor();
-	}
-	else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// joystick right
-		DISPLAY_DeleteDrumcomputerStepCursor();
-		if(Display.CurrentDrumstep < NUMBER_OF_DRUMSTEPS)	// Display.CurrentDrumStep should be maximum the number of drumsteps
-			Display.CurrentDrumstep++;
-		DISPLAY_SetDrumcomputerStepCursor();
-	}
-
-	//	if( (Display.lastCurrentDrumstep != Display.CurrentDrumstep) || (Display.lastCurrentSampleRow != Display.CurrentSampleRow) )
-	//		DISPLAY_SetDrumcomputerStepCursor();
-
-	//	DISPLAY_SetDrumcomputerStep();
-	//	DISPLAY_DeleteDrumcomputerStep();
-
-	Display.lastCurrentDrumstep = Display.CurrentDrumstep;
-	Display.lastCurrentSampleRow = Display.CurrentSampleRow;
-
-	//	// arrow up or down
-	//	if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
-	//		if (Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
-	//			DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
-	//			DISPLAY_processing();
-	//			DISPLAY_Update();
-	//		}
-	//		else if (Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
-	//			DISPLAY_ArrowUp(&(Display.JoystickParameterPosition));
-	//			DISPLAY_processing();
-	//			DISPLAY_Update();
-	//		}
-	//	}
-	//
-	//	// switch page left or right
-	//	if(Display.ADC2inputs[0] > Display.UpperLimit) {	// switch to the left page
-	//		DISPLAY_SwitchPageLeft();
-	//		DISPLAY_processing();
-	//		Display.JoystickParameterPosition = 1;
-	//		DISPLAY_DrawArrow(1);
-	//		DISPLAY_Update();
-	//	}
-	//	else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// switch to the right page
-	//		DISPLAY_SwitchPageRight();
-	//		DISPLAY_processing();
-	//		Display.JoystickParameterPosition = 1;
-	//		DISPLAY_DrawArrow(1);
-	//		DISPLAY_Update();
-	//	}
-	//
-	//	//	printf("%i\r\n", Display.ADC2inputs[2]);
-	//	Display.Poti_Threshold = 50;
-	//	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
-	//		//printf("Poti triggered\r\n");
-	//		Display.poti_moved = true;
-	//		DISPLAY_processing();
-	//		DISPLAY_Update();
-	//		Display.last_Poti = Display.ADC2inputs[2];
-	//		II_Display_Effects();
-	//		II_Display_Voices();
-	//	}
-	//	else {
-	//		Display.poti_moved = false;
-	//	}
 
 	/* USER CODE END DMA2_Stream2_IRQn 0 */
 	HAL_DMA_IRQHandler(&hdma_adc2);
