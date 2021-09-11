@@ -324,35 +324,246 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 	lfo->lfo_data = 0;
 
-	// calculate ratio between LFO_LUT frequency and desired frequency
-	float frequency_ratio = lfo->lfo_frequency / LFO_FMIN;
+	// CASE 1: 0.125 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[0]){
 
-	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
-	if(lfo->lfo_index  > LFO_ENDINDEX[0]) {
-		lfo->lfo_index = 0;
-		lfo->lfo_quarter++;
-		if (lfo->lfo_quarter > 3)
-			lfo->lfo_quarter = 0;
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[0] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[0]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[0]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
 	}
+	// CASE 2: 0.25 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[1]){
 
-	switch(lfo->lfo_quarter) {
-	case 0:
-		lfo->lfo_data = LFO[lfo->lfo_index];
-		break;
-	case 1:
-		lfo->lfo_data = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
-		break;
-	case 2:
-		lfo->lfo_data = -LFO[lfo->lfo_index];
-		break;
-	case 3:
-		lfo->lfo_data = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
-		break;
-	default:
-		break;
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[1] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[1]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[1] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[1]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[1] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
 	}
+	// CASE 3: 0.5 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[2]){
 
-	lfo->lfo_index = round((double)(lfo->lfo_index + frequency_ratio));
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[2] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[2]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[2] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[2]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[2] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 4: 1 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[3]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[3] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[3]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[3] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[3]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[3] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 5: 2 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[4]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[4] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[4]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[4] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[4]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[4] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 6: 4 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[5]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[5] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[5]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[5] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[5]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[5] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 7: 8 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[6]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[6] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[6]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[6] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[6]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[6] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 8: 16 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[7]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[7] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[7]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[7] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[7]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[7] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
 }
 
 

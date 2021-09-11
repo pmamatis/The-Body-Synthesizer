@@ -246,10 +246,10 @@ int main(void)
 		//while(1);
 	}
 
-//	if(Display_Init(&Display) == DISPLAY_FAIL) {
-//		printf("Display init failed\n");
-//		//while(1);
-//	}
+	if(Display_Init(&Display) == DISPLAY_FAIL) {
+		printf("Display init failed\n");
+		//while(1);
+	}
 
 	if(Drum_Computer_Init(&huart3) != HAL_OK){
 		printf("Drum init failed\n");
