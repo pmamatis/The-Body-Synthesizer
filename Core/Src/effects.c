@@ -18,8 +18,9 @@ void effects_process(float* calculate_value) {
 
 
 	//if(effect_order[0] == EQ)
-	ProcessEQ(calculate_value);
+	//ProcessEQ(calculate_value);
 	ProcessTremolo(&Tremolo, calculate_value);
+	//ProcessWahWah(&WahWah, calculate_value);
 	//ProcessHardClippingDistortion(&HardClipping, calculate_value);
 	//ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
 

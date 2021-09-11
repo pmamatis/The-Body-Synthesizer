@@ -12,7 +12,7 @@
 #define LUT_OCTAVES 6
 //defines 
 #define LFO_FMAX 8
-#define LFO_FMIN 0.5
+#define LFO_FMIN 0.125
  
  
 //variables

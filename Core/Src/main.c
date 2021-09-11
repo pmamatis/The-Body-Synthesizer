@@ -234,10 +234,6 @@ int main(void)
 	}
 	//SetupLowpass(&EQ_BAND1_I, 200, 0.707);
 
-	if(Tremolo_Init(&Tremolo) == TREMOLO_FAIL) {
-		printf("Tremolo init failed\n");
-		//while(1);
-	}
 
 	if(Distortion_Init() == DISTORTION_FAIL) {
 		printf("Distortion init failed\n");
@@ -250,59 +246,43 @@ int main(void)
 		//while(1);
 	}
 
-	if(Display_Init(&Display) == DISPLAY_FAIL) {
-		printf("Display init failed\n");
-		//while(1);
-	}
+//	if(Display_Init(&Display) == DISPLAY_FAIL) {
+//		printf("Display init failed\n");
+//		//while(1);
+//	}
 
 	if(Drum_Computer_Init(&huart3) != HAL_OK){
 		printf("Drum init failed\n");
 	}
-	//
-	//	keyboard_init(&hadc1, &htim5);
-	//
-	//	//Gyros SPI
-	//	spiC_Init(&hspi4, &htim7);
-	//
-	//
-	//	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	//	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
-	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
-	//	//you have to edit the startup_stm32fxxx.s file and set a big enough heap size
-	//	//unsigned char* frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	//	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	//	EPD_Init(&epd, lut_full_update);
-	//	Paint_Init(&paint, frame_buffer, epd.width, epd.height);
-	//	Paint_SetRotate(&paint, ROTATE_270);
-	//	// Display the frame_buffer
-	//	EPD_SetFrameMemory(&epd, TU_LOGO, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_DelayMs(&epd, 1000);
-	//	Paint_Clear(&paint, UNCOLORED);
-	//	// Display the frame_buffer
-	//	EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_Init(&epd, lut_partial_update);
+	if(Tremolo_Init(&Tremolo) == TREMOLO_FAIL) {
+		printf("Tremolo init failed\n");
+		//while(1);
+	}
+
+	if(WahWah_Init(&WahWah) == WAHWAH_FAIL) {
+		printf("WahWah init failed\n");
+		//while(1);
+	}
 
 	// Start DAC-DMA
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
-	NewSignal(&signals1,NOISE,'C',0);
-//	NewSignal(&signals1,NOISE,'C',0);
-//	NewSignal(&signals1,NOISE,'C',0);
-//	//NewSignal(&signals1,SIN, 'C',0);
+	//	NewSignal(&signals1,NOISE,'C',0);
+	//	NewSignal(&signals1,NOISE,'C',0);
+	//	NewSignal(&signals1,NOISE,'C',0);
+	//	//NewSignal(&signals1,SIN, 'C',0);
 	NewSignal(&signals1,SIN, 'C',1);
 	NewSignal(&signals1,SIN, 'C',2);
 	NewSignal(&signals1,SIN, 'C',3);
-////	NewSignal(&signals1,SIN, 'C',4);
-//////	//NewSignal(&signals1,SIN, 'G',0);
+	////	NewSignal(&signals1,SIN, 'C',4);
+	//////	//NewSignal(&signals1,SIN, 'G',0);
 	NewSignal(&signals1,SIN, 'E',1);
 	NewSignal(&signals1,SIN, 'E',2);
 	NewSignal(&signals1,SIN, 'E',3);
-////
+	////
 	NewSignal(&signals1,SIN, 'G',1);
 	NewSignal(&signals1,SIN, 'G',2);
 	NewSignal(&signals1,SIN, 'G',3);
