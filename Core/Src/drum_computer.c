@@ -54,7 +54,8 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 		timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
 
-	// INIT: LUTs
+	/*
+	// INIT: 909 LUTs
 	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
 	sd_card_mount(huart);
 	sd_card_read("909_Kick.txt", &DS1, huart);
@@ -70,6 +71,25 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 
 	sd_card_mount(huart);
 	sd_card_read("909_LowTom.txt", &DS4, huart);
+	sd_card_unmount(huart);
+	*/
+
+	// INIT: Rock Loud LUTs
+	// POSSIBLE: Kick, Hihat, Snare, Ride
+	sd_card_mount(huart);
+	sd_card_read("Rock_loud_Kick.txt", &DS1, huart);
+	sd_card_unmount(huart);
+
+	sd_card_mount(huart);
+	sd_card_read("Rock_loud_Hihat.txt", &DS2, huart);
+	sd_card_unmount(huart);
+
+	sd_card_mount(huart);
+	sd_card_read("Rock_loud_Snare.txt", &DS3, huart);
+	sd_card_unmount(huart);
+
+	sd_card_mount(huart);
+	sd_card_read("Rock_loud_Ride.txt", &DS4, huart);
 	sd_card_unmount(huart);
 
 
@@ -347,5 +367,5 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 	timing_DS4[6] = 0;
 	timing_DS4[7] = 1;
 
-	*/
+ */
 
