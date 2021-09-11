@@ -56,7 +56,7 @@ WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float *data){
 	//WahWah->bandpass->Q = (((float)ADC_value / 4095) * 10) + 0.01;
 
 	// RESET: Filter after 1000 samples (with SR = 24k Hz >> 24 times a second)
-	if(WahWah->reinit_counter == 1){
+	if(WahWah->reinit_counter == 100){
 
 		SetupBandpassCPG(WahWah->bandpass, WahWah->mid_freq_mod, WahWah->bandpass->Q);
 		WahWah->reinit_counter = 0;
