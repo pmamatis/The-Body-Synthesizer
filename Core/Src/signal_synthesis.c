@@ -179,10 +179,11 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	//Loop for signal synthesis
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 		addValue = 0;
-		//Loop to reach all Signals
+		//Loop to reach all signals
 		for (int j = 0; j < count;j++){
 			switch (signals -> kind[j]) {
 			case SIN:
+
 				//adds all SIN values from the signals to addValue
 				addValue += LUT[signals -> current_LUT_Index[j]];
 

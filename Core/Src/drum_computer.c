@@ -8,7 +8,32 @@
 #include "drum_computer.h"
 
 
+HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* envelope){
+
+	// INIT: ADSR structs
+	envelope->adsr_counter = 0;
+	envelope->adsr_max_amp = 1.00;					// maximum value should be 1
+	envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
+
+	envelope->adsr_attack_time = 0.1 * LUT_SR;
+	envelope->adsr_decay_time = 0.05 * LUT_SR;
+	envelope->adsr_sustain_time = 0.15 * LUT_SR;
+	envelope->adsr_sustain_amplitude = 0.5;
+	envelope->adsr_release_time = 0.05 * LUT_SR;
+
+	envelope->adsr_done = false;
+
+	envelope->decay_counter = 0;
+	envelope->release_counter = 0;
+
+	return HAL_OK;
+}
+
+
 HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
+
+	// INIT: Sequencer state
+	sequencer_state = true;
 
 	// INIT: Tempo, SR, Counter
 	BPM = 120;
@@ -51,6 +76,26 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 		timing_DS3[i] = 0;
 		timing_DS4[i] = 0;
 
+
+		// INIT: Sequencer timing positions
+		timing_SN1[i] = 0;
+		timing_SN2[i] = 0;
+		timing_SN3[i] = 0;
+		timing_SN4[i] = 0;
+
+		// INIT: Sequencer flag
+		flag_SN1[i] = 0;
+		flag_SN2[i] = 0;
+		flag_SN3[i] = 0;
+		flag_SN4[i] = 0;
+
+		// INIT: ADSR structs
+		Sequencer_ADSR_Init(&adsr_SN1[i]);
+		Sequencer_ADSR_Init(&adsr_SN2[i]);
+		Sequencer_ADSR_Init(&adsr_SN3[i]);
+		Sequencer_ADSR_Init(&adsr_SN4[i]);
+
+		// INIT: Array of timing positions
 		timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
 
@@ -73,7 +118,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_mount(huart);
 	sd_card_read("909_LowTom.txt", &DS4, huart);
 	sd_card_unmount(huart);
-*/
+	 */
 
 
 	// INIT: Rock Loud LUTs
@@ -94,7 +139,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_read("Rock_loud_Ride.txt", &DS4, huart);
 	sd_card_unmount(huart);
 
-/*
+	/*
 	// INIT: Rock LUTs
 	// POSSIBLE: Kick, Hihat, Snare, Ride
 	sd_card_mount(huart);
@@ -112,7 +157,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_mount(huart);
 	sd_card_read("Rock_Ride.txt", &DS4, huart);
 	sd_card_unmount(huart);
-*/
+	 */
 
 
 	// INIT: Timing
@@ -156,6 +201,46 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	timing_DS4[6] = 0;
 	timing_DS4[7] = 1;
 
+	// Sequencer Note 1
+	timing_SN1[0] = 1;
+	timing_SN1[1] = 0;
+	timing_SN1[2] = 0;
+	timing_SN1[3] = 0;
+	timing_SN1[4] = 1;
+	timing_SN1[5] = 0;
+	timing_SN1[6] = 0;
+	timing_SN1[7] = 0;
+
+	// Sequencer Note 2
+	timing_SN2[0] = 0;
+	timing_SN2[1] = 0;
+	timing_SN2[2] = 0;
+	timing_SN2[3] = 0;
+	timing_SN2[4] = 0;
+	timing_SN2[5] = 0;
+	timing_SN2[6] = 0;
+	timing_SN2[7] = 0;
+
+	// Sequencer Note 3
+	timing_SN3[0] = 0;
+	timing_SN3[1] = 0;
+	timing_SN3[2] = 0;
+	timing_SN3[3] = 0;
+	timing_SN3[4] = 0;
+	timing_SN3[5] = 0;
+	timing_SN3[6] = 0;
+	timing_SN3[7] = 0;
+
+	// Sequencer Note 4
+	timing_SN4[0] = 0;
+	timing_SN4[1] = 0;
+	timing_SN4[2] = 0;
+	timing_SN4[3] = 0;
+	timing_SN4[4] = 0;
+	timing_SN4[5] = 0;
+	timing_SN4[6] = 0;
+	timing_SN4[7] = 0;
+
 	return HAL_OK;
 }
 
@@ -170,7 +255,7 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 
 	drums = 0;
 
-	// SET: Flags if there is a timing available
+	// SET: Drum flags if there is a timing available
 	if(timing_DS1[drum_index] == 1){
 
 		flag_DS1[drum_index] = 1;
@@ -188,10 +273,26 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 		flag_DS4[drum_index] = 1;
 	}
 
+	// SET: Sequencer flags if there is a timing available
+	if(timing_SN1[drum_index] == 1){
+
+		flag_SN1[drum_index] = 1;
+	}
+	if(timing_SN2[drum_index] == 1){
+
+		flag_SN2[drum_index] = 1;
+	}
+	if(timing_SN3[drum_index] == 1){
+
+		flag_SN3[drum_index] = 1;
+	}
+	if(timing_SN4[drum_index] == 1){
+
+		flag_SN4[drum_index] = 1;
+	}
 
 	// CALC: each drumsample
 	Drum_Computer_CalcSample();
-
 
 	// SET: drum index
 	if(counter_master > timing_position_in_samples[drum_index]){
@@ -223,12 +324,6 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 			OS_DS1[i]++;
 			counter_DS1[i]++;
 
-			/*if(OS_DS1[i] == 4){
-
-				counter_DS1[i]++;
-				OS_DS1[i] = 0;
-			}*/
-
 			if(counter_DS1[i] == DS_L - 1){
 
 				counter_DS1[i] = 0;
@@ -241,13 +336,6 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 			DS2s = DS2s + DS2[counter_DS2[i]];
 			OS_DS2[i]++;
 			counter_DS2[i]++;
-
-			/*
-			if(OS_DS2[i] == 4){
-
-				counter_DS2[i]++;
-				OS_DS2[i] = 0;
-			}*/
 
 			if(counter_DS2[i] == DS_L - 1){
 
@@ -262,13 +350,6 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 			OS_DS3[i]++;
 			counter_DS3[i]++;
 
-			/*
-			if(OS_DS3[i] == 4){
-
-				counter_DS3[i]++;
-				OS_DS3[i] = 0;
-			}*/
-
 			if(counter_DS3[i] == DS_L - 1){
 
 				counter_DS3[i] = 0;
@@ -282,18 +363,17 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 			OS_DS4[i]++;
 			counter_DS4[i]++;
 
-			/*
-			if(OS_DS4[i] == 4){
-
-				counter_DS4[i]++;
-				OS_DS4[i] = 0;
-			}*/
-
 			if(counter_DS4[i] == DS_L - 1){
 
 				counter_DS4[i] = 0;
 				flag_DS4[i]    = 0;
 			}
+		}
+		// Sequencer Note 1
+		if(flag_SN1[i] == 1){
+
+			NewSignal(signals, SIN, 'E', 2);
+			flag_SN1[i] == 0;
 		}
 	}
 	drums = 1.5 * DS1s + DS2s + DS3s + DS4s;
