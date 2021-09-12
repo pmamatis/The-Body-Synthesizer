@@ -27,7 +27,7 @@ WahWah_Status WahWah_Init(struct WahWah_t *WahWah) {
 	WahWah->mid_freq_mod = 0;
 
 	WahWah->reinit_counter = 0;
-	WahWah->bandpass->Q = 0.707;
+	WahWah->bandpass->Q = 20;
 
 	SetupBandpassCPG(WahWah->bandpass, WahWah->mid_freq, WahWah->bandpass->Q);
 
@@ -46,11 +46,17 @@ WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float *data){
 	// FETCH: actual LFO value
 	LFO_SingleValueProcess(WahWah->lfo);
 
+	// MODULATE: mid frequency of bandpass with light sensor
+	WahWah->mid_freq = (float)ADC_value / 4;
+
 	// MODULATE: mid frequency of bandpass with poti
-	WahWah->mid_freq = (((float)ADC_value / 4095) * 2000) + WahWah->range / 2;
+	//WahWah->mid_freq = (((float)ADC_value / 4095) * 2000) + WahWah->range / 2;
 
 	// MODULATE: mid frequency of bandpass with a certain range and lfo amplitude
 	WahWah->mid_freq_mod = WahWah->mid_freq + (WahWah->range / 2) * WahWah->lfo->lfo_data;
+
+	// MODULATE: mid frequncy of bandpass with light sensor
+	//WahWah->mid_freq_mod = (float)ADC_value / 4;
 
 	// FETCH: Q from ADC
 	//WahWah->bandpass->Q = (((float)ADC_value / 4095) * 10) + 0.01;

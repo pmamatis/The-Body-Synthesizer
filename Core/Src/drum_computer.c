@@ -11,7 +11,7 @@
 HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 
 	// INIT: Tempo, SR, Counter
-	BPM = 100;
+	BPM = 120;
 	MasterClock = LUT_SR;
 	counter_master = 0;
 
@@ -55,7 +55,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	}
 
 
-
+	/*
 	// INIT: 909 LUTs
 	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
 	sd_card_mount(huart);
@@ -73,9 +73,9 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_mount(huart);
 	sd_card_read("909_LowTom.txt", &DS4, huart);
 	sd_card_unmount(huart);
+*/
 
 
-	/*
 	// INIT: Rock Loud LUTs
 	// POSSIBLE: Kick, Hihat, Snare, Ride
 	sd_card_mount(huart);
@@ -94,7 +94,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_read("Rock_loud_Ride.txt", &DS4, huart);
 	sd_card_unmount(huart);
 
-
+/*
 	// INIT: Rock LUTs
 	// POSSIBLE: Kick, Hihat, Snare, Ride
 	sd_card_mount(huart);
@@ -190,7 +190,7 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 
 
 	// CALC: each drumsample
-	Drum_Computer_CalcSample_Reverse();
+	Drum_Computer_CalcSample();
 
 
 	// SET: drum index
