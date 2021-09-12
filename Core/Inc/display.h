@@ -303,6 +303,7 @@ Display_Status p_Drumcomputer_overview(void);
 Display_Status p_Drumcomputer_Settings(void);
 Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer);
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
+Display_Status DISPLAY_DrawDrumcomputerPattern(void);
 Display_Status DISPLAY_SetDrumcomputerStep(void);
 Display_Status DISPLAY_DeleteDrumcomputerStep(void);
 Display_Status DISPLAY_SetDrumcomputerStepCursor(void);
