@@ -48,7 +48,7 @@ void effects_process(float* calculate_value) {
 	//		}
 	//	}
 	//	else if(Display.mode == KEYBOARD) {
-	////		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
+	////		OnePress_ADSR_Linear_Process(&envelope, calculate_value, keyboard_pressed_flag);
 	//	}
 }
 

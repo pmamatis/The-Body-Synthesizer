@@ -390,8 +390,8 @@ void DMA2_Stream0_IRQHandler(void)
 
 	Filters_Reinit();
 	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
-	if(Display.mode == KEYBOARD)
-		OnePress_keyboard_process(Display.ADC1input, &signals1, &envelope, &Display);
+	//if(Display.mode == KEYBOARD)
+		//OnePress_keyboard_process(Display.ADC1input, &signals1, &envelope, &Display);
 
   /* USER CODE END DMA2_Stream0_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_adc1);

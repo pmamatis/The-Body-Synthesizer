@@ -30,12 +30,6 @@ uint32_t counter_DS2[FourFour];
 uint32_t counter_DS3[FourFour];
 uint32_t counter_DS4[FourFour];
 
-// Oversampling
-uint32_t OS_DS1[FourFour];
-uint32_t OS_DS2[FourFour];
-uint32_t OS_DS3[FourFour];
-uint32_t OS_DS4[FourFour];
-
 // Flag drums
 uint32_t flag_DS1[FourFour];
 uint32_t flag_DS2[FourFour];
@@ -61,23 +55,37 @@ float drums;
 // Sequencer mode ON / OFF control
 bool sequencer_state;
 
-// Flag sequencer
-uint32_t flag_SN1[FourFour];
-uint32_t flag_SN2[FourFour];
-uint32_t flag_SN3[FourFour];
-uint32_t flag_SN4[FourFour];
-
 // Timing positions sequencer
 uint32_t timing_SN1[FourFour];
 uint32_t timing_SN2[FourFour];
 uint32_t timing_SN3[FourFour];
 uint32_t timing_SN4[FourFour];
 
+// Frequency index sequencer
+uint16_t freq_index_SN1;
+uint16_t freq_index_SN2;
+uint16_t freq_index_SN3;
+uint16_t freq_index_SN4;
+
+// Current LUT index sequencer
+uint32_t current_LUT_index_SN1[FourFour];
+uint32_t current_LUT_index_SN2[FourFour];
+uint32_t current_LUT_index_SN3[FourFour];
+uint32_t current_LUT_index_SN4[FourFour];
+
 // ADSR struct for each note
-struct adsr adsr_SN1[FourFour];
-struct adsr adsr_SN2[FourFour];
-struct adsr adsr_SN3[FourFour];
-struct adsr adsr_SN4[FourFour];
+struct adsr adsr_SN1_t;
+
+// Sound bins sequencer
+float SN1;
+float SN2;
+float SN3;
+float SN4;
+
+float SN1_temp;
+
+float sequencer;
+
 
 // Methods
 HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart);

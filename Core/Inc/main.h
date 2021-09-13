@@ -38,8 +38,6 @@ extern "C" {
 #include "sinLUT.h"
 #include "effects.h"
 #include "filters.h"
-// for filters
-#include "filters.h"
 #include "arm_math.h"
 #include "math_helper.h"
 

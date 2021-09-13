@@ -42,12 +42,19 @@ typedef enum {
 
 struct adsr envelope;
 
+// ADSR for sequencer notes
+// Length 16 is max. time steps: 1/16, 1/8, 1/4
+struct adsr adsr_SN1[16];
+struct adsr adsr_SN2[16];
+struct adsr adsr_SN3[16];
+struct adsr adsr_SN4[16];
+
 //bool envelope_done;	// flag for keyboard to delete signal
 
 ADSR_Status ADSR_Init(void);
 ADSR_Status SetupADSR(struct adsr* envelope);
 //void ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, struct signal_t* signals);
-void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value);
+void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag);
 extern inline float exp1(float x);
 
 #endif
