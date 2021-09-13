@@ -73,9 +73,6 @@ uint32_t current_LUT_index_SN2[FourFour];
 uint32_t current_LUT_index_SN3[FourFour];
 uint32_t current_LUT_index_SN4[FourFour];
 
-// ADSR struct for each note
-struct adsr adsr_SN1_t;
-
 // Sound bins sequencer
 float SN1;
 float SN2;
@@ -83,6 +80,9 @@ float SN3;
 float SN4;
 
 float SN1_temp;
+float SN2_temp;
+float SN3_temp;
+float SN4_temp;
 
 float sequencer;
 

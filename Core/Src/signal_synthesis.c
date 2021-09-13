@@ -218,7 +218,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// DRUMCOMPUTER
 		// write into calculate vector
 		Drum_Computer_Process();
-		calculate_vector_tmp[BLOCKSIZE_counter] = 0.25 * sequencer + 1 * drums;// + 1 * calculate_vector_tmp[BLOCKSIZE_counter];
+		calculate_vector_tmp[BLOCKSIZE_counter] = 0.05 * sequencer + 0.5 * drums;// + 1 * calculate_vector_tmp[BLOCKSIZE_counter];
 		//calculate_vector_tmp[BLOCKSIZE_counter] = 0.5 * sequencer;
 
 
