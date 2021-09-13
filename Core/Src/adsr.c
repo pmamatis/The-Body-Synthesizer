@@ -98,7 +98,7 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 		}
 
 		// update time counter
-		(envelope->adsr_counter)++;
+		envelope->adsr_counter++;
 
 		//*calculate_value = *calculate_value + 1;
 		*calculate_value = *calculate_value * calc;

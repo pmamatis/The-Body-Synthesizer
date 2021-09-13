@@ -13,13 +13,13 @@ HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* envelope){
 	// INIT: ADSR structs
 	envelope->adsr_counter = 0;
 	envelope->adsr_max_amp = 1.00;					// maximum value should be 1
-	envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
+	//envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
 
-	envelope->adsr_attack_time = 0.15 * LUT_SR;
-	envelope->adsr_decay_time = 0.15 * LUT_SR;
-	envelope->adsr_sustain_time = 0.15 * LUT_SR;
-	envelope->adsr_sustain_amplitude = 0.5;
-	envelope->adsr_release_time = 0.15 * LUT_SR;
+	envelope->adsr_attack_time = 0.01 * LUT_SR;
+	envelope->adsr_decay_time = 0.1 * LUT_SR;
+	envelope->adsr_sustain_time = 0.2 * LUT_SR;
+	envelope->adsr_sustain_amplitude = 0.3;
+	envelope->adsr_release_time = 0.1 * LUT_SR;
 
 	envelope->adsr_done = false;
 
@@ -51,10 +51,10 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	drum_index = 0;
 
 	// Sequencer: Get freq index
-	freq_index_SN1 = Get_Note_Index('E',2);
-	freq_index_SN2 = Get_Note_Index('C',2);
-	freq_index_SN3 = Get_Note_Index('H',1);
-	freq_index_SN4 = Get_Note_Index('E',2);
+	freq_index_SN1 = Get_Note_Index('C',1);
+	freq_index_SN2 = Get_Note_Index('E',2);
+	freq_index_SN3 = Get_Note_Index('G',3);
+	freq_index_SN4 = Get_Note_Index('A',2);
 
 	// FOR: all steps in drums / sequencer
 	for(int i = 0; i < FourFour; i++){
@@ -99,26 +99,23 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 		timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
 
-
-
 	// INIT: 909 LUTs
 	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
-	sd_card_mount(huart);
-	sd_card_read("909_Kick.txt", &DS1, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("909_OpenHihat.txt", &DS2, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("909_Clap.txt", &DS3, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("909_LowTom.txt", &DS4, huart);
-	sd_card_unmount(huart);
-
+	//	sd_card_mount(huart);
+	//	sd_card_read("909_Kick.txt", &DS1, huart);
+	//	sd_card_unmount(huart);
+	//
+	//	sd_card_mount(huart);
+	//	sd_card_read("909_OpenHihat.txt", &DS2, huart);
+	//	sd_card_unmount(huart);
+	//
+	//	sd_card_mount(huart);
+	//	sd_card_read("909_Clap.txt", &DS3, huart);
+	//	sd_card_unmount(huart);
+	//
+	//	sd_card_mount(huart);
+	//	sd_card_read("909_LowTom.txt", &DS4, huart);
+	//	sd_card_unmount(huart);
 
 	/*
 	// INIT: Rock Loud LUTs
@@ -138,7 +135,6 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_mount(huart);
 	sd_card_read("Rock_loud_Ride.txt", &DS4, huart);
 	sd_card_unmount(huart);
-
 
 	// INIT: Rock LUTs
 	// POSSIBLE: Kick, Hihat, Snare, Ride
@@ -161,14 +157,14 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 
 	//	// INIT: Timing
 	//	// Kick
-	timing_DS1[0]  = 0;
-	timing_DS1[1]  = 0;
-	timing_DS1[2]  = 0;
-	timing_DS1[3]  = 0;
-	timing_DS1[4]  = 0;
-	timing_DS1[5]  = 0;
-	timing_DS1[6]  = 0;
-	timing_DS1[7]  = 0;
+	//	timing_DS1[0]  = 0;
+	//	timing_DS1[1]  = 0;
+	//	timing_DS1[2]  = 0;
+	//	timing_DS1[3]  = 0;
+	//	timing_DS1[4]  = 0;
+	//	timing_DS1[5]  = 0;
+	//	timing_DS1[6]  = 0;
+	//	timing_DS1[7]  = 0;
 	//	timing_DS1[8]  = 1;
 	//	timing_DS1[9]  = 0;
 	//	timing_DS1[10] = 0;
@@ -232,78 +228,93 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	//	timing_DS4[14] = 0;
 	//	timing_DS4[15] = 1;
 
+
+	// Sequencer Notes
+	timing_SN1[0] = timing_SN2[0] = timing_SN3[0] = 1;
+	timing_SN1[1] = timing_SN2[1] = timing_SN3[1] = 1;
+	timing_SN1[2] = timing_SN2[2] = timing_SN3[2] = 1;
+	timing_SN1[3] = timing_SN2[3] = timing_SN3[3] = 1;
+	timing_SN1[4] = timing_SN2[4] = timing_SN3[4] = 1;
+	timing_SN1[5] = timing_SN2[5] = timing_SN3[5] = 1;
+	timing_SN1[6] = timing_SN2[6] = timing_SN3[6] = 1;
+	timing_SN1[7] = timing_SN2[7] = timing_SN3[7] = 1;
+	//	timing_SN1[8] = timing_SN2[8] = timing_SN3[8] = 1;
+	//	timing_SN1[11] = timing_SN2[11] = timing_SN3[11] = 1;
+	//	timing_SN1[14] = timing_SN2[14] = timing_SN3[14] = 1;
+	//	timing_SN1[15] = timing_SN2[15] = timing_SN3[15] = 1;
+
+
+	//	// Sequencer Note 1
+	//	timing_SN1[0]  = 0;
+	//	timing_SN1[1]  = 0;
+	//	timing_SN1[2]  = 1;
+	//	timing_SN1[3]  = 0;
+	//	timing_SN1[4]  = 0;
+	//	timing_SN1[5]  = 0;
+	//	timing_SN1[6]  = 1;
+	//	timing_SN1[7]  = 0;
+	//	//	timing_SN1[8]  = 1;
+	//	//	timing_SN1[9]  = 1;
+	//	//	timing_SN1[10] = 1;
+	//	//	timing_SN1[11] = 1;
+	//	//	timing_SN1[12] = 1;
+	//	//	timing_SN1[13] = 1;
+	//	//	timing_SN1[14] = 1;
+	//	//	timing_SN1[15] = 1;
 	//
-	// Sequencer Note 1
-	timing_SN1[0]  = 1;
-	timing_SN1[1]  = 0;
-	timing_SN1[2]  = 1;
-	timing_SN1[3]  = 0;
-	timing_SN1[4]  = 1;
-	timing_SN1[5]  = 0;
-	timing_SN1[6]  = 1;
-	timing_SN1[7]  = 0;
-	//	timing_SN1[8]  = 1;
-	//	timing_SN1[9]  = 0;
-	//	timing_SN1[10] = 0;
-	//	timing_SN1[11] = 1;
-	//	timing_SN1[12] = 0;
-	//	timing_SN1[13] = 1;
-	//	timing_SN1[14] = 0;
-	//	timing_SN1[15] = 1;
-
-	// Sequencer Note 2
-	//	timing_SN2[0]  = 1;
-	//	timing_SN2[1]  = 1;
+	//	// Sequencer Note 2
+	//	timing_SN2[0]  = 0;
+	//	timing_SN2[1]  = 0;
 	//	timing_SN2[2]  = 1;
-	//	timing_SN2[3]  = 1;
-	//	timing_SN2[4]  = 1;
-	//	timing_SN2[5]  = 1;
+	//	timing_SN2[3]  = 0;
+	//	timing_SN2[4]  = 0;
+	//	timing_SN2[5]  = 0;
 	//	timing_SN2[6]  = 1;
-	//	timing_SN2[7]  = 1;
-	//	timing_SN2[8]  = 0;
-	//	timing_SN2[9]  = 0;
-	//	timing_SN2[10] = 1;
-	//	timing_SN2[11] = 0;
-	//	timing_SN2[12] = 0;
-	//	timing_SN2[13] = 0;
-	//	timing_SN2[14] = 0;
-	//	timing_SN2[15] = 1;
-
-	// Sequencer Note 3
-	//	timing_SN3[0]  = 1;
-	//	timing_SN3[1]  = 1;
+	//	timing_SN2[7]  = 0;
+	//	//	timing_SN2[8]  = 0;
+	//	//	timing_SN2[9]  = 0;
+	//	//	timing_SN2[10] = 1;
+	//	//	timing_SN2[11] = 0;
+	//	//	timing_SN2[12] = 0;
+	//	//	timing_SN2[13] = 0;
+	//	//	timing_SN2[14] = 0;
+	//	//	timing_SN2[15] = 1;
+	//
+	//	// Sequencer Note 3
+	//	timing_SN3[0]  = 0;
+	//	timing_SN3[1]  = 0;
 	//	timing_SN3[2]  = 1;
-	//	timing_SN3[3]  = 1;
-	//	timing_SN3[4]  = 1;
-	//	timing_SN3[5]  = 1;
+	//	timing_SN3[3]  = 0;
+	//	timing_SN3[4]  = 0;
+	//	timing_SN3[5]  = 0;
 	//	timing_SN3[6]  = 1;
-	//	timing_SN3[7]  = 1;
-	//	timing_SN3[8]  = 0;
-	//	timing_SN3[9]  = 0;
-	//	timing_SN3[10] = 0;
-	//	timing_SN3[11] = 0;
-	//	timing_SN3[12] = 1;
-	//	timing_SN3[13] = 0;
-	//	timing_SN3[14] = 0;
-	//	timing_SN3[15] = 1;
-
-	// Sequencer Note 4
-	//	timing_SN4[0]  = 1;
-	//	timing_SN4[1]  = 1;
-	//	timing_SN4[2]  = 1;
-	//	timing_SN4[3]  = 1;
-	//	timing_SN4[4]  = 1;
-	//	timing_SN4[5]  = 1;
-	//	timing_SN4[6]  = 1;
-	//	timing_SN4[7]  = 1;
-	//	timing_SN4[8]  = 0;
-	//	timing_SN4[9]  = 0;
-	//	timing_SN4[10] = 0;
-	//	timing_SN4[11] = 0;
-	//	timing_SN4[12] = 0;
-	//	timing_SN4[13] = 0;
-	//	timing_SN4[14] = 0;
-	//	timing_SN4[15] = 1;
+	//	timing_SN3[7]  = 0;
+	//	//	timing_SN3[8]  = 0;
+	//	//	timing_SN3[9]  = 0;
+	//	//	timing_SN3[10] = 0;
+	//	//	timing_SN3[11] = 0;
+	//	//	timing_SN3[12] = 1;
+	//	//	timing_SN3[13] = 0;
+	//	//	timing_SN3[14] = 0;
+	//	//	timing_SN3[15] = 1;
+	//
+	//	// Sequencer Note 4
+	//	//	timing_SN4[0]  = 1;
+	//	//	timing_SN4[1]  = 1;
+	//	//	timing_SN4[2]  = 1;
+	//	//	timing_SN4[3]  = 1;
+	//	//	timing_SN4[4]  = 1;
+	//	//	timing_SN4[5]  = 1;
+	//	//	timing_SN4[6]  = 1;
+	//	//	timing_SN4[7]  = 1;
+	//	//	timing_SN4[8]  = 0;
+	//	//	timing_SN4[9]  = 0;
+	//	//	timing_SN4[10] = 0;
+	//	//	timing_SN4[11] = 0;
+	//	//	timing_SN4[12] = 0;
+	//	//	timing_SN4[13] = 0;
+	//	//	timing_SN4[14] = 0;
+	//	//	timing_SN4[15] = 1;
 
 	return HAL_OK;
 }
@@ -429,12 +440,14 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 				flag_DS4[i]    = 0;
 			}
 		}
+
 		// Sequencer Note 1
 		if(timing_SN1[i] == 1){
 
 			if(adsr_SN1[i].adsr_done == false){
 
-				SN1_temp += LUT[current_LUT_index_SN1[i]];
+				//SN1_temp += LUT[current_LUT_index_SN1[i]];
+				SN1_temp = LUT[current_LUT_index_SN1[i]];
 
 				OnePress_ADSR_Linear_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
 
@@ -455,7 +468,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 
 			if(adsr_SN2[i].adsr_done == false){
 
-				SN2_temp += LUT[current_LUT_index_SN2[i]];
+				//SN2_temp += LUT[current_LUT_index_SN2[i]];
+				SN2_temp = LUT[current_LUT_index_SN2[i]];
 
 				OnePress_ADSR_Linear_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
 
@@ -476,7 +490,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 
 			if(adsr_SN3[i].adsr_done == false){
 
-				SN3_temp += LUT[current_LUT_index_SN3[i]];
+				//SN3_temp += LUT[current_LUT_index_SN3[i]];
+				SN3_temp = LUT[current_LUT_index_SN3[i]];
 
 				OnePress_ADSR_Linear_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
 
@@ -497,7 +512,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 
 			if(adsr_SN4[i].adsr_done == false){
 
-				SN4_temp += LUT[current_LUT_index_SN4[i]];
+				//SN4_temp += LUT[current_LUT_index_SN4[i]];
+				SN4_temp = LUT[current_LUT_index_SN4[i]];
 
 				OnePress_ADSR_Linear_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
 
