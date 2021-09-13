@@ -252,14 +252,14 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	//	timing_SN1[15] = 1;
 
 	// Sequencer Note 2
-//	timing_SN2[0]  = 1;
-//	timing_SN2[1]  = 1;
-//	timing_SN2[2]  = 1;
-//	timing_SN2[3]  = 1;
-//	timing_SN2[4]  = 1;
-//	timing_SN2[5]  = 1;
-//	timing_SN2[6]  = 1;
-//	timing_SN2[7]  = 1;
+	//	timing_SN2[0]  = 1;
+	//	timing_SN2[1]  = 1;
+	//	timing_SN2[2]  = 1;
+	//	timing_SN2[3]  = 1;
+	//	timing_SN2[4]  = 1;
+	//	timing_SN2[5]  = 1;
+	//	timing_SN2[6]  = 1;
+	//	timing_SN2[7]  = 1;
 	//	timing_SN2[8]  = 0;
 	//	timing_SN2[9]  = 0;
 	//	timing_SN2[10] = 1;
@@ -361,20 +361,11 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 
 		drum_index++;
 
-		// RESET: ADSR for being ready in next cycle
-		adsr_SN1[drum_index].adsr_done = false;
-		adsr_SN2[drum_index].adsr_done = false;
-		adsr_SN3[drum_index].adsr_done = false;
-		adsr_SN4[drum_index].adsr_done = false;
-	}
+		if(drum_index == FourFour){
 
-
-
-	// RESET: drum index & master counter
-	if(counter_master == timing_position_in_samples[FourFour - 1] - 1){
-
-		drum_index = 0;
-		counter_master = 0;
+			drum_index = 0;
+			counter_master = 0;
+		}
 
 		// RESET: ADSR for being ready in next cycle
 		adsr_SN1[drum_index].adsr_done = false;

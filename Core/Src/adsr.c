@@ -57,7 +57,7 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 		if(envelope->adsr_counter < envelope->adsr_duration_time) { // if time < total duration
 
 			// attack period
-			if(envelope->adsr_counter < envelope->adsr_attack_time) {
+			if(envelope->adsr_counter <= envelope->adsr_attack_time) {
 				// linear:
 				calc = envelope->adsr_counter * (envelope->adsr_max_amp/envelope->adsr_attack_time);
 				// exponential:
@@ -66,7 +66,7 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 			}
 
 			// decay period
-			else if(envelope->adsr_counter < (envelope->adsr_attack_time + envelope->adsr_decay_time)) {
+			else if(envelope->adsr_counter <= (envelope->adsr_attack_time + envelope->adsr_decay_time)) {
 				// linear:
 				calc = ((envelope->adsr_sustain_amplitude - envelope->adsr_max_amp)/envelope->adsr_decay_time) * (envelope->adsr_counter - envelope->adsr_attack_time) + envelope->adsr_max_amp;
 				// exponential:
@@ -77,11 +77,11 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 			}
 
 			// sustain period
-			else if(envelope->adsr_counter < (envelope->adsr_duration_time - envelope->adsr_release_time))
+			else if(envelope->adsr_counter <= (envelope->adsr_duration_time - envelope->adsr_release_time))
 				calc = envelope->adsr_sustain_amplitude;
 
 			// release period
-			else if(envelope->adsr_counter >= (envelope->adsr_duration_time - envelope->adsr_release_time)) {
+			else if(envelope->adsr_counter > (envelope->adsr_duration_time - envelope->adsr_release_time)) {
 				// linear:
 				calc = -(envelope->adsr_sustain_amplitude/envelope->adsr_release_time) * (envelope->adsr_counter - (envelope->adsr_duration_time - envelope->adsr_release_time)) + envelope->adsr_sustain_amplitude;
 				// exponential:
@@ -90,15 +90,15 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 			}
 		}
 
-		// update time counter
-		envelope->adsr_counter++;
-
-		if(envelope->adsr_counter == envelope->adsr_duration_time) {
+		else if(envelope->adsr_counter >= envelope->adsr_duration_time) {
 			envelope->adsr_counter = 0;	// restart
 			//envelope->decay_counter = 0;
 			envelope->release_counter = 0;
 			envelope->adsr_done = true;
 		}
+
+		// update time counter
+		(envelope->adsr_counter)++;
 
 		//*calculate_value = *calculate_value + 1;
 		*calculate_value = *calculate_value * calc;
