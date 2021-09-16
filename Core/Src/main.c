@@ -322,7 +322,6 @@ int main(void)
 
 	while(1) {
 
-
 //		printf("%f \r\n", (float)ADC_value);
 //		HAL_Delay(50);
 
