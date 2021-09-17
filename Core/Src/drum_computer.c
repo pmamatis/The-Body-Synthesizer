@@ -35,7 +35,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sequencer_state = true;
 
 	// INIT: Tempo, SR, Counter
-	BPM = 60;
+	BPM = 120;
 	MasterClock = LUT_SR;
 	counter_master = 0;
 
@@ -154,23 +154,23 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	sd_card_unmount(huart);
 	 */
 
-	// ALL DRUMS ON
-	timing_DS1[0] = timing_DS2[0] = timing_DS3[0] = timing_DS4[0] = 1;
-	timing_DS1[1] = timing_DS2[1] = timing_DS3[1] = timing_DS4[1] = 1;
-	timing_DS1[2] = timing_DS2[2] = timing_DS3[2] = timing_DS4[2] = 1;
-	timing_DS1[3] = timing_DS2[3] = timing_DS3[3] = timing_DS4[3] = 1;
-	timing_DS1[4] = timing_DS2[4] = timing_DS3[4] = timing_DS4[4] = 1;
-	timing_DS1[5] = timing_DS2[5] = timing_DS3[5] = timing_DS4[5] = 1;
-	timing_DS1[6] = timing_DS2[6] = timing_DS3[6] = timing_DS4[6] = 1;
-	timing_DS1[7] = timing_DS2[7] = timing_DS3[7] = timing_DS4[7] = 1;
-//	timing_DS1[8] = timing_DS2[8] = timing_DS3[8] = timing_DS4[8] = 1;
-//	timing_DS1[9] = timing_DS2[9] = timing_DS3[9] = timing_DS4[9] = 1;
-//	timing_DS1[10] = timing_DS2[10] = timing_DS3[10] = timing_DS4[10] = 1;
-//	timing_DS1[11] = timing_DS2[11] = timing_DS3[11] = timing_DS4[11] = 1;
-//	timing_DS1[12] = timing_DS2[12] = timing_DS3[12] = timing_DS4[12] = 1;
-//	timing_DS1[13] = timing_DS2[13] = timing_DS3[13] = timing_DS4[13] = 1;
-//	timing_DS1[14] = timing_DS2[14] = timing_DS3[14] = timing_DS4[14] = 1;
-//	timing_DS1[15] = timing_DS2[15] = timing_DS3[15] = timing_DS4[15] = 1;
+	//	// ALL DRUMS ON
+	//	timing_DS1[0] = timing_DS2[0] = timing_DS3[0] = timing_DS4[0] = 1;
+	//	timing_DS1[1] = timing_DS2[1] = timing_DS3[1] = timing_DS4[1] = 1;
+	//	timing_DS1[2] = timing_DS2[2] = timing_DS3[2] = timing_DS4[2] = 1;
+	//	timing_DS1[3] = timing_DS2[3] = timing_DS3[3] = timing_DS4[3] = 1;
+	//	timing_DS1[4] = timing_DS2[4] = timing_DS3[4] = timing_DS4[4] = 1;
+	//	timing_DS1[5] = timing_DS2[5] = timing_DS3[5] = timing_DS4[5] = 1;
+	//	timing_DS1[6] = timing_DS2[6] = timing_DS3[6] = timing_DS4[6] = 1;
+	//	timing_DS1[7] = timing_DS2[7] = timing_DS3[7] = timing_DS4[7] = 1;
+	//	timing_DS1[8] = timing_DS2[8] = timing_DS3[8] = timing_DS4[8] = 1;
+	//	timing_DS1[9] = timing_DS2[9] = timing_DS3[9] = timing_DS4[9] = 1;
+	//	timing_DS1[10] = timing_DS2[10] = timing_DS3[10] = timing_DS4[10] = 1;
+	//	timing_DS1[11] = timing_DS2[11] = timing_DS3[11] = timing_DS4[11] = 1;
+	//	timing_DS1[12] = timing_DS2[12] = timing_DS3[12] = timing_DS4[12] = 1;
+	//	timing_DS1[13] = timing_DS2[13] = timing_DS3[13] = timing_DS4[13] = 1;
+	//	timing_DS1[14] = timing_DS2[14] = timing_DS3[14] = timing_DS4[14] = 1;
+	//	timing_DS1[15] = timing_DS2[15] = timing_DS3[15] = timing_DS4[15] = 1;
 
 	//	// INIT: Timing
 	//	// Kick
@@ -298,23 +298,23 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	//	timing_SN3[6]  = 0;
 	//	timing_SN3[7]  = 1;
 
-	// Sequencer Notes
-	timing_SN1[0] = timing_SN2[0] = timing_SN3[0] = timing_SN4[0] = 1;
-	timing_SN1[1] = timing_SN2[1] = timing_SN3[1] = timing_SN4[1] = 1;
-	timing_SN1[2] = timing_SN2[2] = timing_SN3[2] = timing_SN4[2] = 1;
-	timing_SN1[3] = timing_SN2[3] = timing_SN3[3] = timing_SN4[3] = 1;
-	timing_SN1[4] = timing_SN2[4] = timing_SN3[4] = timing_SN4[4] = 1;
-	timing_SN1[5] = timing_SN2[5] = timing_SN3[5] = timing_SN4[5] = 1;
-	timing_SN1[6] = timing_SN2[6] = timing_SN3[6] = timing_SN4[6] = 1;
-	timing_SN1[7] = timing_SN2[7] = timing_SN3[7] = timing_SN4[7] = 1;
-//	timing_SN1[8] = timing_SN2[8] = timing_SN3[8] = timing_SN4[8] = 1;
-//	timing_SN1[9] = timing_SN2[9] = timing_SN3[9] = timing_SN4[9] = 1;
-//	timing_SN1[10] = timing_SN2[10] = timing_SN3[10] = timing_SN4[10] = 1;
-//	timing_SN1[11] = timing_SN2[11] = timing_SN3[11] = timing_SN4[11] = 1;
-//	timing_SN1[12] = timing_SN2[12] = timing_SN3[12] = timing_SN4[12] = 1;
-//	timing_SN1[13] = timing_SN2[13] = timing_SN3[13] = timing_SN4[13] = 1;
-//	timing_SN1[14] = timing_SN2[14] = timing_SN3[14] = timing_SN4[14] = 1;
-//	timing_SN1[15] = timing_SN2[15] = timing_SN3[15] = timing_SN4[15] = 1;
+	//	// ALL SEQUENCER NOTES ON
+	//	timing_SN1[0] = timing_SN2[0] = timing_SN3[0] = timing_SN4[0] = 1;
+	//	timing_SN1[1] = timing_SN2[1] = timing_SN3[1] = timing_SN4[1] = 1;
+	//	timing_SN1[2] = timing_SN2[2] = timing_SN3[2] = timing_SN4[2] = 1;
+	//	timing_SN1[3] = timing_SN2[3] = timing_SN3[3] = timing_SN4[3] = 1;
+	//	timing_SN1[4] = timing_SN2[4] = timing_SN3[4] = timing_SN4[4] = 1;
+	//	timing_SN1[5] = timing_SN2[5] = timing_SN3[5] = timing_SN4[5] = 1;
+	//	timing_SN1[6] = timing_SN2[6] = timing_SN3[6] = timing_SN4[6] = 1;
+	//	timing_SN1[7] = timing_SN2[7] = timing_SN3[7] = timing_SN4[7] = 1;
+	//	timing_SN1[8] = timing_SN2[8] = timing_SN3[8] = timing_SN4[8] = 1;
+	//	timing_SN1[9] = timing_SN2[9] = timing_SN3[9] = timing_SN4[9] = 1;
+	//	timing_SN1[10] = timing_SN2[10] = timing_SN3[10] = timing_SN4[10] = 1;
+	//	timing_SN1[11] = timing_SN2[11] = timing_SN3[11] = timing_SN4[11] = 1;
+	//	timing_SN1[12] = timing_SN2[12] = timing_SN3[12] = timing_SN4[12] = 1;
+	//	timing_SN1[13] = timing_SN2[13] = timing_SN3[13] = timing_SN4[13] = 1;
+	//	timing_SN1[14] = timing_SN2[14] = timing_SN3[14] = timing_SN4[14] = 1;
+	//	timing_SN1[15] = timing_SN2[15] = timing_SN3[15] = timing_SN4[15] = 1;
 
 
 	// Sequencer Note 1

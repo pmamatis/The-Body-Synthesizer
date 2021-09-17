@@ -152,8 +152,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	float addValue=0;
 	uint8_t count = signals -> count;
 
-
-
 	// decide if Channel 1 or Channel 2
 	float* calculate_vector_tmp = 0; // working aray
 
@@ -163,7 +161,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	else if (output_Channel == 2){
 		calculate_vector_tmp = calculate_vector2;
 	}
-
 
 	//decide if first half of BLOCKSIZE or second half
 	uint16_t BLOOCKSIZE_startIndex=0, BLOOCKSIZE_endIndex=0;
@@ -218,8 +215,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// DRUMCOMPUTER
 		// write into calculate vector
 		Drum_Computer_Process();
-		//calculate_vector_tmp[BLOCKSIZE_counter] = 0.5 * sequencer + 0.5 * drums;// + 1 * calculate_vector_tmp[BLOCKSIZE_counter];
-		calculate_vector_tmp[BLOCKSIZE_counter] = 0.25 * sequencer + 0.25 * drums;
+		calculate_vector_tmp[BLOCKSIZE_counter] = 0.5 * sequencer + 0.5 * drums;// + 1 * calculate_vector_tmp[BLOCKSIZE_counter];
 
 
 		//maximum

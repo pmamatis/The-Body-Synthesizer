@@ -18,9 +18,15 @@
 
 #define COLORED      0
 #define UNCOLORED    1
-
+/** Difference of starting point and end point for Value-row
+ */
+#define VALUE_ROW_LENGTH 10
+#define NUMBER_OF_SOURCES 5
+#define NUMBER_OF_DRUMSTEPS 8
+#define MAX_NUMBER_OF_SAMPLES 4
 
 typedef enum {
+	CASE0 = 10,
 	CASE1 = 30,
 	CASE2 = 50,
 	CASE3 =	70,
@@ -29,30 +35,53 @@ typedef enum {
 	CASE6 =	130,
 	CASE7 =	150,
 	CASE8 =	170,
-	CASE9 =	190,
-}y_row_value;
+	CASE9 =	190
+} y_row_value;
 
-
-/** Difference of starting point and end point for Value-row
- */
-#define VALUE_ROW_LENGTH 10
-
-
+typedef enum {
+	STEP1 = 40,
+	STEP2 = 60,
+	STEP3 = 80,
+	STEP4 = 100,
+	STEP5 = 120,
+	STEP6 = 140,
+	STEP7 = 160,
+	STEP8 = 180
+} drumcomputer_step_coordinate;
 
 typedef enum {
 	DISPLAY_FAIL = -1,
 	DISPLAY_OK = 1
 } Display_Status;
 
-
 typedef enum {
 	NONE = -1,
 	KEYBOARD = 0,
 	BODYSYNTH = 1,
-	GYRO
+	GYRO = 2
 }synth_mode_t;
 
+typedef enum {
+	GYRO_LR = 0,
+	GYRO_FB,
+	EMG,
+	EKG,
+	POTI
+}source_t;
+
+//static const char * const source_names[] = {
+//		[GYRO_LEFT] = "Gyro L",
+//		[GYRO_RIGHT] = "Gyro R",
+//		[GYRO_FRONT] = "Gyro F",
+//		[GYRO_BACK] = "Gyro B",
+//		[EMG] = "EMG",
+//		[EKG] = "EKG",
+//		[POTI] = "POTI"
+//};
+
 struct display_variables {
+	char source_names[NUMBER_OF_SOURCES][10];	// assumption: maximum length of 10 characters for a each source name
+
 	bool PatchSelected[3];	// arrays for 3 Modules for each patch
 	bool ModuleState[3];
 	bool ModuleStateSelected[3];
@@ -83,18 +112,23 @@ struct display_variables {
 	uint8_t ActiveEffectsCounter;
 	bool Voices_ONOFF[3];		// 3 Voices
 	char Voices_Note[3];
+	char last_Voices_Note[3];
 	char Voices_Octave[3];
+	char last_Voices_Octave[3];
 	float noteindex;
 	bool Voices_Created[3];
+	uint8_t currentVoice;
 
 	//ADSR
 	bool ADSR_ONOFF;			// 1 ADSR
-	float ADSR_Attack;
-	float ADSR_Decay;
-	float ADSR_Sustain;
-	float ADSR_Release;
+	float ADSR_Attacktime;
+	float ADSR_Decaytime;
+	float ADSR_Sustaintime;
+	float ADSR_Sustainlevel;
+	float ADSR_Releasetime;
 	uint8_t ADSR_EffectPosition;
 	bool ADSR_EffectAdded;
+	uint8_t currentADSR;
 
 	//Distortion
 	bool Distortion_ONOFF;
@@ -105,6 +139,7 @@ struct display_variables {
 	uint8_t Distortion_Gain;
 	uint8_t Distortion_EffectPosition;
 	bool Distortion_EffectAdded;
+	uint8_t currentDistortion;
 
 	//Tremolo
 	bool Tremolo_ONOFF;
@@ -113,6 +148,9 @@ struct display_variables {
 	float Tremolo_Depth;
 	uint8_t Tremolo_EffectPosition;
 	bool Tremolo_EffectAdded;
+	uint8_t currentTremolo;
+
+	//Filter/EQ
 	bool Filter_ONOFF[5];
 	float Filter_Cutoff[5];
 	float Filter_Q[5];
@@ -198,15 +236,47 @@ struct display_variables {
 	uint8_t Gyro_select;
 	bool Gyro_ON;
 	bool ENTER_Debounce_State;
+	bool lastBACK_Debounce_State;
 	bool BACK_Debounce_State;
 	bool SW_Debounce_State;
 	bool ENTER;		// state variable of the ENTER-Button to go one step further in the display-menu
 	bool BACK;		// state variable of the BACK-Button to go one step back in the display-menu
 	bool SW;		// state variable of the SW-Button of the Joystick
 
+	// SOURCES
+	source_t Voice_Note_Sources[3];				// sources for note of Voice 1,2 and 3
+	source_t Voice_Octave_Sources[3];			// sources for octave of Voice 1,2 and 3
+	source_t ADSR_Sources[5];					// sources for attack time, decay time, sustain time, sustain level, release time
+	source_t EQ_Q_factor_Sources[5];			// sources for q-factor of 5 frequency bands
+	source_t EQ_Cutoff_Sources[5];				// sources for cutoff of 5 frequency bands
+	source_t EQ_Gain_Sources[5];				// sources for gain of 5 frequency bands
+	source_t Distortion_Sources;				// sources for gain
+	source_t Tremolo_Sources[2];				// sources for rate and depth
+	// page value strings
+	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
+	char value_str_voices_overview[9][10];
+	char value_str_voices_settings[3][9][10];
+	char value_str_adsr_overview[9][10];
+	char value_str_adsr_settings[9][10];
+	char value_str_equalizer_overview[9][10];
+	char value_str_equalizer_settings[5][9][10];
+	char value_str_distortion[9][10];
+	char value_str_tremolo[9][10];
+	char value_str_keyboardmode[9][10];
+	char value_str_drumcomputer[2][10];
 
-	//page value strings
-	char value_str_dummy[9][5];
+	// Drummachine
+	uint8_t lastCurrentSampleRow;
+	uint8_t CurrentSampleRow;
+	//uint8_t MaxNumberOfSamples;
+	uint8_t lastCurrentDrumstep;
+	uint8_t CurrentDrumstep;
+	//uint8_t NumberOfDrumsteps;
+	bool DrumMatrix[MAX_NUMBER_OF_SAMPLES][NUMBER_OF_DRUMSTEPS];
+	bool UpdateDisplay;
+	bool Drumcomputer_ONOFF;
+	bool EditDrums;
+	uint8_t currentDrumcomputer;
 };
 
 struct display_variables Display;
@@ -220,7 +290,7 @@ Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint
 //void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* SoftClipping, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer);
 
 
-//Display draw functions
+// Display draw functions
 void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition);
 void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition);
 void DISPLAY_SwitchPageLeft(void);
@@ -228,18 +298,30 @@ void DISPLAY_SwitchPageRight(void);
 void DISPLAY_Update(void);
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 
-//Page functions
+// Display Drum Computer
+Display_Status p_Drumcomputer_overview(void);
+Display_Status p_Drumcomputer_Settings(void);
+Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer);
+Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
+Display_Status DISPLAY_DrawDrumcomputerPattern(void);
+Display_Status DISPLAY_SetDrumcomputerStep(void);
+Display_Status DISPLAY_DeleteDrumcomputerStep(void);
+Display_Status DISPLAY_SetDrumcomputerStepCursor(void);
+Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void);
+
+// Page functions
 void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
-void p_Voices(void);
+//void p_Voices(void);
+void p_Voices_overview(void);
+void p_Voices_Settings(void);
+void p_ADSR_overview(struct adsr* envelope);
+void p_ADSR_Settings(void);
+void p_Equalizer_overview(void);
+void p_Equalizer_Settings(void);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
-void p_Equalizer_Settings();
 void p_KeyboardSetParameters(struct adsr* envelope);
 void p_Dummy(void);
-void p_Equalizer_overview();
-void p_Gyro(void);
-
-
 
 #endif /* INC_DISPLAY_H_ */
