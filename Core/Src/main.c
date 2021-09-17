@@ -301,29 +301,29 @@ int main(void)
 	//Start Display
 
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
+//	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
 
 	// Start DAC-DMA
 	printf("start DAC\r\n");
-	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
-	keyboard_start_read();
+//	keyboard_start_read();
 
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
 	SetTimerSettings(&htim6, 20);	// Timer 6 default: 2000 Hz
 	printf("start Button ADC\r\n");
-	HAL_TIM_Base_Start(&htim6);
-	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
+//	HAL_TIM_Base_Start(&htim6);
+//	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 3);
 
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
-	emg_start_read();
+//	emg_start_read();
 
 
 	//Start Interface
@@ -338,17 +338,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
 
-	//NewSignal(&signals1,NOISE,'C',0);
+//	NewSignal(&signals1,NOISE,'C',0,0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,SIN, 'C',0);
 //	NewSignal(&signals1,SIN, 'C',1);
-	//NewSignal(&signals1,SIN, 'C',2);
-	//NewSignal(&signals1,SIN, 'C',3);
-	//NewSignal(&signals1,SIN, 'C',4);
-	//NewSignal(&signals1,SIN, 'G',0);
-	//NewSignal(&signals1,SIN, 'G',1);
-	//NewSignal(&signals1,SIN, 'G',2);
+	NewSignal(&signals1,SIN, 'C',2,0);
+	NewSignal(&signals1,SIN, 'C',3,1);
+	NewSignal(&signals1,SIN, 'C',4,2);
+	NewSignal(&signals1,SIN, 'G',0,3);
+//	NewSignal(&signals1,SIN, 'G',1);
+//	NewSignal(&signals1,SIN, 'G',2);
 	//NewSignal(&signals1,SIN, 'G',3);
 	//NewSignal(&signals1,SIN, 'G',4);
 //	NewSignal(&signals2,SIN, 'C',1);
@@ -365,21 +365,26 @@ int main(void)
 	 */
 	Display.mode = BODYSYNTH;
 
-	Display.Voices_Note[0] = 'C';
-	Display.Voices_Octave[0] = 2;
-	Display.Voices_ONOFF[0] = true;
+//	Display.Voices_Note[0] = 'C';
+//	Display.Voices_Octave[0] = 2;
+//	Display.Voices_ONOFF[0] = true;
 //	Display.Voice_Note_Sources[0] = EKG;
 //	Display.Voice_Note_Sources[0] = GYRO_FB;
-	Display.Voice_Note_Sources[0] = POTI;
+//	Display.Voice_Note_Sources[0] = POTI;
 
 //	Display.Distortion_ONOFF = true;
-	Display.Distortion_Gain = 5;
+//	Display.Distortion_Gain = 5;
 //	Display.Distortion_Sources = GYRO_LR;
 //	Display.Tremolo_ONOFF = true;
 //	Display.Tremolo_Sources[0] = GYRO_FB;
 //	Display.Tremolo_Sources[1] = GYRO_LR;
-	Display.Tremolo_Depth = 1;
-	Display.Tremolo_Rate = 3;
+//	Display.Tremolo_Depth = 1;
+//	Display.Tremolo_Rate = 3;
+	Display.EQ_Cutoff_Sources[0] = GYRO_LR;
+	Display.currentBand =0;
+	Display.Filter_ONOFF[0] = true;
+//	Display.Filter_ONOFF[0] = false;
+	Display.Filter_Cutoff[0] = 4000;
 
 //HAL_Delay(1000);
 	while(1) {

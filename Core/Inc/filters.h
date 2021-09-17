@@ -81,7 +81,7 @@ typedef enum {
  *********************************/
 
 Filter_Status Filters_Init();
-Filter_Status Filters_Reinit();
+Filter_Status Filters_Reinit(float cutoff);
 
 Filter_Status SetupLowpass    (struct BQFilter *LP, float cutoff, float Q);
 Filter_Status SetupHighpass   (struct BQFilter *HP, float cutoff, float Q);

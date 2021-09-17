@@ -213,7 +213,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//Effekte
-		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+
 		//OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//maximum

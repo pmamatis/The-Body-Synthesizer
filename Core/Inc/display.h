@@ -50,11 +50,12 @@ typedef enum {
 }synth_mode_t;
 
 typedef enum {
-	GYRO_LR = 0,
+	POTI = 0,
+	GYRO_LR = 1,
 	GYRO_FB,
 	EMG,
 	EKG,
-	POTI
+
 }source_t;
 
 //static const char * const source_names[] = {
