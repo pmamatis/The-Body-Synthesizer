@@ -422,6 +422,7 @@ void DMA2_Stream2_IRQHandler(void)
 
 	// Start Drumcomputer Processing
 	if(Display.EditDrums == true) {
+		//if(Display.EditDrums == true && Display.Drumcomputer_ONOFF == true) {	// diese if-Abfrage überarbeiten, da sonst der Joystick spinnt (Warum???) ?
 
 		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
 			DISPLAY_Update();
@@ -488,6 +489,71 @@ void DMA2_Stream2_IRQHandler(void)
 			Display.JoystickParameterPosition = 1;
 			DISPLAY_DrawArrow(1);
 			DISPLAY_Update();
+		}
+	}
+
+	if(Display.pagePosition == 2 && Display.currentDrumcomputer > 0 && Display.JoystickParameterPosition == 2) {	// BPM setting
+
+		BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause at low BPMs cause fuckups
+		BPM = roundf(BPM);
+
+		if(abs(last_BPM - BPM) > 3) {
+			for(int i=0; i<FourFour; i++) {
+
+				// INIT: Counter
+				counter_DS1[i] = 0;
+				counter_DS2[i] = 0;
+				counter_DS3[i] = 0;
+				counter_DS4[i] = 0;
+
+				drum_index = 0;
+				counter_master = 0;
+
+				// RESET: Drum sound bins
+				DS1s = 0;
+				DS2s = 0;
+				DS3s = 0;
+				DS4s = 0;
+
+				drums = 0;
+
+				// SEQUENCER
+				//				// RESET: ADSR for being ready in next cycle
+				//				adsr_SN1[drum_index].adsr_done = false;
+				//				adsr_SN2[drum_index].adsr_done = false;
+				//				adsr_SN3[drum_index].adsr_done = false;
+				//				adsr_SN4[drum_index].adsr_done = false;
+
+				//				// INIT: Timing positions
+				//				timing_DS1[i] = 0;
+				//				timing_DS2[i] = 0;
+				//				timing_DS3[i] = 0;
+				//				timing_DS4[i] = 0;
+
+				//				// INIT: Sequencer timing positions
+				//				timing_SN1[i] = 0;
+				//				timing_SN2[i] = 0;
+				//				timing_SN3[i] = 0;
+				//				timing_SN4[i] = 0;
+				//
+				//				// INIT: Sequencer start index
+				//				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+				//				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+				//				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+				//				current_LUT_index_SN4[i] = LUT_STARTINDEX[freq_index_SN4];
+				//
+				//				// INIT: ADSR structs
+				//				Sequencer_ADSR_Init(&adsr_SN1[i]);
+				//				Sequencer_ADSR_Init(&adsr_SN2[i]);
+				//				Sequencer_ADSR_Init(&adsr_SN3[i]);
+				//				Sequencer_ADSR_Init(&adsr_SN4[i]);
+				timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
+			}
+			char bpm_str[10];
+			sprintf(bpm_str, "%.1f", BPM);
+			last_BPM = BPM;
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, bpm_str, &Font12, COLORED);
 		}
 	}
 

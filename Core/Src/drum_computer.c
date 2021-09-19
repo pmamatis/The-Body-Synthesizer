@@ -36,6 +36,8 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 
 	// INIT: Tempo, SR, Counter
 	BPM = 120;
+	last_BPM = BPM;
+	BPM_MAX = 160;
 	MasterClock = LUT_SR;
 	counter_master = 0;
 
@@ -56,7 +58,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	freq_index_SN4 = Get_Note_Index('A',2);
 
 	// FOR: all steps in drums / sequencer
-	for(int i = 0; i < FourFour; i++){
+	for(int i=0; i<FourFour; i++) {
 
 		// INIT: Flag
 		flag_DS1[i] = 0;
@@ -392,7 +394,6 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 
 	return HAL_OK;
 }
-
 
 HAL_StatusTypeDef Drum_Computer_Process() {
 

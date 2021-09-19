@@ -18,6 +18,8 @@
 
 // Tempo
 float BPM;
+float BPM_MAX;
+float last_BPM;
 uint32_t MasterClock;
 
 // Index

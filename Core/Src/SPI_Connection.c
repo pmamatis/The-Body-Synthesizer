@@ -5,15 +5,12 @@
  *      Author: paul
  */
 
-
 #include "SPI_Connection.h"
 
+void spiC_Init(SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim) {
 
-
-
-void spiC_Init(SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim){
-	hSensorSPI= hspi;
-	for (int spiinit_counter=0; spiinit_counter < BUFFERSIZE;spiinit_counter++){
+	hSensorSPI = hspi;
+	for (int spiinit_counter=0; spiinit_counter < BUFFERSIZE;spiinit_counter++) {
 		pTxData[spiinit_counter] = 0;
 		pRxData[spiinit_counter] = 0;
 	}
