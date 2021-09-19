@@ -132,7 +132,7 @@ int main(void)
 	 while (1)
   {
 		 if(SyncBuffer.gyro_initilized == true){
-			MPU6050_Display_Data();
+//			MPU6050_Display_Data();
 			SyncBuffer.tilt_detecded  = MPU6050_detectTilt();
 		 }
 

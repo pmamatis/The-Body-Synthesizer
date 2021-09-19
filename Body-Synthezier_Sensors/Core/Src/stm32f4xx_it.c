@@ -224,7 +224,7 @@ void DMA2_Stream3_IRQHandler(void)
   /* USER CODE END DMA2_Stream3_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_spi1_tx);
   /* USER CODE BEGIN DMA2_Stream3_IRQn 1 */
-  printf("SPI Transmit\r\n");
+
   /* USER CODE END DMA2_Stream3_IRQn 1 */
 }
 

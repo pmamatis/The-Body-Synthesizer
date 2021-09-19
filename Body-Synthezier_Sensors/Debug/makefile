@@ -9,7 +9,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include Drivers/STM32F4xx_HAL_Driver/subdir.mk
+-include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include subdir.mk
@@ -61,8 +61,8 @@ all: main-build
 main-build: Body-Synthezier_Sensors.elf secondary-outputs
 
 # Tool invocations
-Body-Synthezier_Sensors.elf: $(OBJS) $(USER_OBJS) /media/paul/LINUX_MEM/Uni/Git\ Repos/Body-Synthezier_Sensors/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Body-Synthezier_Sensors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/media/paul/LINUX_MEM/Uni/Git Repos/Body-Synthezier_Sensors/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthezier_Sensors.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Body-Synthezier_Sensors.elf: $(OBJS) $(USER_OBJS) C:\Users\User\Desktop\Uni\DSP\ Labor\Software\body-synthesizer-stm32-f746zg\Body-Synthezier_Sensors\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Body-Synthezier_Sensors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\User\Desktop\Uni\DSP Labor\Software\body-synthesizer-stm32-f746zg\Body-Synthezier_Sensors\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthezier_Sensors.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
