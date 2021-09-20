@@ -239,7 +239,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_tremolo[7],"");
 	strcpy(Display->value_str_tremolo[8],"");
 
-	// Drummachine
+	// Drumcomputer
 	Display->lastCurrentSampleRow = 1;
 	Display->CurrentSampleRow = 1;
 	//Display->MaxNumberOfSamples = 4;
@@ -254,6 +254,17 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->UpdateDisplay = false;
 	Display->Drumcomputer_ONOFF = false;
 	Display->EditDrums = false;
+
+	// Sequencer
+	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
+		for(int j=0; j<NUMBER_OF_SEQUENCERSTEPS; j++) {
+			Display->SequencerMatrix[i][j] = false;
+		}
+	}
+	Display->CurrentNoteRow = 1;
+	Display->CurrentSequencestep = 1;
+	Display->Sequencer_ONOFF = false;
+	Display->EditSteps = false;
 
 	return DISPLAY_OK;
 }
@@ -538,12 +549,13 @@ void DISPLAY_SwitchPageRight(void) {
 void DISPLAY_processing(void) {
 
 	switch(Display.mode) {
-	//		case NONE:
-	//			p_StartingMenu(frame_buffer);
-	//			break;
+
+	case NONE:
+		p_StartingMenu(frame_buffer);
+		break;
 
 	case BODYSYNTH:
-		Display.page_max = 6; // must be changed for every added case
+		Display.page_max = 7; // has to be changed for every added case
 
 		switch(Display.pagePosition) {
 		case 0:
@@ -555,7 +567,7 @@ void DISPLAY_processing(void) {
 		case 2:
 			switch(Display.currentDrumcomputer) {
 			case 0:
-				p_Voices_overview();
+				p_Sequencer_overview();
 				break;
 			default:
 				p_Drumcomputer_Settings();
@@ -564,48 +576,59 @@ void DISPLAY_processing(void) {
 			}
 			break;
 			case 3:
-				switch(Display.currentVoice) {
+				switch(Display.currentSequencer) {
 				case 0:
-					p_ADSR_overview(&envelope);
+					p_Voices_overview();
 					break;
 				default:
-					p_Voices_Settings();
+					p_Sequencer_Settings();
 					Display.page_max = 3;
 					break;
 				}
 				break;
 				case 4:
-					switch(Display.currentADSR) {
+					switch(Display.currentVoice) {
 					case 0:
-						p_Equalizer_overview();
+						p_ADSR_overview(&envelope);
 						break;
 					default:
-						p_ADSR_Settings();
+						p_Voices_Settings();
 						Display.page_max = 4;
 						break;
 					}
 					break;
 					case 5:
-						switch(Display.currentBand) {
+						switch(Display.currentADSR) {
 						case 0:
-							p_Distortion(&HardClipping);
+							p_Equalizer_overview();
 							break;
 						default:
-							p_Equalizer_Settings();
+							p_ADSR_Settings();
 							Display.page_max = 5;
 							break;
 						}
 						break;
 						case 6:
-							p_Tremolo(&Tremolo);
+							switch(Display.currentBand) {
+							case 0:
+								p_Distortion(&HardClipping);
+								break;
+							default:
+								p_Equalizer_Settings();
+								Display.page_max = 6;
+								break;
+							}
 							break;
-						default:
-							break;
+							case 7:
+								p_Tremolo(&Tremolo);
+								break;
+							default:
+								break;
 		}
 		break;
 
 		case KEYBOARD:
-			Display.page_max = 1; // must be changed for every added case
+			Display.page_max = 1; // has to be changed for every added case
 			switch(Display.pagePosition) {
 			case 0:
 				p_StartingMenu(frame_buffer);
@@ -713,25 +736,72 @@ Display_Status p_Drumcomputer_overview(void) {
 
 Display_Status p_Drumcomputer_Settings(void) {
 
-	//	char bpm_str[10];
+	//	char sd_sample_str[20];
 
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Last page", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Load sample", &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Load sample", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, "Edit drums", &Font12, COLORED);
-	Display_DrawDrumcomputerIcons(frame_buffer);
+	Display_DrawDrumcomputerIcons();
 	DISPLAY_DrawDrumcomputerPatternFrame(8);
 
-	if(Display.JoystickParameterPosition == 1) {
+	if(Display.JoystickParameterPosition == 1) {	// last page
 		Display.EditDrums = false;
 	}
-	else if(Display.JoystickParameterPosition == 2) {
+	else if(Display.JoystickParameterPosition == 2) {	// change BPM -> processing done in interrupt
 		Display.EditDrums = false;
 	}
-	else if(Display.JoystickParameterPosition == 3) {
+	else if(Display.JoystickParameterPosition == 3) {	// load sample from sd card
 		Display.EditDrums = false;
+
+		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+		//		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+		//
+		//		if(potVal < 50) {
+		//			strcpy(sd_sample_str, "Rock_loud_Hihat.txt");
+		//		}
+		//		else if(potVal >= 50) {
+		//			strcpy(sd_sample_str, "Rock_Ride.txt");
+		//		}
+		//
+		//		sprintf(sd_sample_str, "%.1f", BPM);
+		//
+		//		fresult = f_mount(&fs, "", 0);	// mount sd card
+		//		clear_buffer();
+		//		fresult = f_open(&fil, sd_sample_str, FA_READ);	// open file to read
+		//		uint32_t Cycles = (uint32_t)f_size(&fil) / BUFFER_SIZE; // 400
+		//		uint32_t NoLength = 10;
+		//		uint32_t NoSamples = 100;
+		//
+		//		char SampleTemp[NoLength];
+		//
+		//		for(int i = 0; i < Cycles; i++) {
+		//
+		//			f_read (&fil, buffer, BUFFER_SIZE, &br);
+		//			br = br + BUFFER_SIZE;
+		//
+		//			for(int j = 0; j < NoSamples; j++) {
+		//
+		//				for(int k = 0; k < NoLength; k++){
+		//
+		//					SampleTemp[k] = buffer[j*NoLength+k];
+		//				}
+		//				DS4[i*NoSamples+j] = atof(SampleTemp)-1;
+		//			}
+		//		}
+		//		// Close file
+		//		f_close(&fil);
+		//		// Clear buffer
+		//		clear_buffer();
+		//
+		//		fresult = f_mount(NULL, "/", 1);	// unmount sd card
+		//		clear_buffer();
+		//
+		//		//		sd_card_mount(huart);
+		//		//		sd_card_read(sd_sample_str, &DS4, huart);
+		//		//		sd_card_unmount(huart);
 	}
-	else if(Display.JoystickParameterPosition == 4) {
+	else if(Display.JoystickParameterPosition == 4) {	// edit drums on/off
 		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
 		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 		if(potVal < 50) {	// smaller than 50 %
@@ -744,13 +814,13 @@ Display_Status p_Drumcomputer_Settings(void) {
 		}
 	}
 
-	//	Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, bpm_str, &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, sd_sample_str, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_drumcomputer[1], &Font12, COLORED);
 
 	return DISPLAY_OK;
 }
 
-Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer) {
+Display_Status Display_DrawDrumcomputerIcons(void) {
 
 	//	EPD_SetFrameMemory(&epd, DRUMS_ICON_GEDREHT, 0, 200-48, 200, 48);
 	//	EPD_DisplayFrame(&epd);
@@ -768,10 +838,10 @@ Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer) {
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps) {
 
 	// draw horizontal lines
-	Paint_DrawRectangle(&paint, STEP1, CASE5, 200, CASE5+20, COLORED);
-	Paint_DrawRectangle(&paint, STEP1, CASE6, 200, CASE6+20, COLORED);
-	Paint_DrawRectangle(&paint, STEP1, CASE7, 200, CASE7+20, COLORED);
-	Paint_DrawRectangle(&paint, STEP1, CASE8, 200, CASE8+20, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE5, 200, CASE6, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE6, 200, CASE7, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE7, 200, CASE8, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE8, 200, CASE9, COLORED);
 
 	if(NUMBER_OF_DRUMSTEPS == 8) {	// at the moment the drum machine is limited to 8 steps
 		// draw vertical lines
@@ -1725,13 +1795,773 @@ Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void) {
 	return DISPLAY_OK;
 }
 
-//Display_Status DISPLAY_SetBPM(void) {
-//
-//}
-//
-//Display_Status DISPLAY_LoadSample(void) {
-//
-//}
+Display_Status p_Sequencer_overview(void) {
+
+	//Header line
+	char headerstring[] = "SEQUENCER";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	//row cases
+	char str_1[] = "Next effect";
+	char str_2[] = "Sequencer ON/OFF";
+	char str_3[] = "Seq. Note 1";
+	char str_4[] = "Seq. Octave 1";
+	char str_5[] = "Seq. Note 2";
+	char str_6[] = "Seq. Octave 2";
+	char str_7[] = "Seq. Note 3";
+	char str_8[] = "Seq. Octave 3";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
+
+	switch(Display.JoystickParameterPosition) {
+	case 1:
+		// Next Effect
+		Display.currentSequencer = 0;
+		break;
+	case 2:
+		// Sequencer Settings
+		Display.currentSequencer = 1;
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+		if(potVal < 50) {	// smaller than 50 %
+			Display.Sequencer_ONOFF = false;
+			strcpy(Display.value_str_sequencer[0], "OFF");
+		}
+		else if(potVal >= 50) {	// greater than 50 %
+			Display.Sequencer_ONOFF = true;
+			strcpy(Display.value_str_sequencer[0], "ON");
+		}
+		break;
+	case 3:
+		// Sequencer Note 1
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+		Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
+		Display.Sequencer_Note[0] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+		sprintf(Display.value_str_sequencer[1], "%c", Display.Sequencer_Note[0]);
+		break;
+	case 4:
+		// Sequencer Octave 1
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+		Display.Sequencer_Octave[0] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
+		sprintf(Display.value_str_sequencer[2], "%d", Display.Sequencer_Octave[0]);
+		break;
+	case 5:
+		// Sequencer Note 2
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+		Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
+		Display.Sequencer_Note[1] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+		sprintf(Display.value_str_sequencer[3], "%c", Display.Sequencer_Note[1]);
+		break;
+	case 6:
+		// Sequencer Octave 2
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+		Display.Sequencer_Octave[1] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
+		sprintf(Display.value_str_sequencer[4], "%d", Display.Sequencer_Octave[1]);
+		break;
+	case 7:
+		// Sequencer Note 3
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
+		Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
+		Display.Sequencer_Note[2] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+		sprintf(Display.value_str_sequencer[5], "%c", Display.Sequencer_Note[2]);
+		break;
+	case 8:
+		// Sequencer Octave 3
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
+		Display.Sequencer_Octave[2] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
+		sprintf(Display.value_str_sequencer[6], "%d", Display.Sequencer_Octave[2]);
+		break;
+	}
+
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_sequencer[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_sequencer[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_sequencer[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_sequencer[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_sequencer[4], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_sequencer[5], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_sequencer[6], &Font12, COLORED);
+
+	return DISPLAY_OK;
+}
+
+Display_Status p_Sequencer_Settings(void) {
+
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Last page", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Edit sequence", &Font12, COLORED);
+	Display_DrawSequencerIcons();
+	DISPLAY_DrawSequencerPatternFrame(8);
+
+	if(Display.JoystickParameterPosition == 1) {	// last page
+		Display.EditSteps = false;
+	}
+	else if(Display.JoystickParameterPosition == 2) {	// change BPM -> processing done in interrupt
+		Display.EditSteps = false;
+	}
+	else if(Display.JoystickParameterPosition == 3) {	// edit sequence on/off
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+		if(potVal < 50) {	// smaller than 50 %
+			Display.EditSteps = false;
+			strcpy(Display.value_str_sequencer[7], "OFF");
+		}
+		else if(potVal >= 50) {	// greater than 50 %
+			Display.EditSteps = true;
+			strcpy(Display.value_str_sequencer[7], "ON");
+		}
+	}
+
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_sequencer[7], &Font12, COLORED);
+
+	return DISPLAY_OK;
+}
+
+Display_Status Display_DrawSequencerIcons(void) {
+
+	Paint_DrawStringAt(&paint, 1, CASE0, "SEQUENCER", &Font16, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE5+5, "Note1", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE6+5, "Note2", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE7+5, "Note3", &Font12, COLORED);
+
+	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps) {
+
+	// draw horizontal lines
+	Paint_DrawRectangle(&paint, STEP1, CASE5, 200, CASE6, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE6, 200, CASE7, COLORED);
+	Paint_DrawRectangle(&paint, STEP1, CASE7, 200, CASE8, COLORED);
+
+	if(NUMBER_OF_SEQUENCERSTEPS == 8) {	// at the moment the sequencer is limited to 8 steps
+		// draw vertical lines
+		Paint_DrawRectangle(&paint, STEP1, CASE5, STEP2, CASE8, COLORED);
+		Paint_DrawRectangle(&paint, STEP2, CASE5, STEP3, CASE8, COLORED);
+		Paint_DrawRectangle(&paint, STEP3, CASE5, STEP4, CASE8, COLORED);
+		Paint_DrawRectangle(&paint, STEP4, CASE5, STEP5, CASE8, COLORED);
+		Paint_DrawRectangle(&paint, STEP5, CASE5, STEP6, CASE8, COLORED);
+		Paint_DrawRectangle(&paint, STEP6, CASE5, STEP7, CASE8, COLORED);
+		Paint_DrawRectangle(&paint, STEP7, CASE5, STEP8, CASE8, COLORED);
+		Paint_DrawRectangle(&paint, STEP8, CASE5, STEP8+19, CASE8, COLORED);
+	}
+
+	// draw the sequencer pattern
+	DISPLAY_DrawSequencerPattern();
+
+	//DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_DrawSequencerPattern(void) {
+
+	uint8_t filledrectangle_subtract = 5;
+	uint16_t STEP, CASE;
+
+	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
+		for(int j=0; j<NUMBER_OF_SEQUENCERSTEPS; j++) {
+
+			if(Display.SequencerMatrix[i][j] == true) {
+
+				// set coordinate for notes rows
+				if( i+1 == 1 )
+					CASE = CASE5;
+				else if( i+1 == 2 )
+					CASE = CASE6;
+				else if( i+1 == 3 )
+					CASE = CASE7;
+
+				// set coordinate for sequencer steps
+				if( j+1 == 1 )
+					STEP = STEP1;
+				else if( j+1 == 2 )
+					STEP = STEP2;
+				else if( j+1 == 3 )
+					STEP = STEP3;
+				else if( j+1 == 4 )
+					STEP = STEP4;
+				else if( j+1 == 5 )
+					STEP = STEP5;
+				else if( j+1 == 6 )
+					STEP = STEP6;
+				else if( j+1 == 7 )
+					STEP = STEP7;
+				else if( j+1 == 8 )
+					STEP = STEP8;
+
+				Paint_DrawFilledRectangle(&paint, STEP+filledrectangle_subtract, CASE+filledrectangle_subtract, STEP+20-filledrectangle_subtract, CASE+20-filledrectangle_subtract, COLORED);
+			}
+		}
+	}
+
+	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_SetSequencerStep(void) {
+
+	uint8_t filledrectangle_subtract = 5;
+
+	switch(Display.CurrentNoteRow) {
+	case 1:	// Note 1 Row
+		switch(Display.CurrentSequencestep) {
+		case 1:	// Step 1..
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				timing_SN1[0] = 1;
+				Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
+			}
+			break;
+		case 2:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				timing_SN1[1] = 1;
+				Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
+			}
+			break;
+		case 3:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				timing_SN1[2] = 1;
+				Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
+			}
+			break;
+		case 4:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				timing_SN1[3] = 1;
+				Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
+			}
+			break;
+		case 5:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				timing_SN1[4] = 1;
+				Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
+			}
+			break;
+		case 6:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				timing_SN1[5] = 1;
+				Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
+			}
+			break;
+		case 7:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				timing_SN1[6] = 1;
+				Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
+			}
+			break;
+		case 8:	// ..Step 8
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				timing_SN1[7] = 1;
+				Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
+			}
+			break;
+		default:
+			break;
+		}
+		break;
+		case 2:	// Note 2 Row
+			switch(Display.CurrentSequencestep) {
+			case 1:	// Step 1..
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+					timing_SN2[0] = 1;
+					Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
+				}
+				break;
+			case 2:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+					timing_SN2[1] = 1;
+					Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
+				}
+				break;
+			case 3:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+					timing_SN2[2] = 1;
+					Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
+				}
+				break;
+			case 4:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+					timing_SN2[3] = 1;
+					Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
+				}
+				break;
+			case 5:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+					timing_SN2[4] = 1;
+					Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
+				}
+				break;
+			case 6:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+					timing_SN2[5] = 1;
+					Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
+				}
+				break;
+			case 7:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+					timing_SN2[6] = 1;
+					Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
+				}
+				break;
+			case 8:	// ..Step 8
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+					timing_SN2[7] = 1;
+					Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
+				}
+				break;
+			default:
+				break;
+			}
+			break;
+			case 3:	// Note 3 Row
+				switch(Display.CurrentSequencestep) {
+				case 1:	// Step 1..
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+						timing_SN3[0] = 1;
+						Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, COLORED);
+					}
+					break;
+				case 2:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+						timing_SN3[1] = 1;
+						Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, COLORED);
+					}
+					break;
+				case 3:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+						timing_SN3[2] = 1;
+						Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, COLORED);
+					}
+					break;
+				case 4:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+						timing_SN3[3] = 1;
+						Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, COLORED);
+					}
+					break;
+				case 5:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+						timing_SN3[4] = 1;
+						Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, COLORED);
+					}
+					break;
+				case 6:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+						timing_SN3[5] = 1;
+						Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, COLORED);
+					}
+					break;
+				case 7:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+						timing_SN3[6] = 1;
+						Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, COLORED);
+					}
+					break;
+				case 8:	// ..Step 8
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+						timing_SN3[7] = 1;
+						Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, COLORED);
+					}
+					break;
+				default:
+					break;
+				}
+				break;
+				default:
+					break;
+	}
+
+//	DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_DeleteSequencerStep(void) {
+
+	uint8_t filledrectangle_subtract = 5;
+	//Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE1+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE1+20-filledrectangle_subtract, UNCOLORED);
+
+	switch(Display.CurrentNoteRow) {
+	case 1:	// Note 1 Row
+		switch(Display.CurrentSequencestep) {
+		case 1:	// Step 1..
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				timing_SN1[0] = 0;
+				Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, UNCOLORED);
+			}
+			break;
+		case 2:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				timing_SN1[1] = 0;
+				Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, UNCOLORED);
+			}
+			break;
+		case 3:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				timing_SN1[2] = 0;
+				Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, UNCOLORED);
+			}
+			break;
+		case 4:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				timing_SN1[3] = 0;
+				Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, UNCOLORED);
+			}
+			break;
+		case 5:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				timing_SN1[4] = 0;
+				Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, UNCOLORED);
+			}
+			break;
+		case 6:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				timing_SN1[5] = 0;
+				Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, UNCOLORED);
+			}
+			break;
+		case 7:
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				timing_SN1[6] = 0;
+				Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, UNCOLORED);
+			}
+			break;
+		case 8:	// ..Step 8
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				timing_SN1[7] = 0;
+				Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, UNCOLORED);
+			}
+			break;
+		default:
+			break;
+		}
+		break;
+		case 2:	// Note 2 Row
+			switch(Display.CurrentSequencestep) {
+			case 1:	// Step 1..
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+					timing_SN2[0] = 0;
+					Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, UNCOLORED);
+				}
+				break;
+			case 2:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+					timing_SN2[1] = 0;
+					Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, UNCOLORED);
+				}
+				break;
+			case 3:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+					timing_SN2[2] = 0;
+					Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, UNCOLORED);
+				}
+				break;
+			case 4:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+					timing_SN2[3] = 0;
+					Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, UNCOLORED);
+				}
+				break;
+			case 5:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+					timing_SN2[4] = 0;
+					Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, UNCOLORED);
+				}
+				break;
+			case 6:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+					timing_SN2[5] = 0;
+					Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, UNCOLORED);
+				}
+				break;
+			case 7:
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+					timing_SN2[6] = 0;
+					Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, UNCOLORED);
+				}
+				break;
+			case 8:	// ..Step 8
+				if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+					timing_SN2[7] = 0;
+					Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, UNCOLORED);
+				}
+				break;
+			default:
+				break;
+			}
+			break;
+			case 3:	// Note 3 Row
+				switch(Display.CurrentSequencestep) {
+				case 1:	// Step 1..
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+						timing_SN3[0] = 0;
+						Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, UNCOLORED);
+					}
+					break;
+				case 2:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+						timing_SN3[1] = 0;
+						Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, UNCOLORED);
+					}
+					break;
+				case 3:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+						timing_SN3[2] = 0;
+						Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, UNCOLORED);
+					}
+					break;
+				case 4:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+						timing_SN3[3] = 0;
+						Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, UNCOLORED);
+					}
+					break;
+				case 5:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+						timing_SN3[4] = 0;
+						Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, UNCOLORED);
+					}
+					break;
+				case 6:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+						timing_SN3[5] = 0;
+						Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, UNCOLORED);
+					}
+					break;
+				case 7:
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+						timing_SN3[6] = 0;
+						Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, UNCOLORED);
+					}
+					break;
+				case 8:	// ..Step 8
+					if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+						timing_SN3[7] = 0;
+						Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE7+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE7+20-filledrectangle_subtract, UNCOLORED);
+					}
+					break;
+				default:
+					break;
+				}
+				break;
+				default:
+					break;
+	}
+
+//	DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_SetSequencerStepCursor(void) {
+
+	uint8_t rectangle_subtract = 3;
+
+	switch(Display.CurrentNoteRow) {
+	case 1:	// Note 1 Row
+		switch(Display.CurrentSequencestep) {
+		case 1:	// Step 1..
+			Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE5+rectangle_subtract, STEP1+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 2:
+			Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE5+rectangle_subtract, STEP2+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 3:
+			Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE5+rectangle_subtract, STEP3+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 4:
+			Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE5+rectangle_subtract, STEP4+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 5:
+			Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE5+rectangle_subtract, STEP5+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 6:
+			Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE5+rectangle_subtract, STEP6+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 7:
+			Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE5+rectangle_subtract, STEP7+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 8:	// ..Step 8
+			Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE5+rectangle_subtract, STEP8+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		default:
+			break;
+		}
+		break;
+		case 2:	// Note 2 Row
+			switch(Display.CurrentSequencestep) {
+			case 1:	// Step 1..
+				Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE6+rectangle_subtract, STEP1+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 2:
+				Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE6+rectangle_subtract, STEP2+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 3:
+				Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE6+rectangle_subtract, STEP3+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 4:
+				Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE6+rectangle_subtract, STEP4+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 5:
+				Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE6+rectangle_subtract, STEP5+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 6:
+				Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE6+rectangle_subtract, STEP6+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 7:
+				Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE6+rectangle_subtract, STEP7+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 8:	// ..Step 8
+				Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE6+rectangle_subtract, STEP8+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			default:
+				break;
+			}
+			break;
+			case 3:	// Note 3 Row
+				switch(Display.CurrentSequencestep) {
+				case 1:	// Step 1..
+					Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE7+rectangle_subtract, STEP1+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 2:
+					Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE7+rectangle_subtract, STEP2+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 3:
+					Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE7+rectangle_subtract, STEP3+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 4:
+					Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE7+rectangle_subtract, STEP4+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 5:
+					Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE7+rectangle_subtract, STEP5+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 6:
+					Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE7+rectangle_subtract, STEP6+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 7:
+					Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE7+rectangle_subtract, STEP7+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 8:	// ..Step 8
+					Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE7+rectangle_subtract, STEP8+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				default:
+					break;
+				}
+				break;
+				default:
+					break;
+	}
+
+	DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
+
+Display_Status DISPLAY_DeleteSequencerStepCursor(void) {
+
+	uint8_t rectangle_subtract = 3;
+
+	switch(Display.CurrentNoteRow) {
+	case 1:	// Note 1 Row
+		switch(Display.CurrentSequencestep) {
+		case 1:	// Step 1..
+			Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE5+rectangle_subtract, STEP1+20-rectangle_subtract, CASE5+20-rectangle_subtract, UNCOLORED);
+			break;
+		case 2:
+			Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE5+rectangle_subtract, STEP2+20-rectangle_subtract, CASE5+20-rectangle_subtract, UNCOLORED);
+			break;
+		case 3:
+			Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE5+rectangle_subtract, STEP3+20-rectangle_subtract, CASE5+20-rectangle_subtract, UNCOLORED);
+			break;
+		case 4:
+			Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE5+rectangle_subtract, STEP4+20-rectangle_subtract, CASE5+20-rectangle_subtract, UNCOLORED);
+			break;
+		case 5:
+			Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE5+rectangle_subtract, STEP5+20-rectangle_subtract, CASE5+20-rectangle_subtract, UNCOLORED);
+			break;
+		case 6:
+			Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE5+rectangle_subtract, STEP6+20-rectangle_subtract, CASE5+20-rectangle_subtract, UNCOLORED);
+			break;
+		case 7:
+			Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE5+rectangle_subtract, STEP7+20-rectangle_subtract, CASE5+20-rectangle_subtract, UNCOLORED);
+			break;
+		case 8:	// ..Step 8
+			Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE5+rectangle_subtract, STEP8+20-rectangle_subtract, CASE5+20-rectangle_subtract, UNCOLORED);
+			break;
+		default:
+			break;
+		}
+		break;
+		case 2:	// Note 2 Row
+			switch(Display.CurrentSequencestep) {
+			case 1:	// Step 1..
+				Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE6+rectangle_subtract, STEP1+20-rectangle_subtract, CASE6+20-rectangle_subtract, UNCOLORED);
+				break;
+			case 2:
+				Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE6+rectangle_subtract, STEP2+20-rectangle_subtract, CASE6+20-rectangle_subtract, UNCOLORED);
+				break;
+			case 3:
+				Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE6+rectangle_subtract, STEP3+20-rectangle_subtract, CASE6+20-rectangle_subtract, UNCOLORED);
+				break;
+			case 4:
+				Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE6+rectangle_subtract, STEP4+20-rectangle_subtract, CASE6+20-rectangle_subtract, UNCOLORED);
+				break;
+			case 5:
+				Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE6+rectangle_subtract, STEP5+20-rectangle_subtract, CASE6+20-rectangle_subtract, UNCOLORED);
+				break;
+			case 6:
+				Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE6+rectangle_subtract, STEP6+20-rectangle_subtract, CASE6+20-rectangle_subtract, UNCOLORED);
+				break;
+			case 7:
+				Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE6+rectangle_subtract, STEP7+20-rectangle_subtract, CASE6+20-rectangle_subtract, UNCOLORED);
+				break;
+			case 8:	// ..Step 8
+				Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE6+rectangle_subtract, STEP8+20-rectangle_subtract, CASE6+20-rectangle_subtract, UNCOLORED);
+				break;
+			default:
+				break;
+			}
+			break;
+			case 3:	// Note 3 Row
+				switch(Display.CurrentSequencestep) {
+				case 1:	// Step 1..
+					Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE7+rectangle_subtract, STEP1+20-rectangle_subtract, CASE7+20-rectangle_subtract, UNCOLORED);
+					break;
+				case 2:
+					Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE7+rectangle_subtract, STEP2+20-rectangle_subtract, CASE7+20-rectangle_subtract, UNCOLORED);
+					break;
+				case 3:
+					Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE7+rectangle_subtract, STEP3+20-rectangle_subtract, CASE7+20-rectangle_subtract, UNCOLORED);
+					break;
+				case 4:
+					Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE7+rectangle_subtract, STEP4+20-rectangle_subtract, CASE7+20-rectangle_subtract, UNCOLORED);
+					break;
+				case 5:
+					Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE7+rectangle_subtract, STEP5+20-rectangle_subtract, CASE7+20-rectangle_subtract, UNCOLORED);
+					break;
+				case 6:
+					Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE7+rectangle_subtract, STEP6+20-rectangle_subtract, CASE7+20-rectangle_subtract, UNCOLORED);
+					break;
+				case 7:
+					Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE7+rectangle_subtract, STEP7+20-rectangle_subtract, CASE7+20-rectangle_subtract, UNCOLORED);
+					break;
+				case 8:	// ..Step 8
+					Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE7+rectangle_subtract, STEP8+20-rectangle_subtract, CASE7+20-rectangle_subtract, UNCOLORED);
+					break;
+				default:
+					break;
+				}
+				break;
+				default:
+					break;
+	}
+
+	DISPLAY_Update();
+
+	return DISPLAY_OK;
+}
 
 /** @brief this function edits the ON/OFF settings of the Voices
  *

@@ -22,8 +22,12 @@
  */
 #define VALUE_ROW_LENGTH 10
 #define NUMBER_OF_SOURCES 5
-#define NUMBER_OF_DRUMSTEPS 8
+// Drumcomputer
 #define MAX_NUMBER_OF_SAMPLES 4
+#define NUMBER_OF_DRUMSTEPS 8
+// Sequencer
+#define MAX_NUMBER_OF_NOTES 3
+#define NUMBER_OF_SEQUENCERSTEPS 8
 
 typedef enum {
 	CASE0 = 10,
@@ -264,19 +268,28 @@ struct display_variables {
 	char value_str_tremolo[9][10];
 	char value_str_keyboardmode[9][10];
 	char value_str_drumcomputer[2][10];
+	char value_str_sequencer[8][10];
 
-	// Drummachine
+	// Drumcomputer
 	uint8_t lastCurrentSampleRow;
 	uint8_t CurrentSampleRow;
-	//uint8_t MaxNumberOfSamples;
 	uint8_t lastCurrentDrumstep;
 	uint8_t CurrentDrumstep;
-	//uint8_t NumberOfDrumsteps;
 	bool DrumMatrix[MAX_NUMBER_OF_SAMPLES][NUMBER_OF_DRUMSTEPS];
 	bool UpdateDisplay;
 	bool Drumcomputer_ONOFF;
 	bool EditDrums;
 	uint8_t currentDrumcomputer;
+
+	// Sequencer
+	uint8_t CurrentNoteRow;
+	uint8_t CurrentSequencestep;
+	bool Sequencer_ONOFF;
+	char Sequencer_Note[4];
+	char Sequencer_Octave[4];
+	bool SequencerMatrix[MAX_NUMBER_OF_NOTES][NUMBER_OF_SEQUENCERSTEPS];
+	bool EditSteps;
+	uint8_t currentSequencer;
 };
 
 struct display_variables Display;
@@ -301,13 +314,24 @@ void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 // Display Drum Computer
 Display_Status p_Drumcomputer_overview(void);
 Display_Status p_Drumcomputer_Settings(void);
-Display_Status Display_DrawDrumcomputerIcons(unsigned char* frame_buffer);
+Display_Status Display_DrawDrumcomputerIcons(void);
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
 Display_Status DISPLAY_DrawDrumcomputerPattern(void);
 Display_Status DISPLAY_SetDrumcomputerStep(void);
 Display_Status DISPLAY_DeleteDrumcomputerStep(void);
 Display_Status DISPLAY_SetDrumcomputerStepCursor(void);
 Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void);
+
+// Display Sequencer
+Display_Status p_Sequencer_overview(void);
+Display_Status p_Sequencer_Settings(void);
+Display_Status Display_DrawSequencerIcons(void);
+Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps);
+Display_Status DISPLAY_DrawSequencerPattern(void);
+Display_Status DISPLAY_SetSequencerStep(void);
+Display_Status DISPLAY_DeleteSequencerStep(void);
+Display_Status DISPLAY_SetSequencerStepCursor(void);
+Display_Status DISPLAY_DeleteSequencerStepCursor(void);
 
 // Page functions
 void DISPLAY_processing(void);

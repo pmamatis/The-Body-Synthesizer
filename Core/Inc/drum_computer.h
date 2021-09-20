@@ -12,6 +12,17 @@
 #include <stdint.h>
 #include "wav_LUT.h"
 
+//typedef enum {
+//	CLAP_909 = '909_Clap.txt',
+//	CLOSED_HH_909 = '909_ClosedHiHat.txt'
+////	HITOM_909,
+////	KICK_909,
+////	LOWTOM_909,
+////	MIDTOM_909,
+////	OPEN_HH_909,
+////	RIMSHOT_909
+//} sample_names;
+
 // Common Sample Length & Time Signature
 #define FourFour 8
 #define ThreeFour 12

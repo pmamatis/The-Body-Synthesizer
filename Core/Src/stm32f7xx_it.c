@@ -420,7 +420,7 @@ void DMA2_Stream2_IRQHandler(void)
 {
 	/* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
 
-	// Start Drumcomputer Processing
+	// START Drumcomputer Processing
 	if(Display.EditDrums == true) {
 		//if(Display.EditDrums == true && Display.Drumcomputer_ONOFF == true) {	// diese if-Abfrage überarbeiten, da sonst der Joystick spinnt (Warum???) ?
 
@@ -454,20 +454,62 @@ void DMA2_Stream2_IRQHandler(void)
 			DISPLAY_SetDrumcomputerStepCursor();
 		}
 
-		Display.lastCurrentDrumstep = Display.CurrentDrumstep;
-		Display.lastCurrentSampleRow = Display.CurrentSampleRow;
+		//		Display.lastCurrentDrumstep = Display.CurrentDrumstep;
+		//		Display.lastCurrentSampleRow = Display.CurrentSampleRow;
 	}
 	// END Drumcomputer Processing
 
-	else if(Display.EditDrums == false) {
+	// START Sequencer Processing
+	if(Display.EditSteps == true) {
+		//if(Display.EditSteps == true && Display.Sequencer_ONOFF == true) {	// diese if-Abfrage überarbeiten, da sonst der Joystick spinnt (Warum???) ?
+
+		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
+			DISPLAY_Update();
+			Display.UpdateDisplay = false;
+		}
+
+		if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick down
+			DISPLAY_DeleteSequencerStepCursor();
+			if(Display.CurrentNoteRow < MAX_NUMBER_OF_NOTES)	// Display.CurrentNoteRow should be maximum the number of notes
+				Display.CurrentNoteRow++;
+			DISPLAY_SetSequencerStepCursor();
+		}
+		else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick up
+			DISPLAY_DeleteSequencerStepCursor();
+			if(Display.CurrentNoteRow > 1)	// Display.CurrentNoteRow should be minimum 1
+				Display.CurrentNoteRow--;
+			DISPLAY_SetSequencerStepCursor();
+		}
+		if(Display.ADC2inputs[0] > Display.UpperLimit) {	// joystick left
+			DISPLAY_DeleteSequencerStepCursor();
+			if(Display.CurrentSequencestep > 1)	// Display.CurrentSequencestep should be minimum 1
+				Display.CurrentSequencestep--;
+			DISPLAY_SetSequencerStepCursor();
+		}
+		else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// joystick right
+			DISPLAY_DeleteSequencerStepCursor();
+			if(Display.CurrentSequencestep < NUMBER_OF_SEQUENCERSTEPS)	// Display.CurrentSequencestep should be maximum the number of sequencer steps
+				Display.CurrentSequencestep++;
+			DISPLAY_SetSequencerStepCursor();
+		}
+
+		//		Display.lastCurrentDrumstep = Display.CurrentDrumstep;
+		//		Display.lastCurrentSampleRow = Display.CurrentSampleRow;
+	}
+	// END Sequencer Processing
+
+	// joystick usable if sequencer steps and drums not edited at the moment
+	if( !(Display.EditDrums || Display.EditSteps) ) {
+		//	else if(Display.EditSteps == false) {
+	//else if(Display.EditDrums == false) {
 		// arrow up or down
 		if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
-			if (Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
+			if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
 				DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
 				DISPLAY_processing();
 				DISPLAY_Update();
 			}
-			else if (Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
+			else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
 				DISPLAY_ArrowUp(&(Display.JoystickParameterPosition));
 				DISPLAY_processing();
 				DISPLAY_Update();
@@ -492,7 +534,8 @@ void DMA2_Stream2_IRQHandler(void)
 		}
 	}
 
-	if(Display.pagePosition == 2 && Display.currentDrumcomputer > 0 && Display.JoystickParameterPosition == 2) {	// BPM setting
+	// BPM setting
+	if(Display.pagePosition == 2 && Display.currentDrumcomputer > 0 && Display.JoystickParameterPosition == 2) {
 
 		BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause at low BPMs cause fuckups
 		BPM = roundf(BPM);
@@ -557,7 +600,7 @@ void DMA2_Stream2_IRQHandler(void)
 		}
 	}
 
-	//	printf("%i\r\n", Display.ADC2inputs[2]);
+	//	printf("Poti: %i\r\n", Display.ADC2inputs[2]);
 	Display.Poti_Threshold = 50;
 	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
 		//printf("Poti triggered\r\n");
