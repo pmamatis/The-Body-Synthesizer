@@ -7,6 +7,14 @@
 
 #include "input_interfaces.h"
 
+
+
+void II_init(){
+	log_mapping_F = log(LUT_FMAX);
+	filter_step_counter = 10;
+}
+
+
 /** starts the Interface Timer Interrupt
  *
  */
@@ -233,8 +241,8 @@ uint8_t II_Display_Effects(void){
 
 			}
 		}
-		Tremolo.lfo_data->lfo_depth = Display.Tremolo_Depth;
-		Tremolo.lfo_data->lfo_frequency = Display.Tremolo_Rate;
+		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
+		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 	}
 	else if (Display.Distortion_ONOFF == false){
 		effects_delete(TREM, 1);
@@ -256,7 +264,7 @@ uint8_t II_Display_Effects(void){
 						if (Display.Filter_Cutoff > 0 ) {
 							////printf("decrease cuttoff Rate\r\n");
 							Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] - LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
-							Filters_Reinit(Display.Filter_Cutoff[0]);
+							Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
 						}
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -264,7 +272,7 @@ uint8_t II_Display_Effects(void){
 						if (Display.Filter_Cutoff[0] <  II_FILTER_CUTTOFF_STEP_SIZE) {
 							////printf("increase cuttoff Rate\r\n");
 							Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
-							Filters_Reinit(Display.Filter_Cutoff[0]);
+							Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
 						}
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -274,8 +282,9 @@ uint8_t II_Display_Effects(void){
 					if (sensorData.tilt_detected == TILT_LEFT ){
 							if (Display.Filter_Cutoff[0] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
 								printf("decrease cuttoff Rate\r\n");
-								Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] - LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE;
-								Filters_Reinit(Display.Filter_Cutoff[0]);
+								filter_step_counter--;
+								Display.Filter_Cutoff[0]=  exp(((float)filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+								Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
 							}
 							sensorData.tilt_detected = TILT_NONE;
 						}
@@ -283,8 +292,11 @@ uint8_t II_Display_Effects(void){
 						else if (sensorData.tilt_detected == TILT_RIGHT){
 							if (Display.Filter_Cutoff[0] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
 								printf("increase cuttoff Rate\r\n");
-								Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
-								Filters_Reinit(Display.Filter_Cutoff[0]);
+								filter_step_counter++;
+								Display.Filter_Cutoff[0]=  exp(((float)filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+//								Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
+
+								Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
 
 
 							}
@@ -485,3 +497,5 @@ void II_pVwECG(void){
 		}
 	}
 }
+
+

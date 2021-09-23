@@ -58,12 +58,17 @@ extern "C" {
 // EMG
 #include "emg.h"
 
+//Drummachine
+#include "drum_computer.h"
+
+
 // Display
 #include "display.h"
 #include "input_interfaces.h"
 
 //Gyroskop SPI
 #include "SPI_Connection.h"
+
 
 /* USER CODE END Includes */
 
@@ -113,6 +118,8 @@ void Error_Handler(void);
 #define Poti_GPIO_Port GPIOC
 #define KEYBOARD_ADC_Pin GPIO_PIN_2
 #define KEYBOARD_ADC_GPIO_Port GPIOC
+#define ADC_DISTANCE_Pin GPIO_PIN_3
+#define ADC_DISTANCE_GPIO_Port GPIOC
 #define DISP_DC_Pin GPIO_PIN_0
 #define DISP_DC_GPIO_Port GPIOA
 #define VRx_Pin GPIO_PIN_6
@@ -153,8 +160,7 @@ void Error_Handler(void);
 #define SUPPORT_POINTS 20
 
 /**@brief output array size */
-//#define BLOCKSIZE 8192 //
-#define BLOCKSIZE 8192/4 // Latenz
+#define BLOCKSIZE 480 // Latenz = 20ms @ 24kHz S
 
 //Variables
 

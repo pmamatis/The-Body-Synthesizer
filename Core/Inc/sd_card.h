@@ -19,7 +19,7 @@ FATFS fs;  // file system
 FIL fil; // File
 FILINFO fno;
 FRESULT fresult;  // result
-char txtfile_array[100];	// could be also higher if necessary
+char txtfile_array[40000];	// could be also higher if necessary
 UINT br, bw;  // File read/write count
 DIR dj;	// directory object
 
@@ -28,7 +28,7 @@ FATFS *pfs;
 DWORD fre_clust;
 uint32_t total, free_space;
 
-#define BUFFER_SIZE 128	// should be bigger for even bigger files
+#define BUFFER_SIZE 1000	// should be bigger for even bigger files
 char buffer[BUFFER_SIZE];  // to store strings..
 
 int bufsize (char *buf);
@@ -49,7 +49,7 @@ void sd_card_write_newfile(char *filename, char *filecontent, UART_HandleTypeDef
 
 void sd_card_write_appendfile(char *filename, char *filecontent, UART_HandleTypeDef huart);
 
-void sd_card_read(char *filename, UART_HandleTypeDef huart);
+void sd_card_read(char *filename, float *LUT, UART_HandleTypeDef huart);
 
 void sd_card_remove_file(char *filename, UART_HandleTypeDef huart);
 

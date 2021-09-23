@@ -24,6 +24,14 @@
 
 #define NUMBER_OF_SOURCES 5
 
+// Drumcomputer
+#define MAX_NUMBER_OF_SAMPLES 4
+#define NUMBER_OF_DRUMSTEPS 8
+// Sequencer
+#define MAX_NUMBER_OF_NOTES 3
+#define NUMBER_OF_SEQUENCERSTEPS 8
+
+
 typedef enum {
 	CASE0 = 10,
 	CASE1 = 30,
@@ -38,6 +46,17 @@ typedef enum {
 }y_row_value;
 
 typedef enum {
+	STEP1 = 40,
+	STEP2 = 60,
+	STEP3 = 80,
+	STEP4 = 100,
+	STEP5 = 120,
+	STEP6 = 140,
+	STEP7 = 160,
+	STEP8 = 180
+} drumcomputer_step_coordinate;
+
+typedef enum {
 	DISPLAY_FAIL = -1,
 	DISPLAY_OK = 1
 } Display_Status;
@@ -46,7 +65,6 @@ typedef enum {
 	NONE = -1,
 	KEYBOARD = 0,
 	BODYSYNTH = 1,
-	GYRO = 2
 }synth_mode_t;
 
 typedef enum {
@@ -55,6 +73,7 @@ typedef enum {
 	GYRO_FB,
 	EMG,
 	EKG,
+	DISTANCE
 
 }source_t;
 
@@ -175,7 +194,7 @@ struct display_variables {
 
 	// ADC input arrays
 	uint32_t ADC1input;
-	uint16_t ADC2inputs[3];
+	uint16_t ADC2inputs[4];
 	uint16_t ADC3inputs[2];
 
 	// Joystick-variables
@@ -192,6 +211,9 @@ struct display_variables {
 	uint16_t last_joystick_x;
 	uint16_t last_joystick_y;
 	uint16_t UpdateThreshold;
+
+	//Distance Sensor
+//	float
 
 	//Draw Parameters
 	bool arrow_flag;
@@ -240,7 +262,8 @@ struct display_variables {
 	source_t EQ_Gain_Sources[5];				// sources for gain of 5 frequency bands
 	source_t Distortion_Sources;				// sources for gain
 	source_t Tremolo_Sources[2];				// sources for rate and depth
-	//page value strings
+
+	// page value strings
 	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
 	char value_str_voices_overview[9][10];
 	char value_str_voices_settings[3][9][10];
@@ -251,6 +274,29 @@ struct display_variables {
 	char value_str_distortion[9][10];
 	char value_str_tremolo[9][10];
 	char value_str_keyboardmode[9][10];
+	char value_str_drumcomputer[2][10];
+	char value_str_sequencer[8][10];
+
+	// Drumcomputer
+	uint8_t lastCurrentSampleRow;
+	uint8_t CurrentSampleRow;
+	uint8_t lastCurrentDrumstep;
+	uint8_t CurrentDrumstep;
+	bool DrumMatrix[MAX_NUMBER_OF_SAMPLES][NUMBER_OF_DRUMSTEPS];
+	bool UpdateDisplay;
+	bool Drumcomputer_ONOFF;
+	bool EditDrums;
+	uint8_t currentDrumcomputer;
+
+	// Sequencer
+	uint8_t CurrentNoteRow;
+	uint8_t CurrentSequencestep;
+	bool Sequencer_ONOFF;
+	char Sequencer_Note[4];
+	char Sequencer_Octave[4];
+	bool SequencerMatrix[MAX_NUMBER_OF_NOTES][NUMBER_OF_SEQUENCERSTEPS];
+	bool EditSteps;
+	uint8_t currentSequencer;
 };
 
 struct display_variables Display;
@@ -272,10 +318,31 @@ void DISPLAY_SwitchPageRight(void);
 void DISPLAY_Update(void);
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 
+
+// Display Drum Computer
+Display_Status Display_DrawDrumcomputerIcons(void);
+Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
+Display_Status DISPLAY_DrawDrumcomputerPattern(void);
+Display_Status DISPLAY_SetDrumcomputerStep(void);
+Display_Status DISPLAY_DeleteDrumcomputerStep(void);
+Display_Status DISPLAY_SetDrumcomputerStepCursor(void);
+Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void);
+
+
+// Display Sequencer
+
+Display_Status Display_DrawSequencerIcons(void);
+Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps);
+Display_Status DISPLAY_DrawSequencerPattern(void);
+Display_Status DISPLAY_SetSequencerStep(void);
+Display_Status DISPLAY_DeleteSequencerStep(void);
+Display_Status DISPLAY_SetSequencerStepCursor(void);
+Display_Status DISPLAY_DeleteSequencerStepCursor(void);
+
+
 //Page functions
 void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
-//void p_Voices(void);
 void p_Voices_overview(void);
 void p_Voices_Settings(void);
 void p_ADSR_overview(struct adsr* envelope);
@@ -285,6 +352,11 @@ void p_Equalizer_Settings(void);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_KeyboardSetParameters(struct adsr* envelope);
+Display_Status p_Drumcomputer_overview(void);
+Display_Status p_Drumcomputer_Settings(void);
+Display_Status p_Sequencer_overview(void);
+Display_Status p_Sequencer_Settings(void);
+
 void p_Dummy(void);
 
 #endif /* INC_DISPLAY_H_ */

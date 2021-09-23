@@ -59,18 +59,19 @@ uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
 enum effects_using_LFO{
 	TREMOLLO = 0,
 };
-
 //Effects
 struct effects_lfo_t{
 
 	uint32_t lfo_index;
 	uint8_t lfo_quarter;
-	float lfo_frequency;
 	uint32_t lfo_blocksizecounter;
+	float lfo_frequency;
+	float lfo_data;
 	float lfo_depth;
 };
 
-struct effects_lfo_t lfo;
+struct effects_lfo_t lfo_tremolo;
+struct effects_lfo_t lfo_wahwah;
 
 enum singnal_synthesis_enum{
 	note_key = 0,
@@ -96,6 +97,13 @@ uint8_t outputBuffer_position;
 struct signal_t signals1;
 struct signal_t signals2;
 
+/** defines volume of the Voices, Drummachine and Sequencer
+ * 0 -> Voices
+ * 1 -> Drums
+ * 2 -> Sequencer
+ * */
+float volume[3];
+
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
@@ -104,7 +112,7 @@ void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
 //void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID);
 void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
-float LFO_SingleValueProcess(struct effects_lfo_t* effect);
+void LFO_SingleValueProcess(struct effects_lfo_t* lfo) ;
 float AWGN_generator(void);
 uint8_t IDtoIndex(uint8_t ID);
 

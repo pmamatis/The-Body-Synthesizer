@@ -14,13 +14,18 @@
 #define II_MAX_VOICES 3
 #define II_SR 50
 #define II_TREM_DEPTH_STEP_SIZE 20
-#define II_FILTER_CUTTOFF_STEP_SIZE 50
+#define II_FILTER_CUTTOFF_STEP_SIZE 400
 uint8_t ii_voice_IDs[II_MAX_VOICES];
 //uint8_t II_raiseNote(uint8_t ID,uint8_t octave,char oldKey);
 
+/** value for Frequency as ln*/
+double log_mapping_F;
+/** actual step of the filter cuttoff */
+uint16_t filter_step_counter;
+
 bool emg_triggerd_flag;
 
-
+void II_init();
 void II_startInterface(TIM_HandleTypeDef* htim);
 void II_raiseNote(uint8_t ID);
 void II_decreaseNote(uint8_t ID);

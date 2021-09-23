@@ -327,6 +327,8 @@ void TIM3_IRQHandler(void)
   /* USER CODE BEGIN TIM3_IRQn 0 */
 II_Display_Voices();
 II_Display_Effects();
+//SetupPeakingEQ(&EQ_BAND2_I, 267, 0.707, 6);
+
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
@@ -507,7 +509,7 @@ void DMA2_Stream2_IRQHandler(void)
 	else{
 		Display.poti_moved = false;
 	}
-
+//	printf("%i\n\r",Display.ADC2inputs[3]);
 
   /* USER CODE END DMA2_Stream2_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_adc2);

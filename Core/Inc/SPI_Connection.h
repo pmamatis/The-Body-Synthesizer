@@ -35,7 +35,7 @@ void spiC_Init(SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim);
 
 
 #define BUFFERSIZE sizeof(sensor_data_t)
-#define SPI_SR 10 //spi SAMPLE rate
+#define SPI_SR 50 //spi SAMPLE rate
 
 #endif /* INC_SPI_CONNECTION_H_ */
 

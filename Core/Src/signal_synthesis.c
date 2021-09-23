@@ -24,6 +24,11 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	//Inits and starts timer connected with DAC
 	SetTimerSettings(&htim, LUT_SR);
 	return HAL_TIM_Base_Start(&htim);
+
+	//set volume
+	for(int i =0 ;i<3;i++){
+		volume[i] = 1;
+	}
 }
 
 
@@ -91,13 +96,13 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 	}
 	signals -> max = 1;
 
-//	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
-//		if(!ID_array[NewSignal_count]){
-//			signals -> ID[NewSignal_count] = NewSignal_count;
-//			ID_array[NewSignal_count] = 1;
-//		}
-//
-//	}
+	//	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
+	//		if(!ID_array[NewSignal_count]){
+	//			signals -> ID[NewSignal_count] = NewSignal_count;
+	//			ID_array[NewSignal_count] = 1;
+	//		}
+	//
+	//	}
 
 
 }
@@ -176,35 +181,35 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 	}
 
-
-
 	//Loop for signal synthesis
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
-				addValue = 0;
-				//Loop to reach all Signals
-				for (int j = 0; j < count;j++){
-					switch (signals -> kind[j]) {
-					case SIN:
-						//adds all SIN values from the signals to addValue
-						addValue = addValue + LUT[signals -> current_LUT_Index[j]];
+		addValue = 0;
+		//Loop to reach all Signals
+		for (int j = 0; j < count;j++){
+			switch (signals -> kind[j]) {
+			case SIN:
+				//adds all SIN values from the signals to addValue
+				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 
-						//get index for the next sin value
-						signals -> current_LUT_Index[j]++;
-						if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
-						{
-							signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
-						}
-						break;
+				//get index for the next sin value
+				signals -> current_LUT_Index[j]++;
+				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
+				{
+					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+				}
+				break;
 
-					case NOISE:
-						addValue += AWGN_generator();
-						break;
-					}//Switch-Case
-				}// Signal counter for-loop
+			case NOISE:
+				//addValue += AWGN_generator();
+				addValue += (2*(float)rand()/sizeof(int))-1;
+				break;
+			}//Switch-Case
+		}// Signal counter for-loop
 
 
 		//write into calculate vector
-		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
+		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
+
 
 
 		/*limiter function*/
@@ -213,15 +218,31 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//Effekte
-//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+			//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		//Drummachine
+		if ((volume[1]>0)||(volume[2]>0)){
+			Drum_Computer_Process();
+		}
+		else{
+			drums = 0 ;
+			sequencer = 0 ;
+		}
+
+		//Add all values
+		calculate_vector_tmp[BLOCKSIZE_counter] +=  (volume[1] *  drums + volume[2] * sequencer) ;
+
+
+
+
 
 		//OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//maximum
-				if (signals -> max < fabs((double)addValue)){
-					signals -> max = fabs((double)addValue);
-				}
+		if (signals -> max < fabs((double)addValue)){
+			signals -> max = fabs((double)addValue);
+		}
 
 		//		//scale output signal depending on amount of voices
 		//		switch (signals -> count){
@@ -257,99 +278,344 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 	// save current LUT index into signals1,
-			for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
-				signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
-			}
+	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
+		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
+	}
 
 }//Signal Synthesis
 
-/** @brief generates a low frequency sine to be used for effects
- *  @param effect: struct which contains the parameter for the effect which want to use the LFO
- *
- */
+void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
-void Signal_Synthesis_LFO(struct effects_lfo_t* effect) {
+	lfo->lfo_data = 0;
 
-	float frequency = effect->lfo_frequency;
-	uint8_t quarter = effect->lfo_quarter;
-	uint32_t index = effect->lfo_index;
-	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
+	// CASE 1: 0.125 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[0]){
 
-	// calculate ratio between LFO frequency and minimum processable frequency
-	float frequency_ratio = frequency / LFO_FMIN;
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[0] - 1) {
 
-	if(LFO_blocksizecounter == BLOCKSIZE/2) {
-		LFO_blocksizecounter = 0;
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[0]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[0]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
 	}
+	// CASE 2: 0.25 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[1]){
 
-	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
-	if(index  > LFO_ENDINDEX[0]) {
-		index = 0;
-		quarter++;
-		if (quarter > 3)
-			quarter = 0;
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[1] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[1]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[1] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[1]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[1] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
 	}
+	// CASE 3: 0.5 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[2]){
 
-	switch(quarter) {
-	case 0:
-		effect_LFO[LFO_blocksizecounter] = LFO[index];
-		break;
-	case 1:
-		effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];
-		break;
-	case 2:
-		effect_LFO[LFO_blocksizecounter] = -LFO[index];
-		break;
-	case 3:
-		effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];
-		break;
-	default:
-		break;
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[2] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[2]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[2] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[2]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[2] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
 	}
-	index = round((double)(index + frequency_ratio));
+	// CASE 4: 1 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[3]){
 
-	//save current state into given effect struct
-	effect->lfo_blocksizecounter = LFO_blocksizecounter;
-	effect->lfo_index = index;
-	effect->lfo_quarter = quarter;
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[3] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[3]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[3] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[3]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[3] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 5: 2 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[4]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[4] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[4]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[4] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[4]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[4] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 6: 4 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[5]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[5] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[5]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[5] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[5]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[5] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 7: 8 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[6]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[6] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[6]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[6] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[6]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[6] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
+	// CASE 8: 16 Hz
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[7]){
+
+		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+		if(lfo->lfo_index == LFO_SUPPORTPOINTS[7] - 1) {
+
+			lfo->lfo_index = 0;
+			lfo->lfo_quarter++;
+			if (lfo->lfo_quarter > 3)
+				lfo->lfo_quarter = 0;
+		}
+
+		switch(lfo->lfo_quarter) {
+		case 0:
+			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[7]];
+			break;
+		case 1:
+			lfo->lfo_data = LFO[LFO_ENDINDEX[7] - lfo->lfo_index];
+			break;
+		case 2:
+			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[7]];
+			break;
+		case 3:
+			lfo->lfo_data = -LFO[LFO_ENDINDEX[7] - lfo->lfo_index];
+			break;
+		default:
+			break;
+		}
+		lfo->lfo_index++;
+	}
 }
 
+///** @brief generates a low frequency sine to be used for effects
+// *  @param effect: struct which contains the parameter for the effect which want to use the LFO
+// *
+// */
+//void Signal_Synthesis_LFO(struct effects_lfo_t* effect) {
+//
+//	float frequency = effect->lfo_frequency;
+//	uint8_t quarter = effect->lfo_quarter;
+//	uint32_t index = effect->lfo_index;
+//	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
+//
+//	// calculate ratio between LFO frequency and minimum processable frequency
+//	float frequency_ratio = frequency / LFO_FMIN;
+//
+//	if(LFO_blocksizecounter == BLOCKSIZE/2) {
+//		LFO_blocksizecounter = 0;
+//	}
+//
+//	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
+//	if(index  > LFO_ENDINDEX[0]) {
+//		index = 0;
+//		quarter++;
+//		if (quarter > 3)
+//			quarter = 0;
+//	}
+//
+//	switch(quarter) {
+//	case 0:
+//		effect_LFO[LFO_blocksizecounter] = LFO[index];
+//		break;
+//	case 1:
+//		effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];
+//		break;
+//	case 2:
+//		effect_LFO[LFO_blocksizecounter] = -LFO[index];
+//		break;
+//	case 3:
+//		effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];
+//		break;
+//	default:
+//		break;
+//	}
+//	index = round((double)(index + frequency_ratio));
+//
+//	//save current state into given effect struct
+//	effect->lfo_blocksizecounter = LFO_blocksizecounter;
+//	effect->lfo_index = index;
+//	effect->lfo_quarter = quarter;
+//}
 
-float LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
-	float effect_LFO = 0;
-
-	// calculate ratio between LFO_LUT frequency and desired frequency
-	float frequency_ratio = lfo->lfo_frequency / LFO_FMIN;
-
-	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
-	if(lfo->lfo_index  > LFO_ENDINDEX[0]) {
-		lfo->lfo_index = 0;
-		lfo->lfo_quarter++;
-		if (lfo->lfo_quarter > 3)
-			lfo->lfo_quarter = 0;
-	}
-
-	switch(lfo->lfo_quarter) {
-	case 0:
-		effect_LFO = LFO[lfo->lfo_index];
-		break;
-	case 1:
-		effect_LFO = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
-		break;
-	case 2:
-		effect_LFO = -LFO[lfo->lfo_index];
-		break;
-	case 3:
-		effect_LFO = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
-		break;
-	default:
-		break;
-	}
-	lfo->lfo_index = round((double)(lfo->lfo_index + frequency_ratio));
-
-	return effect_LFO;
-}
+//float LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
+//
+//	float effect_LFO = 0;
+//
+//	// calculate ratio between LFO_LUT frequency and desired frequency
+//	float frequency_ratio = lfo->lfo_frequency / LFO_FMIN;
+//
+//	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
+//	if(lfo->lfo_index  > LFO_ENDINDEX[0]) {
+//		lfo->lfo_index = 0;
+//		lfo->lfo_quarter++;
+//		if (lfo->lfo_quarter > 3)
+//			lfo->lfo_quarter = 0;
+//	}
+//
+//	switch(lfo->lfo_quarter) {
+//	case 0:
+//		effect_LFO = LFO[lfo->lfo_index];
+//		break;
+//	case 1:
+//		effect_LFO = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+//		break;
+//	case 2:
+//		effect_LFO = -LFO[lfo->lfo_index];
+//		break;
+//	case 3:
+//		effect_LFO = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+//		break;
+//	default:
+//		break;
+//	}
+//	lfo->lfo_index = round((double)(lfo->lfo_index + frequency_ratio));
+//
+//	return effect_LFO;
+//}
 
 
 /* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */

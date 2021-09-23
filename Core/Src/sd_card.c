@@ -136,7 +136,7 @@ void sd_card_write_appendfile(char *filename, char *filecontent, UART_HandleType
 	clear_buffer();
 }
 
-void sd_card_read(char *filename, UART_HandleTypeDef huart) {
+void sd_card_read(char *filename, float *LUT, UART_HandleTypeDef huart) {
 	// FA_READ - Specifies read access to the object. Data can be read from the file.
 	// FA_WRITE - Specifies write access to the object. Data can be written to the file. Combine with FA_READ for read-write access.
 	// FA_OPEN_EXISTING - Opens the file. The function fails if the file is not existing. (Default)
@@ -151,13 +151,32 @@ void sd_card_read(char *filename, UART_HandleTypeDef huart) {
 		send_uart ("file is open and the data is shown below\n\r", huart);
 
 	// Read data from the file - Please see the function details for the arguments
-	f_read (&fil, buffer, f_size(&fil), &br);
-	send_uart(buffer, huart);
-	send_uart("\n\r", huart);
+
+	uint32_t Cycles = (uint32_t)f_size(&fil) / BUFFER_SIZE; // 400
+	uint32_t NoLength = 10;
+	uint32_t NoSamples = 100;
+
+	char SampleTemp[NoLength];
+
+	for(int i = 0; i < Cycles; i++) {
+
+		f_read (&fil, buffer, BUFFER_SIZE, &br);
+		br = br + BUFFER_SIZE;
+
+		for(int j = 0; j < NoSamples; j++) {
+
+			for(int k = 0; k < NoLength; k++){
+
+				SampleTemp[k] = buffer[j*NoLength+k];
+			}
+			LUT[i*NoSamples+j] = atof(SampleTemp)-1;
+		}
+	}
 
 	// Close file
 	f_close(&fil);
 
+	// Clear buffer
 	clear_buffer();
 }
 

@@ -20,8 +20,7 @@ void effects_process(float* calculate_value) {
 		for(int i=0; i<MAX_EFFECTS; i++) {
 			switch(effect_order[i]) {
 			case TREM:
-				lfo_value = LFO_SingleValueProcess(&lfo);
-				ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
+				ProcessTremolo(&Tremolo, calculate_value);
 				break;
 			case EQ:
 				ProcessEQ(calculate_value);
@@ -40,23 +39,28 @@ void effects_process(float* calculate_value) {
 //	else if(Display.mode == KEYBOARD) {
 //		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
 //	}
-	 if(emg_triggerd_flag || keyboard_pressed_flag) {
-		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
-	}
+//	 if(emg_triggerd_flag || keyboard_pressed_flag) {
+//		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
+//	}
 }
 
 
 
 void effects_process_fast(float* calculate_value){
+//
+	if(effect_order[1] == TREM){
+		ProcessTremolo(&Tremolo, calculate_value);
+	}
+
+
+
+
 
 	if(effect_order[0] == EQ){
+
 		ProcessEQ(calculate_value);
 	}
-
-	if(effect_order[1] == TREM){
-		lfo_value = LFO_SingleValueProcess(&lfo);
-		ProcessTremolo(&Tremolo, calculate_value, &lfo_value);
-	}
+//
 
 	if(effect_order[2] == DIST_H){
 		ProcessHardClippingDistortion(&HardClipping, calculate_value);
@@ -67,7 +71,7 @@ void effects_process_fast(float* calculate_value){
 		ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
 	}
 	 if(emg_triggerd_flag || keyboard_pressed_flag) {
-		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
+//		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
 	}
 }
 
