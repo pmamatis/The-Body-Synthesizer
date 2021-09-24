@@ -354,7 +354,7 @@ int main(void)
 //	NewSignal(&signals1,SIN, 'C',1);
 //	NewSignal(&signals1,SIN, 'C',2,0);
 //	NewSignal(&signals1,SIN, 'C',3,1);
-//	NewSignal(&signals1,SIN, 'C',4,2);
+//	NewSignal(&signals1,SIN, 'C',2,6);
 //	NewSignal(&signals1,SIN, 'G',0,3);
 //	NewSignal(&signals1,SIN, 'G',1);
 //	NewSignal(&signals1,SIN, 'C',3,3);
@@ -371,6 +371,47 @@ int main(void)
 
 	//effects_add(EQ, 0);
 	//effects_add(DIST_S, 0);
+//
+//	// Kick
+//		timing_DS1[0] = 1;
+//		timing_DS1[1] = 0;
+//		timing_DS1[2] = 0;
+//		timing_DS1[3] = 0;
+//		timing_DS1[4] = 1;
+//		timing_DS1[5] = 0;
+//		timing_DS1[6] = 0;
+//		timing_DS1[7] = 0;
+//
+//		// Hihat
+//		timing_DS2[0] = 0;
+//		timing_DS2[1] = 0;
+//		timing_DS2[2] = 1;
+//		timing_DS2[3] = 0;
+//		timing_DS2[4] = 0;
+//		timing_DS2[5] = 0;
+//		timing_DS2[6] = 1;
+//		timing_DS2[7] = 0;
+//
+//		// Clap
+//		timing_DS3[0] = 0;
+//		timing_DS3[1] = 0;
+//		timing_DS3[2] = 0;
+//		timing_DS3[3] = 0;
+//		timing_DS3[4] = 1;
+//		timing_DS3[5] = 0;
+//		timing_DS3[6] = 0;
+//		timing_DS3[7] = 0;
+//
+//	//	// LowTom
+//		timing_DS4[0] = 0;
+//		timing_DS4[1] = 0;
+//		timing_DS4[2] = 1;
+//		timing_DS4[3] = 1;
+//		timing_DS4[4] = 0;
+//		timing_DS4[5] = 0;
+//		timing_DS4[6] = 0;
+//		timing_DS4[7] = 1;
+
 
 
 	/* Manuel setings

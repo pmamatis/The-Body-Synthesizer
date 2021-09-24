@@ -607,7 +607,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 		}
 	}
 
-	drums = 2.5 * DS1s + DS2s + DS3s + DS4s;
+	drums =  DS1s + DS2s + DS3s + DS4s;
 	sequencer = SN1 + SN2 + SN3 + SN4;
 
 	return HAL_OK;
@@ -666,7 +666,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse() {
 			}
 		}
 	}
-	drums = 1.5 * DS1s + DS2s + DS3s + DS4s;
+	drums = DS1s + DS2s + DS3s + DS4s;
 
 	return HAL_OK;
 }

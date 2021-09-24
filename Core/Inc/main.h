@@ -162,6 +162,7 @@ void Error_Handler(void);
 /**@brief output array size */
 #define BLOCKSIZE 480 // Latenz = 20ms @ 24kHz S
 
+
 //Variables
 
 bool process_trem;

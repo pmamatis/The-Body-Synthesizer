@@ -23,7 +23,8 @@
 /**@brief digital DAC value for maximal output voltage (3,3V) */
 #define DAC_MAX 	4095
 /** @brief digital value for 100mV */
-#define OFFSET 		145
+//#define OFFSET 		145
+#define OFFSET 2047
 /**@brief 4096/3300 */
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
 
@@ -49,7 +50,7 @@ struct signal_t{
 	double freq[MAX_SIGNAL_KOMBINATION];
 	uint8_t freqIndex[MAX_SIGNAL_KOMBINATION];
 	uint32_t current_LUT_Index[MAX_SIGNAL_KOMBINATION];
-	//ID's 0-2 Synthesizer Voices. 3-5 Keyboard notes,
+	//ID's 0-2 Synthesizer Voices. 3-5 Keyboard notes, 5 < open
 	uint8_t ID[MAX_SIGNAL_KOMBINATION];
 	uint8_t channel[MAX_SIGNAL_KOMBINATION];
 };
@@ -64,7 +65,8 @@ uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
  * */
 float volume[3];
 
-
+/** should avoid Plop sound after finishing the Keyboard sound */
+uint32_t noPlopOffset;
 
 //Effects//Effects
 enum effects_using_LFO{

@@ -94,6 +94,7 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 			envelope->adsr_counter = 0;	// restart
 			//envelope->decay_counter = 0;
 			//envelope->release_counter = 0;
+
 			envelope->adsr_done = true;
 		}
 
@@ -102,6 +103,10 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 
 		//*calculate_value = *calculate_value + 1;
 		*calculate_value = *calculate_value * calc;
+		if (envelope->adsr_done == true){
+			*calculate_value = 0;
+//			noPlopOffset = *calculate_value;
+		}
 		//*calculate_value = *calculate_value - 1;
 	}
 }

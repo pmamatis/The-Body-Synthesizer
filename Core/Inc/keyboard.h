@@ -27,7 +27,7 @@
 #define D_NOTE_ADC_VALUE 	1100
 #define CIS_NOTE_ADC_VALUE 	800
 #define C_NOTE_ADC_VALUE 	400
-#define NO_KEY_ADC_VALUE 	100
+#define NO_KEY_ADC_VALUE 	200
 
 /** reserved position in the signal struct array.
  * 	(NewSignal from last pressed key)

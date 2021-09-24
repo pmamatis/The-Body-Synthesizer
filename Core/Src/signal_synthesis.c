@@ -22,7 +22,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	for(int i =0 ;i<3;i++){
 		volume[i] = 1;
 	}
-
+	volume[0] = 0.5;
 	//Sets all taken ID to zero
 	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++){
 		ID_array[Signal_Synthesis_Init_count]=0;
@@ -236,10 +236,13 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + (volume[1] *  drums + volume[2] * sequencer);
 
+
 		//maximum
 		if (signals -> max < fabs((double)addValue)){
 			signals -> max = fabs((double)addValue);
 		}
+
+
 
 		//		//scale output signal depending on amount of voices
 		//		switch (signals -> count){
@@ -267,8 +270,13 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		//Signal adjustment to DAC
 		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((((float)emg_buffer[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3
-		//
+
+//		if ((Display.Sequencer_ONOFF==false) && (Display.Drumcomputer_ONOFF==false) && (signals->count==0)){
+//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
+//		}
+
+			*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1)/2) * maxValueDAC  ); // +1.5 fir middle of 0-3V3
+
 
 	} //End for-Loop
 

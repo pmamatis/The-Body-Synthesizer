@@ -38,6 +38,7 @@ HAL_StatusTypeDef keyboard_stop_read() {
 }
 
 void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct adsr* envelope, struct display_variables* Display) {
+
 	if (adc_value > AIS_NOTE_ADC_VALUE){
 		//printf("H\n\r");
 		if (keyboard_pressed_flag == false){
@@ -138,12 +139,13 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		//printf("No Key\n\r");
 		if(envelope->adsr_done == true) {
 			keyboard_counter = 0;
+			keyboard_pressed_flag = false;
+			envelope->adsr_done = false;
 			//find signal with the right ID
 			while(signals->ID[keyboard_counter]!= KEYBOARD_VOICE_ID)
 				keyboard_counter++;
 			DeleteSignal(signals,IDtoIndex(KEYBOARD_VOICE_ID) );
-			keyboard_pressed_flag = false;
-			envelope->adsr_done = false;
+
 		}
 	}
 }
