@@ -1462,14 +1462,52 @@ int _write(int file,char *ptr, int len)
 //printf() end
 
 
-
+// GPIO-Button Debouncing
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	if((GPIO_Pin == BACK_Pin) && (Display.BACK_Debounce_State == true)) {
-		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led
+
+		// set drumcomputer steps
+		if(Display.EditDrums == true) {
+			// invert/toggle state of the drum matrix entry, where the cursor points at at the moment
+			Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] = !Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1];
+
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true) {
+				DISPLAY_SetDrumcomputerStep();
+				Display.UpdateDisplay = true;
+			}
+			else if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false) {
+				DISPLAY_DeleteDrumcomputerStep();
+				Display.UpdateDisplay = true;
+			}
+		}
+
+		// set sequencer steps
+		if(Display.EditSteps == true) {
+			// invert/toggle state of the sequencer matrix entry, where the cursor points at at the moment
+			Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] = !Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1];
+
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				DISPLAY_SetSequencerStep();
+				Display.UpdateDisplay = true;
+			}
+			else if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				DISPLAY_DeleteSequencerStep();
+				Display.UpdateDisplay = true;
+			}
+		}
+
+		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
 		Display.BACK_Debounce_State = false;
 	}
+
+
+	//	if((GPIO_Pin == BACK_Pin) && (Display.BACK_Debounce_State == true)) {
+	//		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led
+	//		HAL_TIM_Base_Start_IT(&htim2);
+	//		Display.BACK_Debounce_State = false;
+	//	}
 	else if((GPIO_Pin == ENTER_Pin) && (Display.ENTER_Debounce_State == true)) {
 		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);
@@ -1488,15 +1526,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	//        the HAL_TIM_PeriodElapsedCallback could be implemented in the user file
 
 	if(htim->Instance == TIM2) {
-		//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {
-		if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {
+		//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {
+		if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_RESET) {	// check regarding pullup/pulldown
 			Display.BACK = true;
 			Display.BACK_Debounce_State = true;
 			HAL_TIM_Base_Stop_IT(&htim2);
 		}
 	}
 	else if(htim->Instance == TIM4) {
-		if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_SET) {
+		//if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_SET) {
+		if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// check regarding pullup/pulldown
 			Display.ENTER = true;
 			Display.ENTER_Debounce_State = true;
 			HAL_TIM_Base_Stop_IT(&htim4);
@@ -1506,7 +1545,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		__NOP();
 	}
 }
-
 
 /*void RequestPatchParameters(struct PatchControls* Patch1, bool* ChosenGadget, bool* PatchParameterAssign, bool* Patch, Paint paint, EPD epd, unsigned char* frame_buffer) {
 
