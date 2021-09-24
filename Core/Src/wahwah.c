@@ -20,7 +20,7 @@ WahWah_Status WahWah_Init(struct WahWah_t *WahWah) {
 	WahWah->lfo->lfo_index     = 0;
 	WahWah->lfo->lfo_quarter   = 0;
 	WahWah->lfo->lfo_depth     = 1;	// [0, 1]
-	WahWah->lfo->lfo_frequency = 2;	// [0.125, 0.25, 0.5, 1, 2, 4, 8]
+	WahWah->lfo->lfo_frequency = 2;	// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]
 
 	WahWah->range        = 200;
 	WahWah->mid_freq     = 350;

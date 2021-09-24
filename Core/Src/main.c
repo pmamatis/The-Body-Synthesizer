@@ -270,8 +270,8 @@ int main(void)
 	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
 	// Start DAC-DMA
-	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2, BLOCKSIZE, DAC_ALIGN_12B_R);
-	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1, BLOCKSIZE, DAC_ALIGN_12B_R);
+	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1, BLOCKSIZE, DAC_ALIGN_12B_R);
+//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1, BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	//  NewSignal(&signals1,NOISE,'C',0);
 	//	NewSignal(&signals1,NOISE,'C',0);

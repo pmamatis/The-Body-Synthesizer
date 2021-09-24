@@ -102,9 +102,9 @@ float sequencer;
 
 // Methods
 HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart);
-HAL_StatusTypeDef Drum_Computer_Process();
-HAL_StatusTypeDef Drum_Computer_CalcSample();
-HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse();
+HAL_StatusTypeDef Drum_Computer_Process(void);
+HAL_StatusTypeDef Drum_Computer_CalcSample(void);
+HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse(void);
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* envelope);
 
 #endif /* INC_DRUM_COMPUTER_H_ */

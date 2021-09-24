@@ -280,6 +280,7 @@ struct display_variables {
 	bool Drumcomputer_ONOFF;
 	bool EditDrums;
 	uint8_t currentDrumcomputer;
+	char sample1[10], sample2[10], sample3[10], sample4[10];
 
 	// Sequencer
 	uint8_t CurrentNoteRow;
@@ -314,7 +315,8 @@ void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 // Display Drum Computer
 Display_Status p_Drumcomputer_overview(void);
 Display_Status p_Drumcomputer_Settings(void);
-Display_Status Display_DrawDrumcomputerIcons(void);
+Display_Status Display_LoadDrumKits(uint8_t Drumkit);
+Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char* S4);
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
 Display_Status DISPLAY_DrawDrumcomputerPattern(void);
 Display_Status DISPLAY_SetDrumcomputerStep(void);
@@ -343,6 +345,7 @@ void p_ADSR_overview(struct adsr* envelope);
 void p_ADSR_Settings(void);
 void p_Equalizer_overview(void);
 void p_Equalizer_Settings(void);
+void p_WahWah(struct WahWah_t *WahWah);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_KeyboardSetParameters(struct adsr* envelope);

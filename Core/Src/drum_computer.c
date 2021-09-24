@@ -102,21 +102,21 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 
 	// INIT: 909 LUTs
 	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
-	sd_card_mount(huart);
-	sd_card_read("909_Kick.txt", &DS1, huart);
-	sd_card_unmount(huart);
+	sd_card_mount();
+	sd_card_read("909_Kick.txt", &DS1);
+	sd_card_unmount();
 
-	sd_card_mount(huart);
-	sd_card_read("909_OpenHihat.txt", &DS2, huart);
-	sd_card_unmount(huart);
+	sd_card_mount();
+	sd_card_read("909_OpenHihat.txt", &DS2);
+	sd_card_unmount();
 
-	sd_card_mount(huart);
-	sd_card_read("909_Clap.txt", &DS3, huart);
-	sd_card_unmount(huart);
+	sd_card_mount();
+	sd_card_read("909_Clap.txt", &DS3);
+	sd_card_unmount();
 
-	sd_card_mount(huart);
-	sd_card_read("909_LowTom.txt", &DS4, huart);
-	sd_card_unmount(huart);
+	sd_card_mount();
+	sd_card_read("909_LowTom.txt", &DS4);
+	sd_card_unmount();
 
 	/*
 	// INIT: Rock Loud LUTs
@@ -395,7 +395,7 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	return HAL_OK;
 }
 
-HAL_StatusTypeDef Drum_Computer_Process() {
+HAL_StatusTypeDef Drum_Computer_Process(void) {
 
 	// RESET: Drum sound bins
 	DS1s = 0;
@@ -463,7 +463,7 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 	return HAL_OK;
 }
 
-HAL_StatusTypeDef Drum_Computer_CalcSample() {
+HAL_StatusTypeDef Drum_Computer_CalcSample(void) {
 
 	for(int i = 0; i < FourFour; i++) {
 
@@ -613,7 +613,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 	return HAL_OK;
 }
 
-HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse() {
+HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse(void) {
 
 	for(int i = 0; i < FourFour; i++) {
 

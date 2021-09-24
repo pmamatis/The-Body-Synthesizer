@@ -736,13 +736,13 @@ Display_Status p_Drumcomputer_overview(void) {
 
 Display_Status p_Drumcomputer_Settings(void) {
 
-	//	char sd_sample_str[20];
+	char drumkit_str[10];
 
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Last page", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
-	//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Load sample", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Load sample", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, "Edit drums", &Font12, COLORED);
-	Display_DrawDrumcomputerIcons();
+	Display_DrawDrumcomputerIcons(Display.sample1, Display.sample2, Display.sample3, Display.sample4);
 	DISPLAY_DrawDrumcomputerPatternFrame(8);
 
 	if(Display.JoystickParameterPosition == 1) {	// last page
@@ -754,52 +754,45 @@ Display_Status p_Drumcomputer_Settings(void) {
 	else if(Display.JoystickParameterPosition == 3) {	// load sample from sd card
 		Display.EditDrums = false;
 
-		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-		//		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
-		//
-		//		if(potVal < 50) {
-		//			strcpy(sd_sample_str, "Rock_loud_Hihat.txt");
-		//		}
-		//		else if(potVal >= 50) {
-		//			strcpy(sd_sample_str, "Rock_Ride.txt");
-		//		}
-		//
-		//		sprintf(sd_sample_str, "%.1f", BPM);
-		//
-		//		fresult = f_mount(&fs, "", 0);	// mount sd card
-		//		clear_buffer();
-		//		fresult = f_open(&fil, sd_sample_str, FA_READ);	// open file to read
-		//		uint32_t Cycles = (uint32_t)f_size(&fil) / BUFFER_SIZE; // 400
-		//		uint32_t NoLength = 10;
-		//		uint32_t NoSamples = 100;
-		//
-		//		char SampleTemp[NoLength];
-		//
-		//		for(int i = 0; i < Cycles; i++) {
-		//
-		//			f_read (&fil, buffer, BUFFER_SIZE, &br);
-		//			br = br + BUFFER_SIZE;
-		//
-		//			for(int j = 0; j < NoSamples; j++) {
-		//
-		//				for(int k = 0; k < NoLength; k++){
-		//
-		//					SampleTemp[k] = buffer[j*NoLength+k];
-		//				}
-		//				DS4[i*NoSamples+j] = atof(SampleTemp)-1;
-		//			}
-		//		}
-		//		// Close file
-		//		f_close(&fil);
-		//		// Clear buffer
-		//		clear_buffer();
-		//
-		//		fresult = f_mount(NULL, "/", 1);	// unmount sd card
-		//		clear_buffer();
-		//
-		//		//		sd_card_mount(huart);
-		//		//		sd_card_read(sd_sample_str, &DS4, huart);
-		//		//		sd_card_unmount(huart);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-35, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+
+		if(potVal >= 0 && potVal < 25) {
+			strcpy(drumkit_str, "909");
+			strcpy(Display.sample1, "Kick");
+			strcpy(Display.sample2, "Op.HH");
+			strcpy(Display.sample3, "Clap");
+			strcpy(Display.sample4, "L.Tom");
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
+			DISPLAY_Update();
+			Display_LoadDrumKits(0);
+		}
+		else if(potVal >= 25 && potVal < 50) {
+			strcpy(drumkit_str, "Rock loud");
+			strcpy(Display.sample1, "Kick");
+			strcpy(Display.sample2, "Hihat");
+			strcpy(Display.sample3, "Snare");
+			strcpy(Display.sample4, "Ride");
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
+			DISPLAY_Update();
+			Display_LoadDrumKits(1);
+		}
+		else if(potVal >= 50 && potVal < 75) {
+			strcpy(drumkit_str, "Rock");
+			strcpy(Display.sample1, "Kick");
+			strcpy(Display.sample2, "Hihat");
+			strcpy(Display.sample3, "Snare");
+			strcpy(Display.sample4, "Ride");
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
+			DISPLAY_Update();
+			Display_LoadDrumKits(2);
+		}
+		else if(potVal >= 75 && potVal <= 100) {
+			strcpy(drumkit_str, "TODO");
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
+			DISPLAY_Update();
+			Display_LoadDrumKits(3);
+		}
 	}
 	else if(Display.JoystickParameterPosition == 4) {	// edit drums on/off
 		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
@@ -814,23 +807,73 @@ Display_Status p_Drumcomputer_Settings(void) {
 		}
 	}
 
-	//	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, sd_sample_str, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_drumcomputer[1], &Font12, COLORED);
 
 	return DISPLAY_OK;
 }
 
-Display_Status Display_DrawDrumcomputerIcons(void) {
+Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
+
+	__disable_irq();	// disable interrupts for a while to make sure that the samples are loaded more quickly
+
+	if(Drumkit == 0) {
+		// INIT: 909 LUTs
+		// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
+		sd_card_mount();
+		sd_card_read("909_Kick.txt", &DS1);
+		sd_card_read("909_OpenHihat.txt", &DS2);
+		sd_card_read("909_Clap.txt", &DS3);
+		sd_card_read("909_LowTom.txt", &DS4);
+		sd_card_unmount();
+	}
+
+	else if(Drumkit == 1) {
+		// INIT: Rock Loud LUTs
+		// POSSIBLE: Kick, Hihat, Snare, Ride
+		sd_card_mount();
+		sd_card_read("Rock_loud_Kick.txt", &DS1);
+		sd_card_read("Rock_loud_Hihat.txt", &DS2);
+		sd_card_read("Rock_loud_Snare.txt", &DS3);
+		sd_card_read("Rock_loud_Ride.txt", &DS4);
+		sd_card_unmount();
+	}
+
+	else if(Drumkit == 2) {
+		// INIT: Rock LUTs
+		// POSSIBLE: Kick, Hihat, Snare, Ride
+		sd_card_mount();
+		sd_card_read("Rock_Kick.txt", &DS1);
+		sd_card_read("Rock_Hihat.txt", &DS2);
+		sd_card_read("Rock_Snare.txt", &DS3);
+		sd_card_read("Rock_Ride.txt", &DS4);
+		sd_card_unmount();
+	}
+
+	else if(Drumkit == 3) {
+		// todo
+	}
+
+	__enable_irq();
+
+	return DISPLAY_OK;
+}
+
+Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char* S4) {
 
 	//	EPD_SetFrameMemory(&epd, DRUMS_ICON_GEDREHT, 0, 200-48, 200, 48);
 	//	EPD_DisplayFrame(&epd);
 	//	EPD_Init(&epd, lut_partial_update);
 
 	Paint_DrawStringAt(&paint, 1, CASE0, "DRUMCOMPUTER", &Font16, COLORED);
-	Paint_DrawStringAt(&paint, 1, CASE5+5, "Kick", &Font12, COLORED);
-	Paint_DrawStringAt(&paint, 1, CASE6+5, "Op.HH", &Font12, COLORED);
-	Paint_DrawStringAt(&paint, 1, CASE7+5, "Clap", &Font12, COLORED);
-	Paint_DrawStringAt(&paint, 1, CASE8+5, "L.Tom", &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, 1, CASE5+5, "Kick", &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, 1, CASE6+5, "Op.HH", &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, 1, CASE7+5, "Clap", &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, 1, CASE8+5, "L.Tom", &Font12, COLORED);
+
+	Paint_DrawStringAt(&paint, 1, CASE5+5, S1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE6+5, S2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE7+5, S3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE8+5, S4, &Font12, COLORED);
 
 	return DISPLAY_OK;
 }
@@ -2173,7 +2216,7 @@ Display_Status DISPLAY_SetSequencerStep(void) {
 					break;
 	}
 
-//	DISPLAY_Update();
+	//	DISPLAY_Update();
 
 	return DISPLAY_OK;
 }
@@ -2350,7 +2393,7 @@ Display_Status DISPLAY_DeleteSequencerStep(void) {
 					break;
 	}
 
-//	DISPLAY_Update();
+	//	DISPLAY_Update();
 
 	return DISPLAY_OK;
 }
@@ -3153,6 +3196,78 @@ void p_Equalizer_Settings(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_equalizer_settings[Display.currentBand-1][3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_equalizer_settings[Display.currentBand-1][4], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_equalizer_settings[Display.currentBand-1][5], &Font12, COLORED);
+}
+
+/** @brief this function prints the WahWah submenu and edits its values
+ *  @param
+ *
+ */
+void p_WahWah(struct WahWah_t *WahWah) {
+
+	// Header line
+	char headerstring[] = "WAHWAH";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	// row cases
+	char str_1[] = "WahWah ON/OFF";
+	char str_2[] = "LFO frequency";
+	char str_3[] = "Range";
+	char str_4[] = "Mid frequency";
+	char str_5[] = "Q-factor";
+	char str_6[] = "Source";
+	char str_7[] = "WahWah Reset";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+
+	// Potentiometer Input in %
+	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
+	uint8_t mode_number = 0;
+
+	if(Display.poti_moved == true) {
+
+		switch (Display.JoystickParameterPosition){
+		case 1:	// WahWah ON/OFF
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				Display.WahWah_ONOFF = false;
+				strcpy(Display.value_str_wahwah[0], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.WahWah_ONOFF = true;
+				strcpy(Display.value_str_wahwah[0], "ON");
+			}
+			break;
+		case 2:	// LFO frequency
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.WahWah_LFOfreq = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * LFO_FREQUENCYS[7]);
+			Display.WahWah_LFOfreq = ;
+			//			Display.WahWah_LFOfreq = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
+			sprintf(Display.value_str_wahwah[1], "%u", Display.WahWah_LFOfreq);
+			break;
+		case 3:	// Distortion Gain Source
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LR+1)));
+			Display.Distortion_Sources = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LR+1)));
+			strcpy(Display.value_str_distortion[2], Display.source_names[mode_number]);
+			break;
+		case 4:
+			// TODO: RESET OF DISTORTION..
+			break;
+		default:
+			break;
+		}
+	}
+
+	// print value row
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_distortion[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_distortion[1], &Font12, COLORED);
+	//Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE2, Display.Distortion_Gain+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_distortion[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_distortion[3], &Font12, COLORED);
 }
 
 /** @brief this function prints the Distortion submenu and edits its values

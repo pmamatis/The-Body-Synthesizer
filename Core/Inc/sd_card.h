@@ -39,9 +39,9 @@ void send_uart (char *string, UART_HandleTypeDef huart);
 
 char* find_text_file (UART_HandleTypeDef huart);
 
-void sd_card_mount(UART_HandleTypeDef huart);
+void sd_card_mount(void);
 
-void sd_card_unmount(UART_HandleTypeDef huart);
+void sd_card_unmount(void);
 
 void sd_card_free_space(UART_HandleTypeDef huart);
 
@@ -49,7 +49,7 @@ void sd_card_write_newfile(char *filename, char *filecontent, UART_HandleTypeDef
 
 void sd_card_write_appendfile(char *filename, char *filecontent, UART_HandleTypeDef huart);
 
-void sd_card_read(char *filename, float *LUT, UART_HandleTypeDef huart);
+void sd_card_read(char *filename, float *LUT);
 
 void sd_card_remove_file(char *filename, UART_HandleTypeDef huart);
 
