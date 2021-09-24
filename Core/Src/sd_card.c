@@ -43,7 +43,7 @@ char* find_text_file (UART_HandleTypeDef huart) {
 	return txtfile_array;
 }
 
-void sd_card_mount(UART_HandleTypeDef huart) {	// Mount SD Card (Einbinden der SD-Karte)
+void sd_card_mount(void) {	// Mount SD Card (Einbinden der SD-Karte)
 
 	/*fresult = f_mount(&fs, "/", 1);
 	if (fresult != FR_OK) send_uart ("ERROR!!! in mounting SD CARD...\n\r", huart);
@@ -52,18 +52,18 @@ void sd_card_mount(UART_HandleTypeDef huart) {	// Mount SD Card (Einbinden der S
 	clear_buffer();*/
 
 	fresult = f_mount(&fs, "", 0);
-	if(fresult != FR_OK)
-		send_uart ("ERROR!!! in mounting SD CARD...\n\r", huart);
-	else
-		send_uart("SD CARD MOUNTED successfully...\n\r", huart);
+//	if(fresult != FR_OK)
+//		send_uart ("ERROR!!! in mounting SD CARD...\n\r", huart);
+//	else
+//		send_uart("SD CARD MOUNTED successfully...\n\r", huart);
 
 	clear_buffer();
 }
 
-void sd_card_unmount(UART_HandleTypeDef huart) {	// Unmount SD Card
+void sd_card_unmount(void) {	// Unmount SD Card
 
 	fresult = f_mount(NULL, "/", 1);
-	if (fresult == FR_OK) send_uart ("SD CARD UNMOUNTED successfully...\n\n\r", huart);
+//	if (fresult == FR_OK) send_uart ("SD CARD UNMOUNTED successfully...\n\n\r", huart);
 
 	clear_buffer();
 }
@@ -136,7 +136,7 @@ void sd_card_write_appendfile(char *filename, char *filecontent, UART_HandleType
 	clear_buffer();
 }
 
-void sd_card_read(char *filename, float *LUT, UART_HandleTypeDef huart) {
+void sd_card_read(char *filename, float *LUT) {
 	// FA_READ - Specifies read access to the object. Data can be read from the file.
 	// FA_WRITE - Specifies write access to the object. Data can be written to the file. Combine with FA_READ for read-write access.
 	// FA_OPEN_EXISTING - Opens the file. The function fails if the file is not existing. (Default)
@@ -147,8 +147,8 @@ void sd_card_read(char *filename, float *LUT, UART_HandleTypeDef huart) {
 
 	// Open file to read
 	fresult = f_open(&fil, filename, FA_READ);
-	if (fresult == FR_OK)
-		send_uart ("file is open and the data is shown below\n\r", huart);
+	//if (fresult == FR_OK)
+		//send_uart ("file is open and the data is shown below\n\r", huart);
 
 	// Read data from the file - Please see the function details for the arguments
 

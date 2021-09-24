@@ -43,6 +43,7 @@ struct signal_t{
 	//globals
 	uint8_t count;
 	float max;
+
 	//part of a Signal Object
 	unsigned int kind[MAX_SIGNAL_KOMBINATION];
 	double freq[MAX_SIGNAL_KOMBINATION];
@@ -54,6 +55,16 @@ struct signal_t{
 };
 /**@brief Array to monitor which ID's are taken, taken = 1; free = 0 */
 uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
+
+
+/** defines volume of the Voices, Drummachine and Sequencer
+ * 0 -> Voices
+ * 1 -> Drums
+ * 2 -> Sequencer
+ * */
+float volume[3];
+
+
 
 //Effects//Effects
 enum effects_using_LFO{
@@ -97,12 +108,12 @@ uint8_t outputBuffer_position;
 struct signal_t signals1;
 struct signal_t signals2;
 
-/** defines volume of the Voices, Drummachine and Sequencer
- * 0 -> Voices
- * 1 -> Drums
- * 2 -> Sequencer
- * */
-float volume[3];
+///** defines volume of the Voices, Drummachine and Sequencer
+// * 0 -> Voices
+// * 1 -> Drums
+// * 2 -> Sequencer
+// * */
+//float volume[3];
 
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);

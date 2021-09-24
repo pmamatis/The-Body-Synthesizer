@@ -252,6 +252,7 @@ int main(void)
 		//exit(EXIT_FAILURE);	// #include <stdlib.h>
 	}
 
+
 	effects_init();
 
 	if(Filters_Init() == FILTER_FAIL) {
@@ -303,10 +304,13 @@ int main(void)
 	 * */
 
 	printf("Begin Start Functions\r\n");
-	//Start Display
 
+
+	//Start Display
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
+
+	//timing_DS1[0] = 1;
 
 
 	// Start DAC-DMA
@@ -348,7 +352,7 @@ int main(void)
 	//NewSignal(&signals1,NOISE,'C',0);
 	//NewSignal(&signals1,SIN, 'C',0);
 //	NewSignal(&signals1,SIN, 'C',1);
-	NewSignal(&signals1,SIN, 'C',2,0);
+//	NewSignal(&signals1,SIN, 'C',2,0);
 //	NewSignal(&signals1,SIN, 'C',3,1);
 //	NewSignal(&signals1,SIN, 'C',4,2);
 //	NewSignal(&signals1,SIN, 'G',0,3);
@@ -372,7 +376,7 @@ int main(void)
 	/* Manuel setings
 	 *
 	 */
-	Display.mode = BODYSYNTH;
+//	Display.mode = BODYSYNTH;
 
 //	Display.Voices_Note[0] = 'C';
 //	Display.Voices_Octave[0] = 2;

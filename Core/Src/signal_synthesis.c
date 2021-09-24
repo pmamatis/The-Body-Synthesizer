@@ -16,19 +16,25 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	outputBuffer_position = HALF_BLOCK;
 	output_Channel = 1;
 	signals1.count = 0;
-
-	//Sets all taken ID to zero
-	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++){
-		ID_array[Signal_Synthesis_Init_count]=0;
-	}
-	//Inits and starts timer connected with DAC
-	SetTimerSettings(&htim, LUT_SR);
-	return HAL_TIM_Base_Start(&htim);
+	signals1.max = 1;
 
 	//set volume
 	for(int i =0 ;i<3;i++){
 		volume[i] = 1;
 	}
+
+	//Sets all taken ID to zero
+	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++){
+		ID_array[Signal_Synthesis_Init_count]=0;
+	}
+
+
+
+
+	//Inits and starts timer connected with DAC
+	SetTimerSettings(&htim, LUT_SR);
+
+	return HAL_TIM_Base_Start(&htim);
 }
 
 
@@ -156,8 +162,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	float addValue=0;
 	uint8_t count = signals -> count;
 
-
-
 	// decide if Channel 1 or Channel 2
 	float* calculate_vector_tmp = 0; // working aray
 
@@ -209,8 +213,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		//write into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
-
-
+		//		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
 
 		/*limiter function*/
 		//norm the signal to -1...1
@@ -218,7 +221,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//Effekte
-			//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//Drummachine
@@ -231,13 +234,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		}
 
 		//Add all values
-		calculate_vector_tmp[BLOCKSIZE_counter] +=  (volume[1] *  drums + volume[2] * sequencer) ;
-
-
-
-
-
-		//OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + (volume[1] *  drums + volume[2] * sequencer);
 
 		//maximum
 		if (signals -> max < fabs((double)addValue)){

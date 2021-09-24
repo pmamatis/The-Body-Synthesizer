@@ -22,7 +22,7 @@
  */
 #define VALUE_ROW_LENGTH 10
 
-#define NUMBER_OF_SOURCES 5
+#define NUMBER_OF_SOURCES 6
 
 // Drumcomputer
 #define MAX_NUMBER_OF_SAMPLES 4
@@ -74,7 +74,6 @@ typedef enum {
 	EMG,
 	EKG,
 	DISTANCE
-
 }source_t;
 
 //static const char * const source_names[] = {
@@ -213,7 +212,7 @@ struct display_variables {
 	uint16_t UpdateThreshold;
 
 	//Distance Sensor
-//	float
+	//	float
 
 	//Draw Parameters
 	bool arrow_flag;
@@ -287,6 +286,7 @@ struct display_variables {
 	bool Drumcomputer_ONOFF;
 	bool EditDrums;
 	uint8_t currentDrumcomputer;
+	char sample1[10], sample2[10], sample3[10], sample4[10];
 
 	// Sequencer
 	uint8_t CurrentNoteRow;
@@ -320,7 +320,8 @@ void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
 
 
 // Display Drum Computer
-Display_Status Display_DrawDrumcomputerIcons(void);
+Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char* S4);
+Display_Status Display_LoadDrumKits(uint8_t Drumkit);
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps);
 Display_Status DISPLAY_DrawDrumcomputerPattern(void);
 Display_Status DISPLAY_SetDrumcomputerStep(void);
@@ -330,7 +331,6 @@ Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void);
 
 
 // Display Sequencer
-
 Display_Status Display_DrawSequencerIcons(void);
 Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps);
 Display_Status DISPLAY_DrawSequencerPattern(void);
