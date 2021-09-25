@@ -83,15 +83,10 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->Tremolo_EffectPosition = 0;
 	Display->Tremolo_EffectAdded = false;
 
-	//	Display->Filter_ONOFF = false;
-
-	for (int i = 0 ;i<5;i++){
+	for(int i=0; i<5; i++) {
 		Display->Filter_Cutoff[i] = 100.0;
 		Display->Filter_ONOFF[i] = false;
 	}
-
-
-	//	Display->Filter_Q = 1.0;
 	Display->Filter_EffectPosition = 0;
 	Display->Filter_EffectAdded = false;
 	Display->lastState = 0;
@@ -119,7 +114,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->sustain = 0;
 	Display->last_release = 1;
 	Display->release = 0;
-//	Display->Keyboard_Octave = 0;
+	//	Display->Keyboard_Octave = 0;
 
 	Display->LowerLimit = 95;
 	Display->UpperLimit = 4000;
@@ -264,6 +259,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->UpdateDisplay = false;
 	Display->Drumcomputer_ONOFF = false;
 	Display->EditDrums = false;
+	Display->LoadDrumkit = false;
 
 	// Sequencer
 	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
@@ -565,7 +561,7 @@ void DISPLAY_processing(void) {
 		break;
 
 	case BODYSYNTH:
-		Display.page_max = 7; // has to be changed for every added case
+		Display.page_max = 10; // has to be changed for every added case
 
 		switch(Display.pagePosition) {
 		case 0:
@@ -621,7 +617,7 @@ void DISPLAY_processing(void) {
 						case 6:
 							switch(Display.currentBand) {
 							case 0:
-								p_Distortion(&HardClipping);
+								p_WahWah(&WahWah);
 								break;
 							default:
 								p_Equalizer_Settings();
@@ -630,7 +626,16 @@ void DISPLAY_processing(void) {
 							}
 							break;
 							case 7:
+								p_Distortion(&HardClipping);
+								break;
+							case 8:
 								p_Tremolo(&Tremolo);
+								break;
+							case 9:
+								p_Volume();
+								break;
+							case 10:
+								p_Presets();
 								break;
 							default:
 								break;
@@ -775,7 +780,10 @@ Display_Status p_Drumcomputer_Settings(void) {
 			strcpy(Display.sample4, "L.Tom");
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
 			DISPLAY_Update();
-			Display_LoadDrumKits(0);
+			if(Display.LoadDrumkit == true) {
+				Display_LoadDrumKits(0);
+				Display.LoadDrumkit = false;
+			}
 		}
 		else if(potVal >= 25 && potVal < 50) {
 			strcpy(drumkit_str, "Rock loud");
@@ -785,7 +793,10 @@ Display_Status p_Drumcomputer_Settings(void) {
 			strcpy(Display.sample4, "Ride");
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
 			DISPLAY_Update();
-			Display_LoadDrumKits(1);
+			if(Display.LoadDrumkit == true) {
+				Display_LoadDrumKits(1);
+				Display.LoadDrumkit = false;
+			}
 		}
 		else if(potVal >= 50 && potVal < 75) {
 			strcpy(drumkit_str, "Rock");
@@ -795,13 +806,19 @@ Display_Status p_Drumcomputer_Settings(void) {
 			strcpy(Display.sample4, "Ride");
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
 			DISPLAY_Update();
-			Display_LoadDrumKits(2);
+			if(Display.LoadDrumkit == true) {
+				Display_LoadDrumKits(2);
+				Display.LoadDrumkit = false;
+			}
 		}
 		else if(potVal >= 75 && potVal <= 100) {
 			strcpy(drumkit_str, "TODO");
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
 			DISPLAY_Update();
-			Display_LoadDrumKits(3);
+			if(Display.LoadDrumkit == true) {
+				Display_LoadDrumKits(3);
+				Display.LoadDrumkit = false;
+			}
 		}
 	}
 	else if(Display.JoystickParameterPosition == 4) {	// edit drums on/off
@@ -870,15 +887,12 @@ Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 
 Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char* S4) {
 
-	//	EPD_SetFrameMemory(&epd, DRUMS_ICON_GEDREHT, 0, 200-48, 200, 48);
-	//	EPD_DisplayFrame(&epd);
-	//	EPD_Init(&epd, lut_partial_update);
-
 	Paint_DrawStringAt(&paint, 1, CASE0, "DRUMCOMPUTER", &Font16, COLORED);
-	//	Paint_DrawStringAt(&paint, 1, CASE5+5, "Kick", &Font12, COLORED);
-	//	Paint_DrawStringAt(&paint, 1, CASE6+5, "Op.HH", &Font12, COLORED);
-	//	Paint_DrawStringAt(&paint, 1, CASE7+5, "Clap", &Font12, COLORED);
-	//	Paint_DrawStringAt(&paint, 1, CASE8+5, "L.Tom", &Font12, COLORED);
+
+	Paint_DrawFilledRectangle(&paint, 1, CASE5+5, STEP1, CASE6+5, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, 1, CASE6+5, STEP1, CASE7+5, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, 1, CASE7+5, STEP1, CASE8+5, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, 1, CASE8+5, STEP1, CASE9+5, UNCOLORED);
 
 	Paint_DrawStringAt(&paint, 1, CASE5+5, S1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, 1, CASE6+5, S2, &Font12, COLORED);
@@ -922,6 +936,7 @@ Display_Status DISPLAY_DrawDrumcomputerPattern(void) {
 	uint16_t STEP, CASE;
 
 	for(int i=0; i<MAX_NUMBER_OF_SAMPLES; i++) {
+
 		for(int j=0; j<NUMBER_OF_DRUMSTEPS; j++) {
 
 			if(Display.DrumMatrix[i][j] == true) {
@@ -958,163 +973,6 @@ Display_Status DISPLAY_DrawDrumcomputerPattern(void) {
 			}
 		}
 	}
-
-	//	switch(Display.CurrentSampleRow) {
-	//	case 1:	// Sample1 Row
-	//		switch(Display.CurrentDrumstep) {
-	//		case 1:	// Step 1..
-	//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//				Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
-	//			break;
-	//		case 2:
-	//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//				Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
-	//			break;
-	//		case 3:
-	//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//				Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
-	//			break;
-	//		case 4:
-	//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//				Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
-	//			break;
-	//		case 5:
-	//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//				Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
-	//			break;
-	//		case 6:
-	//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//				Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
-	//			break;
-	//		case 7:
-	//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//				Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
-	//			break;
-	//		case 8:	// ..Step 8
-	//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//				Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE3+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE3+20-filledrectangle_subtract, COLORED);
-	//			break;
-	//		default:
-	//			break;
-	//		}
-	//		break;
-	//		case 2:	// Sample2 Row
-	//			switch(Display.CurrentDrumstep) {
-	//			case 1:	// Step 1..
-	//				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//					Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
-	//				break;
-	//			case 2:
-	//				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//					Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
-	//				break;
-	//			case 3:
-	//				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//					Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
-	//				break;
-	//			case 4:
-	//				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//					Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
-	//				break;
-	//			case 5:
-	//				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//					Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
-	//				break;
-	//			case 6:
-	//				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//					Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
-	//				break;
-	//			case 7:
-	//				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//					Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
-	//				break;
-	//			case 8:	// ..Step 8
-	//				if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//					Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE4+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE4+20-filledrectangle_subtract, COLORED);
-	//				break;
-	//			default:
-	//				break;
-	//			}
-	//			break;
-	//			case 3:	// Sample 3 Row
-	//				switch(Display.CurrentDrumstep) {
-	//				case 1:	// Step 1..
-	//					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//						Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
-	//					break;
-	//				case 2:
-	//					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//						Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
-	//					break;
-	//				case 3:
-	//					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//						Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
-	//					break;
-	//				case 4:
-	//					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//						Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
-	//					break;
-	//				case 5:
-	//					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//						Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
-	//					break;
-	//				case 6:
-	//					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//						Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
-	//					break;
-	//				case 7:
-	//					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//						Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
-	//					break;
-	//				case 8:	// ..Step 8
-	//					if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//						Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE5+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE5+20-filledrectangle_subtract, COLORED);
-	//					break;
-	//				default:
-	//					break;
-	//				}
-	//				break;
-	//				case 4:	// Sample 4 Row
-	//					switch(Display.CurrentDrumstep) {
-	//					case 1:	// Step 1..
-	//						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//							Paint_DrawFilledRectangle(&paint, STEP1+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP1+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
-	//						break;
-	//					case 2:
-	//						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//							Paint_DrawFilledRectangle(&paint, STEP2+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP2+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
-	//						break;
-	//					case 3:
-	//						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//							Paint_DrawFilledRectangle(&paint, STEP3+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP3+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
-	//						break;
-	//					case 4:
-	//						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//							Paint_DrawFilledRectangle(&paint, STEP4+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP4+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
-	//						break;
-	//					case 5:
-	//						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//							Paint_DrawFilledRectangle(&paint, STEP5+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP5+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
-	//						break;
-	//					case 6:
-	//						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//							Paint_DrawFilledRectangle(&paint, STEP6+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP6+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
-	//						break;
-	//					case 7:
-	//						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//							Paint_DrawFilledRectangle(&paint, STEP7+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP7+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
-	//						break;
-	//					case 8:	// ..Step 8
-	//						if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true)
-	//							Paint_DrawFilledRectangle(&paint, STEP8+filledrectangle_subtract, CASE6+filledrectangle_subtract, STEP8+20-filledrectangle_subtract, CASE6+20-filledrectangle_subtract, COLORED);
-	//						break;
-	//					default:
-	//						break;
-	//					}
-	//					break;
-	//					default:
-	//						break;
-	//	}
 
 	return DISPLAY_OK;
 }
@@ -1871,66 +1729,100 @@ Display_Status p_Sequencer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
 
-	switch(Display.JoystickParameterPosition) {
-	case 1:
-		// Next Effect
-		Display.currentSequencer = 0;
-		break;
-	case 2:
-		// Sequencer Settings
-		Display.currentSequencer = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
-		if(potVal < 50) {	// smaller than 50 %
-			Display.Sequencer_ONOFF = false;
-			strcpy(Display.value_str_sequencer[0], "OFF");
+	if(Display.poti_moved == true) {
+
+		switch(Display.JoystickParameterPosition) {
+		case 1:
+			// Next Effect
+			Display.currentSequencer = 0;
+			break;
+		case 2:
+			// Sequencer ON/OFF
+			Display.currentSequencer = 1;
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Sequencer_ONOFF = false;
+				strcpy(Display.value_str_sequencer[0], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Sequencer_ONOFF = true;
+				strcpy(Display.value_str_sequencer[0], "ON");
+			}
+			break;
+		case 3:
+			// Sequencer Note 1
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
+			Display.Sequencer_Note[0] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+			sprintf(Display.value_str_sequencer[1], "%c", Display.Sequencer_Note[0]);
+
+			freq_index_SN1 = Get_Note_Index(Display.Sequencer_Note[0], (uint8_t)Display.Sequencer_Octave[0]);
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+			}
+			break;
+		case 4:
+			// Sequencer Octave 1
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.Sequencer_Octave[0] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
+			sprintf(Display.value_str_sequencer[2], "%d", Display.Sequencer_Octave[0]);
+
+			freq_index_SN1 = Get_Note_Index(Display.Sequencer_Note[0], (uint8_t)Display.Sequencer_Octave[0]);
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+			}
+			break;
+		case 5:
+			// Sequencer Note 2
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
+			Display.Sequencer_Note[1] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+			sprintf(Display.value_str_sequencer[3], "%c", Display.Sequencer_Note[1]);
+
+			freq_index_SN2 = Get_Note_Index(Display.Sequencer_Note[1], (uint8_t)Display.Sequencer_Octave[1]);
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+			}
+			break;
+		case 6:
+			// Sequencer Octave 2
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.Sequencer_Octave[1] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
+			sprintf(Display.value_str_sequencer[4], "%d", Display.Sequencer_Octave[1]);
+
+			freq_index_SN2 = Get_Note_Index(Display.Sequencer_Note[1], (uint8_t)Display.Sequencer_Octave[1]);
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+			}
+			break;
+		case 7:
+			// Sequencer Note 3
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
+			Display.Sequencer_Note[2] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
+			sprintf(Display.value_str_sequencer[5], "%c", Display.Sequencer_Note[2]);
+
+			freq_index_SN3 = Get_Note_Index(Display.Sequencer_Note[2], (uint8_t)Display.Sequencer_Octave[2]);
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+			}
+			break;
+		case 8:
+			// Sequencer Octave 3
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.Sequencer_Octave[2] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
+			sprintf(Display.value_str_sequencer[6], "%d", Display.Sequencer_Octave[2]);
+
+			freq_index_SN3 = Get_Note_Index(Display.Sequencer_Note[2], (uint8_t)Display.Sequencer_Octave[2]);
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+			}
+			break;
 		}
-		else if(potVal >= 50) {	// greater than 50 %
-			Display.Sequencer_ONOFF = true;
-			strcpy(Display.value_str_sequencer[0], "ON");
-		}
-		break;
-	case 3:
-		// Sequencer Note 1
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-		Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
-		Display.Sequencer_Note[0] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
-		sprintf(Display.value_str_sequencer[1], "%c", Display.Sequencer_Note[0]);
-		break;
-	case 4:
-		// Sequencer Octave 1
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
-		Display.Sequencer_Octave[0] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
-		sprintf(Display.value_str_sequencer[2], "%d", Display.Sequencer_Octave[0]);
-		break;
-	case 5:
-		// Sequencer Note 2
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
-		Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
-		Display.Sequencer_Note[1] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
-		sprintf(Display.value_str_sequencer[3], "%c", Display.Sequencer_Note[1]);
-		break;
-	case 6:
-		// Sequencer Octave 2
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
-		Display.Sequencer_Octave[1] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
-		sprintf(Display.value_str_sequencer[4], "%d", Display.Sequencer_Octave[1]);
-		break;
-	case 7:
-		// Sequencer Note 3
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
-		Display.noteindex = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * (sizeof(keys)/sizeof(keys[0]));
-		Display.Sequencer_Note[2] = (uint8_t)(keys[(uint8_t)Display.noteindex]);
-		sprintf(Display.value_str_sequencer[5], "%c", Display.Sequencer_Note[2]);
-		break;
-	case 8:
-		// Sequencer Octave 3
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
-		Display.Sequencer_Octave[2] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);
-		sprintf(Display.value_str_sequencer[6], "%d", Display.Sequencer_Octave[2]);
-		break;
 	}
 
+	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_sequencer[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_sequencer[1], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_sequencer[2], &Font12, COLORED);
@@ -3208,77 +3100,102 @@ void p_Equalizer_Settings(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_equalizer_settings[Display.currentBand-1][5], &Font12, COLORED);
 }
 
-///** @brief this function prints the WahWah submenu and edits its values
-// *  @param
-// *
-// */
-//void p_WahWah(struct WahWah_t *WahWah) {
-//
-//	// Header line
-//	char headerstring[] = "WAHWAH";
-//	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
-//	// row cases
-//	char str_1[] = "WahWah ON/OFF";
-//	char str_2[] = "LFO frequency";
-//	char str_3[] = "Range";
-//	char str_4[] = "Mid frequency";
-//	char str_5[] = "Q-factor";
-//	char str_6[] = "Source";
-//	char str_7[] = "WahWah Reset";
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
-//
-//	// Potentiometer Input in %
-//	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
-//	uint8_t mode_number = 0;
-//
-//	if(Display.poti_moved == true) {
-//
-//		switch (Display.JoystickParameterPosition){
-//		case 1:	// WahWah ON/OFF
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
-//			if(potVal < 50) {	// smaller than 50 %
-//				Display.WahWah_ONOFF = false;
-//				strcpy(Display.value_str_wahwah[0], "OFF");
-//			}
-//			else if(potVal >= 50) {	// greater than 50 %
-//				Display.WahWah_ONOFF = true;
-//				strcpy(Display.value_str_wahwah[0], "ON");
-//			}
-//			break;
-//		case 2:	// LFO frequency
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-//			Display.WahWah_LFOfreq = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * LFO_FREQUENCYS[7]);
-//			Display.WahWah_LFOfreq = ;
-//			//			Display.WahWah_LFOfreq = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
-//			sprintf(Display.value_str_wahwah[1], "%u", Display.WahWah_LFOfreq);
-//			break;
-//		case 3:	// Distortion Gain Source
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LR+1)));
-//			Display.Distortion_Sources = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (POTI-GYRO_LR+1)));
-//			strcpy(Display.value_str_distortion[2], Display.source_names[mode_number]);
-//			break;
-//		case 4:
-//			// TODO: RESET OF DISTORTION..
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//
-//	// print value row
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_distortion[0], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_distortion[1], &Font12, COLORED);
-//	//Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE2, Display.Distortion_Gain+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_distortion[2], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_distortion[3], &Font12, COLORED);
-//}
+/** @brief this function prints the WahWah submenu and edits its values
+ *  @param
+ *
+ */
+void p_WahWah(struct WahWah_t *WahWah) {
+
+	// Header line
+	char headerstring[] = "WAHWAH";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	// row cases
+	char str_1[] = "WahWah ON/OFF";
+	char str_2[] = "LFO frequency";
+	char str_3[] = "Range";
+	char str_4[] = "Mid frequency";
+	char str_5[] = "LFO Freq. Source";
+	char str_6[] = "Range Source";
+	char str_7[] = "Mid Freq. Source";
+	char str_8[] = "WahWah Reset";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
+
+	// Potentiometer Input in %
+	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
+	uint8_t mode_number = 0;
+
+	if(Display.poti_moved == true) {
+
+		switch (Display.JoystickParameterPosition){
+		case 1:	// WahWah ON/OFF
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				Display.WahWah_ONOFF = false;
+				strcpy(Display.value_str_wahwah[0], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.WahWah_ONOFF = true;
+				strcpy(Display.value_str_wahwah[0], "ON");
+			}
+			break;
+		case 2:	// WahWah LFO Frequency
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			uint index = ((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (sizeof(LFO_FREQUENCYS)/sizeof(LFO_FREQUENCYS[0])-1);
+			Display.WahWah_LFOFreq = LFO_FREQUENCYS[index];
+			sprintf(Display.value_str_wahwah[1], "%.3f", Display.WahWah_LFOFreq);
+			break;
+		case 3:	// WahWah Frequency Range
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.WahWah_Range = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * WahWah->max_range;
+			sprintf(Display.value_str_wahwah[2], "%.2f", Display.WahWah_Range);
+			break;
+		case 4:	// WahWah Mid Frequency
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.WahWah_MidFreq = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * WahWah->max_mid_freq;
+			sprintf(Display.value_str_wahwah[3], "%.2f", Display.WahWah_MidFreq);
+			break;
+		case 5:	// WahWah LFO Frequency Source
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			Display.WahWah_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			strcpy(Display.value_str_wahwah[4], Display.source_names[mode_number]);
+			break;
+		case 6:	// WahWah Frequency Range Source
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			Display.WahWah_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			strcpy(Display.value_str_wahwah[5], Display.source_names[mode_number]);
+			break;
+		case 7:	// WahWah Mid Frequency Source
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
+			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			Display.WahWah_Sources[2] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			strcpy(Display.value_str_wahwah[6], Display.source_names[mode_number]);
+			break;
+		case 8:
+			// TODO: RESET OF WAHWAH..
+			break;
+		default:
+			break;
+		}
+	}
+
+	// print value row
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_wahwah[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE2, Display.value_str_wahwah[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_wahwah[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_wahwah[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_wahwah[4], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_wahwah[5], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE7, Display.value_str_wahwah[6], &Font12, COLORED);
+}
 
 /** @brief this function prints the Distortion submenu and edits its values
  *  @param HardClipping: struct of hard clipping distortion effect
@@ -3402,11 +3319,10 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 			break;
 		case 2:
 			// Tremolo Rate
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-
-			uint index =   ((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (sizeof(LFO_FREQUENCYS)/sizeof(LFO_FREQUENCYS[0])-1) ;
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			uint index = ((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (sizeof(LFO_FREQUENCYS)/sizeof(LFO_FREQUENCYS[0])-1);
 			Display.Tremolo_Rate = LFO_FREQUENCYS[index];
-			sprintf(Display.value_str_tremolo[1], "%u", Display.Tremolo_Rate);
+			sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
 			//			Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE2, Display.Tremolo_Rate+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
 			break;
 		case 3:
@@ -3440,10 +3356,196 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_tremolo[0], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_tremolo[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE2, Display.value_str_tremolo[1], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_tremolo[2], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_tremolo[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_tremolo[4], &Font12, COLORED);
+}
+
+void p_Volume(void) {
+
+	//Header line
+	char headerstring[] = "VOLUME";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	//row cases
+	char str_1[] = "Voices Vol.";
+	char str_2[] = "Drumcomputer Vol.";
+	char str_3[] = "Sequencer Vol.";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+
+	if(Display.poti_moved == true) {
+
+		switch(Display.JoystickParameterPosition) {
+		case 1:
+			// Volume Voices
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
+			volume[0] = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
+			sprintf(Display.value_str_volume[0], "%.2f", volume[0]);
+			break;
+		case 2:
+			// Volume Drumcomputer
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			volume[1] = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
+			sprintf(Display.value_str_volume[1], "%.2f", volume[1]);
+			break;
+		case 3:
+			// Volume Sequencer
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			volume[2] = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
+			sprintf(Display.value_str_volume[2], "%.2f", volume[2]);
+			break;
+		default:
+			break;
+		}
+	}
+
+	// print value row
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE1, Display.value_str_volume[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE2, Display.value_str_volume[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, Display.value_str_volume[2], &Font12, COLORED);
+}
+
+void p_Presets(void) {
+
+	//Header line
+	char headerstring[] = "PRESETS";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	//row cases
+	char str_1[] = "Drums Preset";
+	char str_2[] = "Seq. Preset";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+
+	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
+
+	switch(Display.JoystickParameterPosition) {
+	case 1:	// Drums Preset
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
+		if(potVal < 50) {
+			sprintf(Display.value_str_presets[0], "%d", 1);
+			timing_DS1[0] = 1;	// Techno Beat
+			timing_DS1[1] = 0;
+			timing_DS1[2] = 0;
+			timing_DS1[3] = 0;
+			timing_DS1[4] = 1;
+			timing_DS1[5] = 0;
+			timing_DS1[6] = 0;
+			timing_DS1[7] = 0;
+			timing_DS2[0] = 0;
+			timing_DS2[1] = 0;
+			timing_DS2[2] = 1;
+			timing_DS2[3] = 0;
+			timing_DS2[4] = 0;
+			timing_DS2[5] = 0;
+			timing_DS2[6] = 1;
+			timing_DS2[7] = 0;
+			timing_DS3[0] = 0;
+			timing_DS3[1] = 0;
+			timing_DS3[2] = 0;
+			timing_DS3[3] = 0;
+			timing_DS3[4] = 1;
+			timing_DS3[5] = 0;
+			timing_DS3[6] = 0;
+			timing_DS3[7] = 0;
+			timing_DS4[0] = 0;
+			timing_DS4[1] = 0;
+			timing_DS4[2] = 1;
+			timing_DS4[3] = 1;
+			timing_DS4[4] = 0;
+			timing_DS4[5] = 0;
+			timing_DS4[6] = 0;
+			timing_DS4[7] = 1;
+		}
+		else if(potVal >= 50) {
+			sprintf(Display.value_str_presets[0], "%d", 2);
+			timing_DS1[0] = 1;	// Advanced Techno Beat
+			timing_DS1[1] = 0;
+			timing_DS1[2] = 1;
+			timing_DS1[3] = 0;
+			timing_DS1[4] = 1;
+			timing_DS1[5] = 0;
+			timing_DS1[6] = 0;
+			timing_DS1[7] = 0;
+			timing_DS2[0] = 0;
+			timing_DS2[1] = 0;
+			timing_DS2[2] = 1;
+			timing_DS2[3] = 0;
+			timing_DS2[4] = 0;
+			timing_DS2[5] = 0;
+			timing_DS2[6] = 1;
+			timing_DS2[7] = 0;
+			timing_DS3[0] = 0;
+			timing_DS3[1] = 0;
+			timing_DS3[2] = 0;
+			timing_DS3[3] = 0;
+			timing_DS3[4] = 1;
+			timing_DS3[5] = 0;
+			timing_DS3[6] = 0;
+			timing_DS3[7] = 1;
+			timing_DS4[0] = 0;
+			timing_DS4[1] = 0;
+			timing_DS4[2] = 1;
+			timing_DS4[3] = 1;
+			timing_DS4[4] = 0;
+			timing_DS4[5] = 0;
+			timing_DS4[6] = 0;
+			timing_DS4[7] = 1;
+		}
+		break;
+	case 2:	// Sequencer Preset
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+		if(potVal < 50) {
+			sprintf(Display.value_str_presets[1], "%d", 1);
+			freq_index_SN1 = Get_Note_Index('C', 1);	// load notes
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+			}
+			freq_index_SN2 = Get_Note_Index('D', 1);
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+			}
+			freq_index_SN3 = Get_Note_Index('d', 1);
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+			}
+			timing_SN1[0] = 1;	// Sequence Pattern
+			timing_SN1[1] = 0;
+			timing_SN1[2] = 0;
+			timing_SN1[3] = 0;
+			timing_SN1[4] = 0;
+			timing_SN1[5] = 0;
+			timing_SN1[6] = 0;
+			timing_SN1[7] = 0;
+			timing_SN2[0] = 0;
+			timing_SN2[1] = 0;
+			timing_SN2[2] = 0;
+			timing_SN2[3] = 1;
+			timing_SN2[4] = 0;
+			timing_SN2[5] = 0;
+			timing_SN2[6] = 0;
+			timing_SN2[7] = 0;
+			timing_SN3[0] = 0;
+			timing_SN3[1] = 0;
+			timing_SN3[2] = 0;
+			timing_SN3[3] = 0;
+			timing_SN3[4] = 0;
+			timing_SN3[5] = 0;
+			timing_SN3[6] = 1;
+			timing_SN3[7] = 0;
+		}
+		else if(potVal >= 50) {
+			sprintf(Display.value_str_presets[1], "%d", 2);
+		}
+		break;
+	default:
+		break;
+	}
+
+	// print value row
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_presets[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_presets[1], &Font12, COLORED);
 }
 
 /** @brief this function prints the Keyboardmode and edits its values

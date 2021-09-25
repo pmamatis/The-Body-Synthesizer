@@ -36,31 +36,26 @@ void effects_process(float* calculate_value) {
 			}
 		}
 	}
-//	else if(Display.mode == KEYBOARD) {
-//		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
-//	}
-//	 if(emg_triggerd_flag || keyboard_pressed_flag) {
-//		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
-//	}
+	//	else if(Display.mode == KEYBOARD) {
+	//		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
+	//	}
+	//	 if(emg_triggerd_flag || keyboard_pressed_flag) {
+	//		OnePress_ADSR_Linear_Process(&envelope, calculate_value);
+	//	}
 }
 
 
 
 void effects_process_fast(float* calculate_value){
-//
+
 	if(effect_order[1] == TREM){
 		ProcessTremolo(&Tremolo, calculate_value);
 	}
-
-
-
-
 
 	if(effect_order[0] == EQ){
 
 		ProcessEQ(calculate_value);
 	}
-//
 
 	if(effect_order[2] == DIST_H){
 		ProcessHardClippingDistortion(&HardClipping, calculate_value);
@@ -70,7 +65,8 @@ void effects_process_fast(float* calculate_value){
 	if(effect_order[3] == DIST_S){
 		ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
 	}
-//	if(emg_triggerd_flag || keyboard_pressed_flag) {
+
+	//	if(emg_triggerd_flag || keyboard_pressed_flag) {
 	if(keyboard_pressed_flag) {
 		OnePress_ADSR_Linear_Process(&envelope, calculate_value, true);
 	}
@@ -83,42 +79,40 @@ void effects_process_fast(float* calculate_value){
  */
 void effects_add(effects_t_enum effect) {
 
-
-
 	switch(effect) {
-				case TREM:
-					effect_order[1] = TREM;
-					break;
-				case EQ:
-					effect_order[0] = EQ;
-					break;
-				case DIST_H:
-					effect_order[2] = DIST_H;
-					break;
-				case DIST_S:
-					effect_order[3] = DIST_S;
-					break;
-				default:
-					break;
-				}
-//
-//	if(position < MAX_EFFECTS) {
-//		effect_order[position] = effect;
-//
-//		/*
-//		effects_t_enum tmp = effect_order[position];
-//		effects_t_enum tmp2;
-//
-//		for(int i=position+1; i<MAX_EFFECTS; i++) {
-//			tmp2 = effect_order[i];
-//			effect_order[i] = tmp;
-//			tmp = tmp2;
-//		}
-//		*/
-//	}
-//	else {
-//		//error @TODO
-//	}
+	case TREM:
+		effect_order[1] = TREM;
+		break;
+	case EQ:
+		effect_order[0] = EQ;
+		break;
+	case DIST_H:
+		effect_order[2] = DIST_H;
+		break;
+	case DIST_S:
+		effect_order[3] = DIST_S;
+		break;
+	default:
+		break;
+	}
+	//
+	//	if(position < MAX_EFFECTS) {
+		//		effect_order[position] = effect;
+	//
+	//		/*
+	//		effects_t_enum tmp = effect_order[position];
+	//		effects_t_enum tmp2;
+	//
+	//		for(int i=position+1; i<MAX_EFFECTS; i++) {
+	//			tmp2 = effect_order[i];
+	//			effect_order[i] = tmp;
+	//			tmp = tmp2;
+	//		}
+	//		*/
+	//	}
+	//	else {
+	//		//error @TODO
+	//	}
 }
 
 

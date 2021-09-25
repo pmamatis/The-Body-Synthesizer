@@ -26,6 +26,9 @@ WahWah_Status WahWah_Init(struct WahWah_t *WahWah) {
 	WahWah->mid_freq     = 350;
 	WahWah->mid_freq_mod = 0;
 
+	WahWah->max_range = 500;
+	WahWah->max_mid_freq = LUT_FMAX - WahWah->max_range;
+
 	WahWah->reinit_counter = 0;
 	WahWah->bandpass->Q = 20;
 

@@ -437,10 +437,10 @@ void DMA2_Stream0_IRQHandler(void)
 	/* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
 
 	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
-//	if(Display.mode == KEYBOARD)
+	//	if(Display.mode == KEYBOARD)
 	OnePress_keyboard_process(Display.ADC1input, &signals1, &envelope, &Display);
 
-//	printf("%i\r\n", Display.ADC1input);
+	//	printf("%i\r\n", Display.ADC1input);
 
 	/* USER CODE END DMA2_Stream0_IRQn 0 */
 	HAL_DMA_IRQHandler(&hdma_adc1);
@@ -471,7 +471,6 @@ void DMA2_Stream2_IRQHandler(void)
 
 	// START Drumcomputer Processing
 	if(Display.EditDrums == true) {
-		//if(Display.EditDrums == true && Display.Drumcomputer_ONOFF == true) {	// diese if-Abfrage überarbeiten, da sonst der Joystick spinnt (Warum???) ?
 
 		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
 			DISPLAY_Update();
@@ -502,9 +501,6 @@ void DMA2_Stream2_IRQHandler(void)
 				Display.CurrentDrumstep++;
 			DISPLAY_SetDrumcomputerStepCursor();
 		}
-
-		//		Display.lastCurrentDrumstep = Display.CurrentDrumstep;
-		//		Display.lastCurrentSampleRow = Display.CurrentSampleRow;
 	}
 	// END Drumcomputer Processing
 
@@ -541,9 +537,6 @@ void DMA2_Stream2_IRQHandler(void)
 				Display.CurrentSequencestep++;
 			DISPLAY_SetSequencerStepCursor();
 		}
-
-		//		Display.lastCurrentDrumstep = Display.CurrentDrumstep;
-		//		Display.lastCurrentSampleRow = Display.CurrentSampleRow;
 	}
 	// END Sequencer Processing
 
@@ -619,10 +612,8 @@ void DMA2_Stream2_IRQHandler(void)
 		}
 	}
 
-	//	printf("Poti: %i\r\n", Display.ADC2inputs[2]);
-	Display.Poti_Threshold = 50;
+	Display.Poti_Threshold = 20;
 	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
-		//printf("Poti triggered\r\n");
 		Display.poti_moved = true;
 		DISPLAY_processing();
 		DISPLAY_Update();

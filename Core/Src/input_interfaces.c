@@ -7,13 +7,10 @@
 
 #include "input_interfaces.h"
 
-
-
 void II_init(){
 	log_mapping_F = log(LUT_FMAX);
 	filter_step_counter = 10;
 }
-
 
 /** starts the Interface Timer Interrupt
  *
@@ -30,9 +27,7 @@ void II_startInterface(TIM_HandleTypeDef* htim){
  */
 uint8_t II_Display_Voices(void) {
 
-
 	for(uint8_t ii_i=0; ii_i < II_MAX_VOICES; ii_i++) {
-
 
 		if (Display.Voices_ONOFF[ii_i] == true ) {
 			//			//printf("is true\r\n");
@@ -96,8 +91,6 @@ uint8_t II_Display_Voices(void) {
 			DeleteSignal(&signals1, signal_index);
 			Display.Voices_Created[ii_i] = false;
 		}
-
-
 	}
 
 	return 1;
@@ -237,8 +230,6 @@ uint8_t II_Display_Effects(void){
 				break;
 			default:
 				break;
-
-
 			}
 		}
 		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
@@ -249,71 +240,66 @@ uint8_t II_Display_Effects(void){
 	}
 
 	//Filter
-//	if (Display.currentBand > 0){
-//	Display.Filter_ONOFF[0] = true;
-		if (Display.Filter_ONOFF[Display.currentBand] == true){
-//		if (Display.Filter_ONOFF[0] == true){
-			effects_add(EQ);
-			if (Display.EQ_Cutoff_Sources[0] != POTI){
+	//	if (Display.currentBand > 0){
+	//	Display.Filter_ONOFF[0] = true;
+	if (Display.Filter_ONOFF[Display.currentBand] == true){
+		//		if (Display.Filter_ONOFF[0] == true){
+		effects_add(EQ);
+		if (Display.EQ_Cutoff_Sources[0] != POTI){
 
+			switch (Display.EQ_Cutoff_Sources[0]) {
+			case GYRO_FB:
 
-				switch (Display.EQ_Cutoff_Sources[0]) {
-				case GYRO_FB:
-
-					if (sensorData.tilt_detected == TILT_BACK){
-						if (Display.Filter_Cutoff > 0 ) {
-							////printf("decrease cuttoff Rate\r\n");
-							Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] - LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
-							Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
-						}
-						sensorData.tilt_detected = TILT_NONE;
+				if (sensorData.tilt_detected == TILT_BACK){
+					if (Display.Filter_Cutoff > 0 ) {
+						////printf("decrease cuttoff Rate\r\n");
+						Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] - LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
+						Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
 					}
-					else if (sensorData.tilt_detected == TILT_FRONT){
-						if (Display.Filter_Cutoff[0] <  II_FILTER_CUTTOFF_STEP_SIZE) {
-							////printf("increase cuttoff Rate\r\n");
-							Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
-							Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
-						}
-						sensorData.tilt_detected = TILT_NONE;
-					}
-					break;
-				case GYRO_LR:
-
-					if (sensorData.tilt_detected == TILT_LEFT ){
-							if (Display.Filter_Cutoff[0] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-								printf("decrease cuttoff Rate\r\n");
-								filter_step_counter--;
-								Display.Filter_Cutoff[0]=  exp(((float)filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-								Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
-							}
-							sensorData.tilt_detected = TILT_NONE;
-						}
-
-						else if (sensorData.tilt_detected == TILT_RIGHT){
-							if (Display.Filter_Cutoff[0] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-								printf("increase cuttoff Rate\r\n");
-								filter_step_counter++;
-								Display.Filter_Cutoff[0]=  exp(((float)filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-//								Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
-
-								Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
-
-
-							}
-
-						sensorData.tilt_detected = TILT_NONE;
-						}
-					break;
-				default:
-					break;
+					sensorData.tilt_detected = TILT_NONE;
 				}
+				else if (sensorData.tilt_detected == TILT_FRONT){
+					if (Display.Filter_Cutoff[0] <  II_FILTER_CUTTOFF_STEP_SIZE) {
+						////printf("increase cuttoff Rate\r\n");
+						Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
+						Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
+				break;
+			case GYRO_LR:
+
+				if (sensorData.tilt_detected == TILT_LEFT ){
+					if (Display.Filter_Cutoff[0] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
+						printf("decrease cuttoff Rate\r\n");
+						filter_step_counter--;
+						Display.Filter_Cutoff[0]=  exp(((float)filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+						Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
+
+				else if (sensorData.tilt_detected == TILT_RIGHT){
+					if (Display.Filter_Cutoff[0] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
+						printf("increase cuttoff Rate\r\n");
+						filter_step_counter++;
+						Display.Filter_Cutoff[0]=  exp(((float)filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+						//								Display.Filter_Cutoff[0]= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
+						Filters_Reinit_Gyro(Display.Filter_Cutoff[0]);
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
+				break;
+			default:
+				break;
 			}
 		}
-		else if (Display.Filter_ONOFF == false){
-			effects_delete(EQ, 2);
-		}
+	}
+	else if (Display.Filter_ONOFF == false){
+		effects_delete(EQ, 2);
+	}
 
-//	}
+	//	}
 	return 1;
 }
 
@@ -352,20 +338,10 @@ uint8_t II_Display_Effects(void){
 //
 //			}
 
-
-
-
 //		SetupLowShelf(EQ_BAND1_I, Display.Filter_Cutoff[], Q, dBGain)
-
 //		}
 
-
-
 //		SetupNotch(BP, cutoff, Q)
-
-
-
-
 
 void II_processGyro(void){
 
@@ -373,26 +349,19 @@ void II_processGyro(void){
 
 		switch(sensorData.tilt_detected){
 		case TILT_RIGHT:
-
 			break;
-
 		case TILT_LEFT:
-
 			break;
 		case TILT_FRONT:
-
 			break;
 		case TILT_BACK:
-
 			break;
 		case TILT_NONE:
-
 			break;
 		default:
 			break;
 		}
 	}
-
 }
 
 //void II_processEMG(){
@@ -434,9 +403,8 @@ void II_raiseNote(uint8_t ID){
 		DeleteSignal(&signals1, index);
 		NewSignal(&signals1, SIN, newKey, Display.Voices_Octave[ID],ID);
 	}
-//	else
-		//printf("Signal ID not found\r\n");
-
+	//	else
+	//printf("Signal ID not found\r\n");
 }
 
 /** raises the key of an existing signal, by deleting the signal and creating a new signal
@@ -453,8 +421,6 @@ void II_decreaseNote(uint8_t ID){
 		key_counter++;
 	}
 	key_counter+= 12;
-
-
 
 	//gets key of the note before
 	newKey = keys[key_counter-1];
@@ -475,10 +441,11 @@ void II_decreaseNote(uint8_t ID){
 		DeleteSignal(&signals1, index);
 		NewSignal(&signals1, SIN, newKey, Display.Voices_Octave[ID],ID);
 	}
-//	else
-		//printf("Signal ID not found\r\n");
+	//	else
+	//printf("Signal ID not found\r\n");
 
 }
+
 /**Play Voice triggerd by EMG
  *
  */
@@ -497,5 +464,3 @@ void II_pVwECG(void){
 		}
 	}
 }
-
-

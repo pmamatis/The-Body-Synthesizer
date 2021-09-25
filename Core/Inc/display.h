@@ -151,7 +151,7 @@ struct display_variables {
 	//Tremolo
 	bool Tremolo_ONOFF;
 	//float Tremolo_Rate;
-	uint8_t Tremolo_Rate;
+	float Tremolo_Rate;
 	float Tremolo_Depth;
 	uint8_t Tremolo_EffectPosition;
 	bool Tremolo_EffectAdded;
@@ -166,7 +166,13 @@ struct display_variables {
 	uint8_t Filter_EffectPosition;
 	bool Filter_EffectAdded;
 	uint16_t lastState;
-	//...Weitere Synthesizer-Parameter
+
+	// WahWah
+	bool WahWah_ONOFF;
+	float WahWah_LFOFreq;
+	float WahWah_Range;
+	float WahWah_MidFreq;
+
 
 	uint8_t last_note;
 	uint8_t note;
@@ -210,9 +216,6 @@ struct display_variables {
 	uint16_t last_joystick_x;
 	uint16_t last_joystick_y;
 	uint16_t UpdateThreshold;
-
-	//Distance Sensor
-	//	float
 
 	//Draw Parameters
 	bool arrow_flag;
@@ -259,6 +262,7 @@ struct display_variables {
 	source_t EQ_Q_factor_Sources[5];			// sources for q-factor of 5 frequency bands
 	source_t EQ_Cutoff_Sources[5];				// sources for cutoff of 5 frequency bands
 	source_t EQ_Gain_Sources[5];				// sources for gain of 5 frequency bands
+	source_t WahWah_Sources[3];					// sources for wahwah parameters
 	source_t Distortion_Sources;				// sources for gain
 	source_t Tremolo_Sources[2];				// sources for rate and depth
 
@@ -270,8 +274,11 @@ struct display_variables {
 	char value_str_adsr_settings[9][10];
 	char value_str_equalizer_overview[9][10];
 	char value_str_equalizer_settings[5][9][10];
+	char value_str_wahwah[7][10];
 	char value_str_distortion[9][10];
 	char value_str_tremolo[9][10];
+	char value_str_volume[3][10];
+	char value_str_presets[2][10];
 	char value_str_keyboardmode[9][10];
 	char value_str_drumcomputer[2][10];
 	char value_str_sequencer[8][10];
@@ -287,6 +294,7 @@ struct display_variables {
 	bool EditDrums;
 	uint8_t currentDrumcomputer;
 	char sample1[10], sample2[10], sample3[10], sample4[10];
+	bool LoadDrumkit;
 
 	// Sequencer
 	uint8_t CurrentNoteRow;
@@ -349,8 +357,11 @@ void p_ADSR_overview(struct adsr* envelope);
 void p_ADSR_Settings(void);
 void p_Equalizer_overview(void);
 void p_Equalizer_Settings(void);
+void p_WahWah(struct WahWah_t *WahWah);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
+void p_Volume(void);
+void p_Presets(void);
 void p_KeyboardSetParameters(struct adsr* envelope);
 Display_Status p_Drumcomputer_overview(void);
 Display_Status p_Drumcomputer_Settings(void);
