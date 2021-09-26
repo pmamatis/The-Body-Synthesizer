@@ -29,7 +29,7 @@
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
 
 /**@brief Maximum of SIgnals which can be played at the same time */
-#define MAX_SIGNAL_KOMBINATION 20
+#define MAX_SIGNAL_KOMBINATION 30
 
 /**@brief struct to store signals
  * @param count: amount of signals

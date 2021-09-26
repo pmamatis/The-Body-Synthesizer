@@ -222,7 +222,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		//Effekte
 		//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+				effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//Drummachine
 		if ((volume[1]>0)||(volume[2]>0)){
@@ -233,7 +233,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			sequencer = 0 ;
 		}
 
-		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + (volume[1] *  drums + volume[2] * sequencer);

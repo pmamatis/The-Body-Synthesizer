@@ -67,6 +67,7 @@ void effects_process_fast(float* calculate_value){
 
 	if(effect_order[4] == WAHWAH) {
 		ProcessWahWah(&WahWah, calculate_value);
+//		ProcessAutoWahWah(&WahWah, calculate_value);
 	}
 
 	//	if(emg_triggerd_flag || keyboard_pressed_flag) {

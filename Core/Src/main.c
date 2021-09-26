@@ -307,8 +307,6 @@ int main(void)
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
-	//timing_DS1[0] = 1;
-
 
 	// Start DAC-DMA
 	printf("start DAC\r\n");
@@ -335,7 +333,6 @@ int main(void)
 	//Start Interface
 	II_startInterface(&htim3);
 
-
 	printf("End Start Functions\r\n");
 
 	/* USER CODE END 2 */
@@ -346,11 +343,30 @@ int main(void)
 
 	//	NewSignal(&signals1,NOISE,'C',0,0);
 	//NewSignal(&signals1,NOISE,'C',0);
-	//NewSignal(&signals1,NOISE,'C',0);
-	//NewSignal(&signals1,SIN, 'C',0);
-	//	NewSignal(&signals1,SIN, 'C',1);
-	//	NewSignal(&signals1,SIN, 'C',2,0);
+
+	//	NewSignal(&signals1,NOISE,'C',0,1);
+
+	// CEG Full Range for Wah
+	NewSignal(&signals1,SIN, 'C',1,16);
+	NewSignal(&signals1,SIN, 'E',1,17);
+	NewSignal(&signals1,SIN, 'G',1,18);
+	NewSignal(&signals1,SIN, 'C',1,13);
+	NewSignal(&signals1,SIN, 'E',1,14);
+	NewSignal(&signals1,SIN, 'G',1,15);
 	NewSignal(&signals1,SIN, 'C',2,1);
+	NewSignal(&signals1,SIN, 'E',2,2);
+	NewSignal(&signals1,SIN, 'G',2,3);
+	NewSignal(&signals1,SIN, 'C',3,4);
+	NewSignal(&signals1,SIN, 'E',3,5);
+	NewSignal(&signals1,SIN, 'G',3,6);
+	NewSignal(&signals1,SIN, 'C',4,7);
+	NewSignal(&signals1,SIN, 'E',4,8);
+	NewSignal(&signals1,SIN, 'G',4,9);
+	NewSignal(&signals1,SIN, 'C',5,10);
+	NewSignal(&signals1,SIN, 'E',5,11);
+	NewSignal(&signals1,SIN, 'G',5,12);
+
+	//NewSignal(&signals1,SIN, 'F',2,1);
 	//	NewSignal(&signals1,SIN, 'C',2,6);
 	//	NewSignal(&signals1,SIN, 'G',0,3);
 	//	NewSignal(&signals1,SIN, 'G',1);
@@ -423,7 +439,9 @@ int main(void)
 	//	Display.Voice_Note_Sources[0] = GYRO_FB;
 	//	Display.Voice_Note_Sources[0] = POTI;
 
-	//Display.WahWah_ONOFF = true;
+//	Display.Drumcomputer_ONOFF = true;
+//	Display.Sequencer_ONOFF = true;
+	Display.WahWah_ONOFF = true;
 
 	//	Display.Distortion_ONOFF = true;
 	//	Display.Distortion_Gain = 5;
@@ -528,7 +546,7 @@ static void MX_ADC1_Init(void)
 	/** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
 	 */
 	hadc1.Instance = ADC1;
-	hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
+	hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
 	hadc1.Init.Resolution = ADC_RESOLUTION_12B;
 	hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
 	hadc1.Init.ContinuousConvMode = DISABLE;
@@ -578,7 +596,7 @@ static void MX_ADC2_Init(void)
 	/** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
 	 */
 	hadc2.Instance = ADC2;
-	hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
+	hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
 	hadc2.Init.Resolution = ADC_RESOLUTION_12B;
 	hadc2.Init.ScanConvMode = ADC_SCAN_ENABLE;
 	hadc2.Init.ContinuousConvMode = DISABLE;
@@ -652,7 +670,7 @@ static void MX_ADC3_Init(void)
 	/** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
 	 */
 	hadc3.Instance = ADC3;
-	hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
+	hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
 	hadc3.Init.Resolution = ADC_RESOLUTION_12B;
 	hadc3.Init.ScanConvMode = ADC_SCAN_ENABLE;
 	hadc3.Init.ContinuousConvMode = DISABLE;

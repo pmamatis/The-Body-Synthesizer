@@ -174,16 +174,16 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	//	timing_DS1[14] = timing_DS2[14] = timing_DS3[14] = timing_DS4[14] = 1;
 	//	timing_DS1[15] = timing_DS2[15] = timing_DS3[15] = timing_DS4[15] = 1;
 
-	//	// INIT: Timing
-	//	// Kick
-	//	timing_DS1[0]  = 1;
-	//	timing_DS1[1]  = 0;
-	//	timing_DS1[2]  = 0;
-	//	timing_DS1[3]  = 0;
-	//	timing_DS1[4]  = 1;
-	//	timing_DS1[5]  = 0;
-	//	timing_DS1[6]  = 0;
-	//	timing_DS1[7]  = 0;
+	// INIT: Timing
+	// Kick
+	timing_DS1[0]  = 1;
+	timing_DS1[1]  = 0;
+	timing_DS1[2]  = 0;
+	timing_DS1[3]  = 0;
+	timing_DS1[4]  = 1;
+	timing_DS1[5]  = 0;
+	timing_DS1[6]  = 0;
+	timing_DS1[7]  = 0;
 	//	timing_DS1[8]  = 1;
 	//	timing_DS1[9]  = 0;
 	//	timing_DS1[10] = 0;
@@ -192,16 +192,16 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	//	timing_DS1[13] = 0;
 	//	timing_DS1[14] = 0;
 	//	timing_DS1[15] = 0;
-	//
-	//	// Hihat
-	//	timing_DS2[0]  = 0;
-	//	timing_DS2[1]  = 0;
-	//	timing_DS2[2]  = 1;
-	//	timing_DS2[3]  = 0;
-	//	timing_DS2[4]  = 0;
-	//	timing_DS2[5]  = 0;
-	//	timing_DS2[6]  = 1;
-	//	timing_DS2[7]  = 0;
+
+	// Hihat
+	timing_DS2[0]  = 0;
+	timing_DS2[1]  = 0;
+	timing_DS2[2]  = 1;
+	timing_DS2[3]  = 0;
+	timing_DS2[4]  = 0;
+	timing_DS2[5]  = 0;
+	timing_DS2[6]  = 1;
+	timing_DS2[7]  = 0;
 	//	timing_DS2[8]  = 0;
 	//	timing_DS2[9]  = 0;
 	//	timing_DS2[10] = 1;
@@ -210,16 +210,16 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	//	timing_DS2[13] = 0;
 	//	timing_DS2[14] = 1;
 	//	timing_DS2[15] = 0;
-	//
-	//	// Clap
-	//	timing_DS3[0]  = 0;
-	//	timing_DS3[1]  = 0;
-	//	timing_DS3[2]  = 0;
-	//	timing_DS3[3]  = 0;
-	//	timing_DS3[4]  = 1;
-	//	timing_DS3[5]  = 0;
-	//	timing_DS3[6]  = 0;
-	//	timing_DS3[7]  = 0;
+
+	// Clap
+	timing_DS3[0]  = 0;
+	timing_DS3[1]  = 0;
+	timing_DS3[2]  = 0;
+	timing_DS3[3]  = 0;
+	timing_DS3[4]  = 1;
+	timing_DS3[5]  = 0;
+	timing_DS3[6]  = 0;
+	timing_DS3[7]  = 0;
 	//	timing_DS3[8]  = 0;
 	//	timing_DS3[9]  = 0;
 	//	timing_DS3[10] = 0;
@@ -229,23 +229,48 @@ HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart){
 	//	timing_DS3[14] = 0;
 	//	timing_DS3[15] = 0;
 
-	//	// LowTom
-	//	timing_DS4[0]  = 0;
-	//	timing_DS4[1]  = 0;
-	//	timing_DS4[2]  = 1;
-	//	timing_DS4[3]  = 1;
-	//	timing_DS4[4]  = 0;
-	//	timing_DS4[5]  = 0;
-	//	timing_DS4[6]  = 0;
-	//	timing_DS4[7]  = 1;
-	//		timing_DS4[8]  = 0;
-	//		timing_DS4[9]  = 0;
-	//		timing_DS4[10] = 1;
-	//		timing_DS4[11] = 1;
-	//		timing_DS4[12] = 0;
-	//		timing_DS4[13] = 0;
-	//		timing_DS4[14] = 0;
-	//		timing_DS4[15] = 1;
+	// LowTom
+	timing_DS4[0]  = 0;
+	timing_DS4[1]  = 0;
+	timing_DS4[2]  = 1;
+	timing_DS4[3]  = 1;
+	timing_DS4[4]  = 0;
+	timing_DS4[5]  = 0;
+	timing_DS4[6]  = 0;
+	timing_DS4[7]  = 1;
+	//	timing_DS4[8]  = 0;
+	//	timing_DS4[9]  = 0;
+	//	timing_DS4[10] = 1;
+	//	timing_DS4[11] = 1;
+	//	timing_DS4[12] = 0;
+	//	timing_DS4[13] = 0;
+	//	timing_DS4[14] = 0;
+	//	timing_DS4[15] = 1;
+
+	timing_SN1[0] = 1;	// Sequence Pattern
+	timing_SN1[1] = 0;
+	timing_SN1[2] = 0;
+	timing_SN1[3] = 0;
+	timing_SN1[4] = 0;
+	timing_SN1[5] = 0;
+	timing_SN1[6] = 0;
+	timing_SN1[7] = 0;
+	timing_SN2[0] = 0;
+	timing_SN2[1] = 0;
+	timing_SN2[2] = 0;
+	timing_SN2[3] = 1;
+	timing_SN2[4] = 0;
+	timing_SN2[5] = 0;
+	timing_SN2[6] = 0;
+	timing_SN2[7] = 0;
+	timing_SN3[0] = 0;
+	timing_SN3[1] = 0;
+	timing_SN3[2] = 0;
+	timing_SN3[3] = 0;
+	timing_SN3[4] = 0;
+	timing_SN3[5] = 0;
+	timing_SN3[6] = 1;
+	timing_SN3[7] = 0;
 
 
 	// Sequencer Notes

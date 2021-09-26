@@ -32,6 +32,7 @@ struct WahWah_t{
 	float mid_freq;
 	float mid_freq_mod;
 	float range;
+	float gain;
 
 	float max_mid_freq;
 	float max_range;
@@ -43,5 +44,6 @@ struct WahWah_t WahWah;
 
 WahWah_Status WahWah_Init(struct WahWah_t *WahWah);
 WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float* data);
+WahWah_Status ProcessAutoWahWah(struct WahWah_t *WahWah, float* data);
 
 #endif /* INC_WAHWAH_H_ */
