@@ -77,6 +77,13 @@ void Error_Handler(void);
 uint8_t pTxData[BUFFERSIZE];
 uint8_t pRxData[BUFFERSIZE];
 sensor_data_t SyncBuffer;
+uint16_t Acc_x;
+uint16_t Acc_y;
+uint16_t Acc_z;
+
+uint16_t Gy_x;
+uint16_t Gy_y;
+uint16_t Gy_z;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

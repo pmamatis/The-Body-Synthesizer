@@ -203,6 +203,8 @@ typedef struct {
 	int16_t	Ax_mean;
 	int16_t	Ay_mean;
 	int16_t	Az_mean;
+	int16_t Threshold_z;
+	int16_t Threshold_x;
 	float	Accl_mult;
 	float Ax_deg;
 	float Ay_deg;
@@ -323,4 +325,41 @@ uint8_t MPU6050_GetDMPIntReg(void);
 void MPU6050_Display_Data();
 float getAbsMax(float a, float b , float c);
 uint8_t MPU6050_detectTilt();
+
+/**
+ * Eloms Part
+ */
+#define RAWBLOCKSIZE 6
+#define BLOCKSIZE 2000
+
+#define THRESHOLD_Z 900
+#define THRESHOLD_X 400
+
+uint8_t  Buffer_RawData[RAWBLOCKSIZE];
+int16_t Buffer_ProcessedData_z[BLOCKSIZE];
+int16_t Buffer_ProcessedData_x[BLOCKSIZE];
+
+
+//int16_t MinValue;
+//int16_t MinValueIndex;
+//int16_t MaxValue;
+//int16_t MaxValueIndex;
+
+int16_t debug_x;
+int16_t debug_z;
+int32_t MeanValue_z;
+int32_t MeanValue_x;
+int32_t BreakCounter;
+int32_t Pause;
+
+bool MoveDetected;
+bool MovementUP;
+bool MovementDOWN;
+bool MovementLEFT;
+bool MovementRIGHT;
+
+MPU6050_STATUS MPU6050_Detect_Movement();
+
+
+
 #endif /* INC_MPU6050_GY521_H_ */
