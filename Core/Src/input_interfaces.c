@@ -143,7 +143,7 @@ uint8_t II_Display_Effects(void){
 		}
 	}
 	else if (Display.Distortion_ONOFF == false){
-		effects_delete(DIST_H, 2);
+		effects_delete(DIST_H);
 	}
 
 	//Tremolo
@@ -236,7 +236,7 @@ uint8_t II_Display_Effects(void){
 		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 	}
 	else if (Display.Distortion_ONOFF == false){
-		effects_delete(TREM, 1);
+		effects_delete(TREM);
 	}
 
 	//Filter
@@ -296,7 +296,7 @@ uint8_t II_Display_Effects(void){
 		}
 	}
 	else if (Display.Filter_ONOFF == false){
-		effects_delete(EQ, 0);
+		effects_delete(EQ);
 	}
 
 	// WahWah
@@ -304,7 +304,7 @@ uint8_t II_Display_Effects(void){
 		effects_add(WAHWAH);
 	}
 	else {
-		effects_delete(WAHWAH, 4);
+		effects_delete(WAHWAH);
 	}
 
 	//	}

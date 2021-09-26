@@ -124,17 +124,26 @@ void effects_add(effects_t_enum effect) {
 /**
  * Deletes an effect inside the effect_order[position]
  */
-void effects_delete(effects_t_enum effect, uint8_t position) {
+void effects_delete(effects_t_enum effect) {
 
-	if(position < MAX_EFFECTS) {
-		if(effect == effect_order[position]) {
-			effect_order[position] = 0;
-		}
-		else{
-			//print LCD( "diffrent Effect, really want to delete?" )
-		}
+
+	switch(effect) {
+	case EQ:
+		effect_order[0] = 0;
+		break;
+	case TREM:
+		effect_order[1] = 0;
+		break;
+	case DIST_H:
+		effect_order[2] = 0;
+		break;
+	case DIST_S:
+		effect_order[3] = 0;
+		break;
+	case WAHWAH:
+		effect_order[4] = 0;
+	default:
+		break;
 	}
-	else {
-		//error @TODO
-	}
+
 }
