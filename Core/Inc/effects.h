@@ -19,7 +19,7 @@ typedef enum effects_t_enum{
 	EQ,			// Equalizer
 	ADSR,		// ADSR
 	VOICES,
-
+	WAHWAH
 }effects_t_enum;
 
 

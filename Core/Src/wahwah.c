@@ -50,7 +50,8 @@ WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float *data){
 	LFO_SingleValueProcess(WahWah->lfo);
 
 	// MODULATE: mid frequency of bandpass with light sensor
-	WahWah->mid_freq = (float)ADC_value / 4;
+//	WahWah->mid_freq = (float)ADC_value / 4;
+	WahWah->mid_freq = Display.ADC2inputs[3] / 4;
 
 	// MODULATE: mid frequency of bandpass with poti
 	//WahWah->mid_freq = (((float)ADC_value / 4095) * 2000) + WahWah->range / 2;

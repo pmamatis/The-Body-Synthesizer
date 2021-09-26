@@ -48,13 +48,12 @@ void effects_process(float* calculate_value) {
 
 void effects_process_fast(float* calculate_value){
 
-	if(effect_order[1] == TREM){
-		ProcessTremolo(&Tremolo, calculate_value);
+	if(effect_order[0] == EQ){
+		ProcessEQ(calculate_value);
 	}
 
-	if(effect_order[0] == EQ){
-
-		ProcessEQ(calculate_value);
+	if(effect_order[1] == TREM){
+		ProcessTremolo(&Tremolo, calculate_value);
 	}
 
 	if(effect_order[2] == DIST_H){
@@ -64,6 +63,10 @@ void effects_process_fast(float* calculate_value){
 
 	if(effect_order[3] == DIST_S){
 		ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
+	}
+
+	if(effect_order[4] == WAHWAH) {
+		ProcessWahWah(&WahWah, calculate_value);
 	}
 
 	//	if(emg_triggerd_flag || keyboard_pressed_flag) {
@@ -80,11 +83,11 @@ void effects_process_fast(float* calculate_value){
 void effects_add(effects_t_enum effect) {
 
 	switch(effect) {
-	case TREM:
-		effect_order[1] = TREM;
-		break;
 	case EQ:
 		effect_order[0] = EQ;
+		break;
+	case TREM:
+		effect_order[1] = TREM;
 		break;
 	case DIST_H:
 		effect_order[2] = DIST_H;
@@ -92,12 +95,14 @@ void effects_add(effects_t_enum effect) {
 	case DIST_S:
 		effect_order[3] = DIST_S;
 		break;
+	case WAHWAH:
+		effect_order[4] = WAHWAH;
 	default:
 		break;
 	}
 	//
 	//	if(position < MAX_EFFECTS) {
-		//		effect_order[position] = effect;
+	//		effect_order[position] = effect;
 	//
 	//		/*
 	//		effects_t_enum tmp = effect_order[position];

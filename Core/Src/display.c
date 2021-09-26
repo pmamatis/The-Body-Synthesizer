@@ -3451,12 +3451,20 @@ void p_Presets(void) {
 			timing_DS3[7] = 0;
 			timing_DS4[0] = 0;
 			timing_DS4[1] = 0;
-			timing_DS4[2] = 1;
-			timing_DS4[3] = 1;
+			timing_DS4[2] = 0;
+			timing_DS4[3] = 0;
 			timing_DS4[4] = 0;
 			timing_DS4[5] = 0;
 			timing_DS4[6] = 0;
-			timing_DS4[7] = 1;
+			timing_DS4[7] = 0;
+			//			timing_DS4[0] = 0;
+			//			timing_DS4[1] = 0;
+			//			timing_DS4[2] = 1;
+			//			timing_DS4[3] = 1;
+			//			timing_DS4[4] = 0;
+			//			timing_DS4[5] = 0;
+			//			timing_DS4[6] = 0;
+			//			timing_DS4[7] = 1;
 		}
 		else if(potVal >= 50) {
 			sprintf(Display.value_str_presets[0], "%d", 2);

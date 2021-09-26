@@ -350,7 +350,7 @@ int main(void)
 	//NewSignal(&signals1,SIN, 'C',0);
 	//	NewSignal(&signals1,SIN, 'C',1);
 	//	NewSignal(&signals1,SIN, 'C',2,0);
-	//	NewSignal(&signals1,SIN, 'C',3,1);
+	NewSignal(&signals1,SIN, 'C',2,1);
 	//	NewSignal(&signals1,SIN, 'C',2,6);
 	//	NewSignal(&signals1,SIN, 'G',0,3);
 	//	NewSignal(&signals1,SIN, 'G',1);
@@ -422,6 +422,8 @@ int main(void)
 	//	Display.Voice_Note_Sources[0] = EKG;
 	//	Display.Voice_Note_Sources[0] = GYRO_FB;
 	//	Display.Voice_Note_Sources[0] = POTI;
+
+	//Display.WahWah_ONOFF = true;
 
 	//	Display.Distortion_ONOFF = true;
 	//	Display.Distortion_Gain = 5;

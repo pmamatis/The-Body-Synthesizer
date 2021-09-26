@@ -143,7 +143,7 @@ uint8_t II_Display_Effects(void){
 		}
 	}
 	else if (Display.Distortion_ONOFF == false){
-		effects_delete(DIST_H, 0);
+		effects_delete(DIST_H, 2);
 	}
 
 	//Tremolo
@@ -296,10 +296,19 @@ uint8_t II_Display_Effects(void){
 		}
 	}
 	else if (Display.Filter_ONOFF == false){
-		effects_delete(EQ, 2);
+		effects_delete(EQ, 0);
+	}
+
+	// WahWah
+	if(Display.WahWah_ONOFF == true) {
+		effects_add(WAHWAH);
+	}
+	else {
+		effects_delete(WAHWAH, 4);
 	}
 
 	//	}
+
 	return 1;
 }
 
