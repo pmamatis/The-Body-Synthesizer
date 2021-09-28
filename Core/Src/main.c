@@ -241,14 +241,12 @@ int main(void)
 	//--------------------------------------------------
 	printf("***Bodysynthesizer*** \r\n");
 
-
 	/* INIT FUNCTIONS************************
 	 *
 	 */
 	printf("Begin Init\r\n");
 	if(Signal_Synthesis_Init(htim8, hdac) != HAL_OK) {
 		printf("Signal Synthesis init failed\n");
-		//while(1);
 		//exit(EXIT_FAILURE);	// #include <stdlib.h>
 	}
 
@@ -256,35 +254,30 @@ int main(void)
 
 	if(Filters_Init() == FILTER_FAIL) {
 		printf("Filters init failed\n");
-		//while(1);
 	}
 	//SetupLowpass(&EQ_BAND1_I, 200, 0.707);
 
 	if(Tremolo_Init(&Tremolo) == TREMOLO_FAIL) {
 		printf("Tremolo init failed\n");
-		//while(1);
 	}
 
 	if(Distortion_Init() == DISTORTION_FAIL) {
 		printf("Distortion init failed\n");
-		//while(1);
 	}
 
 	//ADSR_Linear_Init(&envelope);
 	if(ADSR_Init() == ADSR_FAIL) {
 		printf("ADSR init failed\n");
-		//while(1);
 	}
 
 	if(Display_Init(&Display) == DISPLAY_FAIL) {
 		printf("Display init failed\n");
-		//while(1);
 	}
 
 	keyboard_init(&hadc1, &htim5);
 
 	//Drummachine
-	Drum_Computer_Init(&huart2);
+	Drum_Computer_Init();
 
 	//Gyros SPI
 	spiC_Init(&hspi4, &htim7);
@@ -439,8 +432,8 @@ int main(void)
 	//	Display.Voice_Note_Sources[0] = GYRO_FB;
 	//	Display.Voice_Note_Sources[0] = POTI;
 
-//	Display.Drumcomputer_ONOFF = true;
-//	Display.Sequencer_ONOFF = true;
+	Display.Drumcomputer_ONOFF = true;
+	Display.Sequencer_ONOFF = true;
 	Display.WahWah_ONOFF = true;
 
 	//	Display.Distortion_ONOFF = true;

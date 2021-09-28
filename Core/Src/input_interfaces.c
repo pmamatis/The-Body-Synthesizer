@@ -149,7 +149,7 @@ uint8_t II_Display_Effects(void){
 	//Tremolo
 	if (Display.Tremolo_ONOFF == true){
 		effects_add(TREM);
-		if (Display.Distortion_Sources > 0){
+		if (Display.Tremolo_Sources[0] > 0){
 			switch (Display.Tremolo_Sources[0]) {//RATE
 			case GYRO_FB:
 
@@ -161,7 +161,7 @@ uint8_t II_Display_Effects(void){
 					sensorData.tilt_detected = TILT_NONE;
 				}
 				else if (sensorData.tilt_detected == TILT_FRONT){
-					if (Display.Distortion_Gain < Tremolo.tremolo_maximum_rate) {
+					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
 						//printf("raise Trem Rate\r\n");
 						Display.Tremolo_Rate ++;
 					}
@@ -178,7 +178,7 @@ uint8_t II_Display_Effects(void){
 					sensorData.tilt_detected = TILT_NONE;
 				}
 				else if (sensorData.tilt_detected == TILT_RIGHT){
-					if (Display.Distortion_Gain < Tremolo.tremolo_maximum_rate) {
+					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
 						//printf("raise Trem Rate\r\n");
 						Display.Tremolo_Rate ++;
 					}
@@ -313,74 +313,6 @@ uint8_t II_Display_Effects(void){
 
 	return 1;
 }
-
-//			//			if (Display.poti_moved == true){
-//			switch(Display.currentBand){
-//
-//			case 1:
-//				// BAND 1: Low-Shelf filter
-//				SetupLowShelf(&EQ_BAND1_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
-//				break;
-//
-//			case 2:
-//				// BAND 2: Peaking-EQ / Notch-Filter
-//
-//
-//				SetupPeakingEQ(&EQ_BAND2_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
-//				SetupNotch	(&EQ_BAND2_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand]);
-//				break;
-//
-//			case 3:
-//				// BAND 3: Peaking-EQ / Notch-Filter
-//				SetupPeakingEQ(&EQ_BAND3_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
-//				SetupNotch	(&EQ_BAND3_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand]);
-//				break;
-//
-//			case 4:
-//				// BAND 4: Peaking-EQ / Notch-Filter
-//				SetupPeakingEQ(&EQ_BAND4_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
-//				SetupNotch	(&EQ_BAND4_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand]);
-//				break;
-//
-//			case 5:
-//				// BAND 5: High-Shelf filter
-//				SetupHighShelf(&EQ_BAND5_I, Display.Filter_Cutoff[Display.currentBand], Display.Filter_Q[Display.currentBand], Display.Filter_Gain[Display.currentBand]);
-//				break;
-//
-//			}
-
-//		SetupLowShelf(EQ_BAND1_I, Display.Filter_Cutoff[], Q, dBGain)
-//		}
-
-//		SetupNotch(BP, cutoff, Q)
-
-void II_processGyro(void){
-
-	if (Display.Gyro_ON == true){
-
-		switch(sensorData.tilt_detected){
-		case TILT_RIGHT:
-			break;
-		case TILT_LEFT:
-			break;
-		case TILT_FRONT:
-			break;
-		case TILT_BACK:
-			break;
-		case TILT_NONE:
-			break;
-		default:
-			break;
-		}
-	}
-}
-
-//void II_processEMG(){
-////	if (emg_peak_== 1){
-//
-//	}
-//}
-//
 
 /** raises the key of an existing signal, by deleting the signal and creating a new signal
  * @param ID: signal ID

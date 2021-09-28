@@ -101,7 +101,7 @@ float sequencer;
 
 
 // Methods
-HAL_StatusTypeDef Drum_Computer_Init(UART_HandleTypeDef *huart);
+HAL_StatusTypeDef Drum_Computer_Init(void);
 HAL_StatusTypeDef Drum_Computer_Process();
 HAL_StatusTypeDef Drum_Computer_CalcSample();
 HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse();

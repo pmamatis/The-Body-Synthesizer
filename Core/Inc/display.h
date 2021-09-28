@@ -169,9 +169,11 @@ struct display_variables {
 
 	// WahWah
 	bool WahWah_ONOFF;
-	float WahWah_LFOFreq;
+	float WahWah_LFOfreq;
 	float WahWah_Range;
 	float WahWah_MidFreq;
+	float WahWah_Q;
+	uint8_t currentWahWah;
 
 
 	uint8_t last_note;
@@ -262,7 +264,7 @@ struct display_variables {
 	source_t EQ_Q_factor_Sources[5];			// sources for q-factor of 5 frequency bands
 	source_t EQ_Cutoff_Sources[5];				// sources for cutoff of 5 frequency bands
 	source_t EQ_Gain_Sources[5];				// sources for gain of 5 frequency bands
-	source_t WahWah_Sources[3];					// sources for wahwah parameters
+	source_t WahWah_Sources[4];					// sources for wahwah parameters
 	source_t Distortion_Sources;				// sources for gain
 	source_t Tremolo_Sources[2];				// sources for rate and depth
 
@@ -274,7 +276,7 @@ struct display_variables {
 	char value_str_adsr_settings[9][10];
 	char value_str_equalizer_overview[9][10];
 	char value_str_equalizer_settings[5][9][10];
-	char value_str_wahwah[7][10];
+	char value_str_wahwah[10][10];
 	char value_str_distortion[9][10];
 	char value_str_tremolo[9][10];
 	char value_str_volume[3][10];
@@ -305,6 +307,9 @@ struct display_variables {
 	bool SequencerMatrix[MAX_NUMBER_OF_NOTES][NUMBER_OF_SEQUENCERSTEPS];
 	bool EditSteps;
 	uint8_t currentSequencer;
+
+	// WahWah
+	uint8_t WahWah_Mode;
 };
 
 struct display_variables Display;
@@ -357,7 +362,9 @@ void p_ADSR_overview(struct adsr* envelope);
 void p_ADSR_Settings(void);
 void p_Equalizer_overview(void);
 void p_Equalizer_Settings(void);
-void p_WahWah(struct WahWah_t *WahWah);
+void p_WahWah_overview(struct WahWah_t *WahWah);
+void p_WahWah_Settings(struct WahWah_t *WahWah);
+//void p_WahWah(struct WahWah_t *WahWah);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_Volume(void);

@@ -36,6 +36,7 @@ struct WahWah_t{
 
 	float max_mid_freq;
 	float max_range;
+	float max_Q;
 
 	uint32_t reinit_counter;
 };
