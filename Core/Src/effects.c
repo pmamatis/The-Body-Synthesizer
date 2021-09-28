@@ -71,8 +71,8 @@ void effects_process_fast(float* calculate_value){
 	}
 
 	//	if(emg_triggerd_flag || keyboard_pressed_flag) {
-	if(keyboard_pressed_flag) {
-		OnePress_ADSR_Linear_Process(&envelope, calculate_value, true);
+	if(keyboard_pressed_flag == true) {
+		OnePress_ADSR_Linear_Process(&envelope, calculate_value, keyboard_pressed_flag);
 	}
 }
 

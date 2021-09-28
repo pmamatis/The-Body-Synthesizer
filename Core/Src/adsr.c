@@ -21,12 +21,17 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 
 	envelope->adsr_counter = 0;
 	envelope->adsr_max_amp = 1.00;	// maximum value should be 1
-	envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
 	envelope->adsr_attack_time = 0.1 * LUT_SR;
 	envelope->adsr_decay_time = 0.05 * LUT_SR;
 	envelope->adsr_sustain_time = 0.15 * LUT_SR;
 	envelope->adsr_sustain_amplitude = 0.5;
 	envelope->adsr_release_time = 0.05 * LUT_SR;
+
+//	envelope->adsr_attack_time = 0.01 * LUT_SR;
+//	envelope->adsr_decay_time = 0.05 * LUT_SR;
+//	envelope->adsr_sustain_time = 0.05 * LUT_SR;
+//	envelope->adsr_sustain_amplitude = 0.3;
+//	envelope->adsr_release_time = 0.01 * LUT_SR;
 
 	//	envelope->adsr_maximum_attack = (envelope->adsr_duration_time/4) / LUT_SR;	// in seconds; maximum 4.0 seconds (-> 4*LUT_SR), to display the value -> uint16_t
 	//	envelope->adsr_maximum_decay = (envelope->adsr_duration_time/4) / LUT_SR;
@@ -48,9 +53,11 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag) {
 
+	float calc = 0;
+
 	if(flag == true) {
 
-		float calc = 0;
+		//		float calc = 0;
 
 		envelope->adsr_duration_time = envelope->adsr_attack_time + envelope->adsr_decay_time + envelope->adsr_sustain_time + envelope->adsr_release_time;
 
@@ -86,11 +93,14 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 				calc = -(envelope->adsr_sustain_amplitude/envelope->adsr_release_time) * (envelope->adsr_counter - (envelope->adsr_duration_time - envelope->adsr_release_time)) + envelope->adsr_sustain_amplitude;
 				// exponential:
 				//calc = envelope->adsr_sustain_amplitude * (1/exp1(envelope->release_counter/(envelope->adsr_release_time/5)));
-				//(envelope->release_counter)++;
+				//				envelope->release_counter++;
 			}
 		}
 
-		else if(envelope->adsr_counter == envelope->adsr_duration_time) {
+		// update adsr counter
+		envelope->adsr_counter++;
+
+		if(envelope->adsr_counter >= envelope->adsr_duration_time) {
 			envelope->adsr_counter = 0;	// restart
 			//envelope->decay_counter = 0;
 			//envelope->release_counter = 0;
@@ -98,15 +108,11 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 			envelope->adsr_done = true;
 		}
 
-		// update time counter
-		(envelope->adsr_counter)++;
-
-		//*calculate_value = *calculate_value + 1;
+		//		*calculate_value = *calculate_value + 1;
 		*calculate_value = *calculate_value * calc;
-		if (envelope->adsr_done == true){
-			*calculate_value = 0;
-//			noPlopOffset = *calculate_value;
-		}
-		//*calculate_value = *calculate_value - 1;
+		//		if (envelope->adsr_done == true){
+		//			noPlopOffset = 0;
+		//		}
+		//		*calculate_value = *calculate_value - 1;
 	}
 }

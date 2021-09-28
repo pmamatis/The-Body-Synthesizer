@@ -231,7 +231,7 @@ struct display_variables {
 	//Page parameter
 	int8_t pagePosition;
 	uint8_t page_max;
-	uint8_t page_min;
+	int8_t page_min;
 
 	// Potentiometer-variables
 	uint16_t Poti_raw;

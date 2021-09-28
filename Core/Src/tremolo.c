@@ -22,7 +22,7 @@ Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo) {
 	Tremolo->lfo->lfo_quarter = 0;
 	Tremolo->lfo->lfo_depth = 0.8;		// was 0.5
 
-	Tremolo->tremolo_maximum_rate = 9;
+	Tremolo->tremolo_maximum_rate = 8;
 	Tremolo->tremolo_maximum_depth = 1.00;
 
 	return TREMOLO_OK;

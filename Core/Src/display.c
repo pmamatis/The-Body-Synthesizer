@@ -78,7 +78,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->Distortion_EffectAdded = false;
 
 	Display->Tremolo_ONOFF = false;
-	Display->Tremolo_Rate = 0;
+	Display->Tremolo_Rate = 2;
 	Display->Tremolo_Depth = 0.0;
 	Display->Tremolo_EffectPosition = 0;
 	Display->Tremolo_EffectAdded = false;
@@ -139,7 +139,8 @@ Display_Status Display_Init(struct display_variables* Display) {
 
 	//Page parameter
 	Display->pagePosition = 0;
-	Display->page_min = 0;
+	//	Display->page_min = 0;
+	Display->page_min = -1;
 	Display->page_max = 10;
 
 	Display->ENTER_Debounce_State = true;
@@ -566,89 +567,95 @@ void DISPLAY_processing(void) {
 		break;
 
 	case BODYSYNTH:
-		Display.page_max = 10; // has to be changed for every added case
+		Display.page_max = 9; // has to be changed for every added case
 
 		switch(Display.pagePosition) {
+		case -1:
+			p_Presets();
+			break;
 		case 0:
 			p_StartingMenu(frame_buffer);
 			break;
 		case 1:
-			p_Drumcomputer_overview();
+			p_Volume();
 			break;
 		case 2:
+			p_Drumcomputer_overview();
+			break;
+		case 3:
 			switch(Display.currentDrumcomputer) {
 			case 0:
 				p_Sequencer_overview();
 				break;
 			default:
 				p_Drumcomputer_Settings();
-				Display.page_max = 2;
+				//				Display.page_max = 3;
+				Display.page_max = Display.pagePosition;
 				break;
 			}
 			break;
-			case 3:
+			case 4:
 				switch(Display.currentSequencer) {
 				case 0:
 					p_Voices_overview();
 					break;
 				default:
 					p_Sequencer_Settings();
-					Display.page_max = 3;
+					//					Display.page_max = 4;
+					Display.page_max = Display.pagePosition;
 					break;
 				}
 				break;
-				case 4:
+				case 5:
 					switch(Display.currentVoice) {
 					case 0:
 						p_ADSR_overview(&envelope);
 						break;
 					default:
 						p_Voices_Settings();
-						Display.page_max = 4;
+						//						Display.page_max = 5;
+						Display.page_max = Display.pagePosition;
 						break;
 					}
 					break;
-					case 5:
+					case 6:
 						switch(Display.currentADSR) {
 						case 0:
 							p_Equalizer_overview();
 							break;
 						default:
 							p_ADSR_Settings();
-							Display.page_max = 5;
+							//							Display.page_max = 6;
+							Display.page_max = Display.pagePosition;
 							break;
 						}
 						break;
-						case 6:
+						case 7:
 							switch(Display.currentBand) {
 							case 0:
 								p_WahWah_overview(&WahWah);
 								break;
 							default:
 								p_Equalizer_Settings();
-								Display.page_max = 6;
+								//								Display.page_max = 7;
+								Display.page_max = Display.pagePosition;
 								break;
 							}
 							break;
-							case 7:
+							case 8:
 								switch(Display.currentWahWah) {
 								case 0:
 									p_Distortion(&HardClipping);
 									break;
 								default:
 									p_WahWah_Settings(&WahWah);
-									Display.page_max = 7;
+									//									Display.page_max = 8;
+									Display.page_max = Display.pagePosition;
 									break;
 								}
 								break;
-								case 8:
-									p_Tremolo(&Tremolo);
-									break;
 								case 9:
-									p_Volume();
-									break;
-								case 10:
-									p_Presets();
+									p_Tremolo(&Tremolo);
 									break;
 								default:
 									break;
@@ -3617,6 +3624,37 @@ void p_Presets(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
+
+
+	NewSignal(&signals1,SIN, 'C',1,6);
+	NewSignal(&signals1,SIN, 'E',1,7);
+	NewSignal(&signals1,SIN, 'G',1,8);
+	NewSignal(&signals1,SIN, 'C',2,9);
+	NewSignal(&signals1,SIN, 'E',2,10);
+	NewSignal(&signals1,SIN, 'G',2,11);
+	NewSignal(&signals1,SIN, 'C',3,12);
+	NewSignal(&signals1,SIN, 'E',3,13);
+	NewSignal(&signals1,SIN, 'G',3,14);
+	NewSignal(&signals1,SIN, 'C',4,15);
+	NewSignal(&signals1,SIN, 'E',4,16);
+	NewSignal(&signals1,SIN, 'G',4,17);
+	NewSignal(&signals1,SIN, 'C',5,18);
+	NewSignal(&signals1,SIN, 'E',5,19);
+	NewSignal(&signals1,SIN, 'G',5,20);
+
+
+	Display.Tremolo_ONOFF = true;
+	Display.Tremolo_Sources[1] = GYRO_LR;
+
+
+	Display.Filter_ONOFF[0] = true;
+	Display.EQ_Cutoff_Sources[0] = GYRO_FB;
+	Display.currentBand = 0;
+
+	Display.Voices_Note[0] = 'C';
+	Display.Voices_ONOFF[0] = true;
+	Display.Voices_Octave[0] = 3;
+	Display.Voice_Note_Sources[0] = EKG;
 
 	switch(Display.JoystickParameterPosition) {
 	case 1:	// Drums Preset

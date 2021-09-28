@@ -222,7 +222,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		//Effekte
 		//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-				effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//Drummachine
 		if ((volume[1]>0)||(volume[2]>0)){
@@ -233,7 +233,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			sequencer = 0 ;
 		}
 
-//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + (volume[1] *  drums + volume[2] * sequencer);
@@ -273,9 +273,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//Signal adjustment to DAC
 		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((((float)emg_buffer[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3 (with OFFSET of 145)
 
-		//		if ((Display.Sequencer_ONOFF==false) && (Display.Drumcomputer_ONOFF==false) && (signals->count==0)){
-		//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
-		//		}
+//		if ((Display.Sequencer_ONOFF==false) && (Display.Drumcomputer_ONOFF==false) && (signals->count==0)){
+//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
+//		}
 
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1.65)/2) * maxValueDAC  ); // +1.65 fir middle of 0-3V3
 	} //End for-Loop

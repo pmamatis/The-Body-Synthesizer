@@ -105,6 +105,6 @@ HAL_StatusTypeDef Drum_Computer_Init(void);
 HAL_StatusTypeDef Drum_Computer_Process();
 HAL_StatusTypeDef Drum_Computer_CalcSample();
 HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse();
-HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* envelope);
+HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env);
 
 #endif /* INC_DRUM_COMPUTER_H_ */

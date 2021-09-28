@@ -7,23 +7,23 @@
 
 #include "drum_computer.h"
 
-HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* envelope){
+HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 
 	// INIT: ADSR structs
-	envelope->adsr_counter = 0;
-	envelope->adsr_max_amp = 1.00;					// maximum value should be 1
-	//envelope->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
+	env->adsr_counter = 0;
+	env->adsr_max_amp = 1.00;					// maximum value should be 1
+	//env->adsr_duration_time = 1.0 * LUT_SR;	// first number in seconds
 
-	envelope->adsr_attack_time = 0.01 * LUT_SR;
-	envelope->adsr_decay_time = 0.05 * LUT_SR;
-	envelope->adsr_sustain_time = 0.05 * LUT_SR;
-	envelope->adsr_sustain_amplitude = 0.3;
-	envelope->adsr_release_time = 0.01 * LUT_SR;
+	env->adsr_attack_time = 0.01 * LUT_SR;
+	env->adsr_decay_time = 0.05 * LUT_SR;
+	env->adsr_sustain_time = 0.05 * LUT_SR;
+	env->adsr_sustain_amplitude = 0.3;
+	env->adsr_release_time = 0.01 * LUT_SR;
 
-	envelope->adsr_done = false;
+	env->adsr_done = false;
 
-	envelope->decay_counter = 0;
-	envelope->release_counter = 0;
+	env->decay_counter = 0;
+	env->release_counter = 0;
 
 	return HAL_OK;
 }
