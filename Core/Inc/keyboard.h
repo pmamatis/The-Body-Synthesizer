@@ -29,6 +29,11 @@
 #define C_NOTE_ADC_VALUE 	400
 #define NO_KEY_ADC_VALUE 	200
 
+#define NUMBER_OF_KEYBOARD_NOTES 13
+#define MAX_SIMULTANEOUS_KEYBOARD_NOTES 3
+
+const uint16_t keyboard_note_adcval[NUMBER_OF_KEYBOARD_NOTES];
+
 /** reserved position in the signal struct array.
  * 	(NewSignal from last pressed key)
  */
@@ -46,7 +51,12 @@ bool keyboard_pressed_flag;
 /** =1 when release period starts */
 bool start_release_flag;
 
-uint8_t keyboard_counter;
+bool initial_press_flag;
+
+
+uint32_t keyboard_pressed_counter;
+
+bool 	play_keyboard_note[MAX_SIMULTANEOUS_KEYBOARD_NOTES];
 
 /** signal ID of the Note, which is created while pressing keyboard pads*/
 uint8_t keyboard_ID;
@@ -59,7 +69,7 @@ uint32_t keyboard_adc_value;
 void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler);
 HAL_StatusTypeDef keyboard_start_read();
 HAL_StatusTypeDef keyboard_stop_read();
-void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct adsr* envelope, struct display_variables* Display);
+void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct adsr* envelope, struct display_variables* Display,uint8_t ID);
 //void keyboard_process(uint16_t adc_value, struct signal_t* signals, struct adsr* envelope);
 
 #endif /* INC_KEYBOARD_H_ */

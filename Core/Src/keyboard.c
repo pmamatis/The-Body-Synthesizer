@@ -7,14 +7,20 @@
 
 #include "keyboard.h"
 
+const uint16_t keyboard_note_adcval[] = {200, 400, 800, 1100, 1400, 1800, 2100, 2450, 2800, 3100, 3500, 3800, 4095};
+
 void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler) {
 	KEYBOARD_ADC = ADC_Handler;
 	KEYBOARD_TIM = TIM_Handler;
 	SetTimerSettings(TIM_Handler, KEYBOARD_SR);
 	keyboard_octave = 1;
-	keyboard_pressed_flag = false;
 	start_release_flag = false;
-	keyboard_counter = 0;
+	keyboard_pressed_counter = 0;
+	keyboard_pressed_flag = false;
+	initial_press_flag = false;
+	for (int i =0;i < MAX_SIMULTANEOUS_KEYBOARD_NOTES;i++)
+		play_keyboard_note[i] = false;
+
 }
 
 /** starts the keyboard reading process
@@ -37,103 +43,77 @@ HAL_StatusTypeDef keyboard_stop_read() {
 	//	return HAL_ADC_Stop_DMA(KEYBOARD_ADC);
 }
 
-void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct adsr* envelope, struct display_variables* Display) {
+void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct adsr* envelope, struct display_variables* Display,uint8_t ID) {
 
-	if (adc_value > AIS_NOTE_ADC_VALUE){
-		//printf("H\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'H', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
+	//	for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++) {
+	//		if(adc_value < NO_KEY_ADC_VALUE && adsr_keyboard[i].adsr_done == true) {
+	//			keyboard_pressed_flag[i] = false;
+	//		}
+	//
+	//		if(adsr_keyboard[i].adsr_done == true) {
+	//			DeleteSignal(signals,IDtoIndex(KEYBOARD_VOICE_ID+i));
+	//			adsr_keyboard[i].adsr_done = false;
+	//		}
+	//
+	//		if(keyboard_pressed_flag[i] == false) {
+	//			for(uint8_t j=0; j<(NUMBER_OF_KEYBOARD_NOTES-1); j++) {
+	//				if(adc_value > keyboard_note_adcval[j] && adc_value < keyboard_note_adcval[j+1]) {
+	//					NewSignal(signals, SIN, keys[j], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+i);
+	//					keyboard_pressed_flag[i] = true;
+	//				}
+	//			}
+	//		}
+	//	}
+
+	if (adsr_keyboard[0].adsr_counter >0){
+		//Key release sensing
+		if(adc_value <= NO_KEY_ADC_VALUE) {
+
+			if(keyboard_pressed_counter%2==0)
+				keyboard_pressed_counter++;
+
+		}
+		//Key Press Sensing
+		else if (adc_value > NO_KEY_ADC_VALUE){
+
+			if(keyboard_pressed_counter%2==1)
+				keyboard_pressed_counter++;
+
 		}
 	}
-	else if (adc_value > A_NOTE_ADC_VALUE) {
-		//printf("B\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'B', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
+		printf("%i\r\n", keyboard_pressed_counter);
+	//activate processing
+	if (keyboard_pressed_counter >= 4)
+		play_keyboard_note[1] = true;
+	if(keyboard_pressed_counter >= 6)
+		play_keyboard_note[2] = true;
+
+
+
+	//generate Signal
+	if(keyboard_pressed_counter % 2 == 0) {
+		for(uint8_t i=0; i<(NUMBER_OF_KEYBOARD_NOTES-1); i++) {
+			if(adc_value > keyboard_note_adcval[i] && adc_value < keyboard_note_adcval[i+1]) {
+				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+ID);
+				keyboard_pressed_flag = true;
+			}
 		}
 	}
-	else if (adc_value > GIS_NOTE_ADC_VALUE) {
-		//printf("A\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'A', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
+
+
+	//ADSR info
+	if(adc_value < NO_KEY_ADC_VALUE && envelope->adsr_done == true) {
+		keyboard_pressed_flag = false;
 	}
-	else if (adc_value > G_NOTE_ADC_VALUE) {
-		//printf("GIS\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'g', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
+
+	//Delete signal
+	if(envelope->adsr_done == true) {
+		DeleteSignal(signals,IDtoIndex(KEYBOARD_VOICE_ID+ID));
+		envelope->adsr_done = false;
+		play_keyboard_note[ID] = false;
+		printf("delete\r\n");
 	}
-	else if (adc_value > FIS_NOTE_ADC_VALUE) {
-		//printf("G\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'G', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
-	}
-	else if (adc_value > F_NOTE_ADC_VALUE) {
-		//printf("FIS\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'f', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
-	}
-	else if (adc_value > E_NOTE_ADC_VALUE) {
-		//printf("F\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'F', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
-	}
-	else if (adc_value > DIS_NOTE_ADC_VALUE) {
-		//printf("E\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'E', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
-	}
-	else if (adc_value > D_NOTE_ADC_VALUE) {
-		//printf("DIS\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'd', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
-	}
-	else if (adc_value > CIS_NOTE_ADC_VALUE) {
-		//printf("D\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'D', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
-	}
-	else if (adc_value > C_NOTE_ADC_VALUE) {
-		//printf("CIS\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'c', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
-	}
-	else if (adc_value > NO_KEY_ADC_VALUE) {
-		//printf("C\n\r");
-		if (keyboard_pressed_flag == false){
-			NewSignal(signals, SIN, 'C', Display->Keyboard_Octave, KEYBOARD_VOICE_ID );
-			keyboard_pressed_flag = true;
-		}
-	}
-	else {
-		//printf("No Key\n\r");
-		if(envelope->adsr_done == true) {
-//			keyboard_counter = 0;
-			keyboard_pressed_flag = false;
-			envelope->adsr_done = false;
-			//find signal with the right ID
-//			while(signals->ID[keyboard_counter]!= KEYBOARD_VOICE_ID)
-//				keyboard_counter++;
-			//			DeleteSignal(signals,IDtoIndex(keyboard_counter) );
-//			DeleteSignal(signals, IDtoIndex(3));
-		}
-	}
+	//reset counter
+	if (keyboard_pressed_counter >=6)
+		keyboard_pressed_counter = 1;
 }

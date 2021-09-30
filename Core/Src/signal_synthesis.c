@@ -119,21 +119,29 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
  * @return None
  *  */
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
-	//free the signal ID
-	uint8_t tmp = signals -> ID[signal_index];
-	ID_array[tmp] = 0;
 
-	//shift signals too left
-	for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
-		signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
-		signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
-		signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
-		signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
-		signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
+	if (signals->count > 0){
+		printf("nside delete\r\n");
+		//free the signal ID
+		uint8_t tmp = signals -> ID[signal_index];
+		ID_array[tmp] = 0;
 
+		//shift signals too left
+		for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
+			signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
+			signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
+			signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
+			signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
+			signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
+
+		}
+		signals -> count-=1;
+		signals -> max = 1;
+		//	signals -> max = 0;
 	}
-	signals -> count-=1;
-	signals -> max = 0;
+	else {
+		//ERROR
+	}
 }
 /** converts an signal ID into its Index
  * @param : ID of the wanted signal
@@ -222,9 +230,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		//Effekte
 		//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		if(keyboard_pressed_flag == true)
-			OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter], keyboard_pressed_flag);
+		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//		if(keyboard_pressed_flag == true)
+		//			OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter], keyboard_pressed_flag);
 
 		//Drummachine
 		if ((volume[1]>0)||(volume[2]>0)){

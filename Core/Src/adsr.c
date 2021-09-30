@@ -5,6 +5,8 @@
 ADSR_Status ADSR_Init(void) {
 
 	SetupADSR(&envelope);
+	for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+		SetupADSR(&adsr_keyboard[i]);
 
 	return ADSR_OK;
 }
@@ -23,7 +25,7 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 	envelope->adsr_max_amp = 1.00;	// maximum value should be 1
 	envelope->adsr_attack_time = 0.1 * LUT_SR;
 	envelope->adsr_decay_time = 0.05 * LUT_SR;
-	envelope->adsr_sustain_time = 0.15 * LUT_SR;
+	envelope->adsr_sustain_time = 0.45 * LUT_SR;
 	envelope->adsr_sustain_amplitude = 0.5;
 	envelope->adsr_release_time = 0.05 * LUT_SR;
 
@@ -96,11 +98,79 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 			//envelope->release_counter = 0;
 			envelope->adsr_done = true;
 
-			DeleteSignal(&signals1, IDtoIndex(KEYBOARD_VOICE_ID));
+			//			DeleteSignal(&signals1, IDtoIndex(KEYBOARD_VOICE_ID));
 		}
 
 		//		*calculate_value = *calculate_value + 1;
-//		*calculate_value = *calculate_value * calc;
+		//		*calculate_value = *calculate_value * calc;
+		//		if (envelope->adsr_done == true){
+		//			noPlopOffset = 0;
+		//		}
+		//		*calculate_value = *calculate_value - 1;
+	}
+}
+
+void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_value, bool flag) {
+
+	if(flag == true) {
+
+		//	float calc = 0;
+		float calc;
+
+		envelope->adsr_duration_time = envelope->adsr_attack_time + envelope->adsr_decay_time + envelope->adsr_sustain_time + envelope->adsr_release_time;
+
+		if(envelope->adsr_counter < envelope->adsr_duration_time) { // if time < total duration
+
+			// attack period
+			if(envelope->adsr_counter < envelope->adsr_attack_time) {
+				// linear:
+				calc = envelope->adsr_counter * (envelope->adsr_max_amp/envelope->adsr_attack_time);
+				// exponential:
+				//calc = 0.006737947 * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));
+				//calc = (envelope->adsr_max_amp/(exp1(5))) * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));	// 5, because of 5*tau
+			}
+
+			// decay period
+			else if(envelope->adsr_counter < (envelope->adsr_attack_time + envelope->adsr_decay_time)) {
+				// linear:
+				calc = ((envelope->adsr_sustain_amplitude - envelope->adsr_max_amp)/envelope->adsr_decay_time) * (envelope->adsr_counter - envelope->adsr_attack_time) + envelope->adsr_max_amp;
+				// exponential:
+				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5)))/2)+0.5;
+				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5))) * (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp)) + (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp);
+				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5))) * (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp)) + (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp);
+				//(envelope->decay_counter)++;
+			}
+
+			// sustain period
+			else if(envelope->adsr_counter < (envelope->adsr_duration_time - envelope->adsr_release_time))
+				calc = envelope->adsr_sustain_amplitude;
+
+			// release period
+			else if(envelope->adsr_counter >= (envelope->adsr_duration_time - envelope->adsr_release_time)) {
+				// linear:
+				calc = -(envelope->adsr_sustain_amplitude/envelope->adsr_release_time) * (envelope->adsr_counter - (envelope->adsr_duration_time - envelope->adsr_release_time)) + envelope->adsr_sustain_amplitude;
+				// exponential:
+				//calc = envelope->adsr_sustain_amplitude * (1/exp1(envelope->release_counter/(envelope->adsr_release_time/5)));
+				//				envelope->release_counter++;
+			}
+
+			*calculate_value = *calculate_value * calc;
+		}
+
+		// update adsr counter
+		envelope->adsr_counter++;
+
+		if(envelope->adsr_counter >= envelope->adsr_duration_time) {
+			envelope->adsr_counter = 0;	// restart
+			//envelope->decay_counter = 0;
+			//envelope->release_counter = 0;
+			envelope->adsr_done = true;
+
+			//			DeleteSignal(&signals1, IDtoIndex(KEYBOARD_VOICE_ID));
+		}
+
+		//		*calculate_value = *calculate_value + 1;
+		//		*calculate_value = *calculate_value * calc;
 		//		if (envelope->adsr_done == true){
 		//			noPlopOffset = 0;
 		//		}

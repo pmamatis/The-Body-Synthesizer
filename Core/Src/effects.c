@@ -67,12 +67,18 @@ void effects_process_fast(float* calculate_value){
 
 	if(effect_order[4] == WAHWAH) {
 		ProcessWahWah(&WahWah, calculate_value);
-//		ProcessAutoWahWah(&WahWah, calculate_value);
+		//		ProcessAutoWahWah(&WahWah, calculate_value);
 	}
 
 	//	if(emg_triggerd_flag || keyboard_pressed_flag) {
 	if(keyboard_pressed_flag == true) {
-		OnePress_ADSR_Linear_Process(&envelope, calculate_value, keyboard_pressed_flag);
+
+			OnePress_ADSR_Linear_Process(&adsr_keyboard[0], calculate_value, keyboard_pressed_flag);
+			if (play_keyboard_note[1])
+			OnePress_ADSR_Linear_Process(&adsr_keyboard[1], calculate_value, keyboard_pressed_flag);
+			if (play_keyboard_note[2])
+			OnePress_ADSR_Linear_Process(&adsr_keyboard[2], calculate_value, keyboard_pressed_flag);
+
 	}
 }
 

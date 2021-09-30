@@ -546,7 +546,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 					//SN1_temp += LUT[current_LUT_index_SN1[i]];
 					SN1_temp = LUT[current_LUT_index_SN1[i]];
 
-					OnePress_ADSR_Linear_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
+//					OnePress_ADSR_Linear_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
+					OnePress_ADSR_Sequencer_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
 
 					SN1 += SN1_temp;
 					current_LUT_index_SN1[i]++;
@@ -568,7 +569,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 					//SN2_temp += LUT[current_LUT_index_SN2[i]];
 					SN2_temp = LUT[current_LUT_index_SN2[i]];
 
-					OnePress_ADSR_Linear_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
+//					OnePress_ADSR_Linear_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
+					OnePress_ADSR_Sequencer_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
 
 					SN2 += SN2_temp;
 					current_LUT_index_SN2[i]++;
@@ -590,7 +592,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 					//SN3_temp += LUT[current_LUT_index_SN3[i]];
 					SN3_temp = LUT[current_LUT_index_SN3[i]];
 
-					OnePress_ADSR_Linear_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
+//					OnePress_ADSR_Linear_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
+					OnePress_ADSR_Sequencer_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
 
 					SN3 += SN3_temp;
 					current_LUT_index_SN3[i]++;
@@ -612,7 +615,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 					//SN4_temp += LUT[current_LUT_index_SN4[i]];
 					SN4_temp = LUT[current_LUT_index_SN4[i]];
 
-					OnePress_ADSR_Linear_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
+//					OnePress_ADSR_Linear_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
+					OnePress_ADSR_Sequencer_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
 
 					SN4 += SN4_temp;
 					current_LUT_index_SN4[i]++;

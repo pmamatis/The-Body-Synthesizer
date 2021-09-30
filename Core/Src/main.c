@@ -276,7 +276,7 @@ int main(void)
 	Drum_Computer_Init();
 
 	//Gyros SPI
-	//	spiC_Init(&hspi4, &htim7);
+	spiC_Init(&hspi4, &htim7);
 
 	//EMG init
 	emg_init(&hadc3,&htim1);
@@ -294,7 +294,7 @@ int main(void)
 
 	//Start Display
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	//	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
+	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
 	// Start DAC-DMA
 	printf("start DAC\r\n");
@@ -416,8 +416,8 @@ int main(void)
 	//	Display.Voice_Note_Sources[0] = GYRO_FB;
 	//	Display.Voice_Note_Sources[0] = POTI;
 
-	Display.Drumcomputer_ONOFF = true;
-	//	Display.Sequencer_ONOFF = true;
+//	Display.Drumcomputer_ONOFF = true;
+//	Display.Sequencer_ONOFF = true;
 	//	Display.WahWah_ONOFF = true;
 
 	//	Display.Distortion_ONOFF = true;

@@ -3623,38 +3623,36 @@ void p_Presets(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 
+
+	//	NewSignal(&signals1,SIN, 'C',1,6);
+	//	NewSignal(&signals1,SIN, 'E',1,7);
+	//	NewSignal(&signals1,SIN, 'G',1,8);
+	//	NewSignal(&signals1,SIN, 'C',2,9);
+	//	NewSignal(&signals1,SIN, 'E',2,10);
+	//	NewSignal(&signals1,SIN, 'G',2,11);
+	//	NewSignal(&signals1,SIN, 'C',3,12);
+	//	NewSignal(&signals1,SIN, 'E',3,13);
+	//	NewSignal(&signals1,SIN, 'G',3,14);
+	//	NewSignal(&signals1,SIN, 'C',4,15);
+	//	NewSignal(&signals1,SIN, 'E',4,16);
+	//	NewSignal(&signals1,SIN, 'G',4,17);
+	//	NewSignal(&signals1,SIN, 'C',5,18);
+	//	NewSignal(&signals1,SIN, 'E',5,19);
+	//	NewSignal(&signals1,SIN, 'G',5,20);
+	//
+	//	Display.Tremolo_ONOFF = true;
+	//	Display.Tremolo_Sources[1] = GYRO_LR;
+	//
+	//	Display.Filter_ONOFF[0] = true;
+	//	Display.EQ_Cutoff_Sources[0] = GYRO_FB;
+	//	Display.currentBand = 0;
+	//
+	//	Display.Voices_Note[0] = 'C';
+	//	Display.Voices_ONOFF[0] = true;
+	//	Display.Voices_Octave[0] = 3;
+	//	Display.Voice_Note_Sources[0] = EKG;
+
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
-
-
-	NewSignal(&signals1,SIN, 'C',1,6);
-	NewSignal(&signals1,SIN, 'E',1,7);
-	NewSignal(&signals1,SIN, 'G',1,8);
-	NewSignal(&signals1,SIN, 'C',2,9);
-	NewSignal(&signals1,SIN, 'E',2,10);
-	NewSignal(&signals1,SIN, 'G',2,11);
-	NewSignal(&signals1,SIN, 'C',3,12);
-	NewSignal(&signals1,SIN, 'E',3,13);
-	NewSignal(&signals1,SIN, 'G',3,14);
-	NewSignal(&signals1,SIN, 'C',4,15);
-	NewSignal(&signals1,SIN, 'E',4,16);
-	NewSignal(&signals1,SIN, 'G',4,17);
-	NewSignal(&signals1,SIN, 'C',5,18);
-	NewSignal(&signals1,SIN, 'E',5,19);
-	NewSignal(&signals1,SIN, 'G',5,20);
-
-
-	Display.Tremolo_ONOFF = true;
-	Display.Tremolo_Sources[1] = GYRO_LR;
-
-
-	Display.Filter_ONOFF[0] = true;
-	Display.EQ_Cutoff_Sources[0] = GYRO_FB;
-	Display.currentBand = 0;
-
-	Display.Voices_Note[0] = 'C';
-	Display.Voices_ONOFF[0] = true;
-	Display.Voices_Octave[0] = 3;
-	Display.Voice_Note_Sources[0] = EKG;
 
 	switch(Display.JoystickParameterPosition) {
 	case 1:	// Drums Preset
@@ -3737,6 +3735,18 @@ void p_Presets(void) {
 			timing_DS4[6] = 0;
 			timing_DS4[7] = 1;
 		}
+//		for(uint8_t i=0; i<FourFour; i++) {	// FourFour steps
+//			Display.DrumMatrix[i][j] = true;
+//
+//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true) {
+//				DISPLAY_SetDrumcomputerStep();
+//				Display.UpdateDisplay = true;
+//			}
+//			else if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false) {
+//				DISPLAY_DeleteDrumcomputerStep();
+//				Display.UpdateDisplay = true;
+//			}
+//		}
 		break;
 	case 2:	// Sequencer Preset
 		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);

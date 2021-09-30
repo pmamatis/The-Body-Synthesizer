@@ -442,7 +442,12 @@ void DMA2_Stream0_IRQHandler(void)
 
 	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
 	//	if(Display.mode == KEYBOARD)
-	OnePress_keyboard_process(Display.ADC1input, &signals1, &envelope, &Display);
+	OnePress_keyboard_process(Display.ADC1input, &signals1, &adsr_keyboard[0], &Display,0);
+
+	if (play_keyboard_note[1])
+		OnePress_keyboard_process(Display.ADC1input, &signals1, &adsr_keyboard[1], &Display,1);
+	if (play_keyboard_note[2])
+		OnePress_keyboard_process(Display.ADC1input, &signals1, &adsr_keyboard[2], &Display,2);
 
 	//	printf("%i\r\n", Display.ADC1input);
 
