@@ -396,12 +396,89 @@ void MPU6050_Display_Data(){
 //int16_t Az_mean;
 //Acc_z_mean = MPU6050_Calculate_Mean(Sensor_Data->Accl_Z);
 
-MPU6050_STATUS MPU6050_Detect_Movement(){
+MPU6050_STATUS MPU6050_Detect_MovementHIGH_DOWN(){
 
 	MeanValue_x = 0;
 	MeanValue_z = 0;
 	MovementUP = false;
 	MovementDOWN = false;
+
+	// BEGIN: Of CounterClause
+
+	if(MoveDetected) {
+
+		BreakCounter++;
+	}
+	if(BreakCounter == Pause) {
+
+		BreakCounter = 0;
+		MoveDetected = false;
+	}
+	if(!MoveDetected) {
+
+
+		for(int i = 0; i < BLOCKSIZE; i++) {
+
+			// Read 2000 * 6Bytes (2byte per axis) starting from ACCL_XOUT_H register
+			if (HAL_I2C_Mem_Read (MPU6050_hi2c, MPU6050_ADDR, MPU6050_ACCL_XOUT_H_REG, 1, Buffer_RawData, RAWBLOCKSIZE, 1000) != HAL_OK ){
+				return MPU6050_Status_Error;
+			}
+
+			Buffer_ProcessedData_z[i] = (int16_t)(Buffer_RawData[4]<<8 | Buffer_RawData[5]); // Für die z-Achse
+			Buffer_ProcessedData_y[i] = (int16_t)(Buffer_RawData[2]<<8 | Buffer_RawData[3]); // Für die y-Achse
+			Buffer_ProcessedData_x[i] = (int16_t)(Buffer_RawData[0]<<8 | Buffer_RawData[1]); // Für die x-Achse
+
+
+			debug_x = Buffer_ProcessedData_x[i];
+			debug_y = Buffer_ProcessedData_y[i];
+			debug_z = Buffer_ProcessedData_z[i];
+
+			//			printf("Acc_x: %i\r\n", debug_x);
+			//			printf("Acc_y: %i\r\n", debug_y);
+
+			MeanValue_x += (int32_t)Buffer_ProcessedData_x[i];
+			MeanValue_y += (int32_t)Buffer_ProcessedData_y[i];
+			MeanValue_z += (int32_t)Buffer_ProcessedData_z[i];
+		}
+
+		MeanValue_x = MeanValue_x / (int32_t)BLOCKSIZE;
+		MeanValue_y = MeanValue_z / (int32_t)BLOCKSIZE;
+		MeanValue_z = MeanValue_z / (int32_t)BLOCKSIZE;
+
+
+		//		printf("MEAN: %i\r\n", MeanValue_x);
+
+		for(int i = 0; i < BLOCKSIZE; i++) {
+
+			Buffer_ProcessedData_z[i] = Buffer_ProcessedData_z[i] - (int16_t)MeanValue_z;
+			Buffer_ProcessedData_x[i] = Buffer_ProcessedData_x[i] - (int16_t)MeanValue_x;
+
+			if(Buffer_ProcessedData_z[i] > THRESHOLD_Z){
+
+				MovementUP = true;
+				MoveDetected = true;
+				printf("UP: %i\r\n", Buffer_ProcessedData_z[i]);
+			}
+			if(Buffer_ProcessedData_z[i] < -THRESHOLD_Z){
+
+				MovementDOWN = true;
+				MoveDetected = true;
+				printf("DOWN: %i\r\n", Buffer_ProcessedData_z[i]);
+			}
+
+			if(MoveDetected) i = BLOCKSIZE - 1;
+
+		}
+
+	}
+	return MPU6050_Status_OK;
+	//} // END: Of CounterClause
+
+}
+
+MPU6050_STATUS MPU6050_Detect_MovementRIGHT_LEFT(){
+
+	MeanValue_x = 0;
 	MovementLEFT = false;
 	MovementRIGHT = false;
 
@@ -426,62 +503,36 @@ MPU6050_STATUS MPU6050_Detect_Movement(){
 				return MPU6050_Status_Error;
 			}
 
-			Buffer_ProcessedData_z[i] = (int16_t)(Buffer_RawData[4]<<8 | Buffer_RawData[5]); // Für die z-Achse
+
 			Buffer_ProcessedData_x[i] = (int16_t)(Buffer_RawData[0]<<8 | Buffer_RawData[1]); // Für die x-Achse
 
 
 			debug_x = Buffer_ProcessedData_x[i];
-			debug_z = Buffer_ProcessedData_z[i];
 
-			//		printf("Acc_x: %i\r\n", debug_x);
+
+			//			printf("Acc_x: %i\r\n", debug_x);
+			//			printf("Acc_y: %i\r\n", debug_y);
 
 			MeanValue_x += (int32_t)Buffer_ProcessedData_x[i];
-			MeanValue_z += (int32_t)Buffer_ProcessedData_z[i];
+
 		}
 
 		MeanValue_x = MeanValue_x / (int32_t)BLOCKSIZE;
-		MeanValue_z = MeanValue_z / (int32_t)BLOCKSIZE;
-
-
-//		printf("MEAN: %i\r\n", MeanValue_x);
-
-		for(int i = 0; i < BLOCKSIZE; i++) {
-
-			Buffer_ProcessedData_z[i] = Buffer_ProcessedData_z[i] - (int16_t)MeanValue_z;
-
-			if(Buffer_ProcessedData_z[i] > THRESHOLD_Z){
-
-				MovementUP = true;
-				MoveDetected = true;
-				printf("UP: %i\r\n", Buffer_ProcessedData_z[i]);
-			}
-			if(Buffer_ProcessedData_z[i] < -THRESHOLD_Z){
-
-				MovementDOWN = true;
-				MoveDetected = true;
-				printf("DOWN: %i\r\n", Buffer_ProcessedData_z[i]);
-			}
-
-			if(MoveDetected) i = BLOCKSIZE - 1;
-
-			//} // END: Of CounterClause
-
-		}
 
 
 		for(int i = 0; i < BLOCKSIZE; i++) {
 
 			Buffer_ProcessedData_x[i] = Buffer_ProcessedData_x[i] - (int16_t)MeanValue_x;
 
-			if(Buffer_ProcessedData_x[i] > THRESHOLD_X && debug_x > THRESHOLD_X ){
+			if(Buffer_ProcessedData_x[i] > THRESHOLD_X ){
 
 				MovementLEFT = true;
 				MoveDetected = true;
 				printf("LEFT: %i\r\n", Buffer_ProcessedData_x[i]);
 			}
-			if(Buffer_ProcessedData_x[i] < -THRESHOLD_X && debug_x > - THRESHOLD_X){
+			if(Buffer_ProcessedData_x[i] < -THRESHOLD_X){
 
-				MovementDOWN = true;
+				MovementRIGHT = true;
 				MoveDetected = true;
 				printf("RIGHT: %i\r\n", Buffer_ProcessedData_x[i]);
 			}
@@ -493,7 +544,6 @@ MPU6050_STATUS MPU6050_Detect_Movement(){
 		}
 
 	}
-
 
 
 

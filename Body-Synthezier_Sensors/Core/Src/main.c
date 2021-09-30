@@ -133,15 +133,17 @@ int main(void)
 
 		if(SyncBuffer.gyro_initilized == true){
 
-//						MPU6050_Read_Accl();
-//						MPU6050_Display_Data();
-//					    Acc_x = round(Sensor_Data->Accl_X / 1000);
+			//						MPU6050_Read_Accl();
+			//						MPU6050_Display_Data();
+			//					    Acc_x = round(Sensor_Data->Accl_X / 1000);
 			//			Acc_y = Sensor_Data->Accl_Y;
 
-//						Acc_z = Sensor_Data->Accl_Z;
-//						printf("Ax: %i\r\n", Acc_x);
+			//						Acc_z = Sensor_Data->Accl_Z;
+			//						printf("Ax: %i\r\n", Acc_x);
 
-						MPU6050_Detect_Movement();
+//			MPU6050_Detect_MovementHIGH_DOWN();
+
+			MPU6050_Detect_MovementRIGHT_LEFT();
 
 			if(MoveDetected){
 

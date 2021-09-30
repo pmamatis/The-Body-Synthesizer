@@ -332,12 +332,17 @@ uint8_t MPU6050_detectTilt();
 #define RAWBLOCKSIZE 6
 #define BLOCKSIZE 2000
 
+#define THRESHOLD_X 700
+#define THRESHOLD_Y 5000
 #define THRESHOLD_Z 900
-#define THRESHOLD_X 400
+
+
 
 uint8_t  Buffer_RawData[RAWBLOCKSIZE];
-int16_t Buffer_ProcessedData_z[BLOCKSIZE];
 int16_t Buffer_ProcessedData_x[BLOCKSIZE];
+int16_t Buffer_ProcessedData_y[BLOCKSIZE];
+int16_t Buffer_ProcessedData_z[BLOCKSIZE];
+
 
 
 //int16_t MinValue;
@@ -346,9 +351,12 @@ int16_t Buffer_ProcessedData_x[BLOCKSIZE];
 //int16_t MaxValueIndex;
 
 int16_t debug_x;
+int16_t debug_y;
 int16_t debug_z;
-int32_t MeanValue_z;
+
 int32_t MeanValue_x;
+int32_t MeanValue_y;
+int32_t MeanValue_z;
 int32_t BreakCounter;
 int32_t Pause;
 
@@ -358,7 +366,8 @@ bool MovementDOWN;
 bool MovementLEFT;
 bool MovementRIGHT;
 
-MPU6050_STATUS MPU6050_Detect_Movement();
+MPU6050_STATUS MPU6050_Detect_MovementHIGH_DOWN();
+MPU6050_STATUS MPU6050_Detect_MovementRIGHT_LEFT();
 
 
 
