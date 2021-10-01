@@ -183,8 +183,8 @@ float effect_LFO[BLOCKSIZE/2];	// Original!!!
 //uint32_t effect_LFO_output[BLOCKSIZE];
 
 float sigFreq_sampleFreq_ratio;
-
-
+uint64_t tim5_counter;
+uint64_t time;
 //Gyro SPI buffer
 
 /** @brief enum for DMA Output buffer position */

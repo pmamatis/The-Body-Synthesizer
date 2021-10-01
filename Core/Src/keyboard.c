@@ -16,11 +16,11 @@ void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler
 	keyboard_octave = 1;
 	start_release_flag = false;
 	keyboard_pressed_counter = 0;
-	keyboard_pressed_flag = false;
 	initial_press_flag = false;
-	for (int i =0;i < MAX_SIMULTANEOUS_KEYBOARD_NOTES;i++)
-		play_keyboard_note[i] = false;
-
+	for (int i =0;i < MAX_SIMULTANEOUS_KEYBOARD_NOTES;i++){
+		played_keyboard_note[i] = false;
+		activate_processing[i] =false;
+	}
 }
 
 /** starts the keyboard reading process
@@ -65,55 +65,50 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 	//		}
 	//	}
 
-	if (adsr_keyboard[0].adsr_counter >0){
-		//Key release sensing
-		if(adc_value <= NO_KEY_ADC_VALUE) {
+	//	if (adsr_keyboard[0].adsr_counter >0){
 
-			if(keyboard_pressed_counter%2==0)
-				keyboard_pressed_counter++;
-
-		}
-		//Key Press Sensing
-		else if (adc_value > NO_KEY_ADC_VALUE){
-
-			if(keyboard_pressed_counter%2==1)
-				keyboard_pressed_counter++;
-
-		}
-	}
-		printf("%i\r\n", keyboard_pressed_counter);
-	//activate processing
-	if (keyboard_pressed_counter >= 4)
-		play_keyboard_note[1] = true;
-	if(keyboard_pressed_counter >= 6)
-		play_keyboard_note[2] = true;
+	//	}
 
 
+//	printf("%i\r\n", keyboard_pressed_counter);
+//	printf("ID: %i\r\n",ID);
+	//	printf("count: %i\r\n",signals->count);
 
-	//generate Signal
-	if(keyboard_pressed_counter % 2 == 0) {
+
+	// Generate Signal
+	if(!(keyboard_pressed_counter % 2) ) {
 		for(uint8_t i=0; i<(NUMBER_OF_KEYBOARD_NOTES-1); i++) {
 			if(adc_value > keyboard_note_adcval[i] && adc_value < keyboard_note_adcval[i+1]) {
-				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+ID);
-				keyboard_pressed_flag = true;
+
+				if(!played_keyboard_note[0] && activate_processing[0]){
+					NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID);
+					played_keyboard_note[0] = true;
+//					activate_processing[0] = true;
+				}
+				else if(!played_keyboard_note[1] && activate_processing[1]){
+//					activate_processing[1] = true;
+					NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+1);
+					played_keyboard_note[1] = true;
+				}
+
+				else if(!played_keyboard_note[2] && activate_processing[2]){
+//					activate_processing[2] = true;
+					NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+2);
+					played_keyboard_note[2] = true;
+				}
 			}
 		}
 	}
 
-
-	//ADSR info
-	if(adc_value < NO_KEY_ADC_VALUE && envelope->adsr_done == true) {
-		keyboard_pressed_flag = false;
+	// Delete signal
+	for (int i = 0; i < 3;i++){
+		if (adsr_keyboard[i].adsr_done){
+			DeleteSignal(signals,IDtoIndex(KEYBOARD_VOICE_ID+i));
+			adsr_keyboard[i].adsr_done = false;
+			if (keyboard_pressed_counter % 2)
+				played_keyboard_note[i] = false;
+			activate_processing[i] = false;
+		}
 	}
 
-	//Delete signal
-	if(envelope->adsr_done == true) {
-		DeleteSignal(signals,IDtoIndex(KEYBOARD_VOICE_ID+ID));
-		envelope->adsr_done = false;
-		play_keyboard_note[ID] = false;
-		printf("delete\r\n");
-	}
-	//reset counter
-	if (keyboard_pressed_counter >=6)
-		keyboard_pressed_counter = 1;
 }

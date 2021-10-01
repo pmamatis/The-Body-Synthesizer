@@ -11,7 +11,7 @@
 #include "main.h"
 
 /* defines */
-#define KEYBOARD_SR 100 // in Hz
+#define KEYBOARD_SR 500 // in Hz
 #define KEYBOARD_VOICE_ID 3
 
 // Define Notes (has to be calibrated for every keyboard)
@@ -45,8 +45,6 @@ ADC_HandleTypeDef* KEYBOARD_ADC;
 /** Timer which triggers the keyboard ADC */
 TIM_HandleTypeDef* KEYBOARD_TIM;
 
-/** =1 when Note already created, =0 when no note is created */
-bool keyboard_pressed_flag;
 
 /** =1 when release period starts */
 bool start_release_flag;
@@ -56,8 +54,8 @@ bool initial_press_flag;
 
 uint32_t keyboard_pressed_counter;
 
-bool 	play_keyboard_note[MAX_SIMULTANEOUS_KEYBOARD_NOTES];
-
+bool 	played_keyboard_note[MAX_SIMULTANEOUS_KEYBOARD_NOTES];
+bool activate_processing[MAX_SIMULTANEOUS_KEYBOARD_NOTES];
 /** signal ID of the Note, which is created while pressing keyboard pads*/
 uint8_t keyboard_ID;
 /** */

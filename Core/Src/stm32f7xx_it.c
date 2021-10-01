@@ -383,6 +383,12 @@ void TIM8_TRG_COM_TIM14_IRQHandler(void)
 void TIM5_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM5_IRQn 0 */
+	tim5_counter++;
+	if(tim5_counter == 500){
+			printf("%i\r\n",HAL_GetTick());
+			time = HAL_GetTick();
+			tim5_counter = 0;
+	}
 
   /* USER CODE END TIM5_IRQn 0 */
   HAL_TIM_IRQHandler(&htim5);
@@ -442,14 +448,42 @@ void DMA2_Stream0_IRQHandler(void)
 
 	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
 	//	if(Display.mode == KEYBOARD)
+
+
+	// Key Release Sensing
+	if(Display.ADC1input<= NO_KEY_ADC_VALUE) {
+
+		if(keyboard_pressed_counter%2==0)
+			keyboard_pressed_counter++;
+
+	}
+	// Key Press Sensing
+	else if (Display.ADC1input > NO_KEY_ADC_VALUE){
+
+		if(keyboard_pressed_counter%2==1)
+			keyboard_pressed_counter++;
+
+	}
+
+//	// Reset counter
+	if (keyboard_pressed_counter ==7)
+		keyboard_pressed_counter = 1;
+
+	// Activate Processing
+	if (keyboard_pressed_counter == 2)
+			activate_processing[0] = true;
+	if (keyboard_pressed_counter == 4)
+			activate_processing[1] = true;
+	if(keyboard_pressed_counter == 6)
+			activate_processing[2] = true;
+
+	// Process
 	OnePress_keyboard_process(Display.ADC1input, &signals1, &adsr_keyboard[0], &Display,0);
 
-	if (play_keyboard_note[1])
-		OnePress_keyboard_process(Display.ADC1input, &signals1, &adsr_keyboard[1], &Display,1);
-	if (play_keyboard_note[2])
-		OnePress_keyboard_process(Display.ADC1input, &signals1, &adsr_keyboard[2], &Display,2);
+
 
 	//	printf("%i\r\n", Display.ADC1input);
+
 
   /* USER CODE END DMA2_Stream0_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_adc1);

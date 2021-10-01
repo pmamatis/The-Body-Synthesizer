@@ -45,6 +45,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 
 	uint32_t Clock = HAL_RCC_GetHCLKFreq();	// system core clock HCLK
+	printf("%i\r\n",Clock);
 	uint32_t values_length = 65536;
 	uint16_t prescaler;
 	uint32_t timerperiod = 0;
@@ -110,7 +111,7 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 	//
 	//	}
 
-
+//	printf("New Signal counter = %i\r\n", signals->count);
 }
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
@@ -121,7 +122,6 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 
 	if (signals->count > 0){
-		printf("nside delete\r\n");
 		//free the signal ID
 		uint8_t tmp = signals -> ID[signal_index];
 		ID_array[tmp] = 0;
@@ -142,6 +142,7 @@ void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 	else {
 		//ERROR
 	}
+//	printf("delete, counte = %i\r\n",signals->count);
 }
 /** converts an signal ID into its Index
  * @param : ID of the wanted signal
@@ -196,19 +197,37 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	//Loop for signal synthesis
 	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
 		addValue = 0;
+		calculate_keyboard[0] = 0;
+		calculate_keyboard[1] = 0;
+		calculate_keyboard[2] = 0;
 		//Loop to reach all Signals
 		for (int j = 0; j < count;j++){
 			switch (signals -> kind[j]) {
 			case SIN:
-				//adds all SIN values from the signals to addValue
-				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 
-				//get index for the next sin value
-				signals -> current_LUT_Index[j]++;
-				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
-				{
-					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+				//keyboard signals
+				if(signals->ID[j] == KEYBOARD_VOICE_ID){
+					calculate_keyboard[0] = LUT[signals -> current_LUT_Index[j]];
 				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+1){
+					calculate_keyboard[1] = LUT[signals -> current_LUT_Index[j]];
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+2){
+					calculate_keyboard[2] = LUT[signals -> current_LUT_Index[j]];
+				}
+				else{
+					//adds all SIN values from the signals to addValue
+					addValue = addValue + LUT[signals -> current_LUT_Index[j]];
+				}
+					//get index for the next sin value
+					signals -> current_LUT_Index[j]++;
+					if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
+					{
+						signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+					}
+
+
+
 				break;
 
 			case NOISE:
@@ -216,11 +235,13 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				addValue += (2*(float)rand()/sizeof(int))-1;
 				break;
 			}//Switch-Case
+
 		}// Signal counter for-loop
 
 
 		//write into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
+
 		//		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
 
 		/*limiter function*/
@@ -243,6 +264,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			sequencer = 0;
 		}
 
+		for (int k= 0; k < 3;k++)
+			calculate_vector_tmp[BLOCKSIZE_counter] += calculate_keyboard[k];
 		//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		//Add all values

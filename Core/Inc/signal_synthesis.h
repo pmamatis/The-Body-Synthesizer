@@ -65,6 +65,7 @@ uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
  * */
 float volume[3];
 
+float calculate_keyboard[3];
 /** should avoid Plop sound after finishing the Keyboard sound */
 uint32_t noPlopOffset;
 

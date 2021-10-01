@@ -71,15 +71,9 @@ void effects_process_fast(float* calculate_value){
 	}
 
 	//	if(emg_triggerd_flag || keyboard_pressed_flag) {
-	if(keyboard_pressed_flag == true) {
-
-			OnePress_ADSR_Linear_Process(&adsr_keyboard[0], calculate_value, keyboard_pressed_flag);
-			if (play_keyboard_note[1])
-			OnePress_ADSR_Linear_Process(&adsr_keyboard[1], calculate_value, keyboard_pressed_flag);
-			if (play_keyboard_note[2])
-			OnePress_ADSR_Linear_Process(&adsr_keyboard[2], calculate_value, keyboard_pressed_flag);
-
-	}
+	OnePress_ADSR_Linear_Process(&adsr_keyboard[0], &calculate_keyboard[0], activate_processing[0]);
+	OnePress_ADSR_Linear_Process(&adsr_keyboard[1], &calculate_keyboard[1], activate_processing[1]);
+	OnePress_ADSR_Linear_Process(&adsr_keyboard[2], &calculate_keyboard[2], activate_processing[2]);
 }
 
 /**

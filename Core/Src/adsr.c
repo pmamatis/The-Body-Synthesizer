@@ -93,6 +93,7 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 		envelope->adsr_counter++;
 
 		if(envelope->adsr_counter >= envelope->adsr_duration_time) {
+//			printf("adsr_counter = %i\r\n",envelope->adsr_counter);
 			envelope->adsr_counter = 0;	// restart
 			//envelope->decay_counter = 0;
 			//envelope->release_counter = 0;
@@ -161,6 +162,7 @@ void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_val
 		envelope->adsr_counter++;
 
 		if(envelope->adsr_counter >= envelope->adsr_duration_time) {
+
 			envelope->adsr_counter = 0;	// restart
 			//envelope->decay_counter = 0;
 			//envelope->release_counter = 0;
