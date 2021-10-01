@@ -44,8 +44,35 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
  */
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 
-	uint32_t Clock = HAL_RCC_GetHCLKFreq();	// system core clock HCLK
+	// Clock Sources of all 14 timers: 1 = APB1, 2 = APB2
+	uint8_t APBTimerCases[] = {2,1,1,1,1,1,1,2,2,2,2,1,1,1};
+	uint8_t Timer = 0;
+	uint32_t Clock = 0;
+
+	if(htim->Instance == TIM1) Timer = 1;
+	else if(htim->Instance == TIM2) Timer = 2;
+	else if(htim->Instance == TIM3) Timer = 3;
+	else if(htim->Instance == TIM4) Timer = 4;
+	else if(htim->Instance == TIM5) Timer = 5;
+	else if(htim->Instance == TIM6) Timer = 6;
+	else if(htim->Instance == TIM7) Timer = 7;
+	else if(htim->Instance == TIM8) Timer = 8;
+	else if(htim->Instance == TIM9) Timer = 9;
+	else if(htim->Instance == TIM10) Timer = 10;
+	else if(htim->Instance == TIM11) Timer = 11;
+	else if(htim->Instance == TIM12) Timer = 12;
+	else if(htim->Instance == TIM13) Timer = 13;
+	else if(htim->Instance == TIM14) Timer = 14;
+
+
+	if(APBTimerCases[Timer-1] == 1)
+		Clock = 2 * HAL_RCC_GetPCLK1Freq();	// APB1 Timer Clock
+
+	if(APBTimerCases[Timer-1] == 2)
+		Clock = 2 * HAL_RCC_GetPCLK2Freq();	// APB2 Timer Clock
+
 	printf("%i\r\n",Clock);
+
 	uint32_t values_length = 65536;
 	uint16_t prescaler;
 	uint32_t timerperiod = 0;
@@ -111,7 +138,7 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 	//
 	//	}
 
-//	printf("New Signal counter = %i\r\n", signals->count);
+	//	printf("New Signal counter = %i\r\n", signals->count);
 }
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
@@ -142,7 +169,7 @@ void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
 	else {
 		//ERROR
 	}
-//	printf("delete, counte = %i\r\n",signals->count);
+	//	printf("delete, counte = %i\r\n",signals->count);
 }
 /** converts an signal ID into its Index
  * @param : ID of the wanted signal
@@ -219,12 +246,12 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 					//adds all SIN values from the signals to addValue
 					addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 				}
-					//get index for the next sin value
-					signals -> current_LUT_Index[j]++;
-					if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
-					{
-						signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
-					}
+				//get index for the next sin value
+				signals -> current_LUT_Index[j]++;
+				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
+				{
+					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+				}
 
 
 
