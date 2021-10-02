@@ -19,17 +19,15 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	signals1.max = 1;
 
 	//set volume
-	for(int i =0 ;i<3;i++){
+	Master_Volume = 1;
+	for(int i =0 ;i<4;i++){
 		volume[i] = 1;
 	}
-	volume[0] = 0.5;
+
 	//Sets all taken ID to zero
 	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++){
 		ID_array[Signal_Synthesis_Init_count]=0;
 	}
-
-
-
 
 	//Inits and starts timer connected with DAC
 	SetTimerSettings(&htim, LUT_SR);
@@ -70,8 +68,6 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 
 	if(APBTimerCases[Timer-1] == 2)
 		Clock = 2 * HAL_RCC_GetPCLK2Freq();	// APB2 Timer Clock
-
-	printf("%i\r\n",Clock);
 
 	uint32_t values_length = 65536;
 	uint16_t prescaler;
@@ -139,6 +135,10 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 	//	}
 
 	//	printf("New Signal counter = %i\r\n", signals->count);
+	//	printf("ID's:");
+	//		for (int i = 0;i<signals->count;i++)
+	//			printf("%i ,",signals->ID[i]);
+	//		printf("\r\n");
 }
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
@@ -146,45 +146,47 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
  * @attention if you wnat to delete two signals in a row, beware that the index of the second signal could have changed, e.g. signals1 contains three signals, you want to delete signals1[0] and signals1[1]. After using DeleteSignal(0) you need to use DeleteSignal(0) again, because signals1[1] became signals1[0] after first use
  * @return None
  *  */
-void DeleteSignal(struct signal_t* signals,uint8_t signal_index){
+void DeleteSignal(struct signal_t* signals,int16_t signal_index){
 
-	if (signals->count > 0){
-		//free the signal ID
-		uint8_t tmp = signals -> ID[signal_index];
-		ID_array[tmp] = 0;
-
+	if (signals->count > 0 && signal_index > -1){
 		//shift signals too left
-		for (int delete_counter=signal_index; delete_counter < signals -> count;delete_counter++ ){
+		for (int delete_counter=signal_index; delete_counter < signals->count; delete_counter++ ){
 			signals -> current_LUT_Index[delete_counter] = signals -> current_LUT_Index[delete_counter+1] ;
 			signals -> freq[delete_counter] = signals -> freq[delete_counter+1];
 			signals -> freqIndex[delete_counter] = signals -> freqIndex[delete_counter+1];
 			signals -> kind[delete_counter] = signals -> kind[delete_counter+1];
 			signals -> ID[delete_counter] = signals -> ID[delete_counter+1];
-
 		}
 		signals -> count-=1;
 		signals -> max = 1;
 		//	signals -> max = 0;
+
+		//	printf("ID's:");
+		//	for (int i = 0;i<signals->count;i++)
+		//		printf("%i ,",signals->ID[i]);
+		//	printf("\r\n");
+		//	printf("delete: signals left = %i;\r\n",signals->count);
 	}
 	else {
-		//ERROR
+		printf("delete ERROR\r\n");
 	}
-	//	printf("delete, counte = %i\r\n",signals->count);
 }
 /** converts an signal ID into its Index
  * @param : ID of the wanted signal
  * @retval: Index of the signal with the given ID, or -1 when ID was not found
  */
-uint8_t IDtoIndex(uint8_t ID){
-	uint8_t find_ID_counter = 0;
-	while (ID != signals1.ID[find_ID_counter]) {
-		find_ID_counter ++;
-		if (find_ID_counter > MAX_SIGNAL_KOMBINATION){
-			return -1;
+int16_t IDtoIndex(int16_t id){
+
+	for(int i =0; i < MAX_SIGNAL_KOMBINATION;i++){
+		if (signals1.ID[i] == id){
+			return i;
 		}
 	}
-	return find_ID_counter;
+	return -1;
 }
+
+
+int x =0;
 
 /** @brief generates a signal in the calculate_vector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
  *	@param signal: is a signal_t struct which contains the tones to be played
@@ -222,17 +224,19 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	}
 
 	//Loop for signal synthesis
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex ;BLOCKSIZE_counter++){
+	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++){
 		addValue = 0;
 		calculate_keyboard[0] = 0;
 		calculate_keyboard[1] = 0;
 		calculate_keyboard[2] = 0;
-		//Loop to reach all Signals
+		calculate_keyboard[3] = 0;
+		calculate_keyboard[4] = 0;
+		// Loop to reach all Signals
 		for (int j = 0; j < count;j++){
 			switch (signals -> kind[j]) {
 			case SIN:
 
-				//keyboard signals
+				// keyboard signals
 				if(signals->ID[j] == KEYBOARD_VOICE_ID){
 					calculate_keyboard[0] = LUT[signals -> current_LUT_Index[j]];
 				}
@@ -242,18 +246,23 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				else if(signals->ID[j] == KEYBOARD_VOICE_ID+2){
 					calculate_keyboard[2] = LUT[signals -> current_LUT_Index[j]];
 				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+3){
+					calculate_keyboard[3] = LUT[signals -> current_LUT_Index[j]];
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+4){
+					calculate_keyboard[4] = LUT[signals -> current_LUT_Index[j]];
+				}
 				else{
-					//adds all SIN values from the signals to addValue
+					// adds all SIN values from the signals to addValue
 					addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 				}
-				//get index for the next sin value
+				// get index for the next sin value
 				signals -> current_LUT_Index[j]++;
+
 				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
 				{
 					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
 				}
-
-
 
 				break;
 
@@ -261,7 +270,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				//addValue += AWGN_generator();
 				addValue += (2*(float)rand()/sizeof(int))-1;
 				break;
-			}//Switch-Case
+			}// Switch-Case
 
 		}// Signal counter for-loop
 
@@ -269,20 +278,11 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//write into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
 
-		//		calculate_vector_tmp[BLOCKSIZE_counter] = addValue;
-
 		/*limiter function*/
 		//norm the signal to -1...1
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
 
-
-		//Effekte
-		//		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		//		if(keyboard_pressed_flag == true)
-		//			OnePress_ADSR_Linear_Process(&envelope, &calculate_vector_tmp[BLOCKSIZE_counter], keyboard_pressed_flag);
-
-		//Drummachine
+		// Drummachine
 		if ((volume[1]>0)||(volume[2]>0)){
 			Drum_Computer_Process();
 		}
@@ -291,15 +291,18 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			sequencer = 0;
 		}
 
-		for (int k= 0; k < 3;k++)
-			calculate_vector_tmp[BLOCKSIZE_counter] += calculate_keyboard[k];
-		//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		// Keyboard processing
+		keyboard_adsr_process();
+		// summing up all played keyboard notes
+		for (int k= 0; k < 5;k++)
+			calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
 
-		//Add all values
+		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		// Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] *  drums + volume[2] * sequencer;
 
-
-		//maximum
+		// maximum
 		if (signals -> max < fabs((double)addValue)){
 			signals -> max = fabs((double)addValue);
 		}
@@ -335,7 +338,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
 		//		}
 
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1.65)/2) * maxValueDAC  ); // +1.65 fir middle of 0-3V3
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(((calculate_vector_tmp[BLOCKSIZE_counter]+1.65)/2) * maxValueDAC); // +1.65 fir middle of 0-3V3
 	} //End for-Loop
 
 

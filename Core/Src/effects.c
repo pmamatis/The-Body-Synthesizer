@@ -70,10 +70,18 @@ void effects_process_fast(float* calculate_value){
 		//		ProcessAutoWahWah(&WahWah, calculate_value);
 	}
 
+
+}
+
+
+/** function for the keyboard adsr processing */
+void keyboard_adsr_process(void){
 	//	if(emg_triggerd_flag || keyboard_pressed_flag) {
 	OnePress_ADSR_Linear_Process(&adsr_keyboard[0], &calculate_keyboard[0], activate_processing[0]);
 	OnePress_ADSR_Linear_Process(&adsr_keyboard[1], &calculate_keyboard[1], activate_processing[1]);
 	OnePress_ADSR_Linear_Process(&adsr_keyboard[2], &calculate_keyboard[2], activate_processing[2]);
+	OnePress_ADSR_Linear_Process(&adsr_keyboard[3], &calculate_keyboard[3], activate_processing[3]);
+	OnePress_ADSR_Linear_Process(&adsr_keyboard[4], &calculate_keyboard[4], activate_processing[4]);
 }
 
 /**

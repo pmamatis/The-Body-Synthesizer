@@ -49,7 +49,7 @@ struct adsr adsr_SN2[16];
 struct adsr adsr_SN3[16];
 struct adsr adsr_SN4[16];
 
-struct adsr adsr_keyboard[3];
+struct adsr adsr_keyboard[5];
 
 //bool envelope_done;	// flag for keyboard to delete signal
 

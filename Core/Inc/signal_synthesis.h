@@ -19,7 +19,7 @@
 #include "display.h"
 
 /**@brief maximal amplitude of output voltage in millivolts*/
-#define AMPLITUDE 	2000
+#define AMPLITUDE 	1000
 /**@brief digital DAC value for maximal output voltage (3,3V) */
 #define DAC_MAX 	4095
 /** @brief digital value for 100mV */
@@ -58,21 +58,22 @@ struct signal_t{
 uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
 
 
+
+
 /** defines volume of the Voices, Drummachine and Sequencer
  * 0 -> Voices
  * 1 -> Drums
  * 2 -> Sequencer
  * */
-float volume[3];
+float volume[4];
+/** Volume applied at the end, to prevent clipping */
+float Master_Volume;
 
-float calculate_keyboard[3];
+float calculate_keyboard[5];
 /** should avoid Plop sound after finishing the Keyboard sound */
 uint32_t noPlopOffset;
 
-//Effects//Effects
-enum effects_using_LFO{
-	TREMOLLO = 0,
-};
+
 //Effects
 struct effects_lfo_t{
 
@@ -122,12 +123,13 @@ struct signal_t signals2;
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
-void DeleteSignal(struct signal_t* signals,uint8_t signal_index);
+void DeleteSignal(struct signal_t* signals,int16_t signal_index);
 //void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID);
 void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
 void LFO_SingleValueProcess(struct effects_lfo_t* lfo) ;
 float AWGN_generator(void);
-uint8_t IDtoIndex(uint8_t ID);
+int16_t IDtoIndex(int16_t id);
+void regulate_volume(float* value);
 
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

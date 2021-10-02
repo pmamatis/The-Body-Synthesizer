@@ -14,13 +14,12 @@ void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler
 	KEYBOARD_TIM = TIM_Handler;
 	SetTimerSettings(TIM_Handler, KEYBOARD_SR);
 	keyboard_octave = 1;
-	start_release_flag = false;
 	keyboard_pressed_counter = 0;
-	initial_press_flag = false;
-	for (int i =0;i < MAX_SIMULTANEOUS_KEYBOARD_NOTES;i++){
+	for(int i = 0; i < MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++) {
 		played_keyboard_note[i] = false;
-		activate_processing[i] =false;
+		activate_processing[i] = false;
 	}
+	active_keyboard_notes = 0;
 }
 
 /** starts the keyboard reading process
@@ -43,7 +42,7 @@ HAL_StatusTypeDef keyboard_stop_read() {
 	//	return HAL_ADC_Stop_DMA(KEYBOARD_ADC);
 }
 
-void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct adsr* envelope, struct display_variables* Display,uint8_t ID) {
+void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct display_variables* Display) {
 
 	//	for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++) {
 	//		if(adc_value < NO_KEY_ADC_VALUE && adsr_keyboard[i].adsr_done == true) {
@@ -65,50 +64,58 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 	//		}
 	//	}
 
-	//	if (adsr_keyboard[0].adsr_counter >0){
-
-	//	}
-
-
-//	printf("%i\r\n", keyboard_pressed_counter);
-//	printf("ID: %i\r\n",ID);
-	//	printf("count: %i\r\n",signals->count);
-
 
 	// Generate Signal
-	if(!(keyboard_pressed_counter % 2) ) {
-		for(uint8_t i=0; i<(NUMBER_OF_KEYBOARD_NOTES-1); i++) {
-			if(adc_value > keyboard_note_adcval[i] && adc_value < keyboard_note_adcval[i+1]) {
+	for(uint8_t i=0; i<(NUMBER_OF_KEYBOARD_NOTES-1); i++) {
 
-				if(!played_keyboard_note[0] && activate_processing[0]){
-					NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID);
-					played_keyboard_note[0] = true;
-//					activate_processing[0] = true;
-				}
-				else if(!played_keyboard_note[1] && activate_processing[1]){
-//					activate_processing[1] = true;
-					NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+1);
-					played_keyboard_note[1] = true;
-				}
+		if(adc_value > keyboard_note_adcval[i] && adc_value < keyboard_note_adcval[i+1]) {
 
-				else if(!played_keyboard_note[2] && activate_processing[2]){
-//					activate_processing[2] = true;
-					NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+2);
-					played_keyboard_note[2] = true;
-				}
+			if(!played_keyboard_note[0] && activate_processing[0]){
+				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID);
+				played_keyboard_note[0] = true;
+				active_keyboard_notes++;
+			}
+			else if(!played_keyboard_note[1] && activate_processing[1]){
+				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+1);
+				played_keyboard_note[1] = true;
+				active_keyboard_notes++;
+			}
+
+			else if(!played_keyboard_note[2] && activate_processing[2]){
+				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+2);
+				played_keyboard_note[2] = true;
+				active_keyboard_notes++;
+			}
+
+			else if(!played_keyboard_note[3] && activate_processing[3]){
+				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+3);
+				played_keyboard_note[3] = true;
+				active_keyboard_notes++;
+			}
+
+			else if(!played_keyboard_note[4] && activate_processing[4]){
+				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+4);
+				played_keyboard_note[4] = true;
+				active_keyboard_notes++;
 			}
 		}
 	}
 
 	// Delete signal
-	for (int i = 0; i < 3;i++){
+	for (int i = 0; i < MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++){
+
 		if (adsr_keyboard[i].adsr_done){
-			DeleteSignal(signals,IDtoIndex(KEYBOARD_VOICE_ID+i));
+			int index = IDtoIndex(KEYBOARD_VOICE_ID+i);
+
+			DeleteSignal(signals,index);
 			adsr_keyboard[i].adsr_done = false;
-			if (keyboard_pressed_counter % 2)
-				played_keyboard_note[i] = false;
+
+			//			if (keyboard_pressed_counter % 2 == 1)
+			played_keyboard_note[i] = false;
+
 			activate_processing[i] = false;
+
+			active_keyboard_notes--;
 		}
 	}
-
 }

@@ -36,10 +36,11 @@ float lfo_value;
 /*********************************
  * @brief	Functions
  *********************************/
-void effects_init();
+void effects_init(void);
 void effects_process(float* calculate_value);
 void effects_add(effects_t_enum effect);
 void effects_process_fast(float* calculate_value);
+void keyboard_adsr_process(void);
 void effects_delete(effects_t_enum effect) ;
 
 #endif /* __EFFECTS_H */

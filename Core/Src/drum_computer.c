@@ -29,6 +29,165 @@ HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 }
 
 
+HAL_StatusTypeDef Drum_Computer_CalcSample() {
+
+	for(int i = 0; i < FourFour; i++) {
+
+		if(Display.Drumcomputer_ONOFF == true) {
+
+			// Drumsample 1
+			if(flag_DS1[i] == 1) {
+
+				DS1s = DS1s + DS1[counter_DS1[i]];
+				counter_DS1[i]++;
+
+				if(counter_DS1[i] == DS_L - 1){
+
+					counter_DS1[i] = 0;
+					flag_DS1[i]    = 0;
+				}
+			}
+			// Drumsample 2
+			if(flag_DS2[i] == 1) {
+
+				DS2s = DS2s + DS2[counter_DS2[i]];
+				counter_DS2[i]++;
+
+				if(counter_DS2[i] == DS_L - 1){
+
+					counter_DS2[i] = 0;
+					flag_DS2[i]    = 0;
+				}
+			}
+			// Drumsample 3
+			if(flag_DS3[i] == 1) {
+
+				DS3s = DS3s + DS3[counter_DS3[i]];
+				counter_DS3[i]++;
+
+				if(counter_DS3[i] == DS_L - 1){
+
+					counter_DS3[i] = 0;
+					flag_DS3[i]    = 0;
+				}
+			}
+			// Drumsample 4
+			if(flag_DS4[i] == 1) {
+
+				DS4s = DS4s + DS4[counter_DS4[i]];
+				counter_DS4[i]++;
+
+				if(counter_DS4[i] == DS_L - 1){
+
+					counter_DS4[i] = 0;
+					flag_DS4[i]    = 0;
+				}
+			}
+		}
+
+		if(Display.Sequencer_ONOFF == true) {
+			// Sequencer Note 1
+			if(timing_SN1[i] == 1){
+
+				if(adsr_SN1[i].adsr_done == false){
+
+					//SN1_temp += LUT[current_LUT_index_SN1[i]];
+					SN1_temp = LUT[current_LUT_index_SN1[i]];
+
+//					OnePress_ADSR_Linear_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
+					OnePress_ADSR_Sequencer_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
+
+					SN1 += SN1_temp;
+					current_LUT_index_SN1[i]++;
+				}
+				else if(adsr_SN1[i].adsr_done == true){
+
+					SN1 += 0;
+				}
+				if (current_LUT_index_SN1[i] > LUT_ENDINDEX[freq_index_SN1])
+				{
+					current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+				}
+			}
+			// Sequencer Note 2
+			if(timing_SN2[i] == 1){
+
+				if(adsr_SN2[i].adsr_done == false){
+
+					//SN2_temp += LUT[current_LUT_index_SN2[i]];
+					SN2_temp = LUT[current_LUT_index_SN2[i]];
+
+//					OnePress_ADSR_Linear_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
+					OnePress_ADSR_Sequencer_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
+
+					SN2 += SN2_temp;
+					current_LUT_index_SN2[i]++;
+				}
+				else if(adsr_SN2[i].adsr_done == true){
+
+					SN2 += 0;
+				}
+				if (current_LUT_index_SN2[i] > LUT_ENDINDEX[freq_index_SN2])
+				{
+					current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+				}
+			}
+			// Sequencer Note 3
+			if(timing_SN3[i] == 1){
+
+				if(adsr_SN3[i].adsr_done == false){
+
+					//SN3_temp += LUT[current_LUT_index_SN3[i]];
+					SN3_temp = LUT[current_LUT_index_SN3[i]];
+
+//					OnePress_ADSR_Linear_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
+					OnePress_ADSR_Sequencer_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
+
+					SN3 += SN3_temp;
+					current_LUT_index_SN3[i]++;
+				}
+				else if(adsr_SN3[i].adsr_done == true){
+
+					SN3 += 0;
+				}
+				if (current_LUT_index_SN3[i] > LUT_ENDINDEX[freq_index_SN3])
+				{
+					current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+				}
+			}
+			// Sequencer Note 4
+			if(timing_SN4[i] == 1){
+
+				if(adsr_SN4[i].adsr_done == false){
+
+					//SN4_temp += LUT[current_LUT_index_SN4[i]];
+					SN4_temp = LUT[current_LUT_index_SN4[i]];
+
+//					OnePress_ADSR_Linear_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
+					OnePress_ADSR_Sequencer_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
+
+					SN4 += SN4_temp;
+					current_LUT_index_SN4[i]++;
+				}
+				else if(adsr_SN4[i].adsr_done == true){
+
+					SN4 += 0;
+				}
+
+				if (current_LUT_index_SN4[i] > LUT_ENDINDEX[freq_index_SN4])
+				{
+					current_LUT_index_SN4[i] = LUT_STARTINDEX[freq_index_SN4];
+				}
+			}
+		}
+	}
+
+	drums =  DS1s + DS2s + DS3s + DS4s;
+	sequencer = SN1 + SN2 + SN3 + SN4;
+
+	return HAL_OK;
+}
+
 HAL_StatusTypeDef Drum_Computer_Init(void){
 
 	// INIT: Sequencer state
@@ -477,165 +636,6 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 		adsr_SN3[drum_index].adsr_done = false;
 		adsr_SN4[drum_index].adsr_done = false;
 	}
-
-	return HAL_OK;
-}
-
-HAL_StatusTypeDef Drum_Computer_CalcSample() {
-
-	for(int i = 0; i < FourFour; i++) {
-
-		if(Display.Drumcomputer_ONOFF == true) {
-
-			// Drumsample 1
-			if(flag_DS1[i] == 1) {
-
-				DS1s = DS1s + DS1[counter_DS1[i]];
-				counter_DS1[i]++;
-
-				if(counter_DS1[i] == DS_L - 1){
-
-					counter_DS1[i] = 0;
-					flag_DS1[i]    = 0;
-				}
-			}
-			// Drumsample 2
-			if(flag_DS2[i] == 1) {
-
-				DS2s = DS2s + DS2[counter_DS2[i]];
-				counter_DS2[i]++;
-
-				if(counter_DS2[i] == DS_L - 1){
-
-					counter_DS2[i] = 0;
-					flag_DS2[i]    = 0;
-				}
-			}
-			// Drumsample 3
-			if(flag_DS3[i] == 1) {
-
-				DS3s = DS3s + DS3[counter_DS3[i]];
-				counter_DS3[i]++;
-
-				if(counter_DS3[i] == DS_L - 1){
-
-					counter_DS3[i] = 0;
-					flag_DS3[i]    = 0;
-				}
-			}
-			// Drumsample 4
-			if(flag_DS4[i] == 1) {
-
-				DS4s = DS4s + DS4[counter_DS4[i]];
-				counter_DS4[i]++;
-
-				if(counter_DS4[i] == DS_L - 1){
-
-					counter_DS4[i] = 0;
-					flag_DS4[i]    = 0;
-				}
-			}
-		}
-
-		if(Display.Sequencer_ONOFF == true) {
-			// Sequencer Note 1
-			if(timing_SN1[i] == 1){
-
-				if(adsr_SN1[i].adsr_done == false){
-
-					//SN1_temp += LUT[current_LUT_index_SN1[i]];
-					SN1_temp = LUT[current_LUT_index_SN1[i]];
-
-//					OnePress_ADSR_Linear_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
-					OnePress_ADSR_Sequencer_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
-
-					SN1 += SN1_temp;
-					current_LUT_index_SN1[i]++;
-				}
-				else if(adsr_SN1[i].adsr_done == true){
-
-					SN1 += 0;
-				}
-				if (current_LUT_index_SN1[i] > LUT_ENDINDEX[freq_index_SN1])
-				{
-					current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
-				}
-			}
-			// Sequencer Note 2
-			if(timing_SN2[i] == 1){
-
-				if(adsr_SN2[i].adsr_done == false){
-
-					//SN2_temp += LUT[current_LUT_index_SN2[i]];
-					SN2_temp = LUT[current_LUT_index_SN2[i]];
-
-//					OnePress_ADSR_Linear_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
-					OnePress_ADSR_Sequencer_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
-
-					SN2 += SN2_temp;
-					current_LUT_index_SN2[i]++;
-				}
-				else if(adsr_SN2[i].adsr_done == true){
-
-					SN2 += 0;
-				}
-				if (current_LUT_index_SN2[i] > LUT_ENDINDEX[freq_index_SN2])
-				{
-					current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
-				}
-			}
-			// Sequencer Note 3
-			if(timing_SN3[i] == 1){
-
-				if(adsr_SN3[i].adsr_done == false){
-
-					//SN3_temp += LUT[current_LUT_index_SN3[i]];
-					SN3_temp = LUT[current_LUT_index_SN3[i]];
-
-//					OnePress_ADSR_Linear_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
-					OnePress_ADSR_Sequencer_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
-
-					SN3 += SN3_temp;
-					current_LUT_index_SN3[i]++;
-				}
-				else if(adsr_SN3[i].adsr_done == true){
-
-					SN3 += 0;
-				}
-				if (current_LUT_index_SN3[i] > LUT_ENDINDEX[freq_index_SN3])
-				{
-					current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
-				}
-			}
-			// Sequencer Note 4
-			if(timing_SN4[i] == 1){
-
-				if(adsr_SN4[i].adsr_done == false){
-
-					//SN4_temp += LUT[current_LUT_index_SN4[i]];
-					SN4_temp = LUT[current_LUT_index_SN4[i]];
-
-//					OnePress_ADSR_Linear_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
-					OnePress_ADSR_Sequencer_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
-
-					SN4 += SN4_temp;
-					current_LUT_index_SN4[i]++;
-				}
-				else if(adsr_SN4[i].adsr_done == true){
-
-					SN4 += 0;
-				}
-
-				if (current_LUT_index_SN4[i] > LUT_ENDINDEX[freq_index_SN4])
-				{
-					current_LUT_index_SN4[i] = LUT_STARTINDEX[freq_index_SN4];
-				}
-			}
-		}
-	}
-
-	drums =  DS1s + DS2s + DS3s + DS4s;
-	sequencer = SN1 + SN2 + SN3 + SN4;
 
 	return HAL_OK;
 }
