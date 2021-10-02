@@ -27,10 +27,18 @@ clap = clap';
 clap = clap(1,1:clap_length);
 clap = clap(1:4:end);
 %sound(clap,clap_SR/4);
+
+startval = 200;
+clap = clap(startval:length(clap));
+clap(1) = 0;
+
+clap(10000-startval:10000) = 0;
+
 clap = clap + 1;
-% figure(1);
-% plot(clap); grid on
-% title('Clap');
+figure(1);
+plot(clap); grid on
+title('Clap');
+pause(1);
 
 %% CLOSED HIHAT
 [closed_hh,closed_hh_SR] = audioread('909_ClosedHihat.wav');
@@ -38,11 +46,17 @@ clap = clap + 1;
 closed_hh = closed_hh';
 closed_hh = closed_hh(1,1:closed_hh_length);
 closed_hh = closed_hh(1:4:end);
+
+startval = 138;
+closed_hh = closed_hh(startval:length(closed_hh));
+closed_hh(1) = 0;
+closed_hh(10000-startval:10000) = 0;
+
 closed_hh = closed_hh + 1;
-% figure(2);
-% plot(closed_hh); grid on
-% title('Closed Hihat');
-% pause(1)
+figure(2);
+plot(closed_hh); grid on
+title('Closed Hihat');
+pause(1)
 
 %% OPEN HIHAT
 [open_hh,open_hh_SR] = audioread('909_OpenHihat.wav');
@@ -50,11 +64,17 @@ closed_hh = closed_hh + 1;
 open_hh = open_hh';
 open_hh = open_hh(1,1:open_hh_length);
 open_hh = open_hh(1:4:end);
+
+startval = 190;
+open_hh = open_hh(startval:length(open_hh));
+open_hh(1) = 0;
+open_hh(10000-startval:10000) = 0;
+
 open_hh = open_hh + 1;
-% figure(3);
-% plot(closed_hh); grid on
-% title('Open Hihat');
-% pause(1)
+figure(3);
+plot(open_hh); grid on
+title('Open Hihat');
+pause(1)
 
 %% KICK
 [kick,kick_SR] = audioread('909_Kick.wav');
@@ -62,11 +82,17 @@ open_hh = open_hh + 1;
 kick = kick';
 kick = kick(1,1:kick_length);
 kick = kick(1:4:end);
+
+startval = 100;
+kick = kick(startval:length(kick));
+kick(1) = 0;
+kick(10000-startval:10000) = 0;
+
 kick = kick + 1;
-% figure(4);
-% plot(kick); grid on
-% title('Kick');
-% pause(1)
+figure(4);
+plot(kick); grid on
+title('Kick');
+pause(1)
 
 %% RIMSHOT
 [rimshot,rimshot_SR] = audioread('909_Rimshot.wav');
@@ -74,11 +100,17 @@ kick = kick + 1;
 rimshot = rimshot';
 rimshot = rimshot(1,1:rimshot_length);
 rimshot = rimshot(1:4:end);
+
+startval = 181;
+rimshot = rimshot(startval:length(rimshot));
+rimshot(1) = 0;
+rimshot(10000-startval:10000) = 0;
+
 rimshot = rimshot + 1;
-% figure(5);
-% plot(rimshot); grid on
-% title('Rimshot');
-% pause(1)
+figure(5);
+plot(rimshot); grid on
+title('Rimshot');
+pause(1)
 
 %% HITOM
 [hitom,hitom_SR] = audioread('909_HiTom.wav');
@@ -86,11 +118,17 @@ rimshot = rimshot + 1;
 hitom = hitom';
 hitom = hitom(1,1:hitom_length);
 hitom = hitom(1:4:end);
+
+startval = 148;
+hitom = hitom(startval:length(hitom));
+hitom(1) = 0;
+hitom(10000-startval:10000) = 0;
+
 hitom = hitom + 1;
-% figure(6);
-% plot(hitom); grid on
-% title('Hi-Tom');
-% pause(1)
+figure(6);
+plot(hitom); grid on
+title('Hi-Tom');
+pause(1)
 
 %% MIDTOM
 [midtom,midtom_SR] = audioread('909_MidTom.wav');
@@ -98,11 +136,17 @@ hitom = hitom + 1;
 midtom = midtom';
 midtom = midtom(1,1:midtom_length);
 midtom = midtom(1:4:end);
+
+startval = 173;
+midtom = midtom(startval:length(midtom));
+midtom(1) = 0;
+midtom(10000-startval:10000) = 0;
+
 midtom = midtom + 1;
-% figure(7);
-% plot(midtom); grid on
-% title('Mid-Tom');
-% pause(1)
+figure(7);
+plot(midtom); grid on
+title('Mid-Tom');
+pause(1)
 
 %% LOWTOM
 [lowtom,lowtom_SR] = audioread('909_LowTom.wav');
@@ -110,11 +154,18 @@ midtom = midtom + 1;
 lowtom = lowtom';
 lowtom = lowtom(1,1:lowtom_length);
 lowtom = lowtom(1:4:end);
+
+startval = 174;
+lowtom(startval) = 0;
+lowtom = lowtom(startval:length(lowtom));
+lowtom(1) = 0;
+lowtom(10000-startval:10000) = 0;
+
 lowtom = lowtom + 1;
-% figure(8);
-% plot(lowtom); grid on
-% title('Low-Tom');
-% pause(1)
+figure(8);
+plot(lowtom); grid on
+title('Low-Tom');
+pause(1)
 
 %% Dummy txt
 

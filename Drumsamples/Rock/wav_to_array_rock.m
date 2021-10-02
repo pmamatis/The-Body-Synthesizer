@@ -12,6 +12,7 @@ SR = 48000;
 
 [P,Q] = rat(SR/hh_SR);
 hh = resample(hh,P,Q);
+hh(1) = 0;
 
 hh_cut = zeros(1,20000);
 for i = 1:length(hh)
@@ -54,6 +55,7 @@ pause(1)
 
 [P,Q] = rat(SR/ride_SR);
 ride = resample(ride,P,Q);
+ride(1) = 0;
 
 ride_cut = zeros(1,20000);
 for i = 1:length(ride)
@@ -61,10 +63,14 @@ for i = 1:length(ride)
     ride_cut(i) = ride(i);
 end
 
+
 %sound(ride_cut,ride_cut_SR);
 ride_cut = ride_cut(1,1:ride_length);
 ride_cut = ride_cut(1:2:end);
 ride_cut = ride_cut + 1;
+
+ride_cut(9998:10000) = 1;
+
 figure(3);
 plot(ride_cut'); grid on
 title('Hihat');
@@ -75,6 +81,10 @@ pause(1)
 
 [P,Q] = rat(SR/snare_SR);
 snare = resample(snare,P,Q);
+
+startval = 2*118;
+snare = snare(startval:length(snare));
+snare(1) = 0;
 
 snare_cut = zeros(1,20000);
 for i = 1:length(snare)

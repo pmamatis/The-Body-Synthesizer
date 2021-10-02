@@ -12,6 +12,7 @@ SR = 48000;
 
 [P,Q] = rat(SR/hh_SR);
 hh = resample(hh,P,Q);
+hh(1) = 0;
 
 hh_cut = zeros(1,20000);
 for i = 1:length(hh)
@@ -34,13 +35,15 @@ pause(1)
 [P,Q] = rat(SR/kick_SR);
 kick = resample(kick,P,Q);
 
+kick(1) = 0;
+
 kick_cut = zeros(1,20000);
 for i = 1:length(kick)
    
     kick_cut(i) = kick(i);
 end
 
-%sound(kick_cut,kick_cut_SR);
+% sound(kick_cut,kick_SR);
 kick_cut = kick_cut(1,1:kick_length);
 kick_cut = kick_cut(1:2:end);
 kick_cut = kick_cut + 1;
@@ -54,6 +57,8 @@ pause(1)
 
 [P,Q] = rat(SR/ride_SR);
 ride = resample(ride,P,Q);
+
+ride(1) = 0;
 
 ride_cut = zeros(1,20000);
 for i = 1:length(ride)
@@ -76,6 +81,10 @@ pause(1)
 [P,Q] = rat(SR/snare_SR);
 snare = resample(snare,P,Q);
 
+startval = 2*9;
+snare(1:startval) = 0;
+snare = snare(startval:length(snare));
+
 snare_cut = zeros(1,20000);
 for i = 1:length(snare)
    
@@ -90,7 +99,6 @@ figure(4);
 plot(snare_cut'); grid on
 title('Snare');
 pause(1)
-
 
 %% Dummy txt
 
