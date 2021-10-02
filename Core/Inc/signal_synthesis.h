@@ -57,9 +57,6 @@ struct signal_t{
 /**@brief Array to monitor which ID's are taken, taken = 1; free = 0 */
 uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
 
-
-
-
 /** defines volume of the Voices, Drummachine and Sequencer
  * 0 -> Voices
  * 1 -> Drums
@@ -72,7 +69,6 @@ float Master_Volume;
 float calculate_keyboard[5];
 /** should avoid Plop sound after finishing the Keyboard sound */
 uint32_t noPlopOffset;
-
 
 //Effects
 struct effects_lfo_t{

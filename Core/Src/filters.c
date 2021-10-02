@@ -43,7 +43,7 @@ Filter_Status Filters_Init(){
 //	SetupLowShelf(&EQ_BAND1_I,      266, 0.707, -20);
 
 //	// BAND 2: Peaking-EQ / Notch-Filter
-	SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 6);
+//	SetupPeakingEQ(&EQ_BAND2_I,  10 , 1, 2);
 //	SetupNotch	(&EQ_BAND2_I,  	400, 0.707	 );
 //
 //	// BAND 3: Peaking-EQ / Notch-Filter
@@ -76,7 +76,7 @@ Filter_Status Filters_Init(){
 	//	SetupLowpass (&EQ_BAND1_II, 200, 0.707);
 	//
 	//	// BAND 2: BP 8th order
-//	SetupBandpassCPG(&EQ_BAND2_I,  400, 20);
+	SetupBandpassCPG(&EQ_BAND2_I,  10, 20);
 	//SetupBandpassCPG(&EQ_BAND2_II, 400, 20);
 	//	SetupBandpassCPG(&EQ_BAND2_III,400, 0.707);
 	//	SetupBandpassCPG(&EQ_BAND2_IV, 400, 0.707);
@@ -154,12 +154,14 @@ Filter_Status Filters_Reinit_Gyro(float cutoff){
 //		flag = 0;
 //	}
 	if (cutoff > 10){
-		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
+//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
+		SetupBandpassCPG(&EQ_BAND2_I,  cutoff, 0.707);
 		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}
 	else {
-		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
+//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
+		SetupBandpassCPG(&EQ_BAND2_I,  10, 0.707);
 		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}

@@ -94,7 +94,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 					//SN1_temp += LUT[current_LUT_index_SN1[i]];
 					SN1_temp = LUT[current_LUT_index_SN1[i]];
 
-//					OnePress_ADSR_Linear_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
+					//					OnePress_ADSR_Linear_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
 					OnePress_ADSR_Sequencer_Process(&adsr_SN1[i], &SN1_temp, timing_SN1[i]);
 
 					SN1 += SN1_temp;
@@ -117,7 +117,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 					//SN2_temp += LUT[current_LUT_index_SN2[i]];
 					SN2_temp = LUT[current_LUT_index_SN2[i]];
 
-//					OnePress_ADSR_Linear_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
+					//					OnePress_ADSR_Linear_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
 					OnePress_ADSR_Sequencer_Process(&adsr_SN2[i], &SN2_temp, timing_SN2[i]);
 
 					SN2 += SN2_temp;
@@ -140,7 +140,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 					//SN3_temp += LUT[current_LUT_index_SN3[i]];
 					SN3_temp = LUT[current_LUT_index_SN3[i]];
 
-//					OnePress_ADSR_Linear_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
+					//					OnePress_ADSR_Linear_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
 					OnePress_ADSR_Sequencer_Process(&adsr_SN3[i], &SN3_temp, timing_SN3[i]);
 
 					SN3 += SN3_temp;
@@ -163,7 +163,7 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 					//SN4_temp += LUT[current_LUT_index_SN4[i]];
 					SN4_temp = LUT[current_LUT_index_SN4[i]];
 
-//					OnePress_ADSR_Linear_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
+					//					OnePress_ADSR_Linear_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
 					OnePress_ADSR_Sequencer_Process(&adsr_SN4[i], &SN4_temp, timing_SN4[i]);
 
 					SN4 += SN4_temp;
@@ -258,17 +258,28 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 		// INIT: Array of timing positions
 		timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
+//
+//	// INIT: 909 LUTs
+//	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
+//	__disable_irq();
+//	sd_card_mount();
+//	sd_card_read("909_Kick.txt", &DS1);
+//	sd_card_read("909_OpenHihat.txt", &DS2);
+//	sd_card_read("909_Clap.txt", &DS3);
+//	sd_card_read("909_LowTom.txt", &DS4);
+//	sd_card_unmount();
+//	__enable_irq();
 
-	// INIT: 909 LUTs
-	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
-	__disable_irq();
-	sd_card_mount();
-	sd_card_read("909_Kick.txt", &DS1);
-	sd_card_read("909_OpenHihat.txt", &DS2);
-	sd_card_read("909_Clap.txt", &DS3);
-	sd_card_read("909_LowTom.txt", &DS4);
-	sd_card_unmount();
-	__enable_irq();
+	// INIT: Windows LUTs
+	 // POSSIBLE: Recycle, Background, Chord, Critical Stop, Error, Hardware Remove
+	 __disable_irq();
+	 sd_card_mount();
+	 sd_card_read("Windows_Chord.txt", &DS1);
+	 sd_card_read("Windows_Recycle.txt", &DS2);
+	 sd_card_read("Windows_Hardware_Remove.txt", &DS3);
+	 sd_card_read("Windows_Background.txt", &DS4);
+	 sd_card_unmount();
+	 __enable_irq();
 
 	/*
 	// INIT: Rock Loud LUTs
@@ -328,14 +339,14 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 
 	// INIT: Timing
 	// Kick
-	timing_DS1[0]  = 1;
-	timing_DS1[1]  = 0;
-	timing_DS1[2]  = 0;
-	timing_DS1[3]  = 0;
-	timing_DS1[4]  = 1;
-	timing_DS1[5]  = 0;
-	timing_DS1[6]  = 0;
-	timing_DS1[7]  = 0;
+	//	timing_DS1[0]  = 1;
+	//	timing_DS1[1]  = 0;
+	//	timing_DS1[2]  = 0;
+	//	timing_DS1[3]  = 0;
+	//	timing_DS1[4]  = 1;
+	//	timing_DS1[5]  = 0;
+	//	timing_DS1[6]  = 0;
+	//	timing_DS1[7]  = 0;
 	//	timing_DS1[8]  = 1;
 	//	timing_DS1[9]  = 0;
 	//	timing_DS1[10] = 0;
@@ -346,14 +357,14 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 	//	timing_DS1[15] = 0;
 
 	// Hihat
-	timing_DS2[0]  = 0;
-	timing_DS2[1]  = 0;
-	timing_DS2[2]  = 1;
-	timing_DS2[3]  = 0;
-	timing_DS2[4]  = 0;
-	timing_DS2[5]  = 0;
-	timing_DS2[6]  = 1;
-	timing_DS2[7]  = 0;
+	//	timing_DS2[0]  = 0;
+	//	timing_DS2[1]  = 0;
+	//	timing_DS2[2]  = 1;
+	//	timing_DS2[3]  = 0;
+	//	timing_DS2[4]  = 0;
+	//	timing_DS2[5]  = 0;
+	//	timing_DS2[6]  = 1;
+	//	timing_DS2[7]  = 0;
 	//	timing_DS2[8]  = 0;
 	//	timing_DS2[9]  = 0;
 	//	timing_DS2[10] = 1;
@@ -364,14 +375,14 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 	//	timing_DS2[15] = 0;
 
 	// Clap
-	timing_DS3[0]  = 0;
-	timing_DS3[1]  = 0;
-	timing_DS3[2]  = 0;
-	timing_DS3[3]  = 0;
-	timing_DS3[4]  = 1;
-	timing_DS3[5]  = 0;
-	timing_DS3[6]  = 0;
-	timing_DS3[7]  = 0;
+	//	timing_DS3[0]  = 0;
+	//	timing_DS3[1]  = 0;
+	//	timing_DS3[2]  = 0;
+	//	timing_DS3[3]  = 0;
+	//	timing_DS3[4]  = 1;
+	//	timing_DS3[5]  = 0;
+	//	timing_DS3[6]  = 0;
+	//	timing_DS3[7]  = 0;
 	//	timing_DS3[8]  = 0;
 	//	timing_DS3[9]  = 0;
 	//	timing_DS3[10] = 0;
@@ -382,14 +393,14 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 	//	timing_DS3[15] = 0;
 
 	// LowTom
-	timing_DS4[0]  = 0;
-	timing_DS4[1]  = 0;
-	timing_DS4[2]  = 1;
-	timing_DS4[3]  = 1;
-	timing_DS4[4]  = 0;
-	timing_DS4[5]  = 0;
-	timing_DS4[6]  = 0;
-	timing_DS4[7]  = 1;
+	//	timing_DS4[0]  = 0;
+	//	timing_DS4[1]  = 0;
+	//	timing_DS4[2]  = 1;
+	//	timing_DS4[3]  = 1;
+	//	timing_DS4[4]  = 0;
+	//	timing_DS4[5]  = 0;
+	//	timing_DS4[6]  = 0;
+	//	timing_DS4[7]  = 1;
 	//	timing_DS4[8]  = 0;
 	//	timing_DS4[9]  = 0;
 	//	timing_DS4[10] = 1;
@@ -399,30 +410,30 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 	//	timing_DS4[14] = 0;
 	//	timing_DS4[15] = 1;
 
-	timing_SN1[0] = 1;	// Sequence Pattern
-	timing_SN1[1] = 0;
-	timing_SN1[2] = 0;
-	timing_SN1[3] = 0;
-	timing_SN1[4] = 0;
-	timing_SN1[5] = 0;
-	timing_SN1[6] = 0;
-	timing_SN1[7] = 0;
-	timing_SN2[0] = 0;
-	timing_SN2[1] = 0;
-	timing_SN2[2] = 0;
-	timing_SN2[3] = 1;
-	timing_SN2[4] = 0;
-	timing_SN2[5] = 0;
-	timing_SN2[6] = 0;
-	timing_SN2[7] = 0;
-	timing_SN3[0] = 0;
-	timing_SN3[1] = 0;
-	timing_SN3[2] = 0;
-	timing_SN3[3] = 0;
-	timing_SN3[4] = 0;
-	timing_SN3[5] = 0;
-	timing_SN3[6] = 1;
-	timing_SN3[7] = 0;
+	//	timing_SN1[0] = 1;	// Sequence Pattern
+	//	timing_SN1[1] = 0;
+	//	timing_SN1[2] = 0;
+	//	timing_SN1[3] = 0;
+	//	timing_SN1[4] = 0;
+	//	timing_SN1[5] = 0;
+	//	timing_SN1[6] = 0;
+	//	timing_SN1[7] = 0;
+	//	timing_SN2[0] = 0;
+	//	timing_SN2[1] = 0;
+	//	timing_SN2[2] = 0;
+	//	timing_SN2[3] = 1;
+	//	timing_SN2[4] = 0;
+	//	timing_SN2[5] = 0;
+	//	timing_SN2[6] = 0;
+	//	timing_SN2[7] = 0;
+	//	timing_SN3[0] = 0;
+	//	timing_SN3[1] = 0;
+	//	timing_SN3[2] = 0;
+	//	timing_SN3[3] = 0;
+	//	timing_SN3[4] = 0;
+	//	timing_SN3[5] = 0;
+	//	timing_SN3[6] = 1;
+	//	timing_SN3[7] = 0;
 
 
 	// Sequencer Notes

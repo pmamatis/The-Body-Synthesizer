@@ -46,8 +46,7 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 
 	if(flag == true) {
 
-		//	float calc = 0;
-		float calc;
+		float calc = 0;
 
 		envelope->adsr_duration_time = envelope->adsr_attack_time + envelope->adsr_decay_time + envelope->adsr_sustain_time + envelope->adsr_release_time;
 
@@ -93,12 +92,11 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 		envelope->adsr_counter++;
 
 		if(envelope->adsr_counter >= envelope->adsr_duration_time) {
-//			printf("adsr_counter = %i\r\n",envelope->adsr_counter);
+			//			printf("adsr_counter = %i\r\n",envelope->adsr_counter);
 			envelope->adsr_counter = 0;	// restart
 			//envelope->decay_counter = 0;
 			//envelope->release_counter = 0;
 			envelope->adsr_done = true;
-
 			//			DeleteSignal(&signals1, IDtoIndex(KEYBOARD_VOICE_ID));
 		}
 

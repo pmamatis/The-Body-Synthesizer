@@ -294,12 +294,11 @@ int main(void)
 
 	//Start Display
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	//	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
+	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
 	// Start DAC-DMA
 	printf("start DAC\r\n");
 	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
-	//HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector2 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
@@ -323,7 +322,6 @@ int main(void)
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-
 
 	//	NewSignal(&signals1,NOISE,'C',0,0);
 	//NewSignal(&signals1,NOISE,'C',0);
@@ -422,8 +420,8 @@ int main(void)
 	Display.Drumcomputer_ONOFF = true;
 	Display.Sequencer_ONOFF = true;
 	//	Display.WahWah_ONOFF = true;
-	Display.Distortion_ONOFF = true;
-	Display.Distortion_Gain = 8;
+	//	Display.Distortion_ONOFF = true;
+	//	Display.Distortion_Gain = 8;
 	//	Display.Distortion_Sources = GYRO_LR;
 	//	Display.Tremolo_ONOFF = true;
 	//	Display.Tremolo_Sources[0] = GYRO_FB;
@@ -445,6 +443,9 @@ int main(void)
 
 		/* USER CODE END WHILE */
 	}
+
+
+	return 0;
 	/* USER CODE END 3 */
 }
 
