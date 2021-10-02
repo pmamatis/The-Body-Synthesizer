@@ -27,11 +27,11 @@ end
 
 Error_cut = Error_cut(1,1:Error_length);
 Error_cut = Error_cut(1:2:end);
-Error_cut = Error_cut + 1;
 
 endval = 9989;
 Error_cut(endval:length(Error_cut)) = 0;
 
+Error_cut = Error_cut + 1;
 
 % sound(Error_cut,SR/2);
 
@@ -86,10 +86,11 @@ end
 
 Critical_Stop_cut = Critical_Stop_cut(1,1:Critical_Stop_length);
 Critical_Stop_cut = Critical_Stop_cut(1:2:end);
-Critical_Stop_cut = Critical_Stop_cut + 1;
 
 endval = 9956;
 Critical_Stop_cut(endval:length(Critical_Stop_cut)) = 0;
+
+Critical_Stop_cut = Critical_Stop_cut + 1;
 
 % sound(Critical_Stop_cut,SR/2);
 
@@ -143,10 +144,11 @@ end
 
 Hardware_Remove_cut = Hardware_Remove_cut(1,1:Hardware_Remove_length);
 Hardware_Remove_cut = Hardware_Remove_cut(1:2:end);
-Hardware_Remove_cut = Hardware_Remove_cut + 1;
 
 endval = 9979;
 Hardware_Remove_cut(endval:length(Hardware_Remove_cut)) = 0;
+
+Hardware_Remove_cut = Hardware_Remove_cut + 1;
 
 % sound(Hardware_Remove_cut,SR/2);
 
@@ -174,10 +176,11 @@ end
 
 Background_cut = Background_cut(1,1:Background_length);
 Background_cut = Background_cut(1:2:end);
-Background_cut = Background_cut + 1;
 
 endval = 9982;
 Background_cut(endval:length(Background_cut)) = 0;
+
+Background_cut = Background_cut + 1;
 
 % sound(Background_cut,SR/2);
 
