@@ -1,96 +1,190 @@
 close all; clc
 
-hh_length    = 20000;
-kick_length  = 20000;
-snare_length = 20000;
-ride_length  = 20000;
+Error_length           = 20000;
+Chord_length           = 20000;
+Critical_Stop_length   = 20000;
+Recycle_length         = 20000;
+Hardware_Remove_length = 20000;
+Background_length      = 20000;
 
 SR = 48000;
 
-%% HIHAT
-[hh,hh_SR] = audioread('Rock_loud_Hihat.wav');
+%% Windows Error
+[Error,Error_SR] = audioread('Windows_Error.wav');
 
-[P,Q] = rat(SR/hh_SR);
-hh = resample(hh,P,Q);
+[P,Q] = rat(SR/Error_SR);
+Error = resample(Error,P,Q);
 
-hh_cut = zeros(1,20000);
-for i = 1:length(hh)
+startval = 2*260;
+Error = Error(startval:length(Error));
+
+Error_cut = zeros(1,20000);
+
+for i = 1:length(Error)
    
-    hh_cut(i) = hh(i);
+    Error_cut(i) = Error(i);
 end
 
-sound(hh_cut,SR);
-hh_cut = hh_cut(1,1:hh_length);
-hh_cut = hh_cut(1:2:end);
-hh_cut = hh_cut + 1;
+Error_cut = Error_cut(1,1:Error_length);
+Error_cut = Error_cut(1:2:end);
+Error_cut = Error_cut + 1;
+
+endval = 9989;
+Error_cut(endval:length(Error_cut)) = 0;
+
+
+% sound(Error_cut,SR/2);
+
 figure(1);
-plot(hh_cut'); grid on
-title('Hihat');
+plot(Error_cut'); grid on
+title('Error');
 pause(1)
 
-%% KICK
-[kick,kick_SR] = audioread('Rock_loud_Kick.wav');
+%% Windows Chord
+[Chord,Chord_SR] = audioread('Windows_Chord.wav');
 
-[P,Q] = rat(SR/kick_SR);
-kick = resample(kick,P,Q);
+[P,Q] = rat(SR/Chord_SR);
+Chord = resample(Chord,P,Q);
 
-kick_cut = zeros(1,20000);
-for i = 1:length(kick)
+startval = 2*470;
+Chord = Chord(startval:length(Chord));
+
+Chord_cut = zeros(1,20000);
+
+for i = 1:length(Chord)
    
-    kick_cut(i) = kick(i);
+    Chord_cut(i) = Chord(i);
 end
 
-%sound(kick_cut,kick_cut_SR);
-kick_cut = kick_cut(1,1:kick_length);
-kick_cut = kick_cut(1:2:end);
-kick_cut = kick_cut + 1;
-figure(2);
-plot(kick_cut'); grid on
-title('Kick');
+Chord_cut = Chord_cut(1,1:Chord_length);
+Chord_cut = Chord_cut(1:2:end);
+Chord_cut = Chord_cut + 1;
+
+% sound(Chord_cut,SR/2);
+
+figure(1);
+plot(Chord_cut'); grid on
+title('Chord');
 pause(1)
 
-%% Ride
-[ride,ride_SR] = audioread('Rock_loud_Ride.wav');
+%% Windows Critical Stop
+[Critical_Stop,Critical_Stop_SR] = audioread('Windows_Critical_Stop.wav');
 
-[P,Q] = rat(SR/ride_SR);
-ride = resample(ride,P,Q);
+[P,Q] = rat(SR/Critical_Stop_SR);
+Critical_Stop = resample(Critical_Stop,P,Q);
 
-ride_cut = zeros(1,20000);
-for i = 1:length(ride)
+startval = 2*610;
+Critical_Stop = Critical_Stop(startval:length(Critical_Stop));
+Critical_Stop(1) = 0;
+
+Critical_Stop_cut = zeros(1,20000);
+
+for i = 1:length(Critical_Stop)
    
-    ride_cut(i) = ride(i);
+    Critical_Stop_cut(i) = Critical_Stop(i);
 end
 
-%sound(ride_cut,ride_cut_SR);
-ride_cut = ride_cut(1,1:ride_length);
-ride_cut = ride_cut(1:2:end);
-ride_cut = ride_cut + 1;
-figure(3);
-plot(ride_cut'); grid on
-title('Hihat');
+Critical_Stop_cut = Critical_Stop_cut(1,1:Critical_Stop_length);
+Critical_Stop_cut = Critical_Stop_cut(1:2:end);
+Critical_Stop_cut = Critical_Stop_cut + 1;
+
+endval = 9956;
+Critical_Stop_cut(endval:length(Critical_Stop_cut)) = 0;
+
+% sound(Critical_Stop_cut,SR/2);
+
+figure(1);
+plot(Critical_Stop_cut'); grid on
+title('Critical_Stop');
 pause(1)
 
-%% Snare
-[snare,snare_SR] = audioread('Rock_loud_Snare.wav');
+%% Windows Recycle
+[Recycle,Recycle_SR] = audioread('Windows_Recycle.wav');
 
-[P,Q] = rat(SR/snare_SR);
-snare = resample(snare,P,Q);
+[P,Q] = rat(SR/Recycle_SR);
+Recycle = resample(Recycle,P,Q);
 
-snare_cut = zeros(1,20000);
-for i = 1:length(snare)
+startval = 2*120;
+Recycle = Recycle(startval:length(Recycle));
+
+Recycle_cut = zeros(1,20000);
+
+for i = 1:length(Recycle)
    
-    snare_cut(i) = snare(i);
+    Recycle_cut(i) = Recycle(i);
 end
 
-%sound(snare_cut,snare_cut_SR);
-snare_cut = snare_cut(1,1:snare_length);
-snare_cut = snare_cut(1:2:end);
-snare_cut = snare_cut + 1;
-figure(4);
-plot(snare_cut'); grid on
-title('Snare');
+Recycle_cut = Recycle_cut(1,1:Recycle_length);
+Recycle_cut = Recycle_cut(1:2:end);
+Recycle_cut = Recycle_cut + 1;
+
+% sound(Recycle_cut,SR/2);
+
+figure(1);
+plot(Recycle_cut'); grid on
+title('Recycle');
 pause(1)
 
+%% Windows Hardware Remove
+[Hardware_Remove,Hardware_Remove_SR] = audioread('Windows_Hardware_Remove.wav');
+
+[P,Q] = rat(SR/Hardware_Remove_SR);
+Hardware_Remove = resample(Hardware_Remove,P,Q);
+
+startval = 2*264;
+Hardware_Remove = Hardware_Remove(startval:length(Hardware_Remove));
+
+Hardware_Remove_cut = zeros(1,20000);
+
+for i = 1:length(Hardware_Remove)
+   
+    Hardware_Remove_cut(i) = Hardware_Remove(i);
+end
+
+Hardware_Remove_cut = Hardware_Remove_cut(1,1:Hardware_Remove_length);
+Hardware_Remove_cut = Hardware_Remove_cut(1:2:end);
+Hardware_Remove_cut = Hardware_Remove_cut + 1;
+
+endval = 9979;
+Hardware_Remove_cut(endval:length(Hardware_Remove_cut)) = 0;
+
+% sound(Hardware_Remove_cut,SR/2);
+
+figure(1);
+plot(Hardware_Remove_cut'); grid on
+title('Hardware_Remove');
+pause(1)
+
+%% Windows Background
+[Background,Background_SR] = audioread('Windows_Background.wav');
+
+[P,Q] = rat(SR/Background_SR);
+Background = resample(Background,P,Q);
+
+startval = 2*890;
+Background(2*890) = 0;
+Background = Background(startval:length(Background));
+
+Background_cut = zeros(1,20000);
+
+for i = 1:length(Background)
+   
+    Background_cut(i) = Background(i);
+end
+
+Background_cut = Background_cut(1,1:Background_length);
+Background_cut = Background_cut(1:2:end);
+Background_cut = Background_cut + 1;
+
+endval = 9982;
+Background_cut(endval:length(Background_cut)) = 0;
+
+% sound(Background_cut,SR/2);
+
+figure(1);
+plot(Background_cut'); grid on
+title('Background');
+pause(1)
 
 %% Dummy txt
 
@@ -104,80 +198,82 @@ end
 
 fclose(fid);
 
-% fid = fopen('Dummy_20000.txt','w');
-% 
-% for i = 1:20000/4
-%     
-%     a = fprintf(fid,'%.f',0);
-%     fprintf(fid,',');
-% end
-% 
-% fclose(fid);
-% 
-% fid = fopen('Dummy_10000.txt','w');
-% 
-% for i = 1:10000/4
-%     
-%     a = fprintf(fid,'%.f',0);
-%     fprintf(fid,',');
-% end
-% 
-% fclose(fid);
-% %%%%%%
-% 
 %% TXT-file
 
-hh_length    = 20000/2;
-kick_length  = 20000/2;
-snare_length = 20000/2;
-ride_length  = 20000/2;
+Error_length           = 20000/2;
+Chord_length           = 20000/2;
+Critical_Stop_length   = 20000/2;
+Recycle_length         = 20000/2;
+Hardware_Remove_length = 20000/2;
+Background_length      = 20000/2;
 
+%% Windows Error
+fid = fopen('Windows_Error.txt','w');
 
-%% Hihat
-fid = fopen('Rock_loud_Hihat.txt','w');
-
-for i = 1:hh_length
+for i = 1:Error_length
     
-    a = fprintf(fid,'%1.8f',hh_cut(i));
+    a = fprintf(fid,'%1.8f',Error_cut(i));
     %fprintf(fid,',');
 end
 
 fclose(fid);
 
-%% Kick
-fid = fopen('Rock_loud_Kick.txt','w');
+%% Windows Chord
+fid = fopen('Windows_Chord.txt','w');
 
-for i = 1:kick_length
+for i = 1:Chord_length
     
-    a = fprintf(fid,'%1.8f',kick_cut(i));
+    a = fprintf(fid,'%1.8f',Chord_cut(i));
     %fprintf(fid,',');
 end
 
 fclose(fid);
 
-%% Ride
-fid = fopen('Rock_loud_Ride.txt','w');
+%% Windows Critical Stop
+fid = fopen('Windows_Critical_Stop.txt','w');
 
-for i = 1:ride_length
+for i = 1:Critical_Stop_length
     
-    a = fprintf(fid,'%1.8f',ride_cut(i));
+    a = fprintf(fid,'%1.8f',Critical_Stop_cut(i));
     %fprintf(fid,',');
 end
 
 fclose(fid);
 
-%% Snare
-fid = fopen('Rock_loud_Snare.txt','w');
+%% Windows Recycle
+fid = fopen('Windows_Recycle.txt','w');
 
-for i = 1:snare_length
+for i = 1:Recycle_length
     
-    a = fprintf(fid,'%1.8f',snare_cut(i));
+    a = fprintf(fid,'%1.8f',Recycle_cut(i));
     %fprintf(fid,',');
 end
 
- fclose(fid);
+fclose(fid);
+%% Windows Hardware Remove
+fid = fopen('Windows_Hardware_Remove.txt','w');
 
-%%  
+for i = 1:Hardware_Remove_length
+    
+    a = fprintf(fid,'%1.8f',Hardware_Remove_cut(i));
+    %fprintf(fid,',');
+end
+
+fclose(fid);
+
+%% Windows Background
+fid = fopen('Windows_Background.txt','w');
+
+for i = 1:Background_length
+    
+    a = fprintf(fid,'%1.8f',Background_cut(i));
+    %fprintf(fid,',');
+end
+
+fclose(fid);
+
+%%
+%% WRITE OUT HEADER / C
 % 
 % precision = 8;
 % 
@@ -190,13 +286,13 @@ end
 % dlmwrite('wav_LUT.c','};','delimiter','', 'precision', precision,'-append');
 % 
 % % Closed Hihat
-% dlmwrite('wav_LUT.c','float closed_hh_LUT[] __attribute__ ((section("closed_hihat"))) = {','delimiter','', 'precision', precision,'-append');
-% dlmwrite('wav_LUT.c',closed_hh,'delimiter',',', 'precision', precision,'-append');
+% dlmwrite('wav_LUT.c','float closed_Error_LUT[] __attribute__ ((section("closed_hihat"))) = {','delimiter','', 'precision', precision,'-append');
+% dlmwrite('wav_LUT.c',closed_Error,'delimiter',',', 'precision', precision,'-append');
 % dlmwrite('wav_LUT.c','};','delimiter','', 'precision', precision,'-append');
 % 
 % % Open Hihat
-% dlmwrite('wav_LUT.c','float open_hh_LUT[] __attribute__ ((section("open_hihat"))) = {','delimiter','', 'precision', precision,'-append');
-% dlmwrite('wav_LUT.c',open_hh,'delimiter',',', 'precision', precision,'-append');
+% dlmwrite('wav_LUT.c','float open_Error_LUT[] __attribute__ ((section("open_hihat"))) = {','delimiter','', 'precision', precision,'-append');
+% dlmwrite('wav_LUT.c',open_Error,'delimiter',',', 'precision', precision,'-append');
 % dlmwrite('wav_LUT.c','};','delimiter','', 'precision', precision,'-append');
 % 
 % % Kick
@@ -235,9 +331,9 @@ end
 % % Clap SR
 % dlmwrite('wav_LUT.h',['#define CLAP_SR ',num2str(clap_SR)],'delimiter','', 'precision', precision,'-append');
 % % Closed Hihat SR
-% dlmwrite('wav_LUT.h',['#define CLOSED_HH_SR ',num2str(closed_hh_SR)],'delimiter','', 'precision', precision,'-append');
+% dlmwrite('wav_LUT.h',['#define CLOSED_Error_SR ',num2str(closed_Error_SR)],'delimiter','', 'precision', precision,'-append');
 % % Open Hihat SR
-% dlmwrite('wav_LUT.h',['#define OPEN_HH_SR ',num2str(open_hh_SR)],'delimiter','', 'precision', precision,'-append');
+% dlmwrite('wav_LUT.h',['#define OPEN_Error_SR ',num2str(open_Error_SR)],'delimiter','', 'precision', precision,'-append');
 % % Kick SR
 % dlmwrite('wav_LUT.h',['#define KICK_SR ',num2str(kick_SR)],'delimiter','', 'precision', precision,'-append');
 % 
@@ -246,9 +342,9 @@ end
 % % Clap LUT
 % dlmwrite('wav_LUT.h',['float clap_LUT[',num2str(length(clap)),'];'],'delimiter','', 'precision', precision,'-append');
 % % Closed Hihat LUT
-% dlmwrite('wav_LUT.h',['float closed_hh_LUT[',num2str(length(closed_hh)),'];'],'delimiter','', 'precision', precision,'-append');
+% dlmwrite('wav_LUT.h',['float closed_Error_LUT[',num2str(length(closed_Error)),'];'],'delimiter','', 'precision', precision,'-append');
 % % Open Hihat LUT
-% dlmwrite('wav_LUT.h',['float open_hh_LUT[',num2str(length(open_hh)),'];'],'delimiter','', 'precision', precision,'-append');
+% dlmwrite('wav_LUT.h',['float open_Error_LUT[',num2str(length(open_Error)),'];'],'delimiter','', 'precision', precision,'-append');
 % % Kick LUT
 % dlmwrite('wav_LUT.h',['float kick_LUT[',num2str(length(kick)),'];'],'delimiter','', 'precision', precision,'-append');
 % % Rimshot LUT
