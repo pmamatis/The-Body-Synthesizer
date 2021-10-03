@@ -147,6 +147,7 @@ uint8_t II_Display_Effects(void){
 	}
 
 	//Tremolo
+	// TODO: UPDATE GYRO: Tremolo.lfo->lfo_index = 0; Tremolo.lfo->lfo_quarter = 0;
 	if (Display.Tremolo_ONOFF == true){
 		effects_add(TREM);
 		if (Display.Tremolo_Sources[0] > 0){
@@ -234,6 +235,7 @@ uint8_t II_Display_Effects(void){
 		}
 		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
 		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+
 	}
 	else if (Display.Tremolo_ONOFF == false){
 		effects_delete(TREM);

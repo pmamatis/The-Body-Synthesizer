@@ -276,7 +276,7 @@ int main(void)
 	Drum_Computer_Init();
 
 	//Gyros SPI
-	//	spiC_Init(&hspi4, &htim7);
+	spiC_Init(&hspi4, &htim7);
 
 	//EMG init
 	emg_init(&hadc3,&htim1);
@@ -340,9 +340,9 @@ int main(void)
 	NewSignal(&signals1,SIN, 'C',4,14);
 	NewSignal(&signals1,SIN, 'E',4,15);
 	NewSignal(&signals1,SIN, 'G',4,16);
-//	NewSignal(&signals1,SIN, 'C',5,17);
-//	NewSignal(&signals1,SIN, 'E',5,18);
-//	NewSignal(&signals1,SIN, 'G',5,19);
+	//	NewSignal(&signals1,SIN, 'C',5,17);
+	//	NewSignal(&signals1,SIN, 'E',5,18);
+	//	NewSignal(&signals1,SIN, 'G',5,19);
 
 	//  NewSignal(&signals1,SIN, 'F',2,1);
 	//	NewSignal(&signals1,SIN, 'C',2,6);

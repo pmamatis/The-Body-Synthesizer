@@ -258,28 +258,28 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 		// INIT: Array of timing positions
 		timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
-//
-//	// INIT: 909 LUTs
-//	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
-//	__disable_irq();
-//	sd_card_mount();
-//	sd_card_read("909_Kick.txt", &DS1);
-//	sd_card_read("909_OpenHihat.txt", &DS2);
-//	sd_card_read("909_Clap.txt", &DS3);
-//	sd_card_read("909_LowTom.txt", &DS4);
-//	sd_card_unmount();
-//	__enable_irq();
+	//
+	//	// INIT: 909 LUTs
+	//	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
+	//	__disable_irq();
+	//	sd_card_mount();
+	//	sd_card_read("909_Kick.txt", &DS1);
+	//	sd_card_read("909_OpenHihat.txt", &DS2);
+	//	sd_card_read("909_Clap.txt", &DS3);
+	//	sd_card_read("909_LowTom.txt", &DS4);
+	//	sd_card_unmount();
+	//	__enable_irq();
 
 	// INIT: Windows LUTs
-	 // POSSIBLE: Recycle, Background, Chord, Critical Stop, Error, Hardware Remove
-	 __disable_irq();
-	 sd_card_mount();
-	 sd_card_read("Windows_Chord.txt", &DS1);
-	 sd_card_read("Windows_Recycle.txt", &DS2);
-	 sd_card_read("Windows_Hardware_Remove.txt", &DS3);
-	 sd_card_read("Windows_Background.txt", &DS4);
-	 sd_card_unmount();
-	 __enable_irq();
+	// POSSIBLE: Recycle, Background, Chord, Critical Stop, Error, Hardware Remove
+	__disable_irq();
+	sd_card_mount();
+	sd_card_read("Windows_Chord.txt", &DS1);
+	sd_card_read("Windows_Recycle.txt", &DS2);
+	sd_card_read("Windows_Hardware_Remove.txt", &DS3);
+	sd_card_read("Windows_Background.txt", &DS4);
+	sd_card_unmount();
+	__enable_irq();
 
 	/*
 	// INIT: Rock Loud LUTs

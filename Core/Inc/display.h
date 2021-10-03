@@ -276,10 +276,10 @@ struct display_variables {
 	char value_str_adsr_settings[9][10];
 	char value_str_equalizer_overview[9][10];
 	char value_str_equalizer_settings[5][9][10];
-	char value_str_wahwah[11][10];
+	char value_str_wahwah[10][10];
 	char value_str_distortion[9][10];
 	char value_str_tremolo[9][10];
-	char value_str_volume[3][10];
+	char value_str_volume[4][10];
 	char value_str_presets[2][10];
 	char value_str_keyboardmode[9][10];
 	char value_str_drumcomputer[2][10];

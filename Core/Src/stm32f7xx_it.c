@@ -617,7 +617,8 @@ void DMA2_Stream2_IRQHandler(void)
 	}
 
 	// BPM setting
-	if(Display.pagePosition == 2 && Display.currentDrumcomputer > 0 && Display.JoystickParameterPosition == 2) {
+	// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+	if(Display.pagePosition == 3 && Display.currentDrumcomputer > 0 && Display.JoystickParameterPosition == 2) {
 
 		BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause at low BPMs cause fuckups
 		BPM = roundf(BPM);

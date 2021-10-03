@@ -8,13 +8,17 @@
 #ifndef INC_SPI_CONNECTION_H_
 #define INC_SPI_CONNECTION_H_
 #include "main.h"
-typedef enum  tilt_direction_t{
 
-	TILT_NONE  = 0x00,
-	TILT_RIGHT = 0x01,
-	TILT_LEFT,
-	TILT_FRONT,
-	TILT_BACK
+typedef enum  tilt_direction_t{
+  TILT_NONE  = 0x00,
+  TILT_RIGHT = 0x01,
+  TILT_LEFT,
+  TILT_FRONT,
+  TILT_BACK,
+  TILT_RIGHT_S, //Fast
+  TILT_LEFT_S,
+  TILT_FRONT_S,
+  TILT_BACK_S
 }tilt_direction_t;
 
 #pragma pack(push, 1)
