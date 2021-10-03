@@ -473,6 +473,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		calculate_keyboard[2] = 0;
 		calculate_keyboard[3] = 0;
 		calculate_keyboard[4] = 0;
+
 		// Loop to reach all Signals
 		for (int j = 0; j < count;j++){
 			switch (signals -> kind[j]) {
@@ -519,8 +520,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		/*limiter function*/
 		//norm the signal to -1...1
 		//		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
-		if(signals->count >0)
-			calculate_vector_tmp[BLOCKSIZE_counter] = addValue/(signals -> count -active_keyboard_notes+1);	// FUCKUP!!!!!!
+		if(signals->count > 0)
+			addValue = addValue/(signals->count - active_keyboard_notes + 1);	// If no +1: FUCKUP!!!!!!
 
 
 		//write into calculate vector
@@ -585,7 +586,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
 		//		}
 
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.25*calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((1.0 * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
 	} //End for-Loop
 
 	// save current LUT index into signals1,

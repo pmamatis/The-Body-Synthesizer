@@ -276,7 +276,7 @@ int main(void)
 	Drum_Computer_Init();
 
 	//Gyros SPI
-	spiC_Init(&hspi4, &htim7);
+	//	spiC_Init(&hspi4, &htim7);
 
 	//EMG init
 	emg_init(&hadc3,&htim1);
@@ -327,26 +327,22 @@ int main(void)
 	//NewSignal(&signals1,NOISE,'C',0);
 
 	//	NewSignal(&signals1,NOISE,'C',0,1);
-
 	// CEG Full Range for Wah
 	//	NewSignal(&signals1,SIN, 'C',1,16);
 	//	NewSignal(&signals1,SIN, 'E',1,17);
 	//	NewSignal(&signals1,SIN, 'G',1,18);
-	//	NewSignal(&signals1,SIN, 'C',1,13);
-	//	NewSignal(&signals1,SIN, 'E',1,14);
-	//	NewSignal(&signals1,SIN, 'G',1,15);
-	//	NewSignal(&signals1,SIN, 'C',2,1);
-	//	NewSignal(&signals1,SIN, 'E',2,2);
-	//	NewSignal(&signals1,SIN, 'G',2,3);
-	//	NewSignal(&signals1,SIN, 'C',3,4);
-	//	NewSignal(&signals1,SIN, 'E',3,5);
-	//	NewSignal(&signals1,SIN, 'G',3,6);
-	//	NewSignal(&signals1,SIN, 'C',4,7);
-	//	NewSignal(&signals1,SIN, 'E',4,8);
-	//	NewSignal(&signals1,SIN, 'G',4,9);
-	//	NewSignal(&signals1,SIN, 'C',5,10);
-	//	NewSignal(&signals1,SIN, 'E',5,11);
-	//	NewSignal(&signals1,SIN, 'G',5,12);
+	NewSignal(&signals1,SIN, 'C',2,8);
+	NewSignal(&signals1,SIN, 'E',2,9);
+	NewSignal(&signals1,SIN, 'G',2,10);
+	NewSignal(&signals1,SIN, 'C',3,11);
+	NewSignal(&signals1,SIN, 'E',3,12);
+	NewSignal(&signals1,SIN, 'G',3,13);
+	NewSignal(&signals1,SIN, 'C',4,14);
+	NewSignal(&signals1,SIN, 'E',4,15);
+	NewSignal(&signals1,SIN, 'G',4,16);
+//	NewSignal(&signals1,SIN, 'C',5,17);
+//	NewSignal(&signals1,SIN, 'E',5,18);
+//	NewSignal(&signals1,SIN, 'G',5,19);
 
 	//  NewSignal(&signals1,SIN, 'F',2,1);
 	//	NewSignal(&signals1,SIN, 'C',2,6);
@@ -417,17 +413,17 @@ int main(void)
 	//	Display.Voice_Note_Sources[0] = GYRO_FB;
 	//	Display.Voice_Note_Sources[0] = POTI;
 
-	Display.Drumcomputer_ONOFF = true;
-	Display.Sequencer_ONOFF = true;
+	//	Display.Drumcomputer_ONOFF = true;
+	//	Display.Sequencer_ONOFF = true;
 	//	Display.WahWah_ONOFF = true;
 	//	Display.Distortion_ONOFF = true;
 	//	Display.Distortion_Gain = 8;
 	//	Display.Distortion_Sources = GYRO_LR;
-	//	Display.Tremolo_ONOFF = true;
+	//		Display.Tremolo_ONOFF = true;
 	//	Display.Tremolo_Sources[0] = GYRO_FB;
 	//	Display.Tremolo_Sources[1] = GYRO_LR;
-	//	Display.Tremolo_Depth = 1;
-	//	Display.Tremolo_Rate = 3;
+	//		Display.Tremolo_Depth = 0.5;
+	//		Display.Tremolo_Rate = 4;
 	//	Display.EQ_Cutoff_Sources[0] = GYRO_LR;
 	//	Display.currentBand =0;
 	//	Display.Filter_ONOFF[0] = true;

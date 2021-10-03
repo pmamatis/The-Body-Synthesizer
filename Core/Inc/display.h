@@ -169,12 +169,12 @@ struct display_variables {
 
 	// WahWah
 	bool WahWah_ONOFF;
+	float WahWah_LFOdepth;
 	float WahWah_LFOfreq;
 	float WahWah_Range;
 	float WahWah_MidFreq;
 	float WahWah_Q;
 	uint8_t currentWahWah;
-
 
 	uint8_t last_note;
 	uint8_t note;
@@ -276,7 +276,7 @@ struct display_variables {
 	char value_str_adsr_settings[9][10];
 	char value_str_equalizer_overview[9][10];
 	char value_str_equalizer_settings[5][9][10];
-	char value_str_wahwah[10][10];
+	char value_str_wahwah[11][10];
 	char value_str_distortion[9][10];
 	char value_str_tremolo[9][10];
 	char value_str_volume[3][10];

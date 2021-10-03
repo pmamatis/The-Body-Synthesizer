@@ -235,7 +235,7 @@ uint8_t II_Display_Effects(void){
 		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
 		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 	}
-	else if (Display.Distortion_ONOFF == false){
+	else if (Display.Tremolo_ONOFF == false){
 		effects_delete(TREM);
 	}
 

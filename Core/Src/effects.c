@@ -66,11 +66,11 @@ void effects_process_fast(float* calculate_value){
 	}
 
 	if(effect_order[4] == WAHWAH) {
-		ProcessWahWah(&WahWah, calculate_value);
-		//		ProcessAutoWahWah(&WahWah, calculate_value);
+		if(Display.WahWah_Mode == 0)
+			ProcessWahWah(&WahWah, calculate_value);
+		else if(Display.WahWah_Mode == 1)
+			ProcessAutoWahWah(&WahWah, calculate_value);
 	}
-
-
 }
 
 
