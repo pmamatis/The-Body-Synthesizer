@@ -103,48 +103,76 @@ uint8_t II_Display_Voices(void) {
 uint8_t II_Display_Effects(void){
 
 	// Distortion
-	if (Display.Distortion_ONOFF == true){
-		effects_add(DIST_H);
-		HardClipping.distortion_gain = Display.Distortion_Gain;
-		if (Display.Distortion_Sources > 0){
-			switch (Display.Distortion_Sources ) {
-			case GYRO_FB:
+		if (Display.Distortion_ONOFF == true){
+			effects_add(DIST_H);
+			HardClipping.distortion_gain = Display.Distortion_Gain;
+			if (Display.Distortion_Sources > 0){
+				switch (Display.Distortion_Sources ) {
+				case GYRO_FB:
 
-				if (sensorData.tilt_detected == TILT_BACK){
-					if (Display.Distortion_Gain >= 1) {
-						Display.Distortion_Gain --;
+					if (sensorData.tilt_detected == TILT_BACK){
+						if (Display.Distortion_Gain >= 1) {
+							Display.Distortion_Gain --;
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				else if (sensorData.tilt_detected == TILT_FRONT){
-					if (Display.Distortion_Gain < 10) {
-						Display.Distortion_Gain ++;
+					else if (sensorData.tilt_detected == TILT_FRONT){
+						if (Display.Distortion_Gain < 10) {
+							Display.Distortion_Gain ++;
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				break;
-			case GYRO_LR:
-				if (sensorData.tilt_detected == TILT_LEFT){
-					if (Display.Distortion_Gain > 1) {
-						Display.Distortion_Gain --;
+					else if (sensorData.tilt_detected == TILT_FRONT_S){
+						if (Display.Distortion_Gain < 10) {
+							Display.Distortion_Gain ++;
+							Display.Distortion_Gain ++;
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				else if (sensorData.tilt_detected == TILT_RIGHT){
-					if (Display.Distortion_Gain < 10) {
-						Display.Distortion_Gain ++;
+					else if(sensorData.tilt_detected == TILT_BACK_S){
+						if (Display.Distortion_Gain < 10) {
+							Display.Distortion_Gain ++;
+							Display.Distortion_Gain ++;
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
+					break;
+				case GYRO_LR:
+					if (sensorData.tilt_detected == TILT_LEFT){
+						if (Display.Distortion_Gain > 1) {
+							Display.Distortion_Gain --;
+						}
+						sensorData.tilt_detected = TILT_NONE;
+					}
+					else if (sensorData.tilt_detected == TILT_RIGHT){
+						if (Display.Distortion_Gain < 10) {
+							Display.Distortion_Gain ++;
+						}
+						sensorData.tilt_detected = TILT_NONE;
+					}
+					else if (sensorData.tilt_detected == TILT_RIGHT_S){
+						if (Display.Distortion_Gain < 10) {
+							Display.Distortion_Gain ++;
+							Display.Distortion_Gain ++;
+						}
+						sensorData.tilt_detected = TILT_NONE;
+					}
+					else if (sensorData.tilt_detected == TILT_LEFT_S){
+						if (Display.Distortion_Gain > 1) {
+							Display.Distortion_Gain --;
+							Display.Distortion_Gain --;
+						}
+						sensorData.tilt_detected = TILT_NONE;
+					}
+					break;
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
 			}
 		}
-	}
-	else if (Display.Distortion_ONOFF == false){
-		effects_delete(DIST_H);
-	}
+		else if (Display.Distortion_ONOFF == false){
+			effects_delete(DIST_H);
+		}
 
 	//Tremolo
 	// TODO: UPDATE GYRO: Tremolo.lfo->lfo_index = 0; Tremolo.lfo->lfo_quarter = 0;
@@ -161,9 +189,25 @@ uint8_t II_Display_Effects(void){
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
+				else if (sensorData.tilt_detected == TILT_BACK_S){
+					if (Display.Tremolo_Rate > 0) {
+						//printf("decrease Trem Rate\r\n");
+						Display.Tremolo_Rate --;
+						Display.Tremolo_Rate --;
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
 				else if (sensorData.tilt_detected == TILT_FRONT){
 					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
 						//printf("raise Trem Rate\r\n");
+						Display.Tremolo_Rate ++;
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
+				else if (sensorData.tilt_detected == TILT_FRONT_S){
+					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
+						//printf("raise Trem Rate\r\n");
+						Display.Tremolo_Rate ++;
 						Display.Tremolo_Rate ++;
 					}
 					sensorData.tilt_detected = TILT_NONE;
@@ -178,9 +222,25 @@ uint8_t II_Display_Effects(void){
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
+				else if (sensorData.tilt_detected == TILT_LEFT_S ){
+					if (Display.Tremolo_Rate > 0) {
+						//printf("decrease Trem Rate\r\n");
+						Display.Tremolo_Rate --;
+						Display.Tremolo_Rate --;
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
 				else if (sensorData.tilt_detected == TILT_RIGHT){
 					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
 						//printf("raise Trem Rate\r\n");
+						Display.Tremolo_Rate ++;
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
+				else if (sensorData.tilt_detected == TILT_RIGHT_S){
+					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
+						//printf("raise Trem Rate\r\n");
+						Display.Tremolo_Rate ++;
 						Display.Tremolo_Rate ++;
 					}
 					sensorData.tilt_detected = TILT_NONE;
@@ -202,11 +262,28 @@ uint8_t II_Display_Effects(void){
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
+				else if (sensorData.tilt_detected == TILT_BACK_S ){
+						if (Display.Tremolo_Depth > 0) {
+							//printf("decrease Trem Depth\r\n");
+
+							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+						}
+						sensorData.tilt_detected = TILT_NONE;
+					}
 				else if (sensorData.tilt_detected == TILT_FRONT){
 					if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
 						//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
 						//printf("raise Trem Depth\r\n");
 						Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
+				else if (sensorData.tilt_detected == TILT_FRONT_S){
+					if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
+						//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+						//printf("raise Trem Depth\r\n");
+						Display.Tremolo_Depth = Display.Tremolo_Depth + 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
@@ -220,11 +297,27 @@ uint8_t II_Display_Effects(void){
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
+				if (sensorData.tilt_detected == TILT_LEFT_S){
+					if (Display.Tremolo_Depth > 0) {
+						//printf("decrease Trem Depth\r\n");
+						//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+						Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
 				else if (sensorData.tilt_detected == TILT_RIGHT){
 					if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
 						//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
 						//printf("raise Trem Depth\r\n");
 						Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
+				else if (sensorData.tilt_detected == TILT_RIGHT_S){
+					if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
+						//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+						//printf("raise Trem Depth\r\n");
+						Display.Tremolo_Depth = Display.Tremolo_Depth + 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}

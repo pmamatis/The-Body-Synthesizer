@@ -331,15 +331,15 @@ int main(void)
 	//	NewSignal(&signals1,SIN, 'C',1,16);
 	//	NewSignal(&signals1,SIN, 'E',1,17);
 	//	NewSignal(&signals1,SIN, 'G',1,18);
-	NewSignal(&signals1,SIN, 'C',2,8);
-	NewSignal(&signals1,SIN, 'E',2,9);
-	NewSignal(&signals1,SIN, 'G',2,10);
-	NewSignal(&signals1,SIN, 'C',3,11);
-	NewSignal(&signals1,SIN, 'E',3,12);
-	NewSignal(&signals1,SIN, 'G',3,13);
-	NewSignal(&signals1,SIN, 'C',4,14);
-	NewSignal(&signals1,SIN, 'E',4,15);
-	NewSignal(&signals1,SIN, 'G',4,16);
+	//	NewSignal(&signals1,SIN, 'C',2,8);
+	//	NewSignal(&signals1,SIN, 'E',2,9);
+	//	NewSignal(&signals1,SIN, 'G',2,10);
+	//	NewSignal(&signals1,SIN, 'C',3,11);
+	//	NewSignal(&signals1,SIN, 'E',3,12);
+	//	NewSignal(&signals1,SIN, 'G',3,13);
+	//	NewSignal(&signals1,SIN, 'C',4,14);
+	//	NewSignal(&signals1,SIN, 'E',4,15);
+	//	NewSignal(&signals1,SIN, 'G',4,16);
 	//	NewSignal(&signals1,SIN, 'C',5,17);
 	//	NewSignal(&signals1,SIN, 'E',5,18);
 	//	NewSignal(&signals1,SIN, 'G',5,19);
@@ -1502,6 +1502,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	if((GPIO_Pin == BACK_Pin) && (Display.BACK_Debounce_State == true)) {
 
+		// keyboard goes down by one octave
+		if(! ((Display.pagePosition==3 && Display.currentDrumcomputer>0) || (Display.pagePosition==4 && Display.currentSequencer>0)) ) {
+			if(Display.Keyboard_Octave > 0)
+				Display.Keyboard_Octave--;
+		}
+
 		// set drumcomputer steps
 		if(Display.EditDrums == true) {
 			// invert/toggle state of the drum matrix entry, where the cursor points at at the moment
@@ -1539,9 +1545,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	else if((GPIO_Pin == ENTER_Pin) && (Display.ENTER_Debounce_State == true)) {
 
-		if(Display.pagePosition==2 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3) {
-			Display.LoadDrumkit = true;
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// keyboard goes up by one octave
+		if(! ((Display.pagePosition==3 && Display.currentDrumcomputer>0) || (Display.pagePosition==4 && Display.currentSequencer>0)) ) {
+			if(Display.Keyboard_Octave < LUT_OCTAVES-1)
+				Display.Keyboard_Octave++;
 		}
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		if(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3)	// Load Drumkit from SD card
+			Display.LoadDrumkit = true;
 
 		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);

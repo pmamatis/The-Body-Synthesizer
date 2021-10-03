@@ -3767,24 +3767,9 @@ void p_Presets(void) {
 			Display.DrumMatrix[3][6] = false;
 			Display.DrumMatrix[3][7] = false;
 
-//			for(uint8_t i=0; i<MAX_NUMBER_OF_SAMPLES; i++) {
-//				for(uint8_t j=0; j<MAX_NUMBER_OF_SAMPLES; j++) {
-//					if(Display.DrumMatrix[i][j] == true) {
-//						DISPLAY_SetDrumcomputerStep();
-//						Display.UpdateDisplay = true;
-//					}
-//					else if(Display.DrumMatrix[i][j] == false) {
-//						DISPLAY_DeleteDrumcomputerStep();
-//						Display.UpdateDisplay = true;
-//					}
-//				}
-//			}
-		}
-		else if(potVal >= 50) {
-			sprintf(Display.value_str_presets[0], "%d", 2);
-			timing_DS1[0] = 1;	// Advanced Techno Beat
+			timing_DS1[0] = 1;
 			timing_DS1[1] = 0;
-			timing_DS1[2] = 1;
+			timing_DS1[2] = 0;
 			timing_DS1[3] = 0;
 			timing_DS1[4] = 1;
 			timing_DS1[5] = 0;
@@ -3805,28 +3790,51 @@ void p_Presets(void) {
 			timing_DS3[4] = 1;
 			timing_DS3[5] = 0;
 			timing_DS3[6] = 0;
-			timing_DS3[7] = 1;
+			timing_DS3[7] = 0;
 			timing_DS4[0] = 0;
 			timing_DS4[1] = 0;
-			timing_DS4[2] = 1;
-			timing_DS4[3] = 1;
+			timing_DS4[2] = 0;
+			timing_DS4[3] = 0;
 			timing_DS4[4] = 0;
 			timing_DS4[5] = 0;
 			timing_DS4[6] = 0;
-			timing_DS4[7] = 1;
+			timing_DS4[7] = 0;
 		}
-		//		for(uint8_t i=0; i<FourFour; i++) {	// FourFour steps
-		//			Display.DrumMatrix[i][j] = true;
-		//
-		//			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true) {
-		//				DISPLAY_SetDrumcomputerStep();
-		//				Display.UpdateDisplay = true;
-		//			}
-		//			else if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false) {
-		//				DISPLAY_DeleteDrumcomputerStep();
-		//				Display.UpdateDisplay = true;
-		//			}
-		//		}
+		else if(potVal >= 50) {
+			sprintf(Display.value_str_presets[0], "%d", 2);
+			//			timing_DS1[0] = 1;	// Advanced Techno Beat
+			//			timing_DS1[1] = 0;
+			//			timing_DS1[2] = 1;
+			//			timing_DS1[3] = 0;
+			//			timing_DS1[4] = 1;
+			//			timing_DS1[5] = 0;
+			//			timing_DS1[6] = 0;
+			//			timing_DS1[7] = 0;
+			//			timing_DS2[0] = 0;
+			//			timing_DS2[1] = 0;
+			//			timing_DS2[2] = 1;
+			//			timing_DS2[3] = 0;
+			//			timing_DS2[4] = 0;
+			//			timing_DS2[5] = 0;
+			//			timing_DS2[6] = 1;
+			//			timing_DS2[7] = 0;
+			//			timing_DS3[0] = 0;
+			//			timing_DS3[1] = 0;
+			//			timing_DS3[2] = 0;
+			//			timing_DS3[3] = 0;
+			//			timing_DS3[4] = 1;
+			//			timing_DS3[5] = 0;
+			//			timing_DS3[6] = 0;
+			//			timing_DS3[7] = 1;
+			//			timing_DS4[0] = 0;
+			//			timing_DS4[1] = 0;
+			//			timing_DS4[2] = 1;
+			//			timing_DS4[3] = 1;
+			//			timing_DS4[4] = 0;
+			//			timing_DS4[5] = 0;
+			//			timing_DS4[6] = 0;
+			//			timing_DS4[7] = 1;
+		}
 		break;
 	case 2:	// Sequencer Preset
 		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
