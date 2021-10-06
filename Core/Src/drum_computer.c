@@ -261,25 +261,25 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 	//
 	//	// INIT: 909 LUTs
 	//	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
-	//	__disable_irq();
-	//	sd_card_mount();
-	//	sd_card_read("909_Kick.txt", &DS1);
-	//	sd_card_read("909_OpenHihat.txt", &DS2);
-	//	sd_card_read("909_Clap.txt", &DS3);
-	//	sd_card_read("909_LowTom.txt", &DS4);
-	//	sd_card_unmount();
-	//	__enable_irq();
+	__disable_irq();
+	sd_card_mount();
+	sd_card_read("909_Kick.txt", &DS1);
+	sd_card_read("909_OpenHihat.txt", &DS2);
+	sd_card_read("909_Clap.txt", &DS3);
+	sd_card_read("909_LowTom.txt", &DS4);
+	sd_card_unmount();
+	__enable_irq();
 
 	// INIT: Windows LUTs
 	// POSSIBLE: Recycle, Background, Chord, Critical Stop, Error, Hardware Remove
-	__disable_irq();
-	sd_card_mount();
-	sd_card_read("Windows_Chord.txt", &DS1);
-	sd_card_read("Windows_Recycle.txt", &DS2);
-	sd_card_read("Windows_Hardware_Remove.txt", &DS3);
-	sd_card_read("Windows_Background.txt", &DS4);
-	sd_card_unmount();
-	__enable_irq();
+	//	__disable_irq();
+	//	sd_card_mount();
+	//	sd_card_read("Windows_Chord.txt", &DS1);
+	//	sd_card_read("Windows_Recycle.txt", &DS2);
+	//	sd_card_read("Windows_Hardware_Remove.txt", &DS3);
+	//	sd_card_read("Windows_Background.txt", &DS4);
+	//	sd_card_unmount();
+	//	__enable_irq();
 
 	/*
 	// INIT: Rock Loud LUTs
@@ -649,6 +649,17 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 	}
 
 	return HAL_OK;
+}
+
+void PlaySingleSample(void) {
+
+	single_sample = DS1[counter_single_sample];
+	counter_single_sample++;
+
+	if(counter_single_sample == DS_L - 1) {
+		counter_single_sample = 0;
+		play_single_sample_flag = false;
+	}
 }
 
 HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse() {

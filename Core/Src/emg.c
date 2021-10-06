@@ -16,11 +16,12 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 
 	EMG_ADC = hadc;
 	EMG_TIM = htim;
-	detectionThreshold = 450;
+	detectionThreshold = 250;
 	emg_peak = 0;
 	toggled = 0;
-	toggleCounter = 20;
+
 	toggleThreshold = 20;
+	toggleCounter = toggleThreshold;
 
 	return HAL_OK;
 }

@@ -267,7 +267,7 @@ struct display_variables {
 	source_t WahWah_Sources[4];					// sources for wahwah parameters
 	source_t Distortion_Sources;				// sources for gain
 	source_t Tremolo_Sources[2];				// sources for rate and depth
-
+	source_t Drumfilter_Cutoff_Source;			// source for drumfilter cuttoff
 	// page value strings
 	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
 	char value_str_voices_overview[9][10];
@@ -297,6 +297,7 @@ struct display_variables {
 	uint8_t currentDrumcomputer;
 	char sample1[10], sample2[10], sample3[10], sample4[10];
 	bool LoadDrumkit;
+	float Drumfilter_Cutoff;
 
 	// Sequencer
 	uint8_t CurrentNoteRow;
@@ -310,6 +311,13 @@ struct display_variables {
 
 	// WahWah
 	uint8_t WahWah_Mode;
+
+	// Play Single Sample
+	bool PlaySingleSample_ONOFF;
+
+	// Drumfilter_ONOFF
+	bool Drumfilter_ONOFF;
+
 };
 
 struct display_variables Display;

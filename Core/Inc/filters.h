@@ -49,13 +49,14 @@ struct BQFilter EQ_BAND4_II;
 struct BQFilter EQ_BAND5_I;
 
 struct BQFilter BP_WAHWAH;
+
+struct BQFilter LS_DRUMS;
 //struct BQFilter HP_WAH;
 //
 //struct BQFilter LP_REVERB;
 //struct BQFilter LP_DELAY;
 //
 //struct BQFilter LP_AA;
-
 
 
 /***************************
@@ -83,6 +84,7 @@ typedef enum {
 Filter_Status Filters_Init();
 Filter_Status Filters_Reinit_Poti();
 Filter_Status Filters_Reinit_Gyro(float cutoff);
+Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d);
 Filter_Status SetupLowpass    (struct BQFilter *LP, float cutoff, float Q);
 Filter_Status SetupHighpass   (struct BQFilter *HP, float cutoff, float Q);
 Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q);

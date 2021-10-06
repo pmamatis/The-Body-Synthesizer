@@ -21,7 +21,8 @@ uint8_t ii_voice_IDs[II_MAX_VOICES];
 /** value for Frequency as ln*/
 double log_mapping_F;
 /** actual step of the filter cuttoff */
-uint16_t filter_step_counter;
+uint16_t filter_step_counter[5];
+uint16_t drum_filter_step_counter;
 
 bool emg_triggerd_flag;
 
@@ -30,7 +31,9 @@ void II_startInterface(TIM_HandleTypeDef* htim);
 void II_raiseNote(uint8_t ID);
 void II_decreaseNote(uint8_t ID);
 
-
+// EMG trigger functions
+void II_pVwEMG(void);
+void II_pSwEMG(void);
 
 uint8_t II_Display_Voices(void);
 uint8_t II_Display_Effects(void);

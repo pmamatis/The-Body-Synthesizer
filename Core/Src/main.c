@@ -328,31 +328,23 @@ int main(void)
 
 	//	NewSignal(&signals1,NOISE,'C',0,1);
 	// CEG Full Range for Wah
-	//	NewSignal(&signals1,SIN, 'C',1,16);
-	//	NewSignal(&signals1,SIN, 'E',1,17);
-	//	NewSignal(&signals1,SIN, 'G',1,18);
-	//	NewSignal(&signals1,SIN, 'C',2,8);
-	//	NewSignal(&signals1,SIN, 'E',2,9);
-	//	NewSignal(&signals1,SIN, 'G',2,10);
-	//	NewSignal(&signals1,SIN, 'C',3,11);
-	//	NewSignal(&signals1,SIN, 'E',3,12);
-	//	NewSignal(&signals1,SIN, 'G',3,13);
-	//	NewSignal(&signals1,SIN, 'C',4,14);
+		NewSignal(&signals1,SIN, 'C',2,16);
+		NewSignal(&signals1,SIN, 'E',2,17);
+		NewSignal(&signals1,SIN, 'G',1,18);
+		NewSignal(&signals1,SIN, 'C',2,8);
+		NewSignal(&signals1,SIN, 'E',2,9);
+		NewSignal(&signals1,SIN, 'G',2,10);
+		NewSignal(&signals1,SIN, 'C',3,11);
+		NewSignal(&signals1,SIN, 'E',3,12);
+		NewSignal(&signals1,SIN, 'G',3,13);
+		NewSignal(&signals1,SIN, 'C',4,14);
 	//	NewSignal(&signals1,SIN, 'E',4,15);
 	//	NewSignal(&signals1,SIN, 'G',4,16);
 	//	NewSignal(&signals1,SIN, 'C',5,17);
 	//	NewSignal(&signals1,SIN, 'E',5,18);
 	//	NewSignal(&signals1,SIN, 'G',5,19);
 
-	//  NewSignal(&signals1,SIN, 'F',2,1);
-	//	NewSignal(&signals1,SIN, 'C',2,6);
-	//	NewSignal(&signals1,SIN, 'G',0,3);
-	//	NewSignal(&signals1,SIN, 'G',1);
-	//	NewSignal(&signals1,SIN, 'C',3,3);
-	//	NewSignal(&signals1,SIN, 'E',2,2);
-	//	NewSignal(&signals1,SIN, 'G',2,1);
-	//	NewSignal(&signals1,SIN, 'E',3,4);
-	//	NewSignal(&signals1,SIN, 'G',3,5);
+
 	//NewSignal(&signals1,SIN, 'G',3);
 	//NewSignal(&signals1,SIN, 'G',4);
 	//	NewSignal(&signals2,SIN, 'C',1);
@@ -406,27 +398,29 @@ int main(void)
 	//		timing_DS4[6] = 0;
 	//		timing_DS4[7] = 1;
 
-	//	Display.Voices_Note[0] = 'C';
-	//	Display.Voices_Octave[0] = 2;
-	//	Display.Voices_ONOFF[0] = true;
+	//		Display.Voices_Note[0] = 'C';
+	//		Display.Voices_Octave[0] = 2;
+	//		Display.Voices_ONOFF[0] = true;
 	//	Display.Voice_Note_Sources[0] = EKG;
 	//	Display.Voice_Note_Sources[0] = GYRO_FB;
 	//	Display.Voice_Note_Sources[0] = POTI;
+	//	Display.Voice_Note_Sources[0] = EMG;
 
-	//	Display.Drumcomputer_ONOFF = true;
+//	Display.PlaySingleSample_ONOFF = true;
+	Display.Drumfilter_ONOFF = true;
+
+		Display.Drumcomputer_ONOFF = true;
 	//	Display.Sequencer_ONOFF = true;
 	//	Display.WahWah_ONOFF = true;
-	//	Display.Distortion_ONOFF = true;
-	//	Display.Distortion_Gain = 8;
-	//	Display.Distortion_Sources = GYRO_LR;
-	//		Display.Tremolo_ONOFF = true;
-	//	Display.Tremolo_Sources[0] = GYRO_FB;
+//	Display.Distortion_ONOFF = true;
+//	Display.Distortion_Gain = 8;
+//	Display.Distortion_Sources = GYRO_LR;
+	//			Display.Tremolo_ONOFF = true;
+	//		Display.Tremolo_Sources[0] = GYRO_FB;
 	//	Display.Tremolo_Sources[1] = GYRO_LR;
 	//		Display.Tremolo_Depth = 0.5;
 	//		Display.Tremolo_Rate = 4;
-	//	Display.EQ_Cutoff_Sources[0] = GYRO_LR;
-	//	Display.currentBand =0;
-	//	Display.Filter_ONOFF[0] = true;
+
 
 	//	tim5_counter = 0;
 	//	time = HAL_GetTick();
@@ -666,7 +660,7 @@ static void MX_ADC3_Init(void)
 	}
 	/** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
 	 */
-	sConfig.Channel = ADC_CHANNEL_5;
+	sConfig.Channel = ADC_CHANNEL_4;
 	sConfig.Rank = ADC_REGULAR_RANK_1;
 	sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)

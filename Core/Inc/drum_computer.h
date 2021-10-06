@@ -64,7 +64,7 @@ float DS3s;
 float DS4s;
 
 float drums;
-
+float drums_filtered;
 
 // Sequencer mode ON / OFF control
 bool sequencer_state;
@@ -100,12 +100,17 @@ float SN4_temp;
 
 float sequencer;
 
-
 // Methods
 HAL_StatusTypeDef Drum_Computer_Init(void);
 HAL_StatusTypeDef Drum_Computer_Process();
 HAL_StatusTypeDef Drum_Computer_CalcSample();
 HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse();
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env);
+
+// Single Sample
+float single_sample;
+uint32_t counter_single_sample;
+bool play_single_sample_flag;
+void PlaySingleSample(void);
 
 #endif /* INC_DRUM_COMPUTER_H_ */

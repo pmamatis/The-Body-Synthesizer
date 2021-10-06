@@ -12,7 +12,7 @@
 
 /* defines */
 #define EMG_READ_LENGTH 10//8192/4
-#define EMG_SR 100 //Hz
+#define EMG_SR 500 //Hz
 
 /* Variables */
 ADC_HandleTypeDef* EMG_ADC;

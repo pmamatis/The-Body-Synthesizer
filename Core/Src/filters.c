@@ -40,22 +40,22 @@ Filter_Status Filters_Init(){
 	 ******************************/
 
 	// BAND 1: Low-Shelf filter
-//	SetupLowShelf(&EQ_BAND1_I,      266, 0.707, -20);
+	//	SetupLowShelf(&EQ_BAND1_I,      266, 0.707, -20);
 
-//	// BAND 2: Peaking-EQ / Notch-Filter
-//	SetupPeakingEQ(&EQ_BAND2_I,  10 , 1, 2);
-//	SetupNotch	(&EQ_BAND2_I,  	400, 0.707	 );
-//
-//	// BAND 3: Peaking-EQ / Notch-Filter
-//	SetupPeakingEQ(&EQ_BAND3_I,   800, 0.707, 0);
-//	SetupNotch	(&EQ_BAND3_I,  	800, 0.707	 );
-//
-//	// BAND 4: Peaking-EQ / Notch-Filter
-//	SetupPeakingEQ(&EQ_BAND4_I,  1600, 0.707, 0);
-//	SetupNotch	(&EQ_BAND4_I,  1600, 0.707	 );
-//
-//	// BAND 5: High-Shelf filter
-//	SetupHighShelf(&EQ_BAND5_I,    3200, 0.707, 0);
+	//	// BAND 2: Peaking-EQ / Notch-Filter
+	//	SetupPeakingEQ(&EQ_BAND2_I,  10 , 1, 2);
+	//	SetupNotch	(&EQ_BAND2_I,  	400, 0.707	 );
+	//
+	//	// BAND 3: Peaking-EQ / Notch-Filter
+	//	SetupPeakingEQ(&EQ_BAND3_I,   800, 0.707, 0);
+	//	SetupNotch	(&EQ_BAND3_I,  	800, 0.707	 );
+	//
+	//	// BAND 4: Peaking-EQ / Notch-Filter
+	//	SetupPeakingEQ(&EQ_BAND4_I,  1600, 0.707, 0);
+	//	SetupNotch	(&EQ_BAND4_I,  1600, 0.707	 );
+	//
+	//	// BAND 5: High-Shelf filter
+	//	SetupHighShelf(&EQ_BAND5_I,    3200, 0.707, 0);
 
 
 
@@ -97,70 +97,50 @@ Filter_Status Filters_Init(){
 	//	SetupHighpass(&EQ_BAND5_I,  3200, 0.707);
 	//	SetupHighpass(&EQ_BAND5_II, 3200, 0.707);
 
+	// Drums Lowshelf
+	SetupLowShelf(&LS_DRUMS, 10, 10, -20);
+
 	return FILTER_OK;
 }
 
 
 
 
+
+
+Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d){
+
+
+	if (cutoff_d > 10){
+		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
+		SetupLowShelf(&LS_DRUMS, cutoff_d, 10, -20);
+					printf(" drum cutoff: %f\r\n",cutoff_d);
+		return FILTER_OK;
+	}
+	else {
+		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
+		SetupLowShelf(&LS_DRUMS, 10, 10, -20);
+//		printf("cutoff: %f\r\n",cutoff);
+		return FILTER_OK;
+	}
+}
+
+
+
+
+
 Filter_Status Filters_Reinit_Gyro(float cutoff){
 
-//	// GND debouncing
-//	if(ADC_value < ADC_value_thresh) ADC_value = ADC_value_thresh;
-//
-//	// General debouncing
-//	if(ADC_value_deb + ADC_value_thresh <= ADC_value || ADC_value_deb - ADC_value_thresh >= ADC_value)
-//	{
-//		ADC_value_deb = ADC_value;
-//		flag = 1;
-//	}
-	// IF: Value changed
-//	if(flag)
-//	{
-		/*****************************
-		 * @brief	HS / LS Gain: -18dB to 6dB
-		 * @brief	Scaling 4095 (ADC_value) to a range of 24dB by dividing with 170.625
-		 * @brief   Center around 0dB by subtracting (4095/(2*170.625))
-		 * @brief	Subtract 6dB for final adjust
-		 ******************************/
-		//parameter = ((float)ADC_value / 170.625)-(4095/(2*170.625))-6;
 
 
-		/*****************************
-		 * @brief	PEQ Gain: 0 to 6dB
-		 ******************************/
-		//parameter = ((float)ADC_value / (2*341.25));
-
-
-		/*****************************
-		 * @brief	Frequency: Cutoff / Center / Midshelf
-		 * @brief	Ranging from 0 to 4000Hz
-		 ******************************/
-		//parameter = (float)ADC_value * 4000 / 4095;
-//		cutoff = (float)ADC_value/8;
-
-		// REINIT:
-		//SetupLowShelf (&EQ_BAND1_I, cutoff, 20, -20);
-//		SetupHighShelf(&EQ_BAND1_I, parameter, 0.707, -20);
-//		SetupPeakingEQ(&EQ_BAND2_I, cutoff, 	     10, 20);
-//		SetupNotch(&EQ_BAND2_I, parameter, 0.707);
-
-
-//		SetupBandpassCPG(&EQ_BAND2_I,  cutoff, 20);
-		//SetupBandpassCPG(&EQ_BAND2_II, cutoff, 20);
-		//SetupHighpass   (&EQ_BAND1_I,  parameter, 0.707);
-		//SetupHighpass   (&EQ_BAND1_II, parameter, 0.707);
-
-//		flag = 0;
-//	}
 	if (cutoff > 10){
-//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
+		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
 		SetupBandpassCPG(&EQ_BAND2_I,  cutoff, 0.707);
 		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}
 	else {
-//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
+		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
 		SetupBandpassCPG(&EQ_BAND2_I,  10, 0.707);
 		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
@@ -207,9 +187,9 @@ Filter_Status Filters_Reinit_Poti(){
 
 		// REINIT:
 		//SetupLowShelf (&EQ_BAND1_I, cutoff, 20, -20);
-//		SetupHighShelf(&EQ_BAND1_I, parameter, 0.707, -20);
-//		SetupPeakingEQ(&EQ_BAND2_I, cutoff, 	     10, 20);
-//		SetupNotch(&EQ_BAND2_I, parameter, 0.707);
+		//		SetupHighShelf(&EQ_BAND1_I, parameter, 0.707, -20);
+		//		SetupPeakingEQ(&EQ_BAND2_I, cutoff, 	     10, 20);
+		//		SetupNotch(&EQ_BAND2_I, parameter, 0.707);
 
 
 		SetupBandpassCPG(&EQ_BAND2_I,  cutoff, 20);
@@ -243,39 +223,39 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
 
 Filter_Status ProcessEQ(float *data){
-//	printf("in process EQ\r\n");
+	//	printf("in process EQ\r\n");
 	// BAND 1
-//	band1 = *data;
-//	ProcessFilter(&EQ_BAND1_I,  &band1);
+	//	band1 = *data;
+	//	ProcessFilter(&EQ_BAND1_I,  &band1);
 	//ProcessFilter(&EQ_BAND1_II, &band1);
 
-//	// BAND 2
+	//	// BAND 2
 	band2 = *data;
 	ProcessFilter(&EQ_BAND2_I,  &band2);
 	//ProcessFilter(&EQ_BAND2_II, &band2);
-//	//  ProcessFilter(&EQ_BAND2_II, &band2);
-//	//	ProcessFilter(&EQ_BAND2_III,&band2);
-//	//	ProcessFilter(&EQ_BAND2_IV, &band2);
-//
-//
-//	// BAND 3
-//	band3 = *data;
-//	ProcessFilter(&EQ_BAND3_I,  &band3);
-//	//	ProcessFilter(&EQ_BAND3_II, &band3);
-//	//	ProcessFilter(&EQ_BAND3_III,&band3);
-//	//	ProcessFilter(&EQ_BAND3_IV, &band3);
-//
-//	// BAND 4
-//	band4 = *data;
-//	ProcessFilter(&EQ_BAND4_I,  &band4);
-//	//	ProcessFilter(&EQ_BAND4_II, &band4);
-//	//	ProcessFilter(&EQ_BAND4_III,&band4);
-//	//	ProcessFilter(&EQ_BAND4_IV, &band4);
-//
-//	// BAND 5
-//	band5 = *data;
-//	ProcessFilter(&EQ_BAND5_I,  &band5);
-//	//	ProcessFilter(&EQ_BAND5_II, &band5);
+	//	//  ProcessFilter(&EQ_BAND2_II, &band2);
+	//	//	ProcessFilter(&EQ_BAND2_III,&band2);
+	//	//	ProcessFilter(&EQ_BAND2_IV, &band2);
+	//
+	//
+	//	// BAND 3
+	//	band3 = *data;
+	//	ProcessFilter(&EQ_BAND3_I,  &band3);
+	//	//	ProcessFilter(&EQ_BAND3_II, &band3);
+	//	//	ProcessFilter(&EQ_BAND3_III,&band3);
+	//	//	ProcessFilter(&EQ_BAND3_IV, &band3);
+	//
+	//	// BAND 4
+	//	band4 = *data;
+	//	ProcessFilter(&EQ_BAND4_I,  &band4);
+	//	//	ProcessFilter(&EQ_BAND4_II, &band4);
+	//	//	ProcessFilter(&EQ_BAND4_III,&band4);
+	//	//	ProcessFilter(&EQ_BAND4_IV, &band4);
+	//
+	//	// BAND 5
+	//	band5 = *data;
+	//	ProcessFilter(&EQ_BAND5_I,  &band5);
+	//	//	ProcessFilter(&EQ_BAND5_II, &band5);
 
 	// Write OUT
 	*data = band2;// + band2 + band3 + band4 + band5;
@@ -412,7 +392,7 @@ Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float d
 	BP->a0 = 1 + alpha / A;
 	BP->a1 = -2 * cos;
 	BP->a2 = 1 - alpha / A;
-//	printf("cutoff: %f\r\n Gain: %f\r\n",cutoff,dBGain);
+	//	printf("cutoff: %f\r\n Gain: %f\r\n",cutoff,dBGain);
 	return FILTER_OK;
 }
 

@@ -535,6 +535,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// Drummachine
 		if ((volume[1]>0)||(volume[2]>0)){
 			Drum_Computer_Process();
+			drums_filtered = drums;
+			if(Display.Drumfilter_ONOFF)
+				ProcessFilter(&LS_DRUMS, &drums_filtered);
 		}
 		else{
 			drums = 0;
@@ -547,10 +550,16 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		for (int k= 0; k < 5;k++)
 			calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
 
+		// Play single sample
+		if(play_single_sample_flag) {
+			PlaySingleSample();
+			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
+		}
+
 		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// Add all values
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums + volume[2] * sequencer;
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
 
 		//		// maximum
 		//		if (signals -> max < fabs((double)addValue)){

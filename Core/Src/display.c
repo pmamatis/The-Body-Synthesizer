@@ -261,6 +261,8 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->Drumcomputer_ONOFF = false;
 	Display->EditDrums = false;
 	Display->LoadDrumkit = false;
+	Display->Drumfilter_Cutoff = 10;
+
 
 	// Sequencer
 	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
@@ -275,6 +277,18 @@ Display_Status Display_Init(struct display_variables* Display) {
 
 	// WahWah
 	Display->WahWah_Mode = 0;
+
+	// Play Single Sample
+	Display->PlaySingleSample_ONOFF = false;
+
+	Display->Drumfilter_ONOFF = false;
+
+	//Sources
+	Display->Drumfilter_Cutoff_Source = GYRO_FB;
+
+	Display->EQ_Cutoff_Sources[0] = GYRO_LR;
+	Display->currentBand = 0;
+	Display->Filter_ONOFF[0] = true;
 
 	return DISPLAY_OK;
 }
@@ -3543,6 +3557,8 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_distortion[2], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_distortion[3], &Font12, COLORED);
 }
+
+
 
 /** @brief this function prints the Tremolo submenu and edits its values
  * @param Tremolo struct
