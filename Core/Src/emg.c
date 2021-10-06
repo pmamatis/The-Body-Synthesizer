@@ -16,7 +16,7 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 
 	EMG_ADC = hadc;
 	EMG_TIM = htim;
-	detectionThreshold = 220;
+	detectionThreshold = 450;
 	emg_peak = 0;
 	toggled = 0;
 	toggleCounter = 20;
@@ -52,7 +52,7 @@ HAL_StatusTypeDef emg_peak_detection(){
 	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i++){
 //		printf("%i\r\n",emg_buffer[i]);
 		if(emg_buffer[i] > detectionThreshold && toggleCounter > toggleThreshold){
-			printf("emg peak\r\n");
+			printf("emg peak\r\n%i\r\n",i);
 			emg_peak = 1;
 			toggleCounter = 0;
 		}
