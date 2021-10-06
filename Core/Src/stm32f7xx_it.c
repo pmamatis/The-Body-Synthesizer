@@ -521,12 +521,22 @@ void DMA2_Stream2_IRQHandler(void)
 			DISPLAY_DeleteDrumcomputerStepCursor();
 			if(Display.CurrentSampleRow < MAX_NUMBER_OF_SAMPLES)	// Display.CurrentSampleRow should be maximum the number of loaded samples
 				Display.CurrentSampleRow++;
+
+			//			Display.CurrentSampleRow++;
+			//			if(Display.CurrentSampleRow == MAX_NUMBER_OF_SAMPLES)	// set cursor to the most left step, when cursor exceeds the most right step
+			//				Display.CurrentSampleRow = 1;
+
 			DISPLAY_SetDrumcomputerStepCursor();
 		}
 		else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick up
 			DISPLAY_DeleteDrumcomputerStepCursor();
 			if(Display.CurrentSampleRow > 1)	// Display.CurrentSampleRow should be minimum 1
 				Display.CurrentSampleRow--;
+
+			//			Display.CurrentSampleRow--;
+			//			if(Display.CurrentSampleRow == 1)	// set cursor to the most right step, when cursor exceeds the most left step
+			//				Display.CurrentSampleRow = MAX_NUMBER_OF_SAMPLES;
+
 			DISPLAY_SetDrumcomputerStepCursor();
 		}
 		if(Display.ADC2inputs[0] > Display.UpperLimit) {	// joystick left
