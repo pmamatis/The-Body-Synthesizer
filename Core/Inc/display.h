@@ -318,6 +318,8 @@ struct display_variables {
 	// Drumfilter_ONOFF
 	bool Drumfilter_ONOFF;
 
+	// Preset
+	bool GyroResetPreset[2];
 };
 
 struct display_variables Display;

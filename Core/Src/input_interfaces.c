@@ -9,6 +9,7 @@
 
 void II_init(){
 	log_mapping_F = log(LUT_FMAX);
+
 	for (int i = 0;i<5 ;i++)
 		filter_step_counter[i] = 10;
 

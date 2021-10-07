@@ -328,16 +328,16 @@ int main(void)
 
 	//	NewSignal(&signals1,NOISE,'C',0,1);
 	// CEG Full Range for Wah
-		NewSignal(&signals1,SIN, 'C',2,16);
-		NewSignal(&signals1,SIN, 'E',2,17);
-		NewSignal(&signals1,SIN, 'G',1,18);
-		NewSignal(&signals1,SIN, 'C',2,8);
-		NewSignal(&signals1,SIN, 'E',2,9);
-		NewSignal(&signals1,SIN, 'G',2,10);
-		NewSignal(&signals1,SIN, 'C',3,11);
-		NewSignal(&signals1,SIN, 'E',3,12);
-		NewSignal(&signals1,SIN, 'G',3,13);
-		NewSignal(&signals1,SIN, 'C',4,14);
+	//		NewSignal(&signals1,SIN, 'C',2,16);
+	//		NewSignal(&signals1,SIN, 'E',2,17);
+	//		NewSignal(&signals1,SIN, 'G',1,18);
+	//		NewSignal(&signals1,SIN, 'C',2,8);
+	//		NewSignal(&signals1,SIN, 'E',2,9);
+	//		NewSignal(&signals1,SIN, 'G',2,10);
+	//		NewSignal(&signals1,SIN, 'C',3,11);
+	//		NewSignal(&signals1,SIN, 'E',3,12);
+	//		NewSignal(&signals1,SIN, 'G',3,13);
+	//		NewSignal(&signals1,SIN, 'C',4,14);
 	//	NewSignal(&signals1,SIN, 'E',4,15);
 	//	NewSignal(&signals1,SIN, 'G',4,16);
 	//	NewSignal(&signals1,SIN, 'C',5,17);
@@ -406,15 +406,15 @@ int main(void)
 	//	Display.Voice_Note_Sources[0] = POTI;
 	//	Display.Voice_Note_Sources[0] = EMG;
 
-//	Display.PlaySingleSample_ONOFF = true;
-	Display.Drumfilter_ONOFF = true;
-
-		Display.Drumcomputer_ONOFF = true;
+	//	Display.PlaySingleSample_ONOFF = true;
+	//	Display.Drumfilter_ONOFF = true;
+	//
+	//		Display.Drumcomputer_ONOFF = true;
 	//	Display.Sequencer_ONOFF = true;
 	//	Display.WahWah_ONOFF = true;
-//	Display.Distortion_ONOFF = true;
-//	Display.Distortion_Gain = 8;
-//	Display.Distortion_Sources = GYRO_LR;
+	//	Display.Distortion_ONOFF = true;
+	//	Display.Distortion_Gain = 8;
+	//	Display.Distortion_Sources = GYRO_LR;
 	//			Display.Tremolo_ONOFF = true;
 	//		Display.Tremolo_Sources[0] = GYRO_FB;
 	//	Display.Tremolo_Sources[1] = GYRO_LR;
