@@ -1884,18 +1884,18 @@ Display_Status p_Sequencer_overview(void) {
 Display_Status p_Sequencer_Settings(void) {
 
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Last page", &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Edit sequence", &Font12, COLORED);
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "Edit sequence", &Font12, COLORED);
 	Display_DrawSequencerIcons();
 	DISPLAY_DrawSequencerPatternFrame(8);
 
 	if(Display.JoystickParameterPosition == 1) {	// last page
 		Display.EditSteps = false;
 	}
-	else if(Display.JoystickParameterPosition == 2) {	// change BPM -> processing done in interrupt
-		Display.EditSteps = false;
-	}
-	else if(Display.JoystickParameterPosition == 3) {	// edit sequence on/off
+//	else if(Display.JoystickParameterPosition == 2) {	// change BPM -> processing done in interrupt
+//		Display.EditSteps = false;
+//	}
+	else if(Display.JoystickParameterPosition == 2) {	// edit sequence on/off
 		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 		if(potVal < 50) {	// smaller than 50 %
@@ -1908,7 +1908,7 @@ Display_Status p_Sequencer_Settings(void) {
 		}
 	}
 
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_sequencer[7], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_sequencer[7], &Font12, COLORED);
 
 	return DISPLAY_OK;
 }
@@ -3703,250 +3703,15 @@ void p_Volume(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE4, Display.value_str_volume[3], &Font12, COLORED);
 }
 
-void p_Presets(void) {
-
-	Paint_DrawStringAt(&paint, 1, CASE0, "PRESETS", &Font16, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Preset:", &Font12, COLORED);
-
-	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
-
-	switch(Display.JoystickParameterPosition) {
-	case 1:
-		if(potVal < 50) {
-			if(Display.GyroResetPreset[0] == false) {
-
-				Display.Drumcomputer_ONOFF = true;
-				Display.Drumfilter_ONOFF = true;
-				Display.Drumfilter_Cutoff_Source = GYRO_FB;
-
-				Display.Filter_ONOFF[0] = true;
-				Display.EQ_Cutoff_Sources[0] = GYRO_LR;
-				Display.currentBand = 0;
-				NewSignal(&signals1,SIN, 'C',2,16);
-				NewSignal(&signals1,SIN, 'E',2,17);
-				NewSignal(&signals1,SIN, 'G',1,18);
-				NewSignal(&signals1,SIN, 'C',2,8);
-				NewSignal(&signals1,SIN, 'E',2,9);
-				NewSignal(&signals1,SIN, 'G',2,10);
-				NewSignal(&signals1,SIN, 'C',3,11);
-				NewSignal(&signals1,SIN, 'E',3,12);
-				NewSignal(&signals1,SIN, 'G',3,13);
-				NewSignal(&signals1,SIN, 'C',4,14);
-				Display.GyroResetPreset[0] = true;
-				Display.GyroResetPreset[1] = false;
-			}
-		}
-		else if(potVal >= 50) {
-			if(Display.GyroResetPreset[1] == true) {
-				// TODO
-				Display.GyroResetPreset[0] = false;
-				Display.GyroResetPreset[1] = true;
-			}
-		}
-		break;
-	default:
-		break;
-	}
-}
-
 //void p_Presets(void) {
 //
-//	//Header line
-//	char headerstring[] = "PRESETS";
-//	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
-//	//row cases
-//	char str_1[] = "Drums Preset";
-//	char str_2[] = "Seq. Preset";
-//	char str_3[] = "Gyro Preset";
-//	char str_4[] = "EMG Preset";
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
-//
-//
-//	//	NewSignal(&signals1,SIN, 'C',1,8);
-//	//	NewSignal(&signals1,SIN, 'E',1,9);
-//	//	NewSignal(&signals1,SIN, 'G',1,10);
-//	//		NewSignal(&signals1,SIN, 'C',2,11);
-//	//		NewSignal(&signals1,SIN, 'E',2,12);
-//	//		NewSignal(&signals1,SIN, 'G',2,13);
-//	//		NewSignal(&signals1,SIN, 'C',3,14);
-//	//		NewSignal(&signals1,SIN, 'E',3,15);
-//	//		NewSignal(&signals1,SIN, 'G',3,16);
-//	//		NewSignal(&signals1,SIN, 'C',4,17);
-//	//		NewSignal(&signals1,SIN, 'E',4,18);
-//	//		NewSignal(&signals1,SIN, 'G',4,19);
-//	//		NewSignal(&signals1,SIN, 'C',5,20);
-//	//		NewSignal(&signals1,SIN, 'E',5,21);
-//	//		NewSignal(&signals1,SIN, 'G',5,22);
-//
-//	//		Display.Tremolo_ONOFF = true;
-//	//		Display.Tremolo_Sources[1] = GYRO_LR;
-//
-//	//	Display.Filter_ONOFF[0] = true;
-//	//	Display.EQ_Cutoff_Sources[0] = GYRO_FB;
-//	//	Display.currentBand = 0;
-//
-//	//	Display.Voices_Note[0] = 'C';
-//	//	Display.Voices_ONOFF[0] = true;
-//	//	Display.Voices_Octave[0] = 3;
-//	//	Display.Voice_Note_Sources[0] = EKG;
+//	Paint_DrawStringAt(&paint, 1, CASE0, "PRESETS", &Font16, COLORED);
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Preset:", &Font12, COLORED);
 //
 //	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 //
 //	switch(Display.JoystickParameterPosition) {
-//	case 1:	// Drums Preset
-//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
-//		if(potVal < 50) {
-//			sprintf(Display.value_str_presets[0], "%d", 1);
-//			Display.DrumMatrix[0][0] = true;	// Sample 1
-//			Display.DrumMatrix[0][1] = false;
-//			Display.DrumMatrix[0][2] = false;
-//			Display.DrumMatrix[0][3] = false;
-//			Display.DrumMatrix[0][4] = true;
-//			Display.DrumMatrix[0][5] = false;
-//			Display.DrumMatrix[0][6] = false;
-//			Display.DrumMatrix[0][7] = false;
-//			Display.DrumMatrix[1][0] = false;	// Sample 2
-//			Display.DrumMatrix[1][1] = false;
-//			Display.DrumMatrix[1][2] = true;
-//			Display.DrumMatrix[1][3] = false;
-//			Display.DrumMatrix[1][4] = false;
-//			Display.DrumMatrix[1][5] = false;
-//			Display.DrumMatrix[1][6] = true;
-//			Display.DrumMatrix[1][7] = false;
-//			Display.DrumMatrix[2][0] = false;	// Sample 3
-//			Display.DrumMatrix[2][1] = false;
-//			Display.DrumMatrix[2][2] = false;
-//			Display.DrumMatrix[2][3] = false;
-//			Display.DrumMatrix[2][4] = true;
-//			Display.DrumMatrix[2][5] = false;
-//			Display.DrumMatrix[2][6] = false;
-//			Display.DrumMatrix[2][7] = false;
-//			Display.DrumMatrix[3][0] = false;	// Sample 4
-//			Display.DrumMatrix[3][1] = false;
-//			Display.DrumMatrix[3][2] = false;
-//			Display.DrumMatrix[3][3] = false;
-//			Display.DrumMatrix[3][4] = false;
-//			Display.DrumMatrix[3][5] = false;
-//			Display.DrumMatrix[3][6] = false;
-//			Display.DrumMatrix[3][7] = false;
-//
-//			timing_DS1[0] = 1;
-//			timing_DS1[1] = 0;
-//			timing_DS1[2] = 0;
-//			timing_DS1[3] = 0;
-//			timing_DS1[4] = 1;
-//			timing_DS1[5] = 0;
-//			timing_DS1[6] = 0;
-//			timing_DS1[7] = 0;
-//			timing_DS2[0] = 0;
-//			timing_DS2[1] = 0;
-//			timing_DS2[2] = 1;
-//			timing_DS2[3] = 0;
-//			timing_DS2[4] = 0;
-//			timing_DS2[5] = 0;
-//			timing_DS2[6] = 1;
-//			timing_DS2[7] = 0;
-//			timing_DS3[0] = 0;
-//			timing_DS3[1] = 0;
-//			timing_DS3[2] = 0;
-//			timing_DS3[3] = 0;
-//			timing_DS3[4] = 1;
-//			timing_DS3[5] = 0;
-//			timing_DS3[6] = 0;
-//			timing_DS3[7] = 0;
-//			timing_DS4[0] = 0;
-//			timing_DS4[1] = 0;
-//			timing_DS4[2] = 0;
-//			timing_DS4[3] = 0;
-//			timing_DS4[4] = 0;
-//			timing_DS4[5] = 0;
-//			timing_DS4[6] = 0;
-//			timing_DS4[7] = 0;
-//		}
-//		else if(potVal >= 50) {
-//			sprintf(Display.value_str_presets[0], "%d", 2);
-//			//			timing_DS1[0] = 1;	// Advanced Techno Beat
-//			//			timing_DS1[1] = 0;
-//			//			timing_DS1[2] = 1;
-//			//			timing_DS1[3] = 0;
-//			//			timing_DS1[4] = 1;
-//			//			timing_DS1[5] = 0;
-//			//			timing_DS1[6] = 0;
-//			//			timing_DS1[7] = 0;
-//			//			timing_DS2[0] = 0;
-//			//			timing_DS2[1] = 0;
-//			//			timing_DS2[2] = 1;
-//			//			timing_DS2[3] = 0;
-//			//			timing_DS2[4] = 0;
-//			//			timing_DS2[5] = 0;
-//			//			timing_DS2[6] = 1;
-//			//			timing_DS2[7] = 0;
-//			//			timing_DS3[0] = 0;
-//			//			timing_DS3[1] = 0;
-//			//			timing_DS3[2] = 0;
-//			//			timing_DS3[3] = 0;
-//			//			timing_DS3[4] = 1;
-//			//			timing_DS3[5] = 0;
-//			//			timing_DS3[6] = 0;
-//			//			timing_DS3[7] = 1;
-//			//			timing_DS4[0] = 0;
-//			//			timing_DS4[1] = 0;
-//			//			timing_DS4[2] = 1;
-//			//			timing_DS4[3] = 1;
-//			//			timing_DS4[4] = 0;
-//			//			timing_DS4[5] = 0;
-//			//			timing_DS4[6] = 0;
-//			//			timing_DS4[7] = 1;
-//		}
-//		break;
-//	case 2:	// Sequencer Preset
-//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-//		if(potVal < 50) {
-//			sprintf(Display.value_str_presets[1], "%d", 1);
-//			freq_index_SN1 = Get_Note_Index('C', 1);	// load notes
-//			for(int i=0; i<FourFour; i++) {
-//				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
-//			}
-//			freq_index_SN2 = Get_Note_Index('D', 1);
-//			for(int i=0; i<FourFour; i++) {
-//				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
-//			}
-//			freq_index_SN3 = Get_Note_Index('d', 1);
-//			for(int i=0; i<FourFour; i++) {
-//				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
-//			}
-//			timing_SN1[0] = 1;	// Sequence Pattern
-//			timing_SN1[1] = 0;
-//			timing_SN1[2] = 0;
-//			timing_SN1[3] = 0;
-//			timing_SN1[4] = 0;
-//			timing_SN1[5] = 0;
-//			timing_SN1[6] = 0;
-//			timing_SN1[7] = 0;
-//			timing_SN2[0] = 0;
-//			timing_SN2[1] = 0;
-//			timing_SN2[2] = 0;
-//			timing_SN2[3] = 1;
-//			timing_SN2[4] = 0;
-//			timing_SN2[5] = 0;
-//			timing_SN2[6] = 0;
-//			timing_SN2[7] = 0;
-//			timing_SN3[0] = 0;
-//			timing_SN3[1] = 0;
-//			timing_SN3[2] = 0;
-//			timing_SN3[3] = 0;
-//			timing_SN3[4] = 0;
-//			timing_SN3[5] = 0;
-//			timing_SN3[6] = 1;
-//			timing_SN3[7] = 0;
-//		}
-//		else if(potVal >= 50) {
-//			sprintf(Display.value_str_presets[1], "%d", 2);
-//		}
-//		break;
-//	case 3:
+//	case 1:
 //		if(potVal < 50) {
 //			if(Display.GyroResetPreset[0] == false) {
 //
@@ -3982,12 +3747,249 @@ void p_Presets(void) {
 //	default:
 //		break;
 //	}
-//
-//	// print value row
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_presets[0], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_presets[1], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_presets[2], &Font12, COLORED);
 //}
+
+void p_Presets(void) {
+
+	//Header line
+	char headerstring[] = "PRESETS";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	//row cases
+	char str_1[] = "Drums Preset";
+	char str_2[] = "Seq. Preset";
+	char str_3[] = "Gyro Preset";
+	char str_4[] = "EMG Preset";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+
+
+	NewSignal(&signals1,SIN, 'C',1,8);
+	NewSignal(&signals1,SIN, 'E',1,9);
+	NewSignal(&signals1,SIN, 'G',1,10);
+	NewSignal(&signals1,SIN, 'C',2,11);
+	NewSignal(&signals1,SIN, 'E',2,12);
+	NewSignal(&signals1,SIN, 'G',2,13);
+	NewSignal(&signals1,SIN, 'C',3,14);
+	NewSignal(&signals1,SIN, 'E',3,15);
+	NewSignal(&signals1,SIN, 'G',3,16);
+	NewSignal(&signals1,SIN, 'C',4,17);
+	NewSignal(&signals1,SIN, 'E',4,18);
+	NewSignal(&signals1,SIN, 'G',4,19);
+	NewSignal(&signals1,SIN, 'C',5,20);
+	NewSignal(&signals1,SIN, 'E',5,21);
+	NewSignal(&signals1,SIN, 'G',5,22);
+
+	Display.WahWah_ONOFF = true;
+
+	//		Display.Tremolo_ONOFF = true;
+	//		Display.Tremolo_Sources[1] = GYRO_LR;
+
+	//	Display.Filter_ONOFF[0] = true;
+	//	Display.EQ_Cutoff_Sources[0] = GYRO_FB;
+	//	Display.currentBand = 0;
+
+	//	Display.Voices_Note[0] = 'C';
+	//	Display.Voices_ONOFF[0] = true;
+	//	Display.Voices_Octave[0] = 3;
+	//	Display.Voice_Note_Sources[0] = EKG;
+
+	//	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
+	//
+	//	switch(Display.JoystickParameterPosition) {
+	//	case 1:	// Drums Preset
+	//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
+	//		if(potVal < 50) {
+	//			sprintf(Display.value_str_presets[0], "%d", 1);
+	//			Display.DrumMatrix[0][0] = true;	// Sample 1
+	//			Display.DrumMatrix[0][1] = false;
+	//			Display.DrumMatrix[0][2] = false;
+	//			Display.DrumMatrix[0][3] = false;
+	//			Display.DrumMatrix[0][4] = true;
+	//			Display.DrumMatrix[0][5] = false;
+	//			Display.DrumMatrix[0][6] = false;
+	//			Display.DrumMatrix[0][7] = false;
+	//			Display.DrumMatrix[1][0] = false;	// Sample 2
+	//			Display.DrumMatrix[1][1] = false;
+	//			Display.DrumMatrix[1][2] = true;
+	//			Display.DrumMatrix[1][3] = false;
+	//			Display.DrumMatrix[1][4] = false;
+	//			Display.DrumMatrix[1][5] = false;
+	//			Display.DrumMatrix[1][6] = true;
+	//			Display.DrumMatrix[1][7] = false;
+	//			Display.DrumMatrix[2][0] = false;	// Sample 3
+	//			Display.DrumMatrix[2][1] = false;
+	//			Display.DrumMatrix[2][2] = false;
+	//			Display.DrumMatrix[2][3] = false;
+	//			Display.DrumMatrix[2][4] = true;
+	//			Display.DrumMatrix[2][5] = false;
+	//			Display.DrumMatrix[2][6] = false;
+	//			Display.DrumMatrix[2][7] = false;
+	//			Display.DrumMatrix[3][0] = false;	// Sample 4
+	//			Display.DrumMatrix[3][1] = false;
+	//			Display.DrumMatrix[3][2] = false;
+	//			Display.DrumMatrix[3][3] = false;
+	//			Display.DrumMatrix[3][4] = false;
+	//			Display.DrumMatrix[3][5] = false;
+	//			Display.DrumMatrix[3][6] = false;
+	//			Display.DrumMatrix[3][7] = false;
+	//
+	//			timing_DS1[0] = 1;
+	//			timing_DS1[1] = 0;
+	//			timing_DS1[2] = 0;
+	//			timing_DS1[3] = 0;
+	//			timing_DS1[4] = 1;
+	//			timing_DS1[5] = 0;
+	//			timing_DS1[6] = 0;
+	//			timing_DS1[7] = 0;
+	//			timing_DS2[0] = 0;
+	//			timing_DS2[1] = 0;
+	//			timing_DS2[2] = 1;
+	//			timing_DS2[3] = 0;
+	//			timing_DS2[4] = 0;
+	//			timing_DS2[5] = 0;
+	//			timing_DS2[6] = 1;
+	//			timing_DS2[7] = 0;
+	//			timing_DS3[0] = 0;
+	//			timing_DS3[1] = 0;
+	//			timing_DS3[2] = 0;
+	//			timing_DS3[3] = 0;
+	//			timing_DS3[4] = 1;
+	//			timing_DS3[5] = 0;
+	//			timing_DS3[6] = 0;
+	//			timing_DS3[7] = 0;
+	//			timing_DS4[0] = 0;
+	//			timing_DS4[1] = 0;
+	//			timing_DS4[2] = 0;
+	//			timing_DS4[3] = 0;
+	//			timing_DS4[4] = 0;
+	//			timing_DS4[5] = 0;
+	//			timing_DS4[6] = 0;
+	//			timing_DS4[7] = 0;
+	//		}
+	//		else if(potVal >= 50) {
+	//			sprintf(Display.value_str_presets[0], "%d", 2);
+	//			//			timing_DS1[0] = 1;	// Advanced Techno Beat
+	//			//			timing_DS1[1] = 0;
+	//			//			timing_DS1[2] = 1;
+	//			//			timing_DS1[3] = 0;
+	//			//			timing_DS1[4] = 1;
+	//			//			timing_DS1[5] = 0;
+	//			//			timing_DS1[6] = 0;
+	//			//			timing_DS1[7] = 0;
+	//			//			timing_DS2[0] = 0;
+	//			//			timing_DS2[1] = 0;
+	//			//			timing_DS2[2] = 1;
+	//			//			timing_DS2[3] = 0;
+	//			//			timing_DS2[4] = 0;
+	//			//			timing_DS2[5] = 0;
+	//			//			timing_DS2[6] = 1;
+	//			//			timing_DS2[7] = 0;
+	//			//			timing_DS3[0] = 0;
+	//			//			timing_DS3[1] = 0;
+	//			//			timing_DS3[2] = 0;
+	//			//			timing_DS3[3] = 0;
+	//			//			timing_DS3[4] = 1;
+	//			//			timing_DS3[5] = 0;
+	//			//			timing_DS3[6] = 0;
+	//			//			timing_DS3[7] = 1;
+	//			//			timing_DS4[0] = 0;
+	//			//			timing_DS4[1] = 0;
+	//			//			timing_DS4[2] = 1;
+	//			//			timing_DS4[3] = 1;
+	//			//			timing_DS4[4] = 0;
+	//			//			timing_DS4[5] = 0;
+	//			//			timing_DS4[6] = 0;
+	//			//			timing_DS4[7] = 1;
+	//		}
+	//		break;
+	//	case 2:	// Sequencer Preset
+	//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+	//		if(potVal < 50) {
+	//			sprintf(Display.value_str_presets[1], "%d", 1);
+	//			freq_index_SN1 = Get_Note_Index('C', 1);	// load notes
+	//			for(int i=0; i<FourFour; i++) {
+	//				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+	//			}
+	//			freq_index_SN2 = Get_Note_Index('D', 1);
+	//			for(int i=0; i<FourFour; i++) {
+	//				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+	//			}
+	//			freq_index_SN3 = Get_Note_Index('d', 1);
+	//			for(int i=0; i<FourFour; i++) {
+	//				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+	//			}
+	//			timing_SN1[0] = 1;	// Sequence Pattern
+	//			timing_SN1[1] = 0;
+	//			timing_SN1[2] = 0;
+	//			timing_SN1[3] = 0;
+	//			timing_SN1[4] = 0;
+	//			timing_SN1[5] = 0;
+	//			timing_SN1[6] = 0;
+	//			timing_SN1[7] = 0;
+	//			timing_SN2[0] = 0;
+	//			timing_SN2[1] = 0;
+	//			timing_SN2[2] = 0;
+	//			timing_SN2[3] = 1;
+	//			timing_SN2[4] = 0;
+	//			timing_SN2[5] = 0;
+	//			timing_SN2[6] = 0;
+	//			timing_SN2[7] = 0;
+	//			timing_SN3[0] = 0;
+	//			timing_SN3[1] = 0;
+	//			timing_SN3[2] = 0;
+	//			timing_SN3[3] = 0;
+	//			timing_SN3[4] = 0;
+	//			timing_SN3[5] = 0;
+	//			timing_SN3[6] = 1;
+	//			timing_SN3[7] = 0;
+	//		}
+	//		else if(potVal >= 50) {
+	//			sprintf(Display.value_str_presets[1], "%d", 2);
+	//		}
+	//		break;
+	//	case 3:
+	//		if(potVal < 50) {
+	//			if(Display.GyroResetPreset[0] == false) {
+	//
+	//				Display.Drumcomputer_ONOFF = true;
+	//				Display.Drumfilter_ONOFF = true;
+	//				Display.Drumfilter_Cutoff_Source = GYRO_FB;
+	//
+	//				Display.Filter_ONOFF[0] = true;
+	//				Display.EQ_Cutoff_Sources[0] = GYRO_LR;
+	//				Display.currentBand = 0;
+	//				NewSignal(&signals1,SIN, 'C',2,16);
+	//				NewSignal(&signals1,SIN, 'E',2,17);
+	//				NewSignal(&signals1,SIN, 'G',1,18);
+	//				NewSignal(&signals1,SIN, 'C',2,8);
+	//				NewSignal(&signals1,SIN, 'E',2,9);
+	//				NewSignal(&signals1,SIN, 'G',2,10);
+	//				NewSignal(&signals1,SIN, 'C',3,11);
+	//				NewSignal(&signals1,SIN, 'E',3,12);
+	//				NewSignal(&signals1,SIN, 'G',3,13);
+	//				NewSignal(&signals1,SIN, 'C',4,14);
+	//				Display.GyroResetPreset[0] = true;
+	//				Display.GyroResetPreset[1] = false;
+	//			}
+	//		}
+	//		else if(potVal >= 50) {
+	//			if(Display.GyroResetPreset[1] == true) {
+	//				// TODO
+	//				Display.GyroResetPreset[0] = false;
+	//				Display.GyroResetPreset[1] = true;
+	//			}
+	//		}
+	//		break;
+	//	default:
+	//		break;
+	//	}
+
+	// print value row
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_presets[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_presets[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_presets[2], &Font12, COLORED);
+}
 
 /** @brief this function prints the Keyboardmode and edits its values
  * @param envelope struct

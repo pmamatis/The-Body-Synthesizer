@@ -663,15 +663,17 @@ void DMA2_Stream2_IRQHandler(void)
 		}
 	}
 
-	Display.Poti_Threshold = 30;
+	Display.Poti_Threshold = 35;
 	if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
 		Display.poti_moved = true;
+		Display.last_Poti = Display.ADC2inputs[2];
 		DISPLAY_processing();
 		DISPLAY_Update();
-		Display.last_Poti = Display.ADC2inputs[2];
 	}
 	else {
 		Display.poti_moved = false;
+
+		Display.last_Poti = Display.ADC2inputs[2];
 	}
 
   /* USER CODE END DMA2_Stream2_IRQn 0 */
