@@ -53,6 +53,7 @@ uint8_t II_Display_Voices(void) {
 			case GYRO_FB:
 				if ( toggleCounter > toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
+					// gute besserung paul:)
 					if (sensorData.tilt_detected == TILT_BACK){
 						II_decreaseNote(ii_i);
 						sensorData.tilt_detected = TILT_NONE;
