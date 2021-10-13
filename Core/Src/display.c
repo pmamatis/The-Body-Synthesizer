@@ -3246,27 +3246,27 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 
 			switch(Display.JoystickParameterPosition) {
 			case 1:	// WahWah Mid Frequency
-				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
 				Display.WahWah_MidFreq = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * WahWah->max_mid_freq;
 				//			WahWah->mid_freq = ((float)Display.ADC2inputs[2] / Display.ADC_FullRange) * WahWah->max_mid_freq;
 				WahWah->mid_freq = Display.WahWah_MidFreq;
 				sprintf(Display.value_str_wahwah[2], "%.2f", Display.WahWah_MidFreq);
 				break;
 			case 2:	// WahWah Q-factor
-				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 				Display.WahWah_Q = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * WahWah->max_Q) + 0.5;
-				//			WahWah->bandpass->Q = (((float)Display.ADC2inputs[3] / Display.ADC_FullRange) * 10) + 0.5;W	// DISPLAY!!!
+				//			WahWah->bandpass->Q = (((float)Display.ADC2inputs[3] / Display.ADC_FullRange) * 10) + 0.5;	// DISPLAY!!!
 				WahWah->bandpass->Q = Display.WahWah_Q;
 				sprintf(Display.value_str_wahwah[3], "%.2f", Display.WahWah_Q);
 				break;
 			case 3:	// WahWah Mid Frequency Source
-				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
 				Display.WahWah_Sources[0] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
 				strcpy(Display.value_str_wahwah[4], Display.source_names[mode_number]);
 				break;
 			case 4:	// Q-factor Source
-				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
 				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
 				Display.WahWah_Sources[1] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
 				strcpy(Display.value_str_wahwah[5], Display.source_names[mode_number]);
@@ -3366,123 +3366,13 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE2, Display.value_str_wahwah[3], &Font12, COLORED);
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, Display.value_str_wahwah[4], &Font12, COLORED);
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE4, Display.value_str_wahwah[5], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE5, Display.value_str_wahwah[6], &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_wahwah[6], &Font12, COLORED);
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_wahwah[7], &Font12, COLORED);
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE7, Display.value_str_wahwah[8], &Font12, COLORED);
 			Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE8, Display.value_str_wahwah[9], &Font12, COLORED);
 		}
 	}
 }
-
-///** @brief this function prints the WahWah submenu and edits its values
-// *  @param
-// *
-// */
-//void p_WahWah(struct WahWah_t *WahWah) {
-//
-//	// normal wahwah:
-//	// WahWah->mid_freq = ((float)Display.ADC2inputs[2] / Display.ADC_FullRange) * WahWah->max_mid_freq;	// DISPLAY!!!
-//	// WahWah->bandpass->Q = (((float)Display.ADC2inputs[3] / Display.ADC_FullRange) * 10) + 0.5;	// DISPLAY!!!
-//
-//	// autowahwah:
-//	// WahWah->mid_freq = (float)Display.ADC2inputs[2] / 4;	// DISPLAY!!!
-//	// WahWah->max_range = (WahWah->mid_freq - 50) * 2;	// max range calculated in display depending on the current mid_freq value
-//	// WahWah->range = WahWah->max_range/4;	// set in display!
-//
-//	// Header line
-//	char headerstring[] = "WAHWAH";
-//	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
-//	// row cases
-//	char str_1[] = "WahWah ON/OFF";
-//	char str_2[] = "Mode";
-//	char str_3[] = "Mid Freq.";
-//	char str_4[] = "Q-factor";
-//	if(Display.WahWahMode == 1) {	// AutoWahWah
-//		char str_5[] = "Range";
-//		char str_6[] = "LFO Freq.";
-//	}
-//	char str_7[] = "LFO Freq. Source";
-//	char str_8[] = "Range Source";
-//	char str_9[] = "Mid Freq. Source";
-//	char str_10[] = "Q Source";
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
-//
-//	// Potentiometer Input in %
-//	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
-//	uint8_t mode_number = 0;
-//
-//	if(Display.poti_moved == true) {
-//
-//		switch (Display.JoystickParameterPosition){
-//		case 1:	// WahWah ON/OFF
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
-//			if(potVal < 50) {	// smaller than 50 %
-//				Display.WahWah_ONOFF = false;
-//				strcpy(Display.value_str_wahwah[0], "OFF");
-//			}
-//			else if(potVal >= 50) {	// greater than 50 %
-//				Display.WahWah_ONOFF = true;
-//				strcpy(Display.value_str_wahwah[0], "ON");
-//			}
-//			break;
-//		case 2:	// WahWah LFO Frequency
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-//			uint index = ((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (sizeof(LFO_FREQUENCYS)/sizeof(LFO_FREQUENCYS[0])-1);
-//			Display.WahWah_LFOFreq = LFO_FREQUENCYS[index];
-//			sprintf(Display.value_str_wahwah[1], "%.3f", Display.WahWah_LFOFreq);
-//			break;
-//		case 3:	// WahWah Frequency Range
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-//			Display.WahWah_Range = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * WahWah->max_range;
-//			sprintf(Display.value_str_wahwah[2], "%.2f", Display.WahWah_Range);
-//			break;
-//		case 4:	// WahWah Mid Frequency
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
-//			Display.WahWah_MidFreq = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * WahWah->max_mid_freq;
-//			sprintf(Display.value_str_wahwah[3], "%.2f", Display.WahWah_MidFreq);
-//			break;
-//		case 5:	// WahWah LFO Frequency Source
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
-//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-//			Display.WahWah_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-//			strcpy(Display.value_str_wahwah[4], Display.source_names[mode_number]);
-//			break;
-//		case 6:	// WahWah Frequency Range Source
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
-//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-//			Display.WahWah_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-//			strcpy(Display.value_str_wahwah[5], Display.source_names[mode_number]);
-//			break;
-//		case 7:	// WahWah Mid Frequency Source
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
-//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-//			Display.WahWah_Sources[2] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-//			strcpy(Display.value_str_wahwah[6], Display.source_names[mode_number]);
-//			break;
-//		case 8:
-//			// TODO: RESET OF WAHWAH..
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//
-//	// print value row
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_wahwah[0], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE2, Display.value_str_wahwah[1], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_wahwah[2], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_wahwah[3], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_wahwah[4], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_wahwah[5], &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE7, Display.value_str_wahwah[6], &Font12, COLORED);
-//}
 
 /** @brief this function prints the Distortion submenu and edits its values
  *  @param HardClipping: struct of hard clipping distortion effect
