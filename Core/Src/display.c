@@ -175,15 +175,19 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_voices_overview[7],"");
 	strcpy(Display->value_str_voices_overview[8],"");
 
-	strcpy(Display->value_str_voices_settings[0],"");	// voices settings
-	strcpy(Display->value_str_voices_settings[1],"");
-	strcpy(Display->value_str_voices_settings[2],"POTI");
-	strcpy(Display->value_str_voices_settings[3],"POTI");
-	strcpy(Display->value_str_voices_settings[4],"");
-	strcpy(Display->value_str_voices_settings[5],"");
-	strcpy(Display->value_str_voices_settings[6],"");
-	strcpy(Display->value_str_voices_settings[7],"");
-	strcpy(Display->value_str_voices_settings[8],"");
+	strcpy(Display->value_str_voices_settings[0][0],"");	// voices settings
+	strcpy(Display->value_str_voices_settings[0][1],"");
+	strcpy(Display->value_str_voices_settings[0][2],"POTI");
+	strcpy(Display->value_str_voices_settings[0][3],"POTI");
+	strcpy(Display->value_str_voices_settings[1][0],"");
+	strcpy(Display->value_str_voices_settings[1][1],"");
+	strcpy(Display->value_str_voices_settings[1][2],"POTI");
+	strcpy(Display->value_str_voices_settings[1][3],"POTI");
+	strcpy(Display->value_str_voices_settings[2][0],"");
+	strcpy(Display->value_str_voices_settings[2][1],"");
+	strcpy(Display->value_str_voices_settings[2][2],"POTI");
+	strcpy(Display->value_str_voices_settings[2][3],"POTI");
+
 
 	strcpy(Display->value_str_adsr_overview[0],"");	// adsr overview
 	strcpy(Display->value_str_adsr_overview[1],"OFF");
@@ -1884,7 +1888,7 @@ Display_Status p_Sequencer_overview(void) {
 Display_Status p_Sequencer_Settings(void) {
 
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Last page", &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "Edit sequence", &Font12, COLORED);
 	Display_DrawSequencerIcons();
 	DISPLAY_DrawSequencerPatternFrame(8);
@@ -1892,9 +1896,9 @@ Display_Status p_Sequencer_Settings(void) {
 	if(Display.JoystickParameterPosition == 1) {	// last page
 		Display.EditSteps = false;
 	}
-//	else if(Display.JoystickParameterPosition == 2) {	// change BPM -> processing done in interrupt
-//		Display.EditSteps = false;
-//	}
+	//	else if(Display.JoystickParameterPosition == 2) {	// change BPM -> processing done in interrupt
+	//		Display.EditSteps = false;
+	//	}
 	else if(Display.JoystickParameterPosition == 2) {	// edit sequence on/off
 		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
@@ -2695,7 +2699,7 @@ void p_Voices_Settings(void) {
 		case 2:
 			// Octave
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-			Display.Voices_Octave[Display.currentVoice-1] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 6);	// 0ctave 0 to 6
+			Display.Voices_Octave[Display.currentVoice-1] = (char)(((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 5);	// 0ctave 0 to 5
 			//sprintf(Display.value_str_voices_settings[1], "%c", Display.Voices_Octave[Display.currentVoice-1]+'0');
 			sprintf(Display.value_str_voices_settings[Display.currentVoice-1][1], "%d", Display.Voices_Octave[Display.currentVoice-1]);
 			break;

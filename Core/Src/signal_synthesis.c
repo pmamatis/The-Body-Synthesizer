@@ -475,8 +475,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		calculate_keyboard[4] = 0;
 
 		// Loop to reach all Signals
-		for (int j = 0; j < count;j++){
-			switch (signals -> kind[j]) {
+		for(int j=0; j<count; j++) {
+			switch (signals->kind[j]) {
 			case SIN:
 
 				// keyboard signals
@@ -502,11 +502,67 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				// get index for the next sin value
 				signals -> current_LUT_Index[j]++;
 
-				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]])
-				{
-					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
-				}
+				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]]) {
 
+					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+
+					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
+					if(signals->ID[j] == VOICES_ID) {
+						if(Display.Voices_ONOFF[VOICES_ID] == true ) {
+							if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
+								DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
+								Display.last_Voices_Note[VOICES_ID] = Display.Voices_Note[VOICES_ID];
+							}
+							if(Display.last_Voices_Octave[VOICES_ID] != Display.Voices_Octave[VOICES_ID]) {
+								DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
+								Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
+							}
+						}
+					}
+					else if(signals->ID[j] == VOICES_ID+1) {
+						if(Display.Voices_ONOFF[VOICES_ID+1] == true ) {
+							if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
+								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
+								Display.last_Voices_Note[VOICES_ID+1] = Display.Voices_Note[VOICES_ID+1];
+							}
+							if(Display.last_Voices_Octave[VOICES_ID+1] != Display.Voices_Octave[VOICES_ID+1]) {
+								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
+								Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
+							}
+						}
+					}
+					else if(signals->ID[j] == VOICES_ID+2) {
+						if(Display.Voices_ONOFF[VOICES_ID+2] == true ) {
+							if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
+								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
+								Display.last_Voices_Note[VOICES_ID+2] = Display.Voices_Note[VOICES_ID+2];
+							}
+							if(Display.last_Voices_Octave[VOICES_ID+2] != Display.Voices_Octave[VOICES_ID+2]) {
+								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
+								Display.last_Voices_Octave[VOICES_ID+2] = Display.Voices_Octave[VOICES_ID+2];
+							}
+						}
+					}
+					// delete signal if voice off
+					if(Display.Voices_ONOFF[VOICES_ID]==false && Display.Voices_Created[VOICES_ID] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+						Display.Voices_Created[VOICES_ID] = false;
+					}
+					else if(Display.Voices_ONOFF[VOICES_ID+1]==false && Display.Voices_Created[VOICES_ID+1] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+						Display.Voices_Created[VOICES_ID+1] = false;
+					}
+					else if(Display.Voices_ONOFF[VOICES_ID+2]==false && Display.Voices_Created[VOICES_ID+2] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+						Display.Voices_Created[VOICES_ID+2] = false;
+					}
+				}
 				break;
 
 			case NOISE:
@@ -596,13 +652,12 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//		}
 
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((1.0 * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
-	} //End for-Loop
+	}//End for-Loop
 
 	// save current LUT index into signals1,
 	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
 		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
 	}
-
 }
 
 ///** @brief generates a low frequency sine to be used for effects

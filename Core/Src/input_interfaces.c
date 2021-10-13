@@ -35,14 +35,13 @@ uint8_t II_Display_Voices(void) {
 
 	for(uint8_t ii_i=0; ii_i < II_MAX_VOICES; ii_i++) {
 
-		if (Display.Voices_ONOFF[ii_i] == true ) {
-			//			//printf("is true\r\n");
-			//create Signal
-			if (Display.Voices_Created[ii_i] == false){
-				NewSignal(&signals1, SIN, Display.Voices_Note[ii_i],Display.Voices_Octave[ii_i],ii_i);
-				//				ii_voice_IDs[ii_i] = signals1.ID[signals1.count];
+		if(Display.Voices_ONOFF[ii_i] == true ) {
+
+			if(Display.Voices_Created[ii_i] == false) {
+				NewSignal(&signals1, SIN, Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i],ii_i);
 				Display.Voices_Created[ii_i] = true;
 			}
+
 			switch (Display.Voice_Note_Sources[ii_i]) {
 			case EMG:
 				if (emg_peak == 1){
@@ -89,14 +88,14 @@ uint8_t II_Display_Voices(void) {
 				break;
 			}
 		}
-		//Delete signal with its ID
-		else if (Display.Voices_ONOFF[ii_i]==false && Display.Voices_Created[ii_i] == true) {
-			//get signal index
-			uint8_t signal_index = IDtoIndex(ii_voice_IDs[ii_i]);
-			//delete signal
-			DeleteSignal(&signals1, signal_index);
-			Display.Voices_Created[ii_i] = false;
-		}
+//		//Delete signal with its ID
+//		else if(Display.Voices_ONOFF[ii_i]==false && Display.Voices_Created[ii_i] == true) {
+//			//get signal index
+//			uint8_t signal_index = IDtoIndex(ii_voice_IDs[ii_i]);
+//			//delete signal
+//			DeleteSignal(&signals1, signal_index);
+//			Display.Voices_Created[ii_i] = false;
+//		}
 	}
 
 	if(Display.PlaySingleSample_ONOFF == true)
@@ -364,15 +363,15 @@ uint8_t II_Display_Effects(void){
 					sensorData.tilt_detected = TILT_NONE;
 				}
 				else if (sensorData.tilt_detected == TILT_BACK_S){
-							if (Display.Filter_Cutoff[Display.currentBand] > 50 ) {
-								printf("decrease cuttoff Rate DOUBLEEEE\r\n");
-								filter_step_counter[Display.currentBand]--;
-								filter_step_counter[Display.currentBand]--;
-								Display.Filter_Cutoff[Display.currentBand]=  exp(((float)filter_step_counter[Display.currentBand]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-								Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand]);
-							}
-							sensorData.tilt_detected = TILT_NONE;
-						}
+					if (Display.Filter_Cutoff[Display.currentBand] > 50 ) {
+						printf("decrease cuttoff Rate DOUBLEEEE\r\n");
+						filter_step_counter[Display.currentBand]--;
+						filter_step_counter[Display.currentBand]--;
+						Display.Filter_Cutoff[Display.currentBand]=  exp(((float)filter_step_counter[Display.currentBand]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+						Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand]);
+					}
+					sensorData.tilt_detected = TILT_NONE;
+				}
 				else if (sensorData.tilt_detected == TILT_FRONT){
 					if (Display.Filter_Cutoff[Display.currentBand] <  LUT_FMAX) {
 						printf("increase cuttoff Rate\r\n");
