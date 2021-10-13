@@ -576,8 +576,11 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		/*limiter function*/
 		//norm the signal to -1...1
 		//		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
-		if(signals->count > 0)
-			addValue = addValue/(signals->count - active_keyboard_notes + 1);	// If no +1: FUCKUP!!!!!!
+
+		// NORM: Volume by signal count
+		if(signals->count - active_keyboard_notes == 0) {}	// division by zero for addValue possible -> fuckup!
+		else
+			addValue = addValue/(signals->count - active_keyboard_notes);
 
 
 		//write into calculate vector
