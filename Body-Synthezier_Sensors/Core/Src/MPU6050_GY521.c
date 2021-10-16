@@ -396,7 +396,7 @@ void MPU6050_Display_Data(){
 //int16_t Az_mean;
 //Acc_z_mean = MPU6050_Calculate_Mean(Sensor_Data->Accl_Z);
 
-MPU6050_STATUS MPU6050_Detect_MovementHIGH_DOWN(){
+Movement_direction_t MPU6050_Detect_MovementHIGH_DOWN(){
 
 	MeanValue_x = 0;
 	MeanValue_z = 0;
@@ -408,13 +408,14 @@ MPU6050_STATUS MPU6050_Detect_MovementHIGH_DOWN(){
 	if(MoveDetected) {
 
 		BreakCounter++;
-	}
-	if(BreakCounter == Pause) {
 
-		BreakCounter = 0;
-		MoveDetected = false;
+		if(BreakCounter == Pause) {
+
+			BreakCounter = 0;
+			MoveDetected = false;
+		}
 	}
-	if(!MoveDetected) {
+	else if(!MoveDetected) {
 
 
 		for(int i = 0; i < BLOCKSIZE; i++) {
@@ -458,12 +459,14 @@ MPU6050_STATUS MPU6050_Detect_MovementHIGH_DOWN(){
 				MovementUP = true;
 				MoveDetected = true;
 				printf("UP: %i\r\n", Buffer_ProcessedData_z[i]);
+				return MOVEMENT_HIGH;
 			}
 			if(Buffer_ProcessedData_z[i] < -THRESHOLD_Z){
 
 				MovementDOWN = true;
 				MoveDetected = true;
 				printf("DOWN: %i\r\n", Buffer_ProcessedData_z[i]);
+				return MOVEMENT_DOWN;
 			}
 
 			if(MoveDetected) i = BLOCKSIZE - 1;
@@ -471,12 +474,13 @@ MPU6050_STATUS MPU6050_Detect_MovementHIGH_DOWN(){
 		}
 
 	}
-	return MPU6050_Status_OK;
+	return MOVEMENT_NONE;
+//	return MPU6050_Status_OK;
 	//} // END: Of CounterClause
 
 }
 
-MPU6050_STATUS MPU6050_Detect_MovementRIGHT_LEFT(){
+Movement_direction_t MPU6050_Detect_MovementRIGHT_LEFT(){
 
 	MeanValue_x = 0;
 	MovementLEFT = false;
@@ -529,13 +533,17 @@ MPU6050_STATUS MPU6050_Detect_MovementRIGHT_LEFT(){
 				MovementLEFT = true;
 				MoveDetected = true;
 				printf("LEFT: %i\r\n", Buffer_ProcessedData_x[i]);
+				return MOVEMENT_LEFT;
+
 			}
-			if(Buffer_ProcessedData_x[i] < -THRESHOLD_X){
+			else if(Buffer_ProcessedData_x[i] < -THRESHOLD_X){
 
 				MovementRIGHT = true;
 				MoveDetected = true;
 				printf("RIGHT: %i\r\n", Buffer_ProcessedData_x[i]);
+				return MOVEMENT_RIGHT;
 			}
+
 
 			if(MoveDetected) i = BLOCKSIZE - 1;
 
@@ -548,8 +556,8 @@ MPU6050_STATUS MPU6050_Detect_MovementRIGHT_LEFT(){
 
 
 	// MISSING: Write into synchbuffer for sending to other uC
-
-	return MPU6050_Status_OK;
+	return MOVEMENT_NONE;
+	//return MPU6050_Status_OK;
 }
 
 
@@ -604,7 +612,7 @@ MPU6050_STATUS MPU6050_Detect_MovementRIGHT_LEFT(){
 //	}
 
 
-// END REGION ELOM PART
+// END REGION ELOMS PART
 
 /** DMP functions
  */

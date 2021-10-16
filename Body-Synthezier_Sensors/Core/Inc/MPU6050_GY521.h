@@ -294,6 +294,16 @@ typedef enum  tilt_direction_t{
 	TILT_BACK
 }tilt_direction_t;
 
+typedef enum  Movement_direction_t{
+
+	MOVEMENT_NONE  = 0x00,
+	MOVEMENT_HIGH = 0x01,
+	MOVEMENT_DOWN,
+	MOVEMENT_RIGHT,
+	MOVEMENT_LEFT
+}Movement_direction_t;
+
+
 /**Configuration ENUMS
  * END
  */
@@ -366,8 +376,8 @@ bool MovementDOWN;
 bool MovementLEFT;
 bool MovementRIGHT;
 
-MPU6050_STATUS MPU6050_Detect_MovementHIGH_DOWN();
-MPU6050_STATUS MPU6050_Detect_MovementRIGHT_LEFT();
+Movement_direction_t MPU6050_Detect_MovementHIGH_DOWN();
+Movement_direction_t MPU6050_Detect_MovementRIGHT_LEFT();
 
 
 

@@ -131,6 +131,9 @@ int main(void)
 
 	while (1){
 
+		//SyncBuffer.tilt_detecded  = MPU6050_detectTilt();
+		SyncBuffer.movement_detected = 	MPU6050_Detect_MovementRIGHT_LEFT();
+
 		if(SyncBuffer.gyro_initilized == true){
 
 			//						MPU6050_Read_Accl();
@@ -141,7 +144,7 @@ int main(void)
 			//						Acc_z = Sensor_Data->Accl_Z;
 			//						printf("Ax: %i\r\n", Acc_x);
 
-//			MPU6050_Detect_MovementHIGH_DOWN();
+			MPU6050_Detect_MovementHIGH_DOWN();
 
 			MPU6050_Detect_MovementRIGHT_LEFT();
 
@@ -150,6 +153,8 @@ int main(void)
 				HAL_Delay(800);
 				MoveDetected = false;
 			}
+
+			SyncBuffer.movement_detected = 	MPU6050_Detect_MovementRIGHT_LEFT();
 
 			//		SyncBuffer.tilt_detecded  = MPU6050_detectTilt();
 		}
