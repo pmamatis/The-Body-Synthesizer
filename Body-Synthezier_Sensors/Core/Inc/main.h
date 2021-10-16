@@ -33,10 +33,10 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "MPU6050_GY521.h"
-
 #include <stdio.h>
 #include <string.h>
 #include "SPI_Connection.h"
+#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -68,23 +68,32 @@ void Error_Handler(void);
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
+#define LED_TILT_BACK_Pin GPIO_PIN_4
+#define LED_TILT_BACK_GPIO_Port GPIOC
+#define LED_STRONG_TILT_RIGHT_Pin GPIO_PIN_10
+#define LED_STRONG_TILT_RIGHT_GPIO_Port GPIOB
+#define LED_STRONG_TILT_BACK_Pin GPIO_PIN_13
+#define LED_STRONG_TILT_BACK_GPIO_Port GPIOB
+#define MPU6050_Power_Pin GPIO_PIN_9
+#define MPU6050_Power_GPIO_Port GPIOC
+#define LED_TILT_RIGHT_Pin GPIO_PIN_8
+#define LED_TILT_RIGHT_GPIO_Port GPIOA
+#define LED_STRONG_TILT_FRONT_Pin GPIO_PIN_10
+#define LED_STRONG_TILT_FRONT_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
-#define SWO_Pin GPIO_PIN_3
-#define SWO_GPIO_Port GPIOB
+#define LED_TILT_FRONT_Pin GPIO_PIN_3
+#define LED_TILT_FRONT_GPIO_Port GPIOB
+#define LED_TILT_LEFT_Pin GPIO_PIN_4
+#define LED_TILT_LEFT_GPIO_Port GPIOB
+#define LED_STRONG_TILT_LEFT_Pin GPIO_PIN_5
+#define LED_STRONG_TILT_LEFT_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 uint8_t pTxData[BUFFERSIZE];
 uint8_t pRxData[BUFFERSIZE];
 sensor_data_t SyncBuffer;
-uint16_t Acc_x;
-uint16_t Acc_y;
-uint16_t Acc_z;
-
-uint16_t Gy_x;
-uint16_t Gy_y;
-uint16_t Gy_z;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

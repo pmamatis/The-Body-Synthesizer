@@ -203,8 +203,6 @@ typedef struct {
 	int16_t	Ax_mean;
 	int16_t	Ay_mean;
 	int16_t	Az_mean;
-	int16_t Threshold_z;
-	int16_t Threshold_x;
 	float	Accl_mult;
 	float Ax_deg;
 	float Ay_deg;
@@ -291,9 +289,14 @@ typedef enum  tilt_direction_t{
 	TILT_RIGHT = 0x01,
 	TILT_LEFT,
 	TILT_FRONT,
-	TILT_BACK
+	TILT_BACK,
+	TILT_RIGHT_S, //Fast
+	TILT_LEFT_S,
+	TILT_FRONT_S,
+	TILT_BACK_S
 }tilt_direction_t;
 
+//Movement direction enum
 typedef enum  Movement_direction_t{
 
 	MOVEMENT_NONE  = 0x00,
@@ -302,6 +305,7 @@ typedef enum  Movement_direction_t{
 	MOVEMENT_RIGHT,
 	MOVEMENT_LEFT
 }Movement_direction_t;
+
 
 
 /**Configuration ENUMS
@@ -315,50 +319,23 @@ MPU6050_Data* Sensor_Data;
 I2C_HandleTypeDef* MPU6050_hi2c;
 
 
-/**
- * Functions
- */
-MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* DataStruct, MPU6050_ACCL_RES accl_resolution, MPU6050_GYRO_RES gyro_resolution, uint8_t samplerate);
-MPU6050_STATUS MPU6050_Read_Accl();
-MPU6050_STATUS MPU6050_Read_Gyro();
-MPU6050_STATUS MPU6050_Read_Sensor();
-MPU6050_STATUS MPU6050_Calibrate();
-MPU6050_STATUS MPU6050_Calculate_Mean( );
-void getGyroRoll();
-void getAcclRoll();
-uint8_t MPU6050_GetIntReg(void);
-void MPU6050_GetFiFoData(uint8_t buffer[1024]);
-uint16_t MPU6050_Read_FIFOcount(void);
-void MPU6050_Display_FIFO();
-void MPU6050_FIFO_RESET();
-uint8_t MPU6050_GetDMPIntReg(void);
-void MPU6050_Display_Data();
-float getAbsMax(float a, float b , float c);
-uint8_t MPU6050_detectTilt();
 
 /**
  * Eloms Part
  */
+
 #define RAWBLOCKSIZE 6
 #define BLOCKSIZE 2000
 
+//Movement Threshholds
 #define THRESHOLD_X 700
 #define THRESHOLD_Y 5000
 #define THRESHOLD_Z 900
 
-
-
-uint8_t  Buffer_RawData[RAWBLOCKSIZE];
+uint8_t Buffer_RawData[RAWBLOCKSIZE];
 int16_t Buffer_ProcessedData_x[BLOCKSIZE];
 int16_t Buffer_ProcessedData_y[BLOCKSIZE];
 int16_t Buffer_ProcessedData_z[BLOCKSIZE];
-
-
-
-//int16_t MinValue;
-//int16_t MinValueIndex;
-//int16_t MaxValue;
-//int16_t MaxValueIndex;
 
 int16_t debug_x;
 int16_t debug_y;
@@ -376,9 +353,30 @@ bool MovementDOWN;
 bool MovementLEFT;
 bool MovementRIGHT;
 
+
+
+
+
+/**
+ * Functions
+ */
+MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* DataStruct, MPU6050_ACCL_RES accl_resolution, MPU6050_GYRO_RES gyro_resolution, uint8_t samplerate);
+MPU6050_STATUS MPU6050_Read_Accl();
+MPU6050_STATUS MPU6050_Read_Gyro();
+MPU6050_STATUS MPU6050_Read_Sensor();
+MPU6050_STATUS MPU6050_Calibrate();
+MPU6050_STATUS MPU6050_Calculate_Mean( );
 Movement_direction_t MPU6050_Detect_MovementHIGH_DOWN();
 Movement_direction_t MPU6050_Detect_MovementRIGHT_LEFT();
-
-
-
+void getGyroRoll();
+void getAcclRoll();
+uint8_t MPU6050_GetIntReg(void);
+void MPU6050_GetFiFoData(uint8_t buffer[1024]);
+uint16_t MPU6050_Read_FIFOcount(void);
+void MPU6050_Display_FIFO();
+void MPU6050_FIFO_RESET();
+uint8_t MPU6050_GetDMPIntReg(void);
+void MPU6050_Display_Data();
+float getAbsMax(float a, float b , float c);
+uint8_t MPU6050_detectTilt();
 #endif /* INC_MPU6050_GY521_H_ */

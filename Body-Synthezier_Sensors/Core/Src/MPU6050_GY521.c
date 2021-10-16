@@ -9,13 +9,13 @@ MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* Sensor_Data
 	uint8_t Data=0x00;
 	MPU6050_hi2c = __hi2c;
 	Sensor_Data = Sensor_Data_pointer;
-	printf("MPU6050 init beginn\r\n");
+	printf("MPU6050 init begin\r\n");
 	//Check if device is ready: Let LED blink 3 times if yes
 	if((HAL_I2C_IsDeviceReady(MPU6050_hi2c, MPU6050_ADDR, 2, 20)) != HAL_OK){
 		printf("MPU 6050 No Connection\r\n");
 		return MPU6050_Status_Notconnected;
 
-	}
+    }
 
 
 
@@ -44,19 +44,19 @@ MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* Sensor_Data
 	}
 	//for normalization of Gyroscope range
 	switch (gyro_resolution){
-	case MPU6050_GYRO_250deg:
-		Sensor_Data->Gyro_mult = MPU6050_GYRO_SENS_250;
-		break;
-	case MPU6050_GYRO_500deg:
-		Sensor_Data->Gyro_mult = MPU6050_GYRO_SENS_500;
-		break;
-	case MPU6050_GYRO_1000deg:
-		Sensor_Data->Gyro_mult = MPU6050_GYRO_SENS_1000;
-		break;
-	case MPU6050_GYRO_2000deg:
-		Sensor_Data->Gyro_mult = MPU6050_GYRO_SENS_2000;
-		break;
-	}
+		case MPU6050_GYRO_250deg:
+			Sensor_Data->Gyro_mult = MPU6050_GYRO_SENS_250;
+			break;
+		case MPU6050_GYRO_500deg:
+			Sensor_Data->Gyro_mult = MPU6050_GYRO_SENS_500;
+			break;
+		case MPU6050_GYRO_1000deg:
+			Sensor_Data->Gyro_mult = MPU6050_GYRO_SENS_1000;
+			break;
+		case MPU6050_GYRO_2000deg:
+			Sensor_Data->Gyro_mult = MPU6050_GYRO_SENS_2000;
+			break;
+		}
 
 
 	// Config range/resolution of Accelerometer
@@ -68,16 +68,16 @@ MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* Sensor_Data
 	switch(accl_resolution){
 	case MPU6050_ACCL_2G:
 		Sensor_Data->Accl_mult = MPU6050_ACCL_SENS_2;
-		break;
+			break;
 	case MPU6050_ACCL_4G:
 		Sensor_Data->Accl_mult = MPU6050_ACCL_SENS_4;
-		break;
+			break;
 	case MPU6050_ACCL_8G:
 		Sensor_Data->Accl_mult = MPU6050_ACCL_SENS_8;
-		break;
+			break;
 	case MPU6050_ACCL_16G:
 		Sensor_Data->Accl_mult = MPU6050_ACCL_SENS_16;
-		break;
+			break;
 	}
 
 
@@ -97,14 +97,14 @@ MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* Sensor_Data
 	Sensor_Data->Ay_offset = 0;
 	Sensor_Data->Az_offset = 0;
 
-	//	//Set User Controll, Enable FIFO
+//	//Set User Controll, Enable FIFO
 	Data = MPU6050_USR_CRTL_FIFO_EN;
 	if(HAL_I2C_Mem_Write(MPU6050_hi2c, MPU6050_ADDR, MPU6050_USR_CRTL_REG, 1, &Data, 1, 1000) != HAL_OK){
 		return MPU6050_Status_Error;
 	}
 	HAL_I2C_Mem_Read(MPU6050_hi2c, MPU6050_ADDR, MPU6050_USR_CRTL_REG, 1, &Data, 1, 1000);
-	printf("MPU6050_USR_CRTL_REG: %i\r\n",Data);
-	// Interruppt Enable
+//	printf("MPU6050_USR_CRTL_REG: %i\r\n",Data);
+// Interruppt Enable
 	Data = MPU6050_INT_EN_DATA_RDY;
 	if(HAL_I2C_Mem_Write(MPU6050_hi2c, MPU6050_ADDR,MPU6050_RA_INT_ENABLE, 1, &Data, 1, 1000) != HAL_OK){
 		return MPU6050_Status_Error;
@@ -112,23 +112,13 @@ MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* Sensor_Data
 
 
 	//determines which sensor measurements are loaded into the FIFO buffer
-	//	Data = MPU6050_FIFO_EN_ACCEL | MPU6050_FIFO_EN_ZG | MPU6050_FIFO_EN_YG | MPU6050_FIFO_EN_XG;
+//	Data = MPU6050_FIFO_EN_ACCEL | MPU6050_FIFO_EN_ZG | MPU6050_FIFO_EN_YG | MPU6050_FIFO_EN_XG;
 	Data = 0x00;
 	if(HAL_I2C_Mem_Write(MPU6050_hi2c, MPU6050_ADDR, MPU6050_FIFO_DATA_REG, 1, &Data, 1, 1000) != HAL_OK){
 		return MPU6050_Status_Error;
 	}
 	printf("MPU6050 init end\r\n");
 	return MPU6050_Status_OK;
-
-	// INIT: MovementDetection Up / Down
-	Pause = 12800000;						// In relation to SR (0.8s at 16 MHz)
-	BreakCounter = 0;						// Counted up to SR
-	//	MeanValue = 0;
-
-	MoveDetected = false;
-	MovementUP = false;
-	MovementDOWN = false;
-
 }
 
 
@@ -178,23 +168,24 @@ MPU6050_STATUS MPU6050_Read_Sensor(){
 
 	uint8_t Rec_Data[14];
 
-	// Read 6Bytes (2byte per axis) starting from ACCL_XOUT_H register
-	if (HAL_I2C_Mem_Read (MPU6050_hi2c, MPU6050_ADDR, MPU6050_ACCL_XOUT_H_REG, 1, Rec_Data, 14, 1000) != HAL_OK ){
-		return MPU6050_Status_Error;
-	}
-	// Get time of new Measurement and safe time of last measurement
-	Sensor_Data->Gyro_time	=	DWT->CYCCNT;
-	DWT->CYCCNT				=	0;
-	// Data for all axis comes as 6Byte array, in the following it is filled into one 16-bit array for each axis
-	Sensor_Data->Accl_X = (int16_t)(Rec_Data[0]<<8 | Rec_Data[1]) - Sensor_Data->Ax_offset;
-	Sensor_Data->Accl_Y = (int16_t)(Rec_Data[2]<<8 | Rec_Data[3]) - Sensor_Data->Ay_offset;
-	Sensor_Data->Accl_Z = (int16_t)(Rec_Data[4]<<8 | Rec_Data[5]) - Sensor_Data->Az_offset;
-	// Data for all axis comes as 6Byte array, in the following it is filled into one 16-bit array for each axis
-	Sensor_Data->Gyro_X = (int16_t)(Rec_Data[8]<<8 | Rec_Data[9]) - Sensor_Data->Gx_offset;
-	Sensor_Data->Gyro_Y = (int16_t)(Rec_Data[10]<<8 | Rec_Data[11]) - Sensor_Data->Gy_offset;
-	Sensor_Data->Gyro_Z = (int16_t)(Rec_Data[12]<<8 | Rec_Data[13]) - Sensor_Data->Gz_offset;
+		// Read 6Bytes (2byte per axis) starting from ACCL_XOUT_H register
+		if (HAL_I2C_Mem_Read (MPU6050_hi2c, MPU6050_ADDR, MPU6050_ACCL_XOUT_H_REG, 1, Rec_Data, 14, 1000) != HAL_OK ){
+			return MPU6050_Status_Error;
+			printf("READ ERROR\r\n");
+		}
+		// Get time of new Measurement and safe time of last measurement
+		Sensor_Data->Gyro_time	=	DWT->CYCCNT;
+		DWT->CYCCNT				=	0;
+		// Data for all axis comes as 6Byte array, in the following it is filled into one 16-bit array for each axis
+		Sensor_Data->Accl_X = (int16_t)(Rec_Data[0]<<8 | Rec_Data[1]) - Sensor_Data->Ax_offset;
+		Sensor_Data->Accl_Y = (int16_t)(Rec_Data[2]<<8 | Rec_Data[3]) - Sensor_Data->Ay_offset;
+		Sensor_Data->Accl_Z = (int16_t)(Rec_Data[4]<<8 | Rec_Data[5]) - Sensor_Data->Az_offset;
+		// Data for all axis comes as 6Byte array, in the following it is filled into one 16-bit array for each axis
+		Sensor_Data->Gyro_X = (int16_t)(Rec_Data[8]<<8 | Rec_Data[9]) - Sensor_Data->Gx_offset;
+		Sensor_Data->Gyro_Y = (int16_t)(Rec_Data[10]<<8 | Rec_Data[11]) - Sensor_Data->Gy_offset;
+		Sensor_Data->Gyro_Z = (int16_t)(Rec_Data[12]<<8 | Rec_Data[13]) - Sensor_Data->Gz_offset;
 
-	return MPU6050_Read_OK;
+		return MPU6050_Read_OK;
 }
 
 
@@ -211,8 +202,8 @@ MPU6050_STATUS MPU6050_Calculate_Mean(){
 	// First measurements have to be skipped
 	int n_skipping		=	100;
 	int n_measurements 	=	500;
-	//	int n_skipping		=	10;
-	//	int n_measurements 	=	100;
+//	int n_skipping		=	10;
+//	int n_measurements 	=	100;
 	for (int i=n_skipping; i < n_measurements + n_skipping; i++){
 		// Read Data
 
@@ -273,30 +264,30 @@ MPU6050_STATUS MPU6050_Calibrate(){
 	// Indicator for correct calibration of all axis
 	int calibrated = 0;
 	while(calibrated <= 6){
-		printf("%i\n\r",calibrated );
-		// Calculate means of sensors
+printf("%i\n\r",calibrated );
+	// Calculate means of sensors
 		if (MPU6050_Calculate_Mean(Sensor_Data)!= MPU6050_Read_OK){
 			return MPU6050_Status_Error;
 		}
-		// Validate or Update Calibration
-		// Gyroscope X Y Z
-		if (abs(Sensor_Data -> Gx_mean)<gyro_tolerance) calibrated++;
-		else Sensor_Data -> Gx_offset		=	(Sensor_Data -> Gx_offset)	+	(Sensor_Data -> Gx_mean);
+	// Validate or Update Calibration
+	// Gyroscope X Y Z
+	if (abs(Sensor_Data -> Gx_mean)<gyro_tolerance) calibrated++;
+	else Sensor_Data -> Gx_offset		=	(Sensor_Data -> Gx_offset)	+	(Sensor_Data -> Gx_mean);
 
-		if (abs(Sensor_Data -> Gy_mean)<gyro_tolerance) calibrated++;
-		else Sensor_Data -> Gy_offset		=	(Sensor_Data -> Gy_offset)	+	(Sensor_Data -> Gy_mean);
+	if (abs(Sensor_Data -> Gy_mean)<gyro_tolerance) calibrated++;
+	else Sensor_Data -> Gy_offset		=	(Sensor_Data -> Gy_offset)	+	(Sensor_Data -> Gy_mean);
 
-		if (abs(Sensor_Data -> Gz_mean)<gyro_tolerance) calibrated++;
-		else Sensor_Data -> Gz_offset		=	(Sensor_Data -> Gz_offset)	+	(Sensor_Data -> Gz_mean);
-		// Accelerometer X Y Z
-		if (abs(Sensor_Data -> Ax_mean)<accl_tolerance) calibrated++;
-		else Sensor_Data -> Ax_offset		=	(Sensor_Data -> Ax_offset)	+	(Sensor_Data -> Ax_mean);
+	if (abs(Sensor_Data -> Gz_mean)<gyro_tolerance) calibrated++;
+	else Sensor_Data -> Gz_offset		=	(Sensor_Data -> Gz_offset)	+	(Sensor_Data -> Gz_mean);
+	// Accelerometer X Y Z
+	if (abs(Sensor_Data -> Ax_mean)<accl_tolerance) calibrated++;
+	else Sensor_Data -> Ax_offset		=	(Sensor_Data -> Ax_offset)	+	(Sensor_Data -> Ax_mean);
 
-		if (abs(Sensor_Data -> Ay_mean)<accl_tolerance) calibrated++;
-		else Sensor_Data -> Ay_offset		=	(Sensor_Data -> Ay_offset)	+	(Sensor_Data -> Ay_mean);
+	if (abs(Sensor_Data -> Ay_mean)<accl_tolerance) calibrated++;
+	else Sensor_Data -> Ay_offset		=	(Sensor_Data -> Ay_offset)	+	(Sensor_Data -> Ay_mean);
 
-		if ((abs((Sensor_Data -> Az_mean) - gravitation)) <accl_tolerance) calibrated++;
-		else Sensor_Data -> Az_offset		=	(Sensor_Data -> Az_offset)	+	((Sensor_Data -> Az_mean) - gravitation);
+	if ((abs((Sensor_Data -> Az_mean) - gravitation)) <accl_tolerance) calibrated++;
+	else Sensor_Data -> Az_offset		=	(Sensor_Data -> Az_offset)	+	((Sensor_Data -> Az_mean) - gravitation);
 
 	}
 	return MPU6050_Read_OK;
@@ -374,18 +365,22 @@ void getAngleRoll(){
 
 
 void MPU6050_Display_Data(){
-	//	uint8_t buffer[1024];
+//	uint8_t buffer[1024];
 	MPU6050_Read_Sensor(Sensor_Data);
-	//	printf("Gx: %i\r\n", Sensor_Data->Gyro_X);//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));
-	//	printf("Gy: %i\r\n", Sensor_Data->Gyro_Y);
-	//	printf("Gz: %i\r\n", Sensor_Data->Gyro_Z);
+	printf("Gx: %i\r\n", Sensor_Data->Gyro_X);//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));
+	printf("Gy: %i\r\n", Sensor_Data->Gyro_Y);
+	printf("Gz: %i\r\n", Sensor_Data->Gyro_Z);
 	printf("Ax: %i\r\n", Sensor_Data->Accl_X);
-	//	printf("Ay: %i\r\n", Sensor_Data->Accl_Y);
-	//	printf("Az: %i\r\n", Sensor_Data->Accl_Z);
+	printf("Ay: %i\r\n", Sensor_Data->Accl_Y);
+	printf("Az: %i\r\n", Sensor_Data->Accl_Z);
 
-	//	printf("Gx: %i		**Gy: %i		**Gz: %i\r\n",Sensor_Data->Gyro_X ,Sensor_Data->Gyro_Y ,Sensor_Data->Gyro_Z);
-	//	printf("Ax: %i		**Ay: %i		**Az: %i\r\n", Sensor_Data->Accl_X,Sensor_Data->Accl_Y, Sensor_Data->Accl_Z);
+//	printf("Gx: %i		**Gy: %i		**Gz: %i\r\n",Sensor_Data->Gyro_X ,Sensor_Data->Gyro_Y ,Sensor_Data->Gyro_Z);
+//	printf("Ax: %i		**Ay: %i		**Az: %i\r\n", Sensor_Data->Accl_X,Sensor_Data->Accl_Y, Sensor_Data->Accl_Z);
 }
+
+
+
+
 
 
 // REGION ELOM PART
@@ -561,58 +556,12 @@ Movement_direction_t MPU6050_Detect_MovementRIGHT_LEFT(){
 }
 
 
-//void MPUDetect_HighMovement(){
-//	MPU6050_Read_Sensor(Sensor_Data);
-//	//	if (Sensor_Data->Accl_Z - Az_mean > Threshold){
-//	//		printf("HighMovement: %i\r\n");
-//
-//	//	}
-//
-//	int i;
-//
-//	for(i=0; i<1000; i++) {
-//		Acc_z_mean;
-//	}
-//
-//	for(i=0; i<1000; i++) {
-//		if (Threshold - Acc_z_mean < 1000){
-//			return printf("HighMovement: %i\r\n");
-//		}
-//	}
-
-//
-//
-//}
-//
-//void MPUDetect_LowMovement(){
-//	MPU6050_Read_Sensor(Sensor_Data);
-//	if (Sensor_Data->Accl_Z - Az_mean < Threshold  ){
-//		printf("LowMovement: %i\r\n");
-//
-//	}
-//}
-
-//void MPUDetect_LeftMovement(){
-//	MPU6050_Read_Sensor(Sensor_Data);
-//		if (Sensor_Data->Accl_X - Ax_mean > Threshold_x){
-//			printf("LeftMovement: %i\r\n");
-//
-//		}
-//
-//	int i;
-//
-//	for(i=0; i<1000; i++) {
-//		Acc_z_mean;
-//	}
-//
-//	for(i=0; i<1000; i++) {
-//		if (Threshold_x - Acc_x_mean < 1000){
-//			return printf("LeftMovement: %i\r\n");
-//		}
-//	}
-
 
 // END REGION ELOMS PART
+
+
+
+
 
 /** DMP functions
  */
@@ -646,7 +595,7 @@ void MPU6050_GetFiFoData(uint8_t buffer[1024]){
 	if ((MPU6050_GetIntReg() & 0x01) == MPU6050_INT_DATA_RDY){
 		uint16_t count =  MPU6050_Read_FIFOcount();
 		// for (int fifo_counter  = 0; fifo_counter < count; fifo_counter++){
-		HAL_I2C_Mem_Read(MPU6050_hi2c, MPU6050_ADDR, MPU6050_FIFO_DATA_REG, 1024, buffer, 1,100);
+			HAL_I2C_Mem_Read(MPU6050_hi2c, MPU6050_ADDR, MPU6050_FIFO_DATA_REG, 1024, buffer, 1,100);
 		// }
 	}
 }
@@ -664,13 +613,13 @@ void MPU6050_FIFO_RESET(){
 void MPU6050_Display_Data_DMP(){
 	uint8_t buffer[1024];
 	MPU6050_GetFiFoData(buffer);
-	//	printf("w: %i\r\n", buffer[0]);//+(buffer[1]<<8)+(buffer[2]<<16)+(buffer[3]<<24));
-	//	printf("Gx: %i\r\n", buffer[4]);//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));
-	//	printf("Gy: %i\r\n", buffer[8]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));
-	//	printf("Gz: %i\r\n", buffer[12]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));
-	//	printf("Ax: %i\r\n", buffer[4]);//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));
-	//	printf("Ay: %i\r\n", buffer[8]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));
-	//	printf("Az: %i\r\n", buffer[12]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));
+//	printf("w: %i\r\n", buffer[0]);//+(buffer[1]<<8)+(buffer[2]<<16)+(buffer[3]<<24));
+//	printf("Gx: %i\r\n", buffer[4]);//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));
+//	printf("Gy: %i\r\n", buffer[8]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));
+//	printf("Gz: %i\r\n", buffer[12]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));
+//	printf("Ax: %i\r\n", buffer[4]);//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));
+//	printf("Ay: %i\r\n", buffer[8]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));
+//	printf("Az: %i\r\n", buffer[12]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));
 	printf("Gx: %i ** Gy: %i ** Gz: %i\r\n",buffer[4] ,buffer[8], buffer[12]);
 	printf("Az: %i ** Ay: %i ** Az: %i\r\n", buffer[4],buffer[8],buffer[12]);
 
@@ -698,41 +647,79 @@ void MPU6050_Display_Data_DMP(){
 tilt_direction_t MPU6050_detectTilt(){
 	//tilt Thresholds, right, left , front
 	int16_t tilt_TH_X_r,tilt_TH_X_l,  tilt_TH_Y, tilt_TH_Y_f,tilt_TH_Y_b, tilt_TH_Z;
-	tilt_TH_X_r = -2000;
-	tilt_TH_X_l = 2000;
+	int16_t tilt_TH_X_r_s, tilt_TH_X_l_s,  tilt_TH_Y_f_s, tilt_TH_Y_b_s;
+	//slow tilt
+	tilt_TH_X_r = -1500;
+	tilt_TH_X_l = 1500;
 	tilt_TH_Y   = 1500;
-	tilt_TH_Y_f = -2500;
-	tilt_TH_Y_b = 2500;
+	tilt_TH_Y_f = -1500;
+	tilt_TH_Y_b = 1500;
 	tilt_TH_Z   = 3800;
 	float angle_TH = 25.0;
+	//strong tilt
+	tilt_TH_X_r_s = -2500;
+	tilt_TH_X_l_s = 2500;
+	tilt_TH_Y_f_s = -3000;
+	tilt_TH_Y_b_s = 3000;
 
 	getAngleRoll(Sensor_Data);
 	float alpha = sqrtf(Sensor_Data->X_deg*Sensor_Data->X_deg + Sensor_Data->Y_deg* Sensor_Data->Y_deg);
+	//detect tilt in any diretion
 	if ((alpha > angle_TH) &&  (abs(Sensor_Data->Accl_Z) < tilt_TH_Z)){
+		//speciify direction
 		if (abs(Sensor_Data->Accl_Y) < tilt_TH_Y){
+			//tilt rigth when Accl_X is negative
 			if (Sensor_Data->Accl_X < tilt_TH_X_r){
-				printf("tilt right \r\n");
-				return TILT_RIGHT;
+				//
+				if (Sensor_Data->Accl_X < tilt_TH_X_r_s){
+					//printf("tilt strong right \r\n");
+					return TILT_RIGHT_S;
+				}
+				else {
+					//printf("tilt right \r\n");
+					return TILT_RIGHT;
+				}
+
 			}
+			//tilt left when Accl_X is positiv
 			else if ((Sensor_Data->Accl_X > tilt_TH_X_l) && abs(Sensor_Data->Accl_Y)){
-				printf("tilt left\r\n");
-				return TILT_LEFT;
+
+				if (Sensor_Data->Accl_X > tilt_TH_X_l_s){
+					//printf("tilt strong left\r\n");
+					return TILT_LEFT_S;
+				}
+				else {
+					//printf("tilt left\r\n");
+					return TILT_LEFT;
+				}
 			}
 		}
 		else if (Sensor_Data->Accl_Y < tilt_TH_Y_f){
-			printf("tilt front\r\n");
-			return TILT_FRONT;
+			if (Sensor_Data->Accl_Y < tilt_TH_Y_f_s){
+				//printf("tilt strong front\r\n");
+				return TILT_FRONT_S;
+			}
+			else{
+				//printf("tilt front\r\n");
+				return TILT_FRONT;
+			}
+
 		}
 		else if (Sensor_Data->Accl_Y > tilt_TH_Y_b){
-			printf("tilt back\r\n");
-			return TILT_BACK;
+			if (Sensor_Data->Accl_Y > tilt_TH_Y_b_s){
+				//printf("tilt strong back\r\n");
+				return TILT_BACK_S;
+			}
+			else {
+				//printf("tilt back\r\n");
+				return TILT_BACK;
+			}
+
 		}
 	}
 	return TILT_NONE;
 }
-
-
-//Get maximum
+	//Get maximum
 //	if(maxArray[i] <= maxArray[1]){
 //		i = 1;
 //	}

@@ -69,297 +69,387 @@ static void MX_I2C1_Init(void);
 /* USER CODE END 0 */
 
 /**
- * @brief  The application entry point.
- * @retval int
- */
+  * @brief  The application entry point.
+  * @retval int
+  */
 int main(void)
 {
-	/* USER CODE BEGIN 1 */
+  /* USER CODE BEGIN 1 */
 
-	/* USER CODE END 1 */
+  /* USER CODE END 1 */
 
-	/* MCU Configuration--------------------------------------------------------*/
+  /* MCU Configuration--------------------------------------------------------*/
 
-	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
 
-	/* USER CODE BEGIN Init */
+  /* USER CODE BEGIN Init */
 
-	/* USER CODE END Init */
+  /* USER CODE END Init */
 
-	/* Configure the system clock */
-	SystemClock_Config();
+  /* Configure the system clock */
+  SystemClock_Config();
 
-	/* USER CODE BEGIN SysInit */
+  /* USER CODE BEGIN SysInit */
 
-	/* USER CODE END SysInit */
+  /* USER CODE END SysInit */
 
-	/* Initialize all configured peripherals */
-	MX_GPIO_Init();
-	MX_DMA_Init();
-	MX_SPI1_Init();
-	MX_USART2_UART_Init();
-	MX_I2C1_Init();
-	/* USER CODE BEGIN 2 */
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_SPI1_Init();
+  MX_USART2_UART_Init();
+  MX_I2C1_Init();
+  /* USER CODE BEGIN 2 */
+	printf("***Bodysythesizer Sensor Board***\r\n");
+	uint8_t initError_counter = 0;
+	bool led_off = true;
+
 	for (int i =0;i<BUFFERSIZE;i++){
 		pTxData[i] = 0;
 		pRxData[i] = 0;
 	}
+	//Power up Gyro
+	HAL_GPIO_WritePin(MPU6050_Power_GPIO_Port, MPU6050_Power_Pin,SET );
+	HAL_Delay(10);
 
 	//Gyros Init
 	MPU6050_Data gyro_data;
-	MPU6050_STATUS gyro_status = MPU6050_init(&hi2c1, &gyro_data, MPU6050_ACCL_16G, MPU6050_GYRO_2000deg, MPU6050_SampleRate_2KHz);
-	if (gyro_status != MPU6050_Status_OK){
+	//	 MPU6050_STATUS gyro_status;
+	while((initError_counter < 5) && MPU6050_init(&hi2c1, &gyro_data, MPU6050_ACCL_8G, MPU6050_GYRO_2000deg, MPU6050_SampleRate_2KHz != MPU6050_Status_OK)){
+		initError_counter++;
+		printf("MPU6050 Init Error\r\n");
+		if (initError_counter == 3){
+			printf("restart MPU6050\r\n");
+			HAL_GPIO_WritePin(MPU6050_Power_GPIO_Port, MPU6050_Power_Pin,RESET );
+			HAL_Delay(10);
+			HAL_GPIO_WritePin(MPU6050_Power_GPIO_Port, MPU6050_Power_Pin,SET );
+			HAL_Delay(10);
+		}
+	}
+	if (initError_counter < 5){
+		printf("MPU6050 Init complete\r\n");
+		if ( MPU6050_Calibrate(&gyro_data) == MPU6050_Read_OK){
+			printf("MPU6050 calibrated\r\n");
+			SyncBuffer.gyro_initilized =true;
+		}
+		else{
+			printf("MPU6050 calibration failed\r\n");
+			SyncBuffer.gyro_initilized = false;
+		}
+	}
+	else {
 		SyncBuffer.gyro_initilized = false;
 	}
-	if ( MPU6050_Calibrate(&gyro_data) == MPU6050_Read_OK){
-		printf("MPU6050 calibrated\r\n");
-		SyncBuffer.gyro_initilized =true;
-	}
 
-	else{
-		SyncBuffer.gyro_initilized = false;
-		printf("MPU6050 Error\r\n");
-	}
 
-	/* USER CODE END 2 */
 
-	/* Infinite loop */
-	/* USER CODE BEGIN WHILE */
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+
+
 	HAL_SPI_TransmitReceive_DMA(&hspi1, pTxData, pRxData, BUFFERSIZE);
-
-
-	while (1){
-
-		//SyncBuffer.tilt_detecded  = MPU6050_detectTilt();
-		SyncBuffer.movement_detected = 	MPU6050_Detect_MovementRIGHT_LEFT();
-
+	while (1)
+	{
 		if(SyncBuffer.gyro_initilized == true){
+			//			MPU6050_Display_Data();
+			SyncBuffer.tilt_detecded  = MPU6050_detectTilt();
+			SyncBuffer.UD_detecded  = MPU6050_Detect_MovementHIGH_DOWN();
+			SyncBuffer.RL_detecded = MPU6050_Detect_MovementRIGHT_LEFT();
 
-			//						MPU6050_Read_Accl();
-			//						MPU6050_Display_Data();
-			//					    Acc_x = round(Sensor_Data->Accl_X / 1000);
-			//			Acc_y = Sensor_Data->Accl_Y;
 
-			//						Acc_z = Sensor_Data->Accl_Z;
-			//						printf("Ax: %i\r\n", Acc_x);
-
-			MPU6050_Detect_MovementHIGH_DOWN();
-
-			MPU6050_Detect_MovementRIGHT_LEFT();
-
-			if(MoveDetected){
-
-				HAL_Delay(800);
-				MoveDetected = false;
-			}
-
-			SyncBuffer.movement_detected = 	MPU6050_Detect_MovementRIGHT_LEFT();
-
-			//		SyncBuffer.tilt_detecded  = MPU6050_detectTilt();
 		}
 
-
+		//write into SPI buffer
 		__disable_irq();
 		memcpy((void*)pTxData,(void*)&SyncBuffer, BUFFERSIZE);
 		__enable_irq();
 
-		HAL_Delay(100);
-		/* USER CODE END WHILE */
 
-		/* USER CODE BEGIN 3 */
+		//switch LED
+		switch (SyncBuffer.tilt_detecded) {
+		case TILT_RIGHT:
+			HAL_GPIO_WritePin(LED_TILT_RIGHT_GPIO_Port, LED_TILT_RIGHT_Pin,SET );
+			led_off = false;
+			break;
+		case TILT_RIGHT_S:
+			HAL_GPIO_WritePin(LED_TILT_RIGHT_GPIO_Port, LED_TILT_RIGHT_Pin,SET );
+			HAL_GPIO_WritePin(LED_STRONG_TILT_RIGHT_GPIO_Port, LED_STRONG_TILT_RIGHT_Pin,SET );
+			led_off = false;
+			break;
+		case TILT_LEFT:
+			HAL_GPIO_WritePin(LED_TILT_LEFT_GPIO_Port, LED_TILT_LEFT_Pin,SET );
+			led_off = false;
+			break;
+		case TILT_LEFT_S:
+			HAL_GPIO_WritePin(LED_TILT_LEFT_GPIO_Port, LED_TILT_LEFT_Pin,SET );
+			HAL_GPIO_WritePin(LED_STRONG_TILT_LEFT_GPIO_Port, LED_STRONG_TILT_LEFT_Pin,SET );
+			led_off = false;
+			break;
+		case TILT_FRONT:
+			HAL_GPIO_WritePin(LED_TILT_FRONT_GPIO_Port, LED_TILT_FRONT_Pin,SET );
+			led_off = false;
+			break;
+		case TILT_FRONT_S:
+			HAL_GPIO_WritePin(LED_TILT_FRONT_GPIO_Port, LED_TILT_FRONT_Pin,SET );
+			HAL_GPIO_WritePin(LED_STRONG_TILT_FRONT_GPIO_Port, LED_STRONG_TILT_FRONT_Pin,SET );
+			led_off = false;
+			break;
+		case TILT_BACK:
+			HAL_GPIO_WritePin(LED_TILT_BACK_GPIO_Port, LED_TILT_BACK_Pin,SET );
+			led_off = false;
+			break;
+		case TILT_BACK_S:
+			HAL_GPIO_WritePin(LED_TILT_BACK_GPIO_Port, LED_TILT_BACK_Pin,SET );
+			HAL_GPIO_WritePin(LED_STRONG_TILT_BACK_GPIO_Port, LED_STRONG_TILT_BACK_Pin,SET );
+			led_off = false;
+			break;
+		default:
+			if (!led_off) {
+				HAL_GPIO_WritePin(LED_TILT_LEFT_GPIO_Port, LED_TILT_LEFT_Pin,RESET );
+				HAL_GPIO_WritePin(LED_STRONG_TILT_LEFT_GPIO_Port, LED_STRONG_TILT_LEFT_Pin,RESET );
+				HAL_GPIO_WritePin(LED_TILT_FRONT_GPIO_Port, LED_TILT_FRONT_Pin,RESET );
+				HAL_GPIO_WritePin(LED_STRONG_TILT_FRONT_GPIO_Port, LED_STRONG_TILT_FRONT_Pin,RESET );
+				HAL_GPIO_WritePin(LED_TILT_BACK_GPIO_Port, LED_TILT_BACK_Pin,RESET );
+				HAL_GPIO_WritePin(LED_STRONG_TILT_BACK_GPIO_Port, LED_STRONG_TILT_BACK_Pin,RESET );
+				HAL_GPIO_WritePin(LED_TILT_RIGHT_GPIO_Port, LED_TILT_RIGHT_Pin,RESET );
+				HAL_GPIO_WritePin(LED_STRONG_TILT_RIGHT_GPIO_Port, LED_STRONG_TILT_RIGHT_Pin,RESET );
+				led_off = true;
+			}
+
+			break;
+		}
+		//	HAL_Delay(10);
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
 	}
-	/* USER CODE END 3 */
+  /* USER CODE END 3 */
 }
 
 /**
- * @brief System Clock Configuration
- * @retval None
- */
+  * @brief System Clock Configuration
+  * @retval None
+  */
 void SystemClock_Config(void)
 {
-	RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-	RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-	/** Configure the main internal regulator output voltage
-	 */
-	__HAL_RCC_PWR_CLK_ENABLE();
-	__HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
-	/** Initializes the RCC Oscillators according to the specified parameters
-	 * in the RCC_OscInitTypeDef structure.
-	 */
-	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-	RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-	RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-	RCC_OscInitStruct.PLL.PLLM = 16;
-	RCC_OscInitStruct.PLL.PLLN = 336;
-	RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
-	RCC_OscInitStruct.PLL.PLLQ = 2;
-	RCC_OscInitStruct.PLL.PLLR = 2;
-	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	/** Initializes the CPU, AHB and APB buses clocks
-	 */
-	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-			|RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-	RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-	RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  /** Configure the main internal regulator output voltage
+  */
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 16;
+  RCC_OscInitStruct.PLL.PLLN = 336;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLQ = 2;
+  RCC_OscInitStruct.PLL.PLLR = 2;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-	{
-		Error_Handler();
-	}
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
 }
 
 /**
- * @brief I2C1 Initialization Function
- * @param None
- * @retval None
- */
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_I2C1_Init(void)
 {
 
-	/* USER CODE BEGIN I2C1_Init 0 */
+  /* USER CODE BEGIN I2C1_Init 0 */
 
-	/* USER CODE END I2C1_Init 0 */
+  /* USER CODE END I2C1_Init 0 */
 
-	/* USER CODE BEGIN I2C1_Init 1 */
+  /* USER CODE BEGIN I2C1_Init 1 */
 
-	/* USER CODE END I2C1_Init 1 */
-	hi2c1.Instance = I2C1;
-	hi2c1.Init.ClockSpeed = 400000;
-	hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-	hi2c1.Init.OwnAddress1 = 0;
-	hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-	hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-	hi2c1.Init.OwnAddress2 = 0;
-	hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-	hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-	if (HAL_I2C_Init(&hi2c1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	/* USER CODE BEGIN I2C1_Init 2 */
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 400000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
 
-	/* USER CODE END I2C1_Init 2 */
+  /* USER CODE END I2C1_Init 2 */
 
 }
 
 /**
- * @brief SPI1 Initialization Function
- * @param None
- * @retval None
- */
+  * @brief SPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_SPI1_Init(void)
 {
 
-	/* USER CODE BEGIN SPI1_Init 0 */
+  /* USER CODE BEGIN SPI1_Init 0 */
 
-	/* USER CODE END SPI1_Init 0 */
+  /* USER CODE END SPI1_Init 0 */
 
-	/* USER CODE BEGIN SPI1_Init 1 */
+  /* USER CODE BEGIN SPI1_Init 1 */
 
-	/* USER CODE END SPI1_Init 1 */
-	/* SPI1 parameter configuration*/
-	hspi1.Instance = SPI1;
-	hspi1.Init.Mode = SPI_MODE_SLAVE;
-	hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-	hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-	hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
-	hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-	hspi1.Init.NSS = SPI_NSS_SOFT;
-	hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
-	hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
-	hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-	hspi1.Init.CRCPolynomial = 10;
-	if (HAL_SPI_Init(&hspi1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	/* USER CODE BEGIN SPI1_Init 2 */
+  /* USER CODE END SPI1_Init 1 */
+  /* SPI1 parameter configuration*/
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_SLAVE;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi1.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI1_Init 2 */
 
-	/* USER CODE END SPI1_Init 2 */
+  /* USER CODE END SPI1_Init 2 */
 
 }
 
 /**
- * @brief USART2 Initialization Function
- * @param None
- * @retval None
- */
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_USART2_UART_Init(void)
 {
 
-	/* USER CODE BEGIN USART2_Init 0 */
+  /* USER CODE BEGIN USART2_Init 0 */
 
-	/* USER CODE END USART2_Init 0 */
+  /* USER CODE END USART2_Init 0 */
 
-	/* USER CODE BEGIN USART2_Init 1 */
+  /* USER CODE BEGIN USART2_Init 1 */
 
-	/* USER CODE END USART2_Init 1 */
-	huart2.Instance = USART2;
-	huart2.Init.BaudRate = 115200;
-	huart2.Init.WordLength = UART_WORDLENGTH_8B;
-	huart2.Init.StopBits = UART_STOPBITS_1;
-	huart2.Init.Parity = UART_PARITY_NONE;
-	huart2.Init.Mode = UART_MODE_TX_RX;
-	huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-	huart2.Init.OverSampling = UART_OVERSAMPLING_16;
-	if (HAL_UART_Init(&huart2) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	/* USER CODE BEGIN USART2_Init 2 */
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART2_Init 2 */
 
-	/* USER CODE END USART2_Init 2 */
+  /* USER CODE END USART2_Init 2 */
 
 }
 
 /**
- * Enable DMA controller clock
- */
+  * Enable DMA controller clock
+  */
 static void MX_DMA_Init(void)
 {
 
-	/* DMA controller clock enable */
-	__HAL_RCC_DMA2_CLK_ENABLE();
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA2_CLK_ENABLE();
 
-	/* DMA interrupt init */
-	/* DMA2_Stream0_IRQn interrupt configuration */
-	HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
-	HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
-	/* DMA2_Stream3_IRQn interrupt configuration */
-	HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
-	HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
+  /* DMA interrupt init */
+  /* DMA2_Stream0_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
+  /* DMA2_Stream3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
 
 }
 
 /**
- * @brief GPIO Initialization Function
- * @param None
- * @retval None
- */
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_GPIO_Init(void)
 {
-	GPIO_InitTypeDef GPIO_InitStruct = {0};
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
-	/* GPIO Ports Clock Enable */
-	__HAL_RCC_GPIOC_CLK_ENABLE();
-	__HAL_RCC_GPIOH_CLK_ENABLE();
-	__HAL_RCC_GPIOA_CLK_ENABLE();
-	__HAL_RCC_GPIOB_CLK_ENABLE();
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
-	/*Configure GPIO pin : B1_Pin */
-	GPIO_InitStruct.Pin = B1_Pin;
-	GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, LED_TILT_BACK_Pin|MPU6050_Power_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, LED_STRONG_TILT_RIGHT_Pin|LED_STRONG_TILT_BACK_Pin|LED_TILT_FRONT_Pin|LED_TILT_LEFT_Pin
+                          |LED_STRONG_TILT_LEFT_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, LED_TILT_RIGHT_Pin|LED_STRONG_TILT_FRONT_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : B1_Pin */
+  GPIO_InitStruct.Pin = B1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LED_TILT_BACK_Pin MPU6050_Power_Pin */
+  GPIO_InitStruct.Pin = LED_TILT_BACK_Pin|MPU6050_Power_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LED_STRONG_TILT_RIGHT_Pin LED_STRONG_TILT_BACK_Pin LED_TILT_FRONT_Pin LED_TILT_LEFT_Pin
+                           LED_STRONG_TILT_LEFT_Pin */
+  GPIO_InitStruct.Pin = LED_STRONG_TILT_RIGHT_Pin|LED_STRONG_TILT_BACK_Pin|LED_TILT_FRONT_Pin|LED_TILT_LEFT_Pin
+                          |LED_STRONG_TILT_LEFT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LED_TILT_RIGHT_Pin LED_STRONG_TILT_FRONT_Pin */
+  GPIO_InitStruct.Pin = LED_TILT_RIGHT_Pin|LED_STRONG_TILT_FRONT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
@@ -386,34 +476,34 @@ int _write(int file,char *ptr, int len)
 /* USER CODE END 4 */
 
 /**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
 void Error_Handler(void)
 {
-	/* USER CODE BEGIN Error_Handler_Debug */
+  /* USER CODE BEGIN Error_Handler_Debug */
 	/* User can add his own implementation to report the HAL error return state */
 	__disable_irq();
 	while (1)
 	{
 	}
-	/* USER CODE END Error_Handler_Debug */
+  /* USER CODE END Error_Handler_Debug */
 }
 
 #ifdef  USE_FULL_ASSERT
 /**
- * @brief  Reports the name of the source file and the source line number
- *         where the assert_param error has occurred.
- * @param  file: pointer to the source file name
- * @param  line: assert_param error line source number
- * @retval None
- */
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
 void assert_failed(uint8_t *file, uint32_t line)
 {
-	/* USER CODE BEGIN 6 */
+  /* USER CODE BEGIN 6 */
 	/* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-	/* USER CODE END 6 */
+  /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
 
