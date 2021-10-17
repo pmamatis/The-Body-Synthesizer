@@ -30,7 +30,8 @@ HAL_StatusTypeDef emg_start_read(){
 	SetTimerSettings(EMG_TIM, EMG_SR);
 	HAL_TIM_Base_Start(EMG_TIM);
 	printf("start emg\r\n");
-	return HAL_ADC_Start_DMA(EMG_ADC, emg_buffer, EMG_READ_LENGTH);
+//	return HAL_ADC_Start_DMA(EMG_ADC, emg_buffer, EMG_READ_LENGTH);
+	return HAL_ADC_Start_DMA(EMG_ADC, (uint32_t*)adctest, 1);
 }
 
 HAL_StatusTypeDef emg_stop_read(){

@@ -520,52 +520,49 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 					/* MUSS NOCHMAL ÜBERARBEITET WERDEN
 					 * während der Count schleife an der Count-Schleife rumzumachen wird irgendwann zu Bugs führen
-					 *
+					 */
 					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
 					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
-						if(Display.Voices_ONOFF[VOICES_ID] == true ) { //Sinnlos!!!!
-							if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
-								DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
-								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
-								Display.last_Voices_Note[VOICES_ID] = Display.Voices_Note[VOICES_ID];
-							}
-							//Wieso 2 mal?????
-							if(Display.last_Voices_Octave[VOICES_ID] != Display.Voices_Octave[VOICES_ID]) {
-								DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
-								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
-								Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
-							}
+						//						if(Display.Voices_ONOFF[VOICES_ID] == true ) { //Sinnlos!!!!
+						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
+							Display.last_Voices_Note[VOICES_ID] = Display.Voices_Note[VOICES_ID];
 						}
+						if(Display.last_Voices_Octave[VOICES_ID] != Display.Voices_Octave[VOICES_ID]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
+							Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
+						}
+						//						}
 					}
 					else if(signals->ID[j] == VOICES_ID+1) { //ID taucht nur auf wenn  voice auch ON ist...
-						if(Display.Voices_ONOFF[VOICES_ID+1] == true ) { //Sinnlos!!!!
-							if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
-								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
-								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
-								Display.last_Voices_Note[VOICES_ID+1] = Display.Voices_Note[VOICES_ID+1];
-							}
-							//Wieso 2 mal?????
-							if(Display.last_Voices_Octave[VOICES_ID+1] != Display.Voices_Octave[VOICES_ID+1]) {
-								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
-								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
-								Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
-							}
+						//						if(Display.Voices_ONOFF[VOICES_ID+1] == true ) { //Sinnlos!!!!
+						if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
+							Display.last_Voices_Note[VOICES_ID+1] = Display.Voices_Note[VOICES_ID+1];
 						}
+						if(Display.last_Voices_Octave[VOICES_ID+1] != Display.Voices_Octave[VOICES_ID+1]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
+							Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
+						}
+						//						}
 					}
 					else if(signals->ID[j] == VOICES_ID+2) {	//ID taucht nur auf wenn  voice auch ON ist...
-						if(Display.Voices_ONOFF[VOICES_ID+2] == true ) { //Sinnlos!!!!
-							if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
-								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
-								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
-								Display.last_Voices_Note[VOICES_ID+2] = Display.Voices_Note[VOICES_ID+2];
-							}
-							//Wieso 2 mal?????
-							if(Display.last_Voices_Octave[VOICES_ID+2] != Display.Voices_Octave[VOICES_ID+2]) {
-								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
-								NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
-								Display.last_Voices_Octave[VOICES_ID+2] = Display.Voices_Octave[VOICES_ID+2];
-							}
+						//						if(Display.Voices_ONOFF[VOICES_ID+2] == true ) { //Sinnlos!!!!
+						if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
+							Display.last_Voices_Note[VOICES_ID+2] = Display.Voices_Note[VOICES_ID+2];
 						}
+						if(Display.last_Voices_Octave[VOICES_ID+2] != Display.Voices_Octave[VOICES_ID+2]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
+							Display.last_Voices_Octave[VOICES_ID+2] = Display.Voices_Octave[VOICES_ID+2];
+						}
+						//						}
 					}
 					// delete signal if voice off
 					if(Display.Voices_ONOFF[VOICES_ID]==false && Display.Voices_Created[VOICES_ID] == true) {
@@ -580,7 +577,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 						DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
 						Display.Voices_Created[VOICES_ID+2] = false;
 					}
-				*/
 				}
 				break;
 
@@ -589,8 +585,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				addValue += (2*(float)rand()/sizeof(int))-1;
 				break;
 			}// Switch-Case
-
-
 
 		}// Signal counter for-loop
 
@@ -602,7 +596,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				DeleteSignal(signals,j );
 			}
 		}
-		*/
+		 */
 		/*limiter function*/
 		//norm the signal to -1...1
 		//		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;

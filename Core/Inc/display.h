@@ -205,6 +205,7 @@ struct display_variables {
 	uint16_t ADC3inputs[2];
 
 	// Joystick-variables
+	uint16_t JoystickMiddle;
 	uint16_t LowerLimit;
 	uint16_t UpperLimit;
 	uint16_t ADC_FullRange;

@@ -12,12 +12,15 @@
 
 /* defines */
 #define EMG_READ_LENGTH 10//8192/4
-#define EMG_SR 500 //Hz
+//#define EMG_SR 500 //Hz
+#define EMG_SR 20
 
 /* Variables */
 ADC_HandleTypeDef* EMG_ADC;
 TIM_HandleTypeDef* EMG_TIM;
 uint32_t emg_buffer[EMG_READ_LENGTH];
+
+uint32_t adctest;
 
 uint32_t detectionThreshold;
 uint8_t emg_peak;
