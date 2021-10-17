@@ -18,9 +18,10 @@ Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo) {
 	Tremolo->lfo = &lfo_tremolo;
 
 	Tremolo->lfo->lfo_index = 0;
-	Tremolo->lfo->lfo_frequency = 16;	// was 4
+	Tremolo->lfo->lfo_frequency = 0.125;
 	Tremolo->lfo->lfo_quarter = 0;
-	Tremolo->lfo->lfo_depth = 0.8;		// was 0.5
+	Tremolo->lfo->lfo_depth = 0.0;
+	Tremolo->lfo->lfo_done_flag = false;
 
 	Tremolo->tremolo_maximum_rate = 16;
 	Tremolo->tremolo_maximum_depth = 1.00;

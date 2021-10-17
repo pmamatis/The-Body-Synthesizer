@@ -82,6 +82,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->Tremolo_Depth = 0.0;
 	Display->Tremolo_EffectPosition = 0;
 	Display->Tremolo_EffectAdded = false;
+	Display->Tremolo_Rate_Index = Display->last_Tremolo_Rate_Index = 0;
 
 	for(int i=0; i<5; i++) {
 		Display->Filter_Cutoff[i] = 100.0;
@@ -530,6 +531,8 @@ void DISPLAY_SwitchPageLeft(void) {
 		Display.currentTremolo = 0;
 	else if(Display.currentDrumcomputer > 0)
 		Display.currentDrumcomputer = 0;
+	else if(Display.currentSequencer > 0)
+		Display.currentSequencer = 0;
 	else if(Display.currentWahWah > 0)
 		Display.currentWahWah = 0;
 
@@ -2580,16 +2583,16 @@ void p_Voices_overview(void) {
 
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 
-	if(Display.poti_moved == true) {
+	switch(Display.JoystickParameterPosition) {
+	case 1:
+		// Next Effect
+		Display.currentVoice = 0;
+		break;
+	case 2:
+		// Voice 1 ON/OFF
+		Display.currentVoice = 1;
 
-		switch(Display.JoystickParameterPosition) {
-		case 1:
-			// Next Effect
-			Display.currentVoice = 0;
-			break;
-		case 2:
-			// Voice 1 ON/OFF
-			Display.currentVoice = 1;
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
 
 			if(potVal < 50) {	// smaller than 50 %
@@ -2600,10 +2603,13 @@ void p_Voices_overview(void) {
 				Display.Voices_ONOFF[Display.currentVoice-1] = true;
 				strcpy(Display.value_str_voices_overview[1], "ON");
 			}
-			break;
-		case 3:
-			// Voice 2 ON/OFF
-			Display.currentVoice = 2;
+		}
+		break;
+	case 3:
+		// Voice 2 ON/OFF
+		Display.currentVoice = 2;
+
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
 
 			if(potVal < 50) {	// smaller than 50 %
@@ -2614,10 +2620,13 @@ void p_Voices_overview(void) {
 				Display.Voices_ONOFF[Display.currentVoice-1] = true;
 				strcpy(Display.value_str_voices_overview[2], "ON");
 			}
-			break;
-		case 4:
-			// Voice 3 ON/OFF
-			Display.currentVoice = 3;
+		}
+		break;
+	case 4:
+		// Voice 3 ON/OFF
+		Display.currentVoice = 3;
+
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH , UNCOLORED);
 
 			if(potVal < 50) {	// smaller than 50 %
@@ -2628,11 +2637,13 @@ void p_Voices_overview(void) {
 				Display.Voices_ONOFF[Display.currentVoice-1] = true;
 				strcpy(Display.value_str_voices_overview[3], "ON");
 			}
-			break;
+		}
+		break;
+	case 5:
+		// TODO: RESET OF ALL VOICES..
+		// Voices Reset ON/OFF
 
-		case 5:
-			// TODO: RESET OF ALL VOICES..
-			// Voices Reset ON/OFF
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
 
 			if(potVal < 50) {	// smaller than 50 %
@@ -2641,10 +2652,10 @@ void p_Voices_overview(void) {
 			else if(potVal >= 50) {	// greater than 50 %
 				strcpy(Display.value_str_voices_overview[4], "ON");
 			}
-			break;
-		default:
-			break;
 		}
+		break;
+	default:
+		break;
 	}
 
 	// print value row
@@ -2750,16 +2761,16 @@ void p_ADSR_overview(struct adsr* envelope) {
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 	char write_str[10];
 
-	if(Display.poti_moved == true) {
+	switch(Display.JoystickParameterPosition) {
+	case 1:
+		// Next Effect
+		Display.currentADSR = 0;
+		break;
+	case 2:
+		// ADSR ON/OFF
+		Display.currentADSR = 1;
 
-		switch(Display.JoystickParameterPosition) {
-		case 1:
-			// Next Effect
-			Display.currentADSR = 0;
-			break;
-		case 2:
-			// ADSR ON/OFF
-			Display.currentADSR = 1;
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
 
 			if(potVal < 50) {	// smaller than 50 %
@@ -2770,11 +2781,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 				Display.ADSR_ONOFF = true;
 				strcpy(Display.value_str_adsr_overview[1], "ON");
 			}
-			break;
+		}
+		break;
+	case 3:
+		// Attack Time
+		Display.currentADSR = 2;
 
-		case 3:
-			// Attack Time
-			Display.currentADSR = 2;
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Attacktime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_attack) + 0.05;	// 0.05 to prevent 0 -> fuckup
 
@@ -2783,10 +2796,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 
 			sprintf(write_str, "%f", Display.ADSR_Attacktime);
 			memcpy(Display.value_str_adsr_overview[2], write_str, 3);	// float can only be displayed with two digits after the dot
-			break;
-		case 4:
-			// Decay Time
-			Display.currentADSR = 3;
+		}
+		break;
+	case 4:
+		// Decay Time
+		Display.currentADSR = 3;
+
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Decaytime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_decay);
 
@@ -2795,10 +2811,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 
 			sprintf(write_str, "%f", Display.ADSR_Decaytime);
 			memcpy(Display.value_str_adsr_overview[3], write_str, 3);	// float can only be displayed with two digits after the dot
-			break;
-		case 5:
-			// Sustain Time
-			Display.currentADSR = 4;
+		}
+		break;
+	case 5:
+		// Sustain Time
+		Display.currentADSR = 4;
+
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Sustaintime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_sustaintime);
 
@@ -2807,10 +2826,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 
 			sprintf(write_str, "%f", Display.ADSR_Sustaintime);
 			memcpy(Display.value_str_adsr_overview[4], write_str, 3);	// float can only be displayed with two digits after the dot
-			break;
-		case 6:
-			// Sustain Level
-			Display.currentADSR = 5;
+		}
+		break;
+	case 6:
+		// Sustain Level
+		Display.currentADSR = 5;
+
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Sustainlevel = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_max_amp);
 
@@ -2819,10 +2841,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 
 			sprintf(write_str, "%f", Display.ADSR_Sustainlevel);
 			memcpy(Display.value_str_adsr_overview[5], write_str, 3);	// float can only be displayed with two digits after the dot
-			break;
-		case 7:
-			// Release Time
-			Display.currentADSR = 6;
+		}
+		break;
+	case 7:
+		// Release Time
+		Display.currentADSR = 6;
+
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Releasetime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_release);
 
@@ -2831,10 +2856,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 
 			sprintf(write_str, "%f", Display.ADSR_Releasetime);
 			memcpy(Display.value_str_adsr_overview[6], write_str, 3);	// float can only be displayed with two digits after the dot
-			break;
-		case 8:
-			// TODO: RESET OF ADSR..
-			// ADSR Reset ON/OFF
+		}
+		break;
+	case 8:
+		// TODO: RESET OF ADSR..
+		// ADSR Reset ON/OFF
+
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH , UNCOLORED);
 
 			if(potVal < 50) {	// smaller than 50 %
@@ -2843,12 +2871,10 @@ void p_ADSR_overview(struct adsr* envelope) {
 			else if(potVal >= 50) {	// greater than 50 %
 				strcpy(Display.value_str_adsr_overview[4], "ON");
 			}
-			break;
-		case 9:
-			break;
-		default:
-			break;
 		}
+		break;
+	default:
+		break;
 	}
 
 	// print value row
@@ -2971,79 +2997,96 @@ void p_Equalizer_overview(void) {
 	case 2:
 		// Band 1 ON/OFF
 		Display.currentBand = 1;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
-		if(potVal < 50) {	// smaller than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = false;
-			strcpy(Display.value_str_equalizer_overview[1], "OFF");
-		}
-		else if(potVal >= 50) {	// greater than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = true;
-			strcpy(Display.value_str_equalizer_overview[1], "ON");
+
+		if(Display.poti_moved == true) {
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = false;
+				strcpy(Display.value_str_equalizer_overview[1], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = true;
+				strcpy(Display.value_str_equalizer_overview[1], "ON");
+			}
 		}
 		break;
-
 	case 3:
 		// Band 2 ON/OFF
 		Display.currentBand = 2;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
-		if(potVal < 50) {	// smaller than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = false;
-			strcpy(Display.value_str_equalizer_overview[2], "OFF");
-		}
-		else if(potVal >= 50) {	// greater than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = true;
-			strcpy(Display.value_str_equalizer_overview[2], "ON");
+
+		if(Display.poti_moved == true) {
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = false;
+				strcpy(Display.value_str_equalizer_overview[2], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = true;
+				strcpy(Display.value_str_equalizer_overview[2], "ON");
+			}
 		}
 		break;
 	case 4:
 		// Band 3 ON/OFF
 		Display.currentBand = 3;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH , UNCOLORED);
-		if(potVal < 50) {	// smaller than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = false;
-			strcpy(Display.value_str_equalizer_overview[3], "OFF");
-		}
-		else if(potVal >= 50) {	// greater than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = true;
-			strcpy(Display.value_str_equalizer_overview[3], "ON");
+
+		if(Display.poti_moved == true) {
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH , UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = false;
+				strcpy(Display.value_str_equalizer_overview[3], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = true;
+				strcpy(Display.value_str_equalizer_overview[3], "ON");
+			}
 		}
 		break;
 	case 5:
 		// Band 4 ON/OFF
 		Display.currentBand = 4;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
-		if(potVal < 50) {	// smaller than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = false;
-			strcpy(Display.value_str_equalizer_overview[4], "OFF");
-		}
-		else if(potVal >= 50) {	// greater than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = true;
-			strcpy(Display.value_str_equalizer_overview[4], "ON");
+
+		if(Display.poti_moved == true) {
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = false;
+				strcpy(Display.value_str_equalizer_overview[4], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = true;
+				strcpy(Display.value_str_equalizer_overview[4], "ON");
+			}
 		}
 		break;
 	case 6:
 		// Band 5 ON/OFF
 		Display.currentBand = 5;
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH , UNCOLORED);
-		if(potVal < 50) {	// smaller than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = false;
-			strcpy(Display.value_str_equalizer_overview[5], "OFF");
-		}
-		else if(potVal >= 50) {	// greater than 50 %
-			Display.Filter_ONOFF[Display.currentBand-1] = true;
-			strcpy(Display.value_str_equalizer_overview[5], "ON");
+
+		if(Display.poti_moved == true) {
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH , UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = false;
+				strcpy(Display.value_str_equalizer_overview[5], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Filter_ONOFF[Display.currentBand-1] = true;
+				strcpy(Display.value_str_equalizer_overview[5], "ON");
+			}
 		}
 		break;
 	case 7:
 		// TODO: Equalizer Reset..
 		// EQUALIZER Reset ON/OFF
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH , UNCOLORED);
 
-		if(potVal < 50) {	// smaller than 50 %
-			strcpy(Display.value_str_equalizer_overview[6], "OFF");
-		}
-		else if(potVal >= 50) {	// greater than 50 %
-			strcpy(Display.value_str_equalizer_overview[6], "ON");
+		if(Display.poti_moved == true) {
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH , UNCOLORED);
+
+			if(potVal < 50) {	// smaller than 50 %
+				strcpy(Display.value_str_equalizer_overview[6], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				strcpy(Display.value_str_equalizer_overview[6], "ON");
+			}
 		}
 		break;
 	default:
@@ -3170,16 +3213,15 @@ void p_WahWah_overview(struct WahWah_t *WahWah) {
 	// Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 
-	if(Display.poti_moved == true) {
+	switch(Display.JoystickParameterPosition) {
+	case 1:
+		// Next Effect
+		Display.currentWahWah = 0;
+		break;
+	case 2:	// WahWah ON/OFF
+		Display.currentWahWah = 1;
 
-		switch (Display.JoystickParameterPosition){
-
-		case 1:
-			// Next Effect
-			Display.currentWahWah = 0;
-			break;
-		case 2:	// WahWah ON/OFF
-			Display.currentWahWah = 1;
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
 			if(potVal < 50) {	// smaller than 50 %
 				Display.WahWah_ONOFF = false;
@@ -3189,9 +3231,12 @@ void p_WahWah_overview(struct WahWah_t *WahWah) {
 				Display.WahWah_ONOFF = true;
 				strcpy(Display.value_str_wahwah[0], "ON");
 			}
-			break;
-		case 3:	// WahWah Mode
-			Display.currentWahWah = 2;
+		}
+		break;
+	case 3:	// WahWah Mode
+		Display.currentWahWah = 2;
+
+		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
 			if(potVal < 50) {	// smaller than 50 %
 				Display.WahWah_Mode = 0;
@@ -3201,15 +3246,15 @@ void p_WahWah_overview(struct WahWah_t *WahWah) {
 				Display.WahWah_Mode = 1;
 				strcpy(Display.value_str_wahwah[1], "AutoWahWah");
 			}
-			break;
-		default:
-			break;
 		}
-
-		// print value row
-		Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_wahwah[0], &Font12, COLORED);
-		Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, Display.value_str_wahwah[1], &Font12, COLORED);
+		break;
+	default:
+		break;
 	}
+
+	// print value row
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_wahwah[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, Display.value_str_wahwah[1], &Font12, COLORED);
 }
 
 void p_WahWah_Settings(struct WahWah_t *WahWah) {
@@ -3264,11 +3309,11 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 			default:
 				break;
 			}
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE1, Display.value_str_wahwah[2], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE2, Display.value_str_wahwah[3], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, Display.value_str_wahwah[4], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE4, Display.value_str_wahwah[5], &Font12, COLORED);
 		}
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE1, Display.value_str_wahwah[2], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE2, Display.value_str_wahwah[3], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, Display.value_str_wahwah[4], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE4, Display.value_str_wahwah[5], &Font12, COLORED);
 	}
 	else if(Display.WahWah_Mode == 1) {	// Auto-WahWah
 		// Header line
@@ -3354,15 +3399,15 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 			default:
 				break;
 			}
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE1, Display.value_str_wahwah[2], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE2, Display.value_str_wahwah[3], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, Display.value_str_wahwah[4], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE4, Display.value_str_wahwah[5], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_wahwah[6], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_wahwah[7], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE7, Display.value_str_wahwah[8], &Font12, COLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE8, Display.value_str_wahwah[9], &Font12, COLORED);
 		}
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE1, Display.value_str_wahwah[2], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE2, Display.value_str_wahwah[3], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, Display.value_str_wahwah[4], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE4, Display.value_str_wahwah[5], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_wahwah[6], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_wahwah[7], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE7, Display.value_str_wahwah[8], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE8, Display.value_str_wahwah[9], &Font12, COLORED);
 	}
 }
 
@@ -3472,9 +3517,8 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 	uint8_t mode_number = 0;
 	char write_str[10];
-	uint16_t index = 0;
 
-	if(Display.poti_moved == true) {
+	if(Display.poti_moved == true || Tremolo->lfo->lfo_done_flag == true) {
 
 		switch(Display.JoystickParameterPosition) {
 		case 1:
@@ -3492,11 +3536,12 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 		case 2:
 			// Tremolo Rate
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-			index = (uint16_t)(((float)Display.ADC2inputs[2]/((float)Display.ADC_FullRange-100)) * ((sizeof(LFO_FREQUENCYS)/sizeof(LFO_FREQUENCYS[0])-1)));
-			Display.Tremolo_Rate = LFO_FREQUENCYS[index];
-			Tremolo->lfo->lfo_index = 0;
-			Tremolo->lfo->lfo_quarter = 0;
-			sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
+			Display.Tremolo_Rate_Index = (uint16_t)(((float)Display.ADC2inputs[2]/((float)Display.ADC_FullRange-100)) * ((sizeof(LFO_FREQUENCYS)/sizeof(LFO_FREQUENCYS[0])-1)));
+//			if(Tremolo->lfo->lfo_done_flag == true) {
+////				Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+////				sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
+//				Tremolo->lfo->lfo_done_flag = false;
+//			}
 			break;
 		case 3:
 			// Tremolo Depth
@@ -3527,6 +3572,7 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 		}
 	}
 
+	sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_tremolo[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE2, Display.value_str_tremolo[1], &Font12, COLORED);

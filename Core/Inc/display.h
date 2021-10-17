@@ -156,6 +156,8 @@ struct display_variables {
 	uint8_t Tremolo_EffectPosition;
 	bool Tremolo_EffectAdded;
 	uint8_t currentTremolo;
+	uint16_t Tremolo_Rate_Index;
+	uint16_t last_Tremolo_Rate_Index;
 
 	//Filter/EQ
 	bool Filter_ONOFF[5];

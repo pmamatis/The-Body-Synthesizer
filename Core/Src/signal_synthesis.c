@@ -31,9 +31,6 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	for (int i = 0; i >BLOCKSIZE/2; i++)
 		*((uint32_t *)(&calculate_vector1[i] )) = (uint32_t)((i/(BLOCKSIZE/2)) * maxValueDAC/2); // TODO muss noch angepasst werden
 
-
-
-
 	//Inits and starts timer connected with DAC
 	SetTimerSettings(&htim, LUT_SR);
 
@@ -96,8 +93,6 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 	//TIM6->PSC = prescaler-1;
 }
 
-
-
 /** @brief Constructor for a signal, adds a signal into the signals1 struct
  *  @param kind: kind of the signal, use signal_kind_enum
  *  @param key:  is string which is a note key from C to b
@@ -108,16 +103,70 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 	lfo->lfo_data = 0;
 
+	//	// CASE 1-8: 0.125 Hz - 16 Hz
+	//	for(uint8_t i=0; i<8; i++) {
+	//
+	//		if(lfo->lfo_frequency == LFO_FREQUENCYS[i]) {
+	//
+	//			// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
+	//			if(lfo->lfo_index == LFO_SUPPORTPOINTS[i] - 1) {
+	//
+	//				lfo->lfo_index = 0;
+	//				lfo->lfo_quarter++;
+	//				if (lfo->lfo_quarter > 3) {
+	//					lfo->lfo_quarter = 0;
+	//					// to make sure that the tremolo restarts only when the LFO period is done
+	//					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+	//
+	//						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+	//						printf("rate = %f\r\n", Display.Tremolo_Rate);
+	//						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+	//						lfo->lfo_done_flag = true;
+	////						sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
+	//					}
+	//				}
+	//			}
+	//
+	//			switch(lfo->lfo_quarter) {
+	//			case 0:
+	//				lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[i]];
+	//				break;
+	//			case 1:
+	//				lfo->lfo_data = LFO[LFO_ENDINDEX[i] - lfo->lfo_index];
+	//				break;
+	//			case 2:
+	//				lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[i]];
+	//				break;
+	//			case 3:
+	//				lfo->lfo_data = -LFO[LFO_ENDINDEX[i] - lfo->lfo_index];
+	//				break;
+	//			default:
+	//				break;
+	//			}
+	//			lfo->lfo_index++;
+	//
+	//			return 0;
+	//		}
+	//	}
+
 	// CASE 1: 0.125 Hz
-	if(lfo->lfo_frequency == LFO_FREQUENCYS[0]){
+	if(lfo->lfo_frequency == LFO_FREQUENCYS[0]) {
 
 		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
 		if(lfo->lfo_index == LFO_SUPPORTPOINTS[0] - 1) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3)
+			if (lfo->lfo_quarter > 3) {
 				lfo->lfo_quarter = 0;
+				// to make sure that the tremolo restarts only when the LFO period is done
+				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+
+					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+					lfo->lfo_done_flag = true;
+				}
+			}
 		}
 
 		switch(lfo->lfo_quarter) {
@@ -139,15 +188,23 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		lfo->lfo_index++;
 	}
 	// CASE 2: 0.25 Hz
-	if(lfo->lfo_frequency == LFO_FREQUENCYS[1]){
+	else if(lfo->lfo_frequency == LFO_FREQUENCYS[1]){
 
 		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
 		if(lfo->lfo_index == LFO_SUPPORTPOINTS[1] - 1) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3)
+			if (lfo->lfo_quarter > 3) {
 				lfo->lfo_quarter = 0;
+				// to make sure that the tremolo restarts only when the LFO period is done
+				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+
+					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+					lfo->lfo_done_flag = true;
+				}
+			}
 		}
 
 		switch(lfo->lfo_quarter) {
@@ -169,15 +226,23 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		lfo->lfo_index++;
 	}
 	// CASE 3: 0.5 Hz
-	if(lfo->lfo_frequency == LFO_FREQUENCYS[2]){
+	else if(lfo->lfo_frequency == LFO_FREQUENCYS[2]){
 
 		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
 		if(lfo->lfo_index == LFO_SUPPORTPOINTS[2] - 1) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3)
+			if (lfo->lfo_quarter > 3) {
 				lfo->lfo_quarter = 0;
+				// to make sure that the tremolo restarts only when the LFO period is done
+				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+
+					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+					lfo->lfo_done_flag = true;
+				}
+			}
 		}
 
 		switch(lfo->lfo_quarter) {
@@ -199,15 +264,23 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		lfo->lfo_index++;
 	}
 	// CASE 4: 1 Hz
-	if(lfo->lfo_frequency == LFO_FREQUENCYS[3]){
+	else if(lfo->lfo_frequency == LFO_FREQUENCYS[3]){
 
 		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
 		if(lfo->lfo_index == LFO_SUPPORTPOINTS[3] - 1) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3)
+			if (lfo->lfo_quarter > 3) {
 				lfo->lfo_quarter = 0;
+				// to make sure that the tremolo restarts only when the LFO period is done
+				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+
+					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+					lfo->lfo_done_flag = true;
+				}
+			}
 		}
 
 		switch(lfo->lfo_quarter) {
@@ -229,15 +302,23 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		lfo->lfo_index++;
 	}
 	// CASE 5: 2 Hz
-	if(lfo->lfo_frequency == LFO_FREQUENCYS[4]){
+	else if(lfo->lfo_frequency == LFO_FREQUENCYS[4]){
 
 		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
 		if(lfo->lfo_index == LFO_SUPPORTPOINTS[4] - 1) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3)
+			if (lfo->lfo_quarter > 3) {
 				lfo->lfo_quarter = 0;
+				// to make sure that the tremolo restarts only when the LFO period is done
+				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+
+					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+					lfo->lfo_done_flag = true;
+				}
+			}
 		}
 
 		switch(lfo->lfo_quarter) {
@@ -259,15 +340,23 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		lfo->lfo_index++;
 	}
 	// CASE 6: 4 Hz
-	if(lfo->lfo_frequency == LFO_FREQUENCYS[5]){
+	else if(lfo->lfo_frequency == LFO_FREQUENCYS[5]){
 
 		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
 		if(lfo->lfo_index == LFO_SUPPORTPOINTS[5] - 1) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3)
+			if (lfo->lfo_quarter > 3) {
 				lfo->lfo_quarter = 0;
+				// to make sure that the tremolo restarts only when the LFO period is done
+				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+
+					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+					lfo->lfo_done_flag = true;
+				}
+			}
 		}
 
 		switch(lfo->lfo_quarter) {
@@ -289,15 +378,23 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		lfo->lfo_index++;
 	}
 	// CASE 7: 8 Hz
-	if(lfo->lfo_frequency == LFO_FREQUENCYS[6]){
+	else if(lfo->lfo_frequency == LFO_FREQUENCYS[6]){
 
 		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
 		if(lfo->lfo_index == LFO_SUPPORTPOINTS[6] - 1) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3)
+			if (lfo->lfo_quarter > 3) {
 				lfo->lfo_quarter = 0;
+				// to make sure that the tremolo restarts only when the LFO period is done
+				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+
+					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+					lfo->lfo_done_flag = true;
+				}
+			}
 		}
 
 		switch(lfo->lfo_quarter) {
@@ -319,15 +416,23 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		lfo->lfo_index++;
 	}
 	// CASE 8: 16 Hz
-	if(lfo->lfo_frequency == LFO_FREQUENCYS[7]){
+	else if(lfo->lfo_frequency == LFO_FREQUENCYS[7]){
 
 		// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero
 		if(lfo->lfo_index == LFO_SUPPORTPOINTS[7] - 1) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3)
+			if (lfo->lfo_quarter > 3) {
 				lfo->lfo_quarter = 0;
+				// to make sure that the tremolo restarts only when the LFO period is done
+				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+
+					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+					lfo->lfo_done_flag = true;
+				}
+			}
 		}
 
 		switch(lfo->lfo_quarter) {
@@ -357,16 +462,13 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 		uint8_t index = (signals-> count)-1;
 		signals -> ID[index]= ID;
 		signals -> kind[index] = kind;
-		switch (kind){
 
+		switch(kind) {
 		case SIN:
-
 			signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
 			signals -> freqIndex[index] = Get_Note_Index(key,octave);
 			signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
 			// signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
-
-
 			break;
 		case NOISE:
 			signals -> freq[index] = 0;
@@ -397,7 +499,7 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
  * @attention if you wnat to delete two signals in a row, beware that the index of the second signal could have changed, e.g. signals1 contains three signals, you want to delete signals1[0] and signals1[1]. After using DeleteSignal(0) you need to use DeleteSignal(0) again, because signals1[1] became signals1[0] after first use
  * @return None
  *  */
-void DeleteSignal(struct signal_t* signals,int16_t signal_index){
+void DeleteSignal(struct signal_t* signals,int16_t signal_index) {
 
 	if (signals->count > 0 && signal_index > -1){
 		//shift signals too left
@@ -426,7 +528,7 @@ void DeleteSignal(struct signal_t* signals,int16_t signal_index){
  * @param : ID of the wanted signal
  * @retval: Index of the signal with the given ID, or -1 when ID was not found
  */
-int16_t IDtoIndex(int16_t id){
+int16_t IDtoIndex(int16_t id) {
 
 	for(int i =0; i < MAX_SIGNAL_KOMBINATION;i++){
 		if (signals1.ID[i] == id){
@@ -457,7 +559,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	else if (output_Channel == 2){
 		calculate_vector_tmp = calculate_vector2;
 	}
-
 
 	//decide if first half of BLOCKSIZE or second half
 	uint16_t BLOOCKSIZE_startIndex=0, BLOOCKSIZE_endIndex=0;
@@ -512,16 +613,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
 
-
-					/* NEUER ANSATZ
-					 * LAST_INDEX_FLAG[j] = true;
-					 */
-
-
-					/* MUSS NOCHMAL ÜBERARBEITET WERDEN
-					 * während der Count schleife an der Count-Schleife rumzumachen wird irgendwann zu Bugs führen
-					 */
 					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
+					// this has to be done here to process the change immediately
 					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
 						//						if(Display.Voices_ONOFF[VOICES_ID] == true ) { //Sinnlos!!!!
 						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
@@ -588,15 +681,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		}// Signal counter for-loop
 
-
-		/* NEUER ANSATZ ,
-		// Delete Signal change Note
-		for(int j=0; j<count; j++) {
-			if (signals->deleteME[j]){
-				DeleteSignal(signals,j );
-			}
-		}
-		 */
 		/*limiter function*/
 		//norm the signal to -1...1
 		//		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
@@ -610,36 +694,39 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//write into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
 
+		LFO_SingleValueProcess(Tremolo.lfo);
+		calculate_vector_tmp[BLOCKSIZE_counter] = Tremolo.lfo->lfo_data;
+
 		//				// maximum
 		//				if (signals -> max < fabs((double)addValue)){
 		//					signals -> max = fabs((double)addValue);
 		//				}
 
 		// Drummachine
-		if ((volume[1]>0)||(volume[2]>0)){
-			Drum_Computer_Process();
-			drums_filtered = drums;
-			if(Display.Drumfilter_ONOFF)
-				ProcessFilter(&LS_DRUMS, &drums_filtered);
-		}
-		else{
-			drums = 0;
-			sequencer = 0;
-		}
-
-		// Keyboard processing
-		keyboard_adsr_process();
-		// summing up all played keyboard notes
-		for (int k= 0; k < 5;k++)
-			calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
-
-		// Play single sample
-		if(play_single_sample_flag) {
-			PlaySingleSample();
-			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
-		}
-
-		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//		if ((volume[1]>0)||(volume[2]>0)){
+		//			Drum_Computer_Process();
+		//			drums_filtered = drums;
+		//			if(Display.Drumfilter_ONOFF)
+		//				ProcessFilter(&LS_DRUMS, &drums_filtered);
+		//		}
+		//		else{
+		//			drums = 0;
+		//			sequencer = 0;
+		//		}
+		//
+		//		// Keyboard processing
+		//		keyboard_adsr_process();
+		//		// summing up all played keyboard notes
+		//		for (int k= 0; k < 5;k++)
+		//			calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
+		//
+		//		// Play single sample
+		//		if(play_single_sample_flag) {
+		//			PlaySingleSample();
+		//			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
+		//		}
+		//
+		//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
@@ -681,10 +768,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((1.0 * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
 	}//End for-Loop
 
-	// save current LUT index into signals1,
-	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
-		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
-	}
+	//	// save current LUT index into signals1,	SINNLOS!!!
+	//	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
+	//		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
+	//	}
 }
 
 ///** @brief generates a low frequency sine to be used for effects

@@ -512,10 +512,10 @@ void DMA2_Stream2_IRQHandler(void)
 	// START Drumcomputer Processing
 	if(Display.EditDrums == true) {
 
-		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
-			DISPLAY_Update();
-			Display.UpdateDisplay = false;
-		}
+//		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
+//			DISPLAY_Update();
+//			Display.UpdateDisplay = false;
+//		}
 
 		if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick down
 			DISPLAY_DeleteDrumcomputerStepCursor();
@@ -558,10 +558,10 @@ void DMA2_Stream2_IRQHandler(void)
 	if(Display.EditSteps == true) {
 		//if(Display.EditSteps == true && Display.Sequencer_ONOFF == true) {	// diese if-Abfrage überarbeiten, da sonst der Joystick spinnt (Warum???) ?
 
-		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
-			DISPLAY_Update();
-			Display.UpdateDisplay = false;
-		}
+//		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
+//			DISPLAY_Update();
+//			Display.UpdateDisplay = false;
+//		}
 
 		if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick down
 			DISPLAY_DeleteSequencerStepCursor();
@@ -599,12 +599,14 @@ void DMA2_Stream2_IRQHandler(void)
 			if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
 				DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
 				DISPLAY_processing();
-				DISPLAY_Update();
+//				DISPLAY_Update();
+				Display.UpdateDisplay = true;
 			}
 			else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
 				DISPLAY_ArrowUp(&(Display.JoystickParameterPosition));
 				DISPLAY_processing();
-				DISPLAY_Update();
+//				DISPLAY_Update();
+				Display.UpdateDisplay = true;
 			}
 		}
 		// switch page left or right
@@ -614,7 +616,8 @@ void DMA2_Stream2_IRQHandler(void)
 			DISPLAY_processing();
 			Display.JoystickParameterPosition = 1;
 			DISPLAY_DrawArrow(1);
-			DISPLAY_Update();
+//			DISPLAY_Update();
+			Display.UpdateDisplay = true;
 		}
 		else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// switch to the right page
 			DISPLAY_SwitchPageRight();
@@ -622,7 +625,8 @@ void DMA2_Stream2_IRQHandler(void)
 			DISPLAY_processing();
 			Display.JoystickParameterPosition = 1;
 			DISPLAY_DrawArrow(1);
-			DISPLAY_Update();
+//			DISPLAY_Update();
+			Display.UpdateDisplay = true;
 		}
 	}
 
@@ -663,21 +667,35 @@ void DMA2_Stream2_IRQHandler(void)
 		}
 	}
 
+//	printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
+
 	// do not process the poti change if joystick is moved in x- or y-direction
 	if(abs(Display.ADC2inputs[0]-Display.JoystickMiddle)<100 && abs(Display.ADC2inputs[1]-Display.JoystickMiddle)<100) {
 		Display.Poti_Threshold = 20;
 		if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
 			printf("moved\r\n");
-			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
+//			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
 			Display.poti_moved = true;
 			Display.last_Poti = Display.ADC2inputs[2];
 			DISPLAY_processing();
-			DISPLAY_Update();
+//			DISPLAY_Update();
+			Display.UpdateDisplay = true;
 		}
 		else {
 			Display.poti_moved = false;
 			Display.last_Poti = Display.ADC2inputs[2];
 		}
+	}
+
+	if(Tremolo.lfo->lfo_done_flag) {
+		DISPLAY_processing();
+		Display.UpdateDisplay = true;
+		Tremolo.lfo->lfo_done_flag = false;
+	}
+
+	if(Display.UpdateDisplay == true) {
+		DISPLAY_Update();
+		Display.UpdateDisplay = false;
 	}
 
   /* USER CODE END DMA2_Stream2_IRQn 0 */

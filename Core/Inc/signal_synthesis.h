@@ -13,8 +13,8 @@
 
 #include <math.h>
 #include "main.h"
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 #include "display.h"
 
@@ -79,6 +79,7 @@ struct effects_lfo_t{
 	float lfo_frequency;
 	float lfo_data;
 	float lfo_depth;
+	bool lfo_done_flag;
 };
 
 struct effects_lfo_t lfo_tremolo;
@@ -126,6 +127,5 @@ void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
 void LFO_SingleValueProcess(struct effects_lfo_t* lfo) ;
 float AWGN_generator(void);
 int16_t IDtoIndex(int16_t id);
-void regulate_volume(float* value);
 
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

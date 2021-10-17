@@ -32,7 +32,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdbool.h>
 #include "signal_synthesis.h"
 #include "music_notes.h"
 #include "sinLUT.h"

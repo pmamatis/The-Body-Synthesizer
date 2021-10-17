@@ -342,7 +342,7 @@ int main(void)
 	keyboard_start_read();
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
-	SetTimerSettings(&htim6, 100);	// Timer 6 default: 2000 Hz
+	SetTimerSettings(&htim6, 220);	// Timer 6 default: 2000 Hz
 	printf("start Button ADC\r\n");
 	HAL_TIM_Base_Start(&htim6);
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 4);
@@ -360,11 +360,15 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
+	Display.Tremolo_Rate = 0.125;
+	Display.Tremolo_Depth = 0.8;
+	Display.Tremolo_ONOFF = true;
+
 	//	NewSignal(&signals1,NOISE,'C',0,0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//	NewSignal(&signals1,NOISE,'C',0,1);
 	// CEG Full Range for Wah
-	//	NewSignal(&signals1,SIN, 'C',0,16);
+		NewSignal(&signals1,SIN, 'C',0,16);
 	//	NewSignal(&signals1,SIN, 'E',0,17);
 	//	NewSignal(&signals1,SIN, 'G',0,18);
 	//	NewSignal(&signals1,SIN, 'C',1,8);

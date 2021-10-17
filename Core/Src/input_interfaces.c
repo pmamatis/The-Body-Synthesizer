@@ -37,6 +37,7 @@ uint8_t II_Display_Voices(void) {
 
 		if(Display.Voices_ONOFF[ii_i] == true ) {
 
+			// signal has to be created once, because otherwise the count for-loop in signal synthesis function can not be entered (count > 0)
 			if(Display.Voices_Created[ii_i] == false) {
 				NewSignal(&signals1, SIN, Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i],ii_i);
 				Display.Voices_Created[ii_i] = true;
@@ -44,8 +45,8 @@ uint8_t II_Display_Voices(void) {
 
 			switch (Display.Voice_Note_Sources[ii_i]) {
 			case EMG:
-				if (emg_peak == 1){
-					//					//printf("raise note\r\n");
+				if(emg_peak == 1) {
+					//printf("raise note\r\n");
 					II_raiseNote(ii_i);
 					emg_peak = 0;
 				}
@@ -53,7 +54,6 @@ uint8_t II_Display_Voices(void) {
 			case GYRO_FB:
 				if ( toggleCounter > toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
-					// gute besserung paul:)
 					if (sensorData.tilt_detected == TILT_BACK){
 						II_decreaseNote(ii_i);
 						sensorData.tilt_detected = TILT_NONE;
@@ -558,6 +558,7 @@ uint8_t II_Display_Effects(void){
 
  */
 void II_raiseNote(uint8_t ID){
+
 	uint8_t index= IDtoIndex(ID);
 	char oldKey = Display.Voices_Note[ID];
 
@@ -580,7 +581,7 @@ void II_raiseNote(uint8_t ID){
 		}
 	}
 	Display.Voices_Note[ID] = newKey;
-	if(index >= 0){
+	if(index >= 0){	// only done if ID is existing
 		//printf("old: %c new: %c octave: %i \r\n",oldKey,(char)newKey,Display.Voices_Octave[ID]);
 		DeleteSignal(&signals1, index);
 		NewSignal(&signals1, SIN, newKey, Display.Voices_Octave[ID],ID);
