@@ -122,7 +122,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 	//						printf("rate = %f\r\n", Display.Tremolo_Rate);
 	//						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 	//						lfo->lfo_done_flag = true;
-	////						sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
+	////					sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
 	//					}
 	//				}
 	//			}
@@ -191,7 +191,6 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 	//	}
 	//	// OLD END
 
-
 	// CASE 1: 0.125 Hz
 	if(lfo->lfo_frequency == LFO_FREQUENCYS[0]) {
 
@@ -203,8 +202,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = LFO[LFO_STARTINDEX[0]  + lfo->lfo_index];
 			break;
 		case 1:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = LFO[LFO_ENDINDEX[0]    - lfo->lfo_index + 1];
 			break;
@@ -215,8 +216,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = -LFO[LFO_STARTINDEX[0] + lfo->lfo_index];
 			break;
 		case 3:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = -1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = -LFO[LFO_ENDINDEX[0]   - lfo->lfo_index + 1];
 			break;
@@ -255,8 +258,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = LFO[LFO_STARTINDEX[1]  + lfo->lfo_index];
 			break;
 		case 1:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = LFO[LFO_ENDINDEX[1]    - lfo->lfo_index + 1];
 			break;
@@ -267,8 +272,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = -LFO[LFO_STARTINDEX[1] + lfo->lfo_index];
 			break;
 		case 3:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = -1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = -LFO[LFO_ENDINDEX[1]   - lfo->lfo_index + 1];
 			break;
@@ -307,8 +314,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = LFO[LFO_STARTINDEX[2]  + lfo->lfo_index];
 			break;
 		case 1:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = LFO[LFO_ENDINDEX[2]    - lfo->lfo_index + 1];
 			break;
@@ -319,8 +328,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = -LFO[LFO_STARTINDEX[2] + lfo->lfo_index];
 			break;
 		case 3:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = -1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = -LFO[LFO_ENDINDEX[2]   - lfo->lfo_index + 1];
 			break;
@@ -359,8 +370,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = LFO[LFO_STARTINDEX[3]  + lfo->lfo_index];
 			break;
 		case 1:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = LFO[LFO_ENDINDEX[3]    - lfo->lfo_index + 1];
 			break;
@@ -371,8 +384,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = -LFO[LFO_STARTINDEX[3] + lfo->lfo_index];
 			break;
 		case 3:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = -1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = -LFO[LFO_ENDINDEX[3]   - lfo->lfo_index + 1];
 			break;
@@ -411,8 +426,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = LFO[LFO_STARTINDEX[4]  + lfo->lfo_index];
 			break;
 		case 1:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = LFO[LFO_ENDINDEX[4]    - lfo->lfo_index + 1];
 			break;
@@ -423,8 +440,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = -LFO[LFO_STARTINDEX[4] + lfo->lfo_index];
 			break;
 		case 3:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = -1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = -LFO[LFO_ENDINDEX[4]   - lfo->lfo_index + 1];
 			break;
@@ -463,8 +482,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = LFO[LFO_STARTINDEX[5]  + lfo->lfo_index];
 			break;
 		case 1:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = LFO[LFO_ENDINDEX[5]    - lfo->lfo_index + 1];
 			break;
@@ -475,8 +496,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = -LFO[LFO_STARTINDEX[5] + lfo->lfo_index];
 			break;
 		case 3:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = -1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = -LFO[LFO_ENDINDEX[5]   - lfo->lfo_index + 1];
 			break;
@@ -515,8 +538,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = LFO[LFO_STARTINDEX[6]  + lfo->lfo_index];
 			break;
 		case 1:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = LFO[LFO_ENDINDEX[6]    - lfo->lfo_index + 1];
 			break;
@@ -527,8 +552,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = -LFO[LFO_STARTINDEX[6] + lfo->lfo_index];
 			break;
 		case 3:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = -1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = -LFO[LFO_ENDINDEX[6]   - lfo->lfo_index + 1];
 			break;
@@ -567,8 +594,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = LFO[LFO_STARTINDEX[7]  + lfo->lfo_index];
 			break;
 		case 1:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = LFO[LFO_ENDINDEX[7]    - lfo->lfo_index + 1];
 			break;
@@ -579,8 +608,10 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 				lfo->lfo_data = -LFO[LFO_STARTINDEX[7] + lfo->lfo_index];
 			break;
 		case 3:
-			if(lfo->lfo_index == 0)
+			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = -1;
+				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+			}
 			else
 				lfo->lfo_data = -LFO[LFO_ENDINDEX[7]   - lfo->lfo_index + 1];
 			break;
@@ -847,10 +878,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//write into calculate vector
-//		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
+		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
 
-		LFO_SingleValueProcess(Tremolo.lfo);
-		calculate_vector_tmp[BLOCKSIZE_counter] = Tremolo.lfo->lfo_data;
+		//		LFO_SingleValueProcess(Tremolo.lfo);
+		//		calculate_vector_tmp[BLOCKSIZE_counter] = Tremolo.lfo->lfo_data;
 
 		//				// maximum
 		//				if (signals -> max < fabs((double)addValue)){
@@ -880,8 +911,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//			PlaySingleSample();
 		//			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
 		//		}
-		//
-		//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 		//
 		//		// Add all values
 		//		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];// + volume[1] * drums_filtered + volume[2] * sequencer;

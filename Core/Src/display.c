@@ -79,7 +79,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 
 	Display->Tremolo_ONOFF = false;
 	Display->Tremolo_Rate = 0.125;
-	Display->Tremolo_Depth = 0.0;
+	Display->Tremolo_Depth = 0.5;
 	Display->Tremolo_EffectPosition = 0;
 	Display->Tremolo_EffectAdded = false;
 	Display->Tremolo_Rate_Index = Display->last_Tremolo_Rate_Index = 0;
@@ -241,9 +241,9 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_distortion[7],"");
 	strcpy(Display->value_str_distortion[8],"");
 
-	strcpy(Display->value_str_tremolo[0],"OFF");	// tremolo overview
-	strcpy(Display->value_str_tremolo[1],"4");
-	strcpy(Display->value_str_tremolo[2],"0.00");
+	strcpy(Display->value_str_tremolo[0],"");	// tremolo overview
+	strcpy(Display->value_str_tremolo[1],"");
+	strcpy(Display->value_str_tremolo[2],"");
 	strcpy(Display->value_str_tremolo[3],"POTI");
 	strcpy(Display->value_str_tremolo[4],"POTI");
 	strcpy(Display->value_str_tremolo[5],"POTI");
@@ -3516,9 +3516,10 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	// Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 	uint8_t mode_number = 0;
-	char write_str[10];
+//	char write_str[10];
 
-	if(Display.poti_moved == true || Tremolo->lfo->lfo_done_flag == true) {
+//	if(Display.poti_moved == true || Tremolo->lfo->lfo_done_flag == true) {
+	if(Display.poti_moved == true) {
 
 		switch(Display.JoystickParameterPosition) {
 		case 1:
@@ -3545,10 +3546,11 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 			break;
 		case 3:
 			// Tremolo Depth
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.Tremolo_Depth = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * Tremolo->tremolo_maximum_depth);
-			sprintf(write_str, "%f", Display.Tremolo_Depth);
-			memcpy(Display.value_str_tremolo[2], write_str, 3);	// float can only be displayed with two digits after the dot
+			sprintf(Display.value_str_tremolo[2], "%.2f", Display.Tremolo_Depth);
+//			sprintf(write_str, "%f", Display.Tremolo_Depth);
+//			memcpy(Display.value_str_tremolo[2], write_str, 3);	// float can only be displayed with two digits after the dot
 			break;
 		case 4:
 			// Tremolo Rate Source
@@ -3573,10 +3575,11 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	}
 
 	sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
+	sprintf(Display.value_str_tremolo[2], "%.2f", Display.Tremolo_Depth);
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_tremolo[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE2, Display.value_str_tremolo[1], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_tremolo[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_tremolo[2], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_tremolo[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_tremolo[4], &Font12, COLORED);
 }

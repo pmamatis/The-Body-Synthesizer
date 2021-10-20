@@ -667,11 +667,11 @@ void DMA2_Stream2_IRQHandler(void)
 		}
 	}
 
-	//	printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
+//		printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
 
 	// do not process the poti change if joystick is moved in x- or y-direction
 	if(abs(Display.ADC2inputs[0]-Display.JoystickMiddle)<100 && abs(Display.ADC2inputs[1]-Display.JoystickMiddle)<100) {
-		Display.Poti_Threshold = 25;
+		Display.Poti_Threshold = 15;
 		if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
 //			printf("moved\r\n");
 //			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
@@ -687,6 +687,7 @@ void DMA2_Stream2_IRQHandler(void)
 		}
 	}
 
+	// necessary to update the display when the rate is changed in the LFO_SingleValueProcess function
 	if(Tremolo.lfo->lfo_done_flag) {
 		DISPLAY_processing();
 		Display.UpdateDisplay = true;

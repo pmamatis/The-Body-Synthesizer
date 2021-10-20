@@ -191,6 +191,9 @@ uint8_t II_Display_Effects(void){
 			switch (Display.Tremolo_Sources[0]) {//RATE
 			case GYRO_FB:
 
+				// THE TREMOLO RATE SHOULD NOT BE ADJUSTED WITH --/++ THE RATE BUT THE INDEX, LIKE:
+				// Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+
 				if (sensorData.tilt_detected == TILT_BACK){
 					if (Display.Tremolo_Rate > 0) {
 						//printf("decrease Trem Rate\r\n");
@@ -332,9 +335,9 @@ uint8_t II_Display_Effects(void){
 				break;
 			}
 		}
-		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
-		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 
+//		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
+//		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 	}
 	else if (Display.Tremolo_ONOFF == false){
 		effects_delete(TREM);
