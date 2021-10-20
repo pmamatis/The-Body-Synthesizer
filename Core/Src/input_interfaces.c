@@ -223,7 +223,6 @@ uint8_t II_Display_Effects(void){
 				}
 				break;
 			case GYRO_LR:
-
 				if (sensorData.tilt_detected == TILT_LEFT ){
 					if (Display.Tremolo_Rate > 0) {
 						//printf("decrease Trem Rate\r\n");
@@ -262,7 +261,6 @@ uint8_t II_Display_Effects(void){
 		if (Display.Tremolo_Sources[1] > 0){
 			switch (Display.Tremolo_Sources[1]) {//DEPTH
 			case GYRO_FB:
-
 				if (sensorData.tilt_detected == TILT_BACK ){
 					if (Display.Tremolo_Depth > 0) {
 						//printf("decrease Trem Depth\r\n");
@@ -297,7 +295,6 @@ uint8_t II_Display_Effects(void){
 					sensorData.tilt_detected = TILT_NONE;
 				}
 			case GYRO_LR:
-
 				if (sensorData.tilt_detected == TILT_LEFT){
 					if (Display.Tremolo_Depth > 0) {
 						//printf("decrease Trem Depth\r\n");

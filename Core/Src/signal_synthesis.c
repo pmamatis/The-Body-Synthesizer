@@ -191,21 +191,34 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 	//	}
 	//	// OLD END
 
+
 	// CASE 1: 0.125 Hz
 	if(lfo->lfo_frequency == LFO_FREQUENCYS[0]) {
 
 		switch(lfo->lfo_quarter) {
 		case 0:
-			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[0]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = LFO[LFO_STARTINDEX[0]  + lfo->lfo_index];
 			break;
 		case 1:
-			lfo->lfo_data = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 1;
+			else
+				lfo->lfo_data = LFO[LFO_ENDINDEX[0]    - lfo->lfo_index + 1];
 			break;
 		case 2:
-			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[0]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = -LFO[LFO_STARTINDEX[0] + lfo->lfo_index];
 			break;
 		case 3:
-			lfo->lfo_data = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = -1;
+			else
+				lfo->lfo_data = -LFO[LFO_ENDINDEX[0]   - lfo->lfo_index + 1];
 			break;
 		default:
 			break;
@@ -217,7 +230,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3) {
+			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 				// to make sure that the tremolo restarts only when the LFO period is done
 				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
@@ -225,6 +238,8 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
 					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 					lfo->lfo_done_flag = true;
+
+					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 				}
 			}
 		}
@@ -234,16 +249,28 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 		switch(lfo->lfo_quarter) {
 		case 0:
-			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[1]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = LFO[LFO_STARTINDEX[1]  + lfo->lfo_index];
 			break;
 		case 1:
-			lfo->lfo_data = LFO[LFO_ENDINDEX[1] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 1;
+			else
+				lfo->lfo_data = LFO[LFO_ENDINDEX[1]    - lfo->lfo_index + 1];
 			break;
 		case 2:
-			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[1]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = -LFO[LFO_STARTINDEX[1] + lfo->lfo_index];
 			break;
 		case 3:
-			lfo->lfo_data = -LFO[LFO_ENDINDEX[1] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = -1;
+			else
+				lfo->lfo_data = -LFO[LFO_ENDINDEX[1]   - lfo->lfo_index + 1];
 			break;
 		default:
 			break;
@@ -255,7 +282,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3) {
+			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 				// to make sure that the tremolo restarts only when the LFO period is done
 				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
@@ -263,6 +290,8 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
 					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 					lfo->lfo_done_flag = true;
+
+					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 				}
 			}
 		}
@@ -272,16 +301,28 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 		switch(lfo->lfo_quarter) {
 		case 0:
-			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[2]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = LFO[LFO_STARTINDEX[2]  + lfo->lfo_index];
 			break;
 		case 1:
-			lfo->lfo_data = LFO[LFO_ENDINDEX[2] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 1;
+			else
+				lfo->lfo_data = LFO[LFO_ENDINDEX[2]    - lfo->lfo_index + 1];
 			break;
 		case 2:
-			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[2]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = -LFO[LFO_STARTINDEX[2] + lfo->lfo_index];
 			break;
 		case 3:
-			lfo->lfo_data = -LFO[LFO_ENDINDEX[2] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = -1;
+			else
+				lfo->lfo_data = -LFO[LFO_ENDINDEX[2]   - lfo->lfo_index + 1];
 			break;
 		default:
 			break;
@@ -293,7 +334,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3) {
+			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 				// to make sure that the tremolo restarts only when the LFO period is done
 				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
@@ -301,6 +342,8 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
 					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 					lfo->lfo_done_flag = true;
+
+					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 				}
 			}
 		}
@@ -310,16 +353,28 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 		switch(lfo->lfo_quarter) {
 		case 0:
-			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[3]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = LFO[LFO_STARTINDEX[3]  + lfo->lfo_index];
 			break;
 		case 1:
-			lfo->lfo_data = LFO[LFO_ENDINDEX[3] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 1;
+			else
+				lfo->lfo_data = LFO[LFO_ENDINDEX[3]    - lfo->lfo_index + 1];
 			break;
 		case 2:
-			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[3]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = -LFO[LFO_STARTINDEX[3] + lfo->lfo_index];
 			break;
 		case 3:
-			lfo->lfo_data = -LFO[LFO_ENDINDEX[3] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = -1;
+			else
+				lfo->lfo_data = -LFO[LFO_ENDINDEX[3]   - lfo->lfo_index + 1];
 			break;
 		default:
 			break;
@@ -331,7 +386,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3) {
+			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 				// to make sure that the tremolo restarts only when the LFO period is done
 				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
@@ -339,6 +394,8 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
 					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 					lfo->lfo_done_flag = true;
+
+					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 				}
 			}
 		}
@@ -348,16 +405,28 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 		switch(lfo->lfo_quarter) {
 		case 0:
-			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[4]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = LFO[LFO_STARTINDEX[4]  + lfo->lfo_index];
 			break;
 		case 1:
-			lfo->lfo_data = LFO[LFO_ENDINDEX[4] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 1;
+			else
+				lfo->lfo_data = LFO[LFO_ENDINDEX[4]    - lfo->lfo_index + 1];
 			break;
 		case 2:
-			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[4]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = -LFO[LFO_STARTINDEX[4] + lfo->lfo_index];
 			break;
 		case 3:
-			lfo->lfo_data = -LFO[LFO_ENDINDEX[4] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = -1;
+			else
+				lfo->lfo_data = -LFO[LFO_ENDINDEX[4]   - lfo->lfo_index + 1];
 			break;
 		default:
 			break;
@@ -369,7 +438,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3) {
+			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 				// to make sure that the tremolo restarts only when the LFO period is done
 				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
@@ -377,6 +446,8 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
 					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 					lfo->lfo_done_flag = true;
+
+					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 				}
 			}
 		}
@@ -386,16 +457,28 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 		switch(lfo->lfo_quarter) {
 		case 0:
-			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[5]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = LFO[LFO_STARTINDEX[5]  + lfo->lfo_index];
 			break;
 		case 1:
-			lfo->lfo_data = LFO[LFO_ENDINDEX[5] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 1;
+			else
+				lfo->lfo_data = LFO[LFO_ENDINDEX[5]    - lfo->lfo_index + 1];
 			break;
 		case 2:
-			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[5]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = -LFO[LFO_STARTINDEX[5] + lfo->lfo_index];
 			break;
 		case 3:
-			lfo->lfo_data = -LFO[LFO_ENDINDEX[5] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = -1;
+			else
+				lfo->lfo_data = -LFO[LFO_ENDINDEX[5]   - lfo->lfo_index + 1];
 			break;
 		default:
 			break;
@@ -407,7 +490,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3) {
+			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 				// to make sure that the tremolo restarts only when the LFO period is done
 				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
@@ -415,6 +498,8 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
 					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 					lfo->lfo_done_flag = true;
+
+					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 				}
 			}
 		}
@@ -424,16 +509,28 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 		switch(lfo->lfo_quarter) {
 		case 0:
-			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[6]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = LFO[LFO_STARTINDEX[6]  + lfo->lfo_index];
 			break;
 		case 1:
-			lfo->lfo_data = LFO[LFO_ENDINDEX[6] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 1;
+			else
+				lfo->lfo_data = LFO[LFO_ENDINDEX[6]    - lfo->lfo_index + 1];
 			break;
 		case 2:
-			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[6]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = -LFO[LFO_STARTINDEX[6] + lfo->lfo_index];
 			break;
 		case 3:
-			lfo->lfo_data = -LFO[LFO_ENDINDEX[6] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = -1;
+			else
+				lfo->lfo_data = -LFO[LFO_ENDINDEX[6]   - lfo->lfo_index + 1];
 			break;
 		default:
 			break;
@@ -445,7 +542,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3) {
+			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 				// to make sure that the tremolo restarts only when the LFO period is done
 				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
@@ -453,6 +550,8 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
 					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 					lfo->lfo_done_flag = true;
+
+					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 				}
 			}
 		}
@@ -462,16 +561,28 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 		switch(lfo->lfo_quarter) {
 		case 0:
-			lfo->lfo_data = LFO[lfo->lfo_index + LFO_STARTINDEX[7]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = LFO[LFO_STARTINDEX[7]  + lfo->lfo_index];
 			break;
 		case 1:
-			lfo->lfo_data = LFO[LFO_ENDINDEX[7] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 1;
+			else
+				lfo->lfo_data = LFO[LFO_ENDINDEX[7]    - lfo->lfo_index + 1];
 			break;
 		case 2:
-			lfo->lfo_data = -LFO[lfo->lfo_index + LFO_STARTINDEX[7]];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = 0;
+			else
+				lfo->lfo_data = -LFO[LFO_STARTINDEX[7] + lfo->lfo_index];
 			break;
 		case 3:
-			lfo->lfo_data = -LFO[LFO_ENDINDEX[7] - lfo->lfo_index];
+			if(lfo->lfo_index == 0)
+				lfo->lfo_data = -1;
+			else
+				lfo->lfo_data = -LFO[LFO_ENDINDEX[7]   - lfo->lfo_index + 1];
 			break;
 		default:
 			break;
@@ -483,7 +594,7 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 
 			lfo->lfo_index = 0;
 			lfo->lfo_quarter++;
-			if (lfo->lfo_quarter > 3) {
+			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 				// to make sure that the tremolo restarts only when the LFO period is done
 				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
@@ -491,6 +602,8 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
 					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
 					lfo->lfo_done_flag = true;
+
+					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 				}
 			}
 		}
@@ -734,7 +847,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		//write into calculate vector
-		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
+//		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
 
 		LFO_SingleValueProcess(Tremolo.lfo);
 		calculate_vector_tmp[BLOCKSIZE_counter] = Tremolo.lfo->lfo_data;
@@ -744,7 +857,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//					signals -> max = fabs((double)addValue);
 		//				}
 
-		// Drummachine
+		//		// Drummachine
 		//		if ((volume[1]>0)||(volume[2]>0)){
 		//			Drum_Computer_Process();
 		//			drums_filtered = drums;
@@ -769,9 +882,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//		}
 		//
 		//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
-
-		// Add all values
-		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
+		//
+		//		// Add all values
+		//		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];// + volume[1] * drums_filtered + volume[2] * sequencer;
 
 		//		// maximum
 		//		if (signals -> max < fabs((double)addValue)){

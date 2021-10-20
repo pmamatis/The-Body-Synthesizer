@@ -360,9 +360,9 @@ int main(void)
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 
-	Display.Tremolo_Rate = 0.125;
-	Display.Tremolo_Depth = 0.8;
-	Display.Tremolo_ONOFF = true;
+//	Display.Tremolo_Rate = 0.125;
+//	Display.Tremolo_Depth = 0.8;
+//	Display.Tremolo_ONOFF = true;
 
 	//	NewSignal(&signals1,NOISE,'C',0,0);
 	//NewSignal(&signals1,NOISE,'C',0);
