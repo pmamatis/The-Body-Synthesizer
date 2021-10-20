@@ -876,6 +876,53 @@ Display_Status p_Drumcomputer_Settings(void) {
 	return DISPLAY_OK;
 }
 
+Display_Status DISPLAY_DrawDrumcomputerPattern(void) {
+
+	uint8_t filledrectangle_subtract = 5;
+	uint16_t STEP, CASE;
+
+	for(int i=0; i<MAX_NUMBER_OF_SAMPLES; i++) {
+
+		for(int j=0; j<NUMBER_OF_DRUMSTEPS; j++) {
+
+			if(Display.DrumMatrix[i][j] == true) {
+
+				// set coordinate for sample rows
+				if( i+1 == 1 )
+					CASE = CASE5;
+				else if( i+1 == 2 )
+					CASE = CASE6;
+				else if( i+1 == 3 )
+					CASE = CASE7;
+				else if( i+1 == 4 )
+					CASE = CASE8;
+
+				// set coordinate for drumsteps
+				if( j+1 == 1 )
+					STEP = STEP1;
+				else if( j+1 == 2 )
+					STEP = STEP2;
+				else if( j+1 == 3 )
+					STEP = STEP3;
+				else if( j+1 == 4 )
+					STEP = STEP4;
+				else if( j+1 == 5 )
+					STEP = STEP5;
+				else if( j+1 == 6 )
+					STEP = STEP6;
+				else if( j+1 == 7 )
+					STEP = STEP7;
+				else if( j+1 == 8 )
+					STEP = STEP8;
+
+				Paint_DrawFilledRectangle(&paint, STEP+filledrectangle_subtract, CASE+filledrectangle_subtract, STEP+20-filledrectangle_subtract, CASE+20-filledrectangle_subtract, COLORED);
+			}
+		}
+	}
+
+	return DISPLAY_OK;
+}
+
 Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 
 	__disable_irq();	// disable interrupts for a while to make sure that the samples are loaded more quickly
@@ -970,53 +1017,6 @@ Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps) {
 	DISPLAY_DrawDrumcomputerPattern();
 
 	//DISPLAY_Update();
-
-	return DISPLAY_OK;
-}
-
-Display_Status DISPLAY_DrawDrumcomputerPattern(void) {
-
-	uint8_t filledrectangle_subtract = 5;
-	uint16_t STEP, CASE;
-
-	for(int i=0; i<MAX_NUMBER_OF_SAMPLES; i++) {
-
-		for(int j=0; j<NUMBER_OF_DRUMSTEPS; j++) {
-
-			if(Display.DrumMatrix[i][j] == true) {
-
-				// set coordinate for sample rows
-				if( i+1 == 1 )
-					CASE = CASE5;
-				else if( i+1 == 2 )
-					CASE = CASE6;
-				else if( i+1 == 3 )
-					CASE = CASE7;
-				else if( i+1 == 4 )
-					CASE = CASE8;
-
-				// set coordinate for drumsteps
-				if( j+1 == 1 )
-					STEP = STEP1;
-				else if( j+1 == 2 )
-					STEP = STEP2;
-				else if( j+1 == 3 )
-					STEP = STEP3;
-				else if( j+1 == 4 )
-					STEP = STEP4;
-				else if( j+1 == 5 )
-					STEP = STEP5;
-				else if( j+1 == 6 )
-					STEP = STEP6;
-				else if( j+1 == 7 )
-					STEP = STEP7;
-				else if( j+1 == 8 )
-					STEP = STEP8;
-
-				Paint_DrawFilledRectangle(&paint, STEP+filledrectangle_subtract, CASE+filledrectangle_subtract, STEP+20-filledrectangle_subtract, CASE+20-filledrectangle_subtract, COLORED);
-			}
-		}
-	}
 
 	return DISPLAY_OK;
 }
@@ -1899,7 +1899,7 @@ Display_Status p_Sequencer_Settings(void) {
 		//		Display.EditSteps = false;
 		//	}
 		else if(Display.JoystickParameterPosition == 2) {	// edit sequence on/off
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 			if(potVal < 50) {	// smaller than 50 %
 				Display.EditSteps = false;

@@ -28,7 +28,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++)
 		ID_array[Signal_Synthesis_Init_count]=0;
 
-	for (int i = 0; i >BLOCKSIZE/2; i++)
+	for (int i=0; i>BLOCKSIZE/2; i++)
 		*((uint32_t *)(&calculate_vector1[i] )) = (uint32_t)((i/(BLOCKSIZE/2)) * maxValueDAC/2); // TODO muss noch angepasst werden
 
 	//Inits and starts timer connected with DAC
