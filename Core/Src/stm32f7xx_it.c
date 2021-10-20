@@ -673,8 +673,8 @@ void DMA2_Stream2_IRQHandler(void)
 	if(abs(Display.ADC2inputs[0]-Display.JoystickMiddle)<100 && abs(Display.ADC2inputs[1]-Display.JoystickMiddle)<100) {
 		Display.Poti_Threshold = 25;
 		if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
-			printf("moved\r\n");
-			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
+//			printf("moved\r\n");
+//			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
 			Display.poti_moved = true;
 			Display.last_Poti = Display.ADC2inputs[2];
 			DISPLAY_processing();
