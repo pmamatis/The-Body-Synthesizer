@@ -100,6 +100,9 @@ Filter_Status Filters_Init(){
 	// Drums Lowshelf
 	SetupLowShelf(&LS_DRUMS, 10, 10, -20);
 
+	// AA-Notch
+	//	SetupNotch(&LP_AA, 50, 0.707);
+
 	return FILTER_OK;
 }
 
@@ -114,13 +117,13 @@ Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d){
 	if (cutoff_d > 10){
 		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
 		SetupLowShelf(&LS_DRUMS, cutoff_d, 10, -20);
-					printf(" drum cutoff: %f\r\n",cutoff_d);
+		printf(" drum cutoff: %f\r\n",cutoff_d);
 		return FILTER_OK;
 	}
 	else {
 		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
 		SetupLowShelf(&LS_DRUMS, 10, 10, -20);
-//		printf("cutoff: %f\r\n",cutoff);
+		//		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}
 }

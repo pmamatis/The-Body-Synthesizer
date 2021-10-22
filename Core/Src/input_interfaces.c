@@ -185,8 +185,14 @@ uint8_t II_Display_Effects(void){
 
 	//Tremolo
 	// TODO: UPDATE GYRO: Tremolo.lfo->lfo_index = 0; Tremolo.lfo->lfo_quarter = 0;
-	if (Display.Tremolo_ONOFF == true){
-		effects_add(TREM);
+	if(Display.Tremolo_ONOFF == true) {
+		if(Display.last_Tremolo_ONOFF == false) {
+			effects_add(TREM);
+			Tremolo.lfo->lfo_quarter = 1;
+			Tremolo.lfo->lfo_index = 0;
+			Display.last_Tremolo_ONOFF = true;
+		}
+
 		if (Display.Tremolo_Sources[0] > 0){
 			switch (Display.Tremolo_Sources[0]) {//RATE
 			case GYRO_FB:
@@ -339,9 +345,9 @@ uint8_t II_Display_Effects(void){
 //		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
 //		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 	}
-	else if (Display.Tremolo_ONOFF == false){
-		effects_delete(TREM);
-	}
+//	else if (Display.Tremolo_ONOFF == false){
+//		effects_delete(TREM);
+//	}
 
 	//Filter
 	//	if (Display.currentBand > 0){
@@ -528,7 +534,7 @@ uint8_t II_Display_Effects(void){
 					printf("increase cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter++;
 					drum_filter_step_counter++;
-					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 					//								Display.Drumfilter_Cutoff= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
 				}

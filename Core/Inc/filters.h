@@ -56,7 +56,7 @@ struct BQFilter LS_DRUMS;
 //struct BQFilter LP_REVERB;
 //struct BQFilter LP_DELAY;
 //
-//struct BQFilter LP_AA;
+struct BQFilter LP_AA;
 
 
 /***************************

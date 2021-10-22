@@ -150,6 +150,7 @@ struct display_variables {
 
 	//Tremolo
 	bool Tremolo_ONOFF;
+	bool last_Tremolo_ONOFF;
 	//float Tremolo_Rate;
 	float Tremolo_Rate;
 	float Tremolo_Depth;
@@ -177,6 +178,8 @@ struct display_variables {
 	float WahWah_MidFreq;
 	float WahWah_Q;
 	uint8_t currentWahWah;
+	uint16_t WahWah_LFOfreq_Index;
+	uint16_t last_WahWah_LFOfreq_Index;
 
 	uint8_t last_note;
 	uint8_t note;
@@ -243,6 +246,10 @@ struct display_variables {
 	uint16_t last_Poti;
 	uint16_t Poti_Threshold;
 	bool poti_moved;
+	uint16_t PotiMean_tmp;
+	uint16_t PotiMean;
+	uint16_t PotiMean_counter;
+
 	// EMG-Sensor-variables
 	uint16_t EMG_DC;
 	uint16_t EMG_AC;

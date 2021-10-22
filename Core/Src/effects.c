@@ -58,7 +58,6 @@ void effects_process_fast(float* calculate_value){
 
 	if(effect_order[2] == DIST_H){
 		ProcessHardClippingDistortion(&HardClipping, calculate_value);
-
 	}
 
 	if(effect_order[3] == DIST_S){

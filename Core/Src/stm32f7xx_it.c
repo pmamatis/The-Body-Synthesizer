@@ -667,23 +667,33 @@ void DMA2_Stream2_IRQHandler(void)
 		}
 	}
 
-//		printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
+	// calculate mean value of the potentiometer value
+	Display.PotiMean_tmp += Display.ADC2inputs[2];
+	if(Display.PotiMean_counter == 10) {
+		Display.PotiMean = Display.PotiMean_tmp / Display.PotiMean_counter;
+		Display.PotiMean_counter = 0;
+		Display.PotiMean_tmp = 0;
+		printf("PotiMean = %u\r\n", Display.PotiMean);
+	}
+	Display.PotiMean_counter++;
+
+	//	printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.PotiMean));
 
 	// do not process the poti change if joystick is moved in x- or y-direction
 	if(abs(Display.ADC2inputs[0]-Display.JoystickMiddle)<100 && abs(Display.ADC2inputs[1]-Display.JoystickMiddle)<100) {
-		Display.Poti_Threshold = 15;
-		if(abs(Display.last_Poti - Display.ADC2inputs[2]) > Display.Poti_Threshold) {
-//			printf("moved\r\n");
-//			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.ADC2inputs[2]));
+		Display.Poti_Threshold = 10;
+		if(abs(Display.last_Poti - Display.PotiMean) > Display.Poti_Threshold) {
+			//			printf("moved\r\n");
+			//			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.PotiMean));
 			Display.poti_moved = true;
-			Display.last_Poti = Display.ADC2inputs[2];
+			Display.last_Poti = Display.PotiMean;
 			DISPLAY_processing();
 			//			DISPLAY_Update();
 			Display.UpdateDisplay = true;
 		}
 		else {
 			Display.poti_moved = false;
-			Display.last_Poti = Display.ADC2inputs[2];
+			Display.last_Poti = Display.PotiMean;
 		}
 	}
 
@@ -692,6 +702,11 @@ void DMA2_Stream2_IRQHandler(void)
 		DISPLAY_processing();
 		Display.UpdateDisplay = true;
 		Tremolo.lfo->lfo_done_flag = false;
+	}
+	if(WahWah.lfo->lfo_done_flag) {
+		DISPLAY_processing();
+		Display.UpdateDisplay = true;
+		WahWah.lfo->lfo_done_flag = false;
 	}
 
 	if(Display.UpdateDisplay == true) {

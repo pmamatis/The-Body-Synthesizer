@@ -342,7 +342,7 @@ int main(void)
 	keyboard_start_read();
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
-	SetTimerSettings(&htim6, 220);	// Timer 6 default: 2000 Hz
+	SetTimerSettings(&htim6, 500);	// Timer 6 default: 2000 Hz
 	printf("start Button ADC\r\n");
 	HAL_TIM_Base_Start(&htim6);
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 4);
@@ -360,23 +360,23 @@ int main(void)
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 
-//	Display.Tremolo_Rate = 0.125;
-//	Display.Tremolo_Depth = 0.8;
-//	Display.Tremolo_ONOFF = true;
+	//	Display.Tremolo_Rate = 0.125;
+	//	Display.Tremolo_Depth = 0.8;
+	//	Display.Tremolo_ONOFF = true;
 
 	//	NewSignal(&signals1,NOISE,'C',0,0);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//	NewSignal(&signals1,NOISE,'C',0,1);
 	// CEG Full Range for Wah
 	NewSignal(&signals1,SIN, 'C',0,16);
-	//	NewSignal(&signals1,SIN, 'E',0,17);
-	//	NewSignal(&signals1,SIN, 'G',0,18);
-	//	NewSignal(&signals1,SIN, 'C',1,8);
-	//	NewSignal(&signals1,SIN, 'E',1,9);
-	//	NewSignal(&signals1,SIN, 'G',1,10);
-	//	NewSignal(&signals1,SIN, 'C',2,11);
-	//	NewSignal(&signals1,SIN, 'E',2,12);
-	//	NewSignal(&signals1,SIN, 'G',2,13);
+	NewSignal(&signals1,SIN, 'E',0,17);
+	NewSignal(&signals1,SIN, 'G',0,18);
+	NewSignal(&signals1,SIN, 'C',1,8);
+	NewSignal(&signals1,SIN, 'E',1,9);
+	NewSignal(&signals1,SIN, 'G',1,10);
+	NewSignal(&signals1,SIN, 'C',2,11);
+	NewSignal(&signals1,SIN, 'E',2,12);
+	NewSignal(&signals1,SIN, 'G',2,13);
 	//		NewSignal(&signals1,SIN, 'C',4,14);
 	//	NewSignal(&signals1,SIN, 'E',4,15);
 	//		NewSignal(&signals1,SIN, 'G',4,16);
@@ -1568,12 +1568,19 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			}
 		}
 
-		// Begin Test Tremolo Rate
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Tremolo Rate Index setting to change the rate by button pressing
 		if(Display.pagePosition == 9 && Display.JoystickParameterPosition == 2) {
 			if(Display.Tremolo_Rate_Index > 0)
 				Display.Tremolo_Rate_Index--;
 		}
-		// End Test Tremolo Rate
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Auto-WahWah LFO Frequency Index setting to change the rate by button pressing
+		if(Display.pagePosition == 8 && Display.currentWahWah > 0 && Display.JoystickParameterPosition == 4) {
+			if(Display.WahWah_LFOfreq_Index > 0)
+				Display.WahWah_LFOfreq_Index--;
+		}
 
 		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
@@ -1593,12 +1600,19 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		if(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3)	// Load Drumkit from SD card
 			Display.LoadDrumkit = true;
 
-		// Begin Test Tremolo Rate
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Tremolo Rate Index setting to change the rate by button pressing
 		if(Display.pagePosition == 9 && Display.JoystickParameterPosition == 2) {
 			if(Display.Tremolo_Rate_Index < 7)
 				Display.Tremolo_Rate_Index++;
 		}
-		// End Test Tremolo Rate
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Auto-WahWah LFO Frequency Index setting to change the rate by button pressing
+		if(Display.pagePosition == 8 && Display.currentWahWah > 0 && Display.JoystickParameterPosition == 4) {
+			if(Display.WahWah_LFOfreq_Index < 7)
+				Display.WahWah_LFOfreq_Index++;
+		}
 
 		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);
