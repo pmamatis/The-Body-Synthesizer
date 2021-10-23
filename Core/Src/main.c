@@ -364,19 +364,19 @@ int main(void)
 	//	Display.Tremolo_Depth = 0.8;
 	//	Display.Tremolo_ONOFF = true;
 
-	//	NewSignal(&signals1,NOISE,'C',0,0);
+	//			NewSignal(&signals1,NOISE,'C',0,15);
 	//NewSignal(&signals1,NOISE,'C',0);
 	//	NewSignal(&signals1,NOISE,'C',0,1);
 	// CEG Full Range for Wah
-	NewSignal(&signals1,SIN, 'C',0,16);
-	NewSignal(&signals1,SIN, 'E',0,17);
-	NewSignal(&signals1,SIN, 'G',0,18);
-	NewSignal(&signals1,SIN, 'C',1,8);
-	NewSignal(&signals1,SIN, 'E',1,9);
-	NewSignal(&signals1,SIN, 'G',1,10);
-	NewSignal(&signals1,SIN, 'C',2,11);
-	NewSignal(&signals1,SIN, 'E',2,12);
-	NewSignal(&signals1,SIN, 'G',2,13);
+	//	NewSignal(&signals1,SIN, 'C',0,16);
+	//	NewSignal(&signals1,SIN, 'E',0,17);
+	//	NewSignal(&signals1,SIN, 'G',0,18);
+	//	NewSignal(&signals1,SIN, 'C',1,8);
+	//	NewSignal(&signals1,SIN, 'E',1,9);
+	//	NewSignal(&signals1,SIN, 'G',1,10);
+	//	NewSignal(&signals1,SIN, 'C',2,11);
+	//	NewSignal(&signals1,SIN, 'E',2,12);
+	//	NewSignal(&signals1,SIN, 'G',2,13);
 	//		NewSignal(&signals1,SIN, 'C',4,14);
 	//	NewSignal(&signals1,SIN, 'E',4,15);
 	//		NewSignal(&signals1,SIN, 'G',4,16);
@@ -1530,6 +1530,8 @@ int _write(int file,char *ptr, int len)
 // GPIO-Button Debouncing
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
+	Display.button_pressed_flag = true;	// set here to make sure that the display will be processed and updated when for example a note or octave is changed
+
 	if((GPIO_Pin == BACK_Pin) && (Display.BACK_Debounce_State == true)) {
 
 		// keyboard goes down by one octave
@@ -1582,6 +1584,49 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.WahWah_LFOfreq_Index--;
 		}
 
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Sequencer notes and octaves changed by putton pressing
+		if(Display.pagePosition == 3 && Display.currentDrumcomputer == 0) {
+			if(Display.JoystickParameterPosition == 3) {	// Sequencer Note 1 down
+				if(Display.Sequencer_Noteindex[0] > 0)
+					Display.Sequencer_Noteindex[0]--;
+			}
+			else if(Display.JoystickParameterPosition == 4) {	// Sequencer Octave 1 down
+				if(Display.Sequencer_Octave[0] > 0)
+					Display.Sequencer_Octave[0]--;
+			}
+			else if(Display.JoystickParameterPosition == 5) {	// Sequencer Note 2 down
+				if(Display.Sequencer_Noteindex[1] > 0)
+					Display.Sequencer_Noteindex[1]--;
+			}
+			else if(Display.JoystickParameterPosition == 6) {	// Sequencer Octave 2 down
+				if(Display.Sequencer_Octave[1] > 0)
+					Display.Sequencer_Octave[1]--;
+			}
+			else if(Display.JoystickParameterPosition == 7) {	// Sequencer Note 3 down
+				if(Display.Sequencer_Noteindex[2] > 0)
+					Display.Sequencer_Noteindex[2]--;
+			}
+			else if(Display.JoystickParameterPosition == 8) {	// Sequencer Octave 3 down
+				if(Display.Sequencer_Octave[2] > 0)
+					Display.Sequencer_Octave[2]--;
+			}
+		}
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Voices notes and octaves changed by putton pressing
+		if(Display.pagePosition == 5 && Display.currentVoice > 0) {
+
+			if(Display.JoystickParameterPosition == 1) {	// Voices [1,2,3] Note down
+				if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
+					Display.Voices_Noteindex[Display.currentVoice-1]--;
+			}
+			else if(Display.JoystickParameterPosition == 2) {	// Voices [1,2,3] Octave down
+				if(Display.Voices_Octave[Display.currentVoice-1] > 0)
+					Display.Voices_Octave[Display.currentVoice-1]--;
+			}
+		}
+
 		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
 		Display.BACK_Debounce_State = false;
@@ -1612,6 +1657,50 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		if(Display.pagePosition == 8 && Display.currentWahWah > 0 && Display.JoystickParameterPosition == 4) {
 			if(Display.WahWah_LFOfreq_Index < 7)
 				Display.WahWah_LFOfreq_Index++;
+		}
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Sequencer notes and octaves changed by putton pressing
+		if(Display.pagePosition == 3 && Display.currentDrumcomputer == 0) {
+
+			if(Display.JoystickParameterPosition == 3) {	// Sequencer Note 1 up
+				if(Display.Sequencer_Noteindex[0] < 12)	// 12 keys per octave
+					Display.Sequencer_Noteindex[0]++;
+			}
+			else if(Display.JoystickParameterPosition == 4) {	// Sequencer Octave 1 up
+				if(Display.Sequencer_Octave[0] < 5)	// maximum 6 octaves
+					Display.Sequencer_Octave[0]++;
+			}
+			else if(Display.JoystickParameterPosition == 5) {	// Sequencer Note 2 up
+				if(Display.Sequencer_Noteindex[1] < 12)	// 12 keys per octave
+					Display.Sequencer_Noteindex[1]++;
+			}
+			else if(Display.JoystickParameterPosition == 6) {	// Sequencer Octave 2 up
+				if(Display.Sequencer_Octave[1] < 5)	// maximum 6 octaves
+					Display.Sequencer_Octave[1]++;
+			}
+			else if(Display.JoystickParameterPosition == 7) {	// Sequencer Note 3 up
+				if(Display.Sequencer_Noteindex[2] < 12)	// 12 keys per octave
+					Display.Sequencer_Noteindex[2]++;
+			}
+			else if(Display.JoystickParameterPosition == 8) {	// Sequencer Octave 3 up
+				if(Display.Sequencer_Octave[2] < 5)	// maximum 6 octaves
+					Display.Sequencer_Octave[2]++;
+			}
+		}
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Voices notes and octaves changed by putton pressing
+		if(Display.pagePosition == 5 && Display.currentVoice > 0) {
+
+			if(Display.JoystickParameterPosition == 1) {	// Voices [1,2,3] Note up
+				if(Display.Voices_Noteindex[Display.currentVoice-1] < 12)	// 12 keys per octave
+					Display.Voices_Noteindex[Display.currentVoice-1]++;
+			}
+			else if(Display.JoystickParameterPosition == 2) {	// Voices [1,2,3] Octave up
+				if(Display.Voices_Octave[Display.currentVoice-1] < 5)	// maximum 6 octaves
+					Display.Voices_Octave[Display.currentVoice-1]++;
+			}
 		}
 
 		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led

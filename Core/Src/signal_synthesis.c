@@ -18,9 +18,9 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	signals1.count = 0;
 	signals1.max = 1;
 
-	//set volume
-	Master_Volume = 1;
-	for(int i =0 ;i<4;i++){
+	// Set Volumes for Master_Volume, Voices, Drumcomputer, Sequencer and Keyboard
+	Master_Volume = 1.0;
+	for(int i=0; i<4; i++) {
 		volume[i] = 1;
 	}
 
@@ -746,29 +746,29 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	uint8_t count = signals -> count;
 
 	// decide if Channel 1 or Channel 2
-	float* calculate_vector_tmp = 0; // working aray
+	float* calculate_vector_tmp = 0; // working array
 
-	if (output_Channel == 1){
+	if(output_Channel == 1) {
 		calculate_vector_tmp = calculate_vector1;
 	}
-	else if (output_Channel == 2){
+	else if(output_Channel == 2) {
 		calculate_vector_tmp = calculate_vector2;
 	}
 
 	//decide if first half of BLOCKSIZE or second half
-	uint16_t BLOOCKSIZE_startIndex=0, BLOOCKSIZE_endIndex=0;
+	uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;
 	if (outputBuffer_position == HALF_BLOCK){
-		BLOOCKSIZE_startIndex = 0; // nur für lesbarkeit
-		BLOOCKSIZE_endIndex = (BLOCKSIZE/2);
+		BLOOCKSIZE_startIndex = 0;
+		BLOOCKSIZE_endIndex = BLOCKSIZE/2;
 	}
 	else if(outputBuffer_position == FULL_BLOCK){
 		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
-
 	}
 
 	//Loop for signal synthesis
-	for (int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++){
+	for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
+
 		addValue = 0;
 		calculate_keyboard[0] = 0;
 		calculate_keyboard[1] = 0;
@@ -778,9 +778,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		// Loop to reach all Signals
 		for(int j=0; j<count; j++) {
-			switch (signals->kind[j]) {
-			case SIN:
 
+			switch (signals->kind[j]) {
+
+			case SIN:
 				// keyboard signals
 				if(signals->ID[j] == KEYBOARD_VOICE_ID){
 					calculate_keyboard[0] = LUT[signals -> current_LUT_Index[j]];
@@ -869,8 +870,13 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				break;
 
 			case NOISE:
-				//addValue += AWGN_generator();
-				addValue += (2*(float)rand()/sizeof(int))-1;
+				if(Display.Voices_ONOFF[VOICES_ID+3] == true)
+					addValue += (2*(float)rand()/sizeof(int))-1;
+				// delete signal if voice off
+				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
+					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
+					Display.Voices_Created[VOICES_ID+3] = false;
+				}
 				break;
 			}// Switch-Case
 
@@ -878,53 +884,49 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		/*limiter function*/
 		//norm the signal to -1...1
-		//		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter]/signals -> max;
+		addValue = addValue/signals->max;
 
 		// NORM: Volume by signal count
 		if(signals->count - active_keyboard_notes == 0) {}	// division by zero for addValue possible -> fuckup!
 		else
 			addValue = addValue/(signals->count - active_keyboard_notes);
 
+		// maximum
+		if (signals -> max < fabs((double)addValue)){
+			signals -> max = fabs((double)addValue);
+		}
 
 		//write into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
 
-		//		LFO_SingleValueProcess(Tremolo.lfo);
-		//		calculate_vector_tmp[BLOCKSIZE_counter] = Tremolo.lfo->lfo_data;
+		// Drummachine
+		if ((volume[1]>0)||(volume[2]>0)){
+			Drum_Computer_Process();
+			drums_filtered = drums;
+			if(Display.Drumfilter_ONOFF)
+				ProcessFilter(&LS_DRUMS, &drums_filtered);
+		}
+		else{
+			drums = 0;
+			sequencer = 0;
+		}
 
-		//				// maximum
-		//				if (signals -> max < fabs((double)addValue)){
-		//					signals -> max = fabs((double)addValue);
-		//				}
+		// Keyboard processing
+		keyboard_adsr_process();
+		// summing up all played keyboard notes
+		for (int k= 0; k < 5;k++)
+			calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
 
-		//		// Drummachine
-		//		if ((volume[1]>0)||(volume[2]>0)){
-		//			Drum_Computer_Process();
-		//			drums_filtered = drums;
-		//			if(Display.Drumfilter_ONOFF)
-		//				ProcessFilter(&LS_DRUMS, &drums_filtered);
-		//		}
-		//		else{
-		//			drums = 0;
-		//			sequencer = 0;
-		//		}
-		//
-		//		// Keyboard processing
-		//		keyboard_adsr_process();
-		//		// summing up all played keyboard notes
-		//		for (int k= 0; k < 5;k++)
-		//			calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
-		//
-		//		// Play single sample
-		//		if(play_single_sample_flag) {
-		//			PlaySingleSample();
-		//			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
-		//		}
+		// Play single sample
+		if(play_single_sample_flag) {
+			PlaySingleSample();
+			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
+		}
 
 		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
-		//		// Add all values
-		//		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];// + volume[1] * drums_filtered + volume[2] * sequencer;
+		// Add all values
+		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
 
 		//		// maximum
 		//		if (signals -> max < fabs((double)addValue)){
@@ -960,7 +962,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
 		//		}
 
-		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((1.0 * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
+		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * Master_Volume * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
 	}//End for-Loop
 
 	//	// save current LUT index into signals1,	SINNLOS!!!
@@ -969,97 +971,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	//	}
 }
 
-///** @brief generates a low frequency sine to be used for effects
-// *  @param effect: struct which contains the parameter for the effect which want to use the LFO
-// *
-// */
-//void Signal_Synthesis_LFO(struct effects_lfo_t* effect) {
-//
-//	float frequency = effect->lfo_frequency;
-//	uint8_t quarter = effect->lfo_quarter;
-//	uint32_t index = effect->lfo_index;
-//	uint32_t LFO_blocksizecounter = effect->lfo_blocksizecounter;
-//
-//	// calculate ratio between LFO frequency and minimum processable frequency
-//	float frequency_ratio = frequency / LFO_FMIN;
-//
-//	if(LFO_blocksizecounter == BLOCKSIZE/2) {
-//		LFO_blocksizecounter = 0;
-//	}
-//
-//	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
-//	if(index  > LFO_ENDINDEX[0]) {
-//		index = 0;
-//		quarter++;
-//		if (quarter > 3)
-//			quarter = 0;
-//	}
-//
-//	switch(quarter) {
-//	case 0:
-//		effect_LFO[LFO_blocksizecounter] = LFO[index];
-//		break;
-//	case 1:
-//		effect_LFO[LFO_blocksizecounter] = LFO[LFO_ENDINDEX[0] - index];
-//		break;
-//	case 2:
-//		effect_LFO[LFO_blocksizecounter] = -LFO[index];
-//		break;
-//	case 3:
-//		effect_LFO[LFO_blocksizecounter] = -LFO[LFO_ENDINDEX[0] - index];
-//		break;
-//	default:
-//		break;
-//	}
-//	index = round((double)(index + frequency_ratio));
-//
-//	//save current state into given effect struct
-//	effect->lfo_blocksizecounter = LFO_blocksizecounter;
-//	effect->lfo_index = index;
-//	effect->lfo_quarter = quarter;
-//}
-
-
-//float LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
-//
-//	float effect_LFO = 0;
-//
-//	// calculate ratio between LFO_LUT frequency and desired frequency
-//	float frequency_ratio = lfo->lfo_frequency / LFO_FMIN;
-//
-//	// check if end of LFO_LUT is reached, if yes then increment quarter and set index to zero
-//	if(lfo->lfo_index  > LFO_ENDINDEX[0]) {
-//		lfo->lfo_index = 0;
-//		lfo->lfo_quarter++;
-//		if (lfo->lfo_quarter > 3)
-//			lfo->lfo_quarter = 0;
-//	}
-//
-//	switch(lfo->lfo_quarter) {
-//	case 0:
-//		effect_LFO = LFO[lfo->lfo_index];
-//		break;
-//	case 1:
-//		effect_LFO = LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
-//		break;
-//	case 2:
-//		effect_LFO = -LFO[lfo->lfo_index];
-//		break;
-//	case 3:
-//		effect_LFO = -LFO[LFO_ENDINDEX[0] - lfo->lfo_index];
-//		break;
-//	default:
-//		break;
-//	}
-//	lfo->lfo_index = round((double)(lfo->lfo_index + frequency_ratio));
-//
-//	return effect_LFO;
-//}
-
-
 /* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */
-float AWGN_generator()
-{
+float AWGN_generator(void) {
 
 	float temp1;
 	float temp2;

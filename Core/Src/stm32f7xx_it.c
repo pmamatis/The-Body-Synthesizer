@@ -632,38 +632,40 @@ void DMA2_Stream2_IRQHandler(void)
 
 	// BPM setting
 	// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
-	if(Display.pagePosition == 3 && Display.currentDrumcomputer > 0 && Display.JoystickParameterPosition == 2) {
+	if(Display.poti_moved == true) {
+		if(Display.pagePosition == 3 && Display.currentDrumcomputer > 0 && Display.JoystickParameterPosition == 2) {
 
-		BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause at low BPMs cause fuckups
-		BPM = roundf(BPM);
+			BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause at low BPMs cause fuckups
+			BPM = roundf(BPM);
 
-		if(abs(last_BPM - BPM) > 3) {
-			for(int i=0; i<FourFour; i++) {
+			if(abs(last_BPM - BPM) > 3) {
+				for(int i=0; i<FourFour; i++) {
 
-				// INIT: Counter
-				counter_DS1[i] = 0;
-				counter_DS2[i] = 0;
-				counter_DS3[i] = 0;
-				counter_DS4[i] = 0;
+					// INIT: Counter
+					counter_DS1[i] = 0;
+					counter_DS2[i] = 0;
+					counter_DS3[i] = 0;
+					counter_DS4[i] = 0;
 
-				drum_index = 0;
-				counter_master = 0;
+					drum_index = 0;
+					counter_master = 0;
 
-				// RESET: Drum sound bins
-				DS1s = 0;
-				DS2s = 0;
-				DS3s = 0;
-				DS4s = 0;
+					// RESET: Drum sound bins
+					DS1s = 0;
+					DS2s = 0;
+					DS3s = 0;
+					DS4s = 0;
 
-				drums = 0;
+					drums = 0;
 
-				timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
+					timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
+				}
+				char bpm_str[10];
+				sprintf(bpm_str, "%.1f", BPM);
+				last_BPM = BPM;
+				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, bpm_str, &Font12, COLORED);
 			}
-			char bpm_str[10];
-			sprintf(bpm_str, "%.1f", BPM);
-			last_BPM = BPM;
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, bpm_str, &Font12, COLORED);
 		}
 	}
 
@@ -681,7 +683,7 @@ void DMA2_Stream2_IRQHandler(void)
 
 	// do not process the poti change if joystick is moved in x- or y-direction
 	if(abs(Display.ADC2inputs[0]-Display.JoystickMiddle)<100 && abs(Display.ADC2inputs[1]-Display.JoystickMiddle)<100) {
-		Display.Poti_Threshold = 10;
+//		Display.Poti_Threshold = 10;
 		if(abs(Display.last_Poti - Display.PotiMean) > Display.Poti_Threshold) {
 			//			printf("moved\r\n");
 			//			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.PotiMean));
@@ -707,6 +709,13 @@ void DMA2_Stream2_IRQHandler(void)
 		DISPLAY_processing();
 		Display.UpdateDisplay = true;
 		WahWah.lfo->lfo_done_flag = false;
+	}
+
+	// process the display and and update it when one of the buttons is pressed, because otherwise the voices and sequencer notes and octaves are not updated
+	if(Display.button_pressed_flag == true) {
+		DISPLAY_processing();
+		Display.UpdateDisplay = true;
+		Display.button_pressed_flag = false;
 	}
 
 	if(Display.UpdateDisplay == true) {

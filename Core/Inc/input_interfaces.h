@@ -11,7 +11,7 @@
 #include "main.h"
 
 
-#define II_MAX_VOICES 3
+#define II_MAX_VOICES 4
 #define II_SR 50
 #define II_TREM_DEPTH_STEP_SIZE 20
 #define II_FILTER_CUTTOFF_STEP_SIZE 400

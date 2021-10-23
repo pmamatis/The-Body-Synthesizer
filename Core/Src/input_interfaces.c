@@ -7,7 +7,8 @@
 
 #include "input_interfaces.h"
 
-void II_init(){
+void II_init(void) {
+
 	log_mapping_F = log(LUT_FMAX);
 
 	for (int i = 0;i<5 ;i++)
@@ -21,7 +22,8 @@ void II_init(){
 /** starts the Interface Timer Interrupt
  *
  */
-void II_startInterface(TIM_HandleTypeDef* htim){
+void II_startInterface(TIM_HandleTypeDef* htim) {
+
 	SetTimerSettings(htim, II_SR);
 	HAL_TIM_Base_Start_IT(htim);
 	//printf("starting Interface Controll\r\n");
@@ -39,7 +41,8 @@ uint8_t II_Display_Voices(void) {
 
 			// signal has to be created once, because otherwise the count for-loop in signal synthesis function can not be entered (count > 0)
 			if(Display.Voices_Created[ii_i] == false) {
-				NewSignal(&signals1, SIN, Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i],ii_i);
+//				NewSignal(&signals1, SIN, Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i],ii_i);
+				NewSignal(&signals1, Display.Voices_Kind[ii_i], Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i], ii_i);
 				Display.Voices_Created[ii_i] = true;
 			}
 

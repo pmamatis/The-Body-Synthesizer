@@ -24,6 +24,9 @@
 
 #define NUMBER_OF_SOURCES 6
 
+// Voices
+#define NUMBER_OF_VOICES 4
+
 // Drumcomputer
 #define MAX_NUMBER_OF_SAMPLES 4
 #define NUMBER_OF_DRUMSTEPS 8
@@ -87,6 +90,7 @@ typedef enum {
 //};
 
 struct display_variables {
+
 	char source_names[NUMBER_OF_SOURCES][10];	// assumption: maximum length of 10 characters for a each source name
 
 	bool PatchSelected[3];	// arrays for 3 Modules for each patch
@@ -116,18 +120,22 @@ struct display_variables {
 	float Keyboard_ReleaseTime;
 
 	// Synthesizer Parameters
+	// Voices
 	uint8_t ActiveEffectsCounter;
-	bool Voices_ONOFF[3];		// 3 Voices
-	char Voices_Note[3];
-	char last_Voices_Note[3];
-	char Voices_Octave[3];
-	char last_Voices_Octave[3];
+	bool Voices_ONOFF[NUMBER_OF_VOICES];
+	char Voices_Note[NUMBER_OF_VOICES];
+	char last_Voices_Note[NUMBER_OF_VOICES];
+	char Voices_Octave[NUMBER_OF_VOICES];
+	char last_Voices_Octave[NUMBER_OF_VOICES];
 	float noteindex;
-	bool Voices_Created[3];
+	bool Voices_Created[NUMBER_OF_VOICES];
 	uint8_t currentVoice;
+	uint8_t Voices_Noteindex[NUMBER_OF_VOICES];
+	uint8_t last_Voices_Noteindex[NUMBER_OF_VOICES];
+	float Voices_Volume[NUMBER_OF_VOICES];
+	uint8_t Voices_Kind[NUMBER_OF_VOICES];
 
 	//ADSR
-	bool ADSR_ONOFF;			// 1 ADSR
 	float ADSR_Attacktime;
 	float ADSR_Decaytime;
 	float ADSR_Sustaintime;
@@ -142,7 +150,6 @@ struct display_variables {
 	bool last_Distortion_ONOFF;
 	bool last_Distortion_Type;
 	bool Distortion_Type;
-	//float Distortion_Gain;
 	uint8_t Distortion_Gain;
 	uint8_t Distortion_EffectPosition;
 	bool Distortion_EffectAdded;
@@ -151,7 +158,6 @@ struct display_variables {
 	//Tremolo
 	bool Tremolo_ONOFF;
 	bool last_Tremolo_ONOFF;
-	//float Tremolo_Rate;
 	float Tremolo_Rate;
 	float Tremolo_Depth;
 	uint8_t Tremolo_EffectPosition;
@@ -266,6 +272,7 @@ struct display_variables {
 	bool ENTER;		// state variable of the ENTER-Button to go one step further in the display-menu
 	bool BACK;		// state variable of the BACK-Button to go one step back in the display-menu
 	bool SW;		// state variable of the SW-Button of the Joystick
+	bool button_pressed_flag;
 
 	// SOURCES
 	source_t Voice_Note_Sources[3];				// sources for note of Voice 1,2 and 3
@@ -281,8 +288,8 @@ struct display_variables {
 	// page value strings
 	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
 	char value_str_voices_overview[9][10];
-	char value_str_voices_settings[3][9][10];
-	char value_str_adsr_overview[9][10];
+	char value_str_voices_settings[4][9][10];
+	char value_str_adsr_overview[7][10];
 	char value_str_adsr_settings[9][10];
 	char value_str_equalizer_overview[9][10];
 	char value_str_equalizer_settings[5][9][10];
@@ -315,9 +322,12 @@ struct display_variables {
 	bool Sequencer_ONOFF;
 	char Sequencer_Note[4];
 	char Sequencer_Octave[4];
+	char last_Sequencer_Octave[4];
 	bool SequencerMatrix[MAX_NUMBER_OF_NOTES][NUMBER_OF_SEQUENCERSTEPS];
 	bool EditSteps;
 	uint8_t currentSequencer;
+	uint8_t Sequencer_Noteindex[3];
+	uint8_t last_Sequencer_Noteindex[3];
 
 	// WahWah
 	uint8_t WahWah_Mode;

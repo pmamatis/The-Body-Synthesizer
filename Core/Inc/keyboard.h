@@ -12,7 +12,7 @@
 
 /* defines */
 #define KEYBOARD_SR 500 // in Hz
-#define KEYBOARD_VOICE_ID 3
+#define KEYBOARD_VOICE_ID 4	// as big as NUMBER_OF_VOICES
 #define VOICES_ID 0
 
 // Define Notes (has to be calibrated for every keyboard)

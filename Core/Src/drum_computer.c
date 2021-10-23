@@ -211,10 +211,10 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 	drum_index = 0;
 
 	// Sequencer: Get freq index
-	freq_index_SN1 = Get_Note_Index('C',1);
-	freq_index_SN2 = Get_Note_Index('E',2);
-	freq_index_SN3 = Get_Note_Index('G',3);
-	freq_index_SN4 = Get_Note_Index('A',2);
+	//	freq_index_SN1 = Get_Note_Index('C',1);
+	//	freq_index_SN2 = Get_Note_Index('E',2);
+	//	freq_index_SN3 = Get_Note_Index('G',3);
+	//	freq_index_SN4 = Get_Note_Index('A',2);
 
 	// FOR: all steps in drums / sequencer
 	for(int i=0; i<FourFour; i++) {
