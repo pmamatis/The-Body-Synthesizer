@@ -161,7 +161,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->PotiMean_tmp = 0;
 	Display->PotiMean = 0;
 	Display->PotiMean_counter = 0;
-	Display->Poti_Threshold = 10;
+	Display->Poti_Threshold = 15;
 	Display->last_Poti = Display->PotiMean + Display->Poti_Threshold + 1;	// has to be initialized like this to make sure that the display will be updated at restart
 
 	//Display value init/reset values
@@ -769,7 +769,7 @@ Display_Status p_Drumcomputer_overview(void) {
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 	//row cases
 	char str_1[] = "Next effect";
-	char str_2[] = "DC ON/OFF";
+	char str_2[] = "Drumcomputer ON/OFF";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 
@@ -811,8 +811,6 @@ Display_Status p_Drumcomputer_Settings(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Load sample", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, "Edit drums", &Font12, COLORED);
-	Display_DrawDrumcomputerIcons(Display.sample1, Display.sample2, Display.sample3, Display.sample4);
-	DISPLAY_DrawDrumcomputerPatternFrame(8);
 
 	if(Display.JoystickParameterPosition == 1) {	// last page
 		Display.EditDrums = false;
@@ -820,70 +818,75 @@ Display_Status p_Drumcomputer_Settings(void) {
 	else if(Display.JoystickParameterPosition == 2) {	// change BPM -> processing done in interrupt
 		Display.EditDrums = false;
 	}
-	else if(Display.JoystickParameterPosition == 3) {	// load sample from sd card
+	else if(Display.JoystickParameterPosition == 3) {	// load sample from sd card -> right button pressed registered in gpio exti callback
 		Display.EditDrums = false;
 
-		if(Display.poti_moved == true) {
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-35, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+		//		if(Display.poti_moved == true) {
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+		//		}
 
-			if(potVal >= 0 && potVal < 25) {
-				strcpy(drumkit_str, "909");
+		if(potVal >= 0 && potVal < 25) {
+			strcpy(drumkit_str, "909");
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, drumkit_str, &Font12, COLORED);
+			Display.UpdateDisplay = true;
+			if(Display.LoadDrumkit == true) {
+				Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, "909", &Font8, COLORED);
+				Display_LoadDrumKits(0);
+				Display.LoadDrumkit = false;
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Op.HH");
 				strcpy(Display.sample3, "Clap");
 				strcpy(Display.sample4, "L.Tom");
-				Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
-				//				DISPLAY_Update();
-				Display.UpdateDisplay = true;
-				if(Display.LoadDrumkit == true) {
-					Display_LoadDrumKits(0);
-					Display.LoadDrumkit = false;
-				}
 			}
-			else if(potVal >= 25 && potVal < 50) {
-				strcpy(drumkit_str, "Rock loud");
+		}
+		else if(potVal >= 25 && potVal < 50) {
+			strcpy(drumkit_str, "Rock loud");
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, drumkit_str, &Font12, COLORED);
+			Display.UpdateDisplay = true;
+			if(Display.LoadDrumkit == true) {
+				Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, "Rock loud", &Font8, COLORED);
+				Display_LoadDrumKits(1);
+				Display.LoadDrumkit = false;
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Hihat");
 				strcpy(Display.sample3, "Snare");
 				strcpy(Display.sample4, "Ride");
-				Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
-				//				DISPLAY_Update();
-				Display.UpdateDisplay = true;
-				if(Display.LoadDrumkit == true) {
-					Display_LoadDrumKits(1);
-					Display.LoadDrumkit = false;
-				}
 			}
-			else if(potVal >= 50 && potVal < 75) {
-				strcpy(drumkit_str, "Rock");
+		}
+		else if(potVal >= 50 && potVal < 75) {
+			strcpy(drumkit_str, "Rock");
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, drumkit_str, &Font12, COLORED);
+			Display.UpdateDisplay = true;
+			if(Display.LoadDrumkit == true) {
+				Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, "Rock", &Font8, COLORED);
+				Display_LoadDrumKits(2);
+				Display.LoadDrumkit = false;
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Hihat");
 				strcpy(Display.sample3, "Snare");
 				strcpy(Display.sample4, "Ride");
-				Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
-				//				DISPLAY_Update();
-				Display.UpdateDisplay = true;
-				if(Display.LoadDrumkit == true) {
-					Display_LoadDrumKits(2);
-					Display.LoadDrumkit = false;
-				}
 			}
-			else if(potVal >= 75 && potVal <= 100) {
-				strcpy(drumkit_str, "Windows");
+		}
+		else if(potVal >= 75 && potVal <= 100) {
+			strcpy(drumkit_str, "Windows");
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, drumkit_str, &Font12, COLORED);
+			Display.UpdateDisplay = true;
+			if(Display.LoadDrumkit == true) {
+				Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, "Windows", &Font8, COLORED);
+				Display_LoadDrumKits(3);
+				Display.LoadDrumkit = false;
 				strcpy(Display.sample1, "Chord");
 				strcpy(Display.sample2, "Trash");
 				strcpy(Display.sample3, "Remove");
 				strcpy(Display.sample4, "Back");
-				Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE3, drumkit_str, &Font12, COLORED);
-				//				DISPLAY_Update();
-				Display.UpdateDisplay = true;
-				if(Display.LoadDrumkit == true) {
-					Display_LoadDrumKits(3);
-					Display.LoadDrumkit = false;
-				}
 			}
 		}
+		//		}
 	}
 	else if(Display.JoystickParameterPosition == 4) {	// edit drums on/off
 
@@ -900,6 +903,9 @@ Display_Status p_Drumcomputer_Settings(void) {
 			}
 		}
 	}
+
+	Display_DrawDrumcomputerIcons(Display.sample1, Display.sample2, Display.sample3, Display.sample4);
+	DISPLAY_DrawDrumcomputerPatternFrame(8);
 
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_drumcomputer[1], &Font12, COLORED);
 

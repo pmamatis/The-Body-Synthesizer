@@ -261,14 +261,14 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 	//
 	//	// INIT: 909 LUTs
 	//	// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
-	__disable_irq();
-	sd_card_mount();
-	sd_card_read("909_Kick.txt", &DS1);
-	sd_card_read("909_OpenHihat.txt", &DS2);
-	sd_card_read("909_Clap.txt", &DS3);
-	sd_card_read("909_LowTom.txt", &DS4);
-	sd_card_unmount();
-	__enable_irq();
+	//	__disable_irq();
+	//	sd_card_mount();
+	//	sd_card_read("909_Kick.txt", &DS1);
+	//	sd_card_read("909_OpenHihat.txt", &DS2);
+	//	sd_card_read("909_Clap.txt", &DS3);
+	//	sd_card_read("909_LowTom.txt", &DS4);
+	//	sd_card_unmount();
+	//	__enable_irq();
 
 	// INIT: Windows LUTs
 	// POSSIBLE: Recycle, Background, Chord, Critical Stop, Error, Hardware Remove

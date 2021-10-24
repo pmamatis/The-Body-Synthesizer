@@ -1488,7 +1488,7 @@ static void MX_GPIO_Init(void)
 	HAL_GPIO_Init(DISP_CS_GPIO_Port, &GPIO_InitStruct);
 
 	/* EXTI interrupt init*/
-	HAL_NVIC_SetPriority(EXTI9_5_IRQn, 1, 0);
+	HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
 	HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
@@ -1642,8 +1642,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		}
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
-		if(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3)	// Load Drumkit from SD card
+		// Load Drumkit from SD card
+		if(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3)
 			Display.LoadDrumkit = true;
+
+		//		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		//		// Load Drumkit from SD card
+		//		if(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3)
+		//			Display.LoadDrumkit = true;
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
 		// Tremolo Rate Index setting to change the rate by button pressing
