@@ -94,123 +94,123 @@ extern TIM_HandleTypeDef htim8;
 /*           Cortex-M7 Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
-  * @brief This function handles Non maskable interrupt.
-  */
+ * @brief This function handles Non maskable interrupt.
+ */
 void NMI_Handler(void)
 {
-  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+	/* USER CODE BEGIN NonMaskableInt_IRQn 0 */
 
-  /* USER CODE END NonMaskableInt_IRQn 0 */
-  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+	/* USER CODE END NonMaskableInt_IRQn 0 */
+	/* USER CODE BEGIN NonMaskableInt_IRQn 1 */
 
-  /* USER CODE END NonMaskableInt_IRQn 1 */
+	/* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
 /**
-  * @brief This function handles Hard fault interrupt.
-  */
+ * @brief This function handles Hard fault interrupt.
+ */
 void HardFault_Handler(void)
 {
-  /* USER CODE BEGIN HardFault_IRQn 0 */
+	/* USER CODE BEGIN HardFault_IRQn 0 */
 
-  /* USER CODE END HardFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_HardFault_IRQn 0 */
-    /* USER CODE END W1_HardFault_IRQn 0 */
-  }
+	/* USER CODE END HardFault_IRQn 0 */
+	while (1)
+	{
+		/* USER CODE BEGIN W1_HardFault_IRQn 0 */
+		/* USER CODE END W1_HardFault_IRQn 0 */
+	}
 }
 
 /**
-  * @brief This function handles Memory management fault.
-  */
+ * @brief This function handles Memory management fault.
+ */
 void MemManage_Handler(void)
 {
-  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+	/* USER CODE BEGIN MemoryManagement_IRQn 0 */
 
-  /* USER CODE END MemoryManagement_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
-    /* USER CODE END W1_MemoryManagement_IRQn 0 */
-  }
+	/* USER CODE END MemoryManagement_IRQn 0 */
+	while (1)
+	{
+		/* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+		/* USER CODE END W1_MemoryManagement_IRQn 0 */
+	}
 }
 
 /**
-  * @brief This function handles Pre-fetch fault, memory access fault.
-  */
+ * @brief This function handles Pre-fetch fault, memory access fault.
+ */
 void BusFault_Handler(void)
 {
-  /* USER CODE BEGIN BusFault_IRQn 0 */
+	/* USER CODE BEGIN BusFault_IRQn 0 */
 
-  /* USER CODE END BusFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_BusFault_IRQn 0 */
-    /* USER CODE END W1_BusFault_IRQn 0 */
-  }
+	/* USER CODE END BusFault_IRQn 0 */
+	while (1)
+	{
+		/* USER CODE BEGIN W1_BusFault_IRQn 0 */
+		/* USER CODE END W1_BusFault_IRQn 0 */
+	}
 }
 
 /**
-  * @brief This function handles Undefined instruction or illegal state.
-  */
+ * @brief This function handles Undefined instruction or illegal state.
+ */
 void UsageFault_Handler(void)
 {
-  /* USER CODE BEGIN UsageFault_IRQn 0 */
+	/* USER CODE BEGIN UsageFault_IRQn 0 */
 
-  /* USER CODE END UsageFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
-    /* USER CODE END W1_UsageFault_IRQn 0 */
-  }
+	/* USER CODE END UsageFault_IRQn 0 */
+	while (1)
+	{
+		/* USER CODE BEGIN W1_UsageFault_IRQn 0 */
+		/* USER CODE END W1_UsageFault_IRQn 0 */
+	}
 }
 
 /**
-  * @brief This function handles System service call via SWI instruction.
-  */
+ * @brief This function handles System service call via SWI instruction.
+ */
 void SVC_Handler(void)
 {
-  /* USER CODE BEGIN SVCall_IRQn 0 */
+	/* USER CODE BEGIN SVCall_IRQn 0 */
 
-  /* USER CODE END SVCall_IRQn 0 */
-  /* USER CODE BEGIN SVCall_IRQn 1 */
+	/* USER CODE END SVCall_IRQn 0 */
+	/* USER CODE BEGIN SVCall_IRQn 1 */
 
-  /* USER CODE END SVCall_IRQn 1 */
+	/* USER CODE END SVCall_IRQn 1 */
 }
 
 /**
-  * @brief This function handles Debug monitor.
-  */
+ * @brief This function handles Debug monitor.
+ */
 void DebugMon_Handler(void)
 {
-  /* USER CODE BEGIN DebugMonitor_IRQn 0 */
+	/* USER CODE BEGIN DebugMonitor_IRQn 0 */
 
-  /* USER CODE END DebugMonitor_IRQn 0 */
-  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
+	/* USER CODE END DebugMonitor_IRQn 0 */
+	/* USER CODE BEGIN DebugMonitor_IRQn 1 */
 
-  /* USER CODE END DebugMonitor_IRQn 1 */
+	/* USER CODE END DebugMonitor_IRQn 1 */
 }
 
 /**
-  * @brief This function handles Pendable request for system service.
-  */
+ * @brief This function handles Pendable request for system service.
+ */
 void PendSV_Handler(void)
 {
-  /* USER CODE BEGIN PendSV_IRQn 0 */
+	/* USER CODE BEGIN PendSV_IRQn 0 */
 
-  /* USER CODE END PendSV_IRQn 0 */
-  /* USER CODE BEGIN PendSV_IRQn 1 */
+	/* USER CODE END PendSV_IRQn 0 */
+	/* USER CODE BEGIN PendSV_IRQn 1 */
 
-  /* USER CODE END PendSV_IRQn 1 */
+	/* USER CODE END PendSV_IRQn 1 */
 }
 
 /**
-  * @brief This function handles System tick timer.
-  */
+ * @brief This function handles System tick timer.
+ */
 void SysTick_Handler(void)
 {
-  /* USER CODE BEGIN SysTick_IRQn 0 */
+	/* USER CODE BEGIN SysTick_IRQn 0 */
 
 	/*FatFsCnt++;
 	if(FatFsCnt >= 10) {
@@ -218,11 +218,11 @@ void SysTick_Handler(void)
 		SDTimer_Handler();
 	}*/
 
-  /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
-  /* USER CODE BEGIN SysTick_IRQn 1 */
+	/* USER CODE END SysTick_IRQn 0 */
+	HAL_IncTick();
+	/* USER CODE BEGIN SysTick_IRQn 1 */
 
-  /* USER CODE END SysTick_IRQn 1 */
+	/* USER CODE END SysTick_IRQn 1 */
 }
 
 /******************************************************************************/
@@ -233,156 +233,156 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles DMA1 stream5 global interrupt.
-  */
+ * @brief This function handles DMA1 stream5 global interrupt.
+ */
 void DMA1_Stream5_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
+	/* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
 
-  /* USER CODE END DMA1_Stream5_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_dac1);
-  /* USER CODE BEGIN DMA1_Stream5_IRQn 1 */
+	/* USER CODE END DMA1_Stream5_IRQn 0 */
+	HAL_DMA_IRQHandler(&hdma_dac1);
+	/* USER CODE BEGIN DMA1_Stream5_IRQn 1 */
 
-  /* USER CODE END DMA1_Stream5_IRQn 1 */
+	/* USER CODE END DMA1_Stream5_IRQn 1 */
 }
 
 /**
-  * @brief This function handles DMA1 stream6 global interrupt.
-  */
+ * @brief This function handles DMA1 stream6 global interrupt.
+ */
 void DMA1_Stream6_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA1_Stream6_IRQn 0 */
+	/* USER CODE BEGIN DMA1_Stream6_IRQn 0 */
 
-  /* USER CODE END DMA1_Stream6_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_dac2);
-  /* USER CODE BEGIN DMA1_Stream6_IRQn 1 */
+	/* USER CODE END DMA1_Stream6_IRQn 0 */
+	HAL_DMA_IRQHandler(&hdma_dac2);
+	/* USER CODE BEGIN DMA1_Stream6_IRQn 1 */
 
-  /* USER CODE END DMA1_Stream6_IRQn 1 */
+	/* USER CODE END DMA1_Stream6_IRQn 1 */
 }
 
 /**
-  * @brief This function handles ADC1, ADC2 and ADC3 global interrupts.
-  */
+ * @brief This function handles ADC1, ADC2 and ADC3 global interrupts.
+ */
 void ADC_IRQHandler(void)
 {
-  /* USER CODE BEGIN ADC_IRQn 0 */
+	/* USER CODE BEGIN ADC_IRQn 0 */
 
-  /* USER CODE END ADC_IRQn 0 */
-  HAL_ADC_IRQHandler(&hadc1);
-  HAL_ADC_IRQHandler(&hadc2);
-  HAL_ADC_IRQHandler(&hadc3);
-  /* USER CODE BEGIN ADC_IRQn 1 */
+	/* USER CODE END ADC_IRQn 0 */
+	HAL_ADC_IRQHandler(&hadc1);
+	HAL_ADC_IRQHandler(&hadc2);
+	HAL_ADC_IRQHandler(&hadc3);
+	/* USER CODE BEGIN ADC_IRQn 1 */
 
-  /* USER CODE END ADC_IRQn 1 */
+	/* USER CODE END ADC_IRQn 1 */
 }
 
 /**
-  * @brief This function handles EXTI line[9:5] interrupts.
-  */
+ * @brief This function handles EXTI line[9:5] interrupts.
+ */
 void EXTI9_5_IRQHandler(void)
 {
-  /* USER CODE BEGIN EXTI9_5_IRQn 0 */
+	/* USER CODE BEGIN EXTI9_5_IRQn 0 */
 
-  /* USER CODE END EXTI9_5_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
-  /* USER CODE BEGIN EXTI9_5_IRQn 1 */
+	/* USER CODE END EXTI9_5_IRQn 0 */
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
+	/* USER CODE BEGIN EXTI9_5_IRQn 1 */
 
-  /* USER CODE END EXTI9_5_IRQn 1 */
+	/* USER CODE END EXTI9_5_IRQn 1 */
 }
 
 /**
-  * @brief This function handles TIM1 break interrupt and TIM9 global interrupt.
-  */
+ * @brief This function handles TIM1 break interrupt and TIM9 global interrupt.
+ */
 void TIM1_BRK_TIM9_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 0 */
+	/* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 0 */
 
-  /* USER CODE END TIM1_BRK_TIM9_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim1);
-  /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 1 */
+	/* USER CODE END TIM1_BRK_TIM9_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim1);
+	/* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 1 */
 
-  /* USER CODE END TIM1_BRK_TIM9_IRQn 1 */
+	/* USER CODE END TIM1_BRK_TIM9_IRQn 1 */
 }
 
 /**
-  * @brief This function handles TIM2 global interrupt.
-  */
+ * @brief This function handles TIM2 global interrupt.
+ */
 void TIM2_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM2_IRQn 0 */
+	/* USER CODE BEGIN TIM2_IRQn 0 */
 
-  /* USER CODE END TIM2_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim2);
-  /* USER CODE BEGIN TIM2_IRQn 1 */
+	/* USER CODE END TIM2_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim2);
+	/* USER CODE BEGIN TIM2_IRQn 1 */
 
-  /* USER CODE END TIM2_IRQn 1 */
+	/* USER CODE END TIM2_IRQn 1 */
 }
 
 /**
-  * @brief This function handles TIM3 global interrupt.
-  */
+ * @brief This function handles TIM3 global interrupt.
+ */
 void TIM3_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM3_IRQn 0 */
+	/* USER CODE BEGIN TIM3_IRQn 0 */
 	II_Display_Voices();
 	II_Display_Effects();
 
-  /* USER CODE END TIM3_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim3);
-  /* USER CODE BEGIN TIM3_IRQn 1 */
+	/* USER CODE END TIM3_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim3);
+	/* USER CODE BEGIN TIM3_IRQn 1 */
 
-  /* USER CODE END TIM3_IRQn 1 */
+	/* USER CODE END TIM3_IRQn 1 */
 }
 
 /**
-  * @brief This function handles TIM4 global interrupt.
-  */
+ * @brief This function handles TIM4 global interrupt.
+ */
 void TIM4_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM4_IRQn 0 */
+	/* USER CODE BEGIN TIM4_IRQn 0 */
 
-  /* USER CODE END TIM4_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim4);
-  /* USER CODE BEGIN TIM4_IRQn 1 */
+	/* USER CODE END TIM4_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim4);
+	/* USER CODE BEGIN TIM4_IRQn 1 */
 
-  /* USER CODE END TIM4_IRQn 1 */
+	/* USER CODE END TIM4_IRQn 1 */
 }
 
 /**
-  * @brief This function handles EXTI line[15:10] interrupts.
-  */
+ * @brief This function handles EXTI line[15:10] interrupts.
+ */
 void EXTI15_10_IRQHandler(void)
 {
-  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+	/* USER CODE BEGIN EXTI15_10_IRQn 0 */
 
-  /* USER CODE END EXTI15_10_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
-  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+	/* USER CODE END EXTI15_10_IRQn 0 */
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
+	/* USER CODE BEGIN EXTI15_10_IRQn 1 */
 
-  /* USER CODE END EXTI15_10_IRQn 1 */
+	/* USER CODE END EXTI15_10_IRQn 1 */
 }
 
 /**
-  * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
-  */
+ * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
+ */
 void TIM8_TRG_COM_TIM14_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 0 */
+	/* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 0 */
 
-  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim8);
-  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
+	/* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim8);
+	/* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
 
-  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
+	/* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
 }
 
 /**
-  * @brief This function handles TIM5 global interrupt.
-  */
+ * @brief This function handles TIM5 global interrupt.
+ */
 void TIM5_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM5_IRQn 0 */
+	/* USER CODE BEGIN TIM5_IRQn 0 */
 	//	tim5_counter++;
 	//	if(tim5_counter == 500){
 	//			printf("%i\r\n",HAL_GetTick());
@@ -390,26 +390,26 @@ void TIM5_IRQHandler(void)
 	//			tim5_counter = 0;
 	//	}
 
-  /* USER CODE END TIM5_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim5);
-  /* USER CODE BEGIN TIM5_IRQn 1 */
+	/* USER CODE END TIM5_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim5);
+	/* USER CODE BEGIN TIM5_IRQn 1 */
 
 	//HAL_ADC_Start_DMA(KEYBOARD_ADC, &keyboard_adc_value, 1);
 	HAL_ADC_Start_DMA(KEYBOARD_ADC, &Display.ADC1input, 1);
 
-  /* USER CODE END TIM5_IRQn 1 */
+	/* USER CODE END TIM5_IRQn 1 */
 }
 
 /**
-  * @brief This function handles TIM7 global interrupt.
-  */
+ * @brief This function handles TIM7 global interrupt.
+ */
 void TIM7_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM7_IRQn 0 */
+	/* USER CODE BEGIN TIM7_IRQn 0 */
 
-  /* USER CODE END TIM7_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim7);
-  /* USER CODE BEGIN TIM7_IRQn 1 */
+	/* USER CODE END TIM7_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim7);
+	/* USER CODE BEGIN TIM7_IRQn 1 */
 	//  HAL_SPI_TransmitReceive_IT(&SensorSPI, pTxData, pRxData, sizeof(sensor_data_t));
 	//  HAL_SPI_Receive(&hspi4, pRxData, sizeof(sensor_data_t), 100);
 	HAL_SPI_TransmitReceive(hSensorSPI, pTxData, pRxData, sizeof(sensor_data_t),100);
@@ -436,15 +436,15 @@ void TIM7_IRQHandler(void)
 	//	printf("\r\n");
 	//	printf("\r\n");
 
-  /* USER CODE END TIM7_IRQn 1 */
+	/* USER CODE END TIM7_IRQn 1 */
 }
 
 /**
-  * @brief This function handles DMA2 stream0 global interrupt.
-  */
+ * @brief This function handles DMA2 stream0 global interrupt.
+ */
 void DMA2_Stream0_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
+	/* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
 
 	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
 	//	if(Display.mode == KEYBOARD)
@@ -482,73 +482,78 @@ void DMA2_Stream0_IRQHandler(void)
 	// Process
 	OnePress_keyboard_process(Display.ADC1input, &signals1, &Display);
 
-  /* USER CODE END DMA2_Stream0_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_adc1);
-  /* USER CODE BEGIN DMA2_Stream0_IRQn 1 */
+	/* USER CODE END DMA2_Stream0_IRQn 0 */
+	HAL_DMA_IRQHandler(&hdma_adc1);
+	/* USER CODE BEGIN DMA2_Stream0_IRQn 1 */
 
-  /* USER CODE END DMA2_Stream0_IRQn 1 */
+	/* USER CODE END DMA2_Stream0_IRQn 1 */
 }
 
 /**
-  * @brief This function handles DMA2 stream1 global interrupt.
-  */
+ * @brief This function handles DMA2 stream1 global interrupt.
+ */
 void DMA2_Stream1_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA2_Stream1_IRQn 0 */
+	/* USER CODE BEGIN DMA2_Stream1_IRQn 0 */
 
-  /* USER CODE END DMA2_Stream1_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_adc3);
-  /* USER CODE BEGIN DMA2_Stream1_IRQn 1 */
-  /* USER CODE END DMA2_Stream1_IRQn 1 */
+	/* USER CODE END DMA2_Stream1_IRQn 0 */
+	HAL_DMA_IRQHandler(&hdma_adc3);
+	/* USER CODE BEGIN DMA2_Stream1_IRQn 1 */
+	/* USER CODE END DMA2_Stream1_IRQn 1 */
 }
 
 /**
-  * @brief This function handles DMA2 stream2 global interrupt.
-  */
+ * @brief This function handles DMA2 stream2 global interrupt.
+ */
 void DMA2_Stream2_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
+	/* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
 
 	// START Drumcomputer Processing
 	if(Display.EditDrums == true) {
 
-		//		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
-		//			DISPLAY_Update();
-		//			Display.UpdateDisplay = false;
-		//		}
-
 		if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick down
 			DISPLAY_DeleteDrumcomputerStepCursor();
-			if(Display.CurrentSampleRow < MAX_NUMBER_OF_SAMPLES)	// Display.CurrentSampleRow should be maximum the number of loaded samples
+
+			if(Display.CurrentSampleRow < MAX_NUMBER_OF_SAMPLES+1)	// Display.CurrentSampleRow should be maximum the number of loaded samples
 				Display.CurrentSampleRow++;
 
-			//			Display.CurrentSampleRow++;
-			//			if(Display.CurrentSampleRow == MAX_NUMBER_OF_SAMPLES)	// set cursor to the most left step, when cursor exceeds the most right step
-			//				Display.CurrentSampleRow = 1;
+			if(Display.CurrentSampleRow == MAX_NUMBER_OF_SAMPLES+1)	// cursor switches to first value when the limit is exceeded
+				Display.CurrentSampleRow = 1;
 
 			DISPLAY_SetDrumcomputerStepCursor();
 		}
 		else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick up
 			DISPLAY_DeleteDrumcomputerStepCursor();
-			if(Display.CurrentSampleRow > 1)	// Display.CurrentSampleRow should be minimum 1
+
+			if(Display.CurrentSampleRow >= 1)	// Display.CurrentSampleRow should be minimum 1
 				Display.CurrentSampleRow--;
 
-			//			Display.CurrentSampleRow--;
-			//			if(Display.CurrentSampleRow == 1)	// set cursor to the most right step, when cursor exceeds the most left step
-			//				Display.CurrentSampleRow = MAX_NUMBER_OF_SAMPLES;
+			if(Display.CurrentSampleRow == 0)	// cursor switches to last value when the limit is exceeded
+				Display.CurrentSampleRow = MAX_NUMBER_OF_SAMPLES;
 
 			DISPLAY_SetDrumcomputerStepCursor();
 		}
 		if(Display.ADC2inputs[0] > Display.UpperLimit) {	// joystick left
 			DISPLAY_DeleteDrumcomputerStepCursor();
-			if(Display.CurrentDrumstep > 1)	// Display.CurrentDrumstep should be minimum 1
+
+			if(Display.CurrentDrumstep >= 1)	// Display.CurrentDrumstep should be minimum 1
 				Display.CurrentDrumstep--;
+
+			if(Display.CurrentDrumstep == 0)	// cursor switches to last value when the limit is exceeded
+				Display.CurrentDrumstep = NUMBER_OF_DRUMSTEPS;
+
 			DISPLAY_SetDrumcomputerStepCursor();
 		}
 		else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// joystick right
 			DISPLAY_DeleteDrumcomputerStepCursor();
-			if(Display.CurrentDrumstep < NUMBER_OF_DRUMSTEPS)	// Display.CurrentDrumStep should be maximum the number of drumsteps
+
+			if(Display.CurrentDrumstep < NUMBER_OF_DRUMSTEPS+1)	// Display.CurrentDrumStep should be maximum the number of drumsteps
 				Display.CurrentDrumstep++;
+
+			if(Display.CurrentDrumstep == NUMBER_OF_DRUMSTEPS+1)	// cursor switches to first value when the limit is exceeded
+				Display.CurrentDrumstep = 1;
+
 			DISPLAY_SetDrumcomputerStepCursor();
 		}
 	}
@@ -556,35 +561,49 @@ void DMA2_Stream2_IRQHandler(void)
 
 	// START Sequencer Processing
 	if(Display.EditSteps == true) {
-		//if(Display.EditSteps == true && Display.Sequencer_ONOFF == true) {	// diese if-Abfrage überarbeiten, da sonst der Joystick spinnt (Warum???) ?
-
-		//		if(Display.UpdateDisplay == true) {	// this variable is set true in GPIO EXTI Callback
-		//			DISPLAY_Update();
-		//			Display.UpdateDisplay = false;
-		//		}
 
 		if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick down
 			DISPLAY_DeleteSequencerStepCursor();
-			if(Display.CurrentNoteRow < MAX_NUMBER_OF_NOTES)	// Display.CurrentNoteRow should be maximum the number of notes
+
+			if(Display.CurrentNoteRow < MAX_NUMBER_OF_NOTES+1)	// Display.CurrentSampleRow should be maximum the number of loaded samples
 				Display.CurrentNoteRow++;
+
+			if(Display.CurrentNoteRow == MAX_NUMBER_OF_NOTES+1)	// cursor switches to first value when the limit is exceeded
+				Display.CurrentNoteRow = 1;
+
 			DISPLAY_SetSequencerStepCursor();
 		}
 		else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick up
 			DISPLAY_DeleteSequencerStepCursor();
-			if(Display.CurrentNoteRow > 1)	// Display.CurrentNoteRow should be minimum 1
+
+			if(Display.CurrentNoteRow >= 1)	// Display.CurrentSampleRow should be minimum 1
 				Display.CurrentNoteRow--;
+
+			if(Display.CurrentNoteRow == 0)	// cursor switches to last value when the limit is exceeded
+				Display.CurrentNoteRow = MAX_NUMBER_OF_NOTES;
+
 			DISPLAY_SetSequencerStepCursor();
 		}
 		if(Display.ADC2inputs[0] > Display.UpperLimit) {	// joystick left
 			DISPLAY_DeleteSequencerStepCursor();
-			if(Display.CurrentSequencestep > 1)	// Display.CurrentSequencestep should be minimum 1
+
+			if(Display.CurrentSequencestep >= 1)	// Display.CurrentDrumstep should be minimum 1
 				Display.CurrentSequencestep--;
+
+			if(Display.CurrentSequencestep == 0)	// cursor switches to last value when the limit is exceeded
+				Display.CurrentSequencestep = NUMBER_OF_SEQUENCERSTEPS;
+
 			DISPLAY_SetSequencerStepCursor();
 		}
 		else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// joystick right
 			DISPLAY_DeleteSequencerStepCursor();
-			if(Display.CurrentSequencestep < NUMBER_OF_SEQUENCERSTEPS)	// Display.CurrentSequencestep should be maximum the number of sequencer steps
+
+			if(Display.CurrentSequencestep < NUMBER_OF_SEQUENCERSTEPS+1)	// Display.CurrentDrumStep should be maximum the number of drumsteps
 				Display.CurrentSequencestep++;
+
+			if(Display.CurrentSequencestep == NUMBER_OF_SEQUENCERSTEPS+1)	// cursor switches to first value when the limit is exceeded
+				Display.CurrentSequencestep = 1;
+
 			DISPLAY_SetSequencerStepCursor();
 		}
 	}
@@ -592,40 +611,32 @@ void DMA2_Stream2_IRQHandler(void)
 
 	// joystick usable if sequencer steps and drums not edited at the moment
 	if( !(Display.EditDrums || Display.EditSteps) ) {
-		//	else if(Display.EditSteps == false) {
-		//else if(Display.EditDrums == false) {
 		// arrow up or down
 		if (Display.arrow_flag == true) {	// just in case we would not use the arrow, this flag should be false
 			if(Display.ADC2inputs[1] < Display.LowerLimit) {	// joystick-y goes down
 				DISPLAY_ArrowDown(&(Display.JoystickParameterPosition));
 				DISPLAY_processing();
-				//				DISPLAY_Update();
 				Display.UpdateDisplay = true;
 			}
 			else if(Display.ADC2inputs[1] > Display.UpperLimit) {	// joystick-y goes up
 				DISPLAY_ArrowUp(&(Display.JoystickParameterPosition));
 				DISPLAY_processing();
-				//				DISPLAY_Update();
 				Display.UpdateDisplay = true;
 			}
 		}
 		// switch page left or right
 		if(Display.ADC2inputs[0] > Display.UpperLimit) {	// switch to the left page
 			DISPLAY_SwitchPageLeft();
-			//		Display.JoystickParameterPosition = 1;
 			DISPLAY_processing();
 			Display.JoystickParameterPosition = 1;
 			DISPLAY_DrawArrow(1);
-			//			DISPLAY_Update();
 			Display.UpdateDisplay = true;
 		}
 		else if(Display.ADC2inputs[0] < Display.LowerLimit) {	// switch to the right page
 			DISPLAY_SwitchPageRight();
-			//		Display.JoystickParameterPosition = 1;
 			DISPLAY_processing();
 			Display.JoystickParameterPosition = 1;
 			DISPLAY_DrawArrow(1);
-			//			DISPLAY_Update();
 			Display.UpdateDisplay = true;
 		}
 	}
@@ -675,7 +686,7 @@ void DMA2_Stream2_IRQHandler(void)
 		Display.PotiMean = Display.PotiMean_tmp / Display.PotiMean_counter;
 		Display.PotiMean_counter = 0;
 		Display.PotiMean_tmp = 0;
-		printf("PotiMean = %u\r\n", Display.PotiMean);
+		//		printf("PotiMean = %u\r\n", Display.PotiMean);
 	}
 	Display.PotiMean_counter++;
 
@@ -683,14 +694,13 @@ void DMA2_Stream2_IRQHandler(void)
 
 	// do not process the poti change if joystick is moved in x- or y-direction
 	if(abs(Display.ADC2inputs[0]-Display.JoystickMiddle)<100 && abs(Display.ADC2inputs[1]-Display.JoystickMiddle)<100) {
-//		Display.Poti_Threshold = 10;
+		//		Display.Poti_Threshold = 10;
 		if(abs(Display.last_Poti - Display.PotiMean) > Display.Poti_Threshold) {
 			//			printf("moved\r\n");
 			//			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.PotiMean));
 			Display.poti_moved = true;
 			Display.last_Poti = Display.PotiMean;
 			DISPLAY_processing();
-			//			DISPLAY_Update();
 			Display.UpdateDisplay = true;
 		}
 		else {
@@ -723,52 +733,52 @@ void DMA2_Stream2_IRQHandler(void)
 		Display.UpdateDisplay = false;
 	}
 
-  /* USER CODE END DMA2_Stream2_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_adc2);
-  /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
+	/* USER CODE END DMA2_Stream2_IRQn 0 */
+	HAL_DMA_IRQHandler(&hdma_adc2);
+	/* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
 
-  /* USER CODE END DMA2_Stream2_IRQn 1 */
+	/* USER CODE END DMA2_Stream2_IRQn 1 */
 }
 
 /**
-  * @brief This function handles DMA2 stream3 global interrupt.
-  */
+ * @brief This function handles DMA2 stream3 global interrupt.
+ */
 void DMA2_Stream3_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA2_Stream3_IRQn 0 */
+	/* USER CODE BEGIN DMA2_Stream3_IRQn 0 */
 
-  /* USER CODE END DMA2_Stream3_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_spi4_rx);
-  /* USER CODE BEGIN DMA2_Stream3_IRQn 1 */
+	/* USER CODE END DMA2_Stream3_IRQn 0 */
+	HAL_DMA_IRQHandler(&hdma_spi4_rx);
+	/* USER CODE BEGIN DMA2_Stream3_IRQn 1 */
 
-  /* USER CODE END DMA2_Stream3_IRQn 1 */
+	/* USER CODE END DMA2_Stream3_IRQn 1 */
 }
 
 /**
-  * @brief This function handles DMA2 stream4 global interrupt.
-  */
+ * @brief This function handles DMA2 stream4 global interrupt.
+ */
 void DMA2_Stream4_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA2_Stream4_IRQn 0 */
+	/* USER CODE BEGIN DMA2_Stream4_IRQn 0 */
 
-  /* USER CODE END DMA2_Stream4_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_spi4_tx);
-  /* USER CODE BEGIN DMA2_Stream4_IRQn 1 */
+	/* USER CODE END DMA2_Stream4_IRQn 0 */
+	HAL_DMA_IRQHandler(&hdma_spi4_tx);
+	/* USER CODE BEGIN DMA2_Stream4_IRQn 1 */
 
-  /* USER CODE END DMA2_Stream4_IRQn 1 */
+	/* USER CODE END DMA2_Stream4_IRQn 1 */
 }
 
 /**
-  * @brief This function handles SPI4 global interrupt.
-  */
+ * @brief This function handles SPI4 global interrupt.
+ */
 void SPI4_IRQHandler(void)
 {
-  /* USER CODE BEGIN SPI4_IRQn 0 */
+	/* USER CODE BEGIN SPI4_IRQn 0 */
 
-  /* USER CODE END SPI4_IRQn 0 */
-  HAL_SPI_IRQHandler(&hspi4);
-  /* USER CODE BEGIN SPI4_IRQn 1 */
-  /* USER CODE END SPI4_IRQn 1 */
+	/* USER CODE END SPI4_IRQn 0 */
+	HAL_SPI_IRQHandler(&hspi4);
+	/* USER CODE BEGIN SPI4_IRQn 1 */
+	/* USER CODE END SPI4_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
