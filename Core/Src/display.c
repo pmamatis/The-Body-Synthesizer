@@ -65,6 +65,10 @@ Display_Status Display_Init(struct display_variables* Display) {
 		Display->Voices_Volume[i] = 1.0;
 	}
 
+	// Noise
+	Display->Noise_ONOFF = false;
+	Display->Noise_Volume = 1.0;
+
 	Display->ADSR_Attacktime = 0.10;
 	Display->ADSR_Decaytime = 0.10;
 	Display->ADSR_Sustaintime = 0.30;
@@ -2713,17 +2717,16 @@ void p_Voices_overview(void) {
 	case 5:
 		// Noise ON/OFF
 		Display.currentVoice = 4;
-		Display.Voices_Kind[Display.currentVoice-1] = NOISE;
 
 		if(Display.poti_moved == true) {
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
 
 			if(potVal < 50) {	// smaller than 50 %
-				Display.Voices_ONOFF[Display.currentVoice-1] = false;
+				Display.Noise_ONOFF = false;
 				strcpy(Display.value_str_voices_overview[4], "OFF");
 			}
 			else if(potVal >= 50) {	// greater than 50 %
-				Display.Voices_ONOFF[Display.currentVoice-1] = true;
+				Display.Noise_ONOFF = true;
 				strcpy(Display.value_str_voices_overview[4], "ON");
 			}
 		}
@@ -2759,14 +2762,15 @@ void p_Voices_overview(void) {
  */
 void p_Voices_Settings(void) {
 
-	//Header line
-	char headerstring[] = "Voice ";
-	char headerstring_2[5];
-	itoa(Display.currentVoice, headerstring_2, 10);
-	strcat(headerstring, headerstring_2);
-	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	//	if(Display.Voices_Kind[Display.currentVoice-1] == SIN) {
+	if(Display.currentVoice < NUMBER_OF_VOICES+1) {
 
-	if(Display.Voices_Kind[Display.currentVoice-1] == SIN) {
+		//Header line
+		char headerstring[] = "Voice ";
+		char headerstring_2[5];
+		itoa(Display.currentVoice, headerstring_2, 10);
+		strcat(headerstring, headerstring_2);
+		Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 
 		//row cases
 		char str_1[] = "Note";
@@ -2824,7 +2828,12 @@ void p_Voices_Settings(void) {
 		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_voices_settings[Display.currentVoice-1][3], &Font12, COLORED);
 	}
 
-	else if(Display.Voices_Kind[Display.currentVoice-1] == NOISE) {
+	//	else if(Display.Voices_Kind[Display.currentVoice-1] == NOISE) {
+	else {
+
+		//Header line
+		char headerstring[] = "Noise";
+		Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 
 		//row cases
 		char str_1[] = "Volume";
@@ -2835,8 +2844,8 @@ void p_Voices_Settings(void) {
 			// Volume
 			if(Display.poti_moved == true) {
 				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
-				Display.Voices_Volume[Display.currentVoice-1] = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
-				sprintf(Display.value_str_voices_settings[Display.currentVoice-1][0], "%c", Display.Voices_Volume[Display.currentVoice-1]);
+				Display.Noise_Volume = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
+				sprintf(Display.value_str_voices_settings[Display.currentVoice-1][0], "%.2f", Display.Noise_Volume);
 			}
 			break;
 		default:

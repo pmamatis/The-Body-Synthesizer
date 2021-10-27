@@ -58,11 +58,11 @@ uint8_t II_Display_Voices(void) {
 				if ( toggleCounter > toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
 					if (sensorData.tilt_detected == TILT_BACK){
-						II_decreaseNote(ii_i);
+						II_decreaseNote(ii_i);	// TODO: decrease the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT){
-						II_raiseNote(ii_i);
+						II_raiseNote(ii_i);	// TODO: increase the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					toggleCounter = 0;
@@ -74,11 +74,11 @@ uint8_t II_Display_Voices(void) {
 
 				if ( toggleCounter > toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 					if (sensorData.tilt_detected == TILT_RIGHT){
-						II_decreaseNote(ii_i);
+						II_decreaseNote(ii_i);	// TODO: decrease the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_LEFT){
-						II_raiseNote(ii_i);
+						II_raiseNote(ii_i);	// TODO: increase the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
 						sensorData.tilt_detected = TILT_NONE;
 
 					}
@@ -189,6 +189,7 @@ uint8_t II_Display_Effects(void){
 	//Tremolo
 	// TODO: UPDATE GYRO: Tremolo.lfo->lfo_index = 0; Tremolo.lfo->lfo_quarter = 0;
 	if(Display.Tremolo_ONOFF == true) {
+
 		if(Display.last_Tremolo_ONOFF == false) {
 			effects_add(TREM);
 			Tremolo.lfo->lfo_quarter = 1;
@@ -206,14 +207,14 @@ uint8_t II_Display_Effects(void){
 				if (sensorData.tilt_detected == TILT_BACK){
 					if (Display.Tremolo_Rate > 0) {
 						//printf("decrease Trem Rate\r\n");
-						Display.Tremolo_Rate --;
+						Display.Tremolo_Rate --;	// TODO: decrease the rateindex Display.Tremolo_Rate_Index as its done in the gpio exti callback
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
 				else if (sensorData.tilt_detected == TILT_BACK_S){
 					if (Display.Tremolo_Rate > 0) {
 						//printf("decrease Trem Rate\r\n");
-						Display.Tremolo_Rate --;
+						Display.Tremolo_Rate --;	// TODO: double decrease the rateindex Display.Tremolo_Rate_Index as its done in the gpio exti callback
 						Display.Tremolo_Rate --;
 					}
 					sensorData.tilt_detected = TILT_NONE;
@@ -221,14 +222,14 @@ uint8_t II_Display_Effects(void){
 				else if (sensorData.tilt_detected == TILT_FRONT){
 					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
 						//printf("raise Trem Rate\r\n");
-						Display.Tremolo_Rate ++;
+						Display.Tremolo_Rate ++;	// TODO: increase the rateindex Display.Tremolo_Rate_Index as its done in the gpio exti callback
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
 				else if (sensorData.tilt_detected == TILT_FRONT_S){
 					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
 						//printf("raise Trem Rate\r\n");
-						Display.Tremolo_Rate ++;
+						Display.Tremolo_Rate ++;	// TODO: double increase the rateindex Display.Tremolo_Rate_Index as its done in the gpio exti callback
 						Display.Tremolo_Rate ++;
 					}
 					sensorData.tilt_detected = TILT_NONE;
@@ -238,14 +239,14 @@ uint8_t II_Display_Effects(void){
 				if (sensorData.tilt_detected == TILT_LEFT ){
 					if (Display.Tremolo_Rate > 0) {
 						//printf("decrease Trem Rate\r\n");
-						Display.Tremolo_Rate --;
+						Display.Tremolo_Rate --;	// TODO: decrease the rateindex Display.Tremolo_Rate_Index as its done in the gpio exti callback
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
 				else if (sensorData.tilt_detected == TILT_LEFT_S ){
 					if (Display.Tremolo_Rate > 0) {
 						//printf("decrease Trem Rate\r\n");
-						Display.Tremolo_Rate --;
+						Display.Tremolo_Rate --;	// TODO: double decrease the rateindex Display.Tremolo_Rate_Index as its done in the gpio exti callback
 						Display.Tremolo_Rate --;
 					}
 					sensorData.tilt_detected = TILT_NONE;
@@ -253,14 +254,14 @@ uint8_t II_Display_Effects(void){
 				else if (sensorData.tilt_detected == TILT_RIGHT){
 					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
 						//printf("raise Trem Rate\r\n");
-						Display.Tremolo_Rate ++;
+						Display.Tremolo_Rate ++;	// TODO: increase the rateindex Display.Tremolo_Rate_Index as its done in the gpio exti callback
 					}
 					sensorData.tilt_detected = TILT_NONE;
 				}
 				else if (sensorData.tilt_detected == TILT_RIGHT_S){
 					if (Display.Tremolo_Rate < Tremolo.tremolo_maximum_rate) {
 						//printf("raise Trem Rate\r\n");
-						Display.Tremolo_Rate ++;
+						Display.Tremolo_Rate ++;	// TODO: double increase the rateindex Display.Tremolo_Rate_Index as its done in the gpio exti callback
 						Display.Tremolo_Rate ++;
 					}
 					sensorData.tilt_detected = TILT_NONE;
@@ -284,7 +285,6 @@ uint8_t II_Display_Effects(void){
 				else if (sensorData.tilt_detected == TILT_BACK_S ){
 					if (Display.Tremolo_Depth > 0) {
 						//printf("decrease Trem Depth\r\n");
-
 						//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
 						Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 					}

@@ -25,7 +25,7 @@
 #define NUMBER_OF_SOURCES 6
 
 // Voices
-#define NUMBER_OF_VOICES 4
+#define NUMBER_OF_VOICES 3
 
 // Drumcomputer
 #define MAX_NUMBER_OF_SAMPLES 4
@@ -134,6 +134,10 @@ struct display_variables {
 	uint8_t last_Voices_Noteindex[NUMBER_OF_VOICES];
 	float Voices_Volume[NUMBER_OF_VOICES];
 	uint8_t Voices_Kind[NUMBER_OF_VOICES];
+
+	// Noise
+	bool Noise_ONOFF;
+	float Noise_Volume;
 
 	//ADSR
 	float ADSR_Attacktime;

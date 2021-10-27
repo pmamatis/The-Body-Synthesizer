@@ -124,7 +124,8 @@ void DeleteSignal(struct signal_t* signals,int16_t signal_index);
 //void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID);
 void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
-void LFO_SingleValueProcess(struct effects_lfo_t* lfo) ;
+void LFO_SingleValueProcess(struct effects_lfo_t* lfo);
+float Noise_Generator(void);
 float AWGN_generator(void);
 int16_t IDtoIndex(int16_t id);
 

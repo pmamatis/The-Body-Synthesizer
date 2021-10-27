@@ -869,22 +869,23 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				}
 				break;
 
-			case NOISE:
-				if(Display.Voices_ONOFF[VOICES_ID+3] == true)
-					addValue += (2*(float)rand()/sizeof(int))-1;
-				// delete signal if voice off
-				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
-					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
-					Display.Voices_Created[VOICES_ID+3] = false;
-				}
-				break;
+//			case NOISE:
+//				if(Display.Voices_ONOFF[VOICES_ID+3] == true) {
+//					addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*sizeof(int))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);
+//				}
+//				// delete signal if voice off
+//				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
+//					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
+//					Display.Voices_Created[VOICES_ID+3] = false;
+//				}
+//				break;
 			}// Switch-Case
 
 		}// Signal counter for-loop
 
 		/*limiter function*/
 		//norm the signal to -1...1
-		addValue = addValue/signals->max;
+		//		addValue = addValue/signals->max;
 
 		// NORM: Volume by signal count
 		if(signals->count - active_keyboard_notes == 0) {}	// division by zero for addValue possible -> fuckup!
@@ -892,12 +893,13 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			addValue = addValue/(signals->count - active_keyboard_notes);
 
 		// maximum
-		if (signals -> max < fabs((double)addValue)){
-			signals -> max = fabs((double)addValue);
-		}
+		//		if (signals -> max < fabs((double)addValue)){
+		//			signals -> max = fabs((double)addValue);
+		//		}
 
-		//write into calculate vector
-		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * addValue;
+		// write voices (including noise) into calculate vector
+		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * (addValue + Noise_Generator());
+
 
 		// Drummachine
 		if ((volume[1]>0)||(volume[2]>0)){
@@ -969,6 +971,16 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	//	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
 	//		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
 	//	}
+}
+
+float Noise_Generator(void) {
+
+	float NoiseValue = 0;
+
+	if(Display.Noise_ONOFF == true)
+		NoiseValue = (8*Display.Noise_Volume*(float)rand()/ (powf(2, 8*sizeof(int))) )-(8*Display.Noise_Volume*0.25);	// Noise Gain = 8
+
+	return NoiseValue;
 }
 
 /* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */
