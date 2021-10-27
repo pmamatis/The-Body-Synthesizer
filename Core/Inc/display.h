@@ -293,7 +293,7 @@ struct display_variables {
 	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
 	char value_str_voices_overview[9][10];
 	char value_str_voices_settings[4][9][10];
-	char value_str_adsr_overview[7][10];
+	char value_str_adsr_overview[8][10];
 	char value_str_adsr_settings[9][10];
 	char value_str_equalizer_overview[9][10];
 	char value_str_equalizer_settings[5][9][10];

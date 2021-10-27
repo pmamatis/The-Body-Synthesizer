@@ -208,13 +208,13 @@ Display_Status Display_Init(struct display_variables* Display) {
 
 
 	strcpy(Display->value_str_adsr_overview[0],"");	// adsr overview
-	strcpy(Display->value_str_adsr_overview[1],"OFF");
-	strcpy(Display->value_str_adsr_overview[2],"0.10");
-	strcpy(Display->value_str_adsr_overview[3],"0.10");
-	strcpy(Display->value_str_adsr_overview[4],"0.30");
-	strcpy(Display->value_str_adsr_overview[5],"0.50");
-	strcpy(Display->value_str_adsr_overview[6],"0.05");
-	strcpy(Display->value_str_adsr_overview[7],"OFF");
+	strcpy(Display->value_str_adsr_overview[1],"");
+	strcpy(Display->value_str_adsr_overview[2],"");
+	strcpy(Display->value_str_adsr_overview[3],"");
+	strcpy(Display->value_str_adsr_overview[4],"");
+	strcpy(Display->value_str_adsr_overview[5],"");
+	strcpy(Display->value_str_adsr_overview[6],"");
+	strcpy(Display->value_str_adsr_overview[7],"");
 
 	strcpy(Display->value_str_adsr_settings[0],"POTI");	// adsr settings
 	strcpy(Display->value_str_adsr_settings[1],"POTI");
@@ -236,15 +236,51 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_equalizer_overview[7],"");
 	strcpy(Display->value_str_equalizer_overview[8],"");
 
-	strcpy(Display->value_str_equalizer_settings[0],"");	// equalizer settings
-	strcpy(Display->value_str_equalizer_settings[1],"");
-	strcpy(Display->value_str_equalizer_settings[2],"");
-	strcpy(Display->value_str_equalizer_settings[3],"");
-	strcpy(Display->value_str_equalizer_settings[4],"");
-	strcpy(Display->value_str_equalizer_settings[5],"");
-	strcpy(Display->value_str_equalizer_settings[6],"");
-	strcpy(Display->value_str_equalizer_settings[7],"");
-	strcpy(Display->value_str_equalizer_settings[8],"");
+	strcpy(Display->value_str_equalizer_settings[0][0],"");	// equalizer settings band 1
+	strcpy(Display->value_str_equalizer_settings[0][1],"");
+	strcpy(Display->value_str_equalizer_settings[0][2],"");
+	strcpy(Display->value_str_equalizer_settings[0][3],"");
+	strcpy(Display->value_str_equalizer_settings[0][4],"");
+	strcpy(Display->value_str_equalizer_settings[0][5],"");
+	strcpy(Display->value_str_equalizer_settings[0][6],"");
+	strcpy(Display->value_str_equalizer_settings[0][7],"");
+	strcpy(Display->value_str_equalizer_settings[0][8],"");
+	strcpy(Display->value_str_equalizer_settings[1][0],"");	// equalizer settings band 2
+	strcpy(Display->value_str_equalizer_settings[1][1],"");
+	strcpy(Display->value_str_equalizer_settings[1][2],"");
+	strcpy(Display->value_str_equalizer_settings[1][3],"");
+	strcpy(Display->value_str_equalizer_settings[1][4],"");
+	strcpy(Display->value_str_equalizer_settings[1][5],"");
+	strcpy(Display->value_str_equalizer_settings[1][6],"");
+	strcpy(Display->value_str_equalizer_settings[1][7],"");
+	strcpy(Display->value_str_equalizer_settings[1][8],"");
+	strcpy(Display->value_str_equalizer_settings[2][0],"");	// equalizer settings band 3
+	strcpy(Display->value_str_equalizer_settings[2][1],"");
+	strcpy(Display->value_str_equalizer_settings[2][2],"");
+	strcpy(Display->value_str_equalizer_settings[2][3],"");
+	strcpy(Display->value_str_equalizer_settings[2][4],"");
+	strcpy(Display->value_str_equalizer_settings[2][5],"");
+	strcpy(Display->value_str_equalizer_settings[2][6],"");
+	strcpy(Display->value_str_equalizer_settings[2][7],"");
+	strcpy(Display->value_str_equalizer_settings[2][8],"");
+	strcpy(Display->value_str_equalizer_settings[3][0],"");	// equalizer settings band 4
+	strcpy(Display->value_str_equalizer_settings[3][1],"");
+	strcpy(Display->value_str_equalizer_settings[3][2],"");
+	strcpy(Display->value_str_equalizer_settings[3][3],"");
+	strcpy(Display->value_str_equalizer_settings[3][4],"");
+	strcpy(Display->value_str_equalizer_settings[3][5],"");
+	strcpy(Display->value_str_equalizer_settings[3][6],"");
+	strcpy(Display->value_str_equalizer_settings[3][7],"");
+	strcpy(Display->value_str_equalizer_settings[3][8],"");
+	strcpy(Display->value_str_equalizer_settings[4][0],"");	// equalizer settings band 5
+	strcpy(Display->value_str_equalizer_settings[4][1],"");
+	strcpy(Display->value_str_equalizer_settings[4][2],"");
+	strcpy(Display->value_str_equalizer_settings[4][3],"");
+	strcpy(Display->value_str_equalizer_settings[4][4],"");
+	strcpy(Display->value_str_equalizer_settings[4][5],"");
+	strcpy(Display->value_str_equalizer_settings[4][6],"");
+	strcpy(Display->value_str_equalizer_settings[4][7],"");
+	strcpy(Display->value_str_equalizer_settings[4][8],"");
 
 	strcpy(Display->value_str_distortion[0],"OFF");	// distortion overview
 	strcpy(Display->value_str_distortion[1],"1");
@@ -2757,9 +2793,6 @@ void p_Voices_overview(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_voices_overview[4], &Font12, COLORED);
 }
 
-/** @brief this function edits the sources of the Voices parameters
- *
- */
 void p_Voices_Settings(void) {
 
 	//	if(Display.Voices_Kind[Display.currentVoice-1] == SIN) {
@@ -2882,7 +2915,7 @@ void p_ADSR_overview(struct adsr* envelope) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
 
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
-	char write_str[10];
+	//	char write_str[10];
 
 	switch(Display.JoystickParameterPosition) {
 	case 1:
@@ -2894,14 +2927,17 @@ void p_ADSR_overview(struct adsr* envelope) {
 		Display.currentADSR = 1;
 
 		if(Display.poti_moved == true) {
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-			Display.ADSR_Attacktime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_attack) + 0.05;	// 0.05 to prevent 0 -> fuckup
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.ADSR_Attacktime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_attack);
+
+			// 0.05 to prevent 0 -> fuckup
+			if(Display.ADSR_Attacktime < 0.05)
+				Display.ADSR_Attacktime = 0.05;
 
 			for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
 				adsr_keyboard[i].adsr_attack_time = Display.ADSR_Attacktime * LUT_SR;
 
-			sprintf(write_str, "%f", Display.ADSR_Attacktime);
-			memcpy(Display.value_str_adsr_overview[2], write_str, 3);	// float can only be displayed with two digits after the dot
+			sprintf(Display.value_str_adsr_overview[2], "%.2f", Display.ADSR_Attacktime);
 		}
 		break;
 	case 3:
@@ -2909,14 +2945,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 		Display.currentADSR = 2;
 
 		if(Display.poti_moved == true) {
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Decaytime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_decay);
 
 			for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
 				adsr_keyboard[i].adsr_decay_time = Display.ADSR_Decaytime * LUT_SR;
 
-			sprintf(write_str, "%f", Display.ADSR_Decaytime);
-			memcpy(Display.value_str_adsr_overview[3], write_str, 3);	// float can only be displayed with two digits after the dot
+			sprintf(Display.value_str_adsr_overview[3], "%.2f", Display.ADSR_Decaytime);
 		}
 		break;
 	case 4:
@@ -2924,14 +2959,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 		Display.currentADSR = 3;
 
 		if(Display.poti_moved == true) {
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Sustaintime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_sustaintime);
 
 			for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
 				adsr_keyboard[i].adsr_sustain_time = Display.ADSR_Sustaintime * LUT_SR;
 
-			sprintf(write_str, "%f", Display.ADSR_Sustaintime);
-			memcpy(Display.value_str_adsr_overview[4], write_str, 3);	// float can only be displayed with two digits after the dot
+			sprintf(Display.value_str_adsr_overview[4], "%.2f", Display.ADSR_Sustaintime);
 		}
 		break;
 	case 5:
@@ -2939,14 +2973,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 		Display.currentADSR = 4;
 
 		if(Display.poti_moved == true) {
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Sustainlevel = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_max_amp);
 
 			for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
 				adsr_keyboard[i].adsr_sustain_amplitude = Display.ADSR_Sustainlevel;
 
-			sprintf(write_str, "%f", Display.ADSR_Sustainlevel);
-			memcpy(Display.value_str_adsr_overview[5], write_str, 3);	// float can only be displayed with two digits after the dot
+			sprintf(Display.value_str_adsr_overview[5], "%.2f", Display.ADSR_Sustainlevel);
 		}
 		break;
 	case 6:
@@ -2954,14 +2987,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 		Display.currentADSR = 5;
 
 		if(Display.poti_moved == true) {
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.ADSR_Releasetime = (((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * envelope->adsr_maximum_release);
 
 			for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
 				adsr_keyboard[i].adsr_release_time = Display.ADSR_Releasetime * LUT_SR;
 
-			sprintf(write_str, "%f", Display.ADSR_Releasetime);
-			memcpy(Display.value_str_adsr_overview[6], write_str, 3);	// float can only be displayed with two digits after the dot
+			sprintf(Display.value_str_adsr_overview[6], "%.2f", Display.ADSR_Releasetime);
 		}
 		break;
 	case 7:
@@ -2969,13 +3001,13 @@ void p_ADSR_overview(struct adsr* envelope) {
 		// ADSR Reset ON/OFF
 
 		if(Display.poti_moved == true) {
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH , UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH , UNCOLORED);
 
 			if(potVal < 50) {	// smaller than 50 %
-				strcpy(Display.value_str_adsr_overview[4], "OFF");
+				strcpy(Display.value_str_adsr_overview[7], "OFF");
 			}
 			else if(potVal >= 50) {	// greater than 50 %
-				strcpy(Display.value_str_adsr_overview[4], "ON");
+				strcpy(Display.value_str_adsr_overview[7], "ON");
 			}
 		}
 		break;
@@ -2984,13 +3016,12 @@ void p_ADSR_overview(struct adsr* envelope) {
 	}
 
 	// print value row
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_adsr_overview[0], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_adsr_overview[1], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_adsr_overview[2], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_adsr_overview[3], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_adsr_overview[4], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_adsr_overview[5], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_adsr_overview[6], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_adsr_overview[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_adsr_overview[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_adsr_overview[4], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_adsr_overview[5], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_adsr_overview[6], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_adsr_overview[7], &Font12, COLORED);
 }
 
 /** @brief this function edits the sources of the ADSR parameters
@@ -3233,14 +3264,6 @@ void p_Equalizer_Settings(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
 
-	//-------------------------------------------------------------------------------------
-	// this variables have to be implemented and adjusted for each frequency band in filter-structs
-	float filter_maximum_Q = 10.0;
-	float filter_maximum_cutoff = LUT_FMAX;
-	float filter_maximum_gain = 1.0;
-	//-------------------------------------------------------------------------------------
-
-	char write_str[10];
 	uint8_t mode_number = 0;
 
 	if(Display.poti_moved == true) {
@@ -3248,24 +3271,106 @@ void p_Equalizer_Settings(void) {
 		switch(Display.JoystickParameterPosition) {
 		case 1:
 			// Q-Factor
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
-			Display.Filter_Q[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * filter_maximum_Q);
-			sprintf(write_str, "%f", Display.Filter_Q[Display.currentBand-1]);
-			memcpy(Display.value_str_equalizer_settings[Display.currentBand-1][0], write_str, 3);	// float can only be displayed with two digits after the dot
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.Filter_Q[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_Q);
+			if(Display.Filter_Q[Display.currentBand-1] < 0.01)	// guard for Q-factor, so it is never 0
+				Display.Filter_Q[Display.currentBand-1] = 0.01;
+			sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][0], "%.0f", Display.Filter_Q[Display.currentBand-1]);
+
+			// BAND 1: Low-Shelf filter
+			if(Display.currentBand == 1) {
+				EQ_BAND1.Q = Display.Filter_Q[Display.currentBand-1];
+				SetupLowShelf(&EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);
+			}
+			// BAND 2: Peaking-EQ
+			else if(Display.currentBand == 2) {
+				EQ_BAND2.Q = Display.Filter_Q[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);
+			}
+			// BAND 3: Peaking-EQ
+			else if(Display.currentBand == 3) {
+				EQ_BAND3.Q = Display.Filter_Q[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);
+			}
+			// BAND 4: Peaking-EQ
+			else if(Display.currentBand == 4) {
+				EQ_BAND4.Q = Display.Filter_Q[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);
+			}
+			// BAND 5: High-Shelf filter
+			else if(Display.currentBand == 5) {
+				EQ_BAND5.Q = Display.Filter_Q[Display.currentBand-1];
+				SetupHighShelf(&EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);
+			}
 			break;
 		case 2:
 			// Cutoff
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-			Display.Filter_Cutoff[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * filter_maximum_cutoff);
-			sprintf(write_str, "%f", Display.Filter_Cutoff[Display.currentBand-1]);
-			memcpy(Display.value_str_equalizer_settings[Display.currentBand-1][1], write_str, 3);	// float can only be displayed with two digits after the dot
+			Display.Filter_Cutoff[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_cutoff);
+			if(Display.Filter_Cutoff[Display.currentBand-1] < LUT_FMIN)
+				Display.Filter_Cutoff[Display.currentBand-1] = LUT_FMIN;
+			sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][1], "%.0f", Display.Filter_Cutoff[Display.currentBand-1]);
+
+			// BAND 1: Low-Shelf filter
+			if(Display.currentBand == 1) {
+				EQ_BAND1.cutoff = Display.Filter_Cutoff[Display.currentBand-1];
+				SetupLowShelf(&EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);
+			}
+			// BAND 2: Peaking-EQ
+			else if(Display.currentBand == 2) {
+				EQ_BAND2.cutoff = Display.Filter_Cutoff[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);
+			}
+			// BAND 3: Peaking-EQ
+			else if(Display.currentBand == 3) {
+				EQ_BAND3.cutoff = Display.Filter_Cutoff[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);
+			}
+			// BAND 4: Peaking-EQ
+			else if(Display.currentBand == 4) {
+				EQ_BAND4.cutoff = Display.Filter_Cutoff[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);
+			}
+			// BAND 5: High-Shelf filter
+			else if(Display.currentBand == 5) {
+				EQ_BAND5.cutoff = Display.Filter_Cutoff[Display.currentBand-1];
+				SetupHighShelf(&EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);
+			}
 			break;
 		case 3:
 			// Gain
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-			Display.Filter_Gain[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * filter_maximum_gain);
-			sprintf(write_str, "%f", Display.Filter_Gain[Display.currentBand-1]);
-			memcpy(Display.value_str_equalizer_settings[Display.currentBand-1][2], write_str, 3);	// float can only be displayed with two digits after the dot
+			Display.Filter_Gain[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_dBGain);
+
+			Display.Filter_Gain[Display.currentBand-1] = 2*Display.Filter_Gain[Display.currentBand-1]-EQ_BAND1.maximum_dBGain;
+
+			sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][2], "%.0f", Display.Filter_Gain[Display.currentBand-1]);
+
+			// BAND 1: Low-Shelf filter
+			if(Display.currentBand == 1) {
+				EQ_BAND1.dBGain = Display.Filter_Gain[Display.currentBand-1];
+				SetupLowShelf(&EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);
+			}
+			// BAND 2: Peaking-EQ
+			else if(Display.currentBand == 2) {
+				EQ_BAND2.dBGain = Display.Filter_Gain[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);
+			}
+			// BAND 3: Peaking-EQ
+			else if(Display.currentBand == 3) {
+				EQ_BAND3.dBGain = Display.Filter_Gain[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);
+			}
+			// BAND 4: Peaking-EQ
+			else if(Display.currentBand == 4) {
+				EQ_BAND4.dBGain = Display.Filter_Gain[Display.currentBand-1];
+				SetupPeakingEQ(&EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);
+			}
+			// BAND 5: High-Shelf filter
+			else if(Display.currentBand == 5) {
+				EQ_BAND5.dBGain = Display.Filter_Gain[Display.currentBand-1];
+				SetupHighShelf(&EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);
+			}
 			break;
 		case 4:
 			// Q-Factor Source

@@ -1,10 +1,10 @@
 /**
-  ******************************************************************************
-  * @file    filters.h
-  * @author  Max Lehmer
-  * @date 	 07 May 2020
-  * @brief	 Filter-Library
-*/
+ ******************************************************************************
+ * @file    filters.h
+ * @author  Max Lehmer
+ * @date 	 07 May 2020
+ * @brief	 Filter-Library
+ */
 
 #ifndef INC_FILTERS_H_
 #define INC_FILTERS_H_
@@ -19,43 +19,38 @@
  * @brief		Biquad Filter struct
  * @parameter	BQFilter
  *********************************/
-struct BQFilter{
+struct BQFilter {
+
 	float Q;
 	float cutoff;
 	float dBGain;
 	float a0, a1, a2, b0, b1, b2;
 	float z[4];
+
+	float maximum_Q;
+	float maximum_cutoff;
+	float maximum_dBGain;
 };
 
 uint32_t ADC_value;
 uint32_t ADC_value_deb;
 uint32_t flag;
 
-float parameter;
-
 
 // Equalizer
-struct BQFilter EQ_BAND1_I;
+struct BQFilter EQ_BAND1;
+struct BQFilter EQ_BAND2;
+struct BQFilter EQ_BAND3;
+struct BQFilter EQ_BAND4;
+struct BQFilter EQ_BAND5;
 
-struct BQFilter EQ_BAND2_I;
-struct BQFilter EQ_BAND2_II;
-
-struct BQFilter EQ_BAND3_I;
-struct BQFilter EQ_BAND3_II;
-
-struct BQFilter EQ_BAND4_I;
-struct BQFilter EQ_BAND4_II;
-
-struct BQFilter EQ_BAND5_I;
-
+// WahWah
 struct BQFilter BP_WAHWAH;
 
+// Drums
 struct BQFilter LS_DRUMS;
-//struct BQFilter HP_WAH;
-//
-//struct BQFilter LP_REVERB;
-//struct BQFilter LP_DELAY;
-//
+
+// Anti-Aliasing
 struct BQFilter LP_AA;
 
 

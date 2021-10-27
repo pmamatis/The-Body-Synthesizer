@@ -368,7 +368,7 @@ int main(void)
 	//NewSignal(&signals1,NOISE,'C',0);
 	//	NewSignal(&signals1,NOISE,'C',0,1);
 	// CEG Full Range for Wah
-	//	NewSignal(&signals1,SIN, 'C',0,16);
+	//		NewSignal(&signals1,SIN, 'C',0,16);
 	//	NewSignal(&signals1,SIN, 'E',0,17);
 	//	NewSignal(&signals1,SIN, 'G',0,18);
 	//	NewSignal(&signals1,SIN, 'C',1,8);

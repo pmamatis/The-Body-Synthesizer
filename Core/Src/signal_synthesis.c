@@ -810,7 +810,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
 
 					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
-					// this has to be done here to process the change immediately
+					// this has to be done here to process the change immediately when the index is
 					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
 						//						if(Display.Voices_ONOFF[VOICES_ID] == true ) { //Sinnlos!!!!
 						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
@@ -869,16 +869,16 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				}
 				break;
 
-//			case NOISE:
-//				if(Display.Voices_ONOFF[VOICES_ID+3] == true) {
-//					addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*sizeof(int))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);
-//				}
-//				// delete signal if voice off
-//				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
-//					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
-//					Display.Voices_Created[VOICES_ID+3] = false;
-//				}
-//				break;
+				//			case NOISE:
+				//				if(Display.Voices_ONOFF[VOICES_ID+3] == true) {
+				//					addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*sizeof(int))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);
+				//				}
+				//				// delete signal if voice off
+				//				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
+				//					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
+				//					Display.Voices_Created[VOICES_ID+3] = false;
+				//				}
+				//				break;
 			}// Switch-Case
 
 		}// Signal counter for-loop
@@ -925,7 +925,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
 		}
 
-		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+//		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+//		ProcessFilter(&EQ_BAND1, &calculate_vector_tmp[BLOCKSIZE_counter]);
+		ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
