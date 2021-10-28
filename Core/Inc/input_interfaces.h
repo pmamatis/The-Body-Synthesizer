@@ -15,6 +15,14 @@
 #define II_SR 50
 #define II_TREM_DEPTH_STEP_SIZE 20
 #define II_FILTER_CUTTOFF_STEP_SIZE 400
+
+
+// Delays
+#define II_TREM_RATE_DELAY II_SR/4
+
+
+
+
 uint8_t ii_voice_IDs[II_MAX_VOICES];
 //uint8_t II_raiseNote(uint8_t ID,uint8_t octave,char oldKey);
 
@@ -23,6 +31,9 @@ double log_mapping_F;
 /** actual step of the filter cuttoff */
 uint16_t filter_step_counter[5];
 uint16_t drum_filter_step_counter;
+
+// 0: tremolo rate; ..
+uint32_t gyro_delay_counter[1];
 
 bool emg_triggerd_flag;
 

@@ -287,42 +287,6 @@ Filter_Status ProcessEQ(float *data){
 	if(Display.Filter_ONOFF[4] == true)
 		ProcessFilter(&EQ_BAND5, data);
 
-
-	//	uint8_t band_counter = 0;
-	//	band1, band2, band3, band4, band5 = 0;
-	//
-	//	// BAND 1
-	//	if(Display.Filter_ONOFF[0]) {
-	//		ProcessFilter(&EQ_BAND1, &band);
-	//	}
-	//
-	//
-	//	// BAND 2
-	//	band2 = *data;
-	//	if(Display.Filter_ONOFF[1])
-	//		ProcessFilter(&EQ_BAND2, &band2);
-	//
-	//
-	//	// BAND 3
-	//	band3 = *data;
-	//	if(Display.Filter_ONOFF[2])
-	//		ProcessFilter(&EQ_BAND3, &band3);
-	//
-	//
-	//	// BAND 4
-	//	band4 = *data;
-	//	if(Display.Filter_ONOFF[3])
-	//		ProcessFilter(&EQ_BAND4, &band4);
-	//
-	//
-	//	// BAND 5
-	//	band5 = *data;
-	//	if(Display.Filter_ONOFF[4])
-	//		ProcessFilter(&EQ_BAND5, &band5);
-
-	// Write OUT
-	//	*data = (band1 + band2 + band3 + band4 + band5)/band_counter;
-
 	return FILTER_OK;
 }
 

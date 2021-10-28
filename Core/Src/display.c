@@ -3275,7 +3275,7 @@ void p_Equalizer_Settings(void) {
 			Display.Filter_Q[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_Q);
 			if(Display.Filter_Q[Display.currentBand-1] < 0.01)	// guard for Q-factor, so it is never 0
 				Display.Filter_Q[Display.currentBand-1] = 0.01;
-			sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][0], "%.0f", Display.Filter_Q[Display.currentBand-1]);
+			sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][0], "%.3f", Display.Filter_Q[Display.currentBand-1]);
 
 			// BAND 1: Low-Shelf filter
 			if(Display.currentBand == 1) {
@@ -3305,7 +3305,7 @@ void p_Equalizer_Settings(void) {
 			break;
 		case 2:
 			// Cutoff
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.Filter_Cutoff[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_cutoff);
 			if(Display.Filter_Cutoff[Display.currentBand-1] < LUT_FMIN)
 				Display.Filter_Cutoff[Display.currentBand-1] = LUT_FMIN;
@@ -3339,10 +3339,10 @@ void p_Equalizer_Settings(void) {
 			break;
 		case 3:
 			// Gain
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-			Display.Filter_Gain[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_dBGain);
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			Display.Filter_Gain[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_dBGain);	// same maximum gain for every band
 
-			Display.Filter_Gain[Display.currentBand-1] = 2*Display.Filter_Gain[Display.currentBand-1]-EQ_BAND1.maximum_dBGain;
+			Display.Filter_Gain[Display.currentBand-1] = 2*Display.Filter_Gain[Display.currentBand-1]-EQ_BAND1.maximum_dBGain;	// same maximum gain for every band
 
 			sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][2], "%.0f", Display.Filter_Gain[Display.currentBand-1]);
 
@@ -3399,9 +3399,9 @@ void p_Equalizer_Settings(void) {
 	}
 
 	// print value row
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_equalizer_settings[Display.currentBand-1][0], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_equalizer_settings[Display.currentBand-1][1], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_equalizer_settings[Display.currentBand-1][2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE1, Display.value_str_equalizer_settings[Display.currentBand-1][0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE2, Display.value_str_equalizer_settings[Display.currentBand-1][1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_equalizer_settings[Display.currentBand-1][2], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_equalizer_settings[Display.currentBand-1][3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_equalizer_settings[Display.currentBand-1][4], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_equalizer_settings[Display.currentBand-1][5], &Font12, COLORED);
@@ -3757,7 +3757,7 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 			break;
 		case 2:
 			// Tremolo Rate
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 			//			Display.Tremolo_Rate_Index = (uint16_t)(((float)Display.ADC2inputs[2]/((float)Display.ADC_FullRange-100)) * ((sizeof(LFO_FREQUENCYS)/sizeof(LFO_FREQUENCYS[0])-1)));
 			//			if(Tremolo->lfo->lfo_done_flag == true) {
 			////				Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
@@ -3767,11 +3767,8 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 			break;
 		case 3:
 			// Tremolo Depth
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 			Display.Tremolo_Depth = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * Tremolo->tremolo_maximum_depth);
-			sprintf(Display.value_str_tremolo[2], "%.2f", Display.Tremolo_Depth);
-			//			sprintf(write_str, "%f", Display.Tremolo_Depth);
-			//			memcpy(Display.value_str_tremolo[2], write_str, 3);	// float can only be displayed with two digits after the dot
 			break;
 		case 4:
 			// Tremolo Rate Source
@@ -3794,6 +3791,11 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 			break;
 		}
 	}
+
+	// delete display tremolo rate content to make sure that the content is not overwritten when the arrow is not on position 2 (tremolo rate)
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+	// delete display tremolo depth content to make sure that the content is not overwritten when the arrow is not on position 3 (tremolo depth)
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 
 	sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
 	sprintf(Display.value_str_tremolo[2], "%.2f", Display.Tremolo_Depth);
