@@ -30,6 +30,7 @@
 // Drumcomputer
 #define MAX_NUMBER_OF_SAMPLES 4
 #define NUMBER_OF_DRUMSTEPS 8
+
 // Sequencer
 #define MAX_NUMBER_OF_NOTES 3
 #define NUMBER_OF_SEQUENCERSTEPS 8
@@ -248,6 +249,7 @@ struct display_variables {
 	int8_t pagePosition;
 	uint8_t page_max;
 	int8_t page_min;
+	uint8_t max_parameter;
 
 	// Potentiometer-variables
 	uint16_t Poti_raw;

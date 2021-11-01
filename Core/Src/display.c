@@ -527,28 +527,36 @@ void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition) {
 
 	switch(*JoystickParameterPosition) {
 	case 1:
-		*JoystickParameterPosition = *JoystickParameterPosition+1;
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
 		break;
 	case 2:
-		*JoystickParameterPosition = *JoystickParameterPosition+1;
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
 		break;
 	case 3:
-		*JoystickParameterPosition = *JoystickParameterPosition+1;
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
 		break;
 	case 4:
-		*JoystickParameterPosition = *JoystickParameterPosition+1;
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
 		break;
 	case 5:
-		*JoystickParameterPosition = *JoystickParameterPosition+1;
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
 		break;
 	case 6:
-		*JoystickParameterPosition = *JoystickParameterPosition+1;
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
 		break;
 	case 7:
-		*JoystickParameterPosition = *JoystickParameterPosition+1;
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
 		break;
 	case 8:
-		*JoystickParameterPosition = *JoystickParameterPosition+1;
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
 		break;
 	case 9:
 		break;
@@ -813,6 +821,9 @@ Display_Status p_Drumcomputer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 
+	// as big as the number of parameters
+	Display.max_parameter = 2;
+
 	switch(Display.JoystickParameterPosition) {
 	case 1:
 		// Next Effect
@@ -851,6 +862,9 @@ Display_Status p_Drumcomputer_Settings(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Load sample", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, "Edit drums", &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 4;
 
 	if(Display.JoystickParameterPosition == 1) {	// last page
 		Display.EditDrums = false;
@@ -1851,6 +1865,9 @@ Display_Status p_Sequencer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
 
+	// as big as the number of parameters
+	Display.max_parameter = 8;
+
 	switch(Display.JoystickParameterPosition) {
 	case 1:
 		// Next Effect
@@ -1995,6 +2012,9 @@ Display_Status p_Sequencer_Settings(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "Edit sequence", &Font12, COLORED);
 	Display_DrawSequencerIcons();
 	DISPLAY_DrawSequencerPatternFrame(8);
+
+	// as big as the number of parameters
+	Display.max_parameter = 2;
 
 	if(Display.JoystickParameterPosition == 1) {	// last page
 		Display.EditSteps = false;
@@ -2274,8 +2294,6 @@ Display_Status DISPLAY_SetSequencerStep(void) {
 					break;
 	}
 
-	//	DISPLAY_Update();
-
 	return DISPLAY_OK;
 }
 
@@ -2451,8 +2469,6 @@ Display_Status DISPLAY_DeleteSequencerStep(void) {
 					break;
 	}
 
-	//	DISPLAY_Update();
-
 	return DISPLAY_OK;
 }
 
@@ -2555,7 +2571,6 @@ Display_Status DISPLAY_SetSequencerStepCursor(void) {
 					break;
 	}
 
-	//	DISPLAY_Update();
 	Display.UpdateDisplay = true;
 
 	return DISPLAY_OK;
@@ -2660,7 +2675,6 @@ Display_Status DISPLAY_DeleteSequencerStepCursor(void) {
 					break;
 	}
 
-	//	DISPLAY_Update();
 	Display.UpdateDisplay = true;
 
 	return DISPLAY_OK;
@@ -2671,10 +2685,10 @@ Display_Status DISPLAY_DeleteSequencerStepCursor(void) {
  */
 void p_Voices_overview(void) {
 
-	//Header line
+	// Header line
 	char headerstring[] = "VOICES";
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
-	//row cases
+	// row cases
 	char str_1[] = "next Effect";
 	char str_2[] = "Voice 1 ON/OFF";
 	char str_3[] = "Voice 2 ON/OFF";
@@ -2687,6 +2701,9 @@ void p_Voices_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 6;
 
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 
@@ -2815,6 +2832,9 @@ void p_Voices_Settings(void) {
 		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
 
+		// as big as the number of parameters
+		Display.max_parameter = 4;
+
 		uint8_t mode_number = 0;
 
 		switch(Display.JoystickParameterPosition) {
@@ -2872,6 +2892,9 @@ void p_Voices_Settings(void) {
 		char str_1[] = "Volume";
 		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 
+		// as big as the number of parameters
+		Display.max_parameter = 1;
+
 		switch(Display.JoystickParameterPosition) {
 		case 1:
 			// Volume
@@ -2913,6 +2936,9 @@ void p_ADSR_overview(struct adsr* envelope) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 7;
 
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 	//	char write_str[10];
@@ -3044,6 +3070,9 @@ void p_ADSR_Settings(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 
+	// as big as the number of parameters
+	Display.max_parameter = 5;
+
 	uint8_t mode_number = 0;
 
 	if(Display.poti_moved == true) {
@@ -3121,6 +3150,9 @@ void p_Equalizer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 7;
 
 	//Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
@@ -3263,6 +3295,9 @@ void p_Equalizer_Settings(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 6;
 
 	uint8_t mode_number = 0;
 
@@ -3420,6 +3455,9 @@ void p_WahWah_overview(struct WahWah_t *WahWah) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 
+	// as big as the number of parameters
+	Display.max_parameter = 3;
+
 	// Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 
@@ -3487,6 +3525,9 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
 
+		// as big as the number of parameters
+		Display.max_parameter = 4;
+
 		if(Display.poti_moved == true) {
 
 			switch(Display.JoystickParameterPosition) {
@@ -3547,6 +3588,9 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
 		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
 		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
+
+		// as big as the number of parameters
+		Display.max_parameter = 8;
 
 		switch(Display.JoystickParameterPosition) {
 		case 1:	// Auto-WahWah Mid Frequency
@@ -3656,6 +3700,9 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
 
+	// as big as the number of parameters
+	Display.max_parameter = 4;
+
 	// Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 	uint8_t mode_number = 0;
@@ -3733,6 +3780,9 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 6;
 
 	// Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
@@ -3824,6 +3874,9 @@ void p_Volume(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 4;
 
 	if(Display.poti_moved == true) {
 
@@ -3923,6 +3976,10 @@ void p_Presets(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 4;
 
 
 	NewSignal(&signals1,SIN, 'C',1,8);

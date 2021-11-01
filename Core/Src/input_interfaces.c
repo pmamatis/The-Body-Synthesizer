@@ -206,7 +206,7 @@ uint8_t II_Display_Effects(void){
 
 		if (Display.Tremolo_Sources[0] > POTI){	// POTI = 0
 
-			if(gyro_delay_counter[0] == 0 ){
+			if(gyro_delay_counter[0] == 0 ) {
 
 				switch (Display.Tremolo_Sources[0]) {	// TREMOLO RATE
 				case GYRO_FB:
@@ -297,77 +297,98 @@ uint8_t II_Display_Effects(void){
 
 		}
 		if (Display.Tremolo_Sources[1] > POTI){	// POTI = 0
-			switch (Display.Tremolo_Sources[1]) {	// TREMOLO DEPTH
-			case GYRO_FB:
-				if (sensorData.tilt_detected == TILT_BACK ){
-					if (Display.Tremolo_Depth > 0) {
-						//printf("decrease Trem Depth\r\n");
-						//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-						Display.Tremolo_Depth = Display.Tremolo_Depth - Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+
+			if(gyro_delay_counter[0] == 0 ) {
+
+				switch (Display.Tremolo_Sources[1]) {	// TREMOLO DEPTH
+
+				case GYRO_FB:
+					if (sensorData.tilt_detected == TILT_BACK ){
+						if (Display.Tremolo_Depth > 0) {
+							//printf("decrease Trem Depth\r\n");
+							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							Display.Tremolo_Depth = Display.Tremolo_Depth - Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							printf("depth = %f\r\n", Display.Tremolo_Depth);
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				else if (sensorData.tilt_detected == TILT_BACK_S ){
-					if (Display.Tremolo_Depth > 0) {
-						//printf("decrease Trem Depth\r\n");
-						//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-						Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					else if (sensorData.tilt_detected == TILT_BACK_S ){
+						if (Display.Tremolo_Depth > 0) {
+							//printf("decrease Trem Depth\r\n");
+							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							//						Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							printf("depth = %f\r\n", Display.Tremolo_Depth);
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				else if (sensorData.tilt_detected == TILT_FRONT){
-					if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
-						//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-						//printf("raise Trem Depth\r\n");
-						Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					else if (sensorData.tilt_detected == TILT_FRONT){
+						if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
+							//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							//printf("raise Trem Depth\r\n");
+							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							printf("depth = %f\r\n", Display.Tremolo_Depth);
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				else if (sensorData.tilt_detected == TILT_FRONT_S){
-					if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
-						//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-						//printf("raise Trem Depth\r\n");
-						Display.Tremolo_Depth = Display.Tremolo_Depth + 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					else if (sensorData.tilt_detected == TILT_FRONT_S){
+						if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
+							//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							//printf("raise Trem Depth\r\n");
+							//						Display.Tremolo_Depth = Display.Tremolo_Depth + 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							printf("depth = %f\r\n", Display.Tremolo_Depth);
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-			case GYRO_LR:
-				if (sensorData.tilt_detected == TILT_LEFT){
-					if (Display.Tremolo_Depth > 0) {
-						//printf("decrease Trem Depth\r\n");
-						//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-						Display.Tremolo_Depth = Display.Tremolo_Depth - Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+				case GYRO_LR:
+					if (sensorData.tilt_detected == TILT_LEFT){
+						if (Display.Tremolo_Depth > 0) {
+							//printf("decrease Trem Depth\r\n");
+							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							Display.Tremolo_Depth = Display.Tremolo_Depth - Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							printf("depth = %f\r\n", Display.Tremolo_Depth);
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				if (sensorData.tilt_detected == TILT_LEFT_S){
-					if (Display.Tremolo_Depth > 0) {
-						//printf("decrease Trem Depth\r\n");
-						//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-						Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					if (sensorData.tilt_detected == TILT_LEFT_S){
+						if (Display.Tremolo_Depth > 0) {
+							//printf("decrease Trem Depth\r\n");
+							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							//						Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							printf("depth = %f\r\n", Display.Tremolo_Depth);
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				else if (sensorData.tilt_detected == TILT_RIGHT){
-					if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
-						//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-						//printf("raise Trem Depth\r\n");
-						Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					else if (sensorData.tilt_detected == TILT_RIGHT){
+						if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
+							//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							//printf("raise Trem Depth\r\n");
+							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							printf("depth = %f\r\n", Display.Tremolo_Depth);
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
-				}
-				else if (sensorData.tilt_detected == TILT_RIGHT_S){
-					if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
-						//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-						//printf("raise Trem Depth\r\n");
-						Display.Tremolo_Depth = Display.Tremolo_Depth + 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+					else if (sensorData.tilt_detected == TILT_RIGHT_S){
+						if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
+							//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
+							//printf("raise Trem Depth\r\n");
+							//						Display.Tremolo_Depth = Display.Tremolo_Depth + 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
+							printf("depth = %f\r\n", Display.Tremolo_Depth);
+						}
+						sensorData.tilt_detected = TILT_NONE;
 					}
-					sensorData.tilt_detected = TILT_NONE;
+					break;
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
 			}
+
+			gyro_delay_counter[1]++;
+			if (gyro_delay_counter[1] >= II_TREM_DEPTH_DELAY) // >= necessary, because II_TREM_DEPTH_DELAY is a floating number
+				gyro_delay_counter[1] = 0;
 		}
 
 		//		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;

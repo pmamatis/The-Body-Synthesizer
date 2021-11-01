@@ -16,11 +16,9 @@
 #define II_TREM_DEPTH_STEP_SIZE 20
 #define II_FILTER_CUTTOFF_STEP_SIZE 400
 
-
-// Delays
+// Processing Delays
 #define II_TREM_RATE_DELAY II_SR/4
-
-
+#define II_TREM_DEPTH_DELAY II_SR/4
 
 
 uint8_t ii_voice_IDs[II_MAX_VOICES];
@@ -32,8 +30,11 @@ double log_mapping_F;
 uint16_t filter_step_counter[5];
 uint16_t drum_filter_step_counter;
 
-// 0: tremolo rate; ..
-uint32_t gyro_delay_counter[1];
+/**
+ * 0: tremolo rate
+ * 1: tremolo depth
+ */
+uint32_t gyro_delay_counter[2];
 
 bool emg_triggerd_flag;
 
