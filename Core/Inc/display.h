@@ -293,20 +293,20 @@ struct display_variables {
 	source_t Drumfilter_Cutoff_Source;			// source for drumfilter cuttoff
 	// page value strings
 	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
-	char value_str_voices_overview[9][10];
+	char value_str_voices_overview[7][10];
 	char value_str_voices_settings[4][9][10];
 	char value_str_adsr_overview[8][10];
-	char value_str_adsr_settings[9][10];
-	char value_str_equalizer_overview[9][10];
-	char value_str_equalizer_settings[5][9][10];
-	char value_str_wahwah[10][10];
-	char value_str_distortion[9][10];
+	char value_str_adsr_settings[5][10];
+	char value_str_equalizer_overview[6][10];
+	char value_str_equalizer_settings[5][6][10];
+	char value_str_wahwah[14][10];
+	char value_str_distortion[4][10];
 	char value_str_tremolo[9][10];
 	char value_str_volume[4][10];
 	char value_str_presets[2][10];
 	char value_str_keyboardmode[9][10];
-	char value_str_drumcomputer[2][10];
-	char value_str_sequencer[8][10];
+	char value_str_drumcomputer[5][10];
+	char value_str_sequencer[9][10];
 
 	// Drumcomputer
 	uint8_t lastCurrentSampleRow;

@@ -639,6 +639,38 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 
 			drum_index = 0;
 			counter_master = 0;
+
+			if(abs(last_BPM - BPM) > 3) {
+				for(int i=0; i<FourFour; i++) {
+
+					// INIT: Counter
+					counter_DS1[i] = 0;
+					counter_DS2[i] = 0;
+					counter_DS3[i] = 0;
+					counter_DS4[i] = 0;
+
+					drum_index = 0;
+					counter_master = 0;
+
+					// RESET: Drum sound bins
+					DS1s = 0;
+					DS2s = 0;
+					DS3s = 0;
+					DS4s = 0;
+
+					drums = 0;
+
+					timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
+				}
+
+				last_BPM = BPM;
+
+				sprintf(Display.value_str_drumcomputer[1], "%.f", BPM);
+				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, Display.value_str_drumcomputer[1], &Font12, COLORED);
+
+				Display.UpdateDisplay = true;
+			}
 		}
 
 		// RESET: ADSR for being ready in next cycle

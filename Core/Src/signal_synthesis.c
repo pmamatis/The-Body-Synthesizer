@@ -965,6 +965,10 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
 		//		}
 
+		// to make sure that the output is 0 when a new drumkit is loaded into the drum computer
+		if(Display.LoadDrumkit == true)
+			calculate_vector_tmp[BLOCKSIZE_counter] = 0;
+
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * Master_Volume * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
 	}//End for-Loop
 

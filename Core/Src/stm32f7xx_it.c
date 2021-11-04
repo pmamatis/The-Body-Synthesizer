@@ -649,34 +649,37 @@ void DMA2_Stream2_IRQHandler(void)
 			BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause at low BPMs cause fuckups
 			BPM = roundf(BPM);
 
-			if(abs(last_BPM - BPM) > 3) {
-				for(int i=0; i<FourFour; i++) {
+			// processed in drum computer process function to change the BPM only when drum loop / FourFour is done
 
-					// INIT: Counter
-					counter_DS1[i] = 0;
-					counter_DS2[i] = 0;
-					counter_DS3[i] = 0;
-					counter_DS4[i] = 0;
-
-					drum_index = 0;
-					counter_master = 0;
-
-					// RESET: Drum sound bins
-					DS1s = 0;
-					DS2s = 0;
-					DS3s = 0;
-					DS4s = 0;
-
-					drums = 0;
-
-					timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
-				}
-				char bpm_str[10];
-				sprintf(bpm_str, "%.1f", BPM);
-				last_BPM = BPM;
-				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-				Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, bpm_str, &Font12, COLORED);
-			}
+			//			if(abs(last_BPM - BPM) > 3) {
+			//				for(int i=0; i<FourFour; i++) {
+			//
+			//					// INIT: Counter
+			//					counter_DS1[i] = 0;
+			//					counter_DS2[i] = 0;
+			//					counter_DS3[i] = 0;
+			//					counter_DS4[i] = 0;
+			//
+			//					drum_index = 0;
+			//					counter_master = 0;
+			//
+			//					// RESET: Drum sound bins
+			//					DS1s = 0;
+			//					DS2s = 0;
+			//					DS3s = 0;
+			//					DS4s = 0;
+			//
+			//					drums = 0;
+			//
+			//					timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
+			//				}
+			//
+			//				last_BPM = BPM;
+			//
+			//				sprintf(Display.value_str_drumcomputer[1], "%.f", BPM);
+			//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			//				Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, Display.value_str_drumcomputer[1], &Font12, COLORED);
+			//			}
 		}
 	}
 

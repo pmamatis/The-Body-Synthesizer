@@ -303,10 +303,6 @@ int main(void)
 		printf("ADSR init failed\n");
 	}
 
-	if(Display_Init(&Display) == DISPLAY_FAIL) {
-		printf("Display init failed\n");
-	}
-
 	keyboard_init(&hadc1, &htim5);
 
 	//Drummachine
@@ -323,6 +319,11 @@ int main(void)
 
 	//Interface Init
 	II_init();
+
+	// Display Init (should be done after the rest is initialized)
+	if(Display_Init(&Display) == DISPLAY_FAIL)
+		printf("Display init failed\n");
+
 	printf("End Init\r\n");
 
 	/* START FUNCTIONS *******************
@@ -1540,36 +1541,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Keyboard_Octave--;
 		}
 
-		// set drumcomputer steps
-		if(Display.EditDrums == true) {
-			// invert/toggle state of the drum matrix entry, where the cursor points at at the moment
-			Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] = !Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1];
-
-			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true) {
-				DISPLAY_SetDrumcomputerStep();
-				Display.UpdateDisplay = true;
-			}
-			else if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false) {
-				DISPLAY_DeleteDrumcomputerStep();
-				Display.UpdateDisplay = true;
-			}
-		}
-
-		// set sequencer steps
-		if(Display.EditSteps == true) {
-			// invert/toggle state of the sequencer matrix entry, where the cursor points at at the moment
-			Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] = !Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1];
-
-			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
-				DISPLAY_SetSequencerStep();
-				Display.UpdateDisplay = true;
-			}
-			else if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
-				DISPLAY_DeleteSequencerStep();
-				Display.UpdateDisplay = true;
-			}
-		}
-
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
 		// Tremolo Rate Index setting to change the rate by button pressing
 		if(Display.pagePosition == 9 && Display.JoystickParameterPosition == 2) {
@@ -1639,6 +1610,36 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		if(! ((Display.pagePosition==3 && Display.currentDrumcomputer>0) || (Display.pagePosition==4 && Display.currentSequencer>0)) ) {
 			if(Display.Keyboard_Octave < LUT_OCTAVES-1)
 				Display.Keyboard_Octave++;
+		}
+
+		// set drumcomputer steps
+		if(Display.EditDrums == true) {
+			// invert/toggle state of the drum matrix entry, where the cursor points at at the moment
+			Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] = !Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1];
+
+			if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == true) {
+				DISPLAY_SetDrumcomputerStep();
+				Display.UpdateDisplay = true;
+			}
+			else if(Display.DrumMatrix[Display.CurrentSampleRow-1][Display.CurrentDrumstep-1] == false) {
+				DISPLAY_DeleteDrumcomputerStep();
+				Display.UpdateDisplay = true;
+			}
+		}
+
+		// set sequencer steps
+		if(Display.EditSteps == true) {
+			// invert/toggle state of the sequencer matrix entry, where the cursor points at at the moment
+			Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] = !Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1];
+
+			if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == true) {
+				DISPLAY_SetSequencerStep();
+				Display.UpdateDisplay = true;
+			}
+			else if(Display.SequencerMatrix[Display.CurrentNoteRow-1][Display.CurrentSequencestep-1] == false) {
+				DISPLAY_DeleteSequencerStep();
+				Display.UpdateDisplay = true;
+			}
 		}
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
