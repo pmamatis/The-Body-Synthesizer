@@ -8,6 +8,9 @@ Hardware_Remove_length = 20000;
 Background_length      = 20000;
 
 SR = 48000;
+volume = 0.3;
+
+%% USE in Synth: Chord, Trash, Remove, Back
 
 %% Windows Error
 [Error,Error_SR] = audioread('Windows_Error.wav');
@@ -30,6 +33,7 @@ Error_cut = Error_cut(1:2:end);
 
 endval = 9989;
 Error_cut(endval:length(Error_cut)) = 0;
+
 
 Error_cut = Error_cut + 1;
 
@@ -58,6 +62,9 @@ end
 
 Chord_cut = Chord_cut(1,1:Chord_length);
 Chord_cut = Chord_cut(1:2:end);
+
+max_Chord_cut = max(Chord_cut);
+Chord_cut = volume*(Chord_cut/max_Chord_cut);
 Chord_cut = Chord_cut + 1;
 
 % sound(Chord_cut,SR/2);
@@ -117,6 +124,9 @@ end
 
 Recycle_cut = Recycle_cut(1,1:Recycle_length);
 Recycle_cut = Recycle_cut(1:2:end);
+
+max_Recycle_cut = max(Recycle_cut);
+Recycle_cut = volume*(Recycle_cut/max_Recycle_cut);
 Recycle_cut = Recycle_cut + 1;
 
 % sound(Recycle_cut,SR/2);
@@ -148,6 +158,8 @@ Hardware_Remove_cut = Hardware_Remove_cut(1:2:end);
 endval = 9979;
 Hardware_Remove_cut(endval:length(Hardware_Remove_cut)) = 0;
 
+max_Hardware_Remove_cut = max(Hardware_Remove_cut);
+Hardware_Remove_cut = volume*(Hardware_Remove_cut/max_Hardware_Remove_cut);
 Hardware_Remove_cut = Hardware_Remove_cut + 1;
 
 % sound(Hardware_Remove_cut,SR/2);
@@ -180,6 +192,8 @@ Background_cut = Background_cut(1:2:end);
 endval = 9982;
 Background_cut(endval:length(Background_cut)) = 0;
 
+max_Background_cut = max(Background_cut);
+Background_cut = volume*(Background_cut/max_Background_cut);
 Background_cut = Background_cut + 1;
 
 % sound(Background_cut,SR/2);

@@ -6,6 +6,7 @@ snare_length = 20000;
 ride_length  = 20000;
 
 SR = 48000;
+volume = 0.3;
 
 %% HIHAT
 [hh,hh_SR] = audioread('Rock_loud_Hihat.wav');
@@ -23,6 +24,9 @@ end
 sound(hh_cut,SR);
 hh_cut = hh_cut(1,1:hh_length);
 hh_cut = hh_cut(1:2:end);
+
+max_hh_cut = max(hh_cut);
+hh_cut = volume*(hh_cut/max_hh_cut);
 hh_cut = hh_cut + 1;
 figure(1);
 plot(hh_cut'); grid on
@@ -46,6 +50,9 @@ end
 % sound(kick_cut,kick_SR);
 kick_cut = kick_cut(1,1:kick_length);
 kick_cut = kick_cut(1:2:end);
+
+max_kick_cut = max(kick_cut);
+kick_cut = volume*(kick_cut/max_kick_cut);
 kick_cut = kick_cut + 1;
 figure(2);
 plot(kick_cut'); grid on
@@ -69,6 +76,9 @@ end
 %sound(ride_cut,ride_cut_SR);
 ride_cut = ride_cut(1,1:ride_length);
 ride_cut = ride_cut(1:2:end);
+
+max_ride_cut = max(ride_cut);
+ride_cut = volume*(ride_cut/max_ride_cut);
 ride_cut = ride_cut + 1;
 figure(3);
 plot(ride_cut'); grid on
@@ -94,6 +104,9 @@ end
 %sound(snare_cut,snare_cut_SR);
 snare_cut = snare_cut(1,1:snare_length);
 snare_cut = snare_cut(1:2:end);
+
+max_snare_cut = max(snare_cut);
+snare_cut = volume*(snare_cut/max_snare_cut);
 snare_cut = snare_cut + 1;
 figure(4);
 plot(snare_cut'); grid on

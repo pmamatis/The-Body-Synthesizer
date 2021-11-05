@@ -8,6 +8,7 @@ clear all; close all; clc
 % hitom_length = 40000;
 % midtom_length = 40000;
 % lowtom_length = 40000;
+volume = 0.3;
 
 clap_length      = 40000;
 closed_hh_length = 40000;
@@ -34,6 +35,8 @@ clap(1) = 0;
 
 clap(10000-startval:10000) = 0;
 
+max_clap = max(clap);
+clap = volume*(clap/max_clap);
 clap = clap + 1;
 figure(1);
 plot(clap); grid on
@@ -52,6 +55,8 @@ closed_hh = closed_hh(startval:length(closed_hh));
 closed_hh(1) = 0;
 closed_hh(10000-startval:10000) = 0;
 
+max_closed_hh = max(closed_hh);
+closed_hh = volume*(closed_hh/max_closed_hh);
 closed_hh = closed_hh + 1;
 figure(2);
 plot(closed_hh); grid on
@@ -70,6 +75,8 @@ open_hh = open_hh(startval:length(open_hh));
 open_hh(1) = 0;
 open_hh(10000-startval:10000) = 0;
 
+max_open_hh = max(open_hh);
+open_hh = volume*(open_hh/max_open_hh);
 open_hh = open_hh + 1;
 figure(3);
 plot(open_hh); grid on
@@ -88,6 +95,8 @@ kick = kick(startval:length(kick));
 kick(1) = 0;
 kick(10000-startval:10000) = 0;
 
+max_kick = max(kick);
+kick = volume*(kick/max_kick);
 kick = kick + 1;
 figure(4);
 plot(kick); grid on
@@ -106,6 +115,8 @@ rimshot = rimshot(startval:length(rimshot));
 rimshot(1) = 0;
 rimshot(10000-startval:10000) = 0;
 
+max_rimshot = max(rimshot);
+rimshot = volume*(rimshot/max_rimshot);
 rimshot = rimshot + 1;
 figure(5);
 plot(rimshot); grid on
@@ -124,6 +135,8 @@ hitom = hitom(startval:length(hitom));
 hitom(1) = 0;
 hitom(10000-startval:10000) = 0;
 
+max_hitom = max(hitom);
+hitom = volume*(hitom/max_hitom);
 hitom = hitom + 1;
 figure(6);
 plot(hitom); grid on
@@ -142,6 +155,8 @@ midtom = midtom(startval:length(midtom));
 midtom(1) = 0;
 midtom(10000-startval:10000) = 0;
 
+max_midtom = max(midtom);
+midtom = volume*(midtom/max_midtom);
 midtom = midtom + 1;
 figure(7);
 plot(midtom); grid on
@@ -161,6 +176,8 @@ lowtom = lowtom(startval:length(lowtom));
 lowtom(1) = 0;
 lowtom(10000-startval:10000) = 0;
 
+max_lowtom = max(lowtom);
+lowtom = volume*(lowtom/max_lowtom);
 lowtom = lowtom + 1;
 figure(8);
 plot(lowtom); grid on
