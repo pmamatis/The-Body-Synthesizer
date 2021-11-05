@@ -25,10 +25,8 @@
 
 #include "epd1in54.h"
 
-extern const unsigned char IMAGE_DATA[];
 extern const unsigned char ST_LOGO[];
 extern const unsigned char TU_LOGO[];
-extern unsigned char START_IMAGE[];
 
 /* FILE END */
 

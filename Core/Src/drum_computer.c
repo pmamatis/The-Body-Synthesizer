@@ -665,11 +665,10 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 
 				last_BPM = BPM;
 
-				sprintf(Display.value_str_drumcomputer[1], "%.f", BPM);
-				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-				Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, Display.value_str_drumcomputer[1], &Font12, COLORED);
-
-				Display.UpdateDisplay = true;
+//				sprintf(Display.value_str_drumcomputer[1], "%.f", BPM);
+//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+//				Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, Display.value_str_drumcomputer[1], &Font12, COLORED);
+//				Display.UpdateDisplay = true;
 			}
 		}
 

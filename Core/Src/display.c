@@ -388,20 +388,18 @@ Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer
 	EPD_Init(epd, lut_full_update);
 	Paint_Init(paint, frame_buffer, epd->width, epd->height);
 	Paint_SetRotate(paint, ROTATE_270);
-	//Paint_SetRotate(paint, ROTATE_90);
 	// Display the frame_buffer to show the TU Berlin-logo
 	EPD_SetFrameMemory(epd, TU_LOGO, 0, 0, Paint_GetWidth(paint), Paint_GetHeight(paint));
 	EPD_DisplayFrame(epd);
+
 	EPD_DelayMs(epd, 1000);
+
 	Paint_Clear(paint, UNCOLORED);
 	// Display the frame_buffer to show a white screen
 	EPD_SetFrameMemory(epd, frame_buffer, 0, 0, Paint_GetWidth(paint), Paint_GetHeight(paint));
 	EPD_DisplayFrame(epd);
 	EPD_Init(epd, lut_partial_update);
 
-	//	DISPLAY_processing();
-	//	DISPLAY_DrawArrow(1);
-	//	DISPLAY_Update();
 	Display.UpdateDisplay = true;
 
 	return DISPLAY_OK;
