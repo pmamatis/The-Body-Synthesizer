@@ -96,7 +96,7 @@ kick(1) = 0;
 kick(10000-startval:10000) = 0;
 
 max_kick = max(kick);
-kick = volume*(kick/max_kick);
+kick = 2*volume*(kick/max_kick);
 kick = kick + 1;
 figure(4);
 plot(kick); grid on

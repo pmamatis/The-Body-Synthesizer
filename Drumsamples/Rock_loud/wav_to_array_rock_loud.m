@@ -52,7 +52,7 @@ kick_cut = kick_cut(1,1:kick_length);
 kick_cut = kick_cut(1:2:end);
 
 max_kick_cut = max(kick_cut);
-kick_cut = volume*(kick_cut/max_kick_cut);
+kick_cut = 2*volume*(kick_cut/max_kick_cut);
 kick_cut = kick_cut + 1;
 figure(2);
 plot(kick_cut'); grid on
