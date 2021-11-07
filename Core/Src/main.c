@@ -175,28 +175,47 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 
 
 /* DAC CHANNEL FUnktions */
+
+bool Init_complete = false;
 //DAC_CHANNEL_1
 void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
+
 	outputBuffer_position = HALF_BLOCK;
-	Signal_Synthesis(&signals1, 1);
+	if (Init_complete){
+		Signal_Synthesis(&signals1, 1);
+	}
+	else
+		Init_complete = initRamp();
 }
 
 void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = FULL_BLOCK;
-	Signal_Synthesis(&signals1,1);
+	if (Init_complete){
+		Signal_Synthesis(&signals1, 1);
+	}
+	else
+		Init_complete = initRamp();
 }
 
 // DAC_CHANNEL_2
 void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = HALF_BLOCK;
 	//Signal_Synthesis(&signals2, 2);
-	Signal_Synthesis(&signals1, 1);
+	if (Init_complete){
+		Signal_Synthesis(&signals1, 1);
+	}
+	else
+		Init_complete = initRamp();
 }
 
 void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 	outputBuffer_position = FULL_BLOCK;
 	//Signal_Synthesis(&signals2, 2);
-	Signal_Synthesis(&signals1, 1);
+	if (Init_complete){
+		Signal_Synthesis(&signals1, 1);
+	}
+	else
+		Init_complete = initRamp();
 }
 
 /* USER CODE END 0 */
@@ -1535,8 +1554,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	if((GPIO_Pin == BACK_Pin) && (Display.BACK_Debounce_State == true)) {
 
-		// keyboard goes down by one octave
-		if(! ((Display.pagePosition==3 && Display.currentDrumcomputer>0) || (Display.pagePosition==4 && Display.currentSequencer>0)) ) {
+		// keyboard goes down by one octave if not in drumcomputer settings, sequencer settings and adsr reset
+		if(! ((Display.pagePosition==3 && Display.currentDrumcomputer>0) || (Display.pagePosition==4 && Display.currentSequencer>0) || (Display.pagePosition == 5 && Display.currentADSR == 6)) ) {
 			if(Display.Keyboard_Octave > 0)
 				Display.Keyboard_Octave--;
 		}
@@ -1606,8 +1625,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	else if((GPIO_Pin == ENTER_Pin) && (Display.ENTER_Debounce_State == true)) {
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
-		// keyboard goes up by one octave
-		if(! ((Display.pagePosition==3 && Display.currentDrumcomputer>0) || (Display.pagePosition==4 && Display.currentSequencer>0)) ) {
+		// keyboard goes up by one octave if not in drumcomputer settings, sequencer settings and adsr reset
+		if(! ((Display.pagePosition==3 && Display.currentDrumcomputer>0) || (Display.pagePosition==4 && Display.currentSequencer>0) || (Display.pagePosition == 5 && Display.currentADSR == 6)) ) {
 			if(Display.Keyboard_Octave < LUT_OCTAVES-1)
 				Display.Keyboard_Octave++;
 		}
@@ -1709,6 +1728,26 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 					Display.Voices_Octave[Display.currentVoice-1]++;
 			}
 		}
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Reset of different modules by putton pressing
+		if(Display.pagePosition == 2 && Display.currentDrumcomputer == 2)				// Drumcomputer Reset
+			Display.Reset = true;
+		else if(Display.pagePosition == 3 && Display.currentSequencer == 8)				// Sequencer Reset
+			Display.Reset = true;
+		else if(Display.pagePosition == 4 && Display.currentVoice == 5)					// Voices Reset
+			Display.Reset = true;
+		else if(Display.pagePosition == 5 && Display.currentADSR == 6)					// ADSR Reset
+			Display.Reset = true;
+		else if(Display.pagePosition == 6 && Display.currentBand == 6)					// EQ Reset
+			Display.Reset = true;
+		else if(Display.pagePosition == 7 && Display.currentWahWah == 3)				// WahWah Reset
+			Display.Reset = true;
+		else if(Display.pagePosition == 8 && Display.JoystickParameterPosition == 4)	// Distortion Reset
+			Display.Reset = true;
+		else if(Display.pagePosition == 9 && Display.JoystickParameterPosition == 6)	// Tremolo Reset
+			Display.Reset = true;
+
 
 		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);

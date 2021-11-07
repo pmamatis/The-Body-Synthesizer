@@ -29,7 +29,7 @@ HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 }
 
 
-HAL_StatusTypeDef Drum_Computer_CalcSample() {
+HAL_StatusTypeDef Drum_Computer_CalcSample(void) {
 
 	for(int i = 0; i < FourFour; i++) {
 
@@ -188,10 +188,115 @@ HAL_StatusTypeDef Drum_Computer_CalcSample() {
 	return HAL_OK;
 }
 
-HAL_StatusTypeDef Drum_Computer_Init(void){
+HAL_StatusTypeDef Drum_Computer_Reset(void) {
+
+	for(int i=0; i<MAX_NUMBER_OF_SAMPLES; i++) {
+		for(int j=0; j<NUMBER_OF_DRUMSTEPS; j++) {
+			Display.DrumMatrix[i][j] = false;
+		}
+	}
+
+	// INIT: Tempo, SR, Counter
+	BPM = 120;
+	last_BPM = BPM;
+	BPM_MAX = 160;
+	MasterClock = LUT_SR;
+	counter_master = 0;
+
+	// INIT: Sound bins
+	DS1s = 0;
+	DS2s = 0;
+	DS3s = 0;
+	DS4s = 0;
+	drums = 0;
+
+	// Drums: Index
+	drum_index = 0;
+
+	// Sequencer: Get freq index
+	//	freq_index_SN1 = Get_Note_Index('C',1);
+	//	freq_index_SN2 = Get_Note_Index('E',2);
+	//	freq_index_SN3 = Get_Note_Index('G',3);
+	//	freq_index_SN4 = Get_Note_Index('A',2);
+
+	// FOR: all steps in drums
+	for(int i=0; i<FourFour; i++) {
+
+		// INIT: Flag
+		flag_DS1[i] = 0;
+		flag_DS2[i] = 0;
+		flag_DS3[i] = 0;
+		flag_DS4[i] = 0;
+
+		// INIT: Counter
+		counter_DS1[i] = 0;
+		counter_DS2[i] = 0;
+		counter_DS3[i] = 0;
+		counter_DS4[i] = 0;
+
+		// INIT: Timing positions
+		timing_DS1[i] = 0;
+		timing_DS2[i] = 0;
+		timing_DS3[i] = 0;
+		timing_DS4[i] = 0;
+
+		// INIT: Array of timing positions
+		timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
+	}
+
+	return HAL_OK;
+}
+
+HAL_StatusTypeDef Sequencer_Reset(void) {
+
+	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
+		for(int j=0; j<NUMBER_OF_SEQUENCERSTEPS; j++) {
+			Display.SequencerMatrix[i][j] = false;
+		}
+		Display.Sequencer_Note[i] = 'C';
+		Display.Sequencer_Noteindex[i] = 0;
+		Display.Sequencer_Octave[i] = 0;
+	}
+
+	// FOR: all steps in sequencer
+	for(int i=0; i<FourFour; i++) {
+
+		// INIT: Sequencer timing positions
+		timing_SN1[i] = 0;
+		timing_SN2[i] = 0;
+		timing_SN3[i] = 0;
+		timing_SN4[i] = 0;
+
+		// INIT: Sequencer start index
+		current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+		current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+		current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+		current_LUT_index_SN4[i] = LUT_STARTINDEX[freq_index_SN4];
+
+		// INIT: ADSR structs
+		Sequencer_ADSR_Init(&adsr_SN1[i]);
+		Sequencer_ADSR_Init(&adsr_SN2[i]);
+		Sequencer_ADSR_Init(&adsr_SN3[i]);
+		Sequencer_ADSR_Init(&adsr_SN4[i]);
+	}
+
+	Display.Sequencer_ONOFF = false;
+
+	strcpy(Display.value_str_sequencer[0], "OFF");
+	sprintf(Display.value_str_sequencer[1], "%c", Display.Sequencer_Note[0]);
+	sprintf(Display.value_str_sequencer[2], "%d", Display.Sequencer_Octave[0]);
+	sprintf(Display.value_str_sequencer[3], "%c", Display.Sequencer_Note[1]);
+	sprintf(Display.value_str_sequencer[4], "%d", Display.Sequencer_Octave[1]);
+	sprintf(Display.value_str_sequencer[5], "%c", Display.Sequencer_Note[2]);
+	sprintf(Display.value_str_sequencer[6], "%d", Display.Sequencer_Octave[2]);
+
+	return HAL_OK;
+}
+
+HAL_StatusTypeDef Drum_Computer_Init(void) {
 
 	// INIT: Sequencer state
-	sequencer_state = true;
+	//	sequencer_state = true;
 
 	// INIT: Tempo, SR, Counter
 	BPM = 120;
@@ -583,7 +688,7 @@ HAL_StatusTypeDef Drum_Computer_Init(void){
 	return HAL_OK;
 }
 
-HAL_StatusTypeDef Drum_Computer_Process() {
+HAL_StatusTypeDef Drum_Computer_Process(void) {
 
 	// RESET: Drum sound bins
 	DS1s = 0;
@@ -664,11 +769,6 @@ HAL_StatusTypeDef Drum_Computer_Process() {
 				}
 
 				last_BPM = BPM;
-
-//				sprintf(Display.value_str_drumcomputer[1], "%.f", BPM);
-//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-20, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-//				Paint_DrawStringAt(&paint, Display.value_start_x_position-20, CASE2, Display.value_str_drumcomputer[1], &Font12, COLORED);
-//				Display.UpdateDisplay = true;
 			}
 		}
 

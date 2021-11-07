@@ -250,6 +250,74 @@ Filter_Status Filters_Reinit_Poti(){
 }
 
 
+Filter_Status Filters_Reset(void) {
+
+	// BAND 1: Low-Shelf filter
+	Display.Filter_ONOFF[0] = false;
+	Display.Filter_Q[0] = EQ_BAND1.Q = 0.707;
+	Display.Filter_Cutoff[0] = EQ_BAND1.cutoff = 200;
+	Display.Filter_Gain[0] = EQ_BAND1.dBGain = 0;
+	SetupLowShelf(&EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);
+
+
+	// BAND 2: Peaking-EQ
+	Display.Filter_ONOFF[1] = false;
+	Display.Filter_Q[1] = EQ_BAND2.Q = 0.707;
+	Display.Filter_Cutoff[1] = EQ_BAND2.cutoff = 400;
+	Display.Filter_Gain[1] = EQ_BAND2.dBGain = 0;
+	SetupPeakingEQ(&EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);
+
+
+	// BAND 3: Peaking-EQ
+	Display.Filter_ONOFF[2] = false;
+	Display.Filter_Q[2] = EQ_BAND3.Q = 0.707;
+	Display.Filter_Cutoff[2] = EQ_BAND3.cutoff = 800;
+	Display.Filter_Gain[2] = EQ_BAND3.dBGain = 0;
+	SetupPeakingEQ(&EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);
+
+
+	// BAND 4: Peaking-EQ
+	Display.Filter_ONOFF[3] = false;
+	Display.Filter_Q[3] = EQ_BAND4.Q = 0.707;
+	Display.Filter_Cutoff[3] = EQ_BAND4.cutoff = 1600;
+	Display.Filter_Gain[3] = EQ_BAND4.dBGain = 0;
+	SetupPeakingEQ(&EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);
+
+
+	// BAND 5: High-Shelf filter
+	Display.Filter_ONOFF[4] = false;
+	Display.Filter_Q[4] = EQ_BAND5.Q = 0.707;
+	Display.Filter_Cutoff[4] = EQ_BAND5.cutoff = 3200;
+	Display.Filter_Gain[4] = EQ_BAND5.dBGain = 0;
+	SetupHighShelf(&EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);
+
+
+	//		// Drums Lowshelf
+	//		LS_DRUMS.Q = 10;
+	//		LS_DRUMS.cutoff = LUT_FMIN;
+	//		LS_DRUMS.dBGain = -20;
+	//		LS_DRUMS.maximum_Q = 20.0;
+	//		LS_DRUMS.maximum_cutoff = LUT_FMAX;
+	//		LS_DRUMS.maximum_dBGain = 1.0;
+	//
+	//		SetupLowShelf(&LS_DRUMS, LS_DRUMS.cutoff, LS_DRUMS.Q, LS_DRUMS.dBGain);
+
+	for(int i=0; i<5; i++) {	// reset sources of all 5 filter bands
+		Display.EQ_Q_factor_Sources[i] = POTI;
+		Display.EQ_Cutoff_Sources[i] = POTI;
+		Display.EQ_Gain_Sources[i] = POTI;
+	}
+
+	strcpy(Display.value_str_equalizer_overview[0], "OFF");
+	strcpy(Display.value_str_equalizer_overview[1], "OFF");
+	strcpy(Display.value_str_equalizer_overview[2], "OFF");
+	strcpy(Display.value_str_equalizer_overview[3], "OFF");
+	strcpy(Display.value_str_equalizer_overview[4], "OFF");
+
+	return FILTER_OK;
+}
+
+
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
 	float input = 0;

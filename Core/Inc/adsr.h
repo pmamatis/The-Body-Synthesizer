@@ -49,12 +49,14 @@ struct adsr adsr_SN2[16];
 struct adsr adsr_SN3[16];
 struct adsr adsr_SN4[16];
 
-struct adsr adsr_keyboard[5];
+// ADSR for the keyboard
+struct adsr adsr_keyboard[5];	// maximum 5 keys processed simultaneously
 
 //bool envelope_done;	// flag for keyboard to delete signal
 
 ADSR_Status ADSR_Init(void);
 ADSR_Status SetupADSR(struct adsr* envelope);
+ADSR_Status ADSR_Reset(struct adsr* envelope);
 //void ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, struct signal_t* signals);
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag);
 void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_value, bool flag);

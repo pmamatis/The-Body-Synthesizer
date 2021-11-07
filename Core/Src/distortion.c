@@ -21,6 +21,20 @@ Distortion_Status Distortion_Init(void) {
 	return DISTORTION_OK;
 }
 
+Distortion_Status Distortion_Reset(void) {
+
+	Display.Distortion_Gain = HardClipping.distortion_gain = SoftClipping.distortion_gain = 1.0;
+	HardClipping.distortion_maximum_gain = 9;
+
+	Display.Distortion_ONOFF = false;
+
+	Display.Distortion_Sources = POTI;
+
+	strcpy(Display.value_str_distortion[0], "OFF");
+
+	return DISTORTION_OK;
+}
+
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping) {
 
 	HardClipping->distortion_gain = 1.0;	// default -> no clipping
@@ -32,7 +46,6 @@ Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardCli
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping) {
 
 	//SoftClipping->last_distortion_gain = 0.0;	// MUSS ZU BEGINN VON distortion_gain ABWEICHEN!
-	//SoftClipping->distortion_gain = 1.0;
 	SoftClipping->distortion_gain = 1.0;
 	SoftClipping->min_distortion_calculatevector = 0.0;
 	SoftClipping->max_distortion_calculatevector = 0.0;

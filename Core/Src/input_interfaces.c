@@ -690,7 +690,7 @@ void II_decreaseNote(uint8_t ID){
 /**Play Voice triggerd by EMG
  *
  */
-void II_pVwEMG(void) {
+void II_pVwEMG(void) {	// TODO: braucht eigenes adsr struct für emg
 	if (emg_peak == 1){
 
 		NewSignal(&signals1, SIN, Display.Voices_Note[0], Display.Voices_Octave[0], 0);

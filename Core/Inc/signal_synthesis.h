@@ -118,6 +118,7 @@ struct signal_t signals2;
 
 //functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
+HAL_StatusTypeDef Voices_Reset(void);
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,int16_t signal_index);
@@ -128,5 +129,6 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo);
 float Noise_Generator(void);
 float AWGN_generator(void);
 int16_t IDtoIndex(int16_t id);
+bool initRamp(void);
 
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */

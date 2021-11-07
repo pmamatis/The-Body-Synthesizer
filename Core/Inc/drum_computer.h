@@ -67,7 +67,7 @@ float drums;
 float drums_filtered;
 
 // Sequencer mode ON / OFF control
-bool sequencer_state;
+//bool sequencer_state;
 
 // Timing positions sequencer
 uint32_t timing_SN1[FourFour];
@@ -102,9 +102,11 @@ float sequencer;
 
 // Methods
 HAL_StatusTypeDef Drum_Computer_Init(void);
-HAL_StatusTypeDef Drum_Computer_Process();
-HAL_StatusTypeDef Drum_Computer_CalcSample();
-HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse();
+HAL_StatusTypeDef Drum_Computer_Reset(void);
+HAL_StatusTypeDef Drum_Computer_Process(void);
+HAL_StatusTypeDef Drum_Computer_CalcSample(void);
+HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse(void);
+HAL_StatusTypeDef Sequencer_Reset(void);
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env);
 
 // Single Sample

@@ -42,6 +42,42 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 	return ADSR_OK;
 }
 
+ADSR_Status ADSR_Reset(struct adsr* envelope) {
+
+	envelope->adsr_counter = 0;
+	envelope->adsr_max_amp = 1.00;	// maximum value should be 1
+	envelope->adsr_attack_time = 0.1 * LUT_SR;
+	envelope->adsr_decay_time = 0.05 * LUT_SR;
+	envelope->adsr_sustain_time = 0.15 * LUT_SR;
+	envelope->adsr_sustain_amplitude = 0.5;
+	envelope->adsr_release_time = 0.05 * LUT_SR;
+
+	envelope->adsr_done = false;
+
+	envelope->decay_counter = 0;
+	envelope->release_counter = 0;
+
+	Display.ADSR_Attacktime = envelope->adsr_attack_time/LUT_SR;
+	Display.ADSR_Decaytime = envelope->adsr_decay_time/LUT_SR;
+	Display.ADSR_Sustaintime = envelope->adsr_sustain_time/LUT_SR;
+	Display.ADSR_Sustainlevel = envelope->adsr_sustain_amplitude/LUT_SR;
+	Display.ADSR_Releasetime = envelope->adsr_release_time/LUT_SR;
+
+	Display.ADSR_Sources[0] = POTI;
+	Display.ADSR_Sources[1] = POTI;
+	Display.ADSR_Sources[2] = POTI;
+	Display.ADSR_Sources[3] = POTI;
+	Display.ADSR_Sources[4] = POTI;
+
+	strcpy(Display.value_str_adsr_settings[0], Display.source_names[Display.ADSR_Sources[0]]);
+	strcpy(Display.value_str_adsr_settings[1], Display.source_names[Display.ADSR_Sources[1]]);
+	strcpy(Display.value_str_adsr_settings[2], Display.source_names[Display.ADSR_Sources[2]]);
+	strcpy(Display.value_str_adsr_settings[3], Display.source_names[Display.ADSR_Sources[3]]);
+	strcpy(Display.value_str_adsr_settings[4], Display.source_names[Display.ADSR_Sources[4]]);
+
+	return ADSR_OK;
+}
+
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag) {
 
 	if(flag == true) {

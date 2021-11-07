@@ -36,6 +36,7 @@ struct Tremolo_t Tremolo;
 
 
 Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo);
+Tremolo_Status Tremolo_Reset(void);
 Tremolo_Status ProcessTremolo(struct Tremolo_t* Tremolo, float* data);
 
 #endif /* INC_TREMOLO_H_ */

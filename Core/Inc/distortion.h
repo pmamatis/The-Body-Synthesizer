@@ -70,6 +70,7 @@ struct effects_distortion HardClipping;
 struct effects_distortion SoftClipping;
 
 Distortion_Status Distortion_Init(void);
+Distortion_Status Distortion_Reset(void);
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping);
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping);
 Distortion_Status SetupAtanSoftClippingDistortion(struct effects_distortion* SoftClipping);

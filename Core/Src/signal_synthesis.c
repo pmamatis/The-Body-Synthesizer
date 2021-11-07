@@ -37,6 +37,36 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	return HAL_TIM_Base_Start(&htim);
 }
 
+HAL_StatusTypeDef Voices_Reset(void) {
+
+	// clear screen content of voices overview
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
+
+	// Voices Reset
+	for(int i=0; i<3; i++) {
+		Display.Voices_ONOFF[i] = false;
+		Display.Voices_Note[i] = 'C';
+		Display.Voices_Noteindex[i] = 0;
+		Display.Voices_Octave[i] = 0;
+		Display.Voice_Note_Sources[i] = POTI;
+		Display.Voice_Octave_Sources[i] = POTI;
+		strcpy(Display.value_str_voices_overview[i], "OFF");
+		sprintf(Display.value_str_voices_settings[i][0], "%c", Display.Voices_Note[i]);
+		sprintf(Display.value_str_voices_settings[i][1], "%d", Display.Voices_Octave[i]);
+		strcpy(Display.value_str_voices_settings[i][2], Display.source_names[0]);
+		strcpy(Display.value_str_voices_settings[i][3], Display.source_names[0]);
+	}
+	// Noise Reset
+	Display.Noise_ONOFF = false;
+	strcpy(Display.value_str_voices_overview[3], "OFF");
+	Display.Noise_Volume = 1.0;
+
+	return HAL_OK;
+}
+
 
 /**@brief Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler
  * @param htim: timer-handler which controls the DAC, timer have to be connected with DAC
@@ -739,6 +769,7 @@ int16_t IDtoIndex(int16_t id) {
  *  @note Channel 1 is connected to calculate_vector1 and Channel 2 connected to calculate_vector2
  *  @return None
  */
+
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 	//Variables
@@ -768,6 +799,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 	//Loop for signal synthesis
 	for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
+
+
 
 		addValue = 0;
 		calculate_keyboard[0] = 0;
@@ -977,6 +1010,53 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	//		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
 	//	}
 }
+
+
+
+/** @brief wirtes a starting ramp into the DAC-Buffer to avoid speaker damage
+ * @retval returns a bool which indicates if ramp is finished or still in process
+ */
+float ramp_counter = 0;
+
+bool initRamp(void){
+  bool retval = false;
+  float* calculate_vector_tmp = calculate_vector1;
+
+  //ramp Duration of 0.5 seconds
+   float ramp_dur = 0.5*LUT_SR;
+  //MAX Ramp Value in mV
+    uint32_t maxRamp = (uint32_t)(1650 * DAC_MAXVALUE_TO_AMPLITUDE_RATIO );
+
+    //Write into DAC-Buffer
+    //decide if first half of BLOCKSIZE or second half
+    	uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;
+    	if (outputBuffer_position == HALF_BLOCK){
+    		BLOOCKSIZE_startIndex = 0;
+    		BLOOCKSIZE_endIndex = BLOCKSIZE/2;
+    	}
+    	else if(outputBuffer_position == FULL_BLOCK){
+    		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+    		BLOOCKSIZE_endIndex  = BLOCKSIZE;
+    	}
+
+    //Write into DAC
+    for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
+
+      if (ramp_counter < ramp_dur){
+        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((float)((ramp_counter/ramp_dur) * maxRamp));
+//        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(*maxRamp);
+        ramp_counter++;
+      }
+      else if(ramp_counter >= ramp_dur){
+        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(maxRamp);
+      }
+    }
+  if (ramp_counter >= ramp_dur)
+    retval = true;
+
+  return retval;
+}
+
 
 float Noise_Generator(void) {
 

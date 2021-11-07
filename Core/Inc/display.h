@@ -22,7 +22,7 @@
  */
 #define VALUE_ROW_LENGTH 10
 
-#define NUMBER_OF_SOURCES 6
+#define NUMBER_OF_SOURCES 5
 
 // Voices
 #define NUMBER_OF_VOICES 3
@@ -36,18 +36,31 @@
 #define NUMBER_OF_SEQUENCERSTEPS 8
 
 
-typedef enum {
+typedef enum {	// Waveshare 2.9 inch ePD
 	CASE0 = 10,
-	CASE1 = 30,
-	CASE2 = 50,
-	CASE3 =	70,
-	CASE4 =	90,
-	CASE5 =	110,
-	CASE6 =	130,
-	CASE7 =	150,
-	CASE8 =	170,
-	CASE9 =	190,
+	CASE1 = 20,
+	CASE2 = 30,
+	CASE3 =	40,
+	CASE4 =	50,
+	CASE5 =	60,
+	CASE6 =	70,
+	CASE7 =	80,
+	CASE8 =	90,
+	CASE9 =	100,
 }y_row_value;
+
+//typedef enum {	// Waveshare 1.54 inch ePD
+//	CASE0 = 10,
+//	CASE1 = 30,
+//	CASE2 = 50,
+//	CASE3 =	70,
+//	CASE4 =	90,
+//	CASE5 =	110,
+//	CASE6 =	130,
+//	CASE7 =	150,
+//	CASE8 =	170,
+//	CASE9 =	190,
+//}y_row_value;
 
 typedef enum {
 	STEP1 = 40,
@@ -293,15 +306,15 @@ struct display_variables {
 	source_t Drumfilter_Cutoff_Source;			// source for drumfilter cuttoff
 	// page value strings
 	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
-	char value_str_voices_overview[7][10];
+	char value_str_voices_overview[6][10];
 	char value_str_voices_settings[4][9][10];
-	char value_str_adsr_overview[8][10];
+	char value_str_adsr_overview[6][10];
 	char value_str_adsr_settings[5][10];
 	char value_str_equalizer_overview[6][10];
 	char value_str_equalizer_settings[5][6][10];
-	char value_str_wahwah[14][10];
+	char value_str_wahwah[15][10];
 	char value_str_distortion[4][10];
-	char value_str_tremolo[9][10];
+	char value_str_tremolo[6][10];
 	char value_str_volume[4][10];
 	char value_str_presets[2][10];
 	char value_str_keyboardmode[9][10];
@@ -346,6 +359,9 @@ struct display_variables {
 
 	// Preset
 	bool GyroResetPreset[2];
+
+	// Reset
+	bool Reset;
 };
 
 struct display_variables Display;
@@ -394,11 +410,13 @@ void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
 void p_Voices_overview(void);
 void p_Voices_Settings(void);
-void p_ADSR_overview(struct adsr* envelope);
+//void p_ADSR_overview(struct adsr* envelope);
+void p_ADSR_overview(void);
+
 void p_ADSR_Settings(void);
 void p_Equalizer_overview(void);
 void p_Equalizer_Settings(void);
-void p_WahWah_overview(struct WahWah_t *WahWah);
+void p_WahWah_overview(void);
 void p_WahWah_Settings(struct WahWah_t *WahWah);
 //void p_WahWah(struct WahWah_t *WahWah);
 void p_Distortion(struct effects_distortion* HardClipping);

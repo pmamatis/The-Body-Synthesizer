@@ -45,6 +45,7 @@ struct WahWah_t{
 struct WahWah_t WahWah;
 
 WahWah_Status WahWah_Init(struct WahWah_t *WahWah);
+WahWah_Status WahWah_Reset(struct WahWah_t *WahWah);
 WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float* data);
 WahWah_Status ProcessAutoWahWah(struct WahWah_t *WahWah, float* data);
 

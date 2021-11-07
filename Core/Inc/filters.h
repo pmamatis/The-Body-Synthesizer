@@ -80,6 +80,7 @@ Filter_Status Filters_Init();
 Filter_Status Filters_Reinit_Poti();
 Filter_Status Filters_Reinit_Gyro(float cutoff);
 Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d);
+Filter_Status Filters_Reset(void);
 Filter_Status SetupLowpass    (struct BQFilter *LP, float cutoff, float Q);
 Filter_Status SetupHighpass   (struct BQFilter *HP, float cutoff, float Q);
 Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q);
