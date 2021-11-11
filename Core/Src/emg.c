@@ -23,10 +23,15 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 	toggleThreshold = 20;
 	toggleCounter = toggleThreshold;
 
+	// TODO: Werte durch Testen anpassen!!
+	maxDetectionThreshold = 500;
+	maxToggleThreshold = 50;
+
 	return HAL_OK;
 }
 
-HAL_StatusTypeDef emg_start_read(){
+HAL_StatusTypeDef emg_start_read(void){
+
 	SetTimerSettings(EMG_TIM, EMG_SR);
 	HAL_TIM_Base_Start(EMG_TIM);
 	printf("start emg\r\n");
@@ -34,7 +39,8 @@ HAL_StatusTypeDef emg_start_read(){
 	return HAL_ADC_Start_DMA(EMG_ADC, (uint32_t*)adctest, 1);
 }
 
-HAL_StatusTypeDef emg_stop_read(){
+HAL_StatusTypeDef emg_stop_read(void){
+
 	return HAL_ADC_Stop_DMA(EMG_ADC);
 }
 

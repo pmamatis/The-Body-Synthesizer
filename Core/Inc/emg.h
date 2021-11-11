@@ -27,6 +27,8 @@ uint8_t emg_peak;
 uint32_t toggled;
 uint32_t toggleCounter;
 uint32_t toggleThreshold;
+uint32_t maxDetectionThreshold;
+uint32_t maxToggleThreshold;
 
 uint32_t halfcounter;
 uint32_t fullcounter;

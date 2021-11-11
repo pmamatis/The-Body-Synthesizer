@@ -320,6 +320,7 @@ struct display_variables {
 	char value_str_keyboardmode[9][10];
 	char value_str_drumcomputer[5][10];
 	char value_str_sequencer[9][10];
+	char value_str_emg[2][10];
 
 	// Drumcomputer
 	uint8_t lastCurrentSampleRow;
@@ -422,6 +423,7 @@ void p_WahWah_Settings(struct WahWah_t *WahWah);
 //void p_WahWah(struct WahWah_t *WahWah);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
+void p_EMG(void);
 void p_Volume(void);
 void p_Presets(void);
 void p_KeyboardSetParameters(struct adsr* envelope);

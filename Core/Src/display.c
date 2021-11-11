@@ -376,6 +376,9 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_tremolo[4],"POTI");
 	strcpy(Display->value_str_tremolo[5],"");
 
+	sprintf(Display->value_str_emg[0], "%u", detectionThreshold);	// emg
+	sprintf(Display->value_str_emg[1], "%u", toggleThreshold);
+
 	return DISPLAY_OK;
 }
 
@@ -679,7 +682,7 @@ void DISPLAY_processing(void) {
 		break;
 
 	case BODYSYNTH:
-		Display.page_max = 9; // has to be changed for every added case
+		Display.page_max = 10; // has to be changed for every added case
 
 		switch(Display.pagePosition) {
 		case -1:
@@ -768,6 +771,9 @@ void DISPLAY_processing(void) {
 								break;
 								case 9:
 									p_Tremolo(&Tremolo);
+									break;
+								case 10:
+									p_EMG();
 									break;
 								default:
 									break;
@@ -4229,6 +4235,42 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_tremolo[2], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_tremolo[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_tremolo[4], &Font12, COLORED);
+}
+
+void p_EMG(void) {
+
+	//Header line
+	char headerstring[] = "EMG";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	//row cases
+	char str_1[] = "Amplitude Thresh.";
+	char str_2[] = "Peak Debouncing";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 2;
+
+	if(Display.poti_moved == true) {
+
+		switch(Display.JoystickParameterPosition) {
+		case 1:
+			detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * maxDetectionThreshold);
+			break;
+		case 2:
+			toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * maxToggleThreshold);
+			break;
+		}
+	}
+
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+
+	sprintf(Display.value_str_emg[0], "%lu", detectionThreshold);
+	sprintf(Display.value_str_emg[1], "%lu", toggleThreshold);
+	// print value row
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_emg[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_emg[1], &Font12, COLORED);
 }
 
 /** @brief this function prints the Tremolo submenu and edits its values
