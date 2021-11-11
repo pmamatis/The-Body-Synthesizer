@@ -184,7 +184,8 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->Drumcomputer_ONOFF = false;
 	Display->EditDrums = false;
 	Display->LoadDrumkit = false;
-	Display->Drumfilter_Cutoff = 10;
+	Display->Drumfilter_Cutoff = LS_DRUMS.cutoff;
+	Display->Drumfilter_Q = LS_DRUMS.Q;
 
 	// Sequencer
 	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
@@ -307,7 +308,8 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_equalizer_overview[2],"OFF");
 	strcpy(Display->value_str_equalizer_overview[3],"OFF");
 	strcpy(Display->value_str_equalizer_overview[4],"OFF");
-	strcpy(Display->value_str_equalizer_overview[5],"");	// reset
+	strcpy(Display->value_str_equalizer_overview[5],"OFF");
+	strcpy(Display->value_str_equalizer_overview[6],"");	// reset
 
 	// 5 filter frequency bands
 	// BAND 1: Low-Shelf filter
@@ -3336,7 +3338,8 @@ void p_Equalizer_overview(void) {
 	char str_4[] = "Band 3";
 	char str_5[] = "Band 4";
 	char str_6[] = "Band 5";
-	char str_7[] = "EQ Reset";
+	char str_7[] = "Drumfilter";
+	char str_8[] = "EQ Reset";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
@@ -3344,9 +3347,10 @@ void p_Equalizer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
 
 	// as big as the number of parameters
-	Display.max_parameter = 7;
+	Display.max_parameter = 8;
 
 	//Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
@@ -3437,17 +3441,32 @@ void p_Equalizer_overview(void) {
 		}
 		break;
 	case 7:
-		// Equalizer Reset
 		Display.currentBand = 6;
 
-		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH , UNCOLORED);
+		if(Display.poti_moved == true) {
+			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH , UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Drumfilter_ONOFF = false;
+				strcpy(Display.value_str_equalizer_overview[5], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Drumfilter_ONOFF = true;
+				strcpy(Display.value_str_equalizer_overview[5], "ON");
+			}
+		}
+		break;
+	case 8:
+		// Equalizer Reset
+		Display.currentBand = 7;
+
+		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH , UNCOLORED);
 		if(Display.Reset == true) {
 			Filters_Reset();
 			Display.Reset = false;
-			strcpy(Display.value_str_equalizer_overview[5], "done");
+			strcpy(Display.value_str_equalizer_overview[6], "done");
 		}
 		else if(Display.Reset == false)
-			strcpy(Display.value_str_equalizer_overview[5], "");
+			strcpy(Display.value_str_equalizer_overview[6], "");
 		break;
 	default:
 		break;
@@ -3459,6 +3478,7 @@ void p_Equalizer_overview(void) {
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
 
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_equalizer_overview[0], &Font12, COLORED);
@@ -3467,6 +3487,7 @@ void p_Equalizer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_equalizer_overview[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_equalizer_overview[4], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_equalizer_overview[5], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_equalizer_overview[6], &Font12, COLORED);
 }
 
 /** @brief this function prints the Equalizer submenu and edits its values
@@ -3640,6 +3661,66 @@ void p_Equalizer_Settings(void) {
 		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_equalizer_settings[Display.currentBand-1][4], &Font12, COLORED);
 		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_equalizer_settings[Display.currentBand-1][5], &Font12, COLORED);
 
+	}
+
+	else if(Display.currentBand == 6) {
+
+		//Header line
+		char headerstring[] = "Drumfilter";
+		Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+		//row cases
+		char str_1[] = "Q-Factor";
+		char str_2[] = "Cutoff";
+		char str_3[] = "Cutoff Source";
+		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+
+		// as big as the number of parameters
+		Display.max_parameter = 3;
+
+		uint8_t mode_number = 0;
+
+		if(Display.poti_moved == true) {
+
+			switch(Display.JoystickParameterPosition) {
+			case 1:
+				// Q-Factor
+				Display.Drumfilter_Q = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * LS_DRUMS.maximum_Q);
+				if(Display.Drumfilter_Q < 0.01)	// guard for Q-factor, so it is never 0
+					Display.Drumfilter_Q = 0.01;
+
+				DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);	// this function can be used here as well
+				break;
+			case 2:
+				// Cutoff
+				if(Display.Drumfilter_Cutoff_Source == POTI) {
+					Display.Drumfilter_Cutoff = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * LS_DRUMS.maximum_cutoff);
+					if(Display.Drumfilter_Cutoff < LUT_FMIN)
+						Display.Drumfilter_Cutoff = LUT_FMIN;
+
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);	// this function can be used here as well
+				}
+				break;
+			case 3:
+				// Cutoff Source
+				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+				Display.Drumfilter_Cutoff_Source = mode_number;
+				break;
+			}
+		}
+
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+
+		sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][0], "%.3f", Display.Drumfilter_Q);
+		sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][1], "%.0f", Display.Drumfilter_Cutoff);
+		strcpy(Display.value_str_equalizer_settings[Display.currentBand-1][2], Display.source_names[Display.Drumfilter_Cutoff_Source]);
+		// print value row
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE1, Display.value_str_equalizer_settings[Display.currentBand-1][0], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE2, Display.value_str_equalizer_settings[Display.currentBand-1][1], &Font12, COLORED);
+		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_equalizer_settings[Display.currentBand-1][2], &Font12, COLORED);
 	}
 }
 

@@ -310,7 +310,7 @@ struct display_variables {
 	char value_str_voices_settings[4][9][10];
 	char value_str_adsr_overview[6][10];
 	char value_str_adsr_settings[5][10];
-	char value_str_equalizer_overview[6][10];
+	char value_str_equalizer_overview[7][10];
 	char value_str_equalizer_settings[5][6][10];
 	char value_str_wahwah[15][10];
 	char value_str_distortion[4][10];
@@ -334,6 +334,7 @@ struct display_variables {
 	char sample1[10], sample2[10], sample3[10], sample4[10];
 	bool LoadDrumkit;
 	float Drumfilter_Cutoff;
+	float Drumfilter_Q;
 
 	// Sequencer
 	uint8_t CurrentNoteRow;

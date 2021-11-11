@@ -1739,7 +1739,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			Display.Reset = true;
 		else if(Display.pagePosition == 5 && Display.currentADSR == 6)					// ADSR Reset
 			Display.Reset = true;
-		else if(Display.pagePosition == 6 && Display.currentBand == 6)					// EQ Reset
+		else if(Display.pagePosition == 6 && Display.currentBand == 7)					// EQ Reset
 			Display.Reset = true;
 		else if(Display.pagePosition == 7 && Display.currentWahWah == 3)				// WahWah Reset
 			Display.Reset = true;

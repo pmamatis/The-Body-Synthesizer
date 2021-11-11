@@ -27,8 +27,10 @@ uint8_t ii_voice_IDs[II_MAX_VOICES];
 /** value for Frequency as ln*/
 double log_mapping_F;
 /** actual step of the filter cuttoff */
-uint16_t filter_step_counter[5];
-uint16_t drum_filter_step_counter;
+int16_t filter_step_counter[5];
+int16_t drum_filter_step_counter;
+
+bool gyrochanged;
 
 /**
  * 0: tremolo rate

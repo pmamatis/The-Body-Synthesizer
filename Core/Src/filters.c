@@ -95,7 +95,7 @@ Filter_Status Filters_Init(){
 
 
 	// Drums Lowshelf
-	LS_DRUMS.Q = 10;
+	LS_DRUMS.Q = 0.707;
 	LS_DRUMS.cutoff = LUT_FMIN;
 	LS_DRUMS.dBGain = -20;
 	LS_DRUMS.maximum_Q = 20.0;
@@ -150,46 +150,35 @@ Filter_Status Filters_Init(){
 	return FILTER_OK;
 }
 
+Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d) {
 
 
-
-
-
-Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d){
-
-
-	if (cutoff_d > 10){
+	if (cutoff_d > LUT_FMIN){
 		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
-		SetupLowShelf(&LS_DRUMS, cutoff_d, 10, -20);
-		printf(" drum cutoff: %f\r\n",cutoff_d);
+		SetupLowShelf(&LS_DRUMS, cutoff_d, Qfactor_d, LS_DRUMS.dBGain);
+		//		printf(" drum cutoff: %f\r\n",cutoff_d);
 		return FILTER_OK;
 	}
 	else {
 		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
-		SetupLowShelf(&LS_DRUMS, 10, 10, -20);
+		SetupLowShelf(&LS_DRUMS, LUT_FMIN, Qfactor_d, LS_DRUMS.dBGain);
 		//		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}
 }
 
-
-
-
-
 Filter_Status Filters_Reinit_Gyro(float cutoff){
-
-
 
 	if (cutoff > 10){
 		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
 		SetupBandpassCPG(&EQ_BAND2,  cutoff, 0.707);
-		printf("cutoff: %f\r\n",cutoff);
+		//		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}
 	else {
 		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
 		SetupBandpassCPG(&EQ_BAND2,  10, 0.707);
-		printf("cutoff: %f\r\n",cutoff);
+		//		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}
 }
@@ -292,14 +281,11 @@ Filter_Status Filters_Reset(void) {
 	SetupHighShelf(&EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);
 
 
-	//		// Drums Lowshelf
+	// Drums Lowshelf
+	Display.Drumfilter_ONOFF = false;
 	//		LS_DRUMS.Q = 10;
 	//		LS_DRUMS.cutoff = LUT_FMIN;
 	//		LS_DRUMS.dBGain = -20;
-	//		LS_DRUMS.maximum_Q = 20.0;
-	//		LS_DRUMS.maximum_cutoff = LUT_FMAX;
-	//		LS_DRUMS.maximum_dBGain = 1.0;
-	//
 	//		SetupLowShelf(&LS_DRUMS, LS_DRUMS.cutoff, LS_DRUMS.Q, LS_DRUMS.dBGain);
 
 	for(int i=0; i<5; i++) {	// reset sources of all 5 filter bands
@@ -313,6 +299,7 @@ Filter_Status Filters_Reset(void) {
 	strcpy(Display.value_str_equalizer_overview[2], "OFF");
 	strcpy(Display.value_str_equalizer_overview[3], "OFF");
 	strcpy(Display.value_str_equalizer_overview[4], "OFF");
+	strcpy(Display.value_str_equalizer_overview[5], "OFF");
 
 	return FILTER_OK;
 }

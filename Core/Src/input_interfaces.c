@@ -14,12 +14,16 @@ void II_init(void) {
 	for (int i = 0;i<5 ;i++)
 		filter_step_counter[i] = 10;
 
+	drum_filter_step_counter = 10;
+
 	// Play Single Sample
 	play_single_sample_flag = false;
 	counter_single_sample = 0;
 
 	for(uint8_t i=0; i<(sizeof(gyro_delay_counter)/sizeof(gyro_delay_counter[0])); i++)
 		gyro_delay_counter[i] = 0;
+
+	gyrochanged = false;
 }
 
 /** starts the Interface Timer Interrupt
@@ -412,8 +416,8 @@ uint8_t II_Display_Effects(void){
 				case GYRO_FB:
 
 					if (sensorData.tilt_detected == TILT_BACK){
-						if (Display.Filter_Cutoff[Display.currentBand-1] > 50 ) {
-							printf("decrease cuttoff Rate\r\n");
+						if (Display.Filter_Cutoff[Display.currentBand-1] > LUT_FMIN ) {
+							//							printf("decrease cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 							Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand-1]);
@@ -421,8 +425,8 @@ uint8_t II_Display_Effects(void){
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_BACK_S){
-						if (Display.Filter_Cutoff[Display.currentBand-1] > 50 ) {
-							printf("decrease cuttoff Rate DOUBLEEEE\r\n");
+						if (Display.Filter_Cutoff[Display.currentBand-1] > LUT_FMIN ) {
+							//							printf("decrease cuttoff Rate DOUBLEEEE\r\n");
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -432,7 +436,7 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX) {
-							printf("increase cuttoff Rate\r\n");
+							//							printf("increase cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 							Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand-1]);
@@ -441,7 +445,7 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT_S){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX) {
-							printf("increase cuttoff Rate DOUBLEEEE\r\n");
+							//							printf("increase cuttoff Rate DOUBLEEEE\r\n");
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -454,7 +458,7 @@ uint8_t II_Display_Effects(void){
 
 					if (sensorData.tilt_detected == TILT_LEFT ){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-							printf("decrease cuttoff Rate\r\n");
+							//							printf("decrease cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 							Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand-1]);
@@ -463,7 +467,7 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_LEFT_S ){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-							printf("decrease cuttoff Rate DOUBLEEEE\r\n");
+							//							printf("decrease cuttoff Rate DOUBLEEEE\r\n");
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -474,7 +478,7 @@ uint8_t II_Display_Effects(void){
 
 					else if (sensorData.tilt_detected == TILT_RIGHT){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-							printf("increase cuttoff Rate\r\n");
+							//							printf("increase cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 							Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand-1]);
@@ -483,7 +487,7 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_RIGHT_S){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-							printf("increase cuttoff Rate DOUBLEEEE\r\n");
+							//							printf("increase cuttoff Rate DOUBLEEEE\r\n");
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -511,40 +515,64 @@ uint8_t II_Display_Effects(void){
 		case GYRO_FB:
 
 			if (sensorData.tilt_detected == TILT_BACK){
-				if (Display.Drumfilter_Cutoff > 50 ) {
-					printf("decrease cuttoff Rate\r\n");
+				if (Display.Drumfilter_Cutoff > LUT_FMIN) {
+					//					printf("decrease cuttoff Rate\r\n");
 					drum_filter_step_counter--;
+					if(drum_filter_step_counter < 1)
+						drum_filter_step_counter = 1;
 					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
+					if(Display.Drumfilter_Cutoff < LUT_FMIN)
+						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);
+
+					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}
 			else if (sensorData.tilt_detected == TILT_BACK_S){
-				if (Display.Drumfilter_Cutoff > 50 ) {
-					printf("decrease cuttoff Rate DOUBLEEEE\r\n");
+				if (Display.Drumfilter_Cutoff > LUT_FMIN) {
+					//					printf("decrease cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter--;
 					drum_filter_step_counter--;
+					if(drum_filter_step_counter < 1)
+						drum_filter_step_counter = 1;
 					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
+					if(Display.Drumfilter_Cutoff < LUT_FMIN)
+						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);
+
+					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}
 			else if (sensorData.tilt_detected == TILT_FRONT){
 				if (Display.Drumfilter_Cutoff <  LUT_FMAX) {
-					printf("increase cuttoff Rate\r\n");
+					//					printf("increase cuttoff Rate\r\n");
 					drum_filter_step_counter++;
+					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
+						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
 					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
+					if(Display.Drumfilter_Cutoff > LUT_FMAX)
+						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);
+
+					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}
 			else if (sensorData.tilt_detected == TILT_FRONT_S){
 				if (Display.Drumfilter_Cutoff <  LUT_FMAX) {
-					printf("increase cuttoff Rate DOUBLEEEE\r\n");
+					//					printf("increase cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter++;
 					drum_filter_step_counter++;
+					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
+						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
 					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
+					if(Display.Drumfilter_Cutoff > LUT_FMAX)
+						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);
+
+					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}
@@ -553,42 +581,64 @@ uint8_t II_Display_Effects(void){
 
 			if (sensorData.tilt_detected == TILT_LEFT ){
 				if (Display.Drumfilter_Cutoff > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-					printf("decrease cuttoff Rate\r\n");
+					//					printf("decrease cuttoff Rate\r\n");
 					drum_filter_step_counter--;
+					if(drum_filter_step_counter < 1)
+						drum_filter_step_counter = 1;
 					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
+					if(Display.Drumfilter_Cutoff < LUT_FMIN)
+						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);
+
+					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}
 			else if (sensorData.tilt_detected == TILT_LEFT_S ){
 				if (Display.Drumfilter_Cutoff > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-					printf("decrease cuttoff Rate DOUBLEEEE\r\n");
+					//					printf("decrease cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter--;
 					drum_filter_step_counter--;
+					if(drum_filter_step_counter < 1)
+						drum_filter_step_counter = 1;
 					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
+					if(Display.Drumfilter_Cutoff < LUT_FMIN)
+						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);
+
+					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}
 
 			else if (sensorData.tilt_detected == TILT_RIGHT){
 				if (Display.Drumfilter_Cutoff <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-					printf("increase cuttoff Rate\r\n");
+					//					printf("increase cuttoff Rate\r\n");
 					drum_filter_step_counter++;
+					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
+						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
 					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//								Display.Drumfilter_Cutoff= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
+					if(Display.Drumfilter_Cutoff > LUT_FMAX)
+						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);
+
+					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}
 			else if (sensorData.tilt_detected == TILT_RIGHT_S){
 				if (Display.Drumfilter_Cutoff <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-					printf("increase cuttoff Rate DOUBLEEEE\r\n");
+					//					printf("increase cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter++;
 					drum_filter_step_counter++;
-					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//								Display.Drumfilter_Cutoff= Display.Filter_Cutoff[0] + LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE;
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff);
+					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
+						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
+					Display.Drumfilter_Cutoff=  exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+					if(Display.Drumfilter_Cutoff > LUT_FMAX)
+						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
+					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);
+
+					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}

@@ -706,6 +706,13 @@ void DMA2_Stream2_IRQHandler(void)
 		Display.button_pressed_flag = false;
 	}
 
+	// value of the gyro-sensor changed
+	if(gyrochanged == true) {
+		DISPLAY_processing();
+		Display.UpdateDisplay = true;
+		gyrochanged = false;
+	}
+
 	if(Display.UpdateDisplay == true) {
 		DISPLAY_Update();
 		Display.UpdateDisplay = false;
