@@ -15,6 +15,41 @@
  * @param Display: display struct
  * @return returns display status flag
  */
+void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition) {
+
+	switch(JoystickParameterPosition) {
+	case 1:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE1, "<--", &Font12, COLORED);
+		break;
+	case 2:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE2, "<--", &Font12, COLORED);
+		break;
+	case 3:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE3, "<--", &Font12, COLORED);
+		break;
+	case 4:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE4, "<--", &Font12, COLORED);
+		break;
+	case 5:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE5, "<--", &Font12, COLORED);
+		break;
+	case 6:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE6, "<--", &Font12, COLORED);
+		break;
+	case 7:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE7, "<--", &Font12, COLORED);
+		break;
+	case 8:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE8, "<--", &Font12, COLORED);
+		break;
+	case 9:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE9, "<--", &Font12, COLORED);
+		break;
+	default:
+		break;
+	}
+}
+
 Display_Status Display_Init(struct display_variables* Display) {
 
 	strcpy(&Display->source_names[GYRO_LR], "Gyro L/R");
@@ -424,41 +459,6 @@ void DISPLAY_Update(void) {
 /** @brief this function draws an arrow
  * @param JoystickParameterPosition: current position of the joystick
  */
-void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition) {
-
-	switch(JoystickParameterPosition) {
-	case 1:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE1, "<--", &Font12, COLORED);
-		break;
-	case 2:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE2, "<--", &Font12, COLORED);
-		break;
-	case 3:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE3, "<--", &Font12, COLORED);
-		break;
-	case 4:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE4, "<--", &Font12, COLORED);
-		break;
-	case 5:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE5, "<--", &Font12, COLORED);
-		break;
-	case 6:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE6, "<--", &Font12, COLORED);
-		break;
-	case 7:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE7, "<--", &Font12, COLORED);
-		break;
-	case 8:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE8, "<--", &Font12, COLORED);
-		break;
-	case 9:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE9, "<--", &Font12, COLORED);
-		break;
-	default:
-		break;
-	}
-}
-
 /** @brief this function deletes an arrow
  * @param JoystickParameterPosition: current position of the joystick
  */
@@ -502,7 +502,8 @@ void DISPLAY_DeleteArrow(uint8_t JoystickParameterPosition) {
  */
 void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition){
 
-	//always use font 12 for arrow draws, to ensure a page can have 9 parameters
+	Display.poti_moved = false;	// to make sure that the following parameter is not changed
+
 	DISPLAY_DeleteArrow(*JoystickParameterPosition);
 
 	switch(*JoystickParameterPosition) {
@@ -544,7 +545,8 @@ void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition){
  */
 void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition) {
 
-	//always use font 12 for arrow draws, to ensure a page can have 9 parameters
+	Display.poti_moved = false;	// to make sure that the following parameter is not changed
+
 	DISPLAY_DeleteArrow(*JoystickParameterPosition);
 
 	switch(*JoystickParameterPosition) {
@@ -607,6 +609,8 @@ void DISPLAY_PrintCurrentPage(void) {
  */
 void DISPLAY_SwitchPageLeft(void) {
 
+	Display.poti_moved = false;	// to make sure that the following parameter is not changed
+
 	// this has to be done to make sure that the "current" variables are reset to 0, when we switch back from settings pages to overview pages
 	if(Display.currentVoice > 0)
 		Display.currentVoice = 0;
@@ -658,6 +662,8 @@ void DISPLAY_SwitchPageRight(void) {
 	//	      break;
 	//	    }
 	//	  }
+
+	Display.poti_moved = false;	// to make sure that the following parameter is not changed
 
 	Display.JoystickParameterPosition = 1;
 
@@ -4256,9 +4262,11 @@ void p_EMG(void) {
 		switch(Display.JoystickParameterPosition) {
 		case 1:
 			detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * maxDetectionThreshold);
+			// Minimawerte ebenfalls einfügen
 			break;
 		case 2:
 			toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * maxToggleThreshold);
+			// Minimawerte ebenfalls einfügen
 			break;
 		}
 	}

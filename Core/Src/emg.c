@@ -23,7 +23,7 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 	toggleThreshold = 20;
 	toggleCounter = toggleThreshold;
 
-	// TODO: Werte durch Testen anpassen!!
+	// TODO: Werte durch Testen anpassen!! // Minimawerte ebenfalls einfügen!
 	maxDetectionThreshold = 500;
 	maxToggleThreshold = 50;
 
