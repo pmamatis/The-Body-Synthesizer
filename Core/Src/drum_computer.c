@@ -375,6 +375,12 @@ HAL_StatusTypeDef Drum_Computer_Init(void) {
 	sd_card_unmount();
 	__enable_irq();
 
+//	strcpy(Display.value_str_drumcomputer[10], "909");
+	strcpy(Display.sample1, "Kick");	// Init drumcomputer display content, has to be similar to the drumkit above!
+	strcpy(Display.sample2, "Op.HH");
+	strcpy(Display.sample3, "Clap");
+	strcpy(Display.sample4, "L.Tom");
+
 	// INIT: Windows LUTs
 	// POSSIBLE: Recycle, Background, Chord, Critical Stop, Error, Hardware Remove
 	//	__disable_irq();

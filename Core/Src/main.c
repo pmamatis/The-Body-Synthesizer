@@ -1731,7 +1731,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
 		// Reset of different modules by putton pressing
-		if(Display.pagePosition == 2 && Display.currentDrumcomputer == 2)				// Drumcomputer Reset
+		if(Display.pagePosition == 2 && Display.currentDrumcomputer == 7)				// Drumcomputer Reset
 			Display.Reset = true;
 		else if(Display.pagePosition == 3 && Display.currentSequencer == 8)				// Sequencer Reset
 			Display.Reset = true;

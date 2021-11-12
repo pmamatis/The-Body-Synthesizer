@@ -14,7 +14,11 @@
 #define II_MAX_VOICES 3
 #define II_SR 50
 #define II_TREM_DEPTH_STEP_SIZE 20
-#define II_FILTER_CUTTOFF_STEP_SIZE 400
+// to ensure minimum frequency of 10 Hz -> especially for the drums (ratio II_MINIMUM_STEPCOUNTER to II_FILTER_CUTTOFF_STEP_SIZE = 110:400)
+// increase ratio to increase sensitivity
+#define II_FILTER_CUTTOFF_STEP_SIZE 1600
+#define II_MINIMUM_STEPCOUNTER 440 // formula used to determine this value: cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+#define II_FILTER_CUTOFF_MIN 10
 
 // Processing Delays
 #define II_TREM_RATE_DELAY II_SR/4

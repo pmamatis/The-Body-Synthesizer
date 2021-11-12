@@ -310,7 +310,7 @@ struct display_variables {
 	char value_str_voices_settings[4][9][10];
 	char value_str_adsr_overview[6][10];
 	char value_str_adsr_settings[5][10];
-	char value_str_equalizer_overview[7][10];
+	char value_str_equalizer_overview[6][10];
 	char value_str_equalizer_settings[5][6][10];
 	char value_str_wahwah[15][10];
 	char value_str_distortion[4][10];
@@ -318,7 +318,7 @@ struct display_variables {
 	char value_str_volume[4][10];
 	char value_str_presets[2][10];
 	char value_str_keyboardmode[9][10];
-	char value_str_drumcomputer[5][10];
+	char value_str_drumcomputer[11][10];
 	char value_str_sequencer[9][10];
 	char value_str_emg[2][10];
 
@@ -336,6 +336,7 @@ struct display_variables {
 	bool LoadDrumkit;
 	float Drumfilter_Cutoff;
 	float Drumfilter_Q;
+	float Drumfilter_Gain;
 
 	// Sequencer
 	uint8_t CurrentNoteRow;
@@ -378,6 +379,7 @@ Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint
 
 
 //Display draw functions
+void DISPLAY_PrintCurrentPage(void);
 void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition);
 void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition);
 void DISPLAY_SwitchPageLeft(void);

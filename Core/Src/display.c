@@ -6,7 +6,6 @@
  */
 
 #include "display.h"
-
 // for int8_t to string conversion to print the current page
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,41 +14,6 @@
  * @param Display: display struct
  * @return returns display status flag
  */
-void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition) {
-
-	switch(JoystickParameterPosition) {
-	case 1:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE1, "<--", &Font12, COLORED);
-		break;
-	case 2:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE2, "<--", &Font12, COLORED);
-		break;
-	case 3:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE3, "<--", &Font12, COLORED);
-		break;
-	case 4:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE4, "<--", &Font12, COLORED);
-		break;
-	case 5:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE5, "<--", &Font12, COLORED);
-		break;
-	case 6:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE6, "<--", &Font12, COLORED);
-		break;
-	case 7:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE7, "<--", &Font12, COLORED);
-		break;
-	case 8:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE8, "<--", &Font12, COLORED);
-		break;
-	case 9:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE9, "<--", &Font12, COLORED);
-		break;
-	default:
-		break;
-	}
-}
-
 Display_Status Display_Init(struct display_variables* Display) {
 
 	strcpy(&Display->source_names[GYRO_LR], "Gyro L/R");
@@ -221,6 +185,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->LoadDrumkit = false;
 	Display->Drumfilter_Cutoff = LS_DRUMS.cutoff;
 	Display->Drumfilter_Q = LS_DRUMS.Q;
+	Display->Drumfilter_Gain = LS_DRUMS.dBGain;
 
 	// Sequencer
 	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
@@ -284,12 +249,18 @@ Display_Status Display_Init(struct display_variables* Display) {
 	sprintf(Display->value_str_volume[2], "%.2f", volume[2]);
 	sprintf(Display->value_str_volume[3], "%.2f", volume[3]);
 
-	strcpy(Display->value_str_drumcomputer[0], "OFF");	// drumcomputer
-	sprintf(Display->value_str_drumcomputer[1], "%.f", BPM);
-	strcpy(Display->value_str_drumcomputer[2], "909");
-	strcpy(Display->value_str_drumcomputer[3], "OFF");
-	strcpy(Display->value_str_drumcomputer[4], "");	// reset
-
+	Display->Drumfilter_Gain = LS_DRUMS.dBGain;	// drumcomputer
+	strcpy(Display->value_str_drumcomputer[0], "OFF");
+	strcpy(Display->value_str_drumcomputer[1], "OFF");
+	sprintf(Display->value_str_drumcomputer[2], "%.3f", Display->Drumfilter_Q);
+	sprintf(Display->value_str_drumcomputer[3], "%.f", Display->Drumfilter_Cutoff);
+	sprintf(Display->value_str_drumcomputer[4], "%.f", Display->Drumfilter_Gain);
+	strcpy(Display->value_str_drumcomputer[5],"POTI");
+	strcpy(Display->value_str_drumcomputer[6], "");	// reset
+	sprintf(Display->value_str_drumcomputer[7], "%.f", BPM);
+	strcpy(Display->value_str_drumcomputer[8], "909");
+	strcpy(Display->value_str_drumcomputer[9], "OFF");
+	strcpy(Display->value_str_drumcomputer[10], "909");
 
 	strcpy(Display->value_str_sequencer[0], "OFF");	// sequencer
 	sprintf(Display->value_str_sequencer[1], "%c", Display->Sequencer_Note[0]);
@@ -343,8 +314,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_equalizer_overview[2],"OFF");
 	strcpy(Display->value_str_equalizer_overview[3],"OFF");
 	strcpy(Display->value_str_equalizer_overview[4],"OFF");
-	strcpy(Display->value_str_equalizer_overview[5],"OFF");
-	strcpy(Display->value_str_equalizer_overview[6],"");	// reset
+	strcpy(Display->value_str_equalizer_overview[5],"");	// reset
 
 	// 5 filter frequency bands
 	// BAND 1: Low-Shelf filter
@@ -411,8 +381,8 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_tremolo[4],"POTI");
 	strcpy(Display->value_str_tremolo[5],"");
 
-	sprintf(Display->value_str_emg[0], "%u", detectionThreshold);	// emg
-	sprintf(Display->value_str_emg[1], "%u", toggleThreshold);
+	sprintf(Display->value_str_emg[0], "%lu", detectionThreshold);	// emg
+	sprintf(Display->value_str_emg[1], "%lu", toggleThreshold);
 
 	return DISPLAY_OK;
 }
@@ -446,6 +416,19 @@ Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer
 	return DISPLAY_OK;
 }
 
+/** @brief this function prints the current display page
+ *
+ */
+void DISPLAY_PrintCurrentPage(void) {
+
+	char current_page[1];
+	itoa(Display.pagePosition, current_page, 10);
+	Paint_DrawFilledRectangle(&paint, 180, 1, 200, 10, UNCOLORED);	// delete the frame content
+	Paint_DrawStringAt(&paint, 180, 1, current_page, &Font12, COLORED);
+
+	Display.UpdateDisplay = true;
+}
+
 /** @brief this function updates the display
  *
  */
@@ -459,6 +442,41 @@ void DISPLAY_Update(void) {
 /** @brief this function draws an arrow
  * @param JoystickParameterPosition: current position of the joystick
  */
+void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition) {
+
+	switch(JoystickParameterPosition) {
+	case 1:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE1, "<--", &Font12, COLORED);
+		break;
+	case 2:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE2, "<--", &Font12, COLORED);
+		break;
+	case 3:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE3, "<--", &Font12, COLORED);
+		break;
+	case 4:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE4, "<--", &Font12, COLORED);
+		break;
+	case 5:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE5, "<--", &Font12, COLORED);
+		break;
+	case 6:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE6, "<--", &Font12, COLORED);
+		break;
+	case 7:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE7, "<--", &Font12, COLORED);
+		break;
+	case 8:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE8, "<--", &Font12, COLORED);
+		break;
+	case 9:
+		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE9, "<--", &Font12, COLORED);
+		break;
+	default:
+		break;
+	}
+}
+
 /** @brief this function deletes an arrow
  * @param JoystickParameterPosition: current position of the joystick
  */
@@ -589,19 +607,6 @@ void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition) {
 	}
 
 	DISPLAY_DrawArrow(*JoystickParameterPosition);
-}
-
-/** @brief this function prints the current display page
- *
- */
-void DISPLAY_PrintCurrentPage(void) {
-
-	char current_page[1];
-	itoa(Display.pagePosition, current_page, 10);
-	Paint_DrawFilledRectangle(&paint, 180, 1, 200, 10, UNCOLORED);	// delete the frame content
-	Paint_DrawStringAt(&paint, 180, 1, current_page, &Font12, COLORED);
-
-	Display.UpdateDisplay = true;
 }
 
 /** @brief this function switches to one page on the left
@@ -851,13 +856,25 @@ Display_Status p_Drumcomputer_overview(void) {
 	//row cases
 	char str_1[] = "Next effect";
 	char str_2[] = "Drumcomputer ON/OFF";
-	char str_3[] = "Drumcomputer Reset";
+	char str_3[] = "Drumfilter ON/OFF";
+	char str_4[] = "Q-Factor";
+	char str_5[] = "Cutoff";
+	char str_6[] = "Gain";
+	char str_7[] = "Cutoff Source";
+	char str_8[] = "Drumcomputer Reset";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
 
 	// as big as the number of parameters
-	Display.max_parameter = 3;
+	Display.max_parameter = 8;
+
+	uint8_t mode_number = 0;
 
 	switch(Display.JoystickParameterPosition) {
 	case 1:
@@ -867,6 +884,7 @@ Display_Status p_Drumcomputer_overview(void) {
 	case 2:
 		// Drumcomputer ON/OFF
 		Display.currentDrumcomputer = 1;
+
 		if(Display.poti_moved == true) {
 			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
@@ -880,17 +898,86 @@ Display_Status p_Drumcomputer_overview(void) {
 			}
 		}
 		break;
-	case 3:
-		// Drumcomputer Reset
+	case 3:	// Drumfilter ON/OFF
 		Display.currentDrumcomputer = 2;
+
+		if(Display.poti_moved == true) {
+			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Drumfilter_ONOFF = false;
+				strcpy(Display.value_str_drumcomputer[1], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Drumfilter_ONOFF = true;
+				strcpy(Display.value_str_drumcomputer[1], "ON");
+			}
+		}
+		break;
+	case 4:
+		// Q-Factor
+		Display.currentDrumcomputer = 3;
+
+		if(Display.poti_moved == true) {
+			Display.Drumfilter_Q = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * LS_DRUMS.maximum_Q);
+			if(Display.Drumfilter_Q < 0.01)	// guard for Q-factor, so it is never 0
+				Display.Drumfilter_Q = 0.01;
+
+			DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);	// this function can be used here as well
+		}
+		break;
+	case 5:
+		// Cutoff
+		Display.currentDrumcomputer = 4;
+
+		if(Display.poti_moved == true) {
+			if(Display.Drumfilter_Cutoff_Source == POTI) {
+				Display.Drumfilter_Cutoff = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * LS_DRUMS.maximum_cutoff);
+				if(Display.Drumfilter_Cutoff < II_FILTER_CUTOFF_MIN)
+					Display.Drumfilter_Cutoff = II_FILTER_CUTOFF_MIN;
+
+				DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);	// this function can be used here as well
+			}
+		}
+		break;
+	case 6:
+		// Filter Gain
+		Display.currentDrumcomputer = 5;
+
+		if(Display.poti_moved == true) {
+
+			/*****************************
+			 * @brief	HS / LS Gain: -18dB to 6dB
+			 * @brief	Scaling 4095 (ADC_value) to a range of 24dB by dividing with 170.625
+			 * @brief   Center around 0dB by subtracting (4095/(2*170.625))
+			 * @brief	Subtract 6dB for final adjust
+			 ******************************/
+			Display.Drumfilter_Gain = ((float)Display.ADC2inputs[2] / 170.625)-(4095/(2*170.625))-6;
+
+			DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);	// this function can be used here as well
+		}
+		break;
+	case 7:
+		// Cutoff Source
+		Display.currentDrumcomputer = 6;
+
+		if(Display.poti_moved == true) {
+			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			Display.Drumfilter_Cutoff_Source = mode_number;
+		}
+		break;
+	case 8:
+		// Drumcomputer Reset
+		Display.currentDrumcomputer = 7;
+
 		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 		if(Display.Reset == true) {
 			Drum_Computer_Reset();
 			Display.Reset = false;
-			strcpy(Display.value_str_drumcomputer[4], "done");
+			strcpy(Display.value_str_drumcomputer[6], "done");
 		}
 		else if(Display.Reset == false)
-			strcpy(Display.value_str_drumcomputer[4], "");
+			strcpy(Display.value_str_drumcomputer[6], "");
 		break;
 	default:
 		break;
@@ -898,9 +985,24 @@ Display_Status p_Drumcomputer_overview(void) {
 
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
 
+	sprintf(Display.value_str_drumcomputer[2], "%.3f", Display.Drumfilter_Q);
+	sprintf(Display.value_str_drumcomputer[3], "%.0f", Display.Drumfilter_Cutoff);
+	sprintf(Display.value_str_drumcomputer[4], "%.0f", Display.Drumfilter_Gain);
+	strcpy(Display.value_str_drumcomputer[5], Display.source_names[Display.Drumfilter_Cutoff_Source]);
+	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_drumcomputer[0], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_drumcomputer[4], &Font12, COLORED);	// Reset
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_drumcomputer[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_drumcomputer[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_drumcomputer[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_drumcomputer[4], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE7, Display.value_str_drumcomputer[5], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_drumcomputer[6], &Font12, COLORED);	// reset
 
 	return DISPLAY_OK;
 }
@@ -924,12 +1026,13 @@ Display_Status p_Drumcomputer_Settings(void) {
 	else if(Display.JoystickParameterPosition == 3) {	// load sample from sd card -> right button pressed registered in gpio exti callback
 		Display.EditDrums = false;
 
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 
 		if(potVal >= 0 && potVal < 25) {
-			strcpy(Display.value_str_drumcomputer[2], "909");
-			Display.UpdateDisplay = true;
+
+			strcpy(Display.value_str_drumcomputer[8], "909");
+
 			if(Display.LoadDrumkit == true) {
 
 				// Reset drumcomputer variables when a new drumkit is loaded
@@ -955,19 +1058,23 @@ Display_Status p_Drumcomputer_Settings(void) {
 					flag_DS4[i]    = 0;
 				}
 
-				Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
-				Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, "909", &Font8, COLORED);
 				Display_LoadDrumKits(0);
 				Display.LoadDrumkit = false;
+
+				// print name of loaded drumkit above the name of the samples
+				strcpy(Display.value_str_drumcomputer[10], "909");
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Op.HH");
 				strcpy(Display.sample3, "Clap");
 				strcpy(Display.sample4, "L.Tom");
+
+				Display.UpdateDisplay = true;
 			}
 		}
 		else if(potVal >= 25 && potVal < 50) {
-			strcpy(Display.value_str_drumcomputer[2], "Rock loud");
-			Display.UpdateDisplay = true;
+
+			strcpy(Display.value_str_drumcomputer[8], "Rock loud");
+
 			if(Display.LoadDrumkit == true) {
 
 				// Reset drumcomputer variables when a new drumkit is loaded
@@ -993,19 +1100,23 @@ Display_Status p_Drumcomputer_Settings(void) {
 					flag_DS4[i]    = 0;
 				}
 
-				Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
-				Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, "Rock loud", &Font8, COLORED);
 				Display_LoadDrumKits(1);
 				Display.LoadDrumkit = false;
+
+				// print name of loaded drumkit above the name of the samples
+				strcpy(Display.value_str_drumcomputer[10], "Rock loud");
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Hihat");
 				strcpy(Display.sample3, "Snare");
 				strcpy(Display.sample4, "Ride");
+
+				Display.UpdateDisplay = true;
 			}
 		}
 		else if(potVal >= 50 && potVal < 75) {
-			strcpy(Display.value_str_drumcomputer[2], "Rock");
-			Display.UpdateDisplay = true;
+
+			strcpy(Display.value_str_drumcomputer[8], "Rock");
+
 			if(Display.LoadDrumkit == true) {
 
 				// Reset drumcomputer variables when a new drumkit is loaded
@@ -1031,19 +1142,23 @@ Display_Status p_Drumcomputer_Settings(void) {
 					flag_DS4[i]    = 0;
 				}
 
-				Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
-				Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, "Rock", &Font8, COLORED);
 				Display_LoadDrumKits(2);
 				Display.LoadDrumkit = false;
+
+				// print name of loaded drumkit above the name of the samples
+				strcpy(Display.value_str_drumcomputer[10], "Rock");
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Hihat");
 				strcpy(Display.sample3, "Snare");
 				strcpy(Display.sample4, "Ride");
+
+				Display.UpdateDisplay = true;
 			}
 		}
 		else if(potVal >= 75 && potVal <= 100) {
-			strcpy(Display.value_str_drumcomputer[2], "Windows");
-			Display.UpdateDisplay = true;
+
+			strcpy(Display.value_str_drumcomputer[8], "Windows");
+
 			if(Display.LoadDrumkit == true) {
 
 				// Reset drumcomputer variables when a new drumkit is loaded
@@ -1069,14 +1184,17 @@ Display_Status p_Drumcomputer_Settings(void) {
 					flag_DS4[i]    = 0;
 				}
 
-				Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
-				Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, "Windows", &Font8, COLORED);
 				Display_LoadDrumKits(3);
 				Display.LoadDrumkit = false;
+
+				// print name of loaded drumkit above the name of the samples
+				strcpy(Display.value_str_drumcomputer[10], "Windows");
 				strcpy(Display.sample1, "Chord");
 				strcpy(Display.sample2, "Trash");
 				strcpy(Display.sample3, "Remove");
 				strcpy(Display.sample4, "Back");
+
+				Display.UpdateDisplay = true;
 			}
 		}
 	}
@@ -1087,20 +1205,28 @@ Display_Status p_Drumcomputer_Settings(void) {
 			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 			if(potVal < 50) {	// smaller than 50 %
 				Display.EditDrums = false;
-				strcpy(Display.value_str_drumcomputer[3], "OFF");
+				strcpy(Display.value_str_drumcomputer[9], "OFF");
 			}
 			else if(potVal >= 50) {	// greater than 50 %
 				Display.EditDrums = true;
-				strcpy(Display.value_str_drumcomputer[3], "ON");
+				strcpy(Display.value_str_drumcomputer[9], "ON");
 			}
 		}
 	}
 
+	// print name of loaded drumkit above the name of the samples
+	Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE6-10, Display.row_start_x_position+25, CASE6-10+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6-10, Display.value_str_drumcomputer[10], &Font8, COLORED);
+
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+
 	Display_DrawDrumcomputerIcons(Display.sample1, Display.sample2, Display.sample3, Display.sample4);
 	DISPLAY_DrawDrumcomputerPatternFrame(8);
 
-	Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, Display.value_str_drumcomputer[2], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_drumcomputer[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE2, Display.value_str_drumcomputer[7], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, Display.value_str_drumcomputer[8], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_drumcomputer[9], &Font12, COLORED);
 
 	return DISPLAY_OK;
 }
@@ -1154,8 +1280,6 @@ Display_Status DISPLAY_DrawDrumcomputerPattern(void) {
 
 Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 
-	//	__disable_irq();	// disable interrupts for a while to make sure that the samples are loaded more quickly
-
 	if(Drumkit == 0) {
 		// INIT: 909 LUTs
 		// POSSIBLE: Kick, ClosedHihat, OpenHihat, Clap, Rimshot, LowTom, MidTom, HiTom
@@ -1199,8 +1323,6 @@ Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 		sd_card_read("Windows_Background.txt", &DS4);
 		sd_card_unmount();
 	}
-
-	//	__enable_irq();
 
 	return DISPLAY_OK;
 }
@@ -3350,8 +3472,7 @@ void p_Equalizer_overview(void) {
 	char str_4[] = "Band 3";
 	char str_5[] = "Band 4";
 	char str_6[] = "Band 5";
-	char str_7[] = "Drumfilter";
-	char str_8[] = "EQ Reset";
+	char str_7[] = "EQ Reset";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
@@ -3359,10 +3480,9 @@ void p_Equalizer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
 
 	// as big as the number of parameters
-	Display.max_parameter = 8;
+	Display.max_parameter = 7;
 
 	//Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
@@ -3453,32 +3573,17 @@ void p_Equalizer_overview(void) {
 		}
 		break;
 	case 7:
-		Display.currentBand = 6;
-
-		if(Display.poti_moved == true) {
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH , UNCOLORED);
-			if(potVal < 50) {	// smaller than 50 %
-				Display.Drumfilter_ONOFF = false;
-				strcpy(Display.value_str_equalizer_overview[5], "OFF");
-			}
-			else if(potVal >= 50) {	// greater than 50 %
-				Display.Drumfilter_ONOFF = true;
-				strcpy(Display.value_str_equalizer_overview[5], "ON");
-			}
-		}
-		break;
-	case 8:
 		// Equalizer Reset
-		Display.currentBand = 7;
+		Display.currentBand = 6;
 
 		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH , UNCOLORED);
 		if(Display.Reset == true) {
 			Filters_Reset();
 			Display.Reset = false;
-			strcpy(Display.value_str_equalizer_overview[6], "done");
+			strcpy(Display.value_str_equalizer_overview[5], "done");
 		}
 		else if(Display.Reset == false)
-			strcpy(Display.value_str_equalizer_overview[6], "");
+			strcpy(Display.value_str_equalizer_overview[5], "");
 		break;
 	default:
 		break;
@@ -3490,7 +3595,6 @@ void p_Equalizer_overview(void) {
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
 
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_equalizer_overview[0], &Font12, COLORED);
@@ -3499,7 +3603,6 @@ void p_Equalizer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_equalizer_overview[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_equalizer_overview[4], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_equalizer_overview[5], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_equalizer_overview[6], &Font12, COLORED);
 }
 
 /** @brief this function prints the Equalizer submenu and edits its values
@@ -3603,8 +3706,16 @@ void p_Equalizer_Settings(void) {
 				break;
 			case 3:
 				// Gain
-				Display.Filter_Gain[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_dBGain);	// use EQ_BAND1 or any other: same maximum gain for every band
-				Display.Filter_Gain[Display.currentBand-1] = 2*Display.Filter_Gain[Display.currentBand-1]-EQ_BAND1.maximum_dBGain;	// map filter gain to negative and positive value
+				//				Display.Filter_Gain[Display.currentBand-1] = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * EQ_BAND1.maximum_dBGain);	// use EQ_BAND1 or any other: same maximum gain for every band
+				//				Display.Filter_Gain[Display.currentBand-1] = 2*Display.Filter_Gain[Display.currentBand-1]-EQ_BAND1.maximum_dBGain;	// map filter gain to negative and positive value
+
+				/*****************************
+				 * @brief	HS / LS / PEQ Gain: -18dB to 6dB
+				 * @brief	Scaling 4095 (ADC_value) to a range of 24dB by dividing with 170.625
+				 * @brief   Center around 0dB by subtracting (4095/(2*170.625))
+				 * @brief	Subtract 6dB for final adjust
+				 ******************************/
+				Display.Filter_Gain[Display.currentBand-1] = ((float)Display.ADC2inputs[2] / 170.625)-(4095/(2*170.625))-6;
 
 				// BAND 1: Low-Shelf filter
 				if(Display.currentBand == 1) {
@@ -3672,67 +3783,6 @@ void p_Equalizer_Settings(void) {
 		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_equalizer_settings[Display.currentBand-1][3], &Font12, COLORED);
 		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_equalizer_settings[Display.currentBand-1][4], &Font12, COLORED);
 		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_equalizer_settings[Display.currentBand-1][5], &Font12, COLORED);
-
-	}
-
-	else if(Display.currentBand == 6) {
-
-		//Header line
-		char headerstring[] = "Drumfilter";
-		Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
-		//row cases
-		char str_1[] = "Q-Factor";
-		char str_2[] = "Cutoff";
-		char str_3[] = "Cutoff Source";
-		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
-		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
-		Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
-
-		// as big as the number of parameters
-		Display.max_parameter = 3;
-
-		uint8_t mode_number = 0;
-
-		if(Display.poti_moved == true) {
-
-			switch(Display.JoystickParameterPosition) {
-			case 1:
-				// Q-Factor
-				Display.Drumfilter_Q = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * LS_DRUMS.maximum_Q);
-				if(Display.Drumfilter_Q < 0.01)	// guard for Q-factor, so it is never 0
-					Display.Drumfilter_Q = 0.01;
-
-				DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);	// this function can be used here as well
-				break;
-			case 2:
-				// Cutoff
-				if(Display.Drumfilter_Cutoff_Source == POTI) {
-					Display.Drumfilter_Cutoff = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * LS_DRUMS.maximum_cutoff);
-					if(Display.Drumfilter_Cutoff < LUT_FMIN)
-						Display.Drumfilter_Cutoff = LUT_FMIN;
-
-					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q);	// this function can be used here as well
-				}
-				break;
-			case 3:
-				// Cutoff Source
-				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-				Display.Drumfilter_Cutoff_Source = mode_number;
-				break;
-			}
-		}
-
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-
-		sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][0], "%.3f", Display.Drumfilter_Q);
-		sprintf(Display.value_str_equalizer_settings[Display.currentBand-1][1], "%.0f", Display.Drumfilter_Cutoff);
-		strcpy(Display.value_str_equalizer_settings[Display.currentBand-1][2], Display.source_names[Display.Drumfilter_Cutoff_Source]);
-		// print value row
-		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE1, Display.value_str_equalizer_settings[Display.currentBand-1][0], &Font12, COLORED);
-		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE2, Display.value_str_equalizer_settings[Display.currentBand-1][1], &Font12, COLORED);
-		Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_equalizer_settings[Display.currentBand-1][2], &Font12, COLORED);
 	}
 }
 
@@ -4077,20 +4127,19 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 			}
 		}
 		break;
-		//	case 2:	// Distortion Type
-		//		if(Display.poti_moved == true) {
-		//		Display.Poti_Threshold = 1;
-		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 50, Display.value_end_x_position, 60, UNCOLORED);
-		//		if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {
-		//			Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Soft", &Font12, COLORED);
-		//			Display.Distortion_Type = 0;
-		//		}
-		//		else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {
-		//			Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Hard", &Font12, COLORED);
-		//			Display.Distortion_Type = 1;
-		//		}
-		//		}
-		//		break;
+	case 2:	// Distortion Type
+		if(Display.poti_moved == true) {
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 50, Display.value_end_x_position, 60, UNCOLORED);
+			if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {
+				Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Soft", &Font12, COLORED);
+				Display.Distortion_Type = 0;
+			}
+			else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {
+				Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Hard", &Font12, COLORED);
+				Display.Distortion_Type = 1;
+			}
+		}
+		break;
 	case 2:	// Distortion Gain
 		if(Display.poti_moved == true) {
 			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);

@@ -27,7 +27,7 @@ float cutoff = 0;
 // Processing variables
 float band1, band2, band3, band4, band5 = 0;
 
-Filter_Status Filters_Init(){
+Filter_Status Filters_Init(void){
 
 	/*****************************
 	 * Default EQ consisting of Low-/Highshelfs and Peaking-EQ-/Notch-Filter
@@ -96,11 +96,11 @@ Filter_Status Filters_Init(){
 
 	// Drums Lowshelf
 	LS_DRUMS.Q = 0.707;
-	LS_DRUMS.cutoff = LUT_FMIN;
-	LS_DRUMS.dBGain = -20;
-	LS_DRUMS.maximum_Q = 20.0;
+	LS_DRUMS.cutoff = II_FILTER_CUTOFF_MIN;
+	LS_DRUMS.dBGain = -10;
+	LS_DRUMS.maximum_Q = 15.0;
 	LS_DRUMS.maximum_cutoff = LUT_FMAX;
-	LS_DRUMS.maximum_dBGain = 1.0;
+	LS_DRUMS.maximum_dBGain = 6;
 
 	SetupLowShelf(&LS_DRUMS, LS_DRUMS.cutoff, LS_DRUMS.Q, LS_DRUMS.dBGain);
 
@@ -150,18 +150,18 @@ Filter_Status Filters_Init(){
 	return FILTER_OK;
 }
 
-Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d) {
+Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d, float gain_d) {
 
 
 	if (cutoff_d > LUT_FMIN){
 		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
-		SetupLowShelf(&LS_DRUMS, cutoff_d, Qfactor_d, LS_DRUMS.dBGain);
+		SetupLowShelf(&LS_DRUMS, cutoff_d, Qfactor_d, gain_d);
 		//		printf(" drum cutoff: %f\r\n",cutoff_d);
 		return FILTER_OK;
 	}
 	else {
 		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
-		SetupLowShelf(&LS_DRUMS, LUT_FMIN, Qfactor_d, LS_DRUMS.dBGain);
+		SetupLowShelf(&LS_DRUMS, LUT_FMIN, Qfactor_d, gain_d);
 		//		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}
@@ -169,7 +169,7 @@ Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d) {
 
 Filter_Status Filters_Reinit_Gyro(float cutoff){
 
-	if (cutoff > 10){
+	if (cutoff > LUT_FMIN){
 		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
 		SetupBandpassCPG(&EQ_BAND2,  cutoff, 0.707);
 		//		printf("cutoff: %f\r\n",cutoff);

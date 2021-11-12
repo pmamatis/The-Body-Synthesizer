@@ -1061,9 +1061,10 @@ bool initRamp(void){
 float Noise_Generator(void) {
 
 	float NoiseValue = 0;
+	float Noise_Gain = 0.5;
 
 	if(Display.Noise_ONOFF == true)
-		NoiseValue = (8*Display.Noise_Volume*(float)rand()/ (powf(2, 8*sizeof(int))) )-(8*Display.Noise_Volume*0.25);	// Noise Gain = 8
+		NoiseValue = (Noise_Gain*Display.Noise_Volume*(float)rand()/ (powf(2, 8*sizeof(int))) )-(Noise_Gain*Display.Noise_Volume*0.25);	// Noise Gain = 8
 
 	return NoiseValue;
 }
