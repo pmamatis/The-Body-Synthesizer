@@ -40,6 +40,10 @@ void II_startInterface(TIM_HandleTypeDef* htim) {
  * retval: 0 Error
  * 		   1 Success
  */
+uint32_t gyro_toggleCounter = 0;
+uint32_t gyro_toggleThreshold = 10;
+
+
 uint8_t II_Display_Voices(void) {
 
 	for(uint8_t ii_i=0; ii_i < II_MAX_VOICES; ii_i++) {
@@ -62,7 +66,7 @@ uint8_t II_Display_Voices(void) {
 				}
 				break;
 			case GYRO_FB:
-				if ( toggleCounter > toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
+				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
 					if (sensorData.tilt_detected == TILT_BACK){
 						II_decreaseNote(ii_i);	// TODO: decrease the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
@@ -72,14 +76,14 @@ uint8_t II_Display_Voices(void) {
 						II_raiseNote(ii_i);	// TODO: increase the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
 						sensorData.tilt_detected = TILT_NONE;
 					}
-					toggleCounter = 0;
+					gyro_toggleCounter = 0;
 				}
 				else
-					toggleCounter++;
+					gyro_toggleCounter++;
 				break;
 			case GYRO_LR:
 
-				if ( toggleCounter > toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
+				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 					if (sensorData.tilt_detected == TILT_RIGHT){
 						II_decreaseNote(ii_i);	// TODO: decrease the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
 						sensorData.tilt_detected = TILT_NONE;
@@ -90,10 +94,10 @@ uint8_t II_Display_Voices(void) {
 
 					}
 
-					toggleCounter = 0;
+					gyro_toggleCounter = 0;
 				}
 				else
-					toggleCounter++;
+					gyro_toggleCounter++;
 				break;
 			default:
 				break;

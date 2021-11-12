@@ -36,6 +36,7 @@ int16_t drum_filter_step_counter;
 
 bool gyrochanged;
 
+
 /**
  * 0: tremolo rate
  * 1: tremolo depth

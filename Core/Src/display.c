@@ -186,7 +186,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->Drumfilter_Cutoff = LS_DRUMS.cutoff;
 	Display->Drumfilter_Q = LS_DRUMS.Q;
 	Display->Drumfilter_Gain = LS_DRUMS.dBGain;
-
+	Display->realtimeBPM_ONOFF = false;
 	// Sequencer
 	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
 		for(int j=0; j<NUMBER_OF_SEQUENCERSTEPS; j++) {
@@ -381,8 +381,8 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_tremolo[4],"POTI");
 	strcpy(Display->value_str_tremolo[5],"");
 
-	sprintf(Display->value_str_emg[0], "%lu", detectionThreshold);	// emg
-	sprintf(Display->value_str_emg[1], "%lu", toggleThreshold);
+	sprintf(Display->value_str_emg[0], "%lu", emg_detectionThreshold);	// emg
+	sprintf(Display->value_str_emg[1], "%lu", emg_toggleThreshold);
 
 	return DISPLAY_OK;
 }
@@ -4313,11 +4313,11 @@ void p_EMG(void) {
 
 		switch(Display.JoystickParameterPosition) {
 		case 1:
-			detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * maxDetectionThreshold);
+			emg_detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * emg_maxDetectionThreshold);
 			// Minimawerte ebenfalls einfügen
 			break;
 		case 2:
-			toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * maxToggleThreshold);
+			emg_toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * emg_maxToggleThreshold);
 			// Minimawerte ebenfalls einfügen
 			break;
 		}
@@ -4326,8 +4326,8 @@ void p_EMG(void) {
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 
-	sprintf(Display.value_str_emg[0], "%lu", detectionThreshold);
-	sprintf(Display.value_str_emg[1], "%lu", toggleThreshold);
+	sprintf(Display.value_str_emg[0], "%lu", emg_detectionThreshold);
+	sprintf(Display.value_str_emg[1], "%lu", emg_toggleThreshold);
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_emg[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_emg[1], &Font12, COLORED);

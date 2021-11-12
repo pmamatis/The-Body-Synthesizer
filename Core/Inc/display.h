@@ -337,7 +337,7 @@ struct display_variables {
 	float Drumfilter_Cutoff;
 	float Drumfilter_Q;
 	float Drumfilter_Gain;
-
+	bool realtimeBPM_ONOFF; // heartbeat from EMG-Board as bpm for Drumcomputer
 	// Sequencer
 	uint8_t CurrentNoteRow;
 	uint8_t CurrentSequencestep;
