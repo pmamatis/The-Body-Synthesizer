@@ -29,7 +29,7 @@ void effects_process(float* calculate_value) {
 				ProcessHardClippingDistortion(&HardClipping, calculate_value);
 				break;
 			case DIST_S:
-				ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
+				ProcessSoftClippingDistortion(&SoftClipping, calculate_value);
 				break;
 			default:
 				break;
@@ -61,7 +61,7 @@ void effects_process_fast(float* calculate_value){
 	}
 
 	if(effect_order[3] == DIST_S){
-		ProcessAtanSoftClippingDistortion(&SoftClipping, calculate_value);
+		ProcessSoftClippingDistortion(&SoftClipping, calculate_value);
 	}
 
 	if(effect_order[4] == WAHWAH) {

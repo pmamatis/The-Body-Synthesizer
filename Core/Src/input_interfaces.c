@@ -124,9 +124,10 @@ uint8_t II_Display_Effects(void){
 	// Distortion
 	if(Display.Distortion_ONOFF == true) {
 
-		effects_add(DIST_H);
+		effects_add(DIST_S);
 
-		HardClipping.distortion_gain = Display.Distortion_Gain;
+//		HardClipping.distortion_gain = Display.Distortion_Gain;
+		SoftClipping.distortion_gain = Display.Distortion_Gain;
 
 		if(Display.Distortion_Sources > POTI) {	// POTI = 0
 
@@ -194,7 +195,7 @@ uint8_t II_Display_Effects(void){
 		}
 	}
 	else if (Display.Distortion_ONOFF == false){
-		effects_delete(DIST_H);
+		effects_delete(DIST_S);
 	}
 
 	//Tremolo

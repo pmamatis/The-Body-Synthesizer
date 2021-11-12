@@ -168,7 +168,7 @@ struct display_variables {
 	bool last_Distortion_ONOFF;
 	bool last_Distortion_Type;
 	bool Distortion_Type;
-	uint8_t Distortion_Gain;
+	float Distortion_Gain;
 	uint8_t Distortion_EffectPosition;
 	bool Distortion_EffectAdded;
 	uint8_t currentDistortion;

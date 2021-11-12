@@ -24,8 +24,7 @@ typedef enum {
  * @parameter	Distortion
  *********************************/
 struct effects_distortion{
-	float min_distortion_calculatevector;
-	float max_distortion_calculatevector;
+
 	float distortion_gain;
 	float atan_parameter;
 	unsigned int distortion_index;
