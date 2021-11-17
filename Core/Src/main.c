@@ -120,56 +120,17 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
 
 	inputBuffer_position = HALF_BLOCK;
 	if(hadc->Instance == ADC3){
-		//				HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
-		emg_peak_detection();
-		//		for(int i=0; i<5; i++) {
-		//			Display.Poti_Threshold = 35;
-		//			if(abs(Display.last_Poti - emg_buffer[i]) > Display.Poti_Threshold) {
-		//				printf("moved\r\n");
-		//				printf("Poti = %u\r\n", abs((uint32_t)Display.last_Poti - emg_buffer[i]));
-		//				Display.poti_moved = true;
-		//				Display.last_Poti = emg_buffer[i];
-		//			}
-		//			else {
-		//				Display.poti_moved = false;
-		//				Display.last_Poti = emg_buffer[i];
-		//			}
-		//		}
+
+//		emg_peak_detection();
+		ecg_heartrate();
 	}
 }
-
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 
 	inputBuffer_position = FULL_BLOCK;
 	if(hadc->Instance == ADC3){
-		//		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
-		emg_peak_detection();
-		//		for(int i=5; i<10; i++) {
-		//			Display.Poti_Threshold = 35;
-		//			if(abs(Display.last_Poti - emg_buffer[i]) > Display.Poti_Threshold) {
-		//				printf("moved\r\n");
-		//				printf("Poti = %u\r\n", abs((uint32_t)Display.last_Poti - emg_buffer[i]));
-		//				Display.poti_moved = true;
-		//				Display.last_Poti = emg_buffer[i];
-		//			}
-		//			else {
-		//				Display.poti_moved = false;
-		//				Display.last_Poti = emg_buffer[i];
-		//			}
-		//		}
-
-		//		Display.Poti_Threshold = 35;
-		//		if(abs(Display.last_Poti - adctest) > Display.Poti_Threshold) {
-		//			printf("moved\r\n");
-		//			printf("Poti = %u\r\n", abs((uint32_t)Display.last_Poti - adctest));
-		//			Display.poti_moved = true;
-		//			Display.last_Poti = adctest;
-		//		}
-		//		else {
-		//			Display.poti_moved = false;
-		//			Display.last_Poti = adctest;
-		//		}
-
+//		emg_peak_detection();
+		ecg_heartrate();
 	}
 }
 
@@ -328,10 +289,11 @@ int main(void)
 	Drum_Computer_Init();
 
 	//Gyros SPI
-	spiC_Init(&hspi4, &htim7);
+//	spiC_Init(&hspi4, &htim7);
 
 	//EMG init
 	emg_init(&hadc3,&htim1);
+	ecg_init();
 
 	// WahWah Init
 	WahWah_Init(&WahWah);
@@ -351,7 +313,7 @@ int main(void)
 
 	//Start Display
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
+//	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
 	// Start DAC-DMA
 	printf("start DAC\r\n");
@@ -359,13 +321,13 @@ int main(void)
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
-	keyboard_start_read();
+//	keyboard_start_read();
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
 	SetTimerSettings(&htim6, 500);	// Timer 6 default: 2000 Hz
 	printf("start Button ADC\r\n");
-	HAL_TIM_Base_Start(&htim6);
-	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 4);
+//	HAL_TIM_Base_Start(&htim6);
+//	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 4);
 
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
 	emg_start_read();
@@ -575,7 +537,7 @@ static void MX_ADC1_Init(void)
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
   hadc1.Init.ContinuousConvMode = DISABLE;
@@ -625,7 +587,7 @@ static void MX_ADC2_Init(void)
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   hadc2.Instance = ADC2;
-  hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
   hadc2.Init.Resolution = ADC_RESOLUTION_12B;
   hadc2.Init.ScanConvMode = ADC_SCAN_ENABLE;
   hadc2.Init.ContinuousConvMode = DISABLE;
@@ -699,7 +661,7 @@ static void MX_ADC3_Init(void)
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   hadc3.Instance = ADC3;
-  hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
   hadc3.Init.Resolution = ADC_RESOLUTION_12B;
   hadc3.Init.ScanConvMode = ADC_SCAN_ENABLE;
   hadc3.Init.ContinuousConvMode = DISABLE;
@@ -709,7 +671,7 @@ static void MX_ADC3_Init(void)
   hadc3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc3.Init.NbrOfConversion = 2;
   hadc3.Init.DMAContinuousRequests = ENABLE;
-  hadc3.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc3.Init.EOCSelection = ADC_EOC_SEQ_CONV;
   if (HAL_ADC_Init(&hadc3) != HAL_OK)
   {
     Error_Handler();

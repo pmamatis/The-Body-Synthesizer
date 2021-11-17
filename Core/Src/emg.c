@@ -18,7 +18,7 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 	EMG_TIM = htim;
 	emg_detectionThreshold = 250;
 	emg_peak = 0;
-	emg_toggleThreshold = 20;
+	emg_toggleThreshold = 50;
 	emg_toggleCounter = emg_toggleThreshold;
 
 	// TODO: Werte durch Testen anpassen!! // Minimawerte ebenfalls einfügen!
@@ -33,12 +33,15 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
  */
 HAL_StatusTypeDef ecg_init(void){
 
-
 	ecg_detectionThreshold = 250;
 	ecg_peaks = 0;
-	ecg_toggleThreshold = 20;
+	ecg_toggled = false;
+	ecg_peak = false;
+	ecg_toggleThreshold = EMG_SR/10;
 	ecg_toggleCounter = ecg_toggleThreshold;
-	ecg_measInt = EMG_SR *4;
+	ecg_measInt = EMG_SR * EMG_MI;
+	ecg_intCount = 0;
+
 	// TODO: Werte durch Testen anpassen!! // Minimalwerte ebenfalls einfügen!
 	ecg_maxDetectionThreshold = 500;
 	ecg_maxToggleThreshold = 50;
@@ -52,7 +55,7 @@ HAL_StatusTypeDef emg_start_read(void){
 	HAL_TIM_Base_Start(EMG_TIM);
 	printf("start emg\r\n");
 	return HAL_ADC_Start_DMA(EMG_ADC, emg_buffer, EMG_READ_LENGTH);
-//	return HAL_ADC_Start_DMA(EMG_ADC, (uint32_t*)adctest, 1);
+	//	return HAL_ADC_Start_DMA(EMG_ADC, (uint32_t*)adctest, 1);
 }
 
 HAL_StatusTypeDef emg_stop_read(void){
@@ -74,9 +77,9 @@ HAL_StatusTypeDef emg_peak_detection(){
 	}
 
 	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
-//		printf("%i\r\n",emg_buffer[i]);
+		//		printf("%i\r\n",emg_buffer[i]);
 		if(emg_buffer[i] > emg_detectionThreshold && emg_toggleCounter > emg_toggleThreshold){
-			printf("emg peak\r\n%i\r\n",i);
+			//			printf("emg peak\r\n%i\r\n",i);
 			emg_peak = 1;
 			emg_toggleCounter = 0;
 		}
@@ -88,7 +91,7 @@ HAL_StatusTypeDef emg_peak_detection(){
 	return HAL_OK;
 }
 
-float ecg_heartrate(){
+void ecg_heartrate(){
 
 	uint16_t ADC_BLOCKSIZE_startIndex=0, ADC_BLOCKSIZE_endIndex=0;
 
@@ -101,26 +104,48 @@ float ecg_heartrate(){
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH;
 	}
 
-	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
-//		printf("%i\r\n",emg_buffer[i]);
+
+
+
+	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i++){
+//			printf("1:  %u\r\n",emg_buffer[i-1]);
+//			printf("2:  %u\r\n",emg_buffer[i]);
 		if(emg_buffer[i] > ecg_detectionThreshold && ecg_toggleCounter > ecg_toggleThreshold){
-			printf("emg peak\r\n%i\r\n",i);
+
 			ecg_peaks += 1;
+			printf("emg peak\r\n");
+			HAL_GPIO_WritePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin,SET);
 			ecg_toggleCounter = 0;
+			ecg_peak = 1;
 		}
-		if (ecg_measInt == ecg_intCount){
-			heartrate = (60/ecg_measInt)*ecg_peaks; //bpm
+
+		if(ecg_peak){
+//			HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);
+			ecg_peak = 0;
+			ecg_toggled = 1;
+		}
+
+		if(ecg_toggleCounter > ecg_toggleThreshold && ecg_toggled == 1){
+			HAL_GPIO_WritePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin,RESET);
+//			HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);
+			ecg_toggled = 0;
+		}
+
+//		printf("%u == %u\r\n", ecg_measInt ,ecg_intCount);
+
+		if (ecg_intCount == ecg_measInt){
+			heartrate = (float)(60/(EMG_MI))*ecg_peaks; //bpm
 			ecg_peaks = 0;
 			ecg_intCount = 0;
 			if (Display.realtimeBPM_ONOFF){
 				BPM = heartrate;
 			}
+			printf("Heartrate: %f bpm\r\n", heartrate);
 
 		}
+
 		ecg_toggleCounter++;
 		ecg_intCount++;
 	}
 
-
-	return -1;
 }
