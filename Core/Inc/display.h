@@ -36,31 +36,31 @@
 #define NUMBER_OF_SEQUENCERSTEPS 8
 
 
-typedef enum {	// Waveshare 2.9 inch ePD
-	CASE0 = 10,
-	CASE1 = 20,
-	CASE2 = 30,
-	CASE3 =	40,
-	CASE4 =	50,
-	CASE5 =	60,
-	CASE6 =	70,
-	CASE7 =	80,
-	CASE8 =	90,
-	CASE9 =	100,
-}y_row_value;
-
-//typedef enum {	// Waveshare 1.54 inch ePD
+//typedef enum {	// Waveshare 2.9 inch ePD
 //	CASE0 = 10,
-//	CASE1 = 30,
-//	CASE2 = 50,
-//	CASE3 =	70,
-//	CASE4 =	90,
-//	CASE5 =	110,
-//	CASE6 =	130,
-//	CASE7 =	150,
-//	CASE8 =	170,
-//	CASE9 =	190,
+//	CASE1 = 20,
+//	CASE2 = 30,
+//	CASE3 =	40,
+//	CASE4 =	50,
+//	CASE5 =	60,
+//	CASE6 =	70,
+//	CASE7 =	80,
+//	CASE8 =	90,
+//	CASE9 =	100,
 //}y_row_value;
+
+typedef enum {	// Waveshare 1.54 inch ePD
+	CASE0 = 10,
+	CASE1 = 30,
+	CASE2 = 50,
+	CASE3 =	70,
+	CASE4 =	90,
+	CASE5 =	110,
+	CASE6 =	130,
+	CASE7 =	150,
+	CASE8 =	170,
+	CASE9 =	190,
+}y_row_value;
 
 typedef enum {
 	STEP1 = 40,
@@ -313,7 +313,7 @@ struct display_variables {
 	char value_str_equalizer_overview[6][10];
 	char value_str_equalizer_settings[5][6][10];
 	char value_str_wahwah[15][10];
-	char value_str_distortion[4][10];
+	char value_str_distortion[5][10];
 	char value_str_tremolo[6][10];
 	char value_str_volume[4][10];
 	char value_str_presets[2][10];

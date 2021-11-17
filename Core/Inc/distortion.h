@@ -44,6 +44,7 @@ struct effects_distortion{
 	// distortion_gain = 9.0 -> +-0.730050027
 	// distortion_gain = 10.0 -> +-0.735549986
 	float atan_softclipping_distortion_max[10];	// 10 different distortion gain values, so the effect can be increased step-wise
+	float softclipping_distortion_max[11];	// LUT for softclipping to normalize the values to -1 to +1 amplitude
 
 	//float distortion_maximum_gain;
 	uint8_t distortion_maximum_gain;
@@ -72,9 +73,7 @@ Distortion_Status Distortion_Init(void);
 Distortion_Status Distortion_Reset(void);
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping);
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping);
-Distortion_Status SetupAtanSoftClippingDistortion(struct effects_distortion* SoftClipping);
-Distortion_Status ProcessHardClippingDistortion(struct effects_distortion* HardClipping, float* data);
-Distortion_Status ProcessSoftClippingDistortion(struct effects_distortion* SoftClipping, float* data);
-Distortion_Status ProcessAtanSoftClippingDistortion(struct effects_distortion* SoftClipping, float* data);
+Distortion_Status ProcessHardClippingDistortion(float* data);
+Distortion_Status ProcessSoftClippingDistortion(float* data);
 
 #endif /* INC_DISTORTION_H_ */

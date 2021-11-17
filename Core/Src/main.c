@@ -1751,7 +1751,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			Display.Reset = true;
 		else if(Display.pagePosition == 7 && Display.currentWahWah == 3)				// WahWah Reset
 			Display.Reset = true;
-		else if(Display.pagePosition == 8 && Display.JoystickParameterPosition == 4)	// Distortion Reset
+		else if(Display.pagePosition == 8 && Display.JoystickParameterPosition == 5)	// Distortion Reset
 			Display.Reset = true;
 		else if(Display.pagePosition == 9 && Display.JoystickParameterPosition == 6)	// Tremolo Reset
 			Display.Reset = true;

@@ -80,7 +80,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->last_Distortion_ONOFF = true;
 	Display->last_Distortion_Type = true;
 	Display->Distortion_Type = false;
-//	Display->Distortion_Gain = 1.0;
+	//	Display->Distortion_Gain = 1.0;
 	Display->Distortion_EffectPosition = 0;
 	Display->Distortion_EffectAdded = false;
 
@@ -366,11 +366,12 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_wahwah[12],"POTI");
 	strcpy(Display->value_str_wahwah[13],"POTI");
 
-	Display->Distortion_Gain = HardClipping.distortion_gain;
+	Display->Distortion_Gain = SoftClipping.distortion_gain*10;
 	strcpy(Display->value_str_distortion[0],"OFF");	// distortion
-	sprintf(Display->value_str_distortion[1], "%.2f", Display->Distortion_Gain);
-	strcpy(Display->value_str_distortion[2],"POTI");
-	strcpy(Display->value_str_distortion[3],"");	// reset
+	strcpy(Display->value_str_distortion[1],"Soft");
+	sprintf(Display->value_str_distortion[2], "%.2f", Display->Distortion_Gain);
+	strcpy(Display->value_str_distortion[3],"POTI");
+	strcpy(Display->value_str_distortion[4],"");	// reset
 
 	Display->Tremolo_Rate = Tremolo.lfo->lfo_frequency;
 	Display->Tremolo_Depth = Tremolo.lfo->lfo_depth;
@@ -4098,16 +4099,18 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 	// row cases
 	char str_1[] = "Distortion ON/OFF";
-	char str_2[] = "Gain";
-	char str_3[] = "Source";
-	char str_4[] = "Distortion Reset";
+	char str_2[] = "Type";
+	char str_3[] = "Gain";
+	char str_4[] = "Source";
+	char str_5[] = "Distortion Reset";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 
 	// as big as the number of parameters
-	Display.max_parameter = 4;
+	Display.max_parameter = 5;
 
 	// Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
@@ -4127,30 +4130,48 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 			}
 		}
 		break;
-//	case 2:	// Distortion Type
-//		if(Display.poti_moved == true) {
-//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 50, Display.value_end_x_position, 60, UNCOLORED);
-//			if(Display.ADC2inputs[2] < Display.ADC_FullRange/2) {
-//				Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Soft", &Font12, COLORED);
-//				Display.Distortion_Type = 0;
-//			}
-//			else if(Display.ADC2inputs[2] >= Display.ADC_FullRange/2) {
-//				Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Hard", &Font12, COLORED);
-//				Display.Distortion_Type = 1;
-//			}
-//		}
+	case 2:	// Distortion Type
+		if(Display.poti_moved == true) {
+			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, 50, Display.value_end_x_position, 60, UNCOLORED);
+			if(potVal < 50) {	// smaller than 50 %
+				//				Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Soft", &Font12, COLORED);
+				Display.Distortion_Type = 0;
+				strcpy(Display.value_str_distortion[1], "Soft");
+				Display.Distortion_Gain = 0.0;	// reset the distortion gain
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				//				Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Hard", &Font12, COLORED);
+				Display.Distortion_Type = 1;
+				strcpy(Display.value_str_distortion[1], "Hard");
+				Display.Distortion_Gain = 1.0;	// reset the distortion gain
+			}
+		}
 		break;
-	case 2:	// Distortion Gain
+	case 3:	// Distortion Gain
 		if(Display.poti_moved == true) {
 			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+			//			Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * HardClipping->distortion_maximum_gain) + 1;	// 1 to 10
 
-//			Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * HardClipping->distortion_maximum_gain) + 1;	// 1 to 10
-			Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * 9) + 1;	// 1 to 10
+			// Soft Clipping
+			if(Display.Distortion_Type == 0) {
+
+				Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * SoftClipping.distortion_maximum_gain);	// 1 to 10
+
+				// values are mapped from e.g. 0.88 to 0.90 to have float number with one decimal point
+				Display.Distortion_Gain = Display.Distortion_Gain*10;
+				Display.Distortion_Gain = ceil(Display.Distortion_Gain);
+//				Display.Distortion_Gain = Display.Distortion_Gain/10;
+			}
+			// Hard Clipping
+			else if(Display.Distortion_Type == 1) {
+
+				Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * HardClipping->distortion_maximum_gain) + 1;	// 1 to 10
+			}
 
 			//			sprintf(Display.value_str_distortion[1], "%u", Display.Distortion_Gain);
 		}
 		break;
-	case 3:	// Distortion Gain Source
+	case 4:	// Distortion Gain Source
 		if(Display.poti_moved == true) {
 			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
@@ -4159,15 +4180,15 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 			//			strcpy(Display.value_str_distortion[2], Display.source_names[Display.Distortion_Sources]);
 		}
 		break;
-	case 4:	// Distortion Reset
+	case 5:	// Distortion Reset
 		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
 		if(Display.Reset == true) {
 			Distortion_Reset();
 			Display.Reset = false;
-			strcpy(Display.value_str_distortion[3], "done");
+			strcpy(Display.value_str_distortion[4], "done");
 		}
 		else if(Display.Reset == false)
-			strcpy(Display.value_str_distortion[3], "");
+			strcpy(Display.value_str_distortion[4], "");
 		break;
 	default:
 		break;
@@ -4175,17 +4196,18 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
 
-	sprintf(Display.value_str_distortion[1], "%.2f", Display.Distortion_Gain);
-	strcpy(Display.value_str_distortion[2], Display.source_names[Display.Distortion_Sources]);
+	sprintf(Display.value_str_distortion[2], "%.1f", Display.Distortion_Gain);
+	strcpy(Display.value_str_distortion[3], Display.source_names[Display.Distortion_Sources]);
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_distortion[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_distortion[1], &Font12, COLORED);
-	//Paint_DrawCharAt(&paint, Display.value_start_x_position, CASE2, Display.Distortion_Gain+'0', &Font12, COLORED);	// '0' wird draufaddiert, um den Wert korrekt darzustellen
-	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_distortion[2], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_distortion[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_distortion[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_distortion[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_distortion[4], &Font12, COLORED);	// reset
 }
 
 void p_Tremolo(struct Tremolo_t* Tremolo) {
