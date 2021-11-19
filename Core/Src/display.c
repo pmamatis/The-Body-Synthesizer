@@ -384,6 +384,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 
 	sprintf(Display->value_str_emg[0], "%lu", emg_detectionThreshold);	// emg
 	sprintf(Display->value_str_emg[1], "%lu", emg_toggleThreshold);
+	sprintf(Display->value_str_emg[2], "OFF");
 
 	return DISPLAY_OK;
 }
@@ -4343,16 +4344,21 @@ void p_EMG(void) {
 	//Header line
 	char headerstring[] = "EMG";
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+
 	//row cases
 	char str_1[] = "Amplitude Thresh.";
 	char str_2[] = "Peak Debouncing";
+	char str_3[] = "OFF";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 
 	// as big as the number of parameters
 	Display.max_parameter = 2;
 
 	if(Display.poti_moved == true) {
+		// Potentiometer Input in %
+		float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 
 		switch(Display.JoystickParameterPosition) {
 		case 1:
@@ -4363,6 +4369,17 @@ void p_EMG(void) {
 			emg_toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * emg_maxToggleThreshold);
 			// Minimawerte ebenfalls einfügen
 			break;
+		case 3:
+			if(potVal < 50) {	// smaller than 50 %
+				Display.realtimeBPM_ONOFF = false;
+				strcpy(Display.value_str_emg[2], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.realtimeBPM_ONOFF = true;
+				strcpy(Display.value_str_emg[2], "ON");
+			}
+
+			break;
 		}
 	}
 
@@ -4371,9 +4388,11 @@ void p_EMG(void) {
 
 	sprintf(Display.value_str_emg[0], "%lu", emg_detectionThreshold);
 	sprintf(Display.value_str_emg[1], "%lu", emg_toggleThreshold);
+
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_emg[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_emg[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_emg[2], &Font12, COLORED);
 }
 
 /** @brief this function prints the Tremolo submenu and edits its values
@@ -4624,11 +4643,11 @@ void p_Presets(void) {
 		// Equalizer
 		// WahWah
 		Display.WahWah_ONOFF = true;
-		Display.WahWah_Mode = 1;	// Auto-WahWah
-		Display.WahWah_MidFreq = WahWah->mid_freq = 256.41;
-		Display.WahWah_Q = WahWah->bandpass->Q = 1.02;
-		Display.WahWah_Range = WahWah->range = 346.99;
-		Display.WahWah_LFOfreq = WahWah->lfo->lfo_frequency = 8;
+//		Display.WahWah_Mode = 1;	// Auto-WahWah
+//		Display.WahWah_MidFreq = WahWah->mid_freq = 256.41;
+//		Display.WahWah_Q = WahWah->bandpass->Q = 1.02;
+//		Display.WahWah_Range = WahWah->range = 346.99;
+//		Display.WahWah_LFOfreq = WahWah->lfo->lfo_frequency = 8;
 		// Distortion
 		Display.Distortion_ONOFF = true;
 		Display.Distortion_Type = 1;	// Hard Clipping

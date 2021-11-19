@@ -321,7 +321,7 @@ struct display_variables {
 	char value_str_keyboardmode[9][10];
 	char value_str_drumcomputer[11][10];
 	char value_str_sequencer[9][10];
-	char value_str_emg[2][10];
+	char value_str_emg[3][10];
 
 	// Drumcomputer
 	uint8_t lastCurrentSampleRow;

@@ -109,8 +109,8 @@ void Error_Handler(void);
 #define GYRO_I2C_SDA_GPIO_Port GPIOF
 #define GYRO_I2C_SCL_Pin GPIO_PIN_1
 #define GYRO_I2C_SCL_GPIO_Port GPIOF
-#define ADC_EMG_DC_Pin GPIO_PIN_6
-#define ADC_EMG_DC_GPIO_Port GPIOF
+#define ADC_ECG_DC_Pin GPIO_PIN_6
+#define ADC_ECG_DC_GPIO_Port GPIOF
 #define ADC_EMG_AC_Pin GPIO_PIN_7
 #define ADC_EMG_AC_GPIO_Port GPIOF
 #define SD_CS_Pin GPIO_PIN_10
