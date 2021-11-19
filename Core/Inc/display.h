@@ -22,7 +22,8 @@
  */
 #define VALUE_ROW_LENGTH 10
 
-#define NUMBER_OF_SOURCES 5
+//#define NUMBER_OF_SOURCES 5	// as big as the number of sources in source_t enum
+#define NUMBER_OF_SOURCES 3
 
 // Voices
 #define NUMBER_OF_VOICES 3
@@ -146,7 +147,7 @@ struct display_variables {
 	uint8_t currentVoice;
 	uint8_t Voices_Noteindex[NUMBER_OF_VOICES];
 	uint8_t last_Voices_Noteindex[NUMBER_OF_VOICES];
-	float Voices_Volume[NUMBER_OF_VOICES];
+//	float Voices_Volume;
 	uint8_t Voices_Kind[NUMBER_OF_VOICES];
 
 	// Noise

@@ -61,7 +61,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 		Display->Voices_Octave[i] = 0;
 		Display->Voices_Noteindex[i] = 0;
 		Display->last_Voices_Noteindex[i] = 0;
-		Display->Voices_Volume[i] = 1.0;
+		//		Display->Voices_Volume = 1.0;
 	}
 
 	// Noise
@@ -682,6 +682,27 @@ void DISPLAY_SwitchPageRight(void) {
 	DISPLAY_PrintCurrentPage();
 }
 
+// Display.Drumfilter_Cutoff_Source -> Display.currentDrumcomputer == 6 && Display.pagePosition == 2
+// Display.Voice_Note_Sources[Display.currentVoice-1] -> Display.currentVoice > 0 && Display.JoystickParameterPosition == 3 && Display.pagePosition == 5
+// Display.Voice_Octave_Sources[Display.currentVoice-1] -> Display.currentVoice > 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 5
+// Display.ADSR_Sources[0] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 1 && Display.pagePosition == 6
+// Display.ADSR_Sources[1] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 2 && Display.pagePosition == 6
+// Display.ADSR_Sources[2] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 3 && Display.pagePosition == 6
+// Display.ADSR_Sources[3] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 6
+// Display.ADSR_Sources[4] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 5 && Display.pagePosition == 6
+// Display.EQ_Q_factor_Sources[Display.currentBand-1] -> Display.currentBand > 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 7
+// Display.EQ_Cutoff_Sources[Display.currentBand-1] -> Display.currentBand > 0 && Display.JoystickParameterPosition == 5 && Display.pagePosition == 7
+// Display.EQ_Gain_Sources[Display.currentBand-1] -> Display.currentBand > 0 && Display.JoystickParameterPosition == 6 && Display.pagePosition == 7
+// Display.WahWah_Sources[0] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 3 && Display.pagePosition == 8
+// Display.WahWah_Sources[1] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 8
+// Display.WahWah_Sources[2] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 5 && Display.pagePosition == 8
+// Display.WahWah_Sources[3] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 6 && Display.pagePosition == 8
+// Display.WahWah_Sources[4] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 7 && Display.pagePosition == 8
+// Display.WahWah_Sources[5] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 8 && Display.pagePosition == 8
+// Display.Distortion_Sources -> Display.currentWahWah == 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 8
+// Display.Tremolo_Sources[0] -> Display.JoystickParameterPosition == 4 && Display.pagePosition == 9
+// Display.Tremolo_Sources[1] -> Display.JoystickParameterPosition == 5 && Display.pagePosition == 9
+
 /** @brief this function is the main processing function of the display
  *
  */
@@ -962,10 +983,10 @@ Display_Status p_Drumcomputer_overview(void) {
 		// Cutoff Source
 		Display.currentDrumcomputer = 6;
 
-		if(Display.poti_moved == true) {
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			Display.Drumfilter_Cutoff_Source = mode_number;
-		}
+		//		if(Display.poti_moved == true) {
+		//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+		//			Display.Drumfilter_Cutoff_Source = mode_number;
+		//		}
 		break;
 	case 8:
 		// Drumcomputer Reset
@@ -3159,19 +3180,19 @@ void p_Voices_Settings(void) {
 			break;
 		case 3:
 			// Note Source
-			if(Display.poti_moved == true) {
-				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-				Display.Voice_Note_Sources[Display.currentVoice-1] = mode_number;
-				//				strcpy(Display.value_str_voices_settings[Display.currentVoice-1][2], Display.source_names[mode_number]);
-			}
+			//			if(Display.poti_moved == true) {
+			//				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//				Display.Voice_Note_Sources[Display.currentVoice-1] = mode_number;
+			//				//				strcpy(Display.value_str_voices_settings[Display.currentVoice-1][2], Display.source_names[mode_number]);
+			//			}
 			break;
 		case 4:
 			// Octave Source
-			if(Display.poti_moved == true) {
-				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-				Display.Voice_Octave_Sources[Display.currentVoice-1] = mode_number;
-				//				strcpy(Display.value_str_voices_settings[Display.currentVoice-1][3], Display.source_names[mode_number]);
-			}
+			//			if(Display.poti_moved == true) {
+			//				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//				Display.Voice_Octave_Sources[Display.currentVoice-1] = mode_number;
+			//				//				strcpy(Display.value_str_voices_settings[Display.currentVoice-1][3], Display.source_names[mode_number]);
+			//			}
 			break;
 		default:
 			break;
@@ -3395,43 +3416,43 @@ void p_ADSR_Settings(void) {
 		switch(Display.JoystickParameterPosition) {
 		case 1:
 			// Attack Time Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE1, Display.value_end_x_position, CASE1+10, UNCOLORED);
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			//			Display.ADSR_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-			Display.ADSR_Sources[0] = mode_number;
-			//			strcpy(Display.value_str_adsr_settings[0], Display.source_names[mode_number]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE1, Display.value_end_x_position, CASE1+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[0] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[0], Display.source_names[mode_number]);
 			break;
 		case 2:
 			// Decay Time Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+10, UNCOLORED);
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			//			Display.ADSR_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-			Display.ADSR_Sources[1] = mode_number;
-			//			strcpy(Display.value_str_adsr_settings[1], Display.source_names[mode_number]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[1] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[1], Display.source_names[mode_number]);
 			break;
 		case 3:
 			// Sustain Time Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+10, UNCOLORED);
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			//			Display.ADSR_Sources[2] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-			Display.ADSR_Sources[2] = mode_number;
-			//			strcpy(Display.value_str_adsr_settings[2], Display.source_names[mode_number]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[2] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[2] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[2], Display.source_names[mode_number]);
 			break;
 		case 4:
 			// Sustain Level Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+10, UNCOLORED);
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			//			Display.ADSR_Sources[3] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-			Display.ADSR_Sources[3] = mode_number;
-			//			strcpy(Display.value_str_adsr_settings[3], Display.source_names[mode_number]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[3] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[3] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[3], Display.source_names[mode_number]);
 			break;
 		case 5:
 			// Release Time Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+10, UNCOLORED);
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			//			Display.ADSR_Sources[4] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-			Display.ADSR_Sources[4] = mode_number;
-			//			strcpy(Display.value_str_adsr_settings[4], Display.source_names[mode_number]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[4] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[4] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[4], Display.source_names[mode_number]);
 			break;
 		default:
 			break;
@@ -3746,18 +3767,18 @@ void p_Equalizer_Settings(void) {
 				break;
 			case 4:
 				// Q-Factor Source
-				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-				Display.EQ_Q_factor_Sources[Display.currentBand-1] = mode_number;
+				//				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+				//				Display.EQ_Q_factor_Sources[Display.currentBand-1] = mode_number;
 				break;
 			case 5:
 				// Cutoff Source
-				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-				Display.EQ_Cutoff_Sources[Display.currentBand-1] = mode_number;
+				//				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+				//				Display.EQ_Cutoff_Sources[Display.currentBand-1] = mode_number;
 				break;
 			case 6:
 				// Gain Source
-				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-				Display.EQ_Gain_Sources[Display.currentBand-1] = mode_number;
+				//				mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+				//				Display.EQ_Gain_Sources[Display.currentBand-1] = mode_number;
 				break;
 			default:
 				break;
@@ -3914,22 +3935,22 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 			//			sprintf(Display.value_str_wahwah[3], "%.3f", Display.WahWah_Q);
 			break;
 		case 3:	// WahWah Mid Frequency Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-			if(Display.poti_moved == true) {
-				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
-				//				Display.WahWah_Sources[0] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
-				Display.WahWah_Sources[0] = mode_number;
-			}
-			//			strcpy(Display.value_str_wahwah[4], Display.source_names[mode_number]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+			//			if(Display.poti_moved == true) {
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[0] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[0] = mode_number;
+			//			}
+			//			//			strcpy(Display.value_str_wahwah[4], Display.source_names[mode_number]);
 			break;
 		case 4:	// Q-factor Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
-			if(Display.poti_moved == true) {
-				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
-				//				Display.WahWah_Sources[1] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
-				Display.WahWah_Sources[1] = mode_number;
-			}
-			//			strcpy(Display.value_str_wahwah[5], Display.source_names[mode_number]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+			//			if(Display.poti_moved == true) {
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[1] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[1] = mode_number;
+			//			}
+			//			//			strcpy(Display.value_str_wahwah[5], Display.source_names[mode_number]);
 			break;
 		default:
 			break;
@@ -4019,41 +4040,41 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 			//			}
 			break;
 		case 5:	// Auto-WahWah Mid Frequency Source
-			if(Display.poti_moved == true) {
-				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
-				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
-				//				Display.WahWah_Sources[0] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
-				Display.WahWah_Sources[0] = mode_number;
-				//				strcpy(Display.value_str_wahwah[10], Display.source_names[mode_number]);
-				//				strcpy(Display.value_str_wahwah[10], Display.source_names[Display.WahWah_Sources[0]]);
-			}
+			//			if(Display.poti_moved == true) {
+			//				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[0] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[2] = mode_number;
+			//				//				strcpy(Display.value_str_wahwah[10], Display.source_names[mode_number]);
+			//				//				strcpy(Display.value_str_wahwah[10], Display.source_names[Display.WahWah_Sources[0]]);
+			//			}
 			break;
 		case 6:	// Auto-WahWah Q Source
-			if(Display.poti_moved == true) {
-				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
-				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
-				//				Display.WahWah_Sources[1] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
-				Display.WahWah_Sources[1] = mode_number;
-				//				strcpy(Display.value_str_wahwah[11], Display.source_names[Display.WahWah_Sources[1]]);
-			}
+			//			if(Display.poti_moved == true) {
+			//				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[1] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[3] = mode_number;
+			//				//				strcpy(Display.value_str_wahwah[11], Display.source_names[Display.WahWah_Sources[1]]);
+			//			}
 			break;
 		case 7:	// Auto-WahWah Range Source
-			if(Display.poti_moved == true) {
-				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
-				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
-				//				Display.WahWah_Sources[2] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
-				Display.WahWah_Sources[2] = mode_number;
-				//				strcpy(Display.value_str_wahwah[12], Display.source_names[Display.WahWah_Sources[2]]);
-			}
+			//			if(Display.poti_moved == true) {
+			//				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[2] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[4] = mode_number;
+			//				//				strcpy(Display.value_str_wahwah[12], Display.source_names[Display.WahWah_Sources[2]]);
+			//			}
 			break;
 		case 8:	// Auto-WahWah LFO Frequency Source
-			if(Display.poti_moved == true) {
-				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
-				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
-				//				Display.WahWah_Sources[3] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
-				Display.WahWah_Sources[3] = mode_number;
-				//				strcpy(Display.value_str_wahwah[13], Display.source_names[Display.WahWah_Sources[3]]);
-			}
+			//			if(Display.poti_moved == true) {
+			//				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[3] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[5] = mode_number;
+			//				//				strcpy(Display.value_str_wahwah[13], Display.source_names[Display.WahWah_Sources[3]]);
+			//			}
 			break;
 		default:
 			break;
@@ -4072,10 +4093,10 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 		sprintf(Display.value_str_wahwah[7], "%.2f", Display.WahWah_Q);
 		sprintf(Display.value_str_wahwah[8], "%.2f", Display.WahWah_Range);
 		sprintf(Display.value_str_wahwah[9], "%.3f", Display.WahWah_LFOfreq);
-		strcpy(Display.value_str_wahwah[10], Display.source_names[Display.WahWah_Sources[0]]);
-		strcpy(Display.value_str_wahwah[11], Display.source_names[Display.WahWah_Sources[1]]);
-		strcpy(Display.value_str_wahwah[12], Display.source_names[Display.WahWah_Sources[2]]);
-		strcpy(Display.value_str_wahwah[13], Display.source_names[Display.WahWah_Sources[3]]);
+		strcpy(Display.value_str_wahwah[10], Display.source_names[Display.WahWah_Sources[2]]);
+		strcpy(Display.value_str_wahwah[11], Display.source_names[Display.WahWah_Sources[3]]);
+		strcpy(Display.value_str_wahwah[12], Display.source_names[Display.WahWah_Sources[4]]);
+		strcpy(Display.value_str_wahwah[13], Display.source_names[Display.WahWah_Sources[5]]);
 		// print value row
 		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE1, Display.value_str_wahwah[6], &Font12, COLORED);
 		Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE2, Display.value_str_wahwah[7], &Font12, COLORED);
@@ -4160,7 +4181,7 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 				// values are mapped from e.g. 0.88 to 0.90 to have float number with one decimal point
 				Display.Distortion_Gain = Display.Distortion_Gain*10;
 				Display.Distortion_Gain = ceil(Display.Distortion_Gain);
-//				Display.Distortion_Gain = Display.Distortion_Gain/10;
+				//				Display.Distortion_Gain = Display.Distortion_Gain/10;
 			}
 			// Hard Clipping
 			else if(Display.Distortion_Type == 1) {
@@ -4172,13 +4193,13 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 		}
 		break;
 	case 4:	// Distortion Gain Source
-		if(Display.poti_moved == true) {
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			//			Display.Distortion_Sources = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-			Display.Distortion_Sources = mode_number;
-			//			strcpy(Display.value_str_distortion[2], Display.source_names[Display.Distortion_Sources]);
-		}
+		//		if(Display.poti_moved == true) {
+		//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+		//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+		//			//			Display.Distortion_Sources = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+		//			Display.Distortion_Sources = mode_number;
+		//			//			strcpy(Display.value_str_distortion[2], Display.source_names[Display.Distortion_Sources]);
+		//		}
 		break;
 	case 5:	// Distortion Reset
 		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
@@ -4270,19 +4291,19 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 			break;
 		case 4:
 			// Tremolo Rate Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			//			Display.Tremolo_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
-			Display.Tremolo_Sources[0] = mode_number;
-			//			strcpy(Display.value_str_tremolo[3], Display.source_names[Display.Tremolo_Sources[0]]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.Tremolo_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.Tremolo_Sources[0] = mode_number;
+			//			//			strcpy(Display.value_str_tremolo[3], Display.source_names[Display.Tremolo_Sources[0]]);
 			break;
 		case 5:
 			// Tremolo Depth Source
-			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
-			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			//			Display.Tremolo_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
-			Display.Tremolo_Sources[1] = mode_number;
-			//			strcpy(Display.value_str_tremolo[4], Display.source_names[Display.Tremolo_Sources[1]]);
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.Tremolo_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			Display.Tremolo_Sources[1] = mode_number;
+			//			//			strcpy(Display.value_str_tremolo[4], Display.source_names[Display.Tremolo_Sources[1]]);
 			break;
 		case 6:	// Tremolo Reset
 			//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
@@ -4467,36 +4488,243 @@ void p_Presets(void) {
 	char headerstring[] = "PRESETS";
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 	//row cases
-	char str_1[] = "Drums Preset";
-	char str_2[] = "Seq. Preset";
-	char str_3[] = "Gyro Preset";
-	char str_4[] = "EMG Preset";
+	char str_1[] = "Preset 1";
+	char str_2[] = "Preset 2";
+	char str_3[] = "Preset 3";
+	char str_4[] = "Preset 4";
+	char str_5[] = "Preset 5";
+	char str_6[] = "Preset 6";
+	char str_7[] = "Preset 7";
+	char str_8[] = "Preset 8";
+	char str_9[] = "Preset 9";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE9, str_9, &Font12, COLORED);
 
 	// as big as the number of parameters
 	Display.max_parameter = 4;
 
+	switch(Display.JoystickParameterPosition) {
+	case 1:
+		// Reset everything
+		//..
+		// Volumes
+		volume[0] = 0.21;
+		volume[1] = 1;
+		volume[2] = 0.55;
+		volume[3] = 1;
+		// Drumcomputer
+		Display.Drumcomputer_ONOFF = true;
+		BPM = 120;
+		Display_LoadDrumKits(0);	// load 909
+		// Set Drum Pattern
+		Display.DrumMatrix[0][0] = timing_DS1[0] = 1;	// Sample 1
+		Display.DrumMatrix[0][1] = timing_DS1[1] = 0;
+		Display.DrumMatrix[0][2] = timing_DS1[2] = 0;
+		Display.DrumMatrix[0][3] = timing_DS1[3] = 0;
+		Display.DrumMatrix[0][4] = timing_DS1[4] = 1;
+		Display.DrumMatrix[0][5] = timing_DS1[5] = 0;
+		Display.DrumMatrix[0][6] = timing_DS1[6] = 0;
+		Display.DrumMatrix[0][7] = timing_DS1[7] = 0;
+		Display.DrumMatrix[1][0] = timing_DS1[0] = 0;	// Sample 2
+		Display.DrumMatrix[1][1] = timing_DS1[1] = 0;
+		Display.DrumMatrix[1][2] = timing_DS1[2] = 1;
+		Display.DrumMatrix[1][3] = timing_DS1[3] = 0;
+		Display.DrumMatrix[1][4] = timing_DS1[4] = 0;
+		Display.DrumMatrix[1][5] = timing_DS1[5] = 1;
+		Display.DrumMatrix[1][6] = timing_DS1[6] = 0;
+		Display.DrumMatrix[1][7] = timing_DS1[7] = 0;
+		Display.DrumMatrix[2][0] = timing_DS1[0] = 0;	// Sample 3
+		Display.DrumMatrix[2][1] = timing_DS1[1] = 0;
+		Display.DrumMatrix[2][2] = timing_DS1[2] = 0;
+		Display.DrumMatrix[2][3] = timing_DS1[3] = 0;
+		Display.DrumMatrix[2][4] = timing_DS1[4] = 1;
+		Display.DrumMatrix[2][5] = timing_DS1[5] = 0;
+		Display.DrumMatrix[2][6] = timing_DS1[6] = 0;
+		Display.DrumMatrix[2][7] = timing_DS1[7] = 0;
+		Display.DrumMatrix[3][0] = timing_DS1[0] = 1;	// Sample 4
+		Display.DrumMatrix[3][1] = timing_DS1[1] = 1;
+		Display.DrumMatrix[3][2] = timing_DS1[2] = 1;
+		Display.DrumMatrix[3][3] = timing_DS1[3] = 0;
+		Display.DrumMatrix[3][4] = timing_DS1[4] = 0;
+		Display.DrumMatrix[3][5] = timing_DS1[5] = 0;
+		Display.DrumMatrix[3][6] = timing_DS1[6] = 0;
+		Display.DrumMatrix[3][7] = timing_DS1[7] = 0;
+		// Sequencer
+		Display.Sequencer_ONOFF = true;
+		freq_index_SN1 = Get_Note_Index('C', 2);	// load notes
+		for(int i=0; i<FourFour; i++) {
+			current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+		}
+		freq_index_SN2 = Get_Note_Index('E', 1);
+		for(int i=0; i<FourFour; i++) {
+			current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+		}
+		freq_index_SN3 = Get_Note_Index('G', 2);
+		for(int i=0; i<FourFour; i++) {
+			current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+		}
+		// Set Sequencer Pattern
+		timing_SN1[0] = 1;
+		timing_SN1[1] = 0;
+		timing_SN1[2] = 1;
+		timing_SN1[3] = 0;
+		timing_SN1[4] = 0;
+		timing_SN1[5] = 0;
+		timing_SN1[6] = 1;
+		timing_SN1[7] = 0;
+		timing_SN2[0] = 1;
+		timing_SN2[1] = 0;
+		timing_SN2[2] = 0;
+		timing_SN2[3] = 1;
+		timing_SN2[4] = 0;
+		timing_SN2[5] = 1;
+		timing_SN2[6] = 0;
+		timing_SN2[7] = 0;
+		timing_SN3[0] = 1;
+		timing_SN3[1] = 0;
+		timing_SN3[2] = 0;
+		timing_SN3[3] = 0;
+		timing_SN3[4] = 1;
+		timing_SN3[5] = 0;
+		timing_SN3[6] = 0;
+		timing_SN3[7] = 0;
+		// Voices
+		Display.Voices_ONOFF[0] = true;
+		Display.Voices_ONOFF[1] = true;
+		Display.Voices_ONOFF[2] = true;
+		Display.Voices_Note[0] = 'C';
+		Display.Voices_Octave[0] = 0;
+		Display.Voices_Note[0] = 'E';
+		Display.Voices_Octave[0] = 1;
+		Display.Voices_Note[0] = 'G';
+		Display.Voices_Octave[0] = 2;
+		// ADSR
+		Display.ADSR_Attacktime = 0.1;
+		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_attack_time = Display.ADSR_Attacktime * LUT_SR;
+		Display.ADSR_Decaytime = 0.1;
+		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_decay_time = Display.ADSR_Decaytime * LUT_SR;
+		Display.ADSR_Sustaintime = 0.3;
+		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_sustain_time = Display.ADSR_Sustaintime * LUT_SR;
+		Display.ADSR_Sustainlevel = 0.5;
+		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_sustain_amplitude = Display.ADSR_Sustainlevel * LUT_SR;
+		Display.ADSR_Releasetime = 0.05;
+		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_release_time = Display.ADSR_Releasetime * LUT_SR;
+		// Equalizer
+		// WahWah
+		Display.WahWah_ONOFF = true;
+		Display.WahWah_Mode = 1;	// Auto-WahWah
+		Display.WahWah_MidFreq = WahWah->mid_freq = 256.41;
+		Display.WahWah_Q = WahWah->bandpass->Q = 1.02;
+		Display.WahWah_Range = WahWah->range = 346.99;
+		Display.WahWah_LFOfreq = WahWah->lfo->lfo_frequency = 8;
+		// Distortion
+		Display.Distortion_ONOFF = true;
+		Display.Distortion_Type = 1;	// Hard Clipping
+		Display.Distortion_Gain = 10;
+		break;
+	case 2:
+		break;
+	}
 
-	NewSignal(&signals1,SIN, 'C',1,8);
-	NewSignal(&signals1,SIN, 'E',1,9);
-	NewSignal(&signals1,SIN, 'G',1,10);
-	NewSignal(&signals1,SIN, 'C',2,11);
-	NewSignal(&signals1,SIN, 'E',2,12);
-	NewSignal(&signals1,SIN, 'G',2,13);
-	NewSignal(&signals1,SIN, 'C',3,14);
-	NewSignal(&signals1,SIN, 'E',3,15);
-	NewSignal(&signals1,SIN, 'G',3,16);
-	NewSignal(&signals1,SIN, 'C',4,17);
-	NewSignal(&signals1,SIN, 'E',4,18);
-	NewSignal(&signals1,SIN, 'G',4,19);
-	NewSignal(&signals1,SIN, 'C',5,20);
-	NewSignal(&signals1,SIN, 'E',5,21);
-	NewSignal(&signals1,SIN, 'G',5,22);
 
-	Display.WahWah_ONOFF = true;
+
+
+
+
+
+
+	//	// Set Drum Pattern Dummy
+	//			Display.DrumMatrix[0][0] = timing_DS1[0] = 0;	// Sample 1
+	//			Display.DrumMatrix[0][1] = timing_DS1[1] = 0;
+	//			Display.DrumMatrix[0][2] = timing_DS1[2] = 0;
+	//			Display.DrumMatrix[0][3] = timing_DS1[3] = 0;
+	//			Display.DrumMatrix[0][4] = timing_DS1[4] = 0;
+	//			Display.DrumMatrix[0][5] = timing_DS1[5] = 0;
+	//			Display.DrumMatrix[0][6] = timing_DS1[6] = 0;
+	//			Display.DrumMatrix[0][7] = timing_DS1[7] = 0;
+	//			Display.DrumMatrix[1][0] = timing_DS1[0] = 0;	// Sample 2
+	//			Display.DrumMatrix[1][1] = timing_DS1[1] = 0;
+	//			Display.DrumMatrix[1][2] = timing_DS1[2] = 0;
+	//			Display.DrumMatrix[1][3] = timing_DS1[3] = 0;
+	//			Display.DrumMatrix[1][4] = timing_DS1[4] = 0;
+	//			Display.DrumMatrix[1][5] = timing_DS1[5] = 0;
+	//			Display.DrumMatrix[1][6] = timing_DS1[6] = 0;
+	//			Display.DrumMatrix[1][7] = timing_DS1[7] = 0;
+	//			Display.DrumMatrix[2][0] = timing_DS1[0] = 0;	// Sample 3
+	//			Display.DrumMatrix[2][1] = timing_DS1[1] = 0;
+	//			Display.DrumMatrix[2][2] = timing_DS1[2] = 0;
+	//			Display.DrumMatrix[2][3] = timing_DS1[3] = 0;
+	//			Display.DrumMatrix[2][4] = timing_DS1[4] = 0;
+	//			Display.DrumMatrix[2][5] = timing_DS1[5] = 0;
+	//			Display.DrumMatrix[2][6] = timing_DS1[6] = 0;
+	//			Display.DrumMatrix[2][7] = timing_DS1[7] = 0;
+	//			Display.DrumMatrix[3][0] = timing_DS1[0] = 0;	// Sample 4
+	//			Display.DrumMatrix[3][1] = timing_DS1[1] = 0;
+	//			Display.DrumMatrix[3][2] = timing_DS1[2] = 0;
+	//			Display.DrumMatrix[3][3] = timing_DS1[3] = 0;
+	//			Display.DrumMatrix[3][4] = timing_DS1[4] = 0;
+	//			Display.DrumMatrix[3][5] = timing_DS1[5] = 0;
+	//			Display.DrumMatrix[3][6] = timing_DS1[6] = 0;
+	//			Display.DrumMatrix[3][7] = timing_DS1[7] = 0;
+
+	//	// Set Sequencer Pattern Dummy
+	//			timing_SN1[0] = 0;
+	//			timing_SN1[1] = 0;
+	//			timing_SN1[2] = 0;
+	//			timing_SN1[3] = 0;
+	//			timing_SN1[4] = 0;
+	//			timing_SN1[5] = 0;
+	//			timing_SN1[6] = 0;
+	//			timing_SN1[7] = 0;
+	//			timing_SN2[0] = 0;
+	//			timing_SN2[1] = 0;
+	//			timing_SN2[2] = 0;
+	//			timing_SN2[3] = 0;
+	//			timing_SN2[4] = 0;
+	//			timing_SN2[5] = 0;
+	//			timing_SN2[6] = 0;
+	//			timing_SN2[7] = 0;
+	//			timing_SN3[0] = 0;
+	//			timing_SN3[1] = 0;
+	//			timing_SN3[2] = 0;
+	//			timing_SN3[3] = 0;
+	//			timing_SN3[4] = 0;
+	//			timing_SN3[5] = 0;
+	//			timing_SN3[6] = 0;
+	//			timing_SN3[7] = 0;
+
+
+
+
+	//	NewSignal(&signals1,SIN, 'C',1,8);
+	//	NewSignal(&signals1,SIN, 'E',1,9);
+	//	NewSignal(&signals1,SIN, 'G',1,10);
+	//	NewSignal(&signals1,SIN, 'C',2,11);
+	//	NewSignal(&signals1,SIN, 'E',2,12);
+	//	NewSignal(&signals1,SIN, 'G',2,13);
+	//	NewSignal(&signals1,SIN, 'C',3,14);
+	//	NewSignal(&signals1,SIN, 'E',3,15);
+	//	NewSignal(&signals1,SIN, 'G',3,16);
+	//	NewSignal(&signals1,SIN, 'C',4,17);
+	//	NewSignal(&signals1,SIN, 'E',4,18);
+	//	NewSignal(&signals1,SIN, 'G',4,19);
+	//	NewSignal(&signals1,SIN, 'C',5,20);
+	//	NewSignal(&signals1,SIN, 'E',5,21);
+	//	NewSignal(&signals1,SIN, 'G',5,22);
+
+	//	Display.WahWah_ONOFF = true;
 
 	//		Display.Tremolo_ONOFF = true;
 	//		Display.Tremolo_Sources[1] = GYRO_LR;
@@ -4509,6 +4737,7 @@ void p_Presets(void) {
 	//	Display.Voices_ONOFF[0] = true;
 	//	Display.Voices_Octave[0] = 3;
 	//	Display.Voice_Note_Sources[0] = EKG;
+
 
 	//	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 	//
@@ -4701,10 +4930,16 @@ void p_Presets(void) {
 	//		break;
 	//	}
 
-	// print value row
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_presets[0], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_presets[1], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_presets[2], &Font12, COLORED);
+	//	// print value row
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_presets[0], &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_presets[1], &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_presets[2], &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_presets[3], &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_presets[4], &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_presets[5], &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_presets[6], &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_presets[7], &Font12, COLORED);
+	//	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE9, Display.value_str_presets[8], &Font12, COLORED);
 }
 
 /** @brief this function prints the Keyboardmode and edits its values
