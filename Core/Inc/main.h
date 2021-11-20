@@ -159,8 +159,8 @@ void Error_Handler(void);
 #define SUPPORT_POINTS 20
 
 /**@brief output array size */
-#define BLOCKSIZE 480 // Latenz = 20ms @ 24kHz S
-
+#define BLOCKSIZE 480 // Latenz = 20ms @ 24kHz SR
+//#define BLOCKSIZE 240
 
 //Variables
 bool process_trem;

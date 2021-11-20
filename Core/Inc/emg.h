@@ -31,7 +31,7 @@ uint32_t emg_toggleCounter;
 uint32_t emg_toggleThreshold;
 uint32_t emg_maxDetectionThreshold;
 uint32_t emg_maxToggleThreshold;
-
+bool emg_toggled;
 //ECG varaibles
 uint32_t ecg_measInt; //measurement Interval
 uint32_t ecg_detectionThreshold;

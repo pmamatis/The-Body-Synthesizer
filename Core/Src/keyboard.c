@@ -12,7 +12,7 @@ const uint16_t keyboard_note_adcval[] = {200, 400, 800, 1100, 1400, 1800, 2100, 
 void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler) {
 	KEYBOARD_ADC = ADC_Handler;
 	KEYBOARD_TIM = TIM_Handler;
-	SetTimerSettings(TIM_Handler, KEYBOARD_SR);
+//	SetTimerSettings(TIM_Handler, KEYBOARD_SR);
 	keyboard_octave = 1;
 	keyboard_pressed_counter = 0;
 	for(int i = 0; i < MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++) {
@@ -28,8 +28,8 @@ void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler
 HAL_StatusTypeDef keyboard_start_read() {
 	HAL_StatusTypeDef retval;
 	printf("start keyboard read....\r\n");
-	retval = HAL_TIM_Base_Start_IT(KEYBOARD_TIM);
-	HAL_ADC_Start_DMA(KEYBOARD_ADC, &Display.ADC1input, 1);
+//	retval = HAL_TIM_Base_Start_IT(KEYBOARD_TIM);
+//	HAL_ADC_Start_DMA(KEYBOARD_ADC, &Display.ADC1input, 1);
 	//retval = HAL_TIM_Base_Start(KEYBOARD_TIM);
 	//retval = HAL_ADC_Start_DMA(KEYBOARD_ADC, &keyboard_adc_value, 1);
 	return retval;

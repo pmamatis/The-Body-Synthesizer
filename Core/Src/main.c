@@ -74,8 +74,6 @@ TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
-TIM_HandleTypeDef htim5;
-TIM_HandleTypeDef htim6;
 TIM_HandleTypeDef htim7;
 TIM_HandleTypeDef htim8;
 
@@ -92,7 +90,6 @@ static void MX_GPIO_Init(void);
 static void MX_TIM8_Init(void);
 static void MX_DMA_Init(void);
 static void MX_DAC_Init(void);
-static void MX_TIM6_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_SPI1_Init(void);
@@ -102,7 +99,6 @@ static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_ADC1_Init(void);
-static void MX_TIM5_Init(void);
 static void MX_ADC3_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_SPI4_Init(void);
@@ -119,17 +115,18 @@ static void MX_TIM3_Init(void);
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
 
 	inputBuffer_position = HALF_BLOCK;
-	if(hadc->Instance == ADC3){
+	if(hadc->Instance == ADC3) {
 
-		//		emg_peak_detection();
+		emg_peak_detection();
 		ecg_heartrate();
 	}
 }
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 
 	inputBuffer_position = FULL_BLOCK;
-	if(hadc->Instance == ADC3){
-		//		emg_peak_detection();
+	if(hadc->Instance == ADC3) {
+
+		emg_peak_detection();
 		ecg_heartrate();
 	}
 }
@@ -217,7 +214,6 @@ int main(void)
   MX_TIM8_Init();
   MX_DMA_Init();
   MX_DAC_Init();
-  MX_TIM6_Init();
   MX_USART3_UART_Init();
   MX_ADC2_Init();
   MX_SPI1_Init();
@@ -228,7 +224,6 @@ int main(void)
   MX_FATFS_Init();
   MX_TIM1_Init();
   MX_ADC1_Init();
-  MX_TIM5_Init();
   MX_ADC3_Init();
   MX_I2C2_Init();
   MX_SPI4_Init();
@@ -283,7 +278,8 @@ int main(void)
 		printf("ADSR init failed\n");
 	}
 
-	keyboard_init(&hadc1, &htim5);
+//	keyboard_init(&hadc1, &htim5);
+	keyboard_init(&hadc1, &htim1);
 
 	//Drummachine
 	Drum_Computer_Init();
@@ -292,7 +288,7 @@ int main(void)
 	spiC_Init(&hspi4, &htim7);
 
 	//EMG init
-	emg_init(&hadc3,&htim1);
+	emg_init(&hadc3, &htim1);
 	ecg_init();
 
 	// WahWah Init
@@ -320,17 +316,21 @@ int main(void)
 	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
-	// Start Timer and ADC-DMA for the keyboard (ADC1)
-	keyboard_start_read();
+	HAL_TIM_Base_Start(&htim1);
+	SetTimerSettings(&htim1, 500);
 
-	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
-	SetTimerSettings(&htim6, 500);	// Timer 6 default: 2000 Hz
+	// Start ADC-DMA for the keyboard (ADC1)
+//	keyboard_start_read();
+	HAL_ADC_Start_DMA(KEYBOARD_ADC, &Display.ADC1input, 1);
+
+	// Start ADC-DMA for the joystick and the potentiometer (ADC2)
+//	SetTimerSettings(&htim6, 500);	// Timer 6 default: 2000 Hz
 	printf("start Button ADC\r\n");
-	HAL_TIM_Base_Start(&htim6);
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 4);
 
-	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
-	//	emg_start_read();
+	// Start ADC-DMA for the EMG-sensor (ADC3)
+	HAL_ADC_Start_DMA(EMG_ADC, emg_buffer, EMG_READ_LENGTH);
+//	emg_start_read();
 
 	//Start Interface
 	II_startInterface(&htim3);
@@ -542,7 +542,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
-  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T5_TRGO;
+  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_TRGO;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.NbrOfConversion = 1;
   hadc1.Init.DMAContinuousRequests = ENABLE;
@@ -592,7 +592,7 @@ static void MX_ADC2_Init(void)
   hadc2.Init.ContinuousConvMode = DISABLE;
   hadc2.Init.DiscontinuousConvMode = DISABLE;
   hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
-  hadc2.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T6_TRGO;
+  hadc2.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_TRGO;
   hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc2.Init.NbrOfConversion = 4;
   hadc2.Init.DMAContinuousRequests = ENABLE;
@@ -811,7 +811,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -873,46 +873,6 @@ static void MX_SPI3_Init(void)
   * @param None
   * @retval None
   */
-static void MX_TIM3_Init(void)
-{
-
-  /* USER CODE BEGIN TIM3_Init 0 */
-
-  /* USER CODE END TIM3_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM3_Init 1 */
-
-  /* USER CODE END TIM3_Init 1 */
-  htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 0;
-  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 65535;
-  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
-  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM3_Init 2 */
-
-  /* USER CODE END TIM3_Init 2 */
-
-}
-
 static void MX_SPI4_Init(void)
 {
 
@@ -1045,6 +1005,46 @@ static void MX_TIM2_Init(void)
   * @param None
   * @retval None
   */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 0;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 65535;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
+
+}
+
 /**
   * @brief TIM4 Initialization Function
   * @param None
@@ -1087,89 +1087,6 @@ static void MX_TIM4_Init(void)
   /* USER CODE BEGIN TIM4_Init 2 */
 
   /* USER CODE END TIM4_Init 2 */
-
-}
-
-/**
-  * @brief TIM5 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM5_Init(void)
-{
-
-  /* USER CODE BEGIN TIM5_Init 0 */
-
-  /* USER CODE END TIM5_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM5_Init 1 */
-
-  /* USER CODE END TIM5_Init 1 */
-  htim5.Instance = TIM5;
-  htim5.Init.Prescaler = 0;
-  htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim5.Init.Period = 53999;
-  htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
-  if (HAL_TIM_Base_Init(&htim5) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim5, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim5, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM5_Init 2 */
-
-  /* USER CODE END TIM5_Init 2 */
-
-}
-
-/**
-  * @brief TIM6 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM6_Init(void)
-{
-
-  /* USER CODE BEGIN TIM6_Init 0 */
-
-  /* USER CODE END TIM6_Init 0 */
-
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM6_Init 1 */
-
-  /* USER CODE END TIM6_Init 1 */
-  htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 0;
-  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 53999;
-  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
-  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM6_Init 2 */
-
-  /* USER CODE END TIM6_Init 2 */
 
 }
 
@@ -1377,13 +1294,13 @@ static void MX_DMA_Init(void)
   HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
   /* DMA2_Stream0_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 1, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
   /* DMA2_Stream1_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream1_IRQn, 1, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream1_IRQn, 3, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream1_IRQn);
   /* DMA2_Stream2_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 2, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
   /* DMA2_Stream3_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 1, 0);
@@ -1478,7 +1395,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(DISP_CS_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
@@ -1673,7 +1590,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]--;
 		}
 
-		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
 		Display.BACK_Debounce_State = false;
 	}
@@ -1875,7 +1791,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]++;
 		}
 
-		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);
 		Display.ENTER_Debounce_State = false;
 	}

@@ -13,8 +13,7 @@
 //defines 
 #define LFO_FMAX 16
 #define LFO_FMIN 0.125
- 
- 
+
 //variables
 const float  LUT[6439];
 const uint32_t LUT_ENDINDEX[73];

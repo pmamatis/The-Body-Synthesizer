@@ -83,7 +83,6 @@ extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
-extern TIM_HandleTypeDef htim5;
 extern TIM_HandleTypeDef htim7;
 extern TIM_HandleTypeDef htim8;
 /* USER CODE BEGIN EV */
@@ -375,29 +374,6 @@ void TIM8_TRG_COM_TIM14_IRQHandler(void)
   /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
 
   /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
-}
-
-/**
-  * @brief This function handles TIM5 global interrupt.
-  */
-void TIM5_IRQHandler(void)
-{
-  /* USER CODE BEGIN TIM5_IRQn 0 */
-	//	tim5_counter++;
-	//	if(tim5_counter == 500){
-	//			printf("%i\r\n",HAL_GetTick());
-	//			time = HAL_GetTick();
-	//			tim5_counter = 0;
-	//	}
-
-  /* USER CODE END TIM5_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim5);
-  /* USER CODE BEGIN TIM5_IRQn 1 */
-
-	//HAL_ADC_Start_DMA(KEYBOARD_ADC, &keyboard_adc_value, 1);
-	HAL_ADC_Start_DMA(KEYBOARD_ADC, &Display.ADC1input, 1);
-
-  /* USER CODE END TIM5_IRQn 1 */
 }
 
 /**
