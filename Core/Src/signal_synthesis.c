@@ -129,7 +129,7 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
  *  @param octave: defines in which octave the key is settled.
  *  @attention the combination of key and octave defines the frequency
  */
-void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
+void LFO_SingleValueProcess(struct effects_lfo_t* lfo, uint8_t lfo_effect) {
 
 	lfo->lfo_data = 0;
 
@@ -146,11 +146,14 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		case 1:
 			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
-				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
-				// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
-				if(Display.Tremolo_ONOFF == false) {
-					effects_delete(TREM);
-					Display.last_Tremolo_ONOFF = false;
+
+				if(lfo_effect == TREMOLO_LFO) {
+					Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+					// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
+					if(Display.Tremolo_ONOFF == false) {
+						effects_delete(TREM);
+						Display.last_Tremolo_ONOFF = false;
+					}
 				}
 			}
 			else
@@ -182,22 +185,25 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 
-				// to make sure that the tremolo restarts only when the LFO period is done
-				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+				if(lfo_effect == TREMOLO_LFO) {
+					// to make sure that the tremolo restarts only when the LFO period is done
+					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
 
-					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
-					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
-					lfo->lfo_done_flag = true;
-					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+						lfo->lfo_done_flag = true;
+						Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+					}
 				}
+				else if(lfo_effect == WAHWAH_LFO) {
+					// to make sure that the auto-wahwah restarts only when the LFO period is done
+					if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
 
-				// to make sure that the auto-wahwah restarts only when the LFO period is done
-				if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
-
-					Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
-					Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
-					lfo->lfo_done_flag = true;
-					WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+						Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
+						Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
+						lfo->lfo_done_flag = true;
+						WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+					}
 				}
 			}
 		}
@@ -215,10 +221,14 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		case 1:
 			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
-				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
-				if(Display.Tremolo_ONOFF == false) {
-					effects_delete(TREM);
-					Display.last_Tremolo_ONOFF = false;
+
+				if(lfo_effect == TREMOLO_LFO) {
+					Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+					// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
+					if(Display.Tremolo_ONOFF == false) {
+						effects_delete(TREM);
+						Display.last_Tremolo_ONOFF = false;
+					}
 				}
 			}
 			else
@@ -250,22 +260,25 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 
-				// to make sure that the tremolo restarts only when the LFO period is done
-				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+				if(lfo_effect == TREMOLO_LFO) {
+					// to make sure that the tremolo restarts only when the LFO period is done
+					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
 
-					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
-					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
-					lfo->lfo_done_flag = true;
-					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+						lfo->lfo_done_flag = true;
+						Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+					}
 				}
+				else if(lfo_effect == WAHWAH_LFO) {
+					// to make sure that the auto-wahwah restarts only when the LFO period is done
+					if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
 
-				// to make sure that the auto-wahwah restarts only when the LFO period is done
-				if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
-
-					Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
-					Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
-					lfo->lfo_done_flag = true;
-					WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+						Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
+						Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
+						lfo->lfo_done_flag = true;
+						WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+					}
 				}
 			}
 		}
@@ -283,10 +296,14 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		case 1:
 			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
-				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
-				if(Display.Tremolo_ONOFF == false) {
-					effects_delete(TREM);
-					Display.last_Tremolo_ONOFF = false;
+
+				if(lfo_effect == TREMOLO_LFO) {
+					Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+					// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
+					if(Display.Tremolo_ONOFF == false) {
+						effects_delete(TREM);
+						Display.last_Tremolo_ONOFF = false;
+					}
 				}
 			}
 			else
@@ -318,22 +335,25 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 
-				// to make sure that the tremolo restarts only when the LFO period is done
-				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+				if(lfo_effect == TREMOLO_LFO) {
+					// to make sure that the tremolo restarts only when the LFO period is done
+					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
 
-					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
-					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
-					lfo->lfo_done_flag = true;
-					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+						lfo->lfo_done_flag = true;
+						Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+					}
 				}
+				else if(lfo_effect == WAHWAH_LFO) {
+					// to make sure that the auto-wahwah restarts only when the LFO period is done
+					if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
 
-				// to make sure that the auto-wahwah restarts only when the LFO period is done
-				if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
-
-					Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
-					Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
-					lfo->lfo_done_flag = true;
-					WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+						Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
+						Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
+						lfo->lfo_done_flag = true;
+						WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+					}
 				}
 			}
 		}
@@ -351,10 +371,14 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		case 1:
 			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
-				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
-				if(Display.Tremolo_ONOFF == false) {
-					effects_delete(TREM);
-					Display.last_Tremolo_ONOFF = false;
+
+				if(lfo_effect == TREMOLO_LFO) {
+					Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+					// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
+					if(Display.Tremolo_ONOFF == false) {
+						effects_delete(TREM);
+						Display.last_Tremolo_ONOFF = false;
+					}
 				}
 			}
 			else
@@ -386,22 +410,25 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 
-				// to make sure that the tremolo restarts only when the LFO period is done
-				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+				if(lfo_effect == TREMOLO_LFO) {
+					// to make sure that the tremolo restarts only when the LFO period is done
+					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
 
-					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
-					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
-					lfo->lfo_done_flag = true;
-					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+						lfo->lfo_done_flag = true;
+						Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+					}
 				}
+				else if(lfo_effect == WAHWAH_LFO) {
+					// to make sure that the auto-wahwah restarts only when the LFO period is done
+					if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
 
-				// to make sure that the auto-wahwah restarts only when the LFO period is done
-				if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
-
-					Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
-					Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
-					lfo->lfo_done_flag = true;
-					WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+						Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
+						Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
+						lfo->lfo_done_flag = true;
+						WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+					}
 				}
 			}
 		}
@@ -419,10 +446,14 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		case 1:
 			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
-				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
-				if(Display.Tremolo_ONOFF == false) {
-					effects_delete(TREM);
-					Display.last_Tremolo_ONOFF = false;
+
+				if(lfo_effect == TREMOLO_LFO) {
+					Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+					// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
+					if(Display.Tremolo_ONOFF == false) {
+						effects_delete(TREM);
+						Display.last_Tremolo_ONOFF = false;
+					}
 				}
 			}
 			else
@@ -454,22 +485,25 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 
-				// to make sure that the tremolo restarts only when the LFO period is done
-				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+				if(lfo_effect == TREMOLO_LFO) {
+					// to make sure that the tremolo restarts only when the LFO period is done
+					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
 
-					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
-					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
-					lfo->lfo_done_flag = true;
-					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+						lfo->lfo_done_flag = true;
+						Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+					}
 				}
+				else if(lfo_effect == WAHWAH_LFO) {
+					// to make sure that the auto-wahwah restarts only when the LFO period is done
+					if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
 
-				// to make sure that the auto-wahwah restarts only when the LFO period is done
-				if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
-
-					Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
-					Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
-					lfo->lfo_done_flag = true;
-					WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+						Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
+						Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
+						lfo->lfo_done_flag = true;
+						WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+					}
 				}
 			}
 		}
@@ -487,10 +521,14 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		case 1:
 			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
-				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
-				if(Display.Tremolo_ONOFF == false) {
-					effects_delete(TREM);
-					Display.last_Tremolo_ONOFF = false;
+
+				if(lfo_effect == TREMOLO_LFO) {
+					Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+					// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
+					if(Display.Tremolo_ONOFF == false) {
+						effects_delete(TREM);
+						Display.last_Tremolo_ONOFF = false;
+					}
 				}
 			}
 			else
@@ -522,22 +560,25 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 
-				// to make sure that the tremolo restarts only when the LFO period is done
-				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+				if(lfo_effect == TREMOLO_LFO) {
+					// to make sure that the tremolo restarts only when the LFO period is done
+					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
 
-					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
-					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
-					lfo->lfo_done_flag = true;
-					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+						lfo->lfo_done_flag = true;
+						Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+					}
 				}
+				else if(lfo_effect == WAHWAH_LFO) {
+					// to make sure that the auto-wahwah restarts only when the LFO period is done
+					if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
 
-				// to make sure that the auto-wahwah restarts only when the LFO period is done
-				if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
-
-					Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
-					Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
-					lfo->lfo_done_flag = true;
-					WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+						Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
+						Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
+						lfo->lfo_done_flag = true;
+						WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+					}
 				}
 			}
 		}
@@ -555,10 +596,14 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		case 1:
 			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
-				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
-				if(Display.Tremolo_ONOFF == false) {
-					effects_delete(TREM);
-					Display.last_Tremolo_ONOFF = false;
+
+				if(lfo_effect == TREMOLO_LFO) {
+					Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+					// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
+					if(Display.Tremolo_ONOFF == false) {
+						effects_delete(TREM);
+						Display.last_Tremolo_ONOFF = false;
+					}
 				}
 			}
 			else
@@ -590,22 +635,25 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 
-				// to make sure that the tremolo restarts only when the LFO period is done
-				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+				if(lfo_effect == TREMOLO_LFO) {
+					// to make sure that the tremolo restarts only when the LFO period is done
+					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
 
-					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
-					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
-					lfo->lfo_done_flag = true;
-					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+						lfo->lfo_done_flag = true;
+						Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+					}
 				}
+				else if(lfo_effect == WAHWAH_LFO) {
+					// to make sure that the auto-wahwah restarts only when the LFO period is done
+					if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
 
-				// to make sure that the auto-wahwah restarts only when the LFO period is done
-				if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
-
-					Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
-					Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
-					lfo->lfo_done_flag = true;
-					WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+						Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
+						Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
+						lfo->lfo_done_flag = true;
+						WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+					}
 				}
 			}
 		}
@@ -623,10 +671,14 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 		case 1:
 			if(lfo->lfo_index == 0) {
 				lfo->lfo_data = 1;
-				Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
-				if(Display.Tremolo_ONOFF == false) {
-					effects_delete(TREM);
-					Display.last_Tremolo_ONOFF = false;
+
+				if(lfo_effect == TREMOLO_LFO) {
+					Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;	// tremolo depth has to be updated when the maximum amplitude is reached
+					// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude
+					if(Display.Tremolo_ONOFF == false) {
+						effects_delete(TREM);
+						Display.last_Tremolo_ONOFF = false;
+					}
 				}
 			}
 			else
@@ -658,22 +710,25 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo) {
 			if (lfo->lfo_quarter == 4) {
 				lfo->lfo_quarter = 0;
 
-				// to make sure that the tremolo restarts only when the LFO period is done
-				if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
+				if(lfo_effect == TREMOLO_LFO) {
+					// to make sure that the tremolo restarts only when the LFO period is done
+					if(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {
 
-					Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
-					Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
-					lfo->lfo_done_flag = true;
-					Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+						Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];
+						Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;
+						lfo->lfo_done_flag = true;
+						Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
+					}
 				}
+				else if(lfo_effect == WAHWAH_LFO) {
+					// to make sure that the auto-wahwah restarts only when the LFO period is done
+					if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
 
-				// to make sure that the auto-wahwah restarts only when the LFO period is done
-				if(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {
-
-					Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
-					Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
-					lfo->lfo_done_flag = true;
-					WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+						Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];
+						Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;
+						lfo->lfo_done_flag = true;
+						WahWah.lfo->lfo_frequency = Display.WahWah_LFOfreq;
+					}
 				}
 			}
 		}

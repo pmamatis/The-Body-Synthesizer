@@ -46,9 +46,10 @@ WahWah_Status WahWah_Reset(struct WahWah_t *WahWah) {
 	WahWah->lfo->lfo_index     = 0;
 	WahWah->lfo->lfo_quarter   = 0;
 	Display.WahWah_LFOfreq = WahWah->lfo->lfo_frequency = 1;	// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]
+	Display.WahWah_LFOfreq_Index = Display.last_WahWah_LFOfreq_Index = 3;	// 1 Hz
 
 	Display.WahWah_Range = WahWah->range        = 600;
-	WahWah->max_range = 500;
+//	WahWah->max_range = 500;
 	Display.WahWah_MidFreq = WahWah->mid_freq     = 350;
 	WahWah->mid_freq_mod = 0;
 
@@ -104,7 +105,7 @@ WahWah_Status ProcessAutoWahWah(struct WahWah_t *WahWah, float *data){
 	// mid_freq and range have to be set in the display function
 
 	// FETCH: actual LFO value
-	LFO_SingleValueProcess(WahWah->lfo);
+	LFO_SingleValueProcess(WahWah->lfo, WAHWAH_LFO);
 
 	//	WahWah->mid_freq = (float)Display.ADC2inputs[2] / 4;	// DISPLAY!!!
 	if(WahWah->mid_freq < 50)

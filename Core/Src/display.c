@@ -681,10 +681,11 @@ void DISPLAY_SwitchPageLeft(void) {
 	Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 	//	Paint_DrawFilledRectangle(&paint, 0, 0, Paint_GetWidth(paint), Paint_GetHeight(paint), UNCOLORED);	// delete the frame content
 
-	if (Display.pagePosition > Display.page_min)
+	if(Display.pagePosition > Display.page_min)
 		Display.pagePosition = Display.pagePosition-1;
-	else if (Display.pagePosition == Display.page_min)
-		Display.mode = NONE;
+	else if(Display.pagePosition == Display.page_min)
+		Display.pagePosition = Display.page_max;
+	//		Display.mode = NONE;
 
 	DISPLAY_PrintCurrentPage();
 }
@@ -717,8 +718,10 @@ void DISPLAY_SwitchPageRight(void) {
 	Paint_DrawFilledRectangle(&paint, 1, 1, 200, 200, UNCOLORED);	// delete the frame content
 	//	Paint_DrawFilledRectangle(&paint, 0, 0, Paint_GetWidth(paint), Paint_GetHeight(paint), UNCOLORED);	// delete the frame content
 
-	if (Display.pagePosition < Display.page_max)
+	if(Display.pagePosition < Display.page_max)
 		Display.pagePosition = Display.pagePosition+1;
+	else if(Display.pagePosition == Display.page_max)
+		Display.pagePosition = -1;
 
 	DISPLAY_PrintCurrentPage();
 }
@@ -751,9 +754,9 @@ void DISPLAY_processing(void) {
 
 	switch(Display.mode) {
 
-	case NONE:
-		p_StartingMenu(frame_buffer);
-		break;
+	//	case NONE:
+	//		p_StartingMenu(frame_buffer);
+	//		break;
 
 	case BODYSYNTH:
 		Display.page_max = 10; // has to be changed for every added case
@@ -4749,6 +4752,7 @@ void p_Presets(void) {
 			Display.WahWah_Q = WahWah.bandpass->Q = 1.02;
 			Display.WahWah_Range = WahWah.range = 346.99;
 			Display.WahWah_LFOfreq = WahWah.lfo->lfo_frequency = 8;
+			Display.WahWah_LFOfreq_Index = Display.last_WahWah_LFOfreq_Index = 6;	// 8 Hz
 			// Distortion
 			Display.Distortion_ONOFF = true;
 			strcpy(Display.value_str_distortion[0], "ON");
@@ -4759,6 +4763,7 @@ void p_Presets(void) {
 			Display.Tremolo_ONOFF = true;
 			strcpy(Display.value_str_tremolo[0], "ON");
 			Display.Tremolo_Rate = Tremolo.lfo->lfo_frequency = 0.125;
+			Display.Tremolo_Rate_Index = Display.last_Tremolo_Rate_Index = 0;	// 0.125 Hz
 			Display.Tremolo_Depth = Tremolo.lfo->lfo_depth = 1;
 
 			Display.SetPreset = false;	// reset the state

@@ -35,7 +35,7 @@ Tremolo_Status Tremolo_Reset(void) {
 
 	Tremolo.lfo->lfo_index = 0;
 	Display.Tremolo_Rate = Tremolo.lfo->lfo_frequency = 1;
-	Display.Tremolo_Rate_Index = 3;	// 1 Hz
+	Display.Tremolo_Rate_Index = Display.last_Tremolo_Rate_Index  = 3;	// 1 Hz
 	Tremolo.lfo->lfo_quarter = 0;
 	Display.Tremolo_Depth = Tremolo.lfo->lfo_depth = 0.5;
 	Tremolo.lfo->lfo_done_flag = false;
@@ -55,7 +55,7 @@ Tremolo_Status Tremolo_Reset(void) {
  */
 Tremolo_Status ProcessTremolo(struct Tremolo_t* Tremolo, float* data) {
 
-	LFO_SingleValueProcess(Tremolo->lfo);
+	LFO_SingleValueProcess(Tremolo->lfo, TREMOLO_LFO);
 
 	float tremolo_mod = (1 + Tremolo->lfo->lfo_depth * Tremolo->lfo->lfo_data);
 	*data = (tremolo_mod * *data) / (1+Tremolo->lfo->lfo_depth);
