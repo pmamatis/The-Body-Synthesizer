@@ -190,6 +190,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample(void) {
 
 HAL_StatusTypeDef Drum_Computer_Reset(void) {
 
+	Display.Drumcomputer_ONOFF = false;
+
 	for(int i=0; i<MAX_NUMBER_OF_SAMPLES; i++) {
 		for(int j=0; j<NUMBER_OF_DRUMSTEPS; j++) {
 			Display.DrumMatrix[i][j] = false;
@@ -248,6 +250,8 @@ HAL_StatusTypeDef Drum_Computer_Reset(void) {
 }
 
 HAL_StatusTypeDef Sequencer_Reset(void) {
+
+	Display.Sequencer_ONOFF = false;
 
 	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
 		for(int j=0; j<NUMBER_OF_SEQUENCERSTEPS; j++) {

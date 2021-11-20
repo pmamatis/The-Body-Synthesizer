@@ -48,6 +48,7 @@ typedef enum {	// Waveshare 2.9 inch ePD
 	CASE7 =	80,
 	CASE8 =	90,
 	CASE9 =	100,
+	CASE10 = 110
 }y_row_value;
 
 //typedef enum {	// Waveshare 1.54 inch ePD
@@ -163,6 +164,7 @@ struct display_variables {
 	uint8_t ADSR_EffectPosition;
 	bool ADSR_EffectAdded;
 	uint8_t currentADSR;
+	bool KeyboardFX_ONOFF;
 
 	//Distortion
 	bool Distortion_ONOFF;
@@ -309,7 +311,7 @@ struct display_variables {
 	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
 	char value_str_voices_overview[6][10];
 	char value_str_voices_settings[4][9][10];
-	char value_str_adsr_overview[6][10];
+	char value_str_adsr_overview[7][10];
 	char value_str_adsr_settings[5][10];
 	char value_str_equalizer_overview[6][10];
 	char value_str_equalizer_settings[5][6][10];
@@ -317,7 +319,7 @@ struct display_variables {
 	char value_str_distortion[5][10];
 	char value_str_tremolo[6][10];
 	char value_str_volume[4][10];
-	char value_str_presets[2][10];
+	char value_str_presets[9][10];
 	char value_str_keyboardmode[9][10];
 	char value_str_drumcomputer[11][10];
 	char value_str_sequencer[9][10];
@@ -366,6 +368,8 @@ struct display_variables {
 
 	// Reset
 	bool Reset;
+
+	bool SetPreset;
 };
 
 struct display_variables Display;
@@ -428,6 +432,7 @@ void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_EMG(void);
 void p_Volume(void);
+void Full_Reset(void);
 void p_Presets(void);
 void p_KeyboardSetParameters(struct adsr* envelope);
 Display_Status p_Drumcomputer_overview(void);

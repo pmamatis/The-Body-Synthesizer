@@ -289,7 +289,7 @@ int main(void)
 	Drum_Computer_Init();
 
 	//Gyros SPI
-	//	spiC_Init(&hspi4, &htim7);
+	spiC_Init(&hspi4, &htim7);
 
 	//EMG init
 	emg_init(&hadc3,&htim1);
@@ -313,7 +313,7 @@ int main(void)
 
 	//Start Display
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
-	//	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
+	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
 	// Start DAC-DMA
 	printf("start DAC\r\n");
@@ -321,16 +321,16 @@ int main(void)
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)
-	//	keyboard_start_read();
+	keyboard_start_read();
 
 	// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)
 	SetTimerSettings(&htim6, 500);	// Timer 6 default: 2000 Hz
 	printf("start Button ADC\r\n");
-	//	HAL_TIM_Base_Start(&htim6);
-	//	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 4);
+	HAL_TIM_Base_Start(&htim6);
+	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 4);
 
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
-	emg_start_read();
+	//	emg_start_read();
 
 	//Start Interface
 	II_startInterface(&htim3);
@@ -1786,6 +1786,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		}
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// Set preset by putton pressing
+		if(Display.pagePosition == -1)
+			Display.SetPreset = true;
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
 		// Reset of different modules by putton pressing
 		if(Display.pagePosition == 2 && Display.currentDrumcomputer == 7)				// Drumcomputer Reset
 			Display.Reset = true;
@@ -1793,9 +1798,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			Display.Reset = true;
 		else if(Display.pagePosition == 4 && Display.currentVoice == 5)					// Voices Reset
 			Display.Reset = true;
-		else if(Display.pagePosition == 5 && Display.currentADSR == 6)					// ADSR Reset
+		else if(Display.pagePosition == 5 && Display.currentADSR == 7)					// ADSR Reset
 			Display.Reset = true;
-		else if(Display.pagePosition == 6 && Display.currentBand == 7)					// EQ Reset
+		else if(Display.pagePosition == 6 && Display.currentBand == 6)					// EQ Reset
 			Display.Reset = true;
 		else if(Display.pagePosition == 7 && Display.currentWahWah == 3)				// WahWah Reset
 			Display.Reset = true;

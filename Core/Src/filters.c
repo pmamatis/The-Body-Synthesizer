@@ -239,7 +239,7 @@ Filter_Status Filters_Reinit_Poti(){
 }
 
 
-Filter_Status Filters_Reset(void) {
+Filter_Status Equalizer_Reset(void) {
 
 	// BAND 1: Low-Shelf filter
 	Display.Filter_ONOFF[0] = false;

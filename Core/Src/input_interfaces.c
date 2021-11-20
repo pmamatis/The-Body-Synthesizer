@@ -132,7 +132,8 @@ uint8_t II_Display_Effects(void){
 		effects_add(DIST);
 
 		if(Display.Distortion_Type == 0)
-			SoftClipping.distortion_gain = Display.Distortion_Gain / 10;
+//			SoftClipping.distortion_gain = Display.Distortion_Gain / 10;
+			SoftClipping.distortion_gain = Display.Distortion_Gain;
 		else if(Display.Distortion_Type == 1)
 			HardClipping.distortion_gain = Display.Distortion_Gain;
 

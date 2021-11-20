@@ -75,6 +75,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	//	Display->ADSR_Releasetime = 0.05;
 	Display->ADSR_EffectPosition = 0;
 	Display->ADSR_EffectAdded = false;
+	Display->KeyboardFX_ONOFF = false;
 
 	Display->Distortion_ONOFF = false;
 	Display->last_Distortion_ONOFF = true;
@@ -233,6 +234,8 @@ Display_Status Display_Init(struct display_variables* Display) {
 	// Reset
 	Display->Reset = false;
 
+	Display->SetPreset = false;
+
 	// Display value init/reset values
 	strcpy(Display->value_str_dummy[0],"OFF");	// dummy
 	strcpy(Display->value_str_dummy[1],"C");
@@ -301,7 +304,9 @@ Display_Status Display_Init(struct display_variables* Display) {
 	sprintf(Display->value_str_adsr_overview[2], "%.2f", Display->ADSR_Sustaintime);
 	sprintf(Display->value_str_adsr_overview[3], "%.2f", Display->ADSR_Sustainlevel);
 	sprintf(Display->value_str_adsr_overview[4], "%.2f", Display->ADSR_Releasetime);
-	strcpy(Display->value_str_adsr_overview[5],"");	// reset
+	strcpy(Display->value_str_adsr_overview[5], "OFF");
+	strcpy(Display->value_str_adsr_overview[6],"");	// reset
+
 
 	strcpy(Display->value_str_adsr_settings[0],"POTI");	// adsr settings
 	strcpy(Display->value_str_adsr_settings[1],"POTI");
@@ -366,7 +371,8 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_wahwah[12],"POTI");
 	strcpy(Display->value_str_wahwah[13],"POTI");
 
-	Display->Distortion_Gain = SoftClipping.distortion_gain*10;
+	//	Display->Distortion_Gain = SoftClipping.distortion_gain*10;
+	Display->Distortion_Gain = SoftClipping.distortion_gain;
 	strcpy(Display->value_str_distortion[0],"OFF");	// distortion
 	strcpy(Display->value_str_distortion[1],"Soft");
 	sprintf(Display->value_str_distortion[2], "%.2f", Display->Distortion_Gain);
@@ -445,36 +451,42 @@ void DISPLAY_Update(void) {
  */
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition) {
 
-	switch(JoystickParameterPosition) {
-	case 1:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE1, "<--", &Font12, COLORED);
-		break;
-	case 2:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE2, "<--", &Font12, COLORED);
-		break;
-	case 3:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE3, "<--", &Font12, COLORED);
-		break;
-	case 4:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE4, "<--", &Font12, COLORED);
-		break;
-	case 5:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE5, "<--", &Font12, COLORED);
-		break;
-	case 6:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE6, "<--", &Font12, COLORED);
-		break;
-	case 7:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE7, "<--", &Font12, COLORED);
-		break;
-	case 8:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE8, "<--", &Font12, COLORED);
-		break;
-	case 9:
-		Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE9, "<--", &Font12, COLORED);
-		break;
-	default:
-		break;
+	if(Display.pagePosition != 0) {	// print an arrow unless the current page is the starting menu page, because on this one the arrow is not useful
+
+		switch(JoystickParameterPosition) {
+		case 1:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE1, "<--", &Font12, COLORED);
+			break;
+		case 2:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE2, "<--", &Font12, COLORED);
+			break;
+		case 3:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE3, "<--", &Font12, COLORED);
+			break;
+		case 4:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE4, "<--", &Font12, COLORED);
+			break;
+		case 5:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE5, "<--", &Font12, COLORED);
+			break;
+		case 6:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE6, "<--", &Font12, COLORED);
+			break;
+		case 7:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE7, "<--", &Font12, COLORED);
+			break;
+		case 8:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE8, "<--", &Font12, COLORED);
+			break;
+		case 9:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE9, "<--", &Font12, COLORED);
+			break;
+		case 10:
+			Paint_DrawStringAt(&paint, Display.arrow_start_x_position, CASE10, "<--", &Font12, COLORED);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
@@ -511,6 +523,9 @@ void DISPLAY_DeleteArrow(uint8_t JoystickParameterPosition) {
 	case 9:
 		Paint_DrawFilledRectangle(&paint, Display.arrow_start_x_position, CASE9, Display.arrow_end_x_position, CASE9+VALUE_ROW_LENGTH, UNCOLORED);
 		break;
+	case 10:
+		Paint_DrawFilledRectangle(&paint, Display.arrow_start_x_position, CASE10, Display.arrow_end_x_position, CASE10+VALUE_ROW_LENGTH, UNCOLORED);
+		break;
 	default:
 		break;
 	}
@@ -527,6 +542,8 @@ void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition){
 
 	switch(*JoystickParameterPosition) {
 	case 1:
+		// switch to the bottom
+		*JoystickParameterPosition = Display.max_parameter;
 		break;
 	case 2:
 		*JoystickParameterPosition = *JoystickParameterPosition-1;
@@ -550,6 +567,9 @@ void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition){
 		*JoystickParameterPosition = *JoystickParameterPosition-1;
 		break;
 	case 9:
+		*JoystickParameterPosition = *JoystickParameterPosition-1;
+		break;
+	case 10:
 		*JoystickParameterPosition = *JoystickParameterPosition-1;
 		break;
 	default:
@@ -576,32 +596,53 @@ void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition) {
 	case 2:
 		if(*JoystickParameterPosition < Display.max_parameter)
 			*JoystickParameterPosition = *JoystickParameterPosition+1;
+		else if(*JoystickParameterPosition == Display.max_parameter)
+			*JoystickParameterPosition = 1;	// switch to the top
 		break;
 	case 3:
 		if(*JoystickParameterPosition < Display.max_parameter)
 			*JoystickParameterPosition = *JoystickParameterPosition+1;
+		else if(*JoystickParameterPosition == Display.max_parameter)
+			*JoystickParameterPosition = 1;	// switch to the top
 		break;
 	case 4:
 		if(*JoystickParameterPosition < Display.max_parameter)
 			*JoystickParameterPosition = *JoystickParameterPosition+1;
+		else if(*JoystickParameterPosition == Display.max_parameter)
+			*JoystickParameterPosition = 1;	// switch to the top
 		break;
 	case 5:
 		if(*JoystickParameterPosition < Display.max_parameter)
 			*JoystickParameterPosition = *JoystickParameterPosition+1;
+		else if(*JoystickParameterPosition == Display.max_parameter)
+			*JoystickParameterPosition = 1;	// switch to the top
 		break;
 	case 6:
 		if(*JoystickParameterPosition < Display.max_parameter)
 			*JoystickParameterPosition = *JoystickParameterPosition+1;
+		else if(*JoystickParameterPosition == Display.max_parameter)
+			*JoystickParameterPosition = 1;	// switch to the top
 		break;
 	case 7:
 		if(*JoystickParameterPosition < Display.max_parameter)
 			*JoystickParameterPosition = *JoystickParameterPosition+1;
+		else if(*JoystickParameterPosition == Display.max_parameter)
+			*JoystickParameterPosition = 1;	// switch to the top
 		break;
 	case 8:
 		if(*JoystickParameterPosition < Display.max_parameter)
 			*JoystickParameterPosition = *JoystickParameterPosition+1;
+		else if(*JoystickParameterPosition == Display.max_parameter)
+			*JoystickParameterPosition = 1;	// switch to the top
 		break;
 	case 9:
+		if(*JoystickParameterPosition < Display.max_parameter)
+			*JoystickParameterPosition = *JoystickParameterPosition+1;
+		else if(*JoystickParameterPosition == Display.max_parameter)
+			*JoystickParameterPosition = 1;	// switch to the top
+		break;
+	case 10:
+		*JoystickParameterPosition = 1;	// switch to the top
 		break;
 	default:
 		break;
@@ -896,7 +937,7 @@ Display_Status p_Drumcomputer_overview(void) {
 	// as big as the number of parameters
 	Display.max_parameter = 8;
 
-	uint8_t mode_number = 0;
+	//	uint8_t mode_number = 0;
 
 	switch(Display.JoystickParameterPosition) {
 	case 1:
@@ -3014,7 +3055,7 @@ void p_Voices_overview(void) {
 	char headerstring[] = "VOICES";
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 	// row cases
-	char str_1[] = "next Effect";
+	char str_1[] = "Next effect";
 	char str_2[] = "Voice 1 ON/OFF";
 	char str_3[] = "Voice 2 ON/OFF";
 	char str_4[] = "Voice 3 ON/OFF";
@@ -3165,7 +3206,7 @@ void p_Voices_Settings(void) {
 		// as big as the number of parameters
 		Display.max_parameter = 4;
 
-		uint8_t mode_number = 0;
+		//		uint8_t mode_number = 0;
 
 		switch(Display.JoystickParameterPosition) {
 		case 1:
@@ -3257,13 +3298,14 @@ void p_ADSR_overview(void) {
 	char headerstring[] = "KEYBOARD ADSR";
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 	//row cases
-	char str_1[] = "next Effect";
+	char str_1[] = "Next effect";
 	char str_2[] = "Attack Time";
 	char str_3[] = "Decay Time";
 	char str_4[] = "Sustain Time";
 	char str_5[] = "Sustain Level";
 	char str_6[] = "Release Time";
-	char str_7[] = "ADSR Reset";
+	char str_7[] = "Keyboard FX ON/OFF";
+	char str_8[] = "ADSR Reset";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
@@ -3271,9 +3313,10 @@ void p_ADSR_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
 
 	// as big as the number of parameters
-	Display.max_parameter = 7;
+	Display.max_parameter = 8;
 
 	//	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 	//	char write_str[10];
@@ -3348,8 +3391,25 @@ void p_ADSR_overview(void) {
 		}
 		break;
 	case 7:
-		// ADSR Reset
+		// Keyboard FX ON/OFF
 		Display.currentADSR = 6;
+
+		if(Display.poti_moved == true) {
+			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+
+			if(potVal < 50) {
+				Display.KeyboardFX_ONOFF = false;
+				strcpy(Display.value_str_adsr_overview[5], "OFF");
+			}
+			else if(potVal >= 50) {
+				Display.KeyboardFX_ONOFF = true;
+				strcpy(Display.value_str_adsr_overview[5], "ON");
+			}
+		}
+		break;
+	case 8:
+		// ADSR Reset
+		Display.currentADSR = 7;
 
 		if(Display.Reset == true) {
 			for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++){
@@ -3357,10 +3417,10 @@ void p_ADSR_overview(void) {
 			}
 
 			Display.Reset = false;
-			strcpy(Display.value_str_adsr_overview[5], "done");
+			strcpy(Display.value_str_adsr_overview[6], "done");
 		}
 		else if(Display.Reset == false)
-			strcpy(Display.value_str_adsr_overview[5], "");
+			strcpy(Display.value_str_adsr_overview[6], "");
 		break;
 	default:
 		break;
@@ -3372,6 +3432,7 @@ void p_ADSR_overview(void) {
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
 	sprintf(Display.value_str_adsr_overview[0], "%.2f", Display.ADSR_Attacktime);
 	sprintf(Display.value_str_adsr_overview[1], "%.2f", Display.ADSR_Decaytime);
 	sprintf(Display.value_str_adsr_overview[2], "%.2f", Display.ADSR_Sustaintime);
@@ -3384,6 +3445,7 @@ void p_ADSR_overview(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_adsr_overview[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_adsr_overview[4], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_adsr_overview[5], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_adsr_overview[6], &Font12, COLORED);
 }
 
 /** @brief this function edits the sources of the ADSR parameters
@@ -3409,7 +3471,7 @@ void p_ADSR_Settings(void) {
 	// as big as the number of parameters
 	Display.max_parameter = 5;
 
-	uint8_t mode_number = 0;
+	//	uint8_t mode_number = 0;
 
 	if(Display.poti_moved == true) {
 
@@ -3488,7 +3550,7 @@ void p_Equalizer_overview(void) {
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 
 	//row cases
-	char str_1[] = "next Effect";
+	char str_1[] = "Next effect";
 	char str_2[] = "Band 1";
 	char str_3[] = "Band 2";
 	char str_4[] = "Band 3";
@@ -3600,7 +3662,7 @@ void p_Equalizer_overview(void) {
 
 		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH , UNCOLORED);
 		if(Display.Reset == true) {
-			Filters_Reset();
+			Equalizer_Reset();
 			Display.Reset = false;
 			strcpy(Display.value_str_equalizer_overview[5], "done");
 		}
@@ -3657,7 +3719,7 @@ void p_Equalizer_Settings(void) {
 		// as big as the number of parameters
 		Display.max_parameter = 6;
 
-		uint8_t mode_number = 0;
+		//		uint8_t mode_number = 0;
 
 		if(Display.poti_moved == true) {
 
@@ -3814,7 +3876,7 @@ void p_WahWah_overview(void) {
 	char headerstring[] = "WAHWAH";
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 	// row cases
-	char str_1[] = "next effect";
+	char str_1[] = "Next effect";
 	char str_2[] = "WahWah ON/OFF";
 	char str_3[] = "Mode";
 	char str_4[] = "WahWah Reset";
@@ -3892,7 +3954,7 @@ void p_WahWah_overview(void) {
 
 void p_WahWah_Settings(struct WahWah_t *WahWah) {
 
-	uint8_t mode_number = 0;
+	//	uint8_t mode_number = 0;
 	//	uint16_t index = 0;
 
 	if(Display.WahWah_Mode == 0) {	// Normal WahWah
@@ -4135,7 +4197,7 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 
 	// Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
-	uint8_t mode_number = 0;
+	//	uint8_t mode_number = 0;
 
 	switch (Display.JoystickParameterPosition){
 	case 1:	// Distortion ON/OFF
@@ -4158,7 +4220,8 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 				//				Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Soft", &Font12, COLORED);
 				Display.Distortion_Type = 0;
 				strcpy(Display.value_str_distortion[1], "Soft");
-				Display.Distortion_Gain = 0.0;	// reset the distortion gain
+				//				Display.Distortion_Gain = 0.0;	// reset the distortion gain
+				Display.Distortion_Gain = 1.0;	// reset the distortion gain
 			}
 			else if(potVal >= 50) {	// greater than 50 %
 				//				Paint_DrawStringAt(&paint, Display.value_start_x_position, 50, "Hard", &Font12, COLORED);
@@ -4176,12 +4239,17 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 			// Soft Clipping
 			if(Display.Distortion_Type == 0) {
 
-				Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * SoftClipping.distortion_maximum_gain);	// 1 to 10
+				Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * SoftClipping.distortion_maximum_gain);
+				if(Display.Distortion_Gain < 1)
+					Display.Distortion_Gain = 1;
+				//				else if(Display.Distortion_Gain > 10)
+				//					Display.Distortion_Gain = 10;
 
+				//				Display.Distortion_Gain = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * SoftClipping.distortion_maximum_gain);
 				// values are mapped from e.g. 0.88 to 0.90 to have float number with one decimal point
-				Display.Distortion_Gain = Display.Distortion_Gain*10;
-				Display.Distortion_Gain = ceil(Display.Distortion_Gain);
-				//				Display.Distortion_Gain = Display.Distortion_Gain/10;
+				//				Display.Distortion_Gain = Display.Distortion_Gain*10;
+				//				Display.Distortion_Gain = ceil(Display.Distortion_Gain);
+				//				//				Display.Distortion_Gain = Display.Distortion_Gain/10;
 			}
 			// Hard Clipping
 			else if(Display.Distortion_Type == 1) {
@@ -4255,7 +4323,7 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 
 	// Potentiometer Input in %
 	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
-	uint8_t mode_number = 0;
+	//	uint8_t mode_number = 0;
 	//	char write_str[10];
 
 	if(Display.poti_moved == true || Tremolo->lfo->lfo_done_flag == true || Display.Reset == true) {
@@ -4325,6 +4393,7 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
 
 	sprintf(Display.value_str_tremolo[1], "%.3f", Display.Tremolo_Rate);
 	sprintf(Display.value_str_tremolo[2], "%.2f", Display.Tremolo_Depth);
@@ -4336,6 +4405,7 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE3, Display.value_str_tremolo[2], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_tremolo[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_tremolo[4], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_tremolo[5], &Font12, COLORED);
 }
 
 void p_EMG(void) {
@@ -4402,38 +4472,54 @@ void p_Volume(void) {
 		switch(Display.JoystickParameterPosition) {
 		case 1:
 			// Volume Voices
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
 			volume[0] = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
-			sprintf(Display.value_str_volume[0], "%.2f", volume[0]);
 			break;
 		case 2:
 			// Volume Drumcomputer
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 			volume[1] = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
-			sprintf(Display.value_str_volume[1], "%.2f", volume[1]);
 			break;
 		case 3:
 			// Volume Sequencer
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 			volume[2] = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
-			sprintf(Display.value_str_volume[2], "%.2f", volume[2]);
 			break;
 		case 4:
 			// Volume Keyboard
-			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
 			volume[3] = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange;
-			sprintf(Display.value_str_volume[3], "%.2f", volume[3]);
 			break;
 		default:
 			break;
 		}
 	}
 
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+
+	sprintf(Display.value_str_volume[0], "%.2f", volume[0]);
+	sprintf(Display.value_str_volume[1], "%.2f", volume[1]);
+	sprintf(Display.value_str_volume[2], "%.2f", volume[2]);
+	sprintf(Display.value_str_volume[3], "%.2f", volume[3]);
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE1, Display.value_str_volume[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE2, Display.value_str_volume[1], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, Display.value_str_volume[2], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE4, Display.value_str_volume[3], &Font12, COLORED);
+}
+
+void Full_Reset(void) {
+
+	for(uint8_t i=0; i<3; i++)
+		volume[i] = 1;
+	Drum_Computer_Reset();
+	Sequencer_Reset();
+	Voices_Reset();
+	for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+		ADSR_Reset(&adsr_keyboard[i]);
+	Equalizer_Reset();
+	WahWah_Reset(&WahWah);
+	Distortion_Reset();
+	Tremolo_Reset();
 }
 
 //void p_Presets(void) {
@@ -4497,6 +4583,7 @@ void p_Presets(void) {
 	char str_7[] = "Preset 7";
 	char str_8[] = "Preset 8";
 	char str_9[] = "Preset 9";
+	char str_10[] = "Preset 10";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
@@ -4506,137 +4593,234 @@ void p_Presets(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE9, str_9, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE10, str_10, &Font12, COLORED);
 
 	// as big as the number of parameters
-	Display.max_parameter = 4;
+	Display.max_parameter = 10;
 
 	switch(Display.JoystickParameterPosition) {
 	case 1:
-		// Reset everything
-		//..
-		// Volumes
-		volume[0] = 0.21;
-		volume[1] = 1;
-		volume[2] = 0.55;
-		volume[3] = 1;
-		// Drumcomputer
-		Display.Drumcomputer_ONOFF = true;
-		BPM = 120;
-		Display_LoadDrumKits(0);	// load 909
-		// Set Drum Pattern
-		Display.DrumMatrix[0][0] = timing_DS1[0] = 1;	// Sample 1
-		Display.DrumMatrix[0][1] = timing_DS1[1] = 0;
-		Display.DrumMatrix[0][2] = timing_DS1[2] = 0;
-		Display.DrumMatrix[0][3] = timing_DS1[3] = 0;
-		Display.DrumMatrix[0][4] = timing_DS1[4] = 1;
-		Display.DrumMatrix[0][5] = timing_DS1[5] = 0;
-		Display.DrumMatrix[0][6] = timing_DS1[6] = 0;
-		Display.DrumMatrix[0][7] = timing_DS1[7] = 0;
-		Display.DrumMatrix[1][0] = timing_DS1[0] = 0;	// Sample 2
-		Display.DrumMatrix[1][1] = timing_DS1[1] = 0;
-		Display.DrumMatrix[1][2] = timing_DS1[2] = 1;
-		Display.DrumMatrix[1][3] = timing_DS1[3] = 0;
-		Display.DrumMatrix[1][4] = timing_DS1[4] = 0;
-		Display.DrumMatrix[1][5] = timing_DS1[5] = 1;
-		Display.DrumMatrix[1][6] = timing_DS1[6] = 0;
-		Display.DrumMatrix[1][7] = timing_DS1[7] = 0;
-		Display.DrumMatrix[2][0] = timing_DS1[0] = 0;	// Sample 3
-		Display.DrumMatrix[2][1] = timing_DS1[1] = 0;
-		Display.DrumMatrix[2][2] = timing_DS1[2] = 0;
-		Display.DrumMatrix[2][3] = timing_DS1[3] = 0;
-		Display.DrumMatrix[2][4] = timing_DS1[4] = 1;
-		Display.DrumMatrix[2][5] = timing_DS1[5] = 0;
-		Display.DrumMatrix[2][6] = timing_DS1[6] = 0;
-		Display.DrumMatrix[2][7] = timing_DS1[7] = 0;
-		Display.DrumMatrix[3][0] = timing_DS1[0] = 1;	// Sample 4
-		Display.DrumMatrix[3][1] = timing_DS1[1] = 1;
-		Display.DrumMatrix[3][2] = timing_DS1[2] = 1;
-		Display.DrumMatrix[3][3] = timing_DS1[3] = 0;
-		Display.DrumMatrix[3][4] = timing_DS1[4] = 0;
-		Display.DrumMatrix[3][5] = timing_DS1[5] = 0;
-		Display.DrumMatrix[3][6] = timing_DS1[6] = 0;
-		Display.DrumMatrix[3][7] = timing_DS1[7] = 0;
-		// Sequencer
-		Display.Sequencer_ONOFF = true;
-		freq_index_SN1 = Get_Note_Index('C', 2);	// load notes
-		for(int i=0; i<FourFour; i++) {
-			current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+
+		if(Display.SetPreset == true) {
+
+			// Reset everything
+			Full_Reset();
+			// Volumes
+			volume[0] = 0.21;
+			volume[1] = 1;
+			volume[2] = 0.55;
+			volume[3] = 1;
+			// Drumcomputer
+			Display.Drumcomputer_ONOFF = true;
+			strcpy(Display.value_str_drumcomputer[0], "ON");	// to make sure that value is correctly displayed when switch to page
+			BPM = 120;
+			Display_LoadDrumKits(0);	// load 909
+			// Set Drum Pattern
+			Display.DrumMatrix[0][0] = timing_DS1[0] = 1;	// Sample 1
+			Display.DrumMatrix[0][1] = timing_DS1[1] = 0;
+			Display.DrumMatrix[0][2] = timing_DS1[2] = 0;
+			Display.DrumMatrix[0][3] = timing_DS1[3] = 0;
+			Display.DrumMatrix[0][4] = timing_DS1[4] = 1;
+			Display.DrumMatrix[0][5] = timing_DS1[5] = 0;
+			Display.DrumMatrix[0][6] = timing_DS1[6] = 0;
+			Display.DrumMatrix[0][7] = timing_DS1[7] = 0;
+			Display.DrumMatrix[1][0] = timing_DS2[0] = 0;	// Sample 2
+			Display.DrumMatrix[1][1] = timing_DS2[1] = 0;
+			Display.DrumMatrix[1][2] = timing_DS2[2] = 1;
+			Display.DrumMatrix[1][3] = timing_DS2[3] = 0;
+			Display.DrumMatrix[1][4] = timing_DS2[4] = 0;
+			Display.DrumMatrix[1][5] = timing_DS2[5] = 1;
+			Display.DrumMatrix[1][6] = timing_DS2[6] = 0;
+			Display.DrumMatrix[1][7] = timing_DS2[7] = 0;
+			Display.DrumMatrix[2][0] = timing_DS3[0] = 0;	// Sample 3
+			Display.DrumMatrix[2][1] = timing_DS3[1] = 0;
+			Display.DrumMatrix[2][2] = timing_DS3[2] = 0;
+			Display.DrumMatrix[2][3] = timing_DS3[3] = 0;
+			Display.DrumMatrix[2][4] = timing_DS3[4] = 1;
+			Display.DrumMatrix[2][5] = timing_DS3[5] = 0;
+			Display.DrumMatrix[2][6] = timing_DS3[6] = 0;
+			Display.DrumMatrix[2][7] = timing_DS3[7] = 0;
+			Display.DrumMatrix[3][0] = timing_DS4[0] = 1;	// Sample 4
+			Display.DrumMatrix[3][1] = timing_DS4[1] = 1;
+			Display.DrumMatrix[3][2] = timing_DS4[2] = 1;
+			Display.DrumMatrix[3][3] = timing_DS4[3] = 0;
+			Display.DrumMatrix[3][4] = timing_DS4[4] = 0;
+			Display.DrumMatrix[3][5] = timing_DS4[5] = 0;
+			Display.DrumMatrix[3][6] = timing_DS4[6] = 0;
+			Display.DrumMatrix[3][7] = timing_DS4[7] = 0;
+			// Sequencer
+			Display.Sequencer_ONOFF = true;
+			strcpy(Display.value_str_sequencer[0], "ON");	// to make sure that value is correctly displayed when switch to page
+			// Seq. Note 1
+			freq_index_SN1 = Get_Note_Index('C', 2);	// load notes
+			Display.Sequencer_Noteindex[0] = 0;	// C
+			Display.Sequencer_Octave[0] = 2;
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+			}
+			sprintf(Display.value_str_sequencer[1], "%c", 'C');
+			sprintf(Display.value_str_sequencer[2], "%d", 2);
+			// Seq. Note 2
+			freq_index_SN2 = Get_Note_Index('E', 1);
+			Display.Sequencer_Noteindex[1] = 4;	// E
+			Display.Sequencer_Octave[1] = 1;
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+			}
+			sprintf(Display.value_str_sequencer[3], "%c", 'E');
+			sprintf(Display.value_str_sequencer[4], "%d", 1);
+			// Seq. Note 3
+			freq_index_SN3 = Get_Note_Index('G', 2);
+			Display.Sequencer_Noteindex[2] = 7;	// G
+			Display.Sequencer_Octave[2] = 2;
+			for(int i=0; i<FourFour; i++) {
+				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+			}
+			sprintf(Display.value_str_sequencer[5], "%c", 'G');
+			sprintf(Display.value_str_sequencer[6], "%d", 2);
+
+			// Set Sequencer Pattern
+			Display.SequencerMatrix[0][0] = timing_SN1[0] = 1;
+			Display.SequencerMatrix[0][1] = timing_SN1[1] = 0;
+			Display.SequencerMatrix[0][2] = timing_SN1[2] = 1;
+			Display.SequencerMatrix[0][3] = timing_SN1[3] = 0;
+			Display.SequencerMatrix[0][4] = timing_SN1[4] = 0;
+			Display.SequencerMatrix[0][5] = timing_SN1[5] = 0;
+			Display.SequencerMatrix[0][6] = timing_SN1[6] = 1;
+			Display.SequencerMatrix[0][7] = timing_SN1[7] = 0;
+			Display.SequencerMatrix[1][0] = timing_SN2[0] = 1;
+			Display.SequencerMatrix[1][1] = timing_SN2[1] = 0;
+			Display.SequencerMatrix[1][2] = timing_SN2[2] = 0;
+			Display.SequencerMatrix[1][3] = timing_SN2[3] = 1;
+			Display.SequencerMatrix[1][4] = timing_SN2[4] = 0;
+			Display.SequencerMatrix[1][5] = timing_SN2[5] = 1;
+			Display.SequencerMatrix[1][6] = timing_SN2[6] = 0;
+			Display.SequencerMatrix[1][7] = timing_SN2[7] = 0;
+			Display.SequencerMatrix[2][0] = timing_SN3[0] = 1;
+			Display.SequencerMatrix[2][1] = timing_SN3[1] = 0;
+			Display.SequencerMatrix[2][2] = timing_SN3[2] = 0;
+			Display.SequencerMatrix[2][3] = timing_SN3[3] = 0;
+			Display.SequencerMatrix[2][4] = timing_SN3[4] = 1;
+			Display.SequencerMatrix[2][5] = timing_SN3[5] = 0;
+			Display.SequencerMatrix[2][6] = timing_SN3[6] = 0;
+			Display.SequencerMatrix[2][7] = timing_SN3[7] = 0;
+			// Voices
+			Display.Voices_ONOFF[0] = true;
+			strcpy(Display.value_str_voices_overview[0], "ON");
+			Display.Voices_ONOFF[1] = true;
+			strcpy(Display.value_str_voices_overview[1], "ON");
+			Display.Voices_ONOFF[2] = true;
+			strcpy(Display.value_str_voices_overview[2], "ON");
+			Display.Voices_Kind[0] = SIN;
+			Display.Voices_Kind[1] = SIN;
+			Display.Voices_Kind[2] = SIN;
+			Display.Voices_Note[0] = 'C';
+			Display.Voices_Noteindex[0] = 0;	// C
+			Display.Voices_Octave[0] = 0;
+			Display.Voices_Note[1] = 'E';
+			Display.Voices_Noteindex[1] = 4;	// E
+			Display.Voices_Octave[1] = 1;
+			Display.Voices_Note[2] = 'G';
+			Display.Voices_Noteindex[2] = 7;	// G
+			Display.Voices_Octave[2] = 2;
+			// ADSR
+			Display.ADSR_Attacktime = 0.1;
+			for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+				adsr_keyboard[i].adsr_attack_time = Display.ADSR_Attacktime * LUT_SR;
+			Display.ADSR_Decaytime = 0.1;
+			for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+				adsr_keyboard[i].adsr_decay_time = Display.ADSR_Decaytime * LUT_SR;
+			Display.ADSR_Sustaintime = 0.3;
+			for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+				adsr_keyboard[i].adsr_sustain_time = Display.ADSR_Sustaintime * LUT_SR;
+			Display.ADSR_Sustainlevel = 0.5;
+			for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+				adsr_keyboard[i].adsr_sustain_amplitude = Display.ADSR_Sustainlevel;
+			Display.ADSR_Releasetime = 0.05;
+			for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+				adsr_keyboard[i].adsr_release_time = Display.ADSR_Releasetime * LUT_SR;
+			// Equalizer off
+			// WahWah
+			Display.WahWah_ONOFF = true;
+			strcpy(Display.value_str_wahwah[0], "ON");
+			Display.WahWah_Mode = 1;	// Auto-WahWah
+			strcpy(Display.value_str_wahwah[1], "AutoWahWah");
+			Display.WahWah_MidFreq = WahWah.mid_freq = 256.41;
+			Display.WahWah_Q = WahWah.bandpass->Q = 1.02;
+			Display.WahWah_Range = WahWah.range = 346.99;
+			Display.WahWah_LFOfreq = WahWah.lfo->lfo_frequency = 8;
+			// Distortion
+			Display.Distortion_ONOFF = true;
+			strcpy(Display.value_str_distortion[0], "ON");
+			Display.Distortion_Type = 1;	// Hard Clipping
+			strcpy(Display.value_str_distortion[1], "Hard");
+			Display.Distortion_Gain = 10;
+			// Tremolo
+			Display.Tremolo_ONOFF = true;
+			strcpy(Display.value_str_tremolo[0], "ON");
+			Display.Tremolo_Rate = Tremolo.lfo->lfo_frequency = 0.125;
+			Display.Tremolo_Depth = Tremolo.lfo->lfo_depth = 1;
+
+			Display.SetPreset = false;	// reset the state
+			strcpy(Display.value_str_presets[0], "done");
 		}
-		freq_index_SN2 = Get_Note_Index('E', 1);
-		for(int i=0; i<FourFour; i++) {
-			current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
-		}
-		freq_index_SN3 = Get_Note_Index('G', 2);
-		for(int i=0; i<FourFour; i++) {
-			current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
-		}
-		// Set Sequencer Pattern
-		timing_SN1[0] = 1;
-		timing_SN1[1] = 0;
-		timing_SN1[2] = 1;
-		timing_SN1[3] = 0;
-		timing_SN1[4] = 0;
-		timing_SN1[5] = 0;
-		timing_SN1[6] = 1;
-		timing_SN1[7] = 0;
-		timing_SN2[0] = 1;
-		timing_SN2[1] = 0;
-		timing_SN2[2] = 0;
-		timing_SN2[3] = 1;
-		timing_SN2[4] = 0;
-		timing_SN2[5] = 1;
-		timing_SN2[6] = 0;
-		timing_SN2[7] = 0;
-		timing_SN3[0] = 1;
-		timing_SN3[1] = 0;
-		timing_SN3[2] = 0;
-		timing_SN3[3] = 0;
-		timing_SN3[4] = 1;
-		timing_SN3[5] = 0;
-		timing_SN3[6] = 0;
-		timing_SN3[7] = 0;
-		// Voices
-		Display.Voices_ONOFF[0] = true;
-		Display.Voices_ONOFF[1] = true;
-		Display.Voices_ONOFF[2] = true;
-		Display.Voices_Note[0] = 'C';
-		Display.Voices_Octave[0] = 0;
-		Display.Voices_Note[0] = 'E';
-		Display.Voices_Octave[0] = 1;
-		Display.Voices_Note[0] = 'G';
-		Display.Voices_Octave[0] = 2;
-		// ADSR
-		Display.ADSR_Attacktime = 0.1;
-		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
-			adsr_keyboard[i].adsr_attack_time = Display.ADSR_Attacktime * LUT_SR;
-		Display.ADSR_Decaytime = 0.1;
-		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
-			adsr_keyboard[i].adsr_decay_time = Display.ADSR_Decaytime * LUT_SR;
-		Display.ADSR_Sustaintime = 0.3;
-		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
-			adsr_keyboard[i].adsr_sustain_time = Display.ADSR_Sustaintime * LUT_SR;
-		Display.ADSR_Sustainlevel = 0.5;
-		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
-			adsr_keyboard[i].adsr_sustain_amplitude = Display.ADSR_Sustainlevel * LUT_SR;
-		Display.ADSR_Releasetime = 0.05;
-		for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
-			adsr_keyboard[i].adsr_release_time = Display.ADSR_Releasetime * LUT_SR;
-		// Equalizer
-		// WahWah
-		Display.WahWah_ONOFF = true;
-		Display.WahWah_Mode = 1;	// Auto-WahWah
-		Display.WahWah_MidFreq = WahWah->mid_freq = 256.41;
-		Display.WahWah_Q = WahWah->bandpass->Q = 1.02;
-		Display.WahWah_Range = WahWah->range = 346.99;
-		Display.WahWah_LFOfreq = WahWah->lfo->lfo_frequency = 8;
-		// Distortion
-		Display.Distortion_ONOFF = true;
-		Display.Distortion_Type = 1;	// Hard Clipping
-		Display.Distortion_Gain = 10;
+
+		else if(Display.SetPreset == false)
+			strcpy(Display.value_str_presets[0], "");
 		break;
 	case 2:
+		if(Display.SetPreset == true) {
+
+			// Reset everything
+			Full_Reset();
+
+			Display.SetPreset = false;	// reset the state
+			strcpy(Display.value_str_presets[1], "done");
+		}
+
+		else if(Display.SetPreset == false)
+			strcpy(Display.value_str_presets[1], "");
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		break;
+	case 7:
+		break;
+	case 8:
+		break;
+	case 9:
+		break;
+	case 10:
 		break;
 	}
+
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE9, Display.value_end_x_position, CASE9+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE10, Display.value_end_x_position, CASE10+VALUE_ROW_LENGTH , UNCOLORED);
+
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_presets[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_presets[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_presets[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_presets[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_presets[4], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_presets[5], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_presets[6], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_presets[7], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE9, Display.value_str_presets[8], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE10, Display.value_str_presets[9], &Font12, COLORED);
+
 
 
 
@@ -4646,64 +4830,64 @@ void p_Presets(void) {
 
 
 	//	// Set Drum Pattern Dummy
-	//			Display.DrumMatrix[0][0] = timing_DS1[0] = 0;	// Sample 1
-	//			Display.DrumMatrix[0][1] = timing_DS1[1] = 0;
-	//			Display.DrumMatrix[0][2] = timing_DS1[2] = 0;
-	//			Display.DrumMatrix[0][3] = timing_DS1[3] = 0;
-	//			Display.DrumMatrix[0][4] = timing_DS1[4] = 0;
-	//			Display.DrumMatrix[0][5] = timing_DS1[5] = 0;
-	//			Display.DrumMatrix[0][6] = timing_DS1[6] = 0;
-	//			Display.DrumMatrix[0][7] = timing_DS1[7] = 0;
-	//			Display.DrumMatrix[1][0] = timing_DS1[0] = 0;	// Sample 2
-	//			Display.DrumMatrix[1][1] = timing_DS1[1] = 0;
-	//			Display.DrumMatrix[1][2] = timing_DS1[2] = 0;
-	//			Display.DrumMatrix[1][3] = timing_DS1[3] = 0;
-	//			Display.DrumMatrix[1][4] = timing_DS1[4] = 0;
-	//			Display.DrumMatrix[1][5] = timing_DS1[5] = 0;
-	//			Display.DrumMatrix[1][6] = timing_DS1[6] = 0;
-	//			Display.DrumMatrix[1][7] = timing_DS1[7] = 0;
-	//			Display.DrumMatrix[2][0] = timing_DS1[0] = 0;	// Sample 3
-	//			Display.DrumMatrix[2][1] = timing_DS1[1] = 0;
-	//			Display.DrumMatrix[2][2] = timing_DS1[2] = 0;
-	//			Display.DrumMatrix[2][3] = timing_DS1[3] = 0;
-	//			Display.DrumMatrix[2][4] = timing_DS1[4] = 0;
-	//			Display.DrumMatrix[2][5] = timing_DS1[5] = 0;
-	//			Display.DrumMatrix[2][6] = timing_DS1[6] = 0;
-	//			Display.DrumMatrix[2][7] = timing_DS1[7] = 0;
-	//			Display.DrumMatrix[3][0] = timing_DS1[0] = 0;	// Sample 4
-	//			Display.DrumMatrix[3][1] = timing_DS1[1] = 0;
-	//			Display.DrumMatrix[3][2] = timing_DS1[2] = 0;
-	//			Display.DrumMatrix[3][3] = timing_DS1[3] = 0;
-	//			Display.DrumMatrix[3][4] = timing_DS1[4] = 0;
-	//			Display.DrumMatrix[3][5] = timing_DS1[5] = 0;
-	//			Display.DrumMatrix[3][6] = timing_DS1[6] = 0;
-	//			Display.DrumMatrix[3][7] = timing_DS1[7] = 0;
+	//	Display.DrumMatrix[0][0] = timing_DS1[0] = 0;	// Sample 1
+	//	Display.DrumMatrix[0][1] = timing_DS1[1] = 0;
+	//	Display.DrumMatrix[0][2] = timing_DS1[2] = 0;
+	//	Display.DrumMatrix[0][3] = timing_DS1[3] = 0;
+	//	Display.DrumMatrix[0][4] = timing_DS1[4] = 0;
+	//	Display.DrumMatrix[0][5] = timing_DS1[5] = 0;
+	//	Display.DrumMatrix[0][6] = timing_DS1[6] = 0;
+	//	Display.DrumMatrix[0][7] = timing_DS1[7] = 0;
+	//	Display.DrumMatrix[1][0] = timing_DS2[0] = 0;	// Sample 2
+	//	Display.DrumMatrix[1][1] = timing_DS2[1] = 0;
+	//	Display.DrumMatrix[1][2] = timing_DS2[2] = 0;
+	//	Display.DrumMatrix[1][3] = timing_DS2[3] = 0;
+	//	Display.DrumMatrix[1][4] = timing_DS2[4] = 0;
+	//	Display.DrumMatrix[1][5] = timing_DS2[5] = 0;
+	//	Display.DrumMatrix[1][6] = timing_DS2[6] = 0;
+	//	Display.DrumMatrix[1][7] = timing_DS2[7] = 0;
+	//	Display.DrumMatrix[2][0] = timing_DS3[0] = 0;	// Sample 3
+	//	Display.DrumMatrix[2][1] = timing_DS3[1] = 0;
+	//	Display.DrumMatrix[2][2] = timing_DS3[2] = 0;
+	//	Display.DrumMatrix[2][3] = timing_DS3[3] = 0;
+	//	Display.DrumMatrix[2][4] = timing_DS3[4] = 0;
+	//	Display.DrumMatrix[2][5] = timing_DS3[5] = 0;
+	//	Display.DrumMatrix[2][6] = timing_DS3[6] = 0;
+	//	Display.DrumMatrix[2][7] = timing_DS3[7] = 0;
+	//	Display.DrumMatrix[3][0] = timing_DS4[0] = 0;	// Sample 4
+	//	Display.DrumMatrix[3][1] = timing_DS4[1] = 0;
+	//	Display.DrumMatrix[3][2] = timing_DS4[2] = 0;
+	//	Display.DrumMatrix[3][3] = timing_DS4[3] = 0;
+	//	Display.DrumMatrix[3][4] = timing_DS4[4] = 0;
+	//	Display.DrumMatrix[3][5] = timing_DS4[5] = 0;
+	//	Display.DrumMatrix[3][6] = timing_DS4[6] = 0;
+	//	Display.DrumMatrix[3][7] = timing_DS4[7] = 0;
 
 	//	// Set Sequencer Pattern Dummy
-	//			timing_SN1[0] = 0;
-	//			timing_SN1[1] = 0;
-	//			timing_SN1[2] = 0;
-	//			timing_SN1[3] = 0;
-	//			timing_SN1[4] = 0;
-	//			timing_SN1[5] = 0;
-	//			timing_SN1[6] = 0;
-	//			timing_SN1[7] = 0;
-	//			timing_SN2[0] = 0;
-	//			timing_SN2[1] = 0;
-	//			timing_SN2[2] = 0;
-	//			timing_SN2[3] = 0;
-	//			timing_SN2[4] = 0;
-	//			timing_SN2[5] = 0;
-	//			timing_SN2[6] = 0;
-	//			timing_SN2[7] = 0;
-	//			timing_SN3[0] = 0;
-	//			timing_SN3[1] = 0;
-	//			timing_SN3[2] = 0;
-	//			timing_SN3[3] = 0;
-	//			timing_SN3[4] = 0;
-	//			timing_SN3[5] = 0;
-	//			timing_SN3[6] = 0;
-	//			timing_SN3[7] = 0;
+	//	Display.SequencerMatrix[0][0] = timing_SN1[0] = 0;
+	//	Display.SequencerMatrix[0][1] = timing_SN1[1] = 0;
+	//	Display.SequencerMatrix[0][2] = timing_SN1[2] = 0;
+	//	Display.SequencerMatrix[0][3] = timing_SN1[3] = 0;
+	//	Display.SequencerMatrix[0][4] = timing_SN1[4] = 0;
+	//	Display.SequencerMatrix[0][5] = timing_SN1[5] = 0;
+	//	Display.SequencerMatrix[0][6] = timing_SN1[6] = 0;
+	//	Display.SequencerMatrix[0][7] = timing_SN1[7] = 0;
+	//	Display.SequencerMatrix[1][0] = timing_SN2[0] = 0;
+	//	Display.SequencerMatrix[1][1] = timing_SN2[1] = 0;
+	//	Display.SequencerMatrix[1][2] = timing_SN2[2] = 0;
+	//	Display.SequencerMatrix[1][3] = timing_SN2[3] = 0;
+	//	Display.SequencerMatrix[1][4] = timing_SN2[4] = 0;
+	//	Display.SequencerMatrix[1][5] = timing_SN2[5] = 0;
+	//	Display.SequencerMatrix[1][6] = timing_SN2[6] = 0;
+	//	Display.SequencerMatrix[1][7] = timing_SN2[7] = 0;
+	//	Display.SequencerMatrix[2][0] = timing_SN3[0] = 0;
+	//	Display.SequencerMatrix[2][1] = timing_SN3[1] = 0;
+	//	Display.SequencerMatrix[2][2] = timing_SN3[2] = 0;
+	//	Display.SequencerMatrix[2][3] = timing_SN3[3] = 0;
+	//	Display.SequencerMatrix[2][4] = timing_SN3[4] = 0;
+	//	Display.SequencerMatrix[2][5] = timing_SN3[5] = 0;
+	//	Display.SequencerMatrix[2][6] = timing_SN3[6] = 0;
+	//	Display.SequencerMatrix[2][7] = timing_SN3[7] = 0;
 
 
 

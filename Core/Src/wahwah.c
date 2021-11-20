@@ -41,6 +41,8 @@ WahWah_Status WahWah_Init(struct WahWah_t *WahWah) {
 
 WahWah_Status WahWah_Reset(struct WahWah_t *WahWah) {
 
+	Display.WahWah_ONOFF = false;
+
 	WahWah->lfo->lfo_index     = 0;
 	WahWah->lfo->lfo_quarter   = 0;
 	Display.WahWah_LFOfreq = WahWah->lfo->lfo_frequency = 1;	// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]
@@ -52,8 +54,6 @@ WahWah_Status WahWah_Reset(struct WahWah_t *WahWah) {
 
 	WahWah->reinit_counter = 0;
 	Display.WahWah_Q = WahWah->bandpass->Q = 1;
-
-	Display.WahWah_ONOFF = false;
 
 	Display.WahWah_Sources[0] = POTI;
 	Display.WahWah_Sources[1] = POTI;

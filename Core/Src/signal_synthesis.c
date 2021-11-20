@@ -946,11 +946,13 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			sequencer = 0;
 		}
 
-		// Keyboard processing
-		keyboard_adsr_process();
-		// summing up all played keyboard notes
-		for (int k= 0; k < 5;k++)
-			calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
+		// Keyboard processing with effects
+		if(Display.KeyboardFX_ONOFF == true) {
+			keyboard_adsr_process();
+			// summing up all played keyboard notes
+			for (int k= 0; k < 5;k++)
+				calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
+		}
 
 		// Play single sample
 		if(play_single_sample_flag) {
@@ -960,6 +962,15 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
 		//		ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
+
+		// Keyboard processing without effects
+		if(Display.KeyboardFX_ONOFF == false) {
+			keyboard_adsr_process();
+			// summing up all played keyboard notes
+			for (int k= 0; k < 5;k++)
+				calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
+		}
+
 
 		// Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
@@ -1019,42 +1030,42 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 float ramp_counter = 0;
 
 bool initRamp(void){
-  bool retval = false;
-  float* calculate_vector_tmp = calculate_vector1;
+	bool retval = false;
+	float* calculate_vector_tmp = calculate_vector1;
 
-  //ramp Duration of 0.5 seconds
-   float ramp_dur = 0.5*LUT_SR;
-  //MAX Ramp Value in mV
-    uint32_t maxRamp = (uint32_t)(1650 * DAC_MAXVALUE_TO_AMPLITUDE_RATIO );
+	//ramp Duration of 0.5 seconds
+	float ramp_dur = 0.5*LUT_SR;
+	//MAX Ramp Value in mV
+	uint32_t maxRamp = (uint32_t)(1650 * DAC_MAXVALUE_TO_AMPLITUDE_RATIO );
 
-    //Write into DAC-Buffer
-    //decide if first half of BLOCKSIZE or second half
-    	uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;
-    	if (outputBuffer_position == HALF_BLOCK){
-    		BLOOCKSIZE_startIndex = 0;
-    		BLOOCKSIZE_endIndex = BLOCKSIZE/2;
-    	}
-    	else if(outputBuffer_position == FULL_BLOCK){
-    		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
-    		BLOOCKSIZE_endIndex  = BLOCKSIZE;
-    	}
+	//Write into DAC-Buffer
+	//decide if first half of BLOCKSIZE or second half
+	uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;
+	if (outputBuffer_position == HALF_BLOCK){
+		BLOOCKSIZE_startIndex = 0;
+		BLOOCKSIZE_endIndex = BLOCKSIZE/2;
+	}
+	else if(outputBuffer_position == FULL_BLOCK){
+		BLOOCKSIZE_startIndex = BLOCKSIZE/2;
+		BLOOCKSIZE_endIndex  = BLOCKSIZE;
+	}
 
-    //Write into DAC
-    for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
+	//Write into DAC
+	for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
 
-      if (ramp_counter < ramp_dur){
-        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((float)((ramp_counter/ramp_dur) * maxRamp));
-//        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(*maxRamp);
-        ramp_counter++;
-      }
-      else if(ramp_counter >= ramp_dur){
-        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(maxRamp);
-      }
-    }
-  if (ramp_counter >= ramp_dur)
-    retval = true;
+		if (ramp_counter < ramp_dur){
+			*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((float)((ramp_counter/ramp_dur) * maxRamp));
+			//        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(*maxRamp);
+			ramp_counter++;
+		}
+		else if(ramp_counter >= ramp_dur){
+			*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(maxRamp);
+		}
+	}
+	if (ramp_counter >= ramp_dur)
+		retval = true;
 
-  return retval;
+	return retval;
 }
 
 

@@ -31,14 +31,14 @@ Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo) {
 
 Tremolo_Status Tremolo_Reset(void) {
 
+	Display.Tremolo_ONOFF = false;
+
 	Tremolo.lfo->lfo_index = 0;
 	Display.Tremolo_Rate = Tremolo.lfo->lfo_frequency = 1;
 	Display.Tremolo_Rate_Index = 3;	// 1 Hz
 	Tremolo.lfo->lfo_quarter = 0;
 	Display.Tremolo_Depth = Tremolo.lfo->lfo_depth = 0.5;
 	Tremolo.lfo->lfo_done_flag = false;
-
-	Display.Tremolo_ONOFF = false;
 
 	Display.Tremolo_Sources[0] = POTI;
 	Display.Tremolo_Sources[1] = POTI;

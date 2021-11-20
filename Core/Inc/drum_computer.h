@@ -51,10 +51,14 @@ uint32_t flag_DS3[FourFour];
 uint32_t flag_DS4[FourFour];
 
 // Timing positions drums
-uint32_t timing_DS1[FourFour];
-uint32_t timing_DS2[FourFour];
-uint32_t timing_DS3[FourFour];
-uint32_t timing_DS4[FourFour];
+//uint32_t timing_DS1[FourFour];
+bool timing_DS1[FourFour];
+//uint32_t timing_DS2[FourFour];
+bool timing_DS2[FourFour];
+//uint32_t timing_DS3[FourFour];
+bool timing_DS3[FourFour];
+//uint32_t timing_DS4[FourFour];
+bool timing_DS4[FourFour];
 uint32_t timing_position_in_samples[FourFour];
 
 // Sound bins
@@ -70,10 +74,14 @@ float drums_filtered;
 //bool sequencer_state;
 
 // Timing positions sequencer
-uint32_t timing_SN1[FourFour];
-uint32_t timing_SN2[FourFour];
-uint32_t timing_SN3[FourFour];
-uint32_t timing_SN4[FourFour];
+//uint32_t timing_SN1[FourFour];
+//uint32_t timing_SN2[FourFour];
+//uint32_t timing_SN3[FourFour];
+//uint32_t timing_SN4[FourFour];
+bool timing_SN1[FourFour];
+bool timing_SN2[FourFour];
+bool timing_SN3[FourFour];
+bool timing_SN4[FourFour];
 
 // Frequency index sequencer
 uint16_t freq_index_SN1;
