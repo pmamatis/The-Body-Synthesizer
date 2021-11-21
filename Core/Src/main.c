@@ -1649,7 +1649,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]--;
 		}
 
-		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
+//		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
 		Display.BACK_Debounce_State = false;
 	}
@@ -1851,7 +1851,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]++;
 		}
 
-		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
+//		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);
 		Display.ENTER_Debounce_State = false;
 	}

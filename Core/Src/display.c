@@ -4778,57 +4778,173 @@ void p_Presets(void) {
 			strcpy(Display.value_str_presets[0], "");
 		break;
 	case 2:
-		if(Display.SetPreset == true) {
-
-			// Reset everything
-			Full_Reset();
-
-			Display.SetPreset = false;	// reset the state
-			strcpy(Display.value_str_presets[1], "done");
+		// Reset everything
+		Full_Reset();
+		// Volumes
+		volume[0] = 0.21;
+		volume[1] = 1;
+		volume[2] = 0.55;
+		volume[3] = 1;
+		// Drumcomputer
+		Display.Drumcomputer_ONOFF = true;
+		strcpy(Display.value_str_drumcomputer[0], "ON");	// to make sure that value is correctly displayed when switch to page
+		BPM = 120;
+		Display_LoadDrumKits(0);	// load 909
+		// Set Drum Pattern
+		Display.DrumMatrix[0][0] = timing_DS1[0] = 1;	// Sample 1
+		Display.DrumMatrix[0][1] = timing_DS1[1] = 0;
+		Display.DrumMatrix[0][2] = timing_DS1[2] = 0;
+		Display.DrumMatrix[0][3] = timing_DS1[3] = 0;
+		Display.DrumMatrix[0][4] = timing_DS1[4] = 1;
+		Display.DrumMatrix[0][5] = timing_DS1[5] = 0;
+		Display.DrumMatrix[0][6] = timing_DS1[6] = 0;
+		Display.DrumMatrix[0][7] = timing_DS1[7] = 0;
+		Display.DrumMatrix[1][0] = timing_DS2[0] = 0;	// Sample 2
+		Display.DrumMatrix[1][1] = timing_DS2[1] = 0;
+		Display.DrumMatrix[1][2] = timing_DS2[2] = 1;
+		Display.DrumMatrix[1][3] = timing_DS2[3] = 0;
+		Display.DrumMatrix[1][4] = timing_DS2[4] = 0;
+		Display.DrumMatrix[1][5] = timing_DS2[5] = 1;
+		Display.DrumMatrix[1][6] = timing_DS2[6] = 0;
+		Display.DrumMatrix[1][7] = timing_DS2[7] = 0;
+		Display.DrumMatrix[2][0] = timing_DS3[0] = 0;	// Sample 3
+		Display.DrumMatrix[2][1] = timing_DS3[1] = 0;
+		Display.DrumMatrix[2][2] = timing_DS3[2] = 0;
+		Display.DrumMatrix[2][3] = timing_DS3[3] = 0;
+		Display.DrumMatrix[2][4] = timing_DS3[4] = 1;
+		Display.DrumMatrix[2][5] = timing_DS3[5] = 0;
+		Display.DrumMatrix[2][6] = timing_DS3[6] = 0;
+		Display.DrumMatrix[2][7] = timing_DS3[7] = 0;
+		Display.DrumMatrix[3][0] = timing_DS4[0] = 1;	// Sample 4
+		Display.DrumMatrix[3][1] = timing_DS4[1] = 1;
+		Display.DrumMatrix[3][2] = timing_DS4[2] = 1;
+		Display.DrumMatrix[3][3] = timing_DS4[3] = 0;
+		Display.DrumMatrix[3][4] = timing_DS4[4] = 0;
+		Display.DrumMatrix[3][5] = timing_DS4[5] = 0;
+		Display.DrumMatrix[3][6] = timing_DS4[6] = 0;
+		Display.DrumMatrix[3][7] = timing_DS4[7] = 0;
+		// Sequencer
+		Display.Sequencer_ONOFF = true;
+		strcpy(Display.value_str_sequencer[0], "ON");	// to make sure that value is correctly displayed when switch to page
+		// Seq. Note 1
+		freq_index_SN1 = Get_Note_Index('C', 2);	// load notes
+		Display.Sequencer_Noteindex[0] = 0;	// C
+		Display.Sequencer_Octave[0] = 2;
+		for(int i=0; i<FourFour; i++) {
+			current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
 		}
+		sprintf(Display.value_str_sequencer[1], "%c", 'C');
+		sprintf(Display.value_str_sequencer[2], "%d", 2);
+		// Seq. Note 2
+		freq_index_SN2 = Get_Note_Index('E', 1);
+		Display.Sequencer_Noteindex[1] = 4;	// E
+		Display.Sequencer_Octave[1] = 1;
+		for(int i=0; i<FourFour; i++) {
+			current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+		}
+		sprintf(Display.value_str_sequencer[3], "%c", 'E');
+		sprintf(Display.value_str_sequencer[4], "%d", 1);
+		// Seq. Note 3
+		freq_index_SN3 = Get_Note_Index('G', 2);
+		Display.Sequencer_Noteindex[2] = 7;	// G
+		Display.Sequencer_Octave[2] = 2;
+		for(int i=0; i<FourFour; i++) {
+			current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+		}
+		sprintf(Display.value_str_sequencer[5], "%c", 'G');
+		sprintf(Display.value_str_sequencer[6], "%d", 2);
+
+		// Set Sequencer Pattern
+		Display.SequencerMatrix[0][0] = timing_SN1[0] = 1;
+		Display.SequencerMatrix[0][1] = timing_SN1[1] = 0;
+		Display.SequencerMatrix[0][2] = timing_SN1[2] = 1;
+		Display.SequencerMatrix[0][3] = timing_SN1[3] = 0;
+		Display.SequencerMatrix[0][4] = timing_SN1[4] = 0;
+		Display.SequencerMatrix[0][5] = timing_SN1[5] = 0;
+		Display.SequencerMatrix[0][6] = timing_SN1[6] = 1;
+		Display.SequencerMatrix[0][7] = timing_SN1[7] = 0;
+		Display.SequencerMatrix[1][0] = timing_SN2[0] = 1;
+		Display.SequencerMatrix[1][1] = timing_SN2[1] = 0;
+		Display.SequencerMatrix[1][2] = timing_SN2[2] = 0;
+		Display.SequencerMatrix[1][3] = timing_SN2[3] = 1;
+		Display.SequencerMatrix[1][4] = timing_SN2[4] = 0;
+		Display.SequencerMatrix[1][5] = timing_SN2[5] = 1;
+		Display.SequencerMatrix[1][6] = timing_SN2[6] = 0;
+		Display.SequencerMatrix[1][7] = timing_SN2[7] = 0;
+		Display.SequencerMatrix[2][0] = timing_SN3[0] = 1;
+		Display.SequencerMatrix[2][1] = timing_SN3[1] = 0;
+		Display.SequencerMatrix[2][2] = timing_SN3[2] = 0;
+		Display.SequencerMatrix[2][3] = timing_SN3[3] = 0;
+		Display.SequencerMatrix[2][4] = timing_SN3[4] = 1;
+		Display.SequencerMatrix[2][5] = timing_SN3[5] = 0;
+		Display.SequencerMatrix[2][6] = timing_SN3[6] = 0;
+		Display.SequencerMatrix[2][7] = timing_SN3[7] = 0;
+		// Voices
+		Display.Voices_ONOFF[0] = true;
+		strcpy(Display.value_str_voices_overview[0], "ON");
+		Display.Voices_ONOFF[1] = true;
+		strcpy(Display.value_str_voices_overview[1], "ON");
+		Display.Voices_ONOFF[2] = true;
+		strcpy(Display.value_str_voices_overview[2], "ON");
+		Display.Voices_Kind[0] = SIN;
+		Display.Voices_Kind[1] = SIN;
+		Display.Voices_Kind[2] = SIN;
+		Display.Voices_Note[0] = 'C';
+		Display.Voices_Noteindex[0] = 0;	// C
+		Display.Voices_Octave[0] = 0;
+		Display.Voices_Note[1] = 'E';
+		Display.Voices_Noteindex[1] = 4;	// E
+		Display.Voices_Octave[1] = 1;
+		Display.Voices_Note[2] = 'G';
+		Display.Voices_Noteindex[2] = 7;	// G
+		Display.Voices_Octave[2] = 2;
+		// ADSR
+		Display.ADSR_Attacktime = 0.1;
+		for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_attack_time = Display.ADSR_Attacktime * LUT_SR;
+		Display.ADSR_Decaytime = 0.1;
+		for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_decay_time = Display.ADSR_Decaytime * LUT_SR;
+		Display.ADSR_Sustaintime = 0.3;
+		for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_sustain_time = Display.ADSR_Sustaintime * LUT_SR;
+		Display.ADSR_Sustainlevel = 0.5;
+		for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_sustain_amplitude = Display.ADSR_Sustainlevel;
+		Display.ADSR_Releasetime = 0.05;
+		for(int i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)
+			adsr_keyboard[i].adsr_release_time = Display.ADSR_Releasetime * LUT_SR;
+		// Equalizer off
+		// WahWah
+		Display.WahWah_ONOFF = true;
+		strcpy(Display.value_str_wahwah[0], "ON");
+		Display.WahWah_Mode = 1;	// Auto-WahWah
+		strcpy(Display.value_str_wahwah[1], "AutoWahWah");
+		Display.WahWah_MidFreq = WahWah.mid_freq = 256.41;
+		Display.WahWah_Q = WahWah.bandpass->Q = 1.02;
+		Display.WahWah_Range = WahWah.range = 346.99;
+		Display.WahWah_LFOfreq = WahWah.lfo->lfo_frequency = 8;
+		Display.WahWah_LFOfreq_Index = Display.last_WahWah_LFOfreq_Index = 6;	// 8 Hz
+		// Distortion
+		Display.Distortion_ONOFF = true;
+		strcpy(Display.value_str_distortion[0], "ON");
+		Display.Distortion_Type = 1;	// Hard Clipping
+		strcpy(Display.value_str_distortion[1], "Hard");
+		Display.Distortion_Gain = 10;
+		// Tremolo
+		Display.Tremolo_ONOFF = true;
+		strcpy(Display.value_str_tremolo[0], "ON");
+		Display.Tremolo_Rate = Tremolo.lfo->lfo_frequency = 0.125;
+		Display.Tremolo_Rate_Index = Display.last_Tremolo_Rate_Index = 0;	// 0.125 Hz
+		Display.Tremolo_Depth = Tremolo.lfo->lfo_depth = 1;
+
+		Display.SetPreset = false;	// reset the state
+		strcpy(Display.value_str_presets[0], "done");
 
 		else if(Display.SetPreset == false)
-			strcpy(Display.value_str_presets[1], "");
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	case 5:
-		break;
-	case 6:
-		break;
-	case 7:
-		break;
-	case 8:
-		break;
-	case 9:
-		break;
-	case 10:
+			strcpy(Display.value_str_presets[0], "");
 		break;
 	}
-
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE9, Display.value_end_x_position, CASE9+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE10, Display.value_end_x_position, CASE10+VALUE_ROW_LENGTH , UNCOLORED);
-
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_presets[0], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_presets[1], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_presets[2], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_presets[3], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_presets[4], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_presets[5], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_presets[6], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_presets[7], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE9, Display.value_str_presets[8], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE10, Display.value_str_presets[9], &Font12, COLORED);
 
 
 
