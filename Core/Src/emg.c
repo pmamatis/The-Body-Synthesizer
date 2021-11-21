@@ -144,7 +144,7 @@ void ecg_heartrate(){
 //		printf("%u == %u\r\n", ecg_measInt ,ecg_intCount);
 
 		if (ecg_intCount == ecg_measInt){
-			heartrate = (float)(60/(EMG_MI))*ecg_peaks; //bpm
+			heartrate = ((float)(60/(EMG_MI))*ecg_peaks)/2; //bpm
 			ecg_peaks = 0;
 			ecg_intCount = 0;
 			if (Display.realtimeBPM_ONOFF){
