@@ -7,7 +7,6 @@
 
 #include "emg.h"
 
-
 //void emg_init(ADC_HandleTypeDef *ADC_Handler){
 //	EMG_ADC = ADC_Handler;
 //}
@@ -79,9 +78,9 @@ HAL_StatusTypeDef emg_peak_detection(){
 	}
 
 	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
-//				printf("%i\r\n",emg_buffer[i]);
+		//				printf("%i\r\n",emg_buffer[i]);
 		if(emg_buffer[i] > emg_detectionThreshold && emg_toggleCounter > emg_toggleThreshold){
-			printf("emg peak\r\n");
+			//			printf("emg peak\r\n");
 			emg_peak = 1;
 			emg_toggleCounter = 0;
 			HAL_GPIO_WritePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin,SET);
@@ -116,21 +115,21 @@ void ecg_heartrate(){
 
 
 	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
-//			printf("1:  %u\r\n",emg_buffer[i-1]);
-//			printf("2:  %u\r\n",emg_buffer[i]);
+		//			printf("1:  %u\r\n",emg_buffer[i-1]);
+		//			printf("2:  %u\r\n",emg_buffer[i]);
 		if(emg_buffer[i] > ecg_detectionThreshold && ecg_toggleCounter > ecg_toggleThreshold){
 
 			ecg_peaks += 1;
-			printf("ecg peak\r\n");
-			printf("1:  %u\r\n",emg_buffer[i-1]);
-			printf("2:  %u\r\n",emg_buffer[i]);
+			//			printf("ecg peak\r\n");
+			//			printf("1:  %u\r\n",emg_buffer[i-1]);
+			//			printf("2:  %u\r\n",emg_buffer[i]);
 			HAL_GPIO_WritePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin,SET);
 			ecg_toggleCounter = 0;
 			ecg_peak = 1;
 		}
 
 		if(ecg_peak){
-//			HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);
+			//			HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);
 			ecg_peak = 0;
 			ecg_toggled = 1;
 
@@ -141,16 +140,23 @@ void ecg_heartrate(){
 			ecg_toggled = 0;
 		}
 
-//		printf("%u == %u\r\n", ecg_measInt ,ecg_intCount);
+		//		printf("%u == %u\r\n", ecg_measInt ,ecg_intCount);
 
 		if (ecg_intCount == ecg_measInt){
-			heartrate = (float)(60/(EMG_MI))*ecg_peaks; //bpm
+			heartrate = ((float)(60/(EMG_MI))*ecg_peaks)/2; //bpm
 			ecg_peaks = 0;
 			ecg_intCount = 0;
-			if (Display.Drumcomputer_BPMbyECG_ONOFF){
+			if(Display.Drumcomputer_BPMbyECG_ONOFF == true){
 				BPM = heartrate;
+				sprintf(Display.value_str_drumcomputer[8], "%.f", BPM);
+//				BPM = round(heartrate);
+//				if(abs(last_BPM - BPM) > 3) {
+//					sprintf(Display.value_str_drumcomputer[8], "%.f", BPM);
+//					Display.UpdateDisplay = true;
+//				}
+//				last_BPM = BPM;
 			}
-			printf("Heartrate: %f bpm\r\n", heartrate);
+			//			printf("Heartrate: %f bpm\r\n", heartrate);
 
 		}
 

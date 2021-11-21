@@ -675,7 +675,7 @@ void DMA2_Stream2_IRQHandler(void)
 	if(Display.poti_moved == true) {
 		if(Display.pagePosition == 3 && Display.currentDrumcomputer > 0 && Display.JoystickParameterPosition == 2) {
 
-			BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause at low BPMs cause fuckups
+			BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause low BPMs cause fuckups
 			BPM = roundf(BPM);
 
 			sprintf(Display.value_str_drumcomputer[8], "%.f", BPM);
