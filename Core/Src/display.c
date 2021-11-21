@@ -720,7 +720,7 @@ void DISPLAY_SwitchPageRight(void) {
 
 	if(Display.pagePosition < Display.page_max)
 		Display.pagePosition = Display.pagePosition+1;
-	else if(Display.pagePosition == Display.page_max)
+	else if(Display.pagePosition == 10)
 		Display.pagePosition = -1;
 
 	DISPLAY_PrintCurrentPage();
@@ -781,7 +781,6 @@ void DISPLAY_processing(void) {
 				break;
 			default:
 				p_Drumcomputer_Settings();
-				//				Display.page_max = 3;
 				Display.page_max = Display.pagePosition;
 				break;
 			}
@@ -793,7 +792,6 @@ void DISPLAY_processing(void) {
 					break;
 				default:
 					p_Sequencer_Settings();
-					//					Display.page_max = 4;
 					Display.page_max = Display.pagePosition;
 					break;
 				}
@@ -805,7 +803,6 @@ void DISPLAY_processing(void) {
 						break;
 					default:
 						p_Voices_Settings();
-						//						Display.page_max = 5;
 						Display.page_max = Display.pagePosition;
 						break;
 					}
@@ -817,7 +814,6 @@ void DISPLAY_processing(void) {
 							break;
 						default:
 							p_ADSR_Settings();
-							//							Display.page_max = 6;
 							Display.page_max = Display.pagePosition;
 							break;
 						}
@@ -829,7 +825,6 @@ void DISPLAY_processing(void) {
 								break;
 							default:
 								p_Equalizer_Settings();
-								//								Display.page_max = 7;
 								Display.page_max = Display.pagePosition;
 								break;
 							}
@@ -841,7 +836,6 @@ void DISPLAY_processing(void) {
 									break;
 								default:
 									p_WahWah_Settings(&WahWah);
-									//									Display.page_max = 8;
 									Display.page_max = Display.pagePosition;
 									break;
 								}
