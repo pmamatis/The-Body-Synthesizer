@@ -20,7 +20,7 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 	emg_peak = 0;
 	emg_toggleThreshold = 50;
 	emg_toggleCounter = emg_toggleThreshold;
-
+	emg_toggled = 0;
 	// TODO: Werte durch Testen anpassen!! // Minimawerte ebenfalls einfügen!
 	emg_maxDetectionThreshold = 500;
 	emg_maxToggleThreshold = 50;
@@ -32,6 +32,8 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
  * need to be called after emg_init()
  */
 HAL_StatusTypeDef ecg_init(void){
+
+	heartrate = 0;
 
 	ecg_detectionThreshold = 250;
 	ecg_peaks = 0;
@@ -77,11 +79,17 @@ HAL_StatusTypeDef emg_peak_detection(){
 	}
 
 	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
-		//		printf("%i\r\n",emg_buffer[i]);
+//				printf("%i\r\n",emg_buffer[i]);
 		if(emg_buffer[i] > emg_detectionThreshold && emg_toggleCounter > emg_toggleThreshold){
-			//			printf("emg peak\r\n%i\r\n",i);
+			printf("emg peak\r\n");
 			emg_peak = 1;
 			emg_toggleCounter = 0;
+			HAL_GPIO_WritePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin,SET);
+			emg_toggled = 1;
+		}
+		if(emg_toggleCounter > emg_toggleThreshold && emg_toggled == 1){
+			HAL_GPIO_WritePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin,RESET);
+			emg_toggled = 0;
 		}
 
 		emg_toggleCounter++;
@@ -107,14 +115,16 @@ void ecg_heartrate(){
 
 
 
-	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i++){
+	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
 //			printf("1:  %u\r\n",emg_buffer[i-1]);
 //			printf("2:  %u\r\n",emg_buffer[i]);
 		if(emg_buffer[i] > ecg_detectionThreshold && ecg_toggleCounter > ecg_toggleThreshold){
 
 			ecg_peaks += 1;
-			printf("emg peak\r\n");
-			HAL_GPIO_WritePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin,SET);
+			printf("ecg peak\r\n");
+			printf("1:  %u\r\n",emg_buffer[i-1]);
+			printf("2:  %u\r\n",emg_buffer[i]);
+			HAL_GPIO_WritePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin,SET);
 			ecg_toggleCounter = 0;
 			ecg_peak = 1;
 		}
@@ -123,11 +133,11 @@ void ecg_heartrate(){
 //			HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);
 			ecg_peak = 0;
 			ecg_toggled = 1;
+
 		}
 
 		if(ecg_toggleCounter > ecg_toggleThreshold && ecg_toggled == 1){
-			HAL_GPIO_WritePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin,RESET);
-//			HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);
+			HAL_GPIO_WritePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin,RESET);
 			ecg_toggled = 0;
 		}
 
@@ -137,7 +147,7 @@ void ecg_heartrate(){
 			heartrate = (float)(60/(EMG_MI))*ecg_peaks; //bpm
 			ecg_peaks = 0;
 			ecg_intCount = 0;
-			if (Display.realtimeBPM_ONOFF){
+			if (Display.Drumcomputer_BPMbyECG_ONOFF){
 				BPM = heartrate;
 			}
 			printf("Heartrate: %f bpm\r\n", heartrate);

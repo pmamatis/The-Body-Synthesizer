@@ -295,7 +295,7 @@ int main(void)
 	// WahWah Init
 	WahWah_Init(&WahWah);
 
-	//Interface Init
+	// Interface Init
 	II_init();
 
 	// Display Init (should be done after the rest is initialized)
@@ -304,11 +304,10 @@ int main(void)
 
 	printf("End Init\r\n");
 
-	/* START FUNCTIONS *******************
-	 * */
+	/* START FUNCTIONS ******************** */
 	printf("Begin Start Functions\r\n");
 
-	//Start Display
+	// Start Display
 	frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 	Display_Start(&epd, &paint, frame_buffer);	// https://github.com/soonuse/epd-library-stm32
 
@@ -327,7 +326,7 @@ int main(void)
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)Display.ADC2inputs, 4);
 
 	// Start Timer and ADC-DMA for the EMG-sensor (ADC3)
-	//	emg_start_read();
+	emg_start_read();
 
 	//Start Interface
 	II_startInterface(&htim3);
@@ -672,7 +671,7 @@ static void MX_ADC3_Init(void)
   }
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
   */
-  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Channel = ADC_CHANNEL_15;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
@@ -681,7 +680,7 @@ static void MX_ADC3_Init(void)
   }
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
   */
-  sConfig.Channel = ADC_CHANNEL_5;
+  sConfig.Channel = ADC_CHANNEL_9;
   sConfig.Rank = ADC_REGULAR_RANK_2;
   if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
   {
@@ -1565,26 +1564,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
 		// Sources down
-		// Display.Drumfilter_Cutoff_Source -> Display.currentDrumcomputer == 6 && Display.pagePosition == 2
-		// Display.Voice_Note_Sources[Display.currentVoice-1] -> Display.currentVoice > 0 && Display.JoystickParameterPosition == 3 && Display.pagePosition == 5
-		// Display.Voice_Octave_Sources[Display.currentVoice-1] -> Display.currentVoice > 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 5
-		// Display.ADSR_Sources[0] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 1 && Display.pagePosition == 6
-		// Display.ADSR_Sources[1] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 2 && Display.pagePosition == 6
-		// Display.ADSR_Sources[2] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 3 && Display.pagePosition == 6
-		// Display.ADSR_Sources[3] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 6
-		// Display.ADSR_Sources[4] -> Display.currentADSR > 0 && Display.JoystickParameterPosition == 5 && Display.pagePosition == 6
-		// Display.EQ_Q_factor_Sources[Display.currentBand-1] -> Display.currentBand > 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 7
-		// Display.EQ_Cutoff_Sources[Display.currentBand-1] -> Display.currentBand > 0 && Display.JoystickParameterPosition == 5 && Display.pagePosition == 7
-		// Display.EQ_Gain_Sources[Display.currentBand-1] -> Display.currentBand > 0 && Display.JoystickParameterPosition == 6 && Display.pagePosition == 7
-		// Display.WahWah_Sources[0] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 3 && Display.pagePosition == 8
-		// Display.WahWah_Sources[1] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 8
-		// Display.WahWah_Sources[2] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 5 && Display.pagePosition == 8
-		// Display.WahWah_Sources[3] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 6 && Display.pagePosition == 8
-		// Display.WahWah_Sources[4] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 7 && Display.pagePosition == 8
-		// Display.WahWah_Sources[5] -> Display.currentWahWah > 0 && Display.JoystickParameterPosition == 8 && Display.pagePosition == 8
-		// Display.Distortion_Sources -> Display.currentWahWah == 0 && Display.JoystickParameterPosition == 4 && Display.pagePosition == 8
-		// Display.Tremolo_Sources[0] -> Display.JoystickParameterPosition == 4 && Display.pagePosition == 9
-		// Display.Tremolo_Sources[1] -> Display.JoystickParameterPosition == 5 && Display.pagePosition == 9
 		if(Display.pagePosition == 2) {	// Drumfilter Cutoff Source
 			if(Display.currentDrumcomputer == 6 && Display.Drumfilter_Cutoff_Source > 0)
 				Display.Drumfilter_Cutoff_Source--;
@@ -1649,7 +1628,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]--;
 		}
 
-//		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
+		//		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
 		Display.BACK_Debounce_State = false;
 	}
@@ -1768,7 +1747,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
 		// Reset of different modules by putton pressing
-		if(Display.pagePosition == 2 && Display.currentDrumcomputer == 7)				// Drumcomputer Reset
+		if(Display.pagePosition == 2 && Display.currentDrumcomputer == 8)				// Drumcomputer Reset
 			Display.Reset = true;
 		else if(Display.pagePosition == 3 && Display.currentSequencer == 8)				// Sequencer Reset
 			Display.Reset = true;
@@ -1851,7 +1830,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]++;
 		}
 
-//		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
+		//		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);
 		Display.ENTER_Debounce_State = false;
 	}

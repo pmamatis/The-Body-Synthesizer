@@ -678,9 +678,9 @@ void DMA2_Stream2_IRQHandler(void)
 			BPM = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;	// minimum BPM of 60, cause at low BPMs cause fuckups
 			BPM = roundf(BPM);
 
-			sprintf(Display.value_str_drumcomputer[7], "%.f", BPM);
+			sprintf(Display.value_str_drumcomputer[8], "%.f", BPM);
 			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-			Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE2, Display.value_str_drumcomputer[7], &Font12, COLORED);
+			Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE2, Display.value_str_drumcomputer[8], &Font12, COLORED);
 			Display.UpdateDisplay = true;
 
 			// further processing in drum computer process function to change the BPM only when drum loop / FourFour is done..

@@ -321,9 +321,9 @@ struct display_variables {
 	char value_str_volume[4][10];
 	char value_str_presets[9][10];
 	char value_str_keyboardmode[9][10];
-	char value_str_drumcomputer[11][10];
+	char value_str_drumcomputer[12][10];
 	char value_str_sequencer[9][10];
-	char value_str_emg[2][10];
+	char value_str_emg[3][10];
 
 	// Drumcomputer
 	uint8_t lastCurrentSampleRow;
@@ -340,7 +340,7 @@ struct display_variables {
 	float Drumfilter_Cutoff;
 	float Drumfilter_Q;
 	float Drumfilter_Gain;
-	bool realtimeBPM_ONOFF; // heartbeat from EMG-Board as bpm for Drumcomputer
+	bool Drumcomputer_BPMbyECG_ONOFF; // heartbeat from EMG/ECG-Board as bpm for Drumcomputer
 	// Sequencer
 	uint8_t CurrentNoteRow;
 	uint8_t CurrentSequencestep;

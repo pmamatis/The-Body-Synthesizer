@@ -187,7 +187,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->Drumfilter_Cutoff = LS_DRUMS.cutoff;
 	Display->Drumfilter_Q = LS_DRUMS.Q;
 	Display->Drumfilter_Gain = LS_DRUMS.dBGain;
-	Display->realtimeBPM_ONOFF = false;
+	Display->Drumcomputer_BPMbyECG_ONOFF = false;
 	// Sequencer
 	for(int i=0; i<MAX_NUMBER_OF_NOTES; i++) {
 		for(int j=0; j<NUMBER_OF_SEQUENCERSTEPS; j++) {
@@ -259,11 +259,12 @@ Display_Status Display_Init(struct display_variables* Display) {
 	sprintf(Display->value_str_drumcomputer[3], "%.f", Display->Drumfilter_Cutoff);
 	sprintf(Display->value_str_drumcomputer[4], "%.f", Display->Drumfilter_Gain);
 	strcpy(Display->value_str_drumcomputer[5],"POTI");
-	strcpy(Display->value_str_drumcomputer[6], "");	// reset
-	sprintf(Display->value_str_drumcomputer[7], "%.f", BPM);
-	strcpy(Display->value_str_drumcomputer[8], "909");
-	strcpy(Display->value_str_drumcomputer[9], "OFF");
-	strcpy(Display->value_str_drumcomputer[10], "909");
+	strcpy(Display->value_str_drumcomputer[6], "OFF");
+	strcpy(Display->value_str_drumcomputer[7], "");	// reset
+	sprintf(Display->value_str_drumcomputer[8], "%.f", BPM);
+	strcpy(Display->value_str_drumcomputer[9], "909");
+	strcpy(Display->value_str_drumcomputer[10], "OFF");
+	strcpy(Display->value_str_drumcomputer[11], "909");
 
 	strcpy(Display->value_str_sequencer[0], "OFF");	// sequencer
 	sprintf(Display->value_str_sequencer[1], "%c", Display->Sequencer_Note[0]);
@@ -921,7 +922,8 @@ Display_Status p_Drumcomputer_overview(void) {
 	char str_5[] = "Cutoff";
 	char str_6[] = "Gain";
 	char str_7[] = "Cutoff Source";
-	char str_8[] = "Drumcomputer Reset";
+	char str_8[] = "BPM by ECG ON/OFF";
+	char str_9[] = "Drumcomputer Reset";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
@@ -930,9 +932,10 @@ Display_Status p_Drumcomputer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_6, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE9, str_9, &Font12, COLORED);
 
 	// as big as the number of parameters
-	Display.max_parameter = 8;
+	Display.max_parameter = 9;
 
 	//	uint8_t mode_number = 0;
 
@@ -1027,17 +1030,33 @@ Display_Status p_Drumcomputer_overview(void) {
 		//		}
 		break;
 	case 8:
+		// BPM by ECG ON/OFF
+		Display.currentDrumcomputer = 8;
+
+		if(Display.poti_moved == true) {
+			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
+			if(potVal < 50) {	// smaller than 50 %
+				Display.Drumcomputer_BPMbyECG_ONOFF = false;
+				strcpy(Display.value_str_drumcomputer[6], "OFF");
+			}
+			else if(potVal >= 50) {	// greater than 50 %
+				Display.Drumcomputer_BPMbyECG_ONOFF = true;
+				strcpy(Display.value_str_drumcomputer[6], "ON");
+			}
+		}
+		break;
+	case 9:
 		// Drumcomputer Reset
-		Display.currentDrumcomputer = 7;
+		Display.currentDrumcomputer = 8;
 
 		//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
 		if(Display.Reset == true) {
 			Drum_Computer_Reset();
 			Display.Reset = false;
-			strcpy(Display.value_str_drumcomputer[6], "done");
+			strcpy(Display.value_str_drumcomputer[7], "done");
 		}
 		else if(Display.Reset == false)
-			strcpy(Display.value_str_drumcomputer[6], "");
+			strcpy(Display.value_str_drumcomputer[7], "");
 		break;
 	default:
 		break;
@@ -1050,6 +1069,7 @@ Display_Status p_Drumcomputer_overview(void) {
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE7, Display.value_end_x_position, CASE7+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE9, Display.value_end_x_position, CASE9+VALUE_ROW_LENGTH, UNCOLORED);
 
 	sprintf(Display.value_str_drumcomputer[2], "%.3f", Display.Drumfilter_Q);
 	sprintf(Display.value_str_drumcomputer[3], "%.0f", Display.Drumfilter_Cutoff);
@@ -1062,7 +1082,8 @@ Display_Status p_Drumcomputer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE5, Display.value_str_drumcomputer[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_drumcomputer[4], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE7, Display.value_str_drumcomputer[5], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_drumcomputer[6], &Font12, COLORED);	// reset
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_drumcomputer[6], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE9, Display.value_str_drumcomputer[7], &Font12, COLORED);	// reset
 
 	return DISPLAY_OK;
 }
@@ -1091,7 +1112,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 
 		if(potVal >= 0 && potVal < 25) {
 
-			strcpy(Display.value_str_drumcomputer[8], "909");
+			strcpy(Display.value_str_drumcomputer[9], "909");
 
 			if(Display.LoadDrumkit == true) {
 
@@ -1122,7 +1143,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 				Display.LoadDrumkit = false;
 
 				// print name of loaded drumkit above the name of the samples
-				strcpy(Display.value_str_drumcomputer[10], "909");
+				strcpy(Display.value_str_drumcomputer[11], "909");
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Op.HH");
 				strcpy(Display.sample3, "Clap");
@@ -1133,7 +1154,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 		}
 		else if(potVal >= 25 && potVal < 50) {
 
-			strcpy(Display.value_str_drumcomputer[8], "Rock loud");
+			strcpy(Display.value_str_drumcomputer[9], "Rock loud");
 
 			if(Display.LoadDrumkit == true) {
 
@@ -1164,7 +1185,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 				Display.LoadDrumkit = false;
 
 				// print name of loaded drumkit above the name of the samples
-				strcpy(Display.value_str_drumcomputer[10], "Rock loud");
+				strcpy(Display.value_str_drumcomputer[11], "Rock loud");
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Hihat");
 				strcpy(Display.sample3, "Snare");
@@ -1175,7 +1196,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 		}
 		else if(potVal >= 50 && potVal < 75) {
 
-			strcpy(Display.value_str_drumcomputer[8], "Rock");
+			strcpy(Display.value_str_drumcomputer[9], "Rock");
 
 			if(Display.LoadDrumkit == true) {
 
@@ -1206,7 +1227,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 				Display.LoadDrumkit = false;
 
 				// print name of loaded drumkit above the name of the samples
-				strcpy(Display.value_str_drumcomputer[10], "Rock");
+				strcpy(Display.value_str_drumcomputer[11], "Rock");
 				strcpy(Display.sample1, "Kick");
 				strcpy(Display.sample2, "Hihat");
 				strcpy(Display.sample3, "Snare");
@@ -1217,7 +1238,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 		}
 		else if(potVal >= 75 && potVal <= 100) {
 
-			strcpy(Display.value_str_drumcomputer[8], "Windows");
+			strcpy(Display.value_str_drumcomputer[9], "Windows");
 
 			if(Display.LoadDrumkit == true) {
 
@@ -1248,7 +1269,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 				Display.LoadDrumkit = false;
 
 				// print name of loaded drumkit above the name of the samples
-				strcpy(Display.value_str_drumcomputer[10], "Windows");
+				strcpy(Display.value_str_drumcomputer[11], "Windows");
 				strcpy(Display.sample1, "Chord");
 				strcpy(Display.sample2, "Trash");
 				strcpy(Display.sample3, "Remove");
@@ -1265,18 +1286,18 @@ Display_Status p_Drumcomputer_Settings(void) {
 			float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;	// Potentiometer Input in %
 			if(potVal < 50) {	// smaller than 50 %
 				Display.EditDrums = false;
-				strcpy(Display.value_str_drumcomputer[9], "OFF");
+				strcpy(Display.value_str_drumcomputer[10], "OFF");
 			}
 			else if(potVal >= 50) {	// greater than 50 %
 				Display.EditDrums = true;
-				strcpy(Display.value_str_drumcomputer[9], "ON");
+				strcpy(Display.value_str_drumcomputer[10], "ON");
 			}
 		}
 	}
 
 	// print name of loaded drumkit above the name of the samples
 	Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE6-10, Display.row_start_x_position+25, CASE6-10+VALUE_ROW_LENGTH, UNCOLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6-10, Display.value_str_drumcomputer[10], &Font8, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6-10, Display.value_str_drumcomputer[11], &Font8, COLORED);
 
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
@@ -1284,9 +1305,9 @@ Display_Status p_Drumcomputer_Settings(void) {
 	Display_DrawDrumcomputerIcons(Display.sample1, Display.sample2, Display.sample3, Display.sample4);
 	DISPLAY_DrawDrumcomputerPatternFrame(8);
 
-	Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE2, Display.value_str_drumcomputer[7], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, Display.value_str_drumcomputer[8], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_drumcomputer[9], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE2, Display.value_str_drumcomputer[8], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE3, Display.value_str_drumcomputer[9], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_drumcomputer[10], &Font12, COLORED);
 
 	return DISPLAY_OK;
 }

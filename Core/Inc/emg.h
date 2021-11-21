@@ -14,7 +14,7 @@
 #define EMG_READ_LENGTH 20//8192/4
 //#define EMG_SR 500 //Hz
 #define EMG_SR 5000
-#define EMG_MI 10 //Measure Intervall in s
+#define EMG_MI 2 //Measure Intervall in s
 /* Variables */
 ADC_HandleTypeDef* EMG_ADC;
 TIM_HandleTypeDef* EMG_TIM;
@@ -31,7 +31,7 @@ uint32_t emg_toggleCounter;
 uint32_t emg_toggleThreshold;
 uint32_t emg_maxDetectionThreshold;
 uint32_t emg_maxToggleThreshold;
-
+bool emg_toggled;
 //ECG varaibles
 uint32_t ecg_measInt; //measurement Interval
 uint32_t ecg_detectionThreshold;
