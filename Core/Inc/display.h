@@ -303,7 +303,7 @@ struct display_variables {
 	source_t EQ_Q_factor_Sources[5];			// sources for q-factor of 5 frequency bands
 	source_t EQ_Cutoff_Sources[5];				// sources for cutoff of 5 frequency bands
 	source_t EQ_Gain_Sources[5];				// sources for gain of 5 frequency bands
-	source_t WahWah_Sources[4];					// sources for wahwah parameters
+	source_t WahWah_Sources[6];					// sources for wahwah parameters
 	source_t Distortion_Sources;				// sources for gain
 	source_t Tremolo_Sources[2];				// sources for rate and depth
 	source_t Drumfilter_Cutoff_Source;			// source for drumfilter cuttoff

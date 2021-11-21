@@ -4609,10 +4609,14 @@ void p_Presets(void) {
 			// Reset everything
 			Full_Reset();
 			// Volumes
-			volume[0] = 0.21;
-			volume[1] = 1;
-			volume[2] = 0.55;
-			volume[3] = 1;
+			//			volume[0] = 0.21;
+			//			volume[1] = 1;
+			//			volume[2] = 0.55;
+			//			volume[3] = 1;
+			volume[0] = 0.2;
+			volume[1] = 0.2;
+			volume[2] = 0.2;
+			volume[3] = 0.2;
 			// Drumcomputer
 			Display.Drumcomputer_ONOFF = true;
 			strcpy(Display.value_str_drumcomputer[0], "ON");	// to make sure that value is correctly displayed when switch to page
