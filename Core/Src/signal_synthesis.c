@@ -744,12 +744,25 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 		signals -> kind[index] = kind;
 
 		switch(kind) {
+
 		case SIN:
 			signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
 			signals -> freqIndex[index] = Get_Note_Index(key,octave);
 			signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals -> freqIndex[index]];
-			// signals -> current_LUT_Index[index] = LUT_STARTINDEX[signals1.freqIndex[index]];
 			break;
+
+		case RECT:
+			signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
+			signals -> freqIndex[index] = Get_Note_Index(key,octave);
+			signals -> current_LUT_Index[index] = 0;
+			break;
+
+		case TRIANGLE:
+			signals -> freq[index] = Get_Note_Frequency(Get_Keyindex(key), octave);
+			signals -> freqIndex[index] = Get_Note_Index(key,octave);
+			signals -> current_LUT_Index[index] = 0;
+			break;
+
 		case NOISE:
 			signals -> freq[index] = 0;
 			signals -> freqIndex[index] = 0;
@@ -758,20 +771,6 @@ void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octa
 		}
 	}
 	signals -> max = 1;
-
-	//	for (int NewSignal_count = 0; NewSignal_count < MAX_SIGNAL_KOMBINATION;NewSignal_count++){
-	//		if(!ID_array[NewSignal_count]){
-	//			signals -> ID[NewSignal_count] = NewSignal_count;
-	//			ID_array[NewSignal_count] = 1;
-	//		}
-	//
-	//	}
-
-	//	printf("New Signal counter = %i\r\n", signals->count);
-	//	printf("ID's:");
-	//		for (int i = 0;i<signals->count;i++)
-	//			printf("%i ,",signals->ID[i]);
-	//		printf("\r\n");
 }
 
 /** @brief deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct
@@ -855,9 +854,8 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 	//Loop for signal synthesis
 	for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
 
-
-
 		addValue = 0;
+
 		calculate_keyboard[0] = 0;
 		calculate_keyboard[1] = 0;
 		calculate_keyboard[2] = 0;
@@ -891,16 +889,16 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 					addValue = addValue + LUT[signals -> current_LUT_Index[j]];
 				}
 				// get index for the next sin value
-				signals -> current_LUT_Index[j]++;
+				signals->current_LUT_Index[j]++;
 
-				if (signals -> current_LUT_Index[j] > LUT_ENDINDEX[signals -> freqIndex[j]]) {
+				if (signals->current_LUT_Index[j] > LUT_ENDINDEX[signals->freqIndex[j]]) {
 
-					signals -> current_LUT_Index[j] = LUT_STARTINDEX[ signals -> freqIndex[j]];
+					signals->current_LUT_Index[j] = LUT_STARTINDEX[signals->freqIndex[j]];
 
 					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
 					// this has to be done here to process the change immediately when the index is
 					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
-						//						if(Display.Voices_ONOFF[VOICES_ID] == true ) { //Sinnlos!!!!
+
 						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
 							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
@@ -911,10 +909,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
 							Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
 						}
-						//						}
 					}
 					else if(signals->ID[j] == VOICES_ID+1) { //ID taucht nur auf wenn  voice auch ON ist...
-						//						if(Display.Voices_ONOFF[VOICES_ID+1] == true ) { //Sinnlos!!!!
+
 						if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
 							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
@@ -925,10 +922,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
 							Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
 						}
-						//						}
 					}
 					else if(signals->ID[j] == VOICES_ID+2) {	//ID taucht nur auf wenn  voice auch ON ist...
-						//						if(Display.Voices_ONOFF[VOICES_ID+2] == true ) { //Sinnlos!!!!
+
 						if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
 							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
@@ -939,7 +935,177 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							NewSignal(&signals1, SIN, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
 							Display.last_Voices_Octave[VOICES_ID+2] = Display.Voices_Octave[VOICES_ID+2];
 						}
-						//						}
+					}
+					// delete signal if voice off
+					if(Display.Voices_ONOFF[VOICES_ID]==false && Display.Voices_Created[VOICES_ID] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+						Display.Voices_Created[VOICES_ID] = false;
+					}
+					else if(Display.Voices_ONOFF[VOICES_ID+1]==false && Display.Voices_Created[VOICES_ID+1] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+						Display.Voices_Created[VOICES_ID+1] = false;
+					}
+					else if(Display.Voices_ONOFF[VOICES_ID+2]==false && Display.Voices_Created[VOICES_ID+2] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+						Display.Voices_Created[VOICES_ID+2] = false;
+					}
+				}
+				break;
+
+			case RECT:
+				// keyboard signals
+				if(signals->ID[j] == KEYBOARD_VOICE_ID){
+					calculate_keyboard[0] = CalcRectSample(signals, j);
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+1){
+					calculate_keyboard[1] = CalcRectSample(signals, j);
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+2){
+					calculate_keyboard[2] = CalcRectSample(signals, j);
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+3){
+					calculate_keyboard[3] = CalcRectSample(signals, j);
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+4){
+					calculate_keyboard[4] = CalcRectSample(signals, j);
+				}
+				else{
+					// adds all RECT values from the signals to addValue
+					addValue = addValue + CalcRectSample(signals, j);
+				}
+
+				// get index for the next rect value
+				signals->current_LUT_Index[j]++;
+
+				if (signals->current_LUT_Index[j] >= LUT_SUPPORTPOINTS[signals->freqIndex[j]]) {
+
+					signals->current_LUT_Index[j] = 0;
+
+					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
+					// this has to be done here to process the change immediately when the index is
+					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
+
+						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+							NewSignal(&signals1, RECT, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
+							Display.last_Voices_Note[VOICES_ID] = Display.Voices_Note[VOICES_ID];
+						}
+						if(Display.last_Voices_Octave[VOICES_ID] != Display.Voices_Octave[VOICES_ID]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+							NewSignal(&signals1, RECT, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
+							Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
+						}
+					}
+					else if(signals->ID[j] == VOICES_ID+1) { //ID taucht nur auf wenn  voice auch ON ist...
+
+						if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+							NewSignal(&signals1, RECT, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
+							Display.last_Voices_Note[VOICES_ID+1] = Display.Voices_Note[VOICES_ID+1];
+						}
+						if(Display.last_Voices_Octave[VOICES_ID+1] != Display.Voices_Octave[VOICES_ID+1]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+							NewSignal(&signals1, RECT, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
+							Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
+						}
+					}
+					else if(signals->ID[j] == VOICES_ID+2) {	//ID taucht nur auf wenn  voice auch ON ist...
+
+						if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+							NewSignal(&signals1, RECT, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
+							Display.last_Voices_Note[VOICES_ID+2] = Display.Voices_Note[VOICES_ID+2];
+						}
+						if(Display.last_Voices_Octave[VOICES_ID+2] != Display.Voices_Octave[VOICES_ID+2]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+							NewSignal(&signals1, RECT, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
+							Display.last_Voices_Octave[VOICES_ID+2] = Display.Voices_Octave[VOICES_ID+2];
+						}
+					}
+					// delete signal if voice off
+					if(Display.Voices_ONOFF[VOICES_ID]==false && Display.Voices_Created[VOICES_ID] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+						Display.Voices_Created[VOICES_ID] = false;
+					}
+					else if(Display.Voices_ONOFF[VOICES_ID+1]==false && Display.Voices_Created[VOICES_ID+1] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+						Display.Voices_Created[VOICES_ID+1] = false;
+					}
+					else if(Display.Voices_ONOFF[VOICES_ID+2]==false && Display.Voices_Created[VOICES_ID+2] == true) {
+						DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+						Display.Voices_Created[VOICES_ID+2] = false;
+					}
+				}
+				break;
+
+			case TRIANGLE:
+				// keyboard signals
+				if(signals->ID[j] == KEYBOARD_VOICE_ID){
+					calculate_keyboard[0] = CalcTriangleSample(signals, j);
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+1){
+					calculate_keyboard[1] = CalcTriangleSample(signals, j);
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+2){
+					calculate_keyboard[2] = CalcTriangleSample(signals, j);
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+3){
+					calculate_keyboard[3] = CalcTriangleSample(signals, j);
+				}
+				else if(signals->ID[j] == KEYBOARD_VOICE_ID+4){
+					calculate_keyboard[4] = CalcTriangleSample(signals, j);
+				}
+				else{
+					// adds all TRIANGLE values from the signals to addValue
+					addValue = addValue + CalcTriangleSample(signals, j);
+				}
+				// get index for the next triangle value
+				signals->current_LUT_Index[j]++;
+
+				if (signals->current_LUT_Index[j] >= LUT_SUPPORTPOINTS[signals->freqIndex[j]]) {
+
+					signals->current_LUT_Index[j] = 0;
+
+					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
+					// this has to be done here to process the change immediately when the index is
+					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
+
+						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+							NewSignal(&signals1, TRIANGLE, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
+							Display.last_Voices_Note[VOICES_ID] = Display.Voices_Note[VOICES_ID];
+						}
+						if(Display.last_Voices_Octave[VOICES_ID] != Display.Voices_Octave[VOICES_ID]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
+							NewSignal(&signals1, TRIANGLE, Display.Voices_Note[VOICES_ID], Display.Voices_Octave[VOICES_ID],VOICES_ID);
+							Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
+						}
+					}
+					else if(signals->ID[j] == VOICES_ID+1) { //ID taucht nur auf wenn  voice auch ON ist...
+
+						if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+							NewSignal(&signals1, TRIANGLE, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
+							Display.last_Voices_Note[VOICES_ID+1] = Display.Voices_Note[VOICES_ID+1];
+						}
+						if(Display.last_Voices_Octave[VOICES_ID+1] != Display.Voices_Octave[VOICES_ID+1]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
+							NewSignal(&signals1, TRIANGLE, Display.Voices_Note[VOICES_ID+1], Display.Voices_Octave[VOICES_ID+1],VOICES_ID+1);
+							Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
+						}
+					}
+					else if(signals->ID[j] == VOICES_ID+2) {	//ID taucht nur auf wenn  voice auch ON ist...
+
+						if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+							NewSignal(&signals1, TRIANGLE, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
+							Display.last_Voices_Note[VOICES_ID+2] = Display.Voices_Note[VOICES_ID+2];
+						}
+						if(Display.last_Voices_Octave[VOICES_ID+2] != Display.Voices_Octave[VOICES_ID+2]) {
+							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
+							NewSignal(&signals1, TRIANGLE, Display.Voices_Note[VOICES_ID+2], Display.Voices_Octave[VOICES_ID+2],VOICES_ID+2);
+							Display.last_Voices_Octave[VOICES_ID+2] = Display.Voices_Octave[VOICES_ID+2];
+						}
 					}
 					// delete signal if voice off
 					if(Display.Voices_ONOFF[VOICES_ID]==false && Display.Voices_Created[VOICES_ID] == true) {
@@ -978,7 +1144,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// NORM: Volume by signal count
 		if(signals->count - active_keyboard_notes == 0) {}	// division by zero for addValue possible -> fuckup!
 		else
-			addValue = addValue/(signals->count - active_keyboard_notes);
+			addValue = addValue / (signals->count - active_keyboard_notes);
 
 		// maximum
 		//		if (signals -> max < fabs((double)addValue)){
@@ -990,7 +1156,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		// Drummachine
-		if ((volume[1]>0)||(volume[2]>0)){
+		if ((volume[1] > 0) || (volume[2] > 0)){
 			Drum_Computer_Process();
 			drums_filtered = drums;
 			if(Display.Drumfilter_ONOFF)
@@ -1122,6 +1288,78 @@ bool initRamp(void){
 
 	return retval;
 }
+
+/////////
+// NEW //
+/////////
+// CREATES: Rectangle wave based on struct signals
+float CalcRectSample(struct signal_t* signals, int index){
+
+	float rect = 0;
+
+	// Current Index:   signals->current_LUT_Index[index]
+	// Period:			LUT_SUPPORTPOINTS[signals->freqIndex[index]]
+
+	// IF: Length of period is even (e.g. 346)
+	if(LUT_SUPPORTPOINTS[signals->freqIndex[index]] % 2 == 0){
+
+		// IF: Current index < length of period of desired frequency (0:172 < 173)
+		if(signals->current_LUT_Index[index] < (LUT_SUPPORTPOINTS[signals->freqIndex[index]] / 2)){
+
+			rect = 0.3;
+		}
+		// IF: Current index >= length of period of desired frequency (173:345 >= 173)
+		else if(signals->current_LUT_Index[index] >= (LUT_SUPPORTPOINTS[signals->freqIndex[index]] / 2)){
+
+			rect = -0.3;
+		}
+	}
+	// IF: Length of period is odd (e.g. 347)
+	else if(LUT_SUPPORTPOINTS[signals->freqIndex[index]] % 2 == 1){
+
+		// IF: Current index < length of period of desired frequency (0:173 < 174) due to (period-1)/2 + 1
+		if(signals->current_LUT_Index[index] < (((LUT_SUPPORTPOINTS[signals->freqIndex[index]] - 1) / 2) + 1)){
+
+			rect = 0.3;
+		}
+		// IF: Current index >= length of period of desired frequency (174:346 >= 174) due to (period-1)/2 + 1
+		else if(signals->current_LUT_Index[index] >= (((LUT_SUPPORTPOINTS[signals->freqIndex[index]] - 1) / 2) + 1)){
+
+			rect = -0.3;
+		}
+	}
+	return rect;
+}
+
+// CREATES: Triangle wave samples based on struct signals
+float CalcTriangleSample(struct signal_t* signals, int index){
+
+	float triangle      = 0;
+	float current_index = (float)signals->current_LUT_Index[index];
+	float period        = (float)LUT_SUPPORTPOINTS[signals->freqIndex[index]];
+
+	/* FORMULA: 4*a/p * abs((((x - p/4) % p) + p) % p - p/2) - a
+	 *
+	 * a: Amplitude			>> 1
+	 * x: Current index		>> signals->current_LUT_Index[index]
+	 * p: Period			>> LUT_SUPPORTPOINTS[signals->freqIndex[index]]
+	 *
+	 * Source: https://en.wikipedia.org/wiki/Triangle_wave
+	 *
+	 */
+
+	triangle = fmodf(current_index - period/4, period);
+	triangle = triangle + period;
+	triangle = fmodf(triangle, period) - period/2;
+	triangle = abs(triangle);
+	triangle = (4/period) * triangle - 1;;
+
+	return triangle;
+}
+
+/////////////
+// NEW END //
+/////////////
 
 
 float Noise_Generator(void) {

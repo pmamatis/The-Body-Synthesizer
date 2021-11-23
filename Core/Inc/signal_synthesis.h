@@ -93,9 +93,8 @@ enum singnal_synthesis_enum{
 /**@brief Signal kinds*/
 enum signal_kind_enum{
 	SIN = 1,
-	SAWTOOTH,
+	RECT,
 	TRIANGLE,
-	PWM,
 	NOISE
 };
 
@@ -131,6 +130,12 @@ void DeleteSignal(struct signal_t* signals,int16_t signal_index);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID);
 void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
 void LFO_SingleValueProcess(struct effects_lfo_t* lfo, uint8_t lfo_effect);
+
+// NEW
+float CalcRectSample(struct signal_t* signals, int index);
+float CalcTriangleSample(struct signal_t* signals, int index);
+// NEW END
+
 float Noise_Generator(void);
 float AWGN_generator(void);
 int16_t IDtoIndex(int16_t id);

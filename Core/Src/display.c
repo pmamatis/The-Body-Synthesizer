@@ -3118,7 +3118,7 @@ void p_Voices_overview(void) {
 	case 3:
 		// Voice 2 ON/OFF
 		Display.currentVoice = 2;
-		Display.Voices_Kind[Display.currentVoice-1] = SIN;
+		Display.Voices_Kind[Display.currentVoice-1] = RECT;
 
 		if(Display.poti_moved == true) {
 			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
@@ -3136,7 +3136,7 @@ void p_Voices_overview(void) {
 	case 4:
 		// Voice 3 ON/OFF
 		Display.currentVoice = 3;
-		Display.Voices_Kind[Display.currentVoice-1] = SIN;
+		Display.Voices_Kind[Display.currentVoice-1] = TRIANGLE;
 
 		if(Display.poti_moved == true) {
 			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH , UNCOLORED);

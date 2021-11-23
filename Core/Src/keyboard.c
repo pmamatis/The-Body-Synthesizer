@@ -71,30 +71,30 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 		if(adc_value > keyboard_note_adcval[i] && adc_value < keyboard_note_adcval[i+1]) {
 
 			if(!played_keyboard_note[0] && activate_processing[0]){
-				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID);
+				NewSignal(signals, RECT, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID);
 				played_keyboard_note[0] = true;
 				active_keyboard_notes++;
 			}
 			else if(!played_keyboard_note[1] && activate_processing[1]){
-				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+1);
+				NewSignal(signals, RECT, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+1);
 				played_keyboard_note[1] = true;
 				active_keyboard_notes++;
 			}
 
 			else if(!played_keyboard_note[2] && activate_processing[2]){
-				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+2);
+				NewSignal(signals, RECT, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+2);
 				played_keyboard_note[2] = true;
 				active_keyboard_notes++;
 			}
 
 			else if(!played_keyboard_note[3] && activate_processing[3]){
-				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+3);
+				NewSignal(signals, RECT, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+3);
 				played_keyboard_note[3] = true;
 				active_keyboard_notes++;
 			}
 
 			else if(!played_keyboard_note[4] && activate_processing[4]){
-				NewSignal(signals, SIN, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+4);
+				NewSignal(signals, RECT, keys[i], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+4);
 				played_keyboard_note[4] = true;
 				active_keyboard_notes++;
 			}
