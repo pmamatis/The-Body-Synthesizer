@@ -16,11 +16,11 @@
  */
 Display_Status Display_Init(struct display_variables* Display) {
 
-	strcpy(&Display->source_names[GYRO_LR], "Gyro L/R");
-	strcpy(&Display->source_names[GYRO_FB], "Gyro F/B");
-	strcpy(&Display->source_names[EMG], "EMG");
-	strcpy(&Display->source_names[EKG], "EKG");
-	strcpy(&Display->source_names[POTI], "POTI");
+	strcpy((char*)&(Display->source_names[GYRO_LR]), "Gyro L/R");
+	strcpy((char*)&(Display->source_names[GYRO_FB]), "Gyro F/B");
+	strcpy((char*)&Display->source_names[EMG], "EMG");
+	strcpy((char*)&Display->source_names[EKG], "EKG");
+	strcpy((char*)&Display->source_names[POTI], "POTI");
 
 	Display->PatchSelected[0] = false;
 	Display->PatchSelected[1] = false;
@@ -106,7 +106,7 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->note = 0;
 	Display->last_octave = 1;
 	Display->octave = 0;
-	Display->last_rate = 1;
+	Display->last_rate = 1	;
 	Display->rate = 0;
 	Display->last_depth = 1;
 	Display->depth = 0;
@@ -389,8 +389,11 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_tremolo[4],"POTI");
 	strcpy(Display->value_str_tremolo[5],"");
 
+	//EMG & ECG
 	sprintf(Display->value_str_emg[0], "%lu", emg_detectionThreshold);	// emg
-	sprintf(Display->value_str_emg[1], "%lu", emg_toggleThreshold);
+	sprintf(Display->value_str_emg[0], "%lu", emg_detectionThreshold);	// emg
+	sprintf(Display->value_str_ecg[1], "%lu", ecg_toggleThreshold);
+	sprintf(Display->value_str_ecg[1], "%lu", ecg_toggleThreshold);
 
 	return DISPLAY_OK;
 }
@@ -4432,11 +4435,14 @@ void p_EMG(void) {
 	char headerstring[] = "EMG";
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
 	//row cases
-	char str_1[] = "Amplitude Thresh.";
-	char str_2[] = "Peak Debouncing";
+	char str_1[] = "EMG Amplitude Thresh";
+	char str_2[] = "EMG Peak Debouncing";
+	char str_3[] = "ECG Amplitude Thresh";
+	char str_4[] = "ECG Peak Debouncing";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
-
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_4, &Font12, COLORED);
 	// as big as the number of parameters
 	Display.max_parameter = 2;
 
@@ -4451,17 +4457,30 @@ void p_EMG(void) {
 			emg_toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * emg_maxToggleThreshold);
 			// Minimawerte ebenfalls einfügen
 			break;
+		case 3:
+			ecg_detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * ecg_maxDetectionThreshold);
+			// Minimawerte ebenfalls einfügen
+			break;
+		case 4:
+			ecg_toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * ecg_maxToggleThreshold);
+			// Minimawerte ebenfalls einfügen
+			break;
 		}
 	}
 
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
 	sprintf(Display.value_str_emg[0], "%lu", emg_detectionThreshold);
 	sprintf(Display.value_str_emg[1], "%lu", emg_toggleThreshold);
+	sprintf(Display.value_str_ecg[0], "%lu", ecg_detectionThreshold);
+	sprintf(Display.value_str_ecg[1], "%lu", ecg_toggleThreshold);
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_emg[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_emg[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_ecg[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_ecg[1], &Font12, COLORED);
 }
 
 /** @brief this function prints the Tremolo submenu and edits its values

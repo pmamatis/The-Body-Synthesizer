@@ -71,6 +71,7 @@ extern "C" {
 //Gyroskop SPI
 #include "SPI_Connection.h"
 
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

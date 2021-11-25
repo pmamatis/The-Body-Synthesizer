@@ -119,7 +119,7 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
 	inputBuffer_position = HALF_BLOCK;
 	if(hadc->Instance == ADC3){
 
-		//		emg_peak_detection();
+				emg_peak_detection();
 		ecg_heartrate();
 	}
 }
@@ -127,7 +127,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 
 	inputBuffer_position = FULL_BLOCK;
 	if(hadc->Instance == ADC3){
-		//		emg_peak_detection();
+				emg_peak_detection();
 		ecg_heartrate();
 	}
 }
@@ -313,7 +313,7 @@ int main(void)
 
 	// Start DAC-DMA
 	printf("start DAC\r\n");
-	//	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
+//		HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)calculate_vector1 ,BLOCKSIZE, DAC_ALIGN_12B_R);
 
 	// Start Timer and ADC-DMA for the keyboard (ADC1)

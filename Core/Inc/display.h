@@ -15,6 +15,7 @@
 #include "epdif.h"
 #include "epdpaint.h"
 #include "imagedata.h"
+//#include "sd_card.h"
 
 #define COLORED      0
 #define UNCOLORED    1
@@ -324,6 +325,7 @@ struct display_variables {
 	char value_str_drumcomputer[12][10];
 	char value_str_sequencer[9][10];
 	char value_str_emg[3][10];
+	char value_str_ecg[3][10];
 
 	// Drumcomputer
 	uint8_t lastCurrentSampleRow;
