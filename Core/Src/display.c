@@ -390,10 +390,14 @@ Display_Status Display_Init(struct display_variables* Display) {
 	strcpy(Display->value_str_tremolo[5],"");
 
 	//EMG & ECG
-	sprintf(Display->value_str_emg[0], "%lu", emg_detectionThreshold);	// emg
-	sprintf(Display->value_str_emg[0], "%lu", emg_detectionThreshold);	// emg
-	sprintf(Display->value_str_ecg[1], "%lu", ecg_toggleThreshold);
-	sprintf(Display->value_str_ecg[1], "%lu", ecg_toggleThreshold);
+	Display->EMG_detectionThreshold = ((float)emg_detectionThreshold/(float)Display->ADC_FullRange) * 3.3;
+	Display->EMG_toggleThreshold = ((float)emg_toggleThreshold/(float)EMG_SR) * 1000;
+	Display->ECG_detectionThreshold = ((float)ecg_detectionThreshold/(float)Display->ADC_FullRange) * 3.3;
+	Display->ECG_toggleThreshold = ((float)ecg_toggleThreshold/(float)EMG_SR) * 1000;
+	sprintf(Display->value_str_emg[0], "%.2f", Display->EMG_detectionThreshold);
+	sprintf(Display->value_str_emg[1], "%.0f", Display->EMG_toggleThreshold);
+	sprintf(Display->value_str_ecg[0], "%.2f", Display->ECG_detectionThreshold);
+	sprintf(Display->value_str_ecg[1], "%.0f", Display->ECG_toggleThreshold);
 
 	return DISPLAY_OK;
 }
@@ -1095,7 +1099,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Last page", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, "BPM", &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Load sample", &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, "Load samples", &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, "Edit drums", &Font12, COLORED);
 
 	// as big as the number of parameters
@@ -1299,8 +1303,8 @@ Display_Status p_Drumcomputer_Settings(void) {
 	}
 
 	// print name of loaded drumkit above the name of the samples
-	Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE6-10, Display.row_start_x_position+25, CASE6-10+VALUE_ROW_LENGTH, UNCOLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6-10, Display.value_str_drumcomputer[11], &Font8, COLORED);
+	Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+25, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, Display.value_str_drumcomputer[11], &Font8, COLORED);
 
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
@@ -2466,6 +2470,110 @@ Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps) {
 	return DISPLAY_OK;
 }
 
+Display_Status DISPLAY_SetSequencerStepCursor(void) {
+
+	uint8_t rectangle_subtract = 3;
+
+	switch(Display.CurrentNoteRow) {
+	case 1:	// Note 1 Row
+		switch(Display.CurrentSequencestep) {
+		case 1:	// Step 1..
+			Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE5+rectangle_subtract, STEP1+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 2:
+			Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE5+rectangle_subtract, STEP2+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 3:
+			Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE5+rectangle_subtract, STEP3+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 4:
+			Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE5+rectangle_subtract, STEP4+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 5:
+			Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE5+rectangle_subtract, STEP5+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 6:
+			Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE5+rectangle_subtract, STEP6+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 7:
+			Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE5+rectangle_subtract, STEP7+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		case 8:	// ..Step 8
+			Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE5+rectangle_subtract, STEP8+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
+			break;
+		default:
+			break;
+		}
+		break;
+		case 2:	// Note 2 Row
+			switch(Display.CurrentSequencestep) {
+			case 1:	// Step 1..
+				Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE6+rectangle_subtract, STEP1+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 2:
+				Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE6+rectangle_subtract, STEP2+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 3:
+				Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE6+rectangle_subtract, STEP3+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 4:
+				Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE6+rectangle_subtract, STEP4+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 5:
+				Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE6+rectangle_subtract, STEP5+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 6:
+				Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE6+rectangle_subtract, STEP6+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 7:
+				Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE6+rectangle_subtract, STEP7+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			case 8:	// ..Step 8
+				Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE6+rectangle_subtract, STEP8+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
+				break;
+			default:
+				break;
+			}
+			break;
+			case 3:	// Note 3 Row
+				switch(Display.CurrentSequencestep) {
+				case 1:	// Step 1..
+					Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE7+rectangle_subtract, STEP1+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 2:
+					Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE7+rectangle_subtract, STEP2+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 3:
+					Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE7+rectangle_subtract, STEP3+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 4:
+					Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE7+rectangle_subtract, STEP4+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 5:
+					Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE7+rectangle_subtract, STEP5+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 6:
+					Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE7+rectangle_subtract, STEP6+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 7:
+					Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE7+rectangle_subtract, STEP7+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				case 8:	// ..Step 8
+					Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE7+rectangle_subtract, STEP8+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
+					break;
+				default:
+					break;
+				}
+				break;
+				default:
+					break;
+	}
+
+	Display.UpdateDisplay = true;
+
+	return DISPLAY_OK;
+}
+
 Display_Status DISPLAY_DrawSequencerPattern(void) {
 
 	uint8_t filledrectangle_subtract = 5;
@@ -2855,110 +2963,6 @@ Display_Status DISPLAY_DeleteSequencerStep(void) {
 				default:
 					break;
 	}
-
-	return DISPLAY_OK;
-}
-
-Display_Status DISPLAY_SetSequencerStepCursor(void) {
-
-	uint8_t rectangle_subtract = 3;
-
-	switch(Display.CurrentNoteRow) {
-	case 1:	// Note 1 Row
-		switch(Display.CurrentSequencestep) {
-		case 1:	// Step 1..
-			Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE5+rectangle_subtract, STEP1+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
-			break;
-		case 2:
-			Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE5+rectangle_subtract, STEP2+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
-			break;
-		case 3:
-			Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE5+rectangle_subtract, STEP3+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
-			break;
-		case 4:
-			Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE5+rectangle_subtract, STEP4+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
-			break;
-		case 5:
-			Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE5+rectangle_subtract, STEP5+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
-			break;
-		case 6:
-			Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE5+rectangle_subtract, STEP6+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
-			break;
-		case 7:
-			Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE5+rectangle_subtract, STEP7+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
-			break;
-		case 8:	// ..Step 8
-			Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE5+rectangle_subtract, STEP8+20-rectangle_subtract, CASE5+20-rectangle_subtract, COLORED);
-			break;
-		default:
-			break;
-		}
-		break;
-		case 2:	// Note 2 Row
-			switch(Display.CurrentSequencestep) {
-			case 1:	// Step 1..
-				Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE6+rectangle_subtract, STEP1+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
-				break;
-			case 2:
-				Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE6+rectangle_subtract, STEP2+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
-				break;
-			case 3:
-				Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE6+rectangle_subtract, STEP3+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
-				break;
-			case 4:
-				Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE6+rectangle_subtract, STEP4+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
-				break;
-			case 5:
-				Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE6+rectangle_subtract, STEP5+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
-				break;
-			case 6:
-				Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE6+rectangle_subtract, STEP6+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
-				break;
-			case 7:
-				Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE6+rectangle_subtract, STEP7+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
-				break;
-			case 8:	// ..Step 8
-				Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE6+rectangle_subtract, STEP8+20-rectangle_subtract, CASE6+20-rectangle_subtract, COLORED);
-				break;
-			default:
-				break;
-			}
-			break;
-			case 3:	// Note 3 Row
-				switch(Display.CurrentSequencestep) {
-				case 1:	// Step 1..
-					Paint_DrawRectangle(&paint, STEP1+rectangle_subtract, CASE7+rectangle_subtract, STEP1+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
-					break;
-				case 2:
-					Paint_DrawRectangle(&paint, STEP2+rectangle_subtract, CASE7+rectangle_subtract, STEP2+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
-					break;
-				case 3:
-					Paint_DrawRectangle(&paint, STEP3+rectangle_subtract, CASE7+rectangle_subtract, STEP3+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
-					break;
-				case 4:
-					Paint_DrawRectangle(&paint, STEP4+rectangle_subtract, CASE7+rectangle_subtract, STEP4+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
-					break;
-				case 5:
-					Paint_DrawRectangle(&paint, STEP5+rectangle_subtract, CASE7+rectangle_subtract, STEP5+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
-					break;
-				case 6:
-					Paint_DrawRectangle(&paint, STEP6+rectangle_subtract, CASE7+rectangle_subtract, STEP6+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
-					break;
-				case 7:
-					Paint_DrawRectangle(&paint, STEP7+rectangle_subtract, CASE7+rectangle_subtract, STEP7+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
-					break;
-				case 8:	// ..Step 8
-					Paint_DrawRectangle(&paint, STEP8+rectangle_subtract, CASE7+rectangle_subtract, STEP8+20-rectangle_subtract, CASE7+20-rectangle_subtract, COLORED);
-					break;
-				default:
-					break;
-				}
-				break;
-				default:
-					break;
-	}
-
-	Display.UpdateDisplay = true;
 
 	return DISPLAY_OK;
 }
@@ -4432,60 +4436,59 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 void p_EMG(void) {
 
 	//Header line
-	char headerstring[] = "EMG";
-	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	char headerstring_emg[] = "EMG";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring_emg, &Font16, COLORED);
+	char headerstring_ecg[] = "ECG";
+	Paint_DrawStringAt(&paint, 1, CASE4, headerstring_ecg, &Font16, COLORED);
 	//row cases
-	char str_1[] = "EMG Amplitude Thresh";
-	char str_2[] = "EMG Peak Debouncing";
-	char str_3[] = "ECG Amplitude Thresh";
-	char str_4[] = "ECG Peak Debouncing";
+	char str_1[] = "Amplitude Thresh";
+	char str_2[] = "Peak Debouncing";
+	char str_3[] = "Amplitude Thresh";
+	char str_4[] = "Peak Debouncing";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_3, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_4, &Font12, COLORED);
 	// as big as the number of parameters
-	Display.max_parameter = 2;
+	Display.max_parameter = 6;
 
 	if(Display.poti_moved == true) {
 
 		switch(Display.JoystickParameterPosition) {
 		case 1:
-			emg_detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * emg_maxDetectionThreshold);
-			// Minimawerte ebenfalls einfügen
+			emg_detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (float)emg_maxDetectionThreshold);
+			Display.EMG_detectionThreshold = ((float)emg_detectionThreshold/(float)Display.ADC_FullRange) * 3.3;	// map to volts
 			break;
 		case 2:
-			emg_toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * emg_maxToggleThreshold);
-			// Minimawerte ebenfalls einfügen
+			emg_toggleThreshold = (uint32_t)(((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (float)emg_maxToggleThreshold);
+			Display.EMG_toggleThreshold = ((float)emg_toggleThreshold/(float)EMG_SR) * 1000;
 			break;
-		case 3:
-			ecg_detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * ecg_maxDetectionThreshold);
-			// Minimawerte ebenfalls einfügen
+		case 5:
+			ecg_detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (float)ecg_maxDetectionThreshold);
+			Display.ECG_detectionThreshold = ((float)ecg_detectionThreshold/(float)Display.ADC_FullRange) * 3.3;	// map to volts
 			break;
-		case 4:
-			ecg_toggleThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * ecg_maxToggleThreshold);
-			// Minimawerte ebenfalls einfügen
+		case 6:
+			ecg_toggleThreshold = (uint32_t)(((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (float)ecg_maxToggleThreshold);
+			Display.ECG_toggleThreshold = ((float)ecg_toggleThreshold/(float)EMG_SR) * 1000;
 			break;
 		}
 	}
 
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
-	sprintf(Display.value_str_emg[0], "%lu", emg_detectionThreshold);
-	sprintf(Display.value_str_emg[1], "%lu", emg_toggleThreshold);
-	sprintf(Display.value_str_ecg[0], "%lu", ecg_detectionThreshold);
-	sprintf(Display.value_str_ecg[1], "%lu", ecg_toggleThreshold);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+	sprintf(Display.value_str_emg[0], "%.2f", Display.EMG_detectionThreshold);
+	sprintf(Display.value_str_emg[1], "%.0f", Display.EMG_toggleThreshold);
+	sprintf(Display.value_str_ecg[0], "%.2f", Display.ECG_detectionThreshold);
+	sprintf(Display.value_str_ecg[1], "%.0f", Display.ECG_toggleThreshold);
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_emg[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_emg[1], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_ecg[0], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_ecg[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_ecg[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_ecg[1], &Font12, COLORED);
 }
 
-/** @brief this function prints the Tremolo submenu and edits its values
- * @param Tremolo struct
- */
 void p_Volume(void) {
 
 	//Header line
@@ -4620,7 +4623,6 @@ void p_Presets(void) {
 	char str_7[] = "Preset 7";
 	char str_8[] = "Preset 8";
 	char str_9[] = "Preset 9";
-	char str_10[] = "Preset 10";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
@@ -4630,10 +4632,9 @@ void p_Presets(void) {
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE7, str_7, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_8, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE9, str_9, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE10, str_10, &Font12, COLORED);
 
 	// as big as the number of parameters
-	Display.max_parameter = 10;
+	Display.max_parameter = 9;
 
 	switch(Display.JoystickParameterPosition) {
 

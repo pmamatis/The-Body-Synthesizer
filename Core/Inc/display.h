@@ -38,32 +38,33 @@
 #define NUMBER_OF_SEQUENCERSTEPS 8
 
 
-typedef enum {	// Waveshare 2.9 inch ePD
-	CASE0 = 10,
-	CASE1 = 20,
-	CASE2 = 30,
-	CASE3 =	40,
-	CASE4 =	50,
-	CASE5 =	60,
-	CASE6 =	70,
-	CASE7 =	80,
-	CASE8 =	90,
-	CASE9 =	100,
-	CASE10 = 110
-}y_row_value;
-
-//typedef enum {	// Waveshare 1.54 inch ePD
+//typedef enum {	// Waveshare 2.9 inch ePD
 //	CASE0 = 10,
-//	CASE1 = 30,
-//	CASE2 = 50,
-//	CASE3 =	70,
-//	CASE4 =	90,
-//	CASE5 =	110,
-//	CASE6 =	130,
-//	CASE7 =	150,
-//	CASE8 =	170,
-//	CASE9 =	190,
+//	CASE1 = 20,
+//	CASE2 = 30,
+//	CASE3 =	40,
+//	CASE4 =	50,
+//	CASE5 =	60,
+//	CASE6 =	70,
+//	CASE7 =	80,
+//	CASE8 =	90,
+//	CASE9 =	100,
+//	CASE10 = 110
 //}y_row_value;
+
+typedef enum {	// Waveshare 1.54 inch ePD
+	CASE0 = 10,
+	CASE1 = 30,
+	CASE2 = 50,
+	CASE3 =	70,
+	CASE4 =	90,
+	CASE5 =	110,
+	CASE6 =	130,
+	CASE7 =	150,
+	CASE8 =	170,
+	CASE9 =	190,
+	CASE10 = 210
+}y_row_value;
 
 typedef enum {
 	STEP1 = 40,
@@ -149,7 +150,7 @@ struct display_variables {
 	uint8_t currentVoice;
 	uint8_t Voices_Noteindex[NUMBER_OF_VOICES];
 	uint8_t last_Voices_Noteindex[NUMBER_OF_VOICES];
-//	float Voices_Volume;
+	//	float Voices_Volume;
 	uint8_t Voices_Kind[NUMBER_OF_VOICES];
 
 	// Noise
@@ -324,8 +325,8 @@ struct display_variables {
 	char value_str_keyboardmode[9][10];
 	char value_str_drumcomputer[12][10];
 	char value_str_sequencer[9][10];
-	char value_str_emg[3][10];
-	char value_str_ecg[3][10];
+	char value_str_emg[2][10];
+	char value_str_ecg[2][10];
 
 	// Drumcomputer
 	uint8_t lastCurrentSampleRow;
@@ -358,6 +359,12 @@ struct display_variables {
 
 	// WahWah
 	uint8_t WahWah_Mode;
+
+	// EMG / ECG
+	float EMG_detectionThreshold;
+	float EMG_toggleThreshold;
+	float ECG_detectionThreshold;
+	float ECG_toggleThreshold;
 
 	// Play Single Sample
 	bool PlaySingleSample_ONOFF;

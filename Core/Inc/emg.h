@@ -54,9 +54,9 @@ uint8_t inputBuffer_position;
 
 HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim);
 HAL_StatusTypeDef ecg_init(void);
-HAL_StatusTypeDef emg_start_read();
-HAL_StatusTypeDef emg_stop_read();
-HAL_StatusTypeDef emg_peak_detection();
+HAL_StatusTypeDef emg_start_read(void);
+HAL_StatusTypeDef emg_stop_read(void);
+HAL_StatusTypeDef emg_peak_detection(void);
 void ecg_heartrate();
 
 #endif /* INC_EMG_H_ */
