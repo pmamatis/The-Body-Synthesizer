@@ -334,11 +334,6 @@ int main(void)
 
 	printf("End Start Functions\r\n");
 
-
-
-
-//	Display.PlaySingleSample_ONOFF = true;
-
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -1679,8 +1674,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		}
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
-		// Load Drumkit from SD card
-		if(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3)
+		// Load single sample / load Drumkit from SD card
+		if((Display.pagePosition==10) ||(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3))
 			Display.LoadDrumkit = true;
 
 		//		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!

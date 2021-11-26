@@ -396,8 +396,13 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->ECG_toggleThreshold = ((float)ecg_toggleThreshold/(float)EMG_SR) * 1000;
 	sprintf(Display->value_str_emg[0], "%.2f", Display->EMG_detectionThreshold);
 	sprintf(Display->value_str_emg[1], "%.0f", Display->EMG_toggleThreshold);
+	strcpy(Display->value_str_emg[2], "OFF");
+	strcpy(Display->value_str_emg[3], "909");
+	strcpy(Display->value_str_emg[4], "Kick");
 	sprintf(Display->value_str_ecg[0], "%.2f", Display->ECG_detectionThreshold);
 	sprintf(Display->value_str_ecg[1], "%.0f", Display->ECG_toggleThreshold);
+	Display->SingleSampleKit = 0;
+	Display->SingleSample = 0;
 
 	return DISPLAY_OK;
 }
@@ -1303,7 +1308,7 @@ Display_Status p_Drumcomputer_Settings(void) {
 	}
 
 	// print name of loaded drumkit above the name of the samples
-	Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+25, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, Display.value_str_drumcomputer[11], &Font8, COLORED);
 
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
@@ -1411,6 +1416,93 @@ Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 		sd_card_read("Windows_Background.txt", &DS4);
 		sd_card_unmount();
 	}
+
+	return DISPLAY_OK;
+}
+
+Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM) {
+
+	sd_card_mount();
+
+	//Kit switch
+	switch (KitNUM){
+
+	case 0:
+		//Sample switch
+		switch (SampleNUM){
+		case 0:
+			sd_card_read("909_Kick.txt", &PSS);
+			break;
+		case 1:
+			sd_card_read("909_OpenHihat.txt", &PSS);
+			break;
+		case 2:
+			sd_card_read("909_Clap.txt", &PSS);
+			break;
+		case 3:
+			sd_card_read("909_LowTom.txt", &PSS);
+			break;
+		}
+		break;
+
+		case 1:
+			//Sample switch
+			switch (SampleNUM){
+			case 0:
+				sd_card_read("Rock_loud_Kick.txt", &PSS);
+				break;
+			case 1:
+				sd_card_read("Rock_loud_Hihat.txt", &PSS);
+				break;
+			case 2:
+				sd_card_read("Rock_loud_Snare.txt", &PSS);
+				break;
+			case 3:
+				sd_card_read("Rock_loud_Ride.txt", &PSS);
+				break;
+			}
+			break;
+
+			case 2:
+				//Sample switch
+				switch (SampleNUM){
+				case 0:
+					sd_card_read("Rock_Kick.txt", &PSS);
+					break;
+				case 1:
+					sd_card_read("Rock_Hihat.txt", &PSS);
+
+					break;
+				case 2:
+					sd_card_read("Rock_Snare.txt", &PSS);
+
+					break;
+				case 3:
+					sd_card_read("Rock_Ride.txt", &PSS);
+					break;
+				}
+				break;
+
+				case 3:
+					//Sample switch
+					switch (SampleNUM){
+					case 0:
+						sd_card_read("Windows_Chord.txt", &PSS);
+						break;
+					case 1:
+						sd_card_read("Windows_Recycle.txt", &PSS);
+						break;
+					case 2:
+						sd_card_read("Windows_Hardware_Remove.txt", &PSS);
+						break;
+					case 3:
+						sd_card_read("Windows_Background.txt", &PSS);
+						break;
+					}
+					break;
+	}
+
+	sd_card_unmount();
 
 	return DISPLAY_OK;
 }
@@ -4439,18 +4531,26 @@ void p_EMG(void) {
 	char headerstring_emg[] = "EMG";
 	Paint_DrawStringAt(&paint, 1, CASE0, headerstring_emg, &Font16, COLORED);
 	char headerstring_ecg[] = "ECG";
-	Paint_DrawStringAt(&paint, 1, CASE4, headerstring_ecg, &Font16, COLORED);
+	Paint_DrawStringAt(&paint, 1, CASE7, headerstring_ecg, &Font16, COLORED);
 	//row cases
 	char str_1[] = "Amplitude Thresh";
 	char str_2[] = "Peak Debouncing";
-	char str_3[] = "Amplitude Thresh";
-	char str_4[] = "Peak Debouncing";
+	char str_3[] = "Play Sample ON/OFF";
+	char str_4[] = "Choose kit";
+	char str_5[] = "Choose sample";
+	char str_6[] = "Amplitude Thresh";
+	char str_7[] = "Peak Debouncing";
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_3, &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE6, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE3, str_3, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE4, str_4, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5, str_5, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE8, str_6, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE9, str_7, &Font12, COLORED);
 	// as big as the number of parameters
-	Display.max_parameter = 6;
+	Display.max_parameter = 9;
+
+	float potVal = (float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange * 100;
 
 	if(Display.poti_moved == true) {
 
@@ -4461,13 +4561,125 @@ void p_EMG(void) {
 			break;
 		case 2:
 			emg_toggleThreshold = (uint32_t)(((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (float)emg_maxToggleThreshold);
-			Display.EMG_toggleThreshold = ((float)emg_toggleThreshold/(float)EMG_SR) * 1000;
+			Display.EMG_toggleThreshold = ((float)emg_toggleThreshold/(float)EMG_SR) * 1000;	// map to time in milliseconds
+			break;
+		case 3:
+			if(potVal < 50) {
+				Display.PlaySingleSample_ONOFF = false;
+				strcpy(Display.value_str_emg[2], "OFF");
+			}
+			else if(potVal >= 50) {
+				Display.PlaySingleSample_ONOFF = true;
+				strcpy(Display.value_str_emg[2], "ON");
+			}
+			break;
+		case 4:
+			// Choose Single Sample Kit
+			if(potVal <= 25){
+				strcpy(Display.value_str_emg[3], "909");
+				Display.SingleSampleKit = 0;
+			}
+			else if((potVal > 25) && (potVal <= 50)){
+				strcpy(Display.value_str_emg[3], "Rock loud");
+				Display.SingleSampleKit = 1;
+			}
+			else if((potVal>50) && (potVal <= 75)){
+				strcpy(Display.value_str_emg[3], "Rock");
+				Display.SingleSampleKit = 2;
+			}
+			else if(potVal > 75){
+				strcpy(Display.value_str_emg[3], "Windows");
+				Display.SingleSampleKit = 3;
+			}
 			break;
 		case 5:
+
+			// Choose Single Sample from Kit
+			if(Display.SingleSampleKit == 0) {	// 909
+
+				if(potVal <= 25){
+					strcpy(Display.value_str_emg[4], "Kick");
+					Display.SingleSample = 0;
+				}
+				else if((potVal > 25) && (potVal <= 50)){
+					strcpy(Display.value_str_emg[4], "Op. HH");
+					Display.SingleSample = 1;
+				}
+				else if((potVal>50) && (potVal <= 75)){
+					strcpy(Display.value_str_emg[4], "Clap");
+					Display.SingleSample = 2;
+				}
+				else if(potVal > 75){
+					strcpy(Display.value_str_emg[4], "L. Tom");
+					Display.SingleSample = 3;
+				}
+			}
+
+			else if(Display.SingleSampleKit == 1) {	// Rock loud
+
+				if(potVal <= 25){
+					strcpy(Display.value_str_emg[4], "Kick");
+					Display.SingleSample = 0;
+				}
+				else if((potVal > 25) && (potVal <= 50)){
+					strcpy(Display.value_str_emg[4], "Hihat");
+					Display.SingleSample = 1;
+				}
+				else if((potVal>50) && (potVal <= 75)){
+					strcpy(Display.value_str_emg[4], "Snare");
+					Display.SingleSample = 2;
+				}
+				else if(potVal > 75){
+					strcpy(Display.value_str_emg[4], "Ride");
+					Display.SingleSample = 3;
+				}
+			}
+
+			else if(Display.SingleSampleKit == 2) {	// Rock
+
+				if(potVal <= 25){
+					strcpy(Display.value_str_emg[4], "Kick");
+					Display.SingleSample = 0;
+				}
+				else if((potVal > 25) && (potVal <= 50)){
+					strcpy(Display.value_str_emg[4], "Hihat");
+					Display.SingleSample = 1;
+				}
+				else if((potVal>50) && (potVal <= 75)){
+					strcpy(Display.value_str_emg[4], "Snare");
+					Display.SingleSample = 2;
+				}
+				else if(potVal > 75){
+					strcpy(Display.value_str_emg[4], "Ride");
+					Display.SingleSample = 3;
+				}
+			}
+
+			else if(Display.SingleSampleKit == 3) {	// Windows
+
+				if(potVal <= 25){
+					strcpy(Display.value_str_emg[4], "Chord");
+					Display.SingleSample = 0;
+				}
+				else if((potVal > 25) && (potVal <= 50)){
+					strcpy(Display.value_str_emg[4], "Trash");
+					Display.SingleSample = 1;
+				}
+				else if((potVal>50) && (potVal <= 75)){
+					strcpy(Display.value_str_emg[4], "Remove");
+					Display.SingleSample = 2;
+				}
+				else if(potVal > 75){
+					strcpy(Display.value_str_emg[4], "Back");
+					Display.SingleSample = 3;
+				}
+			}
+			break;
+		case 8:
 			ecg_detectionThreshold = (((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (float)ecg_maxDetectionThreshold);
 			Display.ECG_detectionThreshold = ((float)ecg_detectionThreshold/(float)Display.ADC_FullRange) * 3.3;	// map to volts
 			break;
-		case 6:
+		case 9:
 			ecg_toggleThreshold = (uint32_t)(((float)Display.ADC2inputs[2]/(float)Display.ADC_FullRange) * (float)ecg_maxToggleThreshold);
 			Display.ECG_toggleThreshold = ((float)ecg_toggleThreshold/(float)EMG_SR) * 1000;
 			break;
@@ -4476,8 +4688,11 @@ void p_EMG(void) {
 
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH , UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH , UNCOLORED);
-	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-35, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-35, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH , UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE9, Display.value_end_x_position, CASE9+VALUE_ROW_LENGTH, UNCOLORED);
 	sprintf(Display.value_str_emg[0], "%.2f", Display.EMG_detectionThreshold);
 	sprintf(Display.value_str_emg[1], "%.0f", Display.EMG_toggleThreshold);
 	sprintf(Display.value_str_ecg[0], "%.2f", Display.ECG_detectionThreshold);
@@ -4485,8 +4700,48 @@ void p_EMG(void) {
 	// print value row
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE1, Display.value_str_emg[0], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE2, Display.value_str_emg[1], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_ecg[0], &Font12, COLORED);
-	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_ecg[1], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE3, Display.value_str_emg[2], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE4, Display.value_str_emg[3], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE5, Display.value_str_emg[4], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE8, Display.value_str_ecg[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE9, Display.value_str_ecg[1], &Font12, COLORED);
+
+	// Load Single Sample from SD Card
+	if(Display.LoadDrumkit == true) {
+
+		// Reset single sample variables when a new sample is loaded
+		// INIT: Sound bins
+		PSSs = 0;
+
+		counter_single_sample = 0;
+		play_single_sample_flag = false;
+		Display_LoadSingleSample(Display.SingleSample, Display.SingleSampleKit);
+
+		// Reset Drummachine to avoid plop
+		DS1s = 0;
+		DS2s = 0;
+		DS3s = 0;
+		DS4s = 0;
+		drums = 0;
+
+		// Drums: Index
+		drum_index = 0;
+		counter_master = 0;
+
+		for(int i=0; i<FourFour; i++) {
+			counter_DS1[i] = 0;
+			flag_DS1[i]    = 0;
+			counter_DS2[i] = 0;
+			flag_DS2[i]    = 0;
+			counter_DS3[i] = 0;
+			flag_DS3[i]    = 0;
+			counter_DS4[i] = 0;
+			flag_DS4[i]    = 0;
+		}
+
+		Display.LoadDrumkit = false;
+		Display.UpdateDisplay = true;
+	}
 }
 
 void p_Volume(void) {

@@ -316,6 +316,11 @@ HAL_StatusTypeDef Drum_Computer_Init(void) {
 	DS4s = 0;
 	drums = 0;
 
+	// INIT: Play Single Sample Sound bin and flags
+	PSSs = 0;
+	counter_single_sample = 0;
+	play_single_sample_flag = false;
+
 	// Drums: Index
 	drum_index = 0;
 
@@ -379,7 +384,7 @@ HAL_StatusTypeDef Drum_Computer_Init(void) {
 	sd_card_unmount();
 	__enable_irq();
 
-//	strcpy(Display.value_str_drumcomputer[10], "909");
+	//	strcpy(Display.value_str_drumcomputer[10], "909");
 	strcpy(Display.sample1, "Kick");	// Init drumcomputer display content, has to be similar to the drumkit above!
 	strcpy(Display.sample2, "Op.HH");
 	strcpy(Display.sample3, "Clap");
@@ -794,7 +799,7 @@ HAL_StatusTypeDef Drum_Computer_Process(void) {
 
 void PlaySingleSample(void) {
 
-	single_sample = DS1[counter_single_sample];
+	single_sample = PSS[counter_single_sample];
 	counter_single_sample++;
 
 	if(counter_single_sample == DS_L - 1) {

@@ -325,7 +325,7 @@ struct display_variables {
 	char value_str_keyboardmode[9][10];
 	char value_str_drumcomputer[12][10];
 	char value_str_sequencer[9][10];
-	char value_str_emg[2][10];
+	char value_str_emg[5][10];
 	char value_str_ecg[2][10];
 
 	// Drumcomputer
@@ -368,6 +368,8 @@ struct display_variables {
 
 	// Play Single Sample
 	bool PlaySingleSample_ONOFF;
+	uint8_t SingleSampleKit;
+	uint8_t SingleSample;
 
 	// Drumfilter_ONOFF
 	bool Drumfilter_ONOFF;
@@ -440,6 +442,7 @@ void p_WahWah_Settings(struct WahWah_t *WahWah);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_EMG(void);
+Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM);
 void p_Volume(void);
 void Full_Reset(void);
 void p_Presets(void);
