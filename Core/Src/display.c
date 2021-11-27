@@ -1307,6 +1307,17 @@ Display_Status p_Drumcomputer_Settings(void) {
 		}
 	}
 
+	//	if(Display.Update_BPM == true) {
+	//
+	//		Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+	//		sprintf(Display.value_str_drumcomputer[8], "%.f", BPM);
+	//		Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE2, Display.value_str_drumcomputer[8], &Font12, COLORED);
+	//		Display.UpdateDisplay = true;
+	////		DISPLAY_Update();
+	//		Display.Update_BPM = false;
+	//		last_BPM = BPM;
+	//	}
+
 	// print name of loaded drumkit above the name of the samples
 	Paint_DrawFilledRectangle(&paint, Display.row_start_x_position, CASE5-10, Display.row_start_x_position+50, CASE5-10+VALUE_ROW_LENGTH, UNCOLORED);
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE5-10, Display.value_str_drumcomputer[11], &Font8, COLORED);
@@ -1424,11 +1435,11 @@ Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM) {
 
 	sd_card_mount();
 
-	//Kit switch
+	// Kit switch
 	switch (KitNUM){
 
 	case 0:
-		//Sample switch
+		// Sample switch
 		switch (SampleNUM){
 		case 0:
 			sd_card_read("909_Kick.txt", &PSS);

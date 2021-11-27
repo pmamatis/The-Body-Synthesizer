@@ -1156,7 +1156,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 
 		// Drummachine
-		if ((volume[1] > 0) || (volume[2] > 0)){
+		if ((volume[1] > 0) || (volume[2] > 0)){	// && Display.Drumcomputer_ONOFF?
 			Drum_Computer_Process();
 			drums_filtered = drums;
 			if(Display.Drumfilter_ONOFF)

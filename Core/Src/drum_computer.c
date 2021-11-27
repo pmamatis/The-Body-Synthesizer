@@ -761,6 +761,7 @@ HAL_StatusTypeDef Drum_Computer_Process(void) {
 			counter_master = 0;
 
 			if(abs(last_BPM - BPM) > 3) {
+
 				for(int i=0; i<FourFour; i++) {
 
 					// INIT: Counter
@@ -782,8 +783,6 @@ HAL_StatusTypeDef Drum_Computer_Process(void) {
 
 					timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 				}
-
-				last_BPM = BPM;
 			}
 		}
 

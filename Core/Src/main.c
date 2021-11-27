@@ -119,7 +119,7 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
 	inputBuffer_position = HALF_BLOCK;
 	if(hadc->Instance == ADC3){
 
-		emg_peak_detection();
+//		emg_peak_detection();
 		ecg_heartrate();
 	}
 }
@@ -128,7 +128,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 	inputBuffer_position = FULL_BLOCK;
 	if(hadc->Instance == ADC3){
 
-		emg_peak_detection();
+//		emg_peak_detection();
 		ecg_heartrate();
 	}
 }

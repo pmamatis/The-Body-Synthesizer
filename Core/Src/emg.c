@@ -15,14 +15,14 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 
 	EMG_ADC = hadc;
 	EMG_TIM = htim;
-//	emg_detectionThreshold = 250;
+	//	emg_detectionThreshold = 250;
 	emg_detectionThreshold = 2500;
 	emg_peak = 0;
 	emg_toggleThreshold = 50;
 	emg_toggleCounter = emg_toggleThreshold;
 	emg_toggled = 0;
 	// TODO: Werte durch Testen anpassen!! // Minimawerte ebenfalls einfügen!
-//	emg_maxDetectionThreshold = 2500;
+	//	emg_maxDetectionThreshold = 2500;
 	emg_maxDetectionThreshold = 2850;
 	emg_maxToggleThreshold = EMG_SR/5;
 
@@ -36,7 +36,7 @@ HAL_StatusTypeDef ecg_init(void){
 
 	heartrate = 0;
 
-//	ecg_detectionThreshold = 250;
+	//	ecg_detectionThreshold = 250;
 	ecg_detectionThreshold = 2500;
 	ecg_peaks = 0;
 	ecg_toggled = false;
@@ -47,7 +47,7 @@ HAL_StatusTypeDef ecg_init(void){
 	ecg_intCount = 0;
 
 	// TODO: Werte durch Testen anpassen!! // Minimalwerte ebenfalls einfügen!
-//	ecg_maxDetectionThreshold = 2500;
+	//	ecg_maxDetectionThreshold = 2500;
 	ecg_maxDetectionThreshold = 2850;
 	ecg_maxToggleThreshold = EMG_SR/5;
 
@@ -72,19 +72,20 @@ HAL_StatusTypeDef emg_peak_detection(void){
 
 	uint16_t ADC_BLOCKSIZE_startIndex=0, ADC_BLOCKSIZE_endIndex=0;
 
-	if (inputBuffer_position == HALF_BLOCK){
-		ADC_BLOCKSIZE_startIndex =0; //+1 to get the second ADC Channel (AC of emg/ecg)
+	if(inputBuffer_position == HALF_BLOCK) {
+		//		ADC_BLOCKSIZE_startIndex = 1;	// +1 to get the second ADC Channel (AC of emg/ecg)
+		ADC_BLOCKSIZE_startIndex = 0;	// +1 to get the second ADC Channel (AC of emg/ecg)
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH/2;
 	}
-	else if(inputBuffer_position == FULL_BLOCK){
-		ADC_BLOCKSIZE_startIndex =EMG_READ_LENGTH/2;
+	else if(inputBuffer_position == FULL_BLOCK) {
+		ADC_BLOCKSIZE_startIndex = EMG_READ_LENGTH/2;
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH;
 	}
 
 	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
 		//				printf("%i\r\n",emg_buffer[i]);
 		if(emg_buffer[i] > emg_detectionThreshold && emg_toggleCounter > emg_toggleThreshold){
-			printf("emg peak\r\n");
+			//			printf("emg peak\r\n");
 			emg_peak = 1;
 			emg_toggleCounter = 0;
 			HAL_GPIO_WritePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin,SET);
@@ -105,11 +106,11 @@ void ecg_heartrate(void){
 
 	uint16_t ADC_BLOCKSIZE_startIndex=0, ADC_BLOCKSIZE_endIndex=0;
 
-	if (inputBuffer_position == HALF_BLOCK){
-		ADC_BLOCKSIZE_startIndex = 0; //+0 to get the first ADC Channel (DC of emg/ecg)
+	if(inputBuffer_position == HALF_BLOCK) {
+		ADC_BLOCKSIZE_startIndex = 0;	// +0 to get the first ADC Channel (DC of emg/ecg)
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH/2;
 	}
-	else if(inputBuffer_position == FULL_BLOCK){
+	else if(inputBuffer_position == FULL_BLOCK) {
 		ADC_BLOCKSIZE_startIndex = EMG_READ_LENGTH/2;
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH;
 	}
@@ -120,7 +121,7 @@ void ecg_heartrate(void){
 		if(emg_buffer[i] > ecg_detectionThreshold && ecg_toggleCounter > ecg_toggleThreshold){
 
 			ecg_peaks += 1;
-			printf("ecg peak\r\n");
+			//			printf("ecg peak\r\n");
 			//			printf("1:  %u\r\n",emg_buffer[i-1]);
 			//			printf("2:  %u\r\n",emg_buffer[i]);
 			HAL_GPIO_WritePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin,SET);
@@ -146,18 +147,49 @@ void ecg_heartrate(void){
 			heartrate = ((float)(60/(EMG_MI))*ecg_peaks)/2; //bpm
 			ecg_peaks = 0;
 			ecg_intCount = 0;
-			if(Display.Drumcomputer_BPMbyECG_ONOFF == true){
-				BPM = heartrate;
-				sprintf(Display.value_str_drumcomputer[8], "%.f", BPM);
-				//				BPM = round(heartrate);
-				//				if(abs(last_BPM - BPM) > 3) {
-				//					sprintf(Display.value_str_drumcomputer[8], "%.f", BPM);
-				//					Display.UpdateDisplay = true;
-				//				}
-				//				last_BPM = BPM;
-			}
-			//			printf("Heartrate: %f bpm\r\n", heartrate);
 
+			if(Display.Drumcomputer_BPMbyECG_ONOFF == true) {
+
+				BPM = heartrate;
+				//				printf("BPM: %f\r\n", BPM);
+			}
+		}
+		if(abs(last_BPM-BPM) > 3) {
+			//		if(last_BPM != BPM) {
+
+			for(int i=0; i<FourFour; i++) {
+
+				// INIT: Counter
+				counter_DS1[i] = 0;
+				counter_DS2[i] = 0;
+				counter_DS3[i] = 0;
+				counter_DS4[i] = 0;
+
+				drum_index = 0;
+				counter_master = 0;
+
+				// RESET: Drum sound bins
+				DS1s = 0;
+				DS2s = 0;
+				DS3s = 0;
+				DS4s = 0;
+
+				drums = 0;
+
+				timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
+			}
+
+			sprintf(Display.value_str_drumcomputer[8], "%.f", BPM);
+
+			// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+			// BPM set by ECG and display only updated with new BPM value on drumcomputer settings page
+			if(Display.pagePosition == 3 && Display.currentDrumcomputer > 0) {
+				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-50, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+				Paint_DrawStringAt(&paint, Display.value_start_x_position-50, CASE2, Display.value_str_drumcomputer[8], &Font12, COLORED);
+			}
+			//			last_BPM = BPM;
+			Display.UpdateDisplay = true;
+			last_BPM = BPM;
 		}
 
 		ecg_toggleCounter++;

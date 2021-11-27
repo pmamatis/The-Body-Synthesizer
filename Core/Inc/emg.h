@@ -12,9 +12,10 @@
 
 /* defines */
 #define EMG_READ_LENGTH 20//8192/4
-//#define EMG_SR 500 //Hz
+//#define EMG_SR 500 // in Hz
 #define EMG_SR 5000
-#define EMG_MI 2 //Measure Intervall in seconds
+//#define EMG_MI 2 // Measuring Intervall in seconds
+#define EMG_MI 1 // Measuring Intervall in seconds
 /* Variables */
 ADC_HandleTypeDef* EMG_ADC;
 TIM_HandleTypeDef* EMG_TIM;
