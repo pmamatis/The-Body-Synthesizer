@@ -97,6 +97,12 @@ typedef enum {
 	DISTANCE
 }source_t;
 
+typedef enum {
+	FREESTYLE = 0,
+	MAJOR = 1,
+	MINOR = 2
+}keyandmode_t;
+
 //static const char * const source_names[] = {
 //		[GYRO_LEFT] = "Gyro L",
 //		[GYRO_RIGHT] = "Gyro R",
@@ -327,6 +333,7 @@ struct display_variables {
 	char value_str_sequencer[9][10];
 	char value_str_emg[5][10];
 	char value_str_ecg[2][10];
+	char value_str_keyandmode[2][10];
 
 	// Drumcomputer
 	uint8_t lastCurrentSampleRow;
@@ -365,6 +372,11 @@ struct display_variables {
 	float EMG_toggleThreshold;
 	float ECG_detectionThreshold;
 	float ECG_toggleThreshold;
+
+	// Key and Mode
+	char KeyNote;
+	uint8_t KeyNoteIndex;
+	keyandmode_t ScaleMode;
 
 	// Play Single Sample
 	bool PlaySingleSample_ONOFF;
@@ -442,6 +454,7 @@ void p_WahWah_Settings(struct WahWah_t *WahWah);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_EMG(void);
+void p_KeyAndMode(void);
 Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM);
 void p_Volume(void);
 void Full_Reset(void);

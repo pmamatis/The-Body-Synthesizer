@@ -48,8 +48,8 @@ HAL_StatusTypeDef Voices_Reset(void) {
 	// Voices Reset
 	for(int i=0; i<3; i++) {
 		Display.Voices_ONOFF[i] = false;
-		Display.Voices_Note[i] = 'C';
 		Display.Voices_Noteindex[i] = 0;
+		Display.Voices_Note[i]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[i] + Display.KeyNoteIndex]);
 		Display.Voices_Octave[i] = 0;
 		Display.Voice_Note_Sources[i] = POTI;
 		Display.Voice_Octave_Sources[i] = POTI;

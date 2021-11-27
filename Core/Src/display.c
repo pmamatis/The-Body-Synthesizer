@@ -404,6 +404,13 @@ Display_Status Display_Init(struct display_variables* Display) {
 	Display->SingleSampleKit = 0;
 	Display->SingleSample = 0;
 
+	// Key and Mode
+	Display->KeyNoteIndex = 0;
+	Display->KeyNote = (uint8_t)(keys[Display->KeyNoteIndex]);
+	Display->ScaleMode = FREESTYLE;
+	sprintf(Display->value_str_keyandmode[0], "%c", Display->KeyNote);
+	strcpy(Display->value_str_keyandmode[1], "FREESTYLE");
+
 	return DISPLAY_OK;
 }
 
@@ -733,7 +740,7 @@ void DISPLAY_SwitchPageRight(void) {
 
 	if(Display.pagePosition < Display.page_max)
 		Display.pagePosition = Display.pagePosition+1;
-	else if(Display.pagePosition == 10)
+	else if(Display.pagePosition == 11)
 		Display.pagePosition = -1;
 
 	DISPLAY_PrintCurrentPage();
@@ -772,7 +779,7 @@ void DISPLAY_processing(void) {
 	//		break;
 
 	case BODYSYNTH:
-		Display.page_max = 10; // has to be changed for every added case
+		Display.page_max = 11; // has to be changed for every added case
 
 		switch(Display.pagePosition) {
 		case -1:
@@ -858,6 +865,9 @@ void DISPLAY_processing(void) {
 									break;
 								case 10:
 									p_EMG();
+									break;
+								case 11:
+									p_KeyAndMode();
 									break;
 								default:
 									break;
@@ -3340,7 +3350,17 @@ void p_Voices_Settings(void) {
 		case 1:
 			// Note
 			//			Display.Voices_Noteindex[Display.currentVoice-1] = ((float)Display.ADC2inputs[2]/Display.ADC_FullRange) * 12;
-			Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]]);
+
+			// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+			if(Display.ScaleMode == FREESTYLE)
+				Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]]);
+
+			else if(Display.ScaleMode == MAJOR)
+				Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]] + Display.KeyNoteIndex]);
+
+			else if(Display.ScaleMode == MINOR)
+				Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]] + Display.KeyNoteIndex]);
+
 			break;
 		case 2:
 			// Octave
@@ -4755,20 +4775,50 @@ void p_EMG(void) {
 	}
 }
 
-//void p_KeyAndMode(void) {
-//
-//	//Header line
-//	char headerstring[] = "KEY AND MODE";
-//	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
-//	//row cases
-//	char str_1[] = "Key";
-//	char str_2[] = "Mode";
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
-//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
-//
-//	// as big as the number of parameters
-//	Display.max_parameter = 2;
-//}
+void p_KeyAndMode(void) {
+
+	//Header line
+	char headerstring[] = "KEY AND MODE";
+	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+	//row cases
+	char str_1[] = "Key";
+	char str_2[] = "Mode";
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+
+	// as big as the number of parameters
+	Display.max_parameter = 2;
+
+	switch(Display.JoystickParameterPosition) {
+
+	case 1:
+		// Key
+		Display.KeyNote = (uint8_t)(keys[(uint8_t)Display.KeyNoteIndex]);
+		break;
+	case 2:
+		// Scale Mode
+		if(Display.ScaleMode == FREESTYLE)
+			strcpy(Display.value_str_keyandmode[1], "FREESTYLE");
+
+		else if(Display.ScaleMode == MAJOR)
+			strcpy(Display.value_str_keyandmode[1], "MAJOR");
+
+		else if(Display.ScaleMode == MINOR)
+			strcpy(Display.value_str_keyandmode[1], "MINOR");
+
+		break;
+	default:
+		break;
+	}
+
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-35, CASE1, Display.value_end_x_position, CASE1+VALUE_ROW_LENGTH, UNCOLORED);
+	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-35, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);
+
+	sprintf(Display.value_str_keyandmode[0], "%c", Display.KeyNote);
+	// print value row
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE1, Display.value_str_keyandmode[0], &Font12, COLORED);
+	Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE2, Display.value_str_keyandmode[1], &Font12, COLORED);
+}
 
 void p_Volume(void) {
 

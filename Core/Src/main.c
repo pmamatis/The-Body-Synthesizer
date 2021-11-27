@@ -1553,13 +1553,84 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		// Voices notes and octaves changed by putton pressing
 		if(Display.pagePosition == 5 && Display.currentVoice > 0) {
 
-			if(Display.JoystickParameterPosition == 1) {	// Voices [1,2,3] Note down
-				if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-					Display.Voices_Noteindex[Display.currentVoice-1]--;
+			// Voices Notes
+			if(Display.JoystickParameterPosition == 1) {	// Voices [1,2,3] Note up
+
+				if(Display.ScaleMode == FREESTYLE){
+					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
+						Display.Voices_Noteindex[Display.currentVoice-1]--;
+				}
+				else if(Display.ScaleMode == MAJOR){
+					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
+						Display.Voices_Noteindex[Display.currentVoice-1]--;
+				}
+
+				else if(Display.ScaleMode == MINOR){
+					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
+						Display.Voices_Noteindex[Display.currentVoice-1]--;
+				}
 			}
+
+			// Octaves
 			else if(Display.JoystickParameterPosition == 2) {	// Voices [1,2,3] Octave down
 				if(Display.Voices_Octave[Display.currentVoice-1] > 0)
 					Display.Voices_Octave[Display.currentVoice-1]--;
+			}
+		}
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// KeyNote and mode changed by putton pressing
+		if(Display.pagePosition == 11) {
+
+			if(Display.JoystickParameterPosition == 1) {	// KeyNote (e.g. C)
+
+				if(Display.KeyNoteIndex >0)	{				// 12 keys per octave
+
+					Display.KeyNoteIndex--;
+
+					// Turn off voices
+					Display.Voices_ONOFF[VOICES_ID]   = false;
+					Display.Voices_ONOFF[VOICES_ID+1] = false;
+					Display.Voices_ONOFF[VOICES_ID+2] = false;
+
+					strcpy(Display.value_str_voices_overview[0], "OFF");
+					strcpy(Display.value_str_voices_overview[1], "OFF");
+					strcpy(Display.value_str_voices_overview[2], "OFF");
+
+					// Reset Voices to root note when Mode changed
+					Display.Voices_Noteindex[VOICES_ID]   = 0;
+					Display.Voices_Noteindex[VOICES_ID+1] = 0;
+					Display.Voices_Noteindex[VOICES_ID+2] = 0;
+
+					Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
+					Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
+					Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
+				}
+			}
+			else if(Display.JoystickParameterPosition == 2) {	// Mode (Freestyle, Major, Minor)
+				if(Display.ScaleMode > 0){					// maximum 6 octaves
+
+					// Update Scale Mode
+					Display.ScaleMode--;
+
+					// Turn off voices
+					Display.Voices_ONOFF[VOICES_ID]   = false;
+					Display.Voices_ONOFF[VOICES_ID+1] = false;
+					Display.Voices_ONOFF[VOICES_ID+2] = false;
+
+					strcpy(Display.value_str_voices_overview[0], "OFF");
+					strcpy(Display.value_str_voices_overview[1], "OFF");
+					strcpy(Display.value_str_voices_overview[2], "OFF");
+
+					// Reset Voices to root note when Mode changed
+					Display.Voices_Noteindex[VOICES_ID]   = 0;
+					Display.Voices_Noteindex[VOICES_ID+1] = 0;
+					Display.Voices_Noteindex[VOICES_ID+2] = 0;
+
+					Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
+					Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
+					Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
+				}
 			}
 		}
 
@@ -1731,13 +1802,86 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		// Voices notes and octaves changed by putton pressing
 		if(Display.pagePosition == 5 && Display.currentVoice > 0) {
 
+
+			// Voices Notes
 			if(Display.JoystickParameterPosition == 1) {	// Voices [1,2,3] Note up
-				if(Display.Voices_Noteindex[Display.currentVoice-1] < 12)	// 12 keys per octave
-					Display.Voices_Noteindex[Display.currentVoice-1]++;
+
+				if(Display.ScaleMode == FREESTYLE){
+					if(Display.Voices_Noteindex[Display.currentVoice-1] < 12)	// 12 keys per octave + deep C
+						Display.Voices_Noteindex[Display.currentVoice-1]++;
+				}
+				else if(Display.ScaleMode == MAJOR){
+					if(Display.Voices_Noteindex[Display.currentVoice-1] < 7)	// 7 keys per octave + deep root
+						Display.Voices_Noteindex[Display.currentVoice-1]++;
+				}
+
+				else if(Display.ScaleMode == MINOR){
+					if(Display.Voices_Noteindex[Display.currentVoice-1] < 7)	// 7 keys per octave + deep root
+						Display.Voices_Noteindex[Display.currentVoice-1]++;
+				}
 			}
+
+			// Octaves
 			else if(Display.JoystickParameterPosition == 2) {	// Voices [1,2,3] Octave up
 				if(Display.Voices_Octave[Display.currentVoice-1] < 5)	// maximum 6 octaves
 					Display.Voices_Octave[Display.currentVoice-1]++;
+			}
+		}
+
+		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
+		// KeyNote and mode changed by putton pressing
+		if(Display.pagePosition == 11) {
+
+			if(Display.JoystickParameterPosition == 1) {	// KeyNote (e.g. C)
+
+				if(Display.KeyNoteIndex < 12) {				// 12 keys per octave
+
+					Display.KeyNoteIndex++;
+
+					// Turn off voices
+					Display.Voices_ONOFF[VOICES_ID]   = false;
+					Display.Voices_ONOFF[VOICES_ID+1] = false;
+					Display.Voices_ONOFF[VOICES_ID+2] = false;
+
+					strcpy(Display.value_str_voices_overview[0], "OFF");
+					strcpy(Display.value_str_voices_overview[1], "OFF");
+					strcpy(Display.value_str_voices_overview[2], "OFF");
+
+					// Reset Voices to root note when Mode changed
+					Display.Voices_Noteindex[VOICES_ID]   = 0;
+					Display.Voices_Noteindex[VOICES_ID+1] = 0;
+					Display.Voices_Noteindex[VOICES_ID+2] = 0;
+
+					Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
+					Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
+					Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
+				}
+			}
+			else if(Display.JoystickParameterPosition == 2) {	// Mode (Freestyle, Major, Minor)
+
+				if(Display.ScaleMode < 2){	// maximum 6 octaves
+
+					// Update Scale Mode
+					Display.ScaleMode++;
+
+					// Turn off voices
+					Display.Voices_ONOFF[VOICES_ID]   = false;
+					Display.Voices_ONOFF[VOICES_ID+1] = false;
+					Display.Voices_ONOFF[VOICES_ID+2] = false;
+
+					strcpy(Display.value_str_voices_overview[0], "OFF");
+					strcpy(Display.value_str_voices_overview[1], "OFF");
+					strcpy(Display.value_str_voices_overview[2], "OFF");
+
+					// Reset Voices to root note when Mode changed
+					Display.Voices_Noteindex[VOICES_ID]   = 0;
+					Display.Voices_Noteindex[VOICES_ID+1] = 0;
+					Display.Voices_Noteindex[VOICES_ID+2] = 0;
+
+					Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
+					Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
+					Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
+				}
 			}
 		}
 
