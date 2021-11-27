@@ -15,25 +15,25 @@
 
 
 /** @brief lookuptable for respective note keys*/
-const char keys[26] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
+const char keys[] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
 //                      C#      D#		        F#	    G#				    C#	    D#		    F#	    G#				    C#
 
 
 
 /** @brief minor/major tone scale in semi tone steps, according to the array keys*/
-const uint32_t major_scale[9] =  {0,2,4,5,7,9,11,12, 14}; 	// {2,2,1,2,2,2,1}; Dur
-const uint32_t minor_scale[9] =  {0,2,3,5,7,8,10,12, 14};		// {2,1,2,2,1,2,2}; Mol
+const uint32_t major_scale[] =  {0,2,4,5,7,9,11,12, 14}; 	// {2,2,1,2,2,2,1}; Dur
+const uint32_t minor_scale[] =  {0,2,3,5,7,8,10,12, 14};		// {2,1,2,2,1,2,2}; Mol
 
 
 /** @brief minor/major tone chords in semi tone steps, according to the array keys*/
-const uint32_t major_chords[9] = {0,1,1,0,0,1, 2, 0, 1}; 	// 0: major, 1: minor, 2: diminished
-const uint32_t minor_chords[9] = {1,2,0,1,1,0, 0, 1, 2};	// 0: major, 1: minor, 2: diminished
+const uint32_t major_chords[] = {0,1,1,0,0,1, 2, 0, 1}; 	// 0: major, 1: minor, 2: diminished
+const uint32_t minor_chords[] = {1,2,0,1,1,0, 0, 1, 2};	// 0: major, 1: minor, 2: diminished
 
 /** @brief chords, numbers give information of position in scale array(must be -1 if used directly) */
-const uint32_t chord_5[3] = {1,3,5};   //5th-chord
-const uint32_t chord_7[4] = {1,3,5,7}; //7th-chord, Jazz
-const uint32_t chord_9[4] = {1,3,5,9}; //9th-chord, Math-Rock
-const uint32_t chord_dim[3] = {1,3,4}; //diminished-chord
+const uint32_t chord_5[] = {1,3,5};   //5th-chord
+const uint32_t chord_7[] = {1,3,5,7}; //7th-chord, Jazz
+const uint32_t chord_9[] = {1,3,5,9}; //9th-chord, Math-Rock
+const uint32_t chord_dim[] = {1,3,4}; //diminished-chord
 
 
 

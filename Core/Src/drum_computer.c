@@ -246,6 +246,9 @@ HAL_StatusTypeDef Drum_Computer_Reset(void) {
 		timing_position_in_samples[i] = (FourFour / 4 ) * (i + 1) * (MasterClock / FourFour) * (60 / BPM);
 	}
 
+	Display.Drumcomputer_BPMbyECG_ONOFF = false;
+	strcpy(Display.value_str_drumcomputer[6], "OFF");
+
 	return HAL_OK;
 }
 

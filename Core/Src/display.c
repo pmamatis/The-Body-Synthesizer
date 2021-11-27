@@ -4755,6 +4755,21 @@ void p_EMG(void) {
 	}
 }
 
+//void p_KeyAndMode(void) {
+//
+//	//Header line
+//	char headerstring[] = "KEY AND MODE";
+//	Paint_DrawStringAt(&paint, 1, CASE0, headerstring, &Font16, COLORED);
+//	//row cases
+//	char str_1[] = "Key";
+//	char str_2[] = "Mode";
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, str_1, &Font12, COLORED);
+//	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE2, str_2, &Font12, COLORED);
+//
+//	// as big as the number of parameters
+//	Display.max_parameter = 2;
+//}
+
 void p_Volume(void) {
 
 	//Header line

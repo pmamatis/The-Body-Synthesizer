@@ -99,6 +99,12 @@ HAL_StatusTypeDef emg_peak_detection(void){
 		emg_toggleCounter++;
 	}
 
+	if(Display.PlaySingleSample_ONOFF == true && emg_peak == 1) {
+
+		play_single_sample_flag = true;
+		emg_peak = 0;
+	}
+
 	return HAL_OK;
 }
 

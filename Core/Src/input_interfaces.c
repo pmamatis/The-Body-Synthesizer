@@ -43,7 +43,6 @@ void II_startInterface(TIM_HandleTypeDef* htim) {
 uint32_t gyro_toggleCounter = 0;
 uint32_t gyro_toggleThreshold = 10;
 
-
 uint8_t II_Display_Voices(void) {
 
 	for(uint8_t ii_i=0; ii_i < II_MAX_VOICES; ii_i++) {
@@ -58,22 +57,30 @@ uint8_t II_Display_Voices(void) {
 			}
 
 			switch (Display.Voice_Note_Sources[ii_i]) {
-			case EMG:
-				if(emg_peak == 1) {
-					//printf("raise note\r\n");
-					II_raiseNote(ii_i);
-					emg_peak = 0;
-				}
-				break;
+			//			case EMG:
+			//				if(emg_peak == 1) {
+			//					//printf("raise note\r\n");
+			//					II_raiseNote(ii_i);
+			//					emg_peak = 0;
+			//				}
+			//				break;
 			case GYRO_FB:
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
 					if (sensorData.tilt_detected == TILT_BACK){
-						II_decreaseNote(ii_i);	// TODO: decrease the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
+
+						if(Display.Voices_Noteindex[ii_i] > 0)
+							Display.Voices_Noteindex[ii_i]--;
+						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
+
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT){
-						II_raiseNote(ii_i);	// TODO: increase the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
+
+						if(Display.Voices_Noteindex[ii_i] < 7)	// 8 keys per major scale
+							Display.Voices_Noteindex[ii_i]++;
+						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
+
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					gyro_toggleCounter = 0;
@@ -85,11 +92,76 @@ uint8_t II_Display_Voices(void) {
 
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 					if (sensorData.tilt_detected == TILT_RIGHT){
-						II_decreaseNote(ii_i);	// TODO: decrease the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
+
+						if(Display.Voices_Noteindex[ii_i] < 7)	// 8 keys per major scale
+							Display.Voices_Noteindex[ii_i]++;
+						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
+
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_LEFT){
-						II_raiseNote(ii_i);	// TODO: increase the noteindex Display.Voices_Noteindex[Display.currentVoice-1] as its done in the gpio exti callback
+
+						if(Display.Voices_Noteindex[ii_i] > 0)
+							Display.Voices_Noteindex[ii_i]--;
+						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
+
+						sensorData.tilt_detected = TILT_NONE;
+					}
+
+					gyro_toggleCounter = 0;
+				}
+				else
+					gyro_toggleCounter++;
+				break;
+			default:
+				break;
+			}
+
+			switch (Display.Voice_Octave_Sources[ii_i]) {
+			//			case EMG:
+			//				if(emg_peak == 1) {
+			//					//printf("raise note\r\n");
+			//					II_raiseNote(ii_i);
+			//					emg_peak = 0;
+			//				}
+			//				break;
+			case GYRO_FB:
+				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
+
+					if (sensorData.tilt_detected == TILT_BACK){
+
+						if(Display.Voices_Octave[ii_i] > 0)
+							Display.Voices_Octave[ii_i]--;
+
+						sensorData.tilt_detected = TILT_NONE;
+					}
+					else if (sensorData.tilt_detected == TILT_FRONT){
+
+						if(Display.Voices_Octave[ii_i] < 5)	// maximum 6 octaves
+							Display.Voices_Octave[ii_i]++;
+
+						sensorData.tilt_detected = TILT_NONE;
+					}
+					gyro_toggleCounter = 0;
+				}
+				else
+					gyro_toggleCounter++;
+				break;
+			case GYRO_LR:
+
+				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
+					if (sensorData.tilt_detected == TILT_RIGHT){
+
+						if(Display.Voices_Octave[ii_i] < 5)	// maximum 6 octaves
+							Display.Voices_Octave[ii_i]++;
+
+						sensorData.tilt_detected = TILT_NONE;
+					}
+					else if (sensorData.tilt_detected == TILT_LEFT){
+
+						if(Display.Voices_Octave[ii_i] > 0)
+							Display.Voices_Octave[ii_i]--;
+
 						sensorData.tilt_detected = TILT_NONE;
 
 					}
@@ -113,9 +185,6 @@ uint8_t II_Display_Voices(void) {
 		//		}
 	}
 
-	if(Display.PlaySingleSample_ONOFF == true)
-		II_pSwEMG();
-
 	return 1;
 }
 
@@ -132,7 +201,7 @@ uint8_t II_Display_Effects(void){
 		effects_add(DIST);
 
 		if(Display.Distortion_Type == 0)
-//			SoftClipping.distortion_gain = Display.Distortion_Gain / 10;
+			//			SoftClipping.distortion_gain = Display.Distortion_Gain / 10;
 			SoftClipping.distortion_gain = Display.Distortion_Gain;
 		else if(Display.Distortion_Type == 1)
 			HardClipping.distortion_gain = Display.Distortion_Gain;
