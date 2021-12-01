@@ -177,7 +177,7 @@ Filter_Status Filters_Reinit_Gyro(float cutoff){
 	}
 	else {
 		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
-		SetupBandpassCPG(&EQ_BAND2,  10, 0.707);
+		SetupBandpassCPG(&EQ_BAND2,  LUT_FMIN, 0.707);
 		//		printf("cutoff: %f\r\n",cutoff);
 		return FILTER_OK;
 	}

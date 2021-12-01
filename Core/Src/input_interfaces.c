@@ -564,7 +564,8 @@ uint8_t II_Display_Effects(void){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > LUT_FMIN ) {
 							//							printf("decrease cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]--;
-							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
+							filter_step_counter[Display.currentBand-1]--;
+							Display.Filter_Cutoff[Display.currentBand-1] =  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 							Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand-1]);
 						}
 						sensorData.tilt_detected = TILT_NONE;
@@ -572,6 +573,8 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_BACK_S){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > LUT_FMIN ) {
 							//							printf("decrease cuttoff Rate DOUBLEEEE\r\n");
+							filter_step_counter[Display.currentBand-1]--;
+							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -583,6 +586,7 @@ uint8_t II_Display_Effects(void){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX) {
 							//							printf("increase cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]++;
+							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 							Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand-1]);
 						}
@@ -591,6 +595,8 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_FRONT_S){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX) {
 							//							printf("increase cuttoff Rate DOUBLEEEE\r\n");
+							filter_step_counter[Display.currentBand-1]++;
+							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -605,6 +611,7 @@ uint8_t II_Display_Effects(void){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
 							//							printf("decrease cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]--;
+							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 							Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand-1]);
 						}
@@ -613,6 +620,8 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_LEFT_S ){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
 							//							printf("decrease cuttoff Rate DOUBLEEEE\r\n");
+							filter_step_counter[Display.currentBand-1]--;
+							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -625,6 +634,7 @@ uint8_t II_Display_Effects(void){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
 							//							printf("increase cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]++;
+							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 							Filters_Reinit_Gyro(Display.Filter_Cutoff[Display.currentBand-1]);
 						}
@@ -633,6 +643,8 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_RIGHT_S){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
 							//							printf("increase cuttoff Rate DOUBLEEEE\r\n");
+							filter_step_counter[Display.currentBand-1]++;
+							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
