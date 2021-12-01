@@ -287,7 +287,7 @@ HAL_StatusTypeDef Sequencer_Reset(void) {
 		Sequencer_ADSR_Init(&adsr_SN4[i]);
 	}
 
-	Display.Sequencer_ONOFF = false;
+//	Display.Sequencer_ONOFF = false;
 
 	strcpy(Display.value_str_sequencer[0], "OFF");
 	sprintf(Display.value_str_sequencer[1], "%c", Display.Sequencer_Note[0]);

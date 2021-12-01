@@ -2372,7 +2372,17 @@ Display_Status p_Sequencer_overview(void) {
 
 		if(Display.last_Sequencer_Noteindex[0] != Display.Sequencer_Noteindex[0]) {
 
-			Display.Sequencer_Note[0] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[0]]);
+			//			Display.Sequencer_Note[0] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[0]]);
+			// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+			if(Display.ScaleMode == FREESTYLE)
+				Display.Sequencer_Note[0] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[0]]);
+
+			else if(Display.ScaleMode == MAJOR)
+				Display.Sequencer_Note[0] = (uint8_t)(keys[major_scale[(uint8_t)Display.Sequencer_Noteindex[0]] + Display.KeyNoteIndex]);
+
+			else if(Display.ScaleMode == MINOR)
+				Display.Sequencer_Note[0] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Sequencer_Noteindex[0]] + Display.KeyNoteIndex]);
+
 			sprintf(Display.value_str_sequencer[1], "%c", Display.Sequencer_Note[0]);
 
 			freq_index_SN1 = Get_Note_Index(Display.Sequencer_Note[0], (uint8_t)Display.Sequencer_Octave[0]);
@@ -2411,7 +2421,17 @@ Display_Status p_Sequencer_overview(void) {
 
 		if(Display.last_Sequencer_Noteindex[1] != Display.Sequencer_Noteindex[1]) {
 
-			Display.Sequencer_Note[1] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[1]]);
+			//			Display.Sequencer_Note[1] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[1]]);
+			// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+			if(Display.ScaleMode == FREESTYLE)
+				Display.Sequencer_Note[1] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[1]]);
+
+			else if(Display.ScaleMode == MAJOR)
+				Display.Sequencer_Note[1] = (uint8_t)(keys[major_scale[(uint8_t)Display.Sequencer_Noteindex[1]] + Display.KeyNoteIndex]);
+
+			else if(Display.ScaleMode == MINOR)
+				Display.Sequencer_Note[1] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Sequencer_Noteindex[1]] + Display.KeyNoteIndex]);
+
 			sprintf(Display.value_str_sequencer[3], "%c", Display.Sequencer_Note[1]);
 
 			freq_index_SN2 = Get_Note_Index(Display.Sequencer_Note[1], (uint8_t)Display.Sequencer_Octave[1]);
@@ -2450,7 +2470,17 @@ Display_Status p_Sequencer_overview(void) {
 
 		if(Display.last_Sequencer_Noteindex[2] != Display.Sequencer_Noteindex[2]) {
 
-			Display.Sequencer_Note[2] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[2]]);
+			//			Display.Sequencer_Note[2] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[2]]);
+			// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+			if(Display.ScaleMode == FREESTYLE)
+				Display.Sequencer_Note[2] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[2]]);
+
+			else if(Display.ScaleMode == MAJOR)
+				Display.Sequencer_Note[2] = (uint8_t)(keys[major_scale[(uint8_t)Display.Sequencer_Noteindex[2]] + Display.KeyNoteIndex]);
+
+			else if(Display.ScaleMode == MINOR)
+				Display.Sequencer_Note[2] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Sequencer_Noteindex[2]] + Display.KeyNoteIndex]);
+
 			sprintf(Display.value_str_sequencer[5], "%c", Display.Sequencer_Note[2]);
 
 			freq_index_SN3 = Get_Note_Index(Display.Sequencer_Note[2], (uint8_t)Display.Sequencer_Octave[2]);

@@ -1587,55 +1587,67 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 			if(Display.JoystickParameterPosition == 1) {	// KeyNote (e.g. C)
 
-				if(Display.KeyNoteIndex > 0)	{				// 12 keys per octave
+				if(Display.KeyNoteIndex > 0) {				// 12 keys per octave
 
 					Display.KeyNoteIndex--;
-
-					// Turn off voices
-					Display.Voices_ONOFF[VOICES_ID]   = false;
-					Display.Voices_ONOFF[VOICES_ID+1] = false;
-					Display.Voices_ONOFF[VOICES_ID+2] = false;
-
-					strcpy(Display.value_str_voices_overview[0], "OFF");
-					strcpy(Display.value_str_voices_overview[1], "OFF");
-					strcpy(Display.value_str_voices_overview[2], "OFF");
-
-					// Reset Voices to root note when Mode changed
-					Display.Voices_Noteindex[VOICES_ID]   = 0;
-					Display.Voices_Noteindex[VOICES_ID+1] = 0;
-					Display.Voices_Noteindex[VOICES_ID+2] = 0;
-
-					Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
-					Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
-					Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
 				}
 			}
 			else if(Display.JoystickParameterPosition == 2) {	// Mode (Freestyle, Major, Minor)
 
-				if(Display.ScaleMode > 0){					// maximum 6 octaves
+				if(Display.ScaleMode > 0){
 
 					// Update Scale Mode
 					Display.ScaleMode--;
-
-					// Turn off voices
-					Display.Voices_ONOFF[VOICES_ID]   = false;
-					Display.Voices_ONOFF[VOICES_ID+1] = false;
-					Display.Voices_ONOFF[VOICES_ID+2] = false;
-
-					strcpy(Display.value_str_voices_overview[0], "OFF");
-					strcpy(Display.value_str_voices_overview[1], "OFF");
-					strcpy(Display.value_str_voices_overview[2], "OFF");
-
-					// Reset Voices to root note when Mode changed
-					Display.Voices_Noteindex[VOICES_ID]   = 0;
-					Display.Voices_Noteindex[VOICES_ID+1] = 0;
-					Display.Voices_Noteindex[VOICES_ID+2] = 0;
-
-					Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
-					Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
-					Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
 				}
 			}
+
+			// Turn off voices
+			Display.Voices_ONOFF[VOICES_ID]   = false;
+			Display.Voices_ONOFF[VOICES_ID+1] = false;
+			Display.Voices_ONOFF[VOICES_ID+2] = false;
+
+			strcpy(Display.value_str_voices_overview[0], "OFF");
+			strcpy(Display.value_str_voices_overview[1], "OFF");
+			strcpy(Display.value_str_voices_overview[2], "OFF");
+
+			// Reset Voices to root note when Mode changed
+			Display.Voices_Noteindex[VOICES_ID]   = Display.last_Voices_Noteindex[VOICES_ID]   = 0;
+			Display.Voices_Noteindex[VOICES_ID+1] = Display.last_Voices_Noteindex[VOICES_ID+1] = 0;
+			Display.Voices_Noteindex[VOICES_ID+2] = Display.last_Voices_Noteindex[VOICES_ID+2] = 0;
+
+			Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
+			Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
+			Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
+
+			// Turn off sequencer
+			Display.Sequencer_ONOFF = false;
+
+			// Reset Sequencer to root note when Mode changed
+			Display.Sequencer_Noteindex[0] = Display.last_Sequencer_Noteindex[0] = 0;
+			Display.Sequencer_Noteindex[1] = Display.last_Sequencer_Noteindex[1] = 0;
+			Display.Sequencer_Noteindex[2] = Display.last_Sequencer_Noteindex[2] = 0;
+
+			Display.Sequencer_Note[0] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[0] + Display.KeyNoteIndex]);
+			Display.Sequencer_Note[1] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[1] + Display.KeyNoteIndex]);
+			Display.Sequencer_Note[2] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[2] + Display.KeyNoteIndex]);
+
+			freq_index_SN1 = Get_Note_Index(Display.Sequencer_Note[0], Display.Sequencer_Octave[0]);
+			freq_index_SN2 = Get_Note_Index(Display.Sequencer_Note[1], Display.Sequencer_Octave[1]);
+			freq_index_SN3 = Get_Note_Index(Display.Sequencer_Note[2], Display.Sequencer_Octave[2]);
+
+			// FOR: all steps in sequencer
+			for(int i=0; i<FourFour; i++) {
+
+				// INIT: Sequencer start index
+				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+			}
+
+			strcpy(Display.value_str_sequencer[0], "OFF");
+			sprintf(Display.value_str_sequencer[1], "%c", Display.Sequencer_Note[0]);
+			sprintf(Display.value_str_sequencer[3], "%c", Display.Sequencer_Note[1]);
+			sprintf(Display.value_str_sequencer[5], "%c", Display.Sequencer_Note[2]);
 		}
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
@@ -1777,26 +1789,62 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		if(Display.pagePosition == 3 && Display.currentDrumcomputer == 0) {
 
 			if(Display.JoystickParameterPosition == 3) {	// Sequencer Note 1 up
-				if(Display.Sequencer_Noteindex[0] < 12)	// 12 keys per octave
-					Display.Sequencer_Noteindex[0]++;
+
+				if(Display.ScaleMode == FREESTYLE){
+					if(Display.Sequencer_Noteindex[0] < 12)	// 12 keys per octave + deep C
+						Display.Sequencer_Noteindex[0]++;
+				}
+				else if(Display.ScaleMode == MAJOR){
+					if(Display.Sequencer_Noteindex[0] < 7)	// 7 keys per octave + deep root
+						Display.Sequencer_Noteindex[0]++;
+				}
+				else if(Display.ScaleMode == MINOR){
+					if(Display.Sequencer_Noteindex[0] < 7)	// 7 keys per octave + deep root
+						Display.Sequencer_Noteindex[0]++;
+				}
 			}
 			else if(Display.JoystickParameterPosition == 4) {	// Sequencer Octave 1 up
+
 				if(Display.Sequencer_Octave[0] < 5)	// maximum 6 octaves
 					Display.Sequencer_Octave[0]++;
 			}
 			else if(Display.JoystickParameterPosition == 5) {	// Sequencer Note 2 up
-				if(Display.Sequencer_Noteindex[1] < 12)	// 12 keys per octave
-					Display.Sequencer_Noteindex[1]++;
+
+				if(Display.ScaleMode == FREESTYLE){
+					if(Display.Sequencer_Noteindex[1] < 12)	// 12 keys per octave + deep C
+						Display.Sequencer_Noteindex[1]++;
+				}
+				else if(Display.ScaleMode == MAJOR){
+					if(Display.Sequencer_Noteindex[1] < 7)	// 7 keys per octave + deep root
+						Display.Sequencer_Noteindex[1]++;
+				}
+				else if(Display.ScaleMode == MINOR){
+					if(Display.Sequencer_Noteindex[1] < 7)	// 7 keys per octave + deep root
+						Display.Sequencer_Noteindex[1]++;
+				}
 			}
 			else if(Display.JoystickParameterPosition == 6) {	// Sequencer Octave 2 up
+
 				if(Display.Sequencer_Octave[1] < 5)	// maximum 6 octaves
 					Display.Sequencer_Octave[1]++;
 			}
 			else if(Display.JoystickParameterPosition == 7) {	// Sequencer Note 3 up
-				if(Display.Sequencer_Noteindex[2] < 12)	// 12 keys per octave
-					Display.Sequencer_Noteindex[2]++;
+
+				if(Display.ScaleMode == FREESTYLE){
+					if(Display.Sequencer_Noteindex[2] < 12)	// 12 keys per octave + deep C
+						Display.Sequencer_Noteindex[2]++;
+				}
+				else if(Display.ScaleMode == MAJOR){
+					if(Display.Sequencer_Noteindex[2] < 7)	// 7 keys per octave + deep root
+						Display.Sequencer_Noteindex[2]++;
+				}
+				else if(Display.ScaleMode == MINOR){
+					if(Display.Sequencer_Noteindex[2] < 7)	// 7 keys per octave + deep root
+						Display.Sequencer_Noteindex[2]++;
+				}
 			}
 			else if(Display.JoystickParameterPosition == 8) {	// Sequencer Octave 3 up
+
 				if(Display.Sequencer_Octave[2] < 5)	// maximum 6 octaves
 					Display.Sequencer_Octave[2]++;
 			}
@@ -1839,52 +1887,64 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				if(Display.KeyNoteIndex < 12) {				// 12 keys per octave
 
 					Display.KeyNoteIndex++;
-
-					// Turn off voices
-					Display.Voices_ONOFF[VOICES_ID]   = false;
-					Display.Voices_ONOFF[VOICES_ID+1] = false;
-					Display.Voices_ONOFF[VOICES_ID+2] = false;
-
-					strcpy(Display.value_str_voices_overview[0], "OFF");
-					strcpy(Display.value_str_voices_overview[1], "OFF");
-					strcpy(Display.value_str_voices_overview[2], "OFF");
-
-					// Reset Voices to root note when Mode changed
-					Display.Voices_Noteindex[VOICES_ID]   = 0;
-					Display.Voices_Noteindex[VOICES_ID+1] = 0;
-					Display.Voices_Noteindex[VOICES_ID+2] = 0;
-
-					Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
-					Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
-					Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
 				}
 			}
 			else if(Display.JoystickParameterPosition == 2) {	// Mode (Freestyle, Major, Minor)
 
-				if(Display.ScaleMode < 2){	// maximum 6 octaves
+				if(Display.ScaleMode < 2) {
 
 					// Update Scale Mode
 					Display.ScaleMode++;
-
-					// Turn off voices
-					Display.Voices_ONOFF[VOICES_ID]   = false;
-					Display.Voices_ONOFF[VOICES_ID+1] = false;
-					Display.Voices_ONOFF[VOICES_ID+2] = false;
-
-					strcpy(Display.value_str_voices_overview[0], "OFF");
-					strcpy(Display.value_str_voices_overview[1], "OFF");
-					strcpy(Display.value_str_voices_overview[2], "OFF");
-
-					// Reset Voices to root note when Mode changed
-					Display.Voices_Noteindex[VOICES_ID]   = 0;
-					Display.Voices_Noteindex[VOICES_ID+1] = 0;
-					Display.Voices_Noteindex[VOICES_ID+2] = 0;
-
-					Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
-					Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
-					Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
 				}
 			}
+
+			// Turn off voices
+			Display.Voices_ONOFF[VOICES_ID]   = false;
+			Display.Voices_ONOFF[VOICES_ID+1] = false;
+			Display.Voices_ONOFF[VOICES_ID+2] = false;
+
+			strcpy(Display.value_str_voices_overview[0], "OFF");
+			strcpy(Display.value_str_voices_overview[1], "OFF");
+			strcpy(Display.value_str_voices_overview[2], "OFF");
+
+			// Reset Voices to root note when Mode changed
+			Display.Voices_Noteindex[VOICES_ID]   = Display.last_Voices_Noteindex[VOICES_ID]   = 0;
+			Display.Voices_Noteindex[VOICES_ID+1] = Display.last_Voices_Noteindex[VOICES_ID+1] = 0;
+			Display.Voices_Noteindex[VOICES_ID+2] = Display.last_Voices_Noteindex[VOICES_ID+2] = 0;
+
+			Display.Voices_Note[VOICES_ID]   = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID  ] + Display.KeyNoteIndex]);
+			Display.Voices_Note[VOICES_ID+1] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+1] + Display.KeyNoteIndex]);
+			Display.Voices_Note[VOICES_ID+2] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[VOICES_ID+2] + Display.KeyNoteIndex]);
+
+			// Turn off sequencer
+			Display.Sequencer_ONOFF = false;
+
+			// Reset Sequencer to root note when Mode changed
+			Display.Sequencer_Noteindex[0] = Display.last_Sequencer_Noteindex[0] = 0;
+			Display.Sequencer_Noteindex[1] = Display.last_Sequencer_Noteindex[1] = 0;
+			Display.Sequencer_Noteindex[2] = Display.last_Sequencer_Noteindex[2] = 0;
+
+			Display.Sequencer_Note[0] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[0] + Display.KeyNoteIndex]);
+			Display.Sequencer_Note[1] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[1] + Display.KeyNoteIndex]);
+			Display.Sequencer_Note[2] = (uint8_t)(keys[(uint8_t)Display.Sequencer_Noteindex[2] + Display.KeyNoteIndex]);
+
+			freq_index_SN1 = Get_Note_Index(Display.Sequencer_Note[0], Display.Sequencer_Octave[0]);
+			freq_index_SN2 = Get_Note_Index(Display.Sequencer_Note[1], Display.Sequencer_Octave[1]);
+			freq_index_SN3 = Get_Note_Index(Display.Sequencer_Note[2], Display.Sequencer_Octave[2]);
+
+			// FOR: all steps in sequencer
+			for(int i=0; i<FourFour; i++) {
+
+				// INIT: Sequencer start index
+				current_LUT_index_SN1[i] = LUT_STARTINDEX[freq_index_SN1];
+				current_LUT_index_SN2[i] = LUT_STARTINDEX[freq_index_SN2];
+				current_LUT_index_SN3[i] = LUT_STARTINDEX[freq_index_SN3];
+			}
+
+			strcpy(Display.value_str_sequencer[0], "OFF");
+			sprintf(Display.value_str_sequencer[1], "%c", Display.Sequencer_Note[0]);
+			sprintf(Display.value_str_sequencer[3], "%c", Display.Sequencer_Note[1]);
+			sprintf(Display.value_str_sequencer[5], "%c", Display.Sequencer_Note[2]);
 		}
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
