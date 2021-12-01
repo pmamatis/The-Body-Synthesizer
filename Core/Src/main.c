@@ -1556,20 +1556,23 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			// Voices Notes
 			if(Display.JoystickParameterPosition == 1) {	// Voices [1,2,3] Note up
 
-				if(Display.ScaleMode == FREESTYLE){
-					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-						Display.Voices_Noteindex[Display.currentVoice-1]--;
-				}
-				else if(Display.ScaleMode == MAJOR){
-					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-						Display.Voices_Noteindex[Display.currentVoice-1]--;
-				}
-
-				else if(Display.ScaleMode == MINOR){
-					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-						Display.Voices_Noteindex[Display.currentVoice-1]--;
-				}
+				// Noteindex decreased the same way for all Scale Modes (Freestyle, Major and Minor)
+				if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
+					Display.Voices_Noteindex[Display.currentVoice-1]--;
 			}
+
+			//				if(Display.ScaleMode == FREESTYLE){
+			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
+			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
+			//				}
+			//				else if(Display.ScaleMode == MAJOR){
+			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
+			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
+			//				}
+			//				else if(Display.ScaleMode == MINOR){
+			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
+			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
+			//				}
 
 			// Octaves
 			else if(Display.JoystickParameterPosition == 2) {	// Voices [1,2,3] Octave down
@@ -1584,7 +1587,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 			if(Display.JoystickParameterPosition == 1) {	// KeyNote (e.g. C)
 
-				if(Display.KeyNoteIndex >0)	{				// 12 keys per octave
+				if(Display.KeyNoteIndex > 0)	{				// 12 keys per octave
 
 					Display.KeyNoteIndex--;
 
@@ -1608,6 +1611,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				}
 			}
 			else if(Display.JoystickParameterPosition == 2) {	// Mode (Freestyle, Major, Minor)
+
 				if(Display.ScaleMode > 0){					// maximum 6 octaves
 
 					// Update Scale Mode
@@ -1802,7 +1806,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		// Voices notes and octaves changed by putton pressing
 		if(Display.pagePosition == 5 && Display.currentVoice > 0) {
 
-
 			// Voices Notes
 			if(Display.JoystickParameterPosition == 1) {	// Voices [1,2,3] Note up
 
@@ -1814,7 +1817,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 					if(Display.Voices_Noteindex[Display.currentVoice-1] < 7)	// 7 keys per octave + deep root
 						Display.Voices_Noteindex[Display.currentVoice-1]++;
 				}
-
 				else if(Display.ScaleMode == MINOR){
 					if(Display.Voices_Noteindex[Display.currentVoice-1] < 7)	// 7 keys per octave + deep root
 						Display.Voices_Noteindex[Display.currentVoice-1]++;

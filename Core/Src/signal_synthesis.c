@@ -897,7 +897,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
 					// this has to be done here to process the change immediately when the index is
-					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
+					if(signals->ID[j] == VOICES_ID) {
 
 						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
@@ -910,7 +910,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
 						}
 					}
-					else if(signals->ID[j] == VOICES_ID+1) { //ID taucht nur auf wenn  voice auch ON ist...
+					else if(signals->ID[j] == VOICES_ID+1) {
 
 						if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
@@ -923,7 +923,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
 						}
 					}
-					else if(signals->ID[j] == VOICES_ID+2) {	//ID taucht nur auf wenn  voice auch ON ist...
+					else if(signals->ID[j] == VOICES_ID+2) {
 
 						if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
@@ -983,7 +983,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
 					// this has to be done here to process the change immediately when the index is
-					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
+					if(signals->ID[j] == VOICES_ID) {
 
 						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
@@ -996,7 +996,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
 						}
 					}
-					else if(signals->ID[j] == VOICES_ID+1) { //ID taucht nur auf wenn  voice auch ON ist...
+					else if(signals->ID[j] == VOICES_ID+1) {
 
 						if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
@@ -1009,7 +1009,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
 						}
 					}
-					else if(signals->ID[j] == VOICES_ID+2) {	//ID taucht nur auf wenn  voice auch ON ist...
+					else if(signals->ID[j] == VOICES_ID+2) {
 
 						if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
@@ -1068,7 +1068,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 					// create voice signals (maximum 3) to avoid plop sound if note or octave is varied
 					// this has to be done here to process the change immediately when the index is
-					if(signals->ID[j] == VOICES_ID) {	//ID taucht nur auf wenn  voice auch ON ist...
+					if(signals->ID[j] == VOICES_ID) {
 
 						if(Display.last_Voices_Note[VOICES_ID] != Display.Voices_Note[VOICES_ID]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID));
@@ -1081,7 +1081,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							Display.last_Voices_Octave[VOICES_ID] = Display.Voices_Octave[VOICES_ID];
 						}
 					}
-					else if(signals->ID[j] == VOICES_ID+1) { //ID taucht nur auf wenn  voice auch ON ist...
+					else if(signals->ID[j] == VOICES_ID+1) {
 
 						if(Display.last_Voices_Note[VOICES_ID+1] != Display.Voices_Note[VOICES_ID+1]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+1));
@@ -1094,7 +1094,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 							Display.last_Voices_Octave[VOICES_ID+1] = Display.Voices_Octave[VOICES_ID+1];
 						}
 					}
-					else if(signals->ID[j] == VOICES_ID+2) {	//ID taucht nur auf wenn  voice auch ON ist...
+					else if(signals->ID[j] == VOICES_ID+2) {
 
 						if(Display.last_Voices_Note[VOICES_ID+2] != Display.Voices_Note[VOICES_ID+2]) {
 							DeleteSignal(&signals1, IDtoIndex(VOICES_ID+2));
@@ -1306,12 +1306,12 @@ float CalcRectSample(struct signal_t* signals, int index){
 		// IF: Current index < length of period of desired frequency (0:172 < 173)
 		if(signals->current_LUT_Index[index] < (LUT_SUPPORTPOINTS[signals->freqIndex[index]] / 2)){
 
-			rect = 0.3;
+			rect = 0.2;
 		}
 		// IF: Current index >= length of period of desired frequency (173:345 >= 173)
 		else if(signals->current_LUT_Index[index] >= (LUT_SUPPORTPOINTS[signals->freqIndex[index]] / 2)){
 
-			rect = -0.3;
+			rect = -0.2;
 		}
 	}
 	// IF: Length of period is odd (e.g. 347)
@@ -1320,12 +1320,12 @@ float CalcRectSample(struct signal_t* signals, int index){
 		// IF: Current index < length of period of desired frequency (0:173 < 174) due to (period-1)/2 + 1
 		if(signals->current_LUT_Index[index] < (((LUT_SUPPORTPOINTS[signals->freqIndex[index]] - 1) / 2) + 1)){
 
-			rect = 0.3;
+			rect = 0.2;
 		}
 		// IF: Current index >= length of period of desired frequency (174:346 >= 174) due to (period-1)/2 + 1
 		else if(signals->current_LUT_Index[index] >= (((LUT_SUPPORTPOINTS[signals->freqIndex[index]] - 1) / 2) + 1)){
 
-			rect = -0.3;
+			rect = -0.2;
 		}
 	}
 	return rect;

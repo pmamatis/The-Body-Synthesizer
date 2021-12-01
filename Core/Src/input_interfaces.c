@@ -67,19 +67,52 @@ uint8_t II_Display_Voices(void) {
 			case GYRO_FB:
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
-					if (sensorData.tilt_detected == TILT_BACK){
+					if (sensorData.tilt_detected == TILT_BACK || sensorData.tilt_detected == TILT_BACK_S){
 
+						// Noteindex decreased the same way for all Scale Modes (Freestyle, Major and Minor)
 						if(Display.Voices_Noteindex[ii_i] > 0)
 							Display.Voices_Noteindex[ii_i]--;
-						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
+
+						// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+						if(Display.ScaleMode == FREESTYLE)
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[ii_i]]);
+
+						else if(Display.ScaleMode == MAJOR)
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
+
+						else if(Display.ScaleMode == MINOR)
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
+
+						//						if(Display.Voices_Noteindex[ii_i] > 0)
+						//							Display.Voices_Noteindex[ii_i]--;
+						//						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
-					else if (sensorData.tilt_detected == TILT_FRONT){
+					else if (sensorData.tilt_detected == TILT_FRONT || sensorData.tilt_detected == TILT_FRONT_S){
 
-						if(Display.Voices_Noteindex[ii_i] < 7)	// 8 keys per major scale
-							Display.Voices_Noteindex[ii_i]++;
-						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
+						if(Display.ScaleMode == FREESTYLE){
+							if(Display.Voices_Noteindex[ii_i] < 12)	// 12 keys per octave + deep C
+								Display.Voices_Noteindex[ii_i]++;
+							// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[ii_i]]);
+						}
+						else if(Display.ScaleMode == MAJOR){
+							if(Display.Voices_Noteindex[ii_i] < 7)	// 7 keys per octave + deep root
+								Display.Voices_Noteindex[ii_i]++;
+							// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
+						}
+						else if(Display.ScaleMode == MINOR){
+							if(Display.Voices_Noteindex[ii_i] < 7)	// 7 keys per octave + deep root
+								Display.Voices_Noteindex[ii_i]++;
+							// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
+						}
+
+						//						if(Display.Voices_Noteindex[ii_i] < 7)	// 8 keys per major scale
+						//							Display.Voices_Noteindex[ii_i]++;
+						//						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -91,19 +124,52 @@ uint8_t II_Display_Voices(void) {
 			case GYRO_LR:
 
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
-					if (sensorData.tilt_detected == TILT_RIGHT){
+					if (sensorData.tilt_detected == TILT_RIGHT || sensorData.tilt_detected == TILT_RIGHT_S){
 
-						if(Display.Voices_Noteindex[ii_i] < 7)	// 8 keys per major scale
-							Display.Voices_Noteindex[ii_i]++;
-						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
+						if(Display.ScaleMode == FREESTYLE){
+							if(Display.Voices_Noteindex[ii_i] < 12)	// 12 keys per octave + deep C
+								Display.Voices_Noteindex[ii_i]++;
+							// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[ii_i]]);
+						}
+						else if(Display.ScaleMode == MAJOR){
+							if(Display.Voices_Noteindex[ii_i] < 7)	// 7 keys per octave + deep root
+								Display.Voices_Noteindex[ii_i]++;
+							// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
+						}
+						else if(Display.ScaleMode == MINOR){
+							if(Display.Voices_Noteindex[ii_i] < 7)	// 7 keys per octave + deep root
+								Display.Voices_Noteindex[ii_i]++;
+							// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
+						}
+
+						//						if(Display.Voices_Noteindex[ii_i] < 7)	// 8 keys per major scale
+						//							Display.Voices_Noteindex[ii_i]++;
+						//						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
-					else if (sensorData.tilt_detected == TILT_LEFT){
+					else if (sensorData.tilt_detected == TILT_LEFT || sensorData.tilt_detected == TILT_LEFT_S){
 
+						// Noteindex decreased the same way for all Scale Modes (Freestyle, Major and Minor)
 						if(Display.Voices_Noteindex[ii_i] > 0)
 							Display.Voices_Noteindex[ii_i]--;
-						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
+
+						// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note
+						if(Display.ScaleMode == FREESTYLE)
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[(uint8_t)Display.Voices_Noteindex[ii_i]]);
+
+						else if(Display.ScaleMode == MAJOR)
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
+
+						else if(Display.ScaleMode == MINOR)
+							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
+
+						//						if(Display.Voices_Noteindex[ii_i] > 0)
+						//							Display.Voices_Noteindex[ii_i]--;
+						//						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -128,14 +194,14 @@ uint8_t II_Display_Voices(void) {
 			case GYRO_FB:
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
-					if (sensorData.tilt_detected == TILT_BACK){
+					if (sensorData.tilt_detected == TILT_BACK || sensorData.tilt_detected == TILT_BACK_S){
 
 						if(Display.Voices_Octave[ii_i] > 0)
 							Display.Voices_Octave[ii_i]--;
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
-					else if (sensorData.tilt_detected == TILT_FRONT){
+					else if (sensorData.tilt_detected == TILT_FRONT || sensorData.tilt_detected == TILT_FRONT_S){
 
 						if(Display.Voices_Octave[ii_i] < 5)	// maximum 6 octaves
 							Display.Voices_Octave[ii_i]++;
@@ -150,14 +216,14 @@ uint8_t II_Display_Voices(void) {
 			case GYRO_LR:
 
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
-					if (sensorData.tilt_detected == TILT_RIGHT){
+					if (sensorData.tilt_detected == TILT_RIGHT || sensorData.tilt_detected == TILT_RIGHT_S){
 
 						if(Display.Voices_Octave[ii_i] < 5)	// maximum 6 octaves
 							Display.Voices_Octave[ii_i]++;
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
-					else if (sensorData.tilt_detected == TILT_LEFT){
+					else if (sensorData.tilt_detected == TILT_LEFT || sensorData.tilt_detected == TILT_LEFT_S){
 
 						if(Display.Voices_Octave[ii_i] > 0)
 							Display.Voices_Octave[ii_i]--;

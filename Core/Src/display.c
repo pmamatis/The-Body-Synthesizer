@@ -679,22 +679,31 @@ void DISPLAY_SwitchPageLeft(void) {
 	Display.poti_moved = false;	// to make sure that the following parameter is not changed
 
 	// this has to be done to make sure that the "current" variables are reset to 0, when we switch back from settings pages to overview pages
-	if(Display.currentVoice > 0)
-		Display.currentVoice = 0;
-	else if(Display.currentBand > 0)
-		Display.currentBand = 0;
-	else if(Display.currentADSR > 0)
-		Display.currentADSR = 0;
-	else if(Display.currentDistortion > 0)
-		Display.currentDistortion = 0;
-	else if(Display.currentTremolo > 0)
-		Display.currentTremolo = 0;
-	else if(Display.currentDrumcomputer > 0)
-		Display.currentDrumcomputer = 0;
-	else if(Display.currentSequencer > 0)
-		Display.currentSequencer = 0;
-	else if(Display.currentWahWah > 0)
-		Display.currentWahWah = 0;
+	//	if(Display.currentVoice > 0)
+	//		Display.currentVoice = 0;
+	//	else if(Display.currentBand > 0)
+	//		Display.currentBand = 0;
+	//	else if(Display.currentADSR > 0)
+	//		Display.currentADSR = 0;
+	//	else if(Display.currentDistortion > 0)
+	//		Display.currentDistortion = 0;
+	//	else if(Display.currentTremolo > 0)
+	//		Display.currentTremolo = 0;
+	//	else if(Display.currentDrumcomputer > 0)
+	//		Display.currentDrumcomputer = 0;
+	//	else if(Display.currentSequencer > 0)
+	//		Display.currentSequencer = 0;
+	//	else if(Display.currentWahWah > 0)
+	//		Display.currentWahWah = 0;
+
+	Display.currentVoice = 0;
+	Display.currentBand = 0;
+	Display.currentADSR = 0;
+	Display.currentDistortion = 0;
+	Display.currentTremolo = 0;
+	Display.currentDrumcomputer = 0;
+	Display.currentSequencer = 0;
+	Display.currentWahWah = 0;
 
 	Display.JoystickParameterPosition = 1;
 
@@ -3322,7 +3331,7 @@ void p_Voices_overview(void) {
 void p_Voices_Settings(void) {
 
 	//	if(Display.Voices_Kind[Display.currentVoice-1] == SIN) {
-	if(Display.currentVoice < NUMBER_OF_VOICES+1) {
+	if(Display.currentVoice >= 1 && Display.currentVoice < NUMBER_OF_VOICES+1) {
 
 		//Header line
 		char headerstring[] = "Voice ";
