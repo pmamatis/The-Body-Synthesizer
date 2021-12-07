@@ -1181,7 +1181,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
 		}
 
-		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 		//		ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// Keyboard processing without effects

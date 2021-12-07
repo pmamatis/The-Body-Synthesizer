@@ -33,11 +33,13 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
+
+// for signal synthesis
 #include "signal_synthesis.h"
 #include "music_notes.h"
 #include "sinLUT.h"
 #include "effects.h"
-#include "filters.h"
+
 // for filters
 #include "filters.h"
 #include "arm_math.h"
@@ -170,20 +172,13 @@ bool process_dist_hard;
 bool process_adsr;
 bool process_filter;
 /** @brief DAC output array*/
-//uint32_t output_vector1[BLOCKSIZE];
-float calculate_vector1[BLOCKSIZE];
 
-//uint32_t output_vector2[BLOCKSIZE];
+/** DAC output array. Before the content of this array is given to the DAC, all calculations are made on this array too  */
+float calculate_vector1[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
 
-float effect_LFO[BLOCKSIZE/2];	// Original!!!
-//uint32_t effect_LFO_output[BLOCKSIZE];
-//uint32_t effect_LFO_output[BLOCKSIZE];
-
-float sigFreq_sampleFreq_ratio;
-uint64_t tim5_counter;
-uint64_t time;
-//Gyro SPI buffer
+/** Array for the LFO(low frequency oscillator)*/
+float effect_LFO[BLOCKSIZE/2];
 
 /** @brief enum for DMA Output buffer position */
 enum outputBuffer_position_enum{

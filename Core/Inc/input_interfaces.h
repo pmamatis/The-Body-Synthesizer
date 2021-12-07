@@ -11,6 +11,8 @@
 #include "main.h"
 
 
+
+/** defines */
 #define II_MAX_VOICES 3
 #define II_SR 50
 #define II_TREM_DEPTH_STEP_SIZE 20
@@ -25,15 +27,17 @@
 #define II_TREM_DEPTH_DELAY II_SR/4
 
 
-uint8_t ii_voice_IDs[II_MAX_VOICES];
-//uint8_t II_raiseNote(uint8_t ID,uint8_t octave,char oldKey);
+
+/** variables */
 
 /** value for Frequency as ln*/
 double log_mapping_F;
+
 /** actual step of the filter cuttoff */
 int16_t filter_step_counter[5];
 int16_t drum_filter_step_counter;
 
+/** Flag to detect gyromovement in general */
 bool gyrochanged;
 
 
@@ -45,6 +49,7 @@ uint32_t gyro_delay_counter[2];
 
 bool emg_triggerd_flag;
 
+/** functions */
 void II_init();
 void II_startInterface(TIM_HandleTypeDef* htim);
 void II_raiseNote(uint8_t ID);

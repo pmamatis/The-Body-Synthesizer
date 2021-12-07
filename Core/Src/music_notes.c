@@ -16,7 +16,7 @@
 
 /** @brief lookuptable for respective note keys*/
 const char keys[] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
-//                      C#      D#		        F#	    G#				    C#	    D#		    F#	    G#				    C#
+//                        C#      D#		  F#	  G#				  C#	  D#		  F#	  G#				  C#
 
 
 

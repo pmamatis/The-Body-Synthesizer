@@ -23,10 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include "epd1in54.h"
-//#include "epdif.h"
-//#include "epdpaint.h"
-//#include "imagedata.h"
+
+//For SD card
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -134,28 +132,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 }
 
 
-/* DAC CHANNEL FUnktions */
-
+/* DAC CHANNEL FUNCTIONS begin*********************/
 bool Init_complete = false;
-////DAC_CHANNEL_1
-//void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-//
-//	outputBuffer_position = HALF_BLOCK;
-//	if (Init_complete){
-//		Signal_Synthesis(&signals1, 1);
-//	}
-//	else
-//		Init_complete = initRamp();
-//}
-//
-//void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-//	outputBuffer_position = FULL_BLOCK;
-//	if (Init_complete){
-//		Signal_Synthesis(&signals1, 1);
-//	}
-//	else
-//		Init_complete = initRamp();
-//}
 
 // DAC_CHANNEL_2
 void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
@@ -177,6 +155,8 @@ void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 	else
 		Init_complete = initRamp();
 }
+/* DAC CHANNEL FUNCTIONS end*********************/
+
 
 /* USER CODE END 0 */
 
@@ -188,8 +168,6 @@ int main(void)
 {
 	/* USER CODE BEGIN 1 */
 
-	//	// you have to edit the startup_stm32fxxx.s file and set a big enough heap size
-	//	unsigned char* frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 
 	/* USER CODE END 1 */
 
@@ -234,27 +212,11 @@ int main(void)
 	MX_TIM3_Init();
 	/* USER CODE BEGIN 2 */
 
-	//--------------------------------------------------	SD CARD
-	/*char* textfile_list;	// find textfiles on sd card
-	sd_card_mount(huart3);
-	textfile_list = find_text_file(huart3);
-	sd_card_unmount(huart3);
-	send_uart(textfile_list, huart3);
-	send_uart("\n\n\r", huart3);*/
 
-	/*sd_card_mount(huart3);
-	sd_card_free_space(huart3);
-	//sd_card_write_newfile("test.txt", "0,2,4", huart3);
-	//sd_card_write_appendfile("ir.txt", "93,94", huart3);
-	sd_card_read("test.txt", huart3);
-	//sd_card_remove_file("ir.txt", huart3);
-	sd_card_unmount(huart3);*/
-	//--------------------------------------------------
 	printf("***Bodysynthesizer*** \r\n");
 
-	/* INIT FUNCTIONS************************
-	 *
-	 */
+	/* INIT FUNCTIONS begin*********************/
+
 	printf("Begin Init\r\n");
 	if(Signal_Synthesis_Init(htim8, hdac) != HAL_OK) {
 		printf("Signal Synthesis init failed\n");
@@ -304,8 +266,9 @@ int main(void)
 		printf("Display init failed\n");
 
 	printf("End Init\r\n");
+	/* INIT FUNCTIONS end*********************/
 
-	/* START FUNCTIONS ******************** */
+	/* START FUNCTIONS begin *****************/
 	printf("Begin Start Functions\r\n");
 
 	// Start Display
@@ -333,112 +296,13 @@ int main(void)
 	II_startInterface(&htim3);
 
 	printf("End Start Functions\r\n");
+	/* START FUNCTIONS end *****************/
+
 
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-
-	//	Display.Tremolo_Rate = 0.125;
-	//	Display.Tremolo_Depth = 0.8;
-	//	Display.Tremolo_ONOFF = true;
-
-	//			NewSignal(&signals1,NOISE,'C',0,15);
-	//NewSignal(&signals1,NOISE,'C',0);
-	//	NewSignal(&signals1,NOISE,'C',0,1);
-	// CEG Full Range for Wah
-	//		NewSignal(&signals1,SIN, 'C',0,16);
-	//	NewSignal(&signals1,SIN, 'E',0,17);
-	//	NewSignal(&signals1,SIN, 'G',0,18);
-	//	NewSignal(&signals1,SIN, 'C',1,8);
-	//	NewSignal(&signals1,SIN, 'E',1,9);
-	//	NewSignal(&signals1,SIN, 'G',1,10);
-	//	NewSignal(&signals1,SIN, 'C',2,11);
-	//	NewSignal(&signals1,SIN, 'E',2,12);
-	//	NewSignal(&signals1,SIN, 'G',2,13);
-	//		NewSignal(&signals1,SIN, 'C',4,14);
-	//	NewSignal(&signals1,SIN, 'E',4,15);
-	//		NewSignal(&signals1,SIN, 'G',4,16);
-	//		NewSignal(&signals1,SIN, 'G',4,17);
-	//	NewSignal(&signals1,SIN, 'E',5,18);
-	//	NewSignal(&signals1,SIN, 'G',5,19);
-
-
-	//NewSignal(&signals1,SIN, 'G',3);
-	//NewSignal(&signals1,SIN, 'G',4);
-	//	NewSignal(&signals2,SIN, 'C',1);
-	//NewSignal(&signals2,SIN, 'C',2);
-	//NewSignal(&signals2,SIN, 'C',3);
-	//	NewSignal(&signals1,SIN, 'C', 2, 1);
-
-	//effects_add(EQ, 0);
-	//effects_add(DIST_S, 0);
-	//	Display.Distortion_ONOFF = true;
-	//	Display.Distortion_Gain = 8;
-
-	//	// Kick
-	//		timing_DS1[0] = 1;
-	//		timing_DS1[1] = 0;
-	//		timing_DS1[2] = 0;
-	//		timing_DS1[3] = 0;
-	//		timing_DS1[4] = 1;
-	//		timing_DS1[5] = 0;
-	//		timing_DS1[6] = 0;
-	//		timing_DS1[7] = 0;
-	//
-	//		// Hihat
-	//		timing_DS2[0] = 0;
-	//		timing_DS2[1] = 0;
-	//		timing_DS2[2] = 1;
-	//		timing_DS2[3] = 0;
-	//		timing_DS2[4] = 0;
-	//		timing_DS2[5] = 0;
-	//		timing_DS2[6] = 1;
-	//		timing_DS2[7] = 0;
-	//
-	//		// Clap
-	//		timing_DS3[0] = 0;
-	//		timing_DS3[1] = 0;
-	//		timing_DS3[2] = 0;
-	//		timing_DS3[3] = 0;
-	//		timing_DS3[4] = 1;
-	//		timing_DS3[5] = 0;
-	//		timing_DS3[6] = 0;
-	//		timing_DS3[7] = 0;
-	//
-	//	//	// LowTom
-	//		timing_DS4[0] = 0;
-	//		timing_DS4[1] = 0;
-	//		timing_DS4[2] = 1;
-	//		timing_DS4[3] = 1;
-	//		timing_DS4[4] = 0;
-	//		timing_DS4[5] = 0;
-	//		timing_DS4[6] = 0;
-	//		timing_DS4[7] = 1;
-
-	//		Display.Voices_Note[0] = 'C';
-	//		Display.Voices_Octave[0] = 2;
-	//		Display.Voices_ONOFF[0] = true;
-	//	Display.Voice_Note_Sources[0] = EKG;
-	//	Display.Voice_Note_Sources[0] = GYRO_FB;
-	//	Display.Voice_Note_Sources[0] = POTI;
-	//	Display.Voice_Note_Sources[0] = EMG;
-	//	Display.PlaySingleSample_ONOFF = true;
-	//	Display.Drumfilter_ONOFF = true;
-	//		Display.Drumcomputer_ONOFF = true;
-	//	Display.Sequencer_ONOFF = true;
-	//	Display.WahWah_ONOFF = true;
-	//	Display.Distortion_ONOFF = true;
-	//	Display.Distortion_Gain = 8;
-	//	Display.Distortion_Sources = GYRO_LR;
-	//			Display.Tremolo_ONOFF = true;
-	//		Display.Tremolo_Sources[0] = GYRO_FB;
-	//	Display.Tremolo_Sources[1] = GYRO_LR;
-	//		Display.Tremolo_Depth = 0.5;
-	//		Display.Tremolo_Rate = 4;
-
-	//	tim5_counter = 0;
-	//	time = HAL_GetTick();
 
 	while(1) {
 
@@ -1463,17 +1327,9 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//printf()
-int __io_putchar(int ch)
-{
-	uint8_t c[1];
-	c[0] = ch & 0x00FF;
-	HAL_UART_Transmit(&huart3, &*c, 1, 10);
-	return ch;
-}
 
-//printf()
-int io_putchar(int ch)
+/*printf() FUNCTIONS begin *********/
+int __io_putchar(int ch)
 {
 	uint8_t c[1];
 	c[0] = ch & 0x00FF;
@@ -1486,14 +1342,18 @@ int _write(int file,char *ptr, int len)
 	int DataIdx;
 	for(DataIdx= 0; DataIdx< len; DataIdx++)
 	{
-		io_putchar(*ptr++);
+		__io_putchar(*ptr++);
 	}
 	return len;
 }
-//printf() end
+/*printf() FUNCTIONS end *********/
 
 
 // GPIO-Button Debouncing
+
+
+/** @brief button press interrupt function, buttons placed near the Display
+ */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	Display.button_pressed_flag = true;	// set here to make sure that the display will be processed and updated when for example a note or octave is changed
@@ -1561,18 +1421,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 					Display.Voices_Noteindex[Display.currentVoice-1]--;
 			}
 
-			//				if(Display.ScaleMode == FREESTYLE){
-			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
-			//				}
-			//				else if(Display.ScaleMode == MAJOR){
-			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
-			//				}
-			//				else if(Display.ScaleMode == MINOR){
-			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
-			//				}
 
 			// Octaves
 			else if(Display.JoystickParameterPosition == 2) {	// Voices [1,2,3] Octave down
@@ -1716,7 +1564,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]--;
 		}
 
-		//		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
 		Display.BACK_Debounce_State = false;
 	}
@@ -1764,11 +1611,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		// Load single sample / load Drumkit from SD card
 		if((Display.pagePosition==10) ||(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3))
 			Display.LoadDrumkit = true;
-
-		//		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
-		//		// Load Drumkit from SD card
-		//		if(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3)
-		//			Display.LoadDrumkit = true;
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
 		// Tremolo Rate Index setting to change the rate by button pressing
@@ -2037,7 +1879,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]++;
 		}
 
-		//		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);
 		Display.ENTER_Debounce_State = false;
 	}
@@ -2062,7 +1903,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		}
 	}
 	else if(htim->Instance == TIM4) {
-		//if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_SET) {
 		if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// check regarding pullup/pulldown
 			Display.ENTER = true;
 			Display.ENTER_Debounce_State = true;

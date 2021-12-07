@@ -2,11 +2,13 @@
  * input_interfaces.c
  *
  *  Created on: Aug 15, 2021
- *      Author: Marc Bielen
+ *      Author: Paul Mamatis
  */
 
 #include "input_interfaces.h"
 
+
+/** @brief init function*/
 void II_init(void) {
 
 	log_mapping_F = log(LUT_FMAX);
@@ -26,14 +28,11 @@ void II_init(void) {
 	gyrochanged = false;
 }
 
-/** starts the Interface Timer Interrupt
- *
- */
+/** @brief starts the interface timer Interrupt*/
 void II_startInterface(TIM_HandleTypeDef* htim) {
 
 	SetTimerSettings(htim, II_SR);
 	HAL_TIM_Base_Start_IT(htim);
-	//printf("starting Interface Controll\r\n");
 }
 
 /** @brief Creates the Signals given through the Display-Interput
@@ -51,19 +50,12 @@ uint8_t II_Display_Voices(void) {
 
 			// signal has to be created once, because otherwise the count for-loop in signal synthesis function can not be entered (count > 0)
 			if(Display.Voices_Created[ii_i] == false) {
-				//				NewSignal(&signals1, SIN, Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i],ii_i);
 				NewSignal(&signals1, Display.Voices_Kind[ii_i], Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i], ii_i);
 				Display.Voices_Created[ii_i] = true;
 			}
 
 			switch (Display.Voice_Note_Sources[ii_i]) {
-			//			case EMG:
-			//				if(emg_peak == 1) {
-			//					//printf("raise note\r\n");
-			//					II_raiseNote(ii_i);
-			//					emg_peak = 0;
-			//				}
-			//				break;
+
 			case GYRO_FB:
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
@@ -82,10 +74,6 @@ uint8_t II_Display_Voices(void) {
 
 						else if(Display.ScaleMode == MINOR)
 							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
-
-						//						if(Display.Voices_Noteindex[ii_i] > 0)
-						//							Display.Voices_Noteindex[ii_i]--;
-						//						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -110,9 +98,6 @@ uint8_t II_Display_Voices(void) {
 							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
 						}
 
-						//						if(Display.Voices_Noteindex[ii_i] < 7)	// 8 keys per major scale
-						//							Display.Voices_Noteindex[ii_i]++;
-						//						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -145,9 +130,6 @@ uint8_t II_Display_Voices(void) {
 							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
 						}
 
-						//						if(Display.Voices_Noteindex[ii_i] < 7)	// 8 keys per major scale
-						//							Display.Voices_Noteindex[ii_i]++;
-						//						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -167,9 +149,6 @@ uint8_t II_Display_Voices(void) {
 						else if(Display.ScaleMode == MINOR)
 							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
 
-						//						if(Display.Voices_Noteindex[ii_i] > 0)
-						//							Display.Voices_Noteindex[ii_i]--;
-						//						Display.Voices_Note[ii_i] = (uint8_t)(keys[major_scale[(uint8_t)Display.Voices_Noteindex[ii_i]]]);
 
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -184,13 +163,6 @@ uint8_t II_Display_Voices(void) {
 			}
 
 			switch (Display.Voice_Octave_Sources[ii_i]) {
-			//			case EMG:
-			//				if(emg_peak == 1) {
-			//					//printf("raise note\r\n");
-			//					II_raiseNote(ii_i);
-			//					emg_peak = 0;
-			//				}
-			//				break;
 			case GYRO_FB:
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
@@ -241,14 +213,6 @@ uint8_t II_Display_Voices(void) {
 				break;
 			}
 		}
-		//		//Delete signal with its ID
-		//		else if(Display.Voices_ONOFF[ii_i]==false && Display.Voices_Created[ii_i] == true) {
-		//			//get signal index
-		//			uint8_t signal_index = IDtoIndex(ii_voice_IDs[ii_i]);
-		//			//delete signal
-		//			DeleteSignal(&signals1, signal_index);
-		//			Display.Voices_Created[ii_i] = false;
-		//		}
 	}
 
 	return 1;
@@ -263,11 +227,9 @@ uint8_t II_Display_Effects(void){
 	// Distortion
 	if(Display.Distortion_ONOFF == true) {
 
-		//		effects_add(DIST_S);
 		effects_add(DIST);
 
 		if(Display.Distortion_Type == 0)
-			//			SoftClipping.distortion_gain = Display.Distortion_Gain / 10;
 			SoftClipping.distortion_gain = Display.Distortion_Gain;
 		else if(Display.Distortion_Type == 1)
 			HardClipping.distortion_gain = Display.Distortion_Gain;
@@ -338,12 +300,10 @@ uint8_t II_Display_Effects(void){
 		}
 	}
 	else if (Display.Distortion_ONOFF == false){
-		//		effects_delete(DIST_S);
 		effects_delete(DIST);
 	}
 
 	//Tremolo
-	// TODO: UPDATE GYRO: Tremolo.lfo->lfo_index = 0; Tremolo.lfo->lfo_quarter = 0;
 	if(Display.Tremolo_ONOFF == true) {
 
 		if(Display.last_Tremolo_ONOFF == false) {
@@ -365,7 +325,6 @@ uint8_t II_Display_Effects(void){
 
 					if (sensorData.tilt_detected == TILT_BACK){
 						if (Display.Tremolo_Rate_Index > 0) {
-							//printf("decrease Trem Rate\r\n");
 							Display.Tremolo_Rate_Index --;
 							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
@@ -373,16 +332,13 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_BACK_S){
 						if (Display.Tremolo_Rate_Index > 0) {
-							//printf("decrease Trem Rate\r\n");
 							Display.Tremolo_Rate_Index--;
-							//						Display.Tremolo_Rate_Index--;
 							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT){
 						if (Display.Tremolo_Rate_Index < 7) {	//((sizeof(LFO_FREQUENCYS[8])/sizeof(float))-1)
-							//printf("raise Trem Rate\r\n");
 							Display.Tremolo_Rate_Index ++;
 							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
@@ -390,9 +346,7 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT_S){
 						if (Display.Tremolo_Rate_Index < 7) {
-							//printf("raise Trem Rate\r\n");
 							Display.Tremolo_Rate_Index ++;
-							//						Display.Tremolo_Rate_Index ++;
 							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
 						sensorData.tilt_detected = TILT_NONE;
@@ -402,7 +356,6 @@ uint8_t II_Display_Effects(void){
 				case GYRO_LR:
 					if (sensorData.tilt_detected == TILT_LEFT ){
 						if (Display.Tremolo_Rate_Index > 0) {
-							//printf("decrease Trem Rate\r\n");
 							Display.Tremolo_Rate_Index --;
 							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
@@ -410,16 +363,13 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_LEFT_S ){
 						if (Display.Tremolo_Rate_Index > 0) {
-							//printf("decrease Trem Rate\r\n");
 							Display.Tremolo_Rate_Index --;
-							//						Display.Tremolo_Rate_Index --;
 							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_RIGHT){
 						if (Display.Tremolo_Rate_Index < 7) {
-							//printf("raise Trem Rate\r\n");
 							Display.Tremolo_Rate_Index ++;
 							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
@@ -427,9 +377,7 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_RIGHT_S){
 						if (Display.Tremolo_Rate_Index < 7) {
-							//printf("raise Trem Rate\r\n");
 							Display.Tremolo_Rate_Index ++;
-							//						Display.Tremolo_Rate_Index ++;
 							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
 						sensorData.tilt_detected = TILT_NONE;
@@ -454,7 +402,6 @@ uint8_t II_Display_Effects(void){
 				case GYRO_FB:
 					if (sensorData.tilt_detected == TILT_BACK ){
 						if (Display.Tremolo_Depth > 0) {
-							//printf("decrease Trem Depth\r\n");
 							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
 							Display.Tremolo_Depth = Display.Tremolo_Depth - Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							printf("depth = %f\r\n", Display.Tremolo_Depth);
@@ -463,9 +410,7 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_BACK_S ){
 						if (Display.Tremolo_Depth > 0) {
-							//printf("decrease Trem Depth\r\n");
 							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-							//						Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							printf("depth = %f\r\n", Display.Tremolo_Depth);
 						}
@@ -474,7 +419,6 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_FRONT){
 						if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
 							//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-							//printf("raise Trem Depth\r\n");
 							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							printf("depth = %f\r\n", Display.Tremolo_Depth);
 						}
@@ -483,8 +427,6 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_FRONT_S){
 						if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
 							//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-							//printf("raise Trem Depth\r\n");
-							//						Display.Tremolo_Depth = Display.Tremolo_Depth + 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							printf("depth = %f\r\n", Display.Tremolo_Depth);
 						}
@@ -493,8 +435,6 @@ uint8_t II_Display_Effects(void){
 				case GYRO_LR:
 					if (sensorData.tilt_detected == TILT_LEFT){
 						if (Display.Tremolo_Depth > 0) {
-							//printf("decrease Trem Depth\r\n");
-							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
 							Display.Tremolo_Depth = Display.Tremolo_Depth - Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							printf("depth = %f\r\n", Display.Tremolo_Depth);
 						}
@@ -502,9 +442,7 @@ uint8_t II_Display_Effects(void){
 					}
 					if (sensorData.tilt_detected == TILT_LEFT_S){
 						if (Display.Tremolo_Depth > 0) {
-							//printf("decrease Trem Depth\r\n");
 							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-							//						Display.Tremolo_Depth = Display.Tremolo_Depth - 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							printf("depth = %f\r\n", Display.Tremolo_Depth);
 						}
@@ -513,7 +451,6 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_RIGHT){
 						if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
 							//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-							//printf("raise Trem Depth\r\n");
 							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							printf("depth = %f\r\n", Display.Tremolo_Depth);
 						}
@@ -522,8 +459,6 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_RIGHT_S){
 						if (Display.Tremolo_Depth < Tremolo.tremolo_maximum_depth) {
 							//increase depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
-							//printf("raise Trem Depth\r\n");
-							//						Display.Tremolo_Depth = Display.Tremolo_Depth + 2*Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							Display.Tremolo_Depth = Display.Tremolo_Depth + Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 							printf("depth = %f\r\n", Display.Tremolo_Depth);
 						}
@@ -540,12 +475,7 @@ uint8_t II_Display_Effects(void){
 				gyro_delay_counter[1] = 0;
 		}
 
-		//		Tremolo.lfo->lfo_depth = Display.Tremolo_Depth;
-		//		Tremolo.lfo->lfo_frequency = Display.Tremolo_Rate;
 	}
-	//	else if (Display.Tremolo_ONOFF == false){
-	//		effects_delete(TREM);
-	//	}
 
 	//Filters
 	if(Display.currentBand > 0) {	// guard to make sure that array boundaries of next if clause are not exceeded [-1]
@@ -562,7 +492,6 @@ uint8_t II_Display_Effects(void){
 
 					if (sensorData.tilt_detected == TILT_BACK){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > LUT_FMIN ) {
-							//							printf("decrease cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1] =  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -572,7 +501,6 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_BACK_S){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > LUT_FMIN ) {
-							//							printf("decrease cuttoff Rate DOUBLEEEE\r\n");
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
@@ -584,7 +512,6 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX) {
-							//							printf("increase cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -594,7 +521,6 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT_S){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX) {
-							//							printf("increase cuttoff Rate DOUBLEEEE\r\n");
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
@@ -609,7 +535,6 @@ uint8_t II_Display_Effects(void){
 
 					if (sensorData.tilt_detected == TILT_LEFT ){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-							//							printf("decrease cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -619,7 +544,6 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_LEFT_S ){
 						if (Display.Filter_Cutoff[Display.currentBand-1] > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-							//							printf("decrease cuttoff Rate DOUBLEEEE\r\n");
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
 							filter_step_counter[Display.currentBand-1]--;
@@ -632,7 +556,6 @@ uint8_t II_Display_Effects(void){
 
 					else if (sensorData.tilt_detected == TILT_RIGHT){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-							//							printf("increase cuttoff Rate\r\n");
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							Display.Filter_Cutoff[Display.currentBand-1]=  exp(((float)filter_step_counter[Display.currentBand-1]/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
@@ -642,7 +565,6 @@ uint8_t II_Display_Effects(void){
 					}
 					else if (sensorData.tilt_detected == TILT_RIGHT_S){
 						if (Display.Filter_Cutoff[Display.currentBand-1] <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-							//							printf("increase cuttoff Rate DOUBLEEEE\r\n");
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
 							filter_step_counter[Display.currentBand-1]++;
@@ -673,13 +595,10 @@ uint8_t II_Display_Effects(void){
 
 			if (sensorData.tilt_detected == TILT_BACK){
 				if (Display.Drumfilter_Cutoff > II_FILTER_CUTOFF_MIN) {
-					//					printf("decrease cuttoff Rate\r\n");
 					drum_filter_step_counter--;
 					if(drum_filter_step_counter < II_MINIMUM_STEPCOUNTER)
 						drum_filter_step_counter = II_MINIMUM_STEPCOUNTER;
 					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//					if(Display.Drumfilter_Cutoff < LUT_FMIN)
-					//						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
 
 					gyrochanged = true;
@@ -688,14 +607,11 @@ uint8_t II_Display_Effects(void){
 			}
 			else if (sensorData.tilt_detected == TILT_BACK_S){
 				if (Display.Drumfilter_Cutoff > II_FILTER_CUTOFF_MIN) {
-					//					printf("decrease cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter--;
 					drum_filter_step_counter--;
 					if(drum_filter_step_counter < II_MINIMUM_STEPCOUNTER)
 						drum_filter_step_counter = II_MINIMUM_STEPCOUNTER;
 					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//					if(Display.Drumfilter_Cutoff < LUT_FMIN)
-					//						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
 
 					gyrochanged = true;
@@ -704,13 +620,10 @@ uint8_t II_Display_Effects(void){
 			}
 			else if (sensorData.tilt_detected == TILT_FRONT){
 				if (Display.Drumfilter_Cutoff <  LUT_FMAX) {
-					//					printf("increase cuttoff Rate\r\n");
 					drum_filter_step_counter++;
 					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
 						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
 					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//					if(Display.Drumfilter_Cutoff > LUT_FMAX)
-					//						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
 
 					gyrochanged = true;
@@ -719,14 +632,11 @@ uint8_t II_Display_Effects(void){
 			}
 			else if (sensorData.tilt_detected == TILT_FRONT_S){
 				if (Display.Drumfilter_Cutoff <  LUT_FMAX) {
-					//					printf("increase cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter++;
 					drum_filter_step_counter++;
 					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
 						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
 					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//					if(Display.Drumfilter_Cutoff > LUT_FMAX)
-					//						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
 
 					gyrochanged = true;
@@ -738,13 +648,10 @@ uint8_t II_Display_Effects(void){
 
 			if (sensorData.tilt_detected == TILT_LEFT){
 				if (Display.Drumfilter_Cutoff > II_FILTER_CUTOFF_MIN) {
-					//					printf("decrease cuttoff Rate\r\n");
 					drum_filter_step_counter--;
 					if(drum_filter_step_counter < II_MINIMUM_STEPCOUNTER)
 						drum_filter_step_counter = II_MINIMUM_STEPCOUNTER;
 					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//					if(Display.Drumfilter_Cutoff < LUT_FMIN)
-					//						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
 
 					gyrochanged = true;
@@ -753,14 +660,11 @@ uint8_t II_Display_Effects(void){
 			}
 			else if (sensorData.tilt_detected == TILT_LEFT_S){
 				if (Display.Drumfilter_Cutoff > II_FILTER_CUTOFF_MIN) {
-					//					printf("decrease cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter--;
 					drum_filter_step_counter--;
 					if(drum_filter_step_counter < II_MINIMUM_STEPCOUNTER)
 						drum_filter_step_counter = II_MINIMUM_STEPCOUNTER;
 					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//					if(Display.Drumfilter_Cutoff < LUT_FMIN)
-					//						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
 
 					gyrochanged = true;
@@ -769,13 +673,10 @@ uint8_t II_Display_Effects(void){
 			}
 			else if (sensorData.tilt_detected == TILT_RIGHT){
 				if (Display.Drumfilter_Cutoff <  LUT_FMAX) {
-					//					printf("increase cuttoff Rate\r\n");
 					drum_filter_step_counter++;
 					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
 						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
 					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//					if(Display.Drumfilter_Cutoff > LUT_FMAX)
-					//						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
 
 					gyrochanged = true;
@@ -784,84 +685,18 @@ uint8_t II_Display_Effects(void){
 			}
 			else if (sensorData.tilt_detected == TILT_RIGHT_S){
 				if (Display.Drumfilter_Cutoff <  LUT_FMAX) {
-					//					printf("increase cuttoff Rate DOUBLEEEE\r\n");
 					drum_filter_step_counter++;
 					drum_filter_step_counter++;
 					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
 						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
 					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-					//					if(Display.Drumfilter_Cutoff > LUT_FMAX)
-					//						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
 					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
 
 					gyrochanged = true;
 				}
 				sensorData.tilt_detected = TILT_NONE;
 			}
-			//			if (sensorData.tilt_detected == TILT_LEFT ){
-			//				if (Display.Drumfilter_Cutoff > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-			//					//					printf("decrease cuttoff Rate\r\n");
-			//					drum_filter_step_counter--;
-			//					if(drum_filter_step_counter < 1)
-			//						drum_filter_step_counter = 1;
-			//					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-			//					if(Display.Drumfilter_Cutoff < LUT_FMIN)
-			//						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
-			//					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
-			//
-			//					gyrochanged = true;
-			//				}
-			//				sensorData.tilt_detected = TILT_NONE;
-			//			}
-			//			else if (sensorData.tilt_detected == TILT_LEFT_S ){
-			//				if (Display.Drumfilter_Cutoff > (float)(LUT_FMAX / II_FILTER_CUTTOFF_STEP_SIZE) ) {
-			//					//					printf("decrease cuttoff Rate DOUBLEEEE\r\n");
-			//					drum_filter_step_counter--;
-			//					drum_filter_step_counter--;
-			//					if(drum_filter_step_counter < 1)
-			//						drum_filter_step_counter = 1;
-			//					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-			//					if(Display.Drumfilter_Cutoff < LUT_FMIN)
-			//						Display.Drumfilter_Cutoff = (float)LUT_FMIN;
-			//					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
-			//
-			//					gyrochanged = true;
-			//				}
-			//				sensorData.tilt_detected = TILT_NONE;
-			//			}
-			//
-			//			else if (sensorData.tilt_detected == TILT_RIGHT){
-			//				if (Display.Drumfilter_Cutoff <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-			//					//					printf("increase cuttoff Rate\r\n");
-			//					drum_filter_step_counter++;
-			//					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
-			//						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
-			//					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-			//					if(Display.Drumfilter_Cutoff > LUT_FMAX)
-			//						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
-			//					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
-			//
-			//					gyrochanged = true;
-			//				}
-			//				sensorData.tilt_detected = TILT_NONE;
-			//			}
-			//			else if (sensorData.tilt_detected == TILT_RIGHT_S){
-			//				if (Display.Drumfilter_Cutoff <  LUT_FMAX-(LUT_FMAX/ II_FILTER_CUTTOFF_STEP_SIZE)) {
-			//					//					printf("increase cuttoff Rate DOUBLEEEE\r\n");
-			//					drum_filter_step_counter++;
-			//					drum_filter_step_counter++;
-			//					if(drum_filter_step_counter > II_FILTER_CUTTOFF_STEP_SIZE)
-			//						drum_filter_step_counter = II_FILTER_CUTTOFF_STEP_SIZE;
-			//					Display.Drumfilter_Cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
-			//					if(Display.Drumfilter_Cutoff > LUT_FMAX)
-			//						Display.Drumfilter_Cutoff = (float)LUT_FMAX;
-			//					DrumFilters_Reinit_Gyro(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);
-			//
-			//					gyrochanged = true;
-			//				}
-			//				sensorData.tilt_detected = TILT_NONE;
-			//			}
-			//			break;
+
 		default:
 			break;
 		}
@@ -874,8 +709,6 @@ uint8_t II_Display_Effects(void){
 	else {
 		effects_delete(WAHWAH);
 	}
-
-	//	}
 
 	return 1;
 }
@@ -909,12 +742,9 @@ void II_raiseNote(uint8_t ID){
 	}
 	Display.Voices_Note[ID] = newKey;
 	if(index >= 0){	// only done if ID is existing
-		//printf("old: %c new: %c octave: %i \r\n",oldKey,(char)newKey,Display.Voices_Octave[ID]);
 		DeleteSignal(&signals1, index);
 		NewSignal(&signals1, SIN, newKey, Display.Voices_Octave[ID],ID);
 	}
-	//	else
-	//printf("Signal ID not found\r\n");
 }
 
 /** raises the key of an existing signal, by deleting the signal and creating a new signal
@@ -947,12 +777,9 @@ void II_decreaseNote(uint8_t ID){
 	}
 	Display.Voices_Note[ID] = newKey;
 	if(index >= 0){
-		//printf("old: %c new: %c octave: %i \r\n",oldKey,(char)newKey,Display.Voices_Octave[ID]);
 		DeleteSignal(&signals1, index);
 		NewSignal(&signals1, SIN, newKey, Display.Voices_Octave[ID],ID);
 	}
-	//	else
-	//printf("Signal ID not found\r\n");
 
 }
 
