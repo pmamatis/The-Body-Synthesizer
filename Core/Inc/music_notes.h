@@ -1,15 +1,3 @@
-/**
-  ******************************************************************************
-  * @file    music_notes.c
-  * @author  Max Lehmer,Paul Mamatis
-  * @date 	27 Apr 2020
-  * @brief	Funktionsgenerator für HAL-Libary auf Nucleo-144 F4.....
-  *
-  *
-  *
-*/
-
-
 #ifndef INC_MUSIC_NOTES_H_
 #define INC_MUSIC_NOTES_H_
 

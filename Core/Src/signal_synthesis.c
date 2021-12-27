@@ -3,7 +3,6 @@
 /** @brief maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal_sythesis.h and will be set in the Init function*/
 double maxValueDAC;
 
-
 /**@brief Init funtion for the signal_synthesis, must be used in order to use any other funtion of this .c
  * @param htim: timer-handler which controls the DAC, timer have to be connected with DAC
  * @param hdac: is the DAC handler
@@ -14,7 +13,6 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	// Sets the maximal digital value which the DAC converts into analog voltage
 	maxValueDAC = (double)DAC_MAXVALUE_TO_AMPLITUDE_RATIO * (double)AMPLITUDE;
 	outputBuffer_position = HALF_BLOCK;
-	output_Channel = 1;
 	signals1.count = 0;
 	signals1.max = 1;
 
@@ -24,14 +22,10 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 		volume[i] = 1;
 	}
 
-	//Sets all taken ID to zero
-	for(int Signal_Synthesis_Init_count = 0; Signal_Synthesis_Init_count < MAX_SIGNAL_KOMBINATION;Signal_Synthesis_Init_count++)
-		ID_array[Signal_Synthesis_Init_count]=0;
-
 	for (int i=0; i>BLOCKSIZE/2; i++)
 		*((uint32_t *)(&calculate_vector1[i] )) = (uint32_t)((i/(BLOCKSIZE/2)) * maxValueDAC/2); // TODO muss noch angepasst werden
 
-	//Inits and starts timer connected with DAC
+	// Inits and starts timer connected with DAC
 	SetTimerSettings(&htim, LUT_SR);
 
 	return HAL_TIM_Base_Start(&htim);
@@ -39,7 +33,7 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 
 HAL_StatusTypeDef Voices_Reset(void) {
 
-	// clear screen content of voices overview
+	// Clear screen content of voices overview
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH , UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH , UNCOLORED);
 	Paint_DrawFilledRectangle(&paint, Display.value_start_x_position, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH , UNCOLORED);
@@ -94,7 +88,6 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 	else if(htim->Instance == TIM13) Timer = 13;
 	else if(htim->Instance == TIM14) Timer = 14;
 
-
 	if(APBTimerCases[Timer-1] == 1)
 		Clock = 2 * HAL_RCC_GetPCLK1Freq();	// APB1 Timer Clock
 
@@ -119,8 +112,6 @@ void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR) {
 
 	__HAL_TIM_SET_AUTORELOAD(htim, timerperiod-1);	// update timer settings
 	__HAL_TIM_SET_PRESCALER(htim, prescaler-1);
-	//TIM6->ARR = period-1;
-	//TIM6->PSC = prescaler-1;
 }
 
 /** @brief Constructor for a signal, adds a signal into the signals1 struct
@@ -791,13 +782,6 @@ void DeleteSignal(struct signal_t* signals,int16_t signal_index) {
 		}
 		signals -> count-=1;
 		signals -> max = 1;
-		//	signals -> max = 0;
-
-		//	printf("ID's:");
-		//	for (int i = 0;i<signals->count;i++)
-		//		printf("%i ,",signals->ID[i]);
-		//	printf("\r\n");
-		//	printf("delete: signals left = %i;\r\n",signals->count);
 	}
 	else {
 		printf("delete ERROR\r\n");
@@ -840,7 +824,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		calculate_vector_tmp = calculate_vector2;
 	}
 
-	//decide if first half of BLOCKSIZE or second half
+	// decide if first half of BLOCKSIZE or second half
 	uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;
 	if (outputBuffer_position == HALF_BLOCK){
 		BLOOCKSIZE_startIndex = 0;
@@ -851,7 +835,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		BLOOCKSIZE_endIndex  = BLOCKSIZE;
 	}
 
-	//Loop for signal synthesis
+	// Loop for signal synthesis
 	for(int BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter < BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {
 
 		addValue = 0;
@@ -1122,41 +1106,21 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 					}
 				}
 				break;
+			}
 
-				//			case NOISE:
-				//				if(Display.Voices_ONOFF[VOICES_ID+3] == true) {
-				//					addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*sizeof(int))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);
-				//				}
-				//				// delete signal if voice off
-				//				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
-				//					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
-				//					Display.Voices_Created[VOICES_ID+3] = false;
-				//				}
-				//				break;
-			}// Switch-Case
-
-		}// Signal counter for-loop
-
-		/*limiter function*/
-		//norm the signal to -1...1
-		//		addValue = addValue/signals->max;
+		}
 
 		// NORM: Volume by signal count
 		if(signals->count - active_keyboard_notes == 0) {}	// division by zero for addValue possible -> fuckup!
 		else
 			addValue = addValue / (signals->count - active_keyboard_notes);
 
-		// maximum
-		//		if (signals -> max < fabs((double)addValue)){
-		//			signals -> max = fabs((double)addValue);
-		//		}
-
 		// write voices (including noise) into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * (addValue + Noise_Generator());
 
 
 		// Drummachine
-		if ((volume[1] > 0) || (volume[2] > 0)){	// && Display.Drumcomputer_ONOFF?
+		if ((volume[1] > 0) || (volume[2] > 0)){
 			Drum_Computer_Process();
 			drums_filtered = drums;
 			if(Display.Drumfilter_ONOFF)
@@ -1181,8 +1145,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;
 		}
 
-		effects_process_fast(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		//		ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// Keyboard processing without effects
 		if(Display.KeyboardFX_ONOFF == false) {
@@ -1196,51 +1159,12 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
 
-		//		// maximum
-		//		if (signals -> max < fabs((double)addValue)){
-		//			signals -> max = fabs((double)addValue);
-		//		}
-
-		//		//scale output signal depending on amount of voices
-		//		switch (signals -> count){
-		//		case 1:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
-		//			break;
-		//		case 2:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
-		//			break;
-		//		case 3:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
-		//			break;
-		//		case 4:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
-		//			break;
-		//		case 5:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
-		//			break;
-		//		default:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
-		//			break;
-		//		}
-
-		//Signal adjustment to DAC
-		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((((float)emg_buffer[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3 (with OFFSET of 145)
-
-		//		if ((Display.Sequencer_ONOFF==false) && (Display.Drumcomputer_ONOFF==false) && (signals->count==0)){
-		//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
-		//		}
-
 		// to make sure that the output is 0 when a new drumkit is loaded into the drum computer
 		if(Display.LoadDrumkit == true)
 			calculate_vector_tmp[BLOCKSIZE_counter] = 0;
 
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * Master_Volume * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
-	}//End for-Loop
-
-	//	// save current LUT index into signals1,	SINNLOS!!!
-	//	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
-	//		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
-	//	}
+	}
 }
 
 
@@ -1254,13 +1178,13 @@ bool initRamp(void){
 	bool retval = false;
 	float* calculate_vector_tmp = calculate_vector1;
 
-	//ramp Duration of 0.5 seconds
+	// ramp Duration of 0.5 seconds
 	float ramp_dur = 0.5*LUT_SR;
-	//MAX Ramp Value in mV
+	// MAX Ramp Value in mV
 	uint32_t maxRamp = (uint32_t)(1650 * DAC_MAXVALUE_TO_AMPLITUDE_RATIO );
 
-	//Write into DAC-Buffer
-	//decide if first half of BLOCKSIZE or second half
+	// Write into DAC-Buffer
+	// decide if first half of BLOCKSIZE or second half
 	uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;
 	if (outputBuffer_position == HALF_BLOCK){
 		BLOOCKSIZE_startIndex = 0;
@@ -1276,7 +1200,6 @@ bool initRamp(void){
 
 		if (ramp_counter < ramp_dur){
 			*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((float)((ramp_counter/ramp_dur) * maxRamp));
-			//        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(*maxRamp);
 			ramp_counter++;
 		}
 		else if(ramp_counter >= ramp_dur){
@@ -1289,9 +1212,6 @@ bool initRamp(void){
 	return retval;
 }
 
-/////////
-// NEW //
-/////////
 // CREATES: Rectangle wave based on struct signals
 float CalcRectSample(struct signal_t* signals, int index){
 
@@ -1357,11 +1277,6 @@ float CalcTriangleSample(struct signal_t* signals, int index){
 	return triangle;
 }
 
-/////////////
-// NEW END //
-/////////////
-
-
 float Noise_Generator(void) {
 
 	float NoiseValue = 0;
@@ -1372,38 +1287,3 @@ float Noise_Generator(void) {
 
 	return NoiseValue;
 }
-
-/* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */
-float AWGN_generator(void) {
-
-	float temp1;
-	float temp2;
-	float result;
-	int p;
-
-	p = 1;
-
-	while( p > 0 )
-	{
-		temp2 = ( rand() / ( (float)RAND_MAX ) ); /*  rand() function generates an
-                                                       integer between 0 and  RAND_MAX,
-                                                       which is defined in stdlib.h.
-		 */
-
-		if ( temp2 == 0 )
-		{// temp2 is >= (RAND_MAX / 2)
-			p = 1;
-		}// end if
-		else
-		{// temp2 is < (RAND_MAX / 2)
-			p = -1;
-		}// end else
-
-	}// end while()
-
-	temp1 = cos( ( 2.0 * (float)PI ) * rand() / ( (float)RAND_MAX ) );
-	result = sqrt( -2.0 * log( temp2 ) ) * temp1;
-
-	return result;	// return the generated random sample to the caller
-
-}// end AWGN_generator()

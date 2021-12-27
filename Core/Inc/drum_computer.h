@@ -11,18 +11,6 @@
 #include "main.h"
 #include <stdint.h>
 #include "wav_LUT.h"
-//#include "sd_card.h"
-
-//typedef enum {
-//	CLAP_909 = '909_Clap.txt',
-//	CLOSED_HH_909 = '909_ClosedHiHat.txt'
-////	HITOM_909,
-////	KICK_909,
-////	LOWTOM_909,
-////	MIDTOM_909,
-////	OPEN_HH_909,
-////	RIMSHOT_909
-//} sample_names;
 
 // Common Sample Length & Time Signature
 #define FourFour 8
@@ -51,13 +39,9 @@ uint32_t flag_DS3[FourFour];
 uint32_t flag_DS4[FourFour];
 
 // Timing positions drums
-//uint32_t timing_DS1[FourFour];
 bool timing_DS1[FourFour];
-//uint32_t timing_DS2[FourFour];
 bool timing_DS2[FourFour];
-//uint32_t timing_DS3[FourFour];
 bool timing_DS3[FourFour];
-//uint32_t timing_DS4[FourFour];
 bool timing_DS4[FourFour];
 uint32_t timing_position_in_samples[FourFour];
 
@@ -70,14 +54,6 @@ float PSSs;
 float drums;
 float drums_filtered;
 
-// Sequencer mode ON / OFF control
-//bool sequencer_state;
-
-// Timing positions sequencer
-//uint32_t timing_SN1[FourFour];
-//uint32_t timing_SN2[FourFour];
-//uint32_t timing_SN3[FourFour];
-//uint32_t timing_SN4[FourFour];
 bool timing_SN1[FourFour];
 bool timing_SN2[FourFour];
 bool timing_SN3[FourFour];
@@ -108,12 +84,11 @@ float SN4_temp;
 
 float sequencer;
 
-// Methods
+// Functions
 HAL_StatusTypeDef Drum_Computer_Init(void);
 HAL_StatusTypeDef Drum_Computer_Reset(void);
 HAL_StatusTypeDef Drum_Computer_Process(void);
 HAL_StatusTypeDef Drum_Computer_CalcSample(void);
-HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse(void);
 HAL_StatusTypeDef Sequencer_Reset(void);
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env);
 

@@ -1,10 +1,3 @@
-/*
- * sd_card.h
- *
- *  Created on: Jun 11, 2020
- *      Author: Marc Bielen
- */
-
 #ifndef INC_SD_CARD_H_
 #define INC_SD_CARD_H_
 

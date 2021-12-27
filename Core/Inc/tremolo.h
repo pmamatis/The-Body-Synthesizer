@@ -1,11 +1,3 @@
-/**
- ******************************************************************************
- * @file    tremolo.h
- * @author  Marc Bielen
- * @date 	 10 May 2020
- * @brief	 Tremolo-Library
- */
-
 #ifndef INC_TREMOLO_H_
 #define INC_TREMOLO_H_
 
@@ -27,13 +19,11 @@ typedef enum {
 struct Tremolo_t{
 
 	struct effects_lfo_t *lfo;
-
 	float tremolo_maximum_rate;
 	float tremolo_maximum_depth;
 };
 
 struct Tremolo_t Tremolo;
-
 
 Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo);
 Tremolo_Status Tremolo_Reset(void);

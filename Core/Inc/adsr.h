@@ -1,11 +1,3 @@
-/**
- ******************************************************************************
- * @file    adsr.h
- * @author  Marc Bielen
- * @date 	28 May 2020
- * @brief	ADSR-Library
- */
-
 #ifndef ADSR_H
 #define ADSR_H
 
@@ -35,9 +27,6 @@ struct adsr {
 	float adsr_maximum_release;
 
 	bool adsr_done;
-
-	uint32_t decay_counter;
-	uint32_t release_counter;
 };
 
 struct adsr envelope;
@@ -52,14 +41,10 @@ struct adsr adsr_SN4[16];
 // ADSR for the keyboard
 struct adsr adsr_keyboard[5];	// maximum 5 keys processed simultaneously
 
-//bool envelope_done;	// flag for keyboard to delete signal
-
 ADSR_Status ADSR_Init(void);
 ADSR_Status SetupADSR(struct adsr* envelope);
 ADSR_Status ADSR_Reset(struct adsr* envelope);
-//void ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, struct signal_t* signals);
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag);
 void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_value, bool flag);
-extern inline float exp1(float x);
 
 #endif

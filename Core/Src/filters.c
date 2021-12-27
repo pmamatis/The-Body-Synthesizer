@@ -1,11 +1,5 @@
-/*****************************
- * @file    filters.c
- * @author  Max Lehmer
- * @date 	07 May 2020
- * @brief	Filter-Library
- * @brief	Based on Audio-EQ cookbook
- * @brief   https://github.com/libaudioverse/libaudioverse/blob/master/audio%20eq%20cookbook.txt
- ******************************/
+// Based on Audio-EQ cookbook
+// https://github.com/libaudioverse/libaudioverse/blob/master/audio%20eq%20cookbook.txt
 #include "filters.h"
 
 /* ------------------------------------------------------------------
@@ -153,34 +147,24 @@ Filter_Status Filters_Init(void){
 Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d, float gain_d) {
 
 
-	if (cutoff_d > LUT_FMIN){
-		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
+	if (cutoff_d > LUT_FMIN)
 		SetupLowShelf(&LS_DRUMS, cutoff_d, Qfactor_d, gain_d);
-		//		printf(" drum cutoff: %f\r\n",cutoff_d);
-		return FILTER_OK;
-	}
-	else {
-		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
+
+	else
 		SetupLowShelf(&LS_DRUMS, LUT_FMIN, Qfactor_d, gain_d);
-		//		printf("cutoff: %f\r\n",cutoff);
-		return FILTER_OK;
-	}
+
+	return FILTER_OK;
 }
 
 Filter_Status Filters_Reinit_Gyro(float cutoff){
 
-	if (cutoff > LUT_FMIN){
-		//		SetupPeakingEQ(&EQ_BAND2_I,  cutoff , 20, 24);
+	if (cutoff > LUT_FMIN)
 		SetupBandpassCPG(&EQ_BAND2,  cutoff, 0.707);
-		//		printf("cutoff: %f\r\n",cutoff);
-		return FILTER_OK;
-	}
-	else {
-		//		SetupPeakingEQ(&EQ_BAND2_I,  10 , 20, 24);
+
+	else
 		SetupBandpassCPG(&EQ_BAND2,  LUT_FMIN, 0.707);
-		//		printf("cutoff: %f\r\n",cutoff);
-		return FILTER_OK;
-	}
+
+	return FILTER_OK;
 }
 
 

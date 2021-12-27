@@ -1,10 +1,3 @@
-/*
- * display.h
- *
- *  Created on: 21.01.2021
- *      Author: Marc Bielen
- */
-
 #ifndef INC_DISPLAY_H_
 #define INC_DISPLAY_H_
 
@@ -15,16 +8,13 @@
 #include "epdif.h"
 #include "epdpaint.h"
 #include "imagedata.h"
-//#include "sd_card.h"
 
 #define COLORED      0
 #define UNCOLORED    1
-/** Difference of starting point and end point for Value-row
- */
-#define VALUE_ROW_LENGTH 10
 
-//#define NUMBER_OF_SOURCES 5	// as big as the number of sources in source_t enum
-#define NUMBER_OF_SOURCES 3
+#define VALUE_ROW_LENGTH 10	// Difference of starting point and end point for Value-row
+
+#define NUMBER_OF_SOURCES 3	// As big as the number of sources in source_t enum
 
 // Voices
 #define NUMBER_OF_VOICES 3
@@ -36,7 +26,6 @@
 // Sequencer
 #define MAX_NUMBER_OF_NOTES 3
 #define NUMBER_OF_SEQUENCERSTEPS 8
-
 
 //typedef enum {	// Waveshare 2.9 inch ePD
 //	CASE0 = 10,
@@ -64,7 +53,7 @@ typedef enum {	// Waveshare 1.54 inch ePD
 	CASE8 =	170,
 	CASE9 =	190,
 	CASE10 = 210
-}y_row_value;
+} y_row_value;
 
 typedef enum {
 	STEP1 = 40,
@@ -83,80 +72,35 @@ typedef enum {
 } Display_Status;
 
 typedef enum {
-	NONE = -1,
-	KEYBOARD = 0,
-	BODYSYNTH = 1,
-}synth_mode_t;
-
-typedef enum {
 	POTI = 0,
 	GYRO_LR = 1,
-	GYRO_FB,
-	EMG,
-	EKG,
-	DISTANCE
-}source_t;
+	GYRO_FB = 2
+} source_t;
 
 typedef enum {
 	FREESTYLE = 0,
 	MAJOR = 1,
 	MINOR = 2
-}keyandmode_t;
-
-//static const char * const source_names[] = {
-//		[GYRO_LEFT] = "Gyro L",
-//		[GYRO_RIGHT] = "Gyro R",
-//		[GYRO_FRONT] = "Gyro F",
-//		[GYRO_BACK] = "Gyro B",
-//		[EMG] = "EMG",
-//		[EKG] = "EKG",
-//		[POTI] = "POTI"
-//};
+} keyandmode_t;
 
 struct display_variables {
 
 	char source_names[NUMBER_OF_SOURCES][10];	// assumption: maximum length of 10 characters for a each source name
 
-	bool PatchSelected[3];	// arrays for 3 Modules for each patch
-	bool ModuleState[3];
-	bool ModuleStateSelected[3];
-	bool ModuleParametersSelected[3];
-	bool ModuleCompleted[3];
-	uint8_t CurrentModule;
-
-	//MODE
-	synth_mode_t mode;
-
 	// Keyboard Parameters
-	bool KeyboardmodeSelected;
-	bool Keyboardmode_ONOFF;
-	uint8_t last_Keyboard_Octave;
 	uint8_t Keyboard_Octave;
-	float last_Keyboard_AttackTime;
-	float Keyboard_AttackTime;
-	float last_Keyboard_DecayTime;
-	float Keyboard_DecayTime;
-	float last_Keyboard_SustainTime;
-	float Keyboard_SustainTime;
-	float last_Keyboard_SustainLevel;
-	float Keyboard_SustainLevel;
-	float last_Keyboard_ReleaseTime;
-	float Keyboard_ReleaseTime;
 
 	// Synthesizer Parameters
 	// Voices
-	uint8_t ActiveEffectsCounter;
 	bool Voices_ONOFF[NUMBER_OF_VOICES];
 	char Voices_Note[NUMBER_OF_VOICES];
 	char last_Voices_Note[NUMBER_OF_VOICES];
 	char Voices_Octave[NUMBER_OF_VOICES];
 	char last_Voices_Octave[NUMBER_OF_VOICES];
-	float noteindex;
 	bool Voices_Created[NUMBER_OF_VOICES];
 	uint8_t currentVoice;
 	uint8_t Voices_Noteindex[NUMBER_OF_VOICES];
 	uint8_t last_Voices_Noteindex[NUMBER_OF_VOICES];
-	//	float Voices_Volume;
 	uint8_t Voices_Kind[NUMBER_OF_VOICES];
 
 	// Noise
@@ -169,19 +113,13 @@ struct display_variables {
 	float ADSR_Sustaintime;
 	float ADSR_Sustainlevel;
 	float ADSR_Releasetime;
-	uint8_t ADSR_EffectPosition;
-	bool ADSR_EffectAdded;
 	uint8_t currentADSR;
 	bool KeyboardFX_ONOFF;
 
 	//Distortion
 	bool Distortion_ONOFF;
-	bool last_Distortion_ONOFF;
-	bool last_Distortion_Type;
 	bool Distortion_Type;
 	float Distortion_Gain;
-	uint8_t Distortion_EffectPosition;
-	bool Distortion_EffectAdded;
 	uint8_t currentDistortion;
 
 	//Tremolo
@@ -189,8 +127,6 @@ struct display_variables {
 	bool last_Tremolo_ONOFF;
 	float Tremolo_Rate;
 	float Tremolo_Depth;
-	uint8_t Tremolo_EffectPosition;
-	bool Tremolo_EffectAdded;
 	uint8_t currentTremolo;
 	uint16_t Tremolo_Rate_Index;
 	uint16_t last_Tremolo_Rate_Index;
@@ -201,13 +137,9 @@ struct display_variables {
 	float Filter_Q[5];
 	float Filter_Gain[5];
 	uint8_t currentBand;
-	uint8_t Filter_EffectPosition;
-	bool Filter_EffectAdded;
-	uint16_t lastState;
 
 	// WahWah
 	bool WahWah_ONOFF;
-	float WahWah_LFOdepth;
 	float WahWah_LFOfreq;
 	float WahWah_Range;
 	float WahWah_MidFreq;
@@ -216,33 +148,9 @@ struct display_variables {
 	uint16_t WahWah_LFOfreq_Index;
 	uint16_t last_WahWah_LFOfreq_Index;
 
-	uint8_t last_note;
-	uint8_t note;
-	char last_octave;
-	char octave;
-	uint16_t last_rate;
-	uint16_t rate;
-	uint16_t last_depth;
-	uint16_t depth;
-	uint32_t last_cutoff;
-	uint32_t cutoff;
-	uint16_t last_Q;
-	uint16_t Q;
-	uint16_t last_distortion_gain;
-	uint16_t distortion_gain;
-	uint16_t last_attack;
-	uint16_t attack;
-	uint16_t last_decay;
-	uint16_t decay;
-	uint16_t last_sustain;
-	uint16_t sustain;
-	uint16_t last_release;
-	uint16_t release;
-
 	// ADC input arrays
 	uint32_t ADC1input;
 	uint16_t ADC2inputs[4];
-	uint16_t ADC3inputs[2];
 
 	// Joystick-variables
 	uint16_t JoystickMiddle;
@@ -251,34 +159,23 @@ struct display_variables {
 	uint16_t ADC_FullRange;
 	uint16_t VRx;
 	uint16_t VRy;
-	uint8_t JoystickPatchPosition;
-	uint8_t JoystickModePosition;
-	uint8_t last_JoystickModePosition;
 	uint8_t JoystickParameterPosition;
-	uint8_t last_JoystickParameterPosition;
-	uint16_t last_joystick_x;
-	uint16_t last_joystick_y;
-	uint16_t UpdateThreshold;
 
-	//Draw Parameters
+	// Draw Parameters
 	bool arrow_flag;
 	uint8_t arrow_start_x_position;
 	uint8_t arrow_end_x_position;
 	uint8_t value_start_x_position;
 	uint8_t value_end_x_position;
 	uint8_t row_start_x_position;
-	uint8_t row_end_x_position;
 
-	//Page parameter
+	// Page parameters
 	int8_t pagePosition;
 	uint8_t page_max;
 	int8_t page_min;
 	uint8_t max_parameter;
 
 	// Potentiometer-variables
-	uint16_t Poti_raw;
-	float Poti_percent;
-	int progress_bar;
 	uint16_t last_Poti;
 	uint16_t Poti_Threshold;
 	bool poti_moved;
@@ -286,22 +183,10 @@ struct display_variables {
 	uint16_t PotiMean;
 	uint16_t PotiMean_counter;
 
-	// EMG-Sensor-variables
-	uint16_t EMG_DC;
-	uint16_t EMG_AC;
-
-	// Gyro-Sensor-variables
-	uint16_t GyroX;
-	uint16_t GyroY;
-	uint16_t GyroZ;
-	uint8_t Gyro_select;
-	bool Gyro_ON;
 	bool ENTER_Debounce_State;
 	bool BACK_Debounce_State;
-	bool SW_Debounce_State;
 	bool ENTER;		// state variable of the ENTER-Button to go one step further in the display-menu
 	bool BACK;		// state variable of the BACK-Button to go one step back in the display-menu
-	bool SW;		// state variable of the SW-Button of the Joystick
 	bool button_pressed_flag;
 
 	// SOURCES
@@ -315,8 +200,8 @@ struct display_variables {
 	source_t Distortion_Sources;				// sources for gain
 	source_t Tremolo_Sources[2];				// sources for rate and depth
 	source_t Drumfilter_Cutoff_Source;			// source for drumfilter cuttoff
-	// page value strings
-	char value_str_dummy[9][10];	// 9 rows and maximum 10 characters
+
+	// Page value strings
 	char value_str_voices_overview[6][10];
 	char value_str_voices_settings[4][9][10];
 	char value_str_adsr_overview[7][10];
@@ -336,9 +221,7 @@ struct display_variables {
 	char value_str_keyandmode[2][10];
 
 	// Drumcomputer
-	uint8_t lastCurrentSampleRow;
 	uint8_t CurrentSampleRow;
-	uint8_t lastCurrentDrumstep;
 	uint8_t CurrentDrumstep;
 	bool DrumMatrix[MAX_NUMBER_OF_SAMPLES][NUMBER_OF_DRUMSTEPS];
 	bool UpdateDisplay;
@@ -383,7 +266,7 @@ struct display_variables {
 	uint8_t SingleSampleKit;
 	uint8_t SingleSample;
 
-	// Drumfilter_ONOFF
+	// Drumfilter
 	bool Drumfilter_ONOFF;
 
 	// Preset
@@ -392,6 +275,7 @@ struct display_variables {
 	// Reset
 	bool Reset;
 
+	// SetPreset
 	bool SetPreset;
 };
 
@@ -401,12 +285,10 @@ Paint paint;
 unsigned char* frame_buffer;
 
 Display_Status Display_Init(struct display_variables* Display);
+
 Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer);
-Display_Status PatchSelectionMenu(struct display_variables* Display, Paint paint, EPD epd, unsigned char* frame_buffer);
-//void SetParameters(struct display_variables* Display, struct signal_t* signals, struct BQFilter* Filter, struct adsr* envelope, struct effects_distortion* SoftClipping, struct effects_distortion* HardClipping, struct effects_LFO* Tremolo, Paint paint, EPD epd, unsigned char* frame_buffer);
 
-
-//Display draw functions
+// Display draw functions
 void DISPLAY_PrintCurrentPage(void);
 void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition);
 void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition);
@@ -437,20 +319,17 @@ Display_Status DISPLAY_SetSequencerStepCursor(void);
 Display_Status DISPLAY_DeleteSequencerStepCursor(void);
 
 
-//Page functions
+// Page functions
 void DISPLAY_processing(void);
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
 void p_Voices_overview(void);
 void p_Voices_Settings(void);
-//void p_ADSR_overview(struct adsr* envelope);
 void p_ADSR_overview(void);
-
 void p_ADSR_Settings(void);
 void p_Equalizer_overview(void);
 void p_Equalizer_Settings(void);
 void p_WahWah_overview(void);
 void p_WahWah_Settings(struct WahWah_t *WahWah);
-//void p_WahWah(struct WahWah_t *WahWah);
 void p_Distortion(struct effects_distortion* HardClipping);
 void p_Tremolo(struct Tremolo_t* Tremolo);
 void p_EMG(void);
@@ -459,12 +338,9 @@ Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM);
 void p_Volume(void);
 void Full_Reset(void);
 void p_Presets(void);
-void p_KeyboardSetParameters(struct adsr* envelope);
 Display_Status p_Drumcomputer_overview(void);
 Display_Status p_Drumcomputer_Settings(void);
 Display_Status p_Sequencer_overview(void);
 Display_Status p_Sequencer_Settings(void);
-
-void p_Dummy(void);
 
 #endif /* INC_DISPLAY_H_ */

@@ -1,19 +1,7 @@
-/**
- ******************************************************************************
- * @file    filters.h
- * @author  Max Lehmer
- * @date 	 07 May 2020
- * @brief	 Filter-Library
- */
-
 #ifndef INC_FILTERS_H_
 #define INC_FILTERS_H_
 
 #include "main.h"
-
-/*********************************
- * @brief		Defines
- *********************************/
 
 /*********************************
  * @brief		Biquad Filter struct
@@ -36,7 +24,6 @@ uint32_t ADC_value;
 uint32_t ADC_value_deb;
 uint32_t flag;
 
-
 // Equalizer
 struct BQFilter EQ_BAND1;
 struct BQFilter EQ_BAND2;
@@ -53,15 +40,6 @@ struct BQFilter LS_DRUMS;
 // Anti-Aliasing
 struct BQFilter LP_AA;
 
-
-/***************************
- * @brief		Enumeration for DSP Debugging
- ***************************/
-/*typedef enum DSP_Status{
-	DSP_FAIL = -1,
-	DSP_OK = 1
-} DSP_Status;*/
-
 /***************************
  * @brief Enumeration for Filter Debugging
  ***************************/
@@ -70,12 +48,9 @@ typedef enum {
 	FILTER_OK = 1
 } Filter_Status;
 
-
-
 /*********************************
  * @parameter	Functions
  *********************************/
-
 Filter_Status Filters_Init(void);
 Filter_Status Filters_Reinit_Poti(void);
 Filter_Status Filters_Reinit_Gyro(float cutoff);
@@ -89,10 +64,7 @@ Filter_Status SetupNotch 	  (struct BQFilter *BP, float cutoff, float Q);
 Filter_Status SetupPeakingEQ  (struct BQFilter *BP, float cutoff, float Q, float dBGain);
 Filter_Status SetupLowShelf   (struct BQFilter *LS, float cutoff, float Q, float dBGain);
 Filter_Status SetupHighShelf  (struct BQFilter *HS, float cutoff, float Q, float dBGain);
-
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data);
 Filter_Status ProcessEQ    (float *data);
-
-
 
 #endif /* INC_MUSIC_NOTES_H_ */

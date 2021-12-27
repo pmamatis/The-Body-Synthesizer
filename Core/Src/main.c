@@ -23,10 +23,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include "epd1in54.h"
-//#include "epdif.h"
-//#include "epdpaint.h"
-//#include "imagedata.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -134,7 +130,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 }
 
 
-/* DAC CHANNEL FUnktions */
+/* DAC CHANNEL Functions */
 
 bool Init_complete = false;
 ////DAC_CHANNEL_1
@@ -159,8 +155,9 @@ bool Init_complete = false;
 
 // DAC_CHANNEL_2
 void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
+
 	outputBuffer_position = HALF_BLOCK;
-	//Signal_Synthesis(&signals2, 2);
+
 	if (Init_complete){
 		Signal_Synthesis(&signals1, 1);
 	}
@@ -169,8 +166,9 @@ void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 }
 
 void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
+
 	outputBuffer_position = FULL_BLOCK;
-	//Signal_Synthesis(&signals2, 2);
+
 	if (Init_complete){
 		Signal_Synthesis(&signals1, 1);
 	}
@@ -187,9 +185,6 @@ void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 int main(void)
 {
 	/* USER CODE BEGIN 1 */
-
-	//	// you have to edit the startup_stm32fxxx.s file and set a big enough heap size
-	//	unsigned char* frame_buffer = (unsigned char*)malloc(EPD_WIDTH * EPD_HEIGHT / 8);
 
 	/* USER CODE END 1 */
 
@@ -234,22 +229,6 @@ int main(void)
 	MX_TIM3_Init();
 	/* USER CODE BEGIN 2 */
 
-	//--------------------------------------------------	SD CARD
-	/*char* textfile_list;	// find textfiles on sd card
-	sd_card_mount(huart3);
-	textfile_list = find_text_file(huart3);
-	sd_card_unmount(huart3);
-	send_uart(textfile_list, huart3);
-	send_uart("\n\n\r", huart3);*/
-
-	/*sd_card_mount(huart3);
-	sd_card_free_space(huart3);
-	//sd_card_write_newfile("test.txt", "0,2,4", huart3);
-	//sd_card_write_appendfile("ir.txt", "93,94", huart3);
-	sd_card_read("test.txt", huart3);
-	//sd_card_remove_file("ir.txt", huart3);
-	sd_card_unmount(huart3);*/
-	//--------------------------------------------------
 	printf("***Bodysynthesizer*** \r\n");
 
 	/* INIT FUNCTIONS************************
@@ -258,7 +237,6 @@ int main(void)
 	printf("Begin Init\r\n");
 	if(Signal_Synthesis_Init(htim8, hdac) != HAL_OK) {
 		printf("Signal Synthesis init failed\n");
-		//exit(EXIT_FAILURE);	// #include <stdlib.h>
 	}
 
 	effects_init();
@@ -266,7 +244,6 @@ int main(void)
 	if(Filters_Init() == FILTER_FAIL) {
 		printf("Filters init failed\n");
 	}
-	//SetupLowpass(&EQ_BAND1_I, 200, 0.707);
 
 	if(Tremolo_Init(&Tremolo) == TREMOLO_FAIL) {
 		printf("Tremolo init failed\n");
@@ -276,7 +253,6 @@ int main(void)
 		printf("Distortion init failed\n");
 	}
 
-	//ADSR_Linear_Init(&envelope);
 	if(ADSR_Init() == ADSR_FAIL) {
 		printf("ADSR init failed\n");
 	}
@@ -338,107 +314,6 @@ int main(void)
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-
-	//	Display.Tremolo_Rate = 0.125;
-	//	Display.Tremolo_Depth = 0.8;
-	//	Display.Tremolo_ONOFF = true;
-
-	//			NewSignal(&signals1,NOISE,'C',0,15);
-	//NewSignal(&signals1,NOISE,'C',0);
-	//	NewSignal(&signals1,NOISE,'C',0,1);
-	// CEG Full Range for Wah
-	//		NewSignal(&signals1,SIN, 'C',0,16);
-	//	NewSignal(&signals1,SIN, 'E',0,17);
-	//	NewSignal(&signals1,SIN, 'G',0,18);
-	//	NewSignal(&signals1,SIN, 'C',1,8);
-	//	NewSignal(&signals1,SIN, 'E',1,9);
-	//	NewSignal(&signals1,SIN, 'G',1,10);
-	//	NewSignal(&signals1,SIN, 'C',2,11);
-	//	NewSignal(&signals1,SIN, 'E',2,12);
-	//	NewSignal(&signals1,SIN, 'G',2,13);
-	//		NewSignal(&signals1,SIN, 'C',4,14);
-	//	NewSignal(&signals1,SIN, 'E',4,15);
-	//		NewSignal(&signals1,SIN, 'G',4,16);
-	//		NewSignal(&signals1,SIN, 'G',4,17);
-	//	NewSignal(&signals1,SIN, 'E',5,18);
-	//	NewSignal(&signals1,SIN, 'G',5,19);
-
-
-	//NewSignal(&signals1,SIN, 'G',3);
-	//NewSignal(&signals1,SIN, 'G',4);
-	//	NewSignal(&signals2,SIN, 'C',1);
-	//NewSignal(&signals2,SIN, 'C',2);
-	//NewSignal(&signals2,SIN, 'C',3);
-	//	NewSignal(&signals1,SIN, 'C', 2, 1);
-
-	//effects_add(EQ, 0);
-	//effects_add(DIST_S, 0);
-	//	Display.Distortion_ONOFF = true;
-	//	Display.Distortion_Gain = 8;
-
-	//	// Kick
-	//		timing_DS1[0] = 1;
-	//		timing_DS1[1] = 0;
-	//		timing_DS1[2] = 0;
-	//		timing_DS1[3] = 0;
-	//		timing_DS1[4] = 1;
-	//		timing_DS1[5] = 0;
-	//		timing_DS1[6] = 0;
-	//		timing_DS1[7] = 0;
-	//
-	//		// Hihat
-	//		timing_DS2[0] = 0;
-	//		timing_DS2[1] = 0;
-	//		timing_DS2[2] = 1;
-	//		timing_DS2[3] = 0;
-	//		timing_DS2[4] = 0;
-	//		timing_DS2[5] = 0;
-	//		timing_DS2[6] = 1;
-	//		timing_DS2[7] = 0;
-	//
-	//		// Clap
-	//		timing_DS3[0] = 0;
-	//		timing_DS3[1] = 0;
-	//		timing_DS3[2] = 0;
-	//		timing_DS3[3] = 0;
-	//		timing_DS3[4] = 1;
-	//		timing_DS3[5] = 0;
-	//		timing_DS3[6] = 0;
-	//		timing_DS3[7] = 0;
-	//
-	//	//	// LowTom
-	//		timing_DS4[0] = 0;
-	//		timing_DS4[1] = 0;
-	//		timing_DS4[2] = 1;
-	//		timing_DS4[3] = 1;
-	//		timing_DS4[4] = 0;
-	//		timing_DS4[5] = 0;
-	//		timing_DS4[6] = 0;
-	//		timing_DS4[7] = 1;
-
-	//		Display.Voices_Note[0] = 'C';
-	//		Display.Voices_Octave[0] = 2;
-	//		Display.Voices_ONOFF[0] = true;
-	//	Display.Voice_Note_Sources[0] = EKG;
-	//	Display.Voice_Note_Sources[0] = GYRO_FB;
-	//	Display.Voice_Note_Sources[0] = POTI;
-	//	Display.Voice_Note_Sources[0] = EMG;
-	//	Display.PlaySingleSample_ONOFF = true;
-	//	Display.Drumfilter_ONOFF = true;
-	//		Display.Drumcomputer_ONOFF = true;
-	//	Display.Sequencer_ONOFF = true;
-	//	Display.WahWah_ONOFF = true;
-	//	Display.Distortion_ONOFF = true;
-	//	Display.Distortion_Gain = 8;
-	//	Display.Distortion_Sources = GYRO_LR;
-	//			Display.Tremolo_ONOFF = true;
-	//		Display.Tremolo_Sources[0] = GYRO_FB;
-	//	Display.Tremolo_Sources[1] = GYRO_LR;
-	//		Display.Tremolo_Depth = 0.5;
-	//		Display.Tremolo_Rate = 4;
-
-	//	tim5_counter = 0;
-	//	time = HAL_GetTick();
 
 	while(1) {
 

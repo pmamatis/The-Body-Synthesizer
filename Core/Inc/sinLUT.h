@@ -1,21 +1,20 @@
 #ifndef INC_SINLUT_H_
 #define INC_SINLUT_H_
-//includes 
+
+// Includes
 #include "main.h"
  
  
-//defines 
+// Defines
 #define LUT_SR 24000
 #define LUT_START_OCTAVE 4186.009
 #define LUT_FMAX 4186.009
 #define LUT_FMIN 65.4064
 #define LUT_OCTAVES 6
-//defines 
 #define LFO_FMAX 16
 #define LFO_FMIN 0.125
  
- 
-//variables
+// Variables
 const float  LUT[6439];
 const uint32_t LUT_ENDINDEX[73];
 const uint32_t LUT_STARTINDEX[73];

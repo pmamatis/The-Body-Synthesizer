@@ -1,11 +1,3 @@
-/**
- ******************************************************************************
- * @file    tremolo.c
- * @author  Marc Bielen
- * @date 	 10 May 2020
- * @brief	 Tremolo-Library
- */
-
 #include "tremolo.h"
 
 /*********************************

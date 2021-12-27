@@ -1,13 +1,3 @@
-/**
- ******************************************************************************
- * @file    signal_sythesis.c
- * @author  Paul Mamatis
- * @date 	27 Apr 2020
- * @brief	Signal sythesis for HAL-Libary on Nucleo-144 F4.....
- *
- *@todo implement 	SAWTOOTH, TRIANGLE, PWM in signal_sythesis function
- */
-
 #ifndef INC_SIGNAL_SYNTHESIS_H_
 #define INC_SIGNAL_SYNTHESIS_H_
 
@@ -22,8 +12,7 @@
 #define AMPLITUDE 	1000
 /**@brief digital DAC value for maximal output voltage (3,3V) */
 #define DAC_MAX 	4095
-/** @brief digital value for 100mV */
-//#define OFFSET 		145
+/** @brief digital value for 1.65 V */
 #define OFFSET 2047
 /**@brief 4096/3300 */
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
@@ -41,10 +30,8 @@
  * @param ID: indicates the Signal where it comes from. 0-2 Synthesizer Voices. 3-5 Keyboard notes,
  * */
 struct signal_t{
-	//globals
 	uint8_t count;
 	float max;
-
 	//part of a Signal Object
 	unsigned int kind[MAX_SIGNAL_KOMBINATION];
 	double freq[MAX_SIGNAL_KOMBINATION];
@@ -52,30 +39,15 @@ struct signal_t{
 	uint32_t current_LUT_Index[MAX_SIGNAL_KOMBINATION];
 	//ID's 0-2 Synthesizer Voices. 3-5 Keyboard notes, 5 < open
 	uint8_t ID[MAX_SIGNAL_KOMBINATION];
-	uint8_t channel[MAX_SIGNAL_KOMBINATION];
 };
-/**@brief Array to monitor which ID's are taken, taken = 1; free = 0 */
-uint8_t ID_array[MAX_SIGNAL_KOMBINATION];
 
-/** defines volume of the Voices, Drummachine and Sequencer
- * 0 -> Voices
- * 1 -> Drums
- * 2 -> Sequencer
- * */
-float volume[4];
-/** Volume applied at the end, to prevent clipping */
-float Master_Volume;
-
-float calculate_keyboard[5];
-/** should avoid Plop sound after finishing the Keyboard sound */
-uint32_t noPlopOffset;
+struct signal_t signals1;
 
 //Effects
 struct effects_lfo_t{
 
 	uint32_t lfo_index;
 	uint8_t lfo_quarter;
-	uint32_t lfo_blocksizecounter;
 	float lfo_frequency;
 	float lfo_data;
 	float lfo_depth;
@@ -84,11 +56,6 @@ struct effects_lfo_t{
 
 struct effects_lfo_t lfo_tremolo;
 struct effects_lfo_t lfo_wahwah;
-
-enum singnal_synthesis_enum{
-	note_key = 0,
-	mixed
-};
 
 /**@brief Signal kinds*/
 enum signal_kind_enum{
@@ -103,41 +70,31 @@ enum lfo_effect{
 	WAHWAH_LFO
 };
 
-//Variables
-float lfo_value;
+/** defines volume of the Voices, Drummachine and Sequencer
+ * 0 -> Voices
+ * 1 -> Drums
+ * 2 -> Sequencer
+ * */
+float volume[4];
+/** Volume applied at the end, to prevent clipping */
+float Master_Volume;
 
-uint8_t output_Channel;
+float calculate_keyboard[5];
+
 /** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
 uint8_t outputBuffer_position;
 
-struct signal_t signals1;
-struct signal_t signals2;
-
-///** defines volume of the Voices, Drummachine and Sequencer
-// * 0 -> Voices
-// * 1 -> Drums
-// * 2 -> Sequencer
-// * */
-//float volume[3];
-
-//functions
+// Functions
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
 HAL_StatusTypeDef Voices_Reset(void);
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);
 void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel);
 void DeleteSignal(struct signal_t* signals,int16_t signal_index);
-//void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave);
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID);
-void Signal_Synthesis_LFO(struct effects_lfo_t* effect);
 void LFO_SingleValueProcess(struct effects_lfo_t* lfo, uint8_t lfo_effect);
-
-// NEW
 float CalcRectSample(struct signal_t* signals, int index);
 float CalcTriangleSample(struct signal_t* signals, int index);
-// NEW END
-
 float Noise_Generator(void);
-float AWGN_generator(void);
 int16_t IDtoIndex(int16_t id);
 bool initRamp(void);
 

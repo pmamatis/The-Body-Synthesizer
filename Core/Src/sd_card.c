@@ -1,10 +1,3 @@
-/*
- * sd_card.c
- *
- *  Created on: Jun 11, 2020
- *      Author: Marc Bielen
- */
-
 #include "sd_card.h"
 
 // UART functions for debugging
@@ -18,7 +11,7 @@ void clear_buffer (void) {
 	for (int i=0; i<BUFFER_SIZE; i++) buffer[i] = '\0';
 }
 
-void send_uart (char *string, UART_HandleTypeDef huart) {
+void send_uart(char *string, UART_HandleTypeDef huart) {
 	uint8_t len = strlen (string);
 	HAL_UART_Transmit(&huart, (uint8_t *) string, len, HAL_MAX_DELAY);  // transmit in blocking mode
 }
@@ -45,17 +38,7 @@ char* find_text_file (UART_HandleTypeDef huart) {
 
 void sd_card_mount(void) {	// Mount SD Card (Einbinden der SD-Karte)
 
-	/*fresult = f_mount(&fs, "/", 1);
-	if (fresult != FR_OK) send_uart ("ERROR!!! in mounting SD CARD...\n\r", huart);
-	else send_uart("SD CARD MOUNTED successfully...\n\r", huart);
-
-	clear_buffer();*/
-
 	fresult = f_mount(&fs, "", 0);
-//	if(fresult != FR_OK)
-//		send_uart ("ERROR!!! in mounting SD CARD...\n\r", huart);
-//	else
-//		send_uart("SD CARD MOUNTED successfully...\n\r", huart);
 
 	clear_buffer();
 }
@@ -63,7 +46,6 @@ void sd_card_mount(void) {	// Mount SD Card (Einbinden der SD-Karte)
 void sd_card_unmount(void) {	// Unmount SD Card
 
 	fresult = f_mount(NULL, "/", 1);
-//	if (fresult == FR_OK) send_uart ("SD CARD UNMOUNTED successfully...\n\n\r", huart);
 
 	clear_buffer();
 }

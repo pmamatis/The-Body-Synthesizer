@@ -383,18 +383,11 @@ void TIM8_TRG_COM_TIM14_IRQHandler(void)
 void TIM5_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM5_IRQn 0 */
-	//	tim5_counter++;
-	//	if(tim5_counter == 500){
-	//			printf("%i\r\n",HAL_GetTick());
-	//			time = HAL_GetTick();
-	//			tim5_counter = 0;
-	//	}
 
   /* USER CODE END TIM5_IRQn 0 */
   HAL_TIM_IRQHandler(&htim5);
   /* USER CODE BEGIN TIM5_IRQn 1 */
 
-	//HAL_ADC_Start_DMA(KEYBOARD_ADC, &keyboard_adc_value, 1);
 	HAL_ADC_Start_DMA(KEYBOARD_ADC, &Display.ADC1input, 1);
 
   /* USER CODE END TIM5_IRQn 1 */
@@ -410,8 +403,7 @@ void TIM7_IRQHandler(void)
   /* USER CODE END TIM7_IRQn 0 */
   HAL_TIM_IRQHandler(&htim7);
   /* USER CODE BEGIN TIM7_IRQn 1 */
-	//  HAL_SPI_TransmitReceive_IT(&SensorSPI, pTxData, pRxData, sizeof(sensor_data_t));
-	//  HAL_SPI_Receive(&hspi4, pRxData, sizeof(sensor_data_t), 100);
+
 	HAL_SPI_TransmitReceive(hSensorSPI, pTxData, pRxData, sizeof(sensor_data_t),100);
 
 	__disable_irq();
@@ -423,19 +415,6 @@ void TIM7_IRQHandler(void)
 	else if(sensorData.gyro_initilized != 1)
 		HAL_GPIO_WritePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin, GPIO_PIN_RESET);
 
-	//	printf("******\r\n");
-	//
-	//
-	//	for (int i = 0; i<sizeof(sensor_data_t);i++){
-	//		printf("%i,",pRxData[i]);
-	//	}
-	//
-	//	printf("\r\n");
-	//		printf("gyro init: %i\r\n",sensorData.gyro_initilized);
-	//		printf("tilt: %i\r\n",sensorData.tilt_detected);
-	//	printf("\r\n");
-	//	printf("\r\n");
-
   /* USER CODE END TIM7_IRQn 1 */
 }
 
@@ -445,10 +424,6 @@ void TIM7_IRQHandler(void)
 void DMA2_Stream0_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
-
-	//OnePress_keyboard_process(keyboard_adc_value, &signals1, &envelope);
-	//	if(Display.mode == KEYBOARD)
-
 
 	// Key Release Sensing
 	if(Display.ADC1input <= NO_KEY_ADC_VALUE) {
@@ -647,18 +622,12 @@ void DMA2_Stream2_IRQHandler(void)
 		Display.PotiMean = Display.PotiMean_tmp / Display.PotiMean_counter;
 		Display.PotiMean_counter = 0;
 		Display.PotiMean_tmp = 0;
-		//		printf("PotiMean = %u\r\n", Display.PotiMean);
 	}
 	Display.PotiMean_counter++;
 
-	//	printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.PotiMean));
-
 	// do not process the poti change if joystick is moved in x- or y-direction
 	if(abs(Display.ADC2inputs[0]-Display.JoystickMiddle)<100 && abs(Display.ADC2inputs[1]-Display.JoystickMiddle)<100) {
-		//		Display.Poti_Threshold = 10;
 		if(abs(Display.last_Poti - Display.PotiMean) > Display.Poti_Threshold) {
-			//			printf("moved\r\n");
-			//			printf("Poti diff = %u\r\n", abs(Display.last_Poti - Display.PotiMean));
 			Display.poti_moved = true;
 			Display.last_Poti = Display.PotiMean;
 			DISPLAY_processing();

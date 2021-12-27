@@ -38,39 +38,18 @@ extern "C" {
 #include "sinLUT.h"
 #include "effects.h"
 #include "filters.h"
-// for filters
-#include "filters.h"
-#include "arm_math.h"
+//#include "arm_math.h"
 #include "math_helper.h"
-
-// for ADSR
 #include "adsr.h"
-
-// for Keyboard
 #include "keyboard.h"
-
-// for tremolo
 #include "tremolo.h"
-
-// for wahwah
 #include "wahwah.h"
-
-// for distortion
 #include "distortion.h"
-
-// EMG
 #include "emg.h"
-
-//Drummachine
 #include "drum_computer.h"
-
-// Display
 #include "display.h"
 #include "input_interfaces.h"
-
-//Gyroskop SPI
-#include "SPI_Connection.h"
-
+#include "SPI_Connection.h"	// Gyroscope SPI
 
 /* USER CODE END Includes */
 
@@ -163,27 +142,9 @@ void Error_Handler(void);
 #define BLOCKSIZE 480 // Latenz = 20ms @ 24kHz S
 
 //Variables
-bool process_trem;
-bool process_dist;
-bool process_dist_soft;
-bool process_dist_hard;
-bool process_adsr;
-bool process_filter;
-/** @brief DAC output array*/
-//uint32_t output_vector1[BLOCKSIZE];
+/** @brief DAC output arrays*/
 float calculate_vector1[BLOCKSIZE];
-
-//uint32_t output_vector2[BLOCKSIZE];
 float calculate_vector2[BLOCKSIZE];
-
-float effect_LFO[BLOCKSIZE/2];	// Original!!!
-//uint32_t effect_LFO_output[BLOCKSIZE];
-//uint32_t effect_LFO_output[BLOCKSIZE];
-
-float sigFreq_sampleFreq_ratio;
-uint64_t tim5_counter;
-uint64_t time;
-//Gyro SPI buffer
 
 /** @brief enum for DMA Output buffer position */
 enum outputBuffer_position_enum{

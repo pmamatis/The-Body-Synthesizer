@@ -1,11 +1,3 @@
-/**
- ******************************************************************************
- * @file    wahwah.h
- * @author  Max Lehmer
- * @date 	11 Sep 2021
- * @brief	WahWah-Library
- */
-
 #ifndef INC_WAHWAH_H_
 #define INC_WAHWAH_H_
 
@@ -28,17 +20,14 @@ struct WahWah_t{
 
 	struct effects_lfo_t* lfo;
 	struct BQFilter* bandpass;
-
 	float mid_freq;
 	float mid_freq_mod;
 	float range;
 	float gain;
-
 	float max_mid_freq;
 	float max_range;
 	float max_Q;
 	float max_lfo_depth;
-
 	uint32_t reinit_counter;
 };
 
