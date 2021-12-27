@@ -134,7 +134,7 @@ void sd_card_read(char *filename, float *LUT) {
 
 	// Read data from the file - Please see the function details for the arguments
 
-	uint32_t Cycles = (uint32_t)f_size(&fil) / BUFFER_SIZE; // 400
+	uint32_t Cycles = (uint32_t)f_size(&fil) / BUFFER_SIZE; // 100 = 10 Digits * 10000 Werte / BUFFER_SIZE
 	uint32_t NoLength = 10;
 	uint32_t NoSamples = 100;
 
