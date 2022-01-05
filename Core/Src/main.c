@@ -1351,7 +1351,7 @@ int _write(int file,char *ptr, int len)
 // GPIO-Button Debouncing
 
 
-/** @brief button press interrupt function, buttons placed near the Display
+/** @brief button press interrupt function, for buttons placed near the Display
  */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
