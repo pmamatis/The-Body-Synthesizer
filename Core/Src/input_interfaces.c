@@ -1,5 +1,14 @@
+/*
+ * input_interfaces.c
+ *
+ *  Created on: Aug 15, 2021
+ *      Author: Paul Mamatis
+ */
+
 #include "input_interfaces.h"
 
+
+/** @brief init function*/
 void II_init(void) {
 
 	log_mapping_F = log(LUT_FMAX);
@@ -19,9 +28,7 @@ void II_init(void) {
 	gyrochanged = false;
 }
 
-/** starts the Interface Timer Interrupt
- *
- */
+/** @brief starts the interface timer Interrupt*/
 void II_startInterface(TIM_HandleTypeDef* htim) {
 
 	SetTimerSettings(htim, II_SR);
@@ -91,6 +98,7 @@ uint8_t II_Display_Voices(void) {
 							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
 						}
 
+
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					gyro_toggleCounter = 0;
@@ -122,6 +130,7 @@ uint8_t II_Display_Voices(void) {
 							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
 						}
 
+
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_LEFT || sensorData.tilt_detected == TILT_LEFT_S){
@@ -140,6 +149,7 @@ uint8_t II_Display_Voices(void) {
 						else if(Display.ScaleMode == MINOR)
 							Display.Voices_Note[ii_i] = (uint8_t)(keys[minor_scale[(uint8_t)Display.Voices_Noteindex[ii_i]] + Display.KeyNoteIndex]);
 
+
 						sensorData.tilt_detected = TILT_NONE;
 					}
 
@@ -153,7 +163,6 @@ uint8_t II_Display_Voices(void) {
 			}
 
 			switch (Display.Voice_Octave_Sources[ii_i]) {
-
 			case GYRO_FB:
 				if ( gyro_toggleCounter > gyro_toggleThreshold && sensorData.tilt_detected != TILT_NONE) {
 
@@ -320,11 +329,12 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_BACK_S){
 						if (Display.Tremolo_Rate_Index > 0) {
 							Display.Tremolo_Rate_Index--;
+							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
 						sensorData.tilt_detected = TILT_NONE;
 					}
 					else if (sensorData.tilt_detected == TILT_FRONT){
-						if (Display.Tremolo_Rate_Index < 7) {
+						if (Display.Tremolo_Rate_Index < 7) {	//((sizeof(LFO_FREQUENCYS[8])/sizeof(float))-1)
 							Display.Tremolo_Rate_Index ++;
 						}
 						sensorData.tilt_detected = TILT_NONE;
@@ -332,6 +342,7 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_FRONT_S){
 						if (Display.Tremolo_Rate_Index < 7) {
 							Display.Tremolo_Rate_Index ++;
+							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -347,6 +358,7 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_LEFT_S ){
 						if (Display.Tremolo_Rate_Index > 0) {
 							Display.Tremolo_Rate_Index --;
+							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -359,6 +371,7 @@ uint8_t II_Display_Effects(void){
 					else if (sensorData.tilt_detected == TILT_RIGHT_S){
 						if (Display.Tremolo_Rate_Index < 7) {
 							Display.Tremolo_Rate_Index ++;
+							printf("rateidx = %u\r\n", Display.Tremolo_Rate_Index);
 						}
 						sensorData.tilt_detected = TILT_NONE;
 					}
@@ -411,7 +424,6 @@ uint8_t II_Display_Effects(void){
 				case GYRO_LR:
 					if (sensorData.tilt_detected == TILT_LEFT){
 						if (Display.Tremolo_Depth > 0) {
-							//reduce depth by 1/II_TREM_DEPTH_STEP_SIZE of Max value => II_TREM_DEPTH_STEP_SIZE steps
 							Display.Tremolo_Depth = Display.Tremolo_Depth - Tremolo.tremolo_maximum_depth/II_TREM_DEPTH_STEP_SIZE;
 						}
 						sensorData.tilt_detected = TILT_NONE;
@@ -447,6 +459,7 @@ uint8_t II_Display_Effects(void){
 			if (gyro_delay_counter[1] >= II_TREM_DEPTH_DELAY) // >= necessary, because II_TREM_DEPTH_DELAY is a floating number
 				gyro_delay_counter[1] = 0;
 		}
+
 	}
 
 	//Filters
@@ -712,7 +725,6 @@ void II_raiseNote(uint8_t ID){
 	}
 	Display.Voices_Note[ID] = newKey;
 	if(index >= 0){	// only done if ID is existing
-
 		DeleteSignal(&signals1, index);
 		NewSignal(&signals1, SIN, newKey, Display.Voices_Octave[ID],ID);
 	}
@@ -747,8 +759,8 @@ void II_decreaseNote(uint8_t ID){
 	}
 	Display.Voices_Note[ID] = newKey;
 	if(index >= 0){
-
 		DeleteSignal(&signals1, index);
 		NewSignal(&signals1, SIN, newKey, Display.Voices_Octave[ID],ID);
 	}
+
 }

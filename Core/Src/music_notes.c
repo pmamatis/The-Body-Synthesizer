@@ -2,7 +2,7 @@
 
 /** @brief lookuptable for respective note keys*/
 const char keys[] = {'C','c','D','d','E','F','f','G','g','A','B','H','C','c','D','d','E','F','f','G','g','A','B','H','C','c'};
-//                      C#      D#		        F#	    G#				    C#	    D#		    F#	    G#				    C#
+//                        C#      D#		  F#	  G#				  C#	  D#		  F#	  G#				  C#
 
 /** @brief minor/major tone scale in semi tone steps, according to the array keys*/
 const uint32_t major_scale[] =  {0,2,4,5,7,9,11,12, 14}; 	// {2,2,1,2,2,2,1}; Dur

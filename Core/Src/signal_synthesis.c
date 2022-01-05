@@ -1146,6 +1146,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		}
 
 		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
+		//		ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// Keyboard processing without effects
 		if(Display.KeyboardFX_ONOFF == false) {

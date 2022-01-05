@@ -21,8 +21,12 @@ typedef enum effects_t_enum{
 	WAHWAH		// WahWah
 } effects_t_enum;
 
-/** Array filled with the effects in process order
- */
+
+/*********************************
+ * @beief	Variables
+ *********************************/
+
+/** @brief array for activating effects */
 effects_t_enum effect_order[MAX_EFFECTS];
 
 /*********************************
@@ -30,7 +34,7 @@ effects_t_enum effect_order[MAX_EFFECTS];
  *********************************/
 void effects_init(void);
 void effects_add(effects_t_enum effect);
-void effects_process(float* calculate_value);
+void keyboard_adsr_process(void);
 void effects_delete(effects_t_enum effect) ;
 void keyboard_adsr_process(void);
 

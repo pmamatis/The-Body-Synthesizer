@@ -23,6 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+//For SD card
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -130,28 +132,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 }
 
 
-/* DAC CHANNEL Functions */
-
+/* DAC CHANNEL FUNCTIONS begin*********************/
 bool Init_complete = false;
-////DAC_CHANNEL_1
-//void HAL_DAC_ConvHalfCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-//
-//	outputBuffer_position = HALF_BLOCK;
-//	if (Init_complete){
-//		Signal_Synthesis(&signals1, 1);
-//	}
-//	else
-//		Init_complete = initRamp();
-//}
-//
-//void HAL_DAC_ConvCpltCallbackCh1(DAC_HandleTypeDef* hdac) {
-//	outputBuffer_position = FULL_BLOCK;
-//	if (Init_complete){
-//		Signal_Synthesis(&signals1, 1);
-//	}
-//	else
-//		Init_complete = initRamp();
-//}
 
 // DAC_CHANNEL_2
 void HAL_DACEx_ConvHalfCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
@@ -175,6 +157,8 @@ void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 	else
 		Init_complete = initRamp();
 }
+/* DAC CHANNEL FUNCTIONS end*********************/
+
 
 /* USER CODE END 0 */
 
@@ -185,6 +169,7 @@ void HAL_DACEx_ConvCpltCallbackCh2(DAC_HandleTypeDef* hdac) {
 int main(void)
 {
 	/* USER CODE BEGIN 1 */
+
 
 	/* USER CODE END 1 */
 
@@ -229,11 +214,11 @@ int main(void)
 	MX_TIM3_Init();
 	/* USER CODE BEGIN 2 */
 
+
 	printf("***Bodysynthesizer*** \r\n");
 
-	/* INIT FUNCTIONS************************
-	 *
-	 */
+	/* INIT FUNCTIONS begin*********************/
+
 	printf("Begin Init\r\n");
 	if(Signal_Synthesis_Init(htim8, hdac) != HAL_OK) {
 		printf("Signal Synthesis init failed\n");
@@ -280,8 +265,9 @@ int main(void)
 		printf("Display init failed\n");
 
 	printf("End Init\r\n");
+	/* INIT FUNCTIONS end*********************/
 
-	/* START FUNCTIONS ******************** */
+	/* START FUNCTIONS begin *****************/
 	printf("Begin Start Functions\r\n");
 
 	// Start Display
@@ -309,6 +295,8 @@ int main(void)
 	II_startInterface(&htim3);
 
 	printf("End Start Functions\r\n");
+	/* START FUNCTIONS end *****************/
+
 
 	/* USER CODE END 2 */
 
@@ -1338,17 +1326,9 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//printf()
-int __io_putchar(int ch)
-{
-	uint8_t c[1];
-	c[0] = ch & 0x00FF;
-	HAL_UART_Transmit(&huart3, &*c, 1, 10);
-	return ch;
-}
 
-//printf()
-int io_putchar(int ch)
+/*printf() FUNCTIONS begin *********/
+int __io_putchar(int ch)
 {
 	uint8_t c[1];
 	c[0] = ch & 0x00FF;
@@ -1361,14 +1341,18 @@ int _write(int file,char *ptr, int len)
 	int DataIdx;
 	for(DataIdx= 0; DataIdx< len; DataIdx++)
 	{
-		io_putchar(*ptr++);
+		__io_putchar(*ptr++);
 	}
 	return len;
 }
-//printf() end
+/*printf() FUNCTIONS end *********/
 
 
 // GPIO-Button Debouncing
+
+
+/** @brief button press interrupt function, buttons placed near the Display
+ */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	Display.button_pressed_flag = true;	// set here to make sure that the display will be processed and updated when for example a note or octave is changed
@@ -1436,18 +1420,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 					Display.Voices_Noteindex[Display.currentVoice-1]--;
 			}
 
-			//				if(Display.ScaleMode == FREESTYLE){
-			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
-			//				}
-			//				else if(Display.ScaleMode == MAJOR){
-			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
-			//				}
-			//				else if(Display.ScaleMode == MINOR){
-			//					if(Display.Voices_Noteindex[Display.currentVoice-1] > 0)
-			//						Display.Voices_Noteindex[Display.currentVoice-1]--;
-			//				}
 
 			// Octaves
 			else if(Display.JoystickParameterPosition == 2) {	// Voices [1,2,3] Octave down
@@ -1591,7 +1563,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]--;
 		}
 
-		//		HAL_GPIO_TogglePin(Red_User_LED_GPIO_Port, Red_User_LED_Pin);		// red led for visual feedback
 		HAL_TIM_Base_Start_IT(&htim2);
 		Display.BACK_Debounce_State = false;
 	}
@@ -1639,11 +1610,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		// Load single sample / load Drumkit from SD card
 		if((Display.pagePosition==10) ||(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3))
 			Display.LoadDrumkit = true;
-
-		//		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
-		//		// Load Drumkit from SD card
-		//		if(Display.pagePosition==3 && Display.currentDrumcomputer>0 && Display.JoystickParameterPosition==3)
-		//			Display.LoadDrumkit = true;
 
 		// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!
 		// Tremolo Rate Index setting to change the rate by button pressing
@@ -1912,7 +1878,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 				Display.Tremolo_Sources[1]++;
 		}
 
-		//		HAL_GPIO_TogglePin(Blue_User_LED_GPIO_Port, Blue_User_LED_Pin);		// blue led
 		HAL_TIM_Base_Start_IT(&htim4);
 		Display.ENTER_Debounce_State = false;
 	}
@@ -1937,7 +1902,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		}
 	}
 	else if(htim->Instance == TIM4) {
-		//if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_SET) {
 		if(HAL_GPIO_ReadPin(ENTER_GPIO_Port, ENTER_Pin) == GPIO_PIN_RESET) {	// check regarding pullup/pulldown
 			Display.ENTER = true;
 			Display.ENTER_Debounce_State = true;

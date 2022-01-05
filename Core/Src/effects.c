@@ -8,6 +8,9 @@ void effects_init(void) {
 	}
 }
 
+/** @brief reads the effect_order[] and activates the processing functions for the effects
+ * 	@param single sample value, where the effects should be applied
+ */
 void effects_process(float* calculate_value){
 
 	if(effect_order[0] == EQ) {
@@ -16,12 +19,15 @@ void effects_process(float* calculate_value){
 	if(effect_order[1] == TREM) {
 		ProcessTremolo(&Tremolo, calculate_value);
 	}
+
+
 	if(effect_order[2] == DIST) {
 		if(Display.Distortion_Type == 0)
 			ProcessSoftClippingDistortion(calculate_value);
 		else if(Display.Distortion_Type == 1)
 			ProcessHardClippingDistortion(calculate_value);
 	}
+
 	if(effect_order[3] == WAHWAH) {
 		if(Display.WahWah_Mode == 0)
 			ProcessWahWah(&WahWah, calculate_value);
@@ -31,9 +37,8 @@ void effects_process(float* calculate_value){
 }
 
 
-/** function for the keyboard adsr processing */
+/** @brief function for the keyboard adsr processing*/
 void keyboard_adsr_process(void){
-
 	OnePress_ADSR_Linear_Process(&adsr_keyboard[0], &calculate_keyboard[0], activate_processing[0]);
 	OnePress_ADSR_Linear_Process(&adsr_keyboard[1], &calculate_keyboard[1], activate_processing[1]);
 	OnePress_ADSR_Linear_Process(&adsr_keyboard[2], &calculate_keyboard[2], activate_processing[2]);
@@ -42,9 +47,8 @@ void keyboard_adsr_process(void){
 }
 
 /**
- * Inserts an entry in the effect_order[position]
+ * @brief Inserts an entry in the effect_order[position]
  * @param effect: wanted effect listed in the effects_t_enum
- * @param position: position in the effect chain,EQ = 0 Trem = 1, Dist_h = 2, Dist_s = 3
  */
 void effects_add(effects_t_enum effect) {
 
@@ -55,6 +59,7 @@ void effects_add(effects_t_enum effect) {
 	case TREM:
 		effect_order[1] = TREM;
 		break;
+
 	case DIST:
 		effect_order[2] = DIST;
 		break;
@@ -65,9 +70,7 @@ void effects_add(effects_t_enum effect) {
 	}
 }
 
-
-/**
- * Deletes an effect inside the effect_order[position]
+/** @brief Deletes a certain effect inside the effect_order[position]
  */
 void effects_delete(effects_t_enum effect) {
 
@@ -79,6 +82,7 @@ void effects_delete(effects_t_enum effect) {
 	case TREM:
 		effect_order[1] = 0;
 		break;
+
 	case DIST:
 		effect_order[2] = 0;
 		break;
