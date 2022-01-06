@@ -1,3 +1,9 @@
+/**
+ * @file signal_synthesis.c
+ * @author paul mamatis
+ * @version 3.2
+ */
+
 #include "signal_synthesis.h"
 
 /** @brief maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal_sythesis.h and will be set in the Init function*/
@@ -37,6 +43,11 @@ HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDe
 	return HAL_TIM_Base_Start(&htim);
 }
 
+/**
+ * @brief resets the voice parameter which can be changed in the GUI 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Voices_Reset(void) {
 
 	// clear screen content of voices overview
@@ -735,6 +746,17 @@ void LFO_SingleValueProcess(struct effects_lfo_t* lfo, uint8_t lfo_effect) {
 	}
 }
 
+/**
+ * @brief generates a signal which is processed in the Signal_Synthesis() 
+ * 
+ * @note for more information see siganls struct description
+ * 
+ * @param signals 
+ * @param kind 
+ * @param key 
+ * @param octave 
+ * @param ID 
+ */
 void NewSignal(struct signal_t* signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID){
 
 	if (signals -> count <= MAX_SIGNAL_KOMBINATION){
@@ -803,7 +825,8 @@ void DeleteSignal(struct signal_t* signals,int16_t signal_index) {
 		printf("delete ERROR\r\n");
 	}
 }
-/** converts an signal ID into its Index
+/**
+ * @brief converts an signal ID into its Index
  * @param : ID of the wanted signal
  * @retval: Index of the signal with the given ID, or -1 when ID was not found
  */
@@ -817,7 +840,7 @@ int16_t IDtoIndex(int16_t id) {
 	return -1;
 }
 
-/** @brief generates a signal in the calculate_vector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
+/** @brief generates a digital signal in the calculate_vector, depending on the signals inside the struct signals1. To add signals use NewSignal and to delete signals use DeleteSignal
  *	@param signal: is a signal_t struct which contains the tones to be played
  *	@param  output_Channel: decides if the Array connected to the DAC Channel one is filled or the array connected with the DAC channel two is filled
  *  @note Channel 1 is connected to calculate_vector1 and Channel 2 connected to calculate_vector2
@@ -868,26 +891,9 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			switch (signals->kind[j]) {
 
 			case SIN:
-				// keyboard signals
-				if(signals->ID[j] == KEYBOARD_VOICE_ID){
-					calculate_keyboard[0] = LUT[signals -> current_LUT_Index[j]];
-				}
-				else if(signals->ID[j] == KEYBOARD_VOICE_ID+1){
-					calculate_keyboard[1] = LUT[signals -> current_LUT_Index[j]];
-				}
-				else if(signals->ID[j] == KEYBOARD_VOICE_ID+2){
-					calculate_keyboard[2] = LUT[signals -> current_LUT_Index[j]];
-				}
-				else if(signals->ID[j] == KEYBOARD_VOICE_ID+3){
-					calculate_keyboard[3] = LUT[signals -> current_LUT_Index[j]];
-				}
-				else if(signals->ID[j] == KEYBOARD_VOICE_ID+4){
-					calculate_keyboard[4] = LUT[signals -> current_LUT_Index[j]];
-				}
-				else{
-					// adds all SIN values from the signals to addValue
-					addValue = addValue + LUT[signals -> current_LUT_Index[j]];
-				}
+				// adds all SIN values from the signals to addValue
+				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
+				
 				// get index for the next sin value
 				signals->current_LUT_Index[j]++;
 
@@ -1123,33 +1129,28 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				}
 				break;
 
-				//			case NOISE:
-				//				if(Display.Voices_ONOFF[VOICES_ID+3] == true) {
-				//					addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*sizeof(int))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);
-				//				}
-				//				// delete signal if voice off
-				//				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
-				//					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
-				//					Display.Voices_Created[VOICES_ID+3] = false;
-				//				}
-				//				break;
+			case NOISE:
+				if(Display.Voices_ONOFF[VOICES_ID+3] == true) {
+					addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*sizeof(int))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);
+				}
+				// delete signal if voice off
+				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
+					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
+					Display.Voices_Created[VOICES_ID+3] = false;
+				}
+				break;
 			}// Switch-Case
 
 		}// Signal counter for-loop
 
-		/*limiter function*/
-		//norm the signal to -1...1
-		//		addValue = addValue/signals->max;
+
 
 		// NORM: Volume by signal count
 		if(signals->count - active_keyboard_notes == 0) {}	// division by zero for addValue possible -> fuckup!
 		else
 			addValue = addValue / (signals->count - active_keyboard_notes);
 
-		// maximum
-		//		if (signals -> max < fabs((double)addValue)){
-		//			signals -> max = fabs((double)addValue);
-		//		}
+	
 
 		// write voices (including noise) into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * (addValue + Noise_Generator());
@@ -1182,7 +1183,6 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		}
 
 		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
-		//		ProcessEQ(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
 		// Keyboard processing without effects
 		if(Display.KeyboardFX_ONOFF == false) {
@@ -1196,51 +1196,15 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
 
-		//		// maximum
-		//		if (signals -> max < fabs((double)addValue)){
-		//			signals -> max = fabs((double)addValue);
-		//		}
-
-		//		//scale output signal depending on amount of voices
-		//		switch (signals -> count){
-		//		case 1:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2.37);// -7.5 dB, for 0dB: *((float)sqrt((double)2))
-		//			break;
-		//		case 2:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)2);// -6 dB
-		//			break;
-		//		case 3:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.679);// -4.5 dB
-		//			break;
-		//		case 4:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)sqrt((double)2));// -3 dB
-		//			break;
-		//		case 5:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] /((float)1.1885);// -1.5 dB
-		//			break;
-		//		default:
-		//			calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter];
-		//			break;
-		//		}
-
-		//Signal adjustment to DAC
-		//*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((((float)emg_buffer[BLOCKSIZE_counter]+1)/2) * maxValueDAC + OFFSET ); // +1.5 fir middle of 0-3V3 (with OFFSET of 145)
-
-		//		if ((Display.Sequencer_ONOFF==false) && (Display.Drumcomputer_ONOFF==false) && (signals->count==0)){
-		//			calculate_vector_tmp[BLOCKSIZE_counter]  = noPlopOffset ; // +1.5 fir middle of 0-3V3
-		//		}
-
 		// to make sure that the output is 0 when a new drumkit is loaded into the drum computer
 		if(Display.LoadDrumkit == true)
 			calculate_vector_tmp[BLOCKSIZE_counter] = 0;
 
+		// Convert float to uint32 in order to make it readable for the DAC
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * Master_Volume * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
 	}//End for-Loop
 
-	//	// save current LUT index into signals1,	SINNLOS!!!
-	//	for (int tmp_count = 0 ; tmp_count < signals -> count; tmp_count++){
-	//		signals -> current_LUT_Index[tmp_count] = signals -> current_LUT_Index[tmp_count];
-	//	}
+
 }
 
 
@@ -1276,7 +1240,6 @@ bool initRamp(void){
 
 		if (ramp_counter < ramp_dur){
 			*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((float)((ramp_counter/ramp_dur) * maxRamp));
-			//        *((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(*maxRamp);
 			ramp_counter++;
 		}
 		else if(ramp_counter >= ramp_dur){
@@ -1289,10 +1252,14 @@ bool initRamp(void){
 	return retval;
 }
 
-/////////
-// NEW //
-/////////
-// CREATES: Rectangle wave based on struct signals
+
+/**
+ * @brief Rectangle wave based on struct signals
+ * 
+ * @param signals 
+ * @param index 
+ * @return float 
+ */
 float CalcRectSample(struct signal_t* signals, int index){
 
 	float rect = 0;
@@ -1331,7 +1298,13 @@ float CalcRectSample(struct signal_t* signals, int index){
 	return rect;
 }
 
-// CREATES: Triangle wave samples based on struct signals
+/**
+ * @brief Triangle wave samples based on struct signals
+ * 
+ * @param signals 
+ * @param index 
+ * @return triangle value
+ */
 float CalcTriangleSample(struct signal_t* signals, int index){
 
 	float triangle      = 0;
@@ -1357,11 +1330,11 @@ float CalcTriangleSample(struct signal_t* signals, int index){
 	return triangle;
 }
 
-/////////////
-// NEW END //
-/////////////
-
-
+/**
+ * @brief random number generator
+ * 
+ * @return float 
+ */
 float Noise_Generator(void) {
 
 	float NoiseValue = 0;
@@ -1373,7 +1346,12 @@ float Noise_Generator(void) {
 	return NoiseValue;
 }
 
-/* Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. */
+
+/**
+ * @brief Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1.
+ * 
+ * @return float 
+ */
 float AWGN_generator(void) {
 
 	float temp1;

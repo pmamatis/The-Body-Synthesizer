@@ -7,6 +7,12 @@
 
 #include "drum_computer.h"
 
+/** TODO
+ * @brief 
+ * 
+ * @param env 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 
 	// INIT: ADSR structs
@@ -28,7 +34,11 @@ HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 	return HAL_OK;
 }
 
-
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_CalcSample(void) {
 
 	for(int i = 0; i < FourFour; i++) {
@@ -188,6 +198,11 @@ HAL_StatusTypeDef Drum_Computer_CalcSample(void) {
 	return HAL_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_Reset(void) {
 
 	Display.Drumcomputer_ONOFF = false;
@@ -252,6 +267,11 @@ HAL_StatusTypeDef Drum_Computer_Reset(void) {
 	return HAL_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Sequencer_Reset(void) {
 
 	Display.Sequencer_ONOFF = false;
@@ -300,10 +320,13 @@ HAL_StatusTypeDef Sequencer_Reset(void) {
 	return HAL_OK;
 }
 
+/** 
+ * @brief Init function for the drumcomputer  
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_Init(void) {
 
-	// INIT: Sequencer state
-	//	sequencer_state = true;
 
 	// INIT: Tempo, SR, Counter
 	BPM = 120;
@@ -387,325 +410,19 @@ HAL_StatusTypeDef Drum_Computer_Init(void) {
 	sd_card_unmount();
 	__enable_irq();
 
-	//	strcpy(Display.value_str_drumcomputer[10], "909");
 	strcpy(Display.sample1, "Kick");	// Init drumcomputer display content, has to be similar to the drumkit above!
 	strcpy(Display.sample2, "Op.HH");
 	strcpy(Display.sample3, "Clap");
 	strcpy(Display.sample4, "L.Tom");
 
-	// INIT: Windows LUTs
-	// POSSIBLE: Recycle, Background, Chord, Critical Stop, Error, Hardware Remove
-	//	__disable_irq();
-	//	sd_card_mount();
-	//	sd_card_read("Windows_Chord.txt", &DS1);
-	//	sd_card_read("Windows_Recycle.txt", &DS2);
-	//	sd_card_read("Windows_Hardware_Remove.txt", &DS3);
-	//	sd_card_read("Windows_Background.txt", &DS4);
-	//	sd_card_unmount();
-	//	__enable_irq();
-
-	/*
-	// INIT: Rock Loud LUTs
-	// POSSIBLE: Kick, Hihat, Snare, Ride
-	sd_card_mount(huart);
-	sd_card_read("Rock_loud_Kick.txt", &DS1, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("Rock_loud_Hihat.txt", &DS2, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("Rock_loud_Snare.txt", &DS3, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("Rock_loud_Ride.txt", &DS4, huart);
-	sd_card_unmount(huart);
-
-	// INIT: Rock LUTs
-	// POSSIBLE: Kick, Hihat, Snare, Ride
-	sd_card_mount(huart);
-	sd_card_read("Rock_Kick.txt", &DS1, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("Rock_Hihat.txt", &DS2, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("Rock_Snare.txt", &DS3, huart);
-	sd_card_unmount(huart);
-
-	sd_card_mount(huart);
-	sd_card_read("Rock_Ride.txt", &DS4, huart);
-	sd_card_unmount(huart);
-	 */
-
-	//	// ALL DRUMS ON
-	//	timing_DS1[0] = timing_DS2[0] = timing_DS3[0] = timing_DS4[0] = 1;
-	//	timing_DS1[1] = timing_DS2[1] = timing_DS3[1] = timing_DS4[1] = 1;
-	//	timing_DS1[2] = timing_DS2[2] = timing_DS3[2] = timing_DS4[2] = 1;
-	//	timing_DS1[3] = timing_DS2[3] = timing_DS3[3] = timing_DS4[3] = 1;
-	//	timing_DS1[4] = timing_DS2[4] = timing_DS3[4] = timing_DS4[4] = 1;
-	//	timing_DS1[5] = timing_DS2[5] = timing_DS3[5] = timing_DS4[5] = 1;
-	//	timing_DS1[6] = timing_DS2[6] = timing_DS3[6] = timing_DS4[6] = 1;
-	//	timing_DS1[7] = timing_DS2[7] = timing_DS3[7] = timing_DS4[7] = 1;
-	//	timing_DS1[8] = timing_DS2[8] = timing_DS3[8] = timing_DS4[8] = 1;
-	//	timing_DS1[9] = timing_DS2[9] = timing_DS3[9] = timing_DS4[9] = 1;
-	//	timing_DS1[10] = timing_DS2[10] = timing_DS3[10] = timing_DS4[10] = 1;
-	//	timing_DS1[11] = timing_DS2[11] = timing_DS3[11] = timing_DS4[11] = 1;
-	//	timing_DS1[12] = timing_DS2[12] = timing_DS3[12] = timing_DS4[12] = 1;
-	//	timing_DS1[13] = timing_DS2[13] = timing_DS3[13] = timing_DS4[13] = 1;
-	//	timing_DS1[14] = timing_DS2[14] = timing_DS3[14] = timing_DS4[14] = 1;
-	//	timing_DS1[15] = timing_DS2[15] = timing_DS3[15] = timing_DS4[15] = 1;
-
-	// INIT: Timing
-	// Kick
-	//	timing_DS1[0]  = 1;
-	//	timing_DS1[1]  = 0;
-	//	timing_DS1[2]  = 0;
-	//	timing_DS1[3]  = 0;
-	//	timing_DS1[4]  = 1;
-	//	timing_DS1[5]  = 0;
-	//	timing_DS1[6]  = 0;
-	//	timing_DS1[7]  = 0;
-	//	timing_DS1[8]  = 1;
-	//	timing_DS1[9]  = 0;
-	//	timing_DS1[10] = 0;
-	//	timing_DS1[11] = 0;
-	//	timing_DS1[12] = 1;
-	//	timing_DS1[13] = 0;
-	//	timing_DS1[14] = 0;
-	//	timing_DS1[15] = 0;
-
-	// Hihat
-	//	timing_DS2[0]  = 0;
-	//	timing_DS2[1]  = 0;
-	//	timing_DS2[2]  = 1;
-	//	timing_DS2[3]  = 0;
-	//	timing_DS2[4]  = 0;
-	//	timing_DS2[5]  = 0;
-	//	timing_DS2[6]  = 1;
-	//	timing_DS2[7]  = 0;
-	//	timing_DS2[8]  = 0;
-	//	timing_DS2[9]  = 0;
-	//	timing_DS2[10] = 1;
-	//	timing_DS2[11] = 0;
-	//	timing_DS2[12] = 0;
-	//	timing_DS2[13] = 0;
-	//	timing_DS2[14] = 1;
-	//	timing_DS2[15] = 0;
-
-	// Clap
-	//	timing_DS3[0]  = 0;
-	//	timing_DS3[1]  = 0;
-	//	timing_DS3[2]  = 0;
-	//	timing_DS3[3]  = 0;
-	//	timing_DS3[4]  = 1;
-	//	timing_DS3[5]  = 0;
-	//	timing_DS3[6]  = 0;
-	//	timing_DS3[7]  = 0;
-	//	timing_DS3[8]  = 0;
-	//	timing_DS3[9]  = 0;
-	//	timing_DS3[10] = 0;
-	//	timing_DS3[11] = 0;
-	//	timing_DS3[12] = 1;
-	//	timing_DS3[13] = 0;
-	//	timing_DS3[14] = 0;
-	//	timing_DS3[15] = 0;
-
-	// LowTom
-	//	timing_DS4[0]  = 0;
-	//	timing_DS4[1]  = 0;
-	//	timing_DS4[2]  = 1;
-	//	timing_DS4[3]  = 1;
-	//	timing_DS4[4]  = 0;
-	//	timing_DS4[5]  = 0;
-	//	timing_DS4[6]  = 0;
-	//	timing_DS4[7]  = 1;
-	//	timing_DS4[8]  = 0;
-	//	timing_DS4[9]  = 0;
-	//	timing_DS4[10] = 1;
-	//	timing_DS4[11] = 1;
-	//	timing_DS4[12] = 0;
-	//	timing_DS4[13] = 0;
-	//	timing_DS4[14] = 0;
-	//	timing_DS4[15] = 1;
-
-	//	timing_SN1[0] = 1;	// Sequence Pattern
-	//	timing_SN1[1] = 0;
-	//	timing_SN1[2] = 0;
-	//	timing_SN1[3] = 0;
-	//	timing_SN1[4] = 0;
-	//	timing_SN1[5] = 0;
-	//	timing_SN1[6] = 0;
-	//	timing_SN1[7] = 0;
-	//	timing_SN2[0] = 0;
-	//	timing_SN2[1] = 0;
-	//	timing_SN2[2] = 0;
-	//	timing_SN2[3] = 1;
-	//	timing_SN2[4] = 0;
-	//	timing_SN2[5] = 0;
-	//	timing_SN2[6] = 0;
-	//	timing_SN2[7] = 0;
-	//	timing_SN3[0] = 0;
-	//	timing_SN3[1] = 0;
-	//	timing_SN3[2] = 0;
-	//	timing_SN3[3] = 0;
-	//	timing_SN3[4] = 0;
-	//	timing_SN3[5] = 0;
-	//	timing_SN3[6] = 1;
-	//	timing_SN3[7] = 0;
-
-
-	// Sequencer Notes
-	//	timing_SN1[0]  = 0;
-	//	timing_SN1[1]  = 1;
-	//	timing_SN1[2]  = 0;
-	//	timing_SN1[3]  = 1;
-	//	timing_SN1[4]  = 0;
-	//	timing_SN1[5]  = 1;
-	//	timing_SN1[6]  = 0;
-	//	timing_SN1[7]  = 1;
-	//	timing_SN2[0]  = 0;
-	//	timing_SN2[1]  = 1;
-	//	timing_SN2[2]  = 0;
-	//	timing_SN2[3]  = 1;
-	//	timing_SN2[4]  = 0;
-	//	timing_SN2[5]  = 1;
-	//	timing_SN2[6]  = 0;
-	//	timing_SN2[7]  = 0;
-	//	timing_SN3[0]  = 0;
-	//	timing_SN3[1]  = 0;
-	//	timing_SN3[2]  = 1;
-	//	timing_SN3[3]  = 0;
-	//	timing_SN3[4]  = 0;
-	//	timing_SN3[5]  = 1;
-	//	timing_SN3[6]  = 0;
-	//	timing_SN3[7]  = 0;
-
-	// Sequencer Notes
-	//	timing_SN1[0]  = 0;
-	//	timing_SN1[1]  = 1;
-	//	timing_SN1[2]  = 0;
-	//	timing_SN1[3]  = 1;
-	//	timing_SN1[4]  = 0;
-	//	timing_SN1[5]  = 1;
-	//	timing_SN1[6]  = 0;
-	//	timing_SN1[7]  = 1;
-	//	timing_SN2[0]  = 0;
-	//	timing_SN2[1]  = 1;
-	//	timing_SN2[2]  = 0;
-	//	timing_SN2[3]  = 1;
-	//	timing_SN2[4]  = 0;
-	//	timing_SN2[5]  = 1;
-	//	timing_SN2[6]  = 0;
-	//	timing_SN2[7]  = 1;
-	//	timing_SN3[0]  = 0;
-	//	timing_SN3[1]  = 1;
-	//	timing_SN3[2]  = 0;
-	//	timing_SN3[3]  = 1;
-	//	timing_SN3[4]  = 0;
-	//	timing_SN3[5]  = 1;
-	//	timing_SN3[6]  = 0;
-	//	timing_SN3[7]  = 1;
-
-	//	// ALL SEQUENCER NOTES ON
-	//	timing_SN1[0] = timing_SN2[0] = timing_SN3[0] = timing_SN4[0] = 1;
-	//	timing_SN1[1] = timing_SN2[1] = timing_SN3[1] = timing_SN4[1] = 1;
-	//	timing_SN1[2] = timing_SN2[2] = timing_SN3[2] = timing_SN4[2] = 1;
-	//	timing_SN1[3] = timing_SN2[3] = timing_SN3[3] = timing_SN4[3] = 1;
-	//	timing_SN1[4] = timing_SN2[4] = timing_SN3[4] = timing_SN4[4] = 1;
-	//	timing_SN1[5] = timing_SN2[5] = timing_SN3[5] = timing_SN4[5] = 1;
-	//	timing_SN1[6] = timing_SN2[6] = timing_SN3[6] = timing_SN4[6] = 1;
-	//	timing_SN1[7] = timing_SN2[7] = timing_SN3[7] = timing_SN4[7] = 1;
-	//	timing_SN1[8] = timing_SN2[8] = timing_SN3[8] = timing_SN4[8] = 1;
-	//	timing_SN1[9] = timing_SN2[9] = timing_SN3[9] = timing_SN4[9] = 1;
-	//	timing_SN1[10] = timing_SN2[10] = timing_SN3[10] = timing_SN4[10] = 1;
-	//	timing_SN1[11] = timing_SN2[11] = timing_SN3[11] = timing_SN4[11] = 1;
-	//	timing_SN1[12] = timing_SN2[12] = timing_SN3[12] = timing_SN4[12] = 1;
-	//	timing_SN1[13] = timing_SN2[13] = timing_SN3[13] = timing_SN4[13] = 1;
-	//	timing_SN1[14] = timing_SN2[14] = timing_SN3[14] = timing_SN4[14] = 1;
-	//	timing_SN1[15] = timing_SN2[15] = timing_SN3[15] = timing_SN4[15] = 1;
-
-
-	// Sequencer Note 1
-	//	timing_SN1[0]  = timing_SN2[0] = 1;
-	//	timing_SN1[1]  = timing_SN2[1] = 1;
-	//	timing_SN1[2]  = timing_SN2[2] = 1;
-	//	timing_SN1[3]  = timing_SN2[3] = 1;
-	//	timing_SN1[4]  = timing_SN2[4] = 1;
-	//	timing_SN1[5]  = timing_SN2[5] = 1;
-	//	timing_SN1[6]  = timing_SN2[6] = 1;
-	//	timing_SN1[7]  = timing_SN2[7] = 1;
-	//	timing_SN1[8]  = timing_SN2[8] = 1;
-	//	timing_SN1[9]  = 1;
-	//	timing_SN1[10] = 1;
-	//	timing_SN1[11] = 1;
-	//	timing_SN1[12] = 1;
-	//	timing_SN1[13] = 1;
-	//	timing_SN1[14] = 1;
-	//	timing_SN1[15] = 1;
-
-	//
-	//	// Sequencer Note 2
-	//	timing_SN2[0]  = 0;
-	//	timing_SN2[1]  = 0;
-	//	timing_SN2[2]  = 1;
-	//	timing_SN2[3]  = 0;
-	//	timing_SN2[4]  = 0;
-	//	timing_SN2[5]  = 0;
-	//	timing_SN2[6]  = 1;
-	//	timing_SN2[7]  = 0;
-	//	//	timing_SN2[8]  = 0;
-	//	//	timing_SN2[9]  = 0;
-	//	//	timing_SN2[10] = 1;
-	//	//	timing_SN2[11] = 0;
-	//	//	timing_SN2[12] = 0;
-	//	//	timing_SN2[13] = 0;
-	//	//	timing_SN2[14] = 0;
-	//	//	timing_SN2[15] = 1;
-	//
-	//	// Sequencer Note 3
-	//	timing_SN3[0]  = 0;
-	//	timing_SN3[1]  = 0;
-	//	timing_SN3[2]  = 1;
-	//	timing_SN3[3]  = 0;
-	//	timing_SN3[4]  = 0;
-	//	timing_SN3[5]  = 0;
-	//	timing_SN3[6]  = 1;
-	//	timing_SN3[7]  = 0;
-	//	//	timing_SN3[8]  = 0;
-	//	//	timing_SN3[9]  = 0;
-	//	//	timing_SN3[10] = 0;
-	//	//	timing_SN3[11] = 0;
-	//	//	timing_SN3[12] = 1;
-	//	//	timing_SN3[13] = 0;
-	//	//	timing_SN3[14] = 0;
-	//	//	timing_SN3[15] = 1;
-	//
-	//	// Sequencer Note 4
-	//	//	timing_SN4[0]  = 1;
-	//	//	timing_SN4[1]  = 1;
-	//	//	timing_SN4[2]  = 1;
-	//	//	timing_SN4[3]  = 1;
-	//	//	timing_SN4[4]  = 1;
-	//	//	timing_SN4[5]  = 1;
-	//	//	timing_SN4[6]  = 1;
-	//	//	timing_SN4[7]  = 1;
-	//	//	timing_SN4[8]  = 0;
-	//	//	timing_SN4[9]  = 0;
-	//	//	timing_SN4[10] = 0;
-	//	//	timing_SN4[11] = 0;
-	//	//	timing_SN4[12] = 0;
-	//	//	timing_SN4[13] = 0;
-	//	//	timing_SN4[14] = 0;
-	//	//	timing_SN4[15] = 1;
-
 	return HAL_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_Process(void) {
 
 	// RESET: Drum sound bins
@@ -799,6 +516,10 @@ HAL_StatusTypeDef Drum_Computer_Process(void) {
 	return HAL_OK;
 }
 
+/** 
+ * @brief function to play the same sample each time it is triggerd, must be called inside Signal_Synthesis() 
+ * 
+ */
 void PlaySingleSample(void) {
 
 	single_sample = PSS[counter_single_sample];
@@ -810,6 +531,11 @@ void PlaySingleSample(void) {
 	}
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse() {
 
 	for(int i = 0; i < FourFour; i++) {
@@ -869,209 +595,3 @@ HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse() {
 }
 
 
-/* Techno Beat
- * // Kick
-	timing_DS1[0] = 1;
-	timing_DS1[1] = 0;
-	timing_DS1[2] = 0;
-	timing_DS1[3] = 0;
-	timing_DS1[4] = 1;
-	timing_DS1[5] = 0;
-	timing_DS1[6] = 0;
-	timing_DS1[7] = 0;
-
-	// Hihat
-	timing_DS2[0] = 0;
-	timing_DS2[1] = 0;
-	timing_DS2[2] = 1;
-	timing_DS2[3] = 0;
-	timing_DS2[4] = 0;
-	timing_DS2[5] = 0;
-	timing_DS2[6] = 1;
-	timing_DS2[7] = 0;
-
-	// Clap
-	timing_DS3[0] = 0;
-	timing_DS3[1] = 0;
-	timing_DS3[2] = 0;
-	timing_DS3[3] = 0;
-	timing_DS3[4] = 1;
-	timing_DS3[5] = 0;
-	timing_DS3[6] = 0;
-	timing_DS3[7] = 0;
-
-//	// LowTom
-	timing_DS4[0] = 0;
-	timing_DS4[1] = 0;
-	timing_DS4[2] = 1;
-	timing_DS4[3] = 1;
-	timing_DS4[4] = 0;
-	timing_DS4[5] = 0;
-	timing_DS4[6] = 0;
-	timing_DS4[7] = 1;
- *
- */
-
-/*
- *
- * // INIT: Timing
-	// Kick
-	timing_DS1[0] = 1;
-	timing_DS1[1] = 0;
-	timing_DS1[2] = 0;
-	timing_DS1[3] = 0;
-	timing_DS1[4] = 1;
-	timing_DS1[5] = 0;
-	timing_DS1[6] = 0;
-	timing_DS1[7] = 0;
-
-	// Hihat
-	timing_DS2[0] = 0;
-	timing_DS2[1] = 0;
-	timing_DS2[2] = 1;
-	timing_DS2[3] = 0;
-	timing_DS2[4] = 0;
-	timing_DS2[5] = 0;
-	timing_DS2[6] = 1;
-	timing_DS2[7] = 0;
-
-	// Clap
-	timing_DS3[0] = 0;
-	timing_DS3[1] = 0;
-	timing_DS3[2] = 0;
-	timing_DS3[3] = 0;
-	timing_DS3[4] = 1;
-	timing_DS3[5] = 0;
-	timing_DS3[6] = 0;
-	timing_DS3[7] = 1;
-
-	// LowTom
-	timing_DS4[0] = 0;
-	timing_DS4[1] = 0;
-	timing_DS4[2] = 1;
-	timing_DS4[3] = 1;
-	timing_DS4[4] = 0;
-	timing_DS4[5] = 0;
-	timing_DS4[6] = 0;
-	timing_DS4[7] = 1;
- */
-
-
-/* Advanced Techno Beat
- *
-	// Kick
-	timing_DS1[0] = 1;
-	timing_DS1[1] = 0;
-	timing_DS1[2] = 1;
-	timing_DS1[3] = 0;
-	timing_DS1[4] = 1;
-	timing_DS1[5] = 0;
-	timing_DS1[6] = 0;
-	timing_DS1[7] = 0;
-
-	// Hihat
-	timing_DS2[0] = 0;
-	timing_DS2[1] = 0;
-	timing_DS2[2] = 1;
-	timing_DS2[3] = 0;
-	timing_DS2[4] = 0;
-	timing_DS2[5] = 0;
-	timing_DS2[6] = 1;
-	timing_DS2[7] = 0;
-
-	// Clap
-	timing_DS3[0] = 0;
-	timing_DS3[1] = 0;
-	timing_DS3[2] = 0;
-	timing_DS3[3] = 0;
-	timing_DS3[4] = 1;
-	timing_DS3[5] = 0;
-	timing_DS3[6] = 0;
-	timing_DS3[7] = 1;
-
-	// LowTom
-	timing_DS4[0] = 0;
-	timing_DS4[1] = 0;
-	timing_DS4[2] = 1;
-	timing_DS4[3] = 1;
-	timing_DS4[4] = 0;
-	timing_DS4[5] = 0;
-	timing_DS4[6] = 0;
-	timing_DS4[7] = 1;
-
- */
-
-
-/*
- * 	// Sequencer Note 1
-	timing_SN1[0]  = 1;
-	timing_SN1[1]  = 0;
-	timing_SN1[2]  = 0;
-	timing_SN1[3]  = 0;
-	timing_SN1[4]  = 0;
-	timing_SN1[5]  = 0;
-	timing_SN1[6]  = 1;
-	timing_SN1[7]  = 1;
-//	timing_SN1[8]  = 1;
-//	timing_SN1[9]  = 0;
-//	timing_SN1[10] = 0;
-//	timing_SN1[11] = 1;
-//	timing_SN1[12] = 0;
-//	timing_SN1[13] = 1;
-//	timing_SN1[14] = 0;
-//	timing_SN1[15] = 1;
-
-	// Sequencer Note 2
-	timing_SN2[0]  = 0;
-	timing_SN2[1]  = 0;
-	timing_SN2[2]  = 1;
-	timing_SN2[3]  = 0;
-	timing_SN2[4]  = 0;
-	timing_SN2[5]  = 0;
-	timing_SN2[6]  = 0;
-	timing_SN2[7]  = 0;
-//	timing_SN2[8]  = 0;
-//	timing_SN2[9]  = 0;
-//	timing_SN2[10] = 1;
-//	timing_SN2[11] = 0;
-//	timing_SN2[12] = 0;
-//	timing_SN2[13] = 0;
-//	timing_SN2[14] = 0;
-//	timing_SN2[15] = 1;
-
-	// Sequencer Note 3
-	timing_SN3[0]  = 0;
-	timing_SN3[1]  = 0;
-	timing_SN3[2]  = 0;
-	timing_SN3[3]  = 0;
-	timing_SN3[4]  = 1;
-	timing_SN3[5]  = 0;
-	timing_SN3[6]  = 0;
-	timing_SN3[7]  = 0;
-//	timing_SN3[8]  = 0;
-//	timing_SN3[9]  = 0;
-//	timing_SN3[10] = 0;
-//	timing_SN3[11] = 0;
-//	timing_SN3[12] = 1;
-//	timing_SN3[13] = 0;
-//	timing_SN3[14] = 0;
-//	timing_SN3[15] = 1;
-
-	// Sequencer Note 4
-	timing_SN4[0]  = 1;
-	timing_SN4[1]  = 0;
-	timing_SN4[2]  = 0;
-	timing_SN4[3]  = 1;
-	timing_SN4[4]  = 0;
-	timing_SN4[5]  = 0;
-	timing_SN4[6]  = 1;
-	timing_SN4[7]  = 1;
-//	timing_SN4[8]  = 0;
-//	timing_SN4[9]  = 0;
-//	timing_SN4[10] = 0;
-//	timing_SN4[11] = 0;
-//	timing_SN4[12] = 0;
-//	timing_SN4[13] = 0;
-//	timing_SN4[14] = 0;
-//	timing_SN4[15] = 1;
- * */

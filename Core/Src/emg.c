@@ -2,7 +2,7 @@
  * emg.c
  *
  *  Created on: May 23, 2021
- *      Author: paul
+ *  Author: paul mamatis
  */
 
 #include "emg.h"

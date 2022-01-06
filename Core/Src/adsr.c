@@ -1,7 +1,11 @@
 #include "adsr.h"
 
 // Reference: The Audio Programming Book from Boulanger, Lazzarini and Mathews
-
+/** TODO
+ * @brief 
+ * 
+ * @return ADSR_Status 
+ */
 ADSR_Status ADSR_Init(void) {
 
 	SetupADSR(&envelope);
@@ -19,6 +23,12 @@ inline float exp1(float x) {
 	return x;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @param envelope 
+ * @return ADSR_Status 
+ */
 ADSR_Status SetupADSR(struct adsr* envelope) {
 
 	envelope->adsr_counter = 0;
@@ -42,6 +52,12 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 	return ADSR_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param envelope 
+ * @return ADSR_Status 
+ */
 ADSR_Status ADSR_Reset(struct adsr* envelope) {
 
 	envelope->adsr_counter = 0;
@@ -78,6 +94,13 @@ ADSR_Status ADSR_Reset(struct adsr* envelope) {
 	return ADSR_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param envelope 
+ * @param calculate_value 
+ * @param flag 
+ */
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag) {
 
 	if(flag == true) {
@@ -92,20 +115,12 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 			if(envelope->adsr_counter < envelope->adsr_attack_time) {
 				// linear:
 				calc = envelope->adsr_counter * (envelope->adsr_max_amp/envelope->adsr_attack_time);
-				// exponential:
-				//calc = 0.006737947 * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));
-				//calc = (envelope->adsr_max_amp/(exp1(5))) * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));	// 5, because of 5*tau
 			}
 
 			// decay period
 			else if(envelope->adsr_counter < (envelope->adsr_attack_time + envelope->adsr_decay_time)) {
 				// linear:
 				calc = ((envelope->adsr_sustain_amplitude - envelope->adsr_max_amp)/envelope->adsr_decay_time) * (envelope->adsr_counter - envelope->adsr_attack_time) + envelope->adsr_max_amp;
-				// exponential:
-				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5)))/2)+0.5;
-				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5))) * (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp)) + (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp);
-				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5))) * (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp)) + (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp);
-				//(envelope->decay_counter)++;
 			}
 
 			// sustain period
@@ -116,9 +131,6 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 			else if(envelope->adsr_counter >= (envelope->adsr_duration_time - envelope->adsr_release_time)) {
 				// linear:
 				calc = -(envelope->adsr_sustain_amplitude/envelope->adsr_release_time) * (envelope->adsr_counter - (envelope->adsr_duration_time - envelope->adsr_release_time)) + envelope->adsr_sustain_amplitude;
-				// exponential:
-				//calc = envelope->adsr_sustain_amplitude * (1/exp1(envelope->release_counter/(envelope->adsr_release_time/5)));
-				//				envelope->release_counter++;
 			}
 
 			*calculate_value = *calculate_value * calc;
@@ -128,28 +140,23 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 		envelope->adsr_counter++;
 
 		if(envelope->adsr_counter >= envelope->adsr_duration_time) {
-			//			printf("adsr_counter = %i\r\n",envelope->adsr_counter);
 			envelope->adsr_counter = 0;	// restart
-			//envelope->decay_counter = 0;
-			//envelope->release_counter = 0;
 			envelope->adsr_done = true;
-			//			DeleteSignal(&signals1, IDtoIndex(KEYBOARD_VOICE_ID));
 		}
 
-		//		*calculate_value = *calculate_value + 1;
-		//		*calculate_value = *calculate_value * calc;
-		//		if (envelope->adsr_done == true){
-		//			noPlopOffset = 0;
-		//		}
-		//		*calculate_value = *calculate_value - 1;
 	}
 }
-
+/** TODO
+ * @brief 
+ * 
+ * @param envelope 
+ * @param calculate_value 
+ * @param flag 
+ */
 void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_value, bool flag) {
 
 	if(flag == true) {
 
-		//	float calc = 0;
 		float calc;
 
 		envelope->adsr_duration_time = envelope->adsr_attack_time + envelope->adsr_decay_time + envelope->adsr_sustain_time + envelope->adsr_release_time;
@@ -160,20 +167,12 @@ void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_val
 			if(envelope->adsr_counter < envelope->adsr_attack_time) {
 				// linear:
 				calc = envelope->adsr_counter * (envelope->adsr_max_amp/envelope->adsr_attack_time);
-				// exponential:
-				//calc = 0.006737947 * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));
-				//calc = (envelope->adsr_max_amp/(exp1(5))) * exp1(envelope->adsr_counter/(envelope->adsr_attack_time/5));	// 5, because of 5*tau
 			}
 
 			// decay period
 			else if(envelope->adsr_counter < (envelope->adsr_attack_time + envelope->adsr_decay_time)) {
 				// linear:
 				calc = ((envelope->adsr_sustain_amplitude - envelope->adsr_max_amp)/envelope->adsr_decay_time) * (envelope->adsr_counter - envelope->adsr_attack_time) + envelope->adsr_max_amp;
-				// exponential:
-				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5)))/2)+0.5;
-				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5))) * (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp)) + (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp);
-				//calc = (envelope->adsr_max_amp * (1/exp1(envelope->decay_counter/(envelope->adsr_decay_time/5))) * (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp)) + (envelope->adsr_sustain_amplitude/envelope->adsr_max_amp);
-				//(envelope->decay_counter)++;
 			}
 
 			// sustain period
@@ -184,9 +183,6 @@ void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_val
 			else if(envelope->adsr_counter >= (envelope->adsr_duration_time - envelope->adsr_release_time)) {
 				// linear:
 				calc = -(envelope->adsr_sustain_amplitude/envelope->adsr_release_time) * (envelope->adsr_counter - (envelope->adsr_duration_time - envelope->adsr_release_time)) + envelope->adsr_sustain_amplitude;
-				// exponential:
-				//calc = envelope->adsr_sustain_amplitude * (1/exp1(envelope->release_counter/(envelope->adsr_release_time/5)));
-				//				envelope->release_counter++;
 			}
 
 			*calculate_value = *calculate_value * calc;
@@ -198,18 +194,8 @@ void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_val
 		if(envelope->adsr_counter >= envelope->adsr_duration_time) {
 
 			envelope->adsr_counter = 0;	// restart
-			//envelope->decay_counter = 0;
-			//envelope->release_counter = 0;
 			envelope->adsr_done = true;
 
-			//			DeleteSignal(&signals1, IDtoIndex(KEYBOARD_VOICE_ID));
 		}
-
-		//		*calculate_value = *calculate_value + 1;
-		//		*calculate_value = *calculate_value * calc;
-		//		if (envelope->adsr_done == true){
-		//			noPlopOffset = 0;
-		//		}
-		//		*calculate_value = *calculate_value - 1;
 	}
 }

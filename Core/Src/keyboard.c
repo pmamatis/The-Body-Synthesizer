@@ -8,7 +8,12 @@
 #include "keyboard.h"
 
 const uint16_t keyboard_note_adcval[] = {200, 400, 800, 1100, 1400, 1800, 2100, 2450, 2800, 3100, 3500, 3800, 4095};
-
+/**
+ * @brief Keyboaed Init funcrion
+ * 
+ * @param ADC_Handler 
+ * @param TIM_Handler 
+ */
 void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler) {
 	KEYBOARD_ADC = ADC_Handler;
 	KEYBOARD_TIM = TIM_Handler;
@@ -22,7 +27,8 @@ void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler
 	active_keyboard_notes = 0;
 }
 
-/** starts the keyboard reading process
+/**
+ * @brief starts the keyboard reading process
  * @note the ADC is controlled by the Timer keyboard_TIM, so the ADC-Read Command is inside the Timer Interrupt
  */
 HAL_StatusTypeDef keyboard_start_read() {
@@ -35,35 +41,23 @@ HAL_StatusTypeDef keyboard_start_read() {
 	return retval;
 }
 
+/**
+ * @brief Stops teh Keyboard readout by stoping the timer-interrupt
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef keyboard_stop_read() {
 	printf("end keyboard read....\r\n");
 	return HAL_TIM_Base_Stop_IT(KEYBOARD_TIM);
-
-	//	return HAL_ADC_Stop_DMA(KEYBOARD_ADC);
 }
 
+/**
+ * @brief This function handles the Data processing for the Keyboard ADC, depending on the given value a signal is generated and played untill the keyboard adsr end for this signal.  
+ * @param adc_value raw data from the keyboard adc
+ * @param signals 
+ * @param Display 
+ */
 void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct display_variables* Display) {
-
-	//	for(uint8_t i=0; i<MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++) {
-	//		if(adc_value < NO_KEY_ADC_VALUE && adsr_keyboard[i].adsr_done == true) {
-	//			keyboard_pressed_flag[i] = false;
-	//		}
-	//
-	//		if(adsr_keyboard[i].adsr_done == true) {
-	//			DeleteSignal(signals,IDtoIndex(KEYBOARD_VOICE_ID+i));
-	//			adsr_keyboard[i].adsr_done = false;
-	//		}
-	//
-	//		if(keyboard_pressed_flag[i] == false) {
-	//			for(uint8_t j=0; j<(NUMBER_OF_KEYBOARD_NOTES-1); j++) {
-	//				if(adc_value > keyboard_note_adcval[j] && adc_value < keyboard_note_adcval[j+1]) {
-	//					NewSignal(signals, SIN, keys[j], Display->Keyboard_Octave, KEYBOARD_VOICE_ID+i);
-	//					keyboard_pressed_flag[i] = true;
-	//				}
-	//			}
-	//		}
-	//	}
-
 
 	// Generate Signal
 	for(uint8_t i=0; i<(NUMBER_OF_KEYBOARD_NOTES-1); i++) {
@@ -110,7 +104,6 @@ void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, str
 			DeleteSignal(signals,index);
 			adsr_keyboard[i].adsr_done = false;
 
-			//			if (keyboard_pressed_counter % 2 == 1)
 			played_keyboard_note[i] = false;
 
 			activate_processing[i] = false;

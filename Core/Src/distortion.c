@@ -9,16 +9,12 @@
 #include "distortion.h"
 #include "atanLUT.h"
 
-//float FastArcTan(float x) {
-//
-//	//		return M_PI_4*x - x*(fabs(x) - 1)*(0.2447 + 0.0663*fabs(x));
-//	return 0.9724*x - powf(0.1919,3);
-//}
 
-/*********************************
- * @brief		Distortion functions
- * @parameter	Distortion
- *********************************/
+/**
+ * @brief	Distortion init functions
+ *
+ * @param	Distortion
+ */
 Distortion_Status Distortion_Init(void) {
 
 	SetupHardClippingDistortion(&HardClipping);
@@ -27,6 +23,11 @@ Distortion_Status Distortion_Init(void) {
 	return DISTORTION_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Distortion_Status 
+ */
 Distortion_Status Distortion_Reset(void) {
 
 	Display.Distortion_ONOFF = false;
@@ -44,7 +45,12 @@ Distortion_Status Distortion_Reset(void) {
 
 	return DISTORTION_OK;
 }
-
+/**
+ * @brief 
+ * 
+ * @param HardClipping 
+ * @return Distortion_Status 
+ */
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping) {
 
 	HardClipping->distortion_gain = 1.0;
@@ -53,6 +59,12 @@ Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardCli
 	return DISTORTION_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param SoftClipping 
+ * @return Distortion_Status 
+ */
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping) {
 
 	SoftClipping->distortion_gain = 1.0;
@@ -88,6 +100,12 @@ Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftCli
 	return DISTORTION_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param data 
+ * @return Distortion_Status 
+ */
 Distortion_Status ProcessHardClippingDistortion(float* data) {
 
 	float calc = *data;
@@ -107,61 +125,15 @@ Distortion_Status ProcessHardClippingDistortion(float* data) {
 	return DISTORTION_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param data 
+ * @return Distortion_Status 
+ */
 Distortion_Status ProcessSoftClippingDistortion(float* data) {
 
 	float calc = *data;
-
-	//	if(calc < -1 )
-	//		calc = -1;
-	//	else if(calc > 1)
-	//		calc = 1;
-	//	else
-	//		calc = calc - (SoftClipping.distortion_gain*0.5) * powf(calc,2);	// cubic distortion (https://www.hackaudio.com/digital-signal-processing/distortion-effects/soft-clipping/)
-	//	calc = calc - (SoftClipping.distortion_gain*0.333) * calc*calc*calc;	// cubic distortion (https://www.hackaudio.com/digital-signal-processing/distortion-effects/soft-clipping/)
-
-	//	// normalize amplitudes to -1/+1 using a LUT
-	//	if(0.0 <= SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.1)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[0]);
-	//
-	//	else if(0.1 < SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.2)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[1]);
-	//
-	//	else if(0.2 < SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.3)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[2]);
-	//
-	//	else if(0.3 < SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.4)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[3]);
-	//
-	//	else if(0.4 < SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.5)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[4]);
-	//
-	//	else if(0.5 < SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.6)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[5]);
-	//
-	//	else if(0.6 < SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.7)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[6]);
-	//
-	//	else if(0.7 < SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.8)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[7]);
-	//
-	//	else if(0.8 < SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 0.9)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[8]);
-	//
-	//	else if(0.9 < SoftClipping.distortion_gain && SoftClipping.distortion_gain < 1.0)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[9]);
-	//
-	//	else if(SoftClipping.distortion_gain >= 1.0)
-	//		calc = (float)((float)calc / (float)SoftClipping.softclipping_distortion_max[10]);
-
-
-
-	//	calc = SoftClipping.distortion_gain * calc;
-	//
-	//	if (calc > 1)
-	//		calc = 1;
-	//	if (calc < -1)
-	//		calc = -1;
-	//	calc = 1.5 * calc - 0.5 * calc * calc * calc; // Simple f(x) = 1.5x - 0.5x^3 waveshaper
 
 
 	// Sinnvoller Gain: 1 - 10
