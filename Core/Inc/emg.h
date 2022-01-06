@@ -3,19 +3,24 @@
 
 #include "main.h"
 
-/* defines */
+/*********************************
+ * @brief		Defines
+ *********************************/
 #define EMG_READ_LENGTH 20
 #define EMG_SR 5000
 #define EMG_MI 1 // Measuring Intervall in seconds
 
-// Variables
+
+/*********************************
+ * @brief	Variables
+ *********************************/
 ADC_HandleTypeDef* EMG_ADC;
 TIM_HandleTypeDef* EMG_TIM;
 
 // buffer for ADC which senses the ecg and emg signal
 uint32_t emg_buffer[EMG_READ_LENGTH];
 
-// EMG varaibles
+// EMG variables
 uint32_t emg_detectionThreshold;
 uint8_t  emg_peak;
 uint32_t emg_toggleCounter;
@@ -39,7 +44,9 @@ float heartrate;
 
 uint8_t inputBuffer_position;
 
-// Functions
+/*********************************
+ * @brief	Functions
+ *********************************/
 HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim);
 HAL_StatusTypeDef ecg_init(void);
 HAL_StatusTypeDef emg_start_read(void);

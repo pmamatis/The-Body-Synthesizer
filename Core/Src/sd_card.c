@@ -1,3 +1,13 @@
+/** TODO
+ * @file sd_card.c
+ * @author where do we get this from?
+ * @brief 
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "sd_card.h"
 
 // UART functions for debugging

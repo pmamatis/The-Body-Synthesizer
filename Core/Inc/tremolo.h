@@ -3,7 +3,9 @@
 
 #include "main.h"
 #include <stdbool.h>
-
+/*********************************
+ * @brief		Enums
+ *********************************/
 /***************************
  * @brief Enumeration for Tremolo Debugging
  ***************************/
@@ -11,6 +13,10 @@ typedef enum {
 	TREMOLO_FAIL = -1,
 	TREMOLO_OK = 1
 } Tremolo_Status;
+
+/*********************************
+ * @brief		Structs
+ *********************************/
 
 /*********************************
  * @brief		Tremolo struct
@@ -23,6 +29,9 @@ struct Tremolo_t{
 	float tremolo_maximum_depth;
 };
 
+/*********************************
+ * @brief		Variables
+ *********************************/
 struct Tremolo_t Tremolo;
 
 Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo);

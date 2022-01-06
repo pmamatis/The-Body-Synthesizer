@@ -49,7 +49,7 @@ typedef enum {
 } Filter_Status;
 
 /*********************************
- * @parameter	Functions
+ * @brief	Functions
  *********************************/
 Filter_Status Filters_Init(void);
 Filter_Status Filters_Reinit_Poti(void);

@@ -5,6 +5,12 @@
  * @parameter	WahWah
  *********************************/
 
+/**
+ * @brief wahwah efffect init function
+ * 
+ * @param WahWah 
+ * @return WahWah_Status 
+ */
 WahWah_Status WahWah_Init(struct WahWah_t *WahWah) {
 
 	WahWah->lfo = &lfo_wahwah;
@@ -30,6 +36,12 @@ WahWah_Status WahWah_Init(struct WahWah_t *WahWah) {
 	return WAHWAH_OK;
 }
 
+/**
+ * @brief resets all wahwah parameters
+ * 
+ * @param WahWah 
+ * @return WahWah_Status 
+ */
 WahWah_Status WahWah_Reset(struct WahWah_t *WahWah) {
 
 	Display.WahWah_ONOFF = false;
@@ -83,6 +95,13 @@ WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float *data){
 	return WAHWAH_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @param WahWah 
+ * @param data 
+ * @return WahWah_Status 
+ */
 WahWah_Status ProcessAutoWahWah(struct WahWah_t *WahWah, float *data){
 
 	// mid_freq and range have to be set in the display function

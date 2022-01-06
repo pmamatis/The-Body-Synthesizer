@@ -31,8 +31,15 @@ struct WahWah_t{
 	uint32_t reinit_counter;
 };
 
+/*********************************
+ * @brief		Variables
+ *********************************/
 struct WahWah_t WahWah;
 
+
+/*********************************
+ * @brief		Functions
+ *********************************/
 WahWah_Status WahWah_Init(struct WahWah_t *WahWah);
 WahWah_Status WahWah_Reset(struct WahWah_t *WahWah);
 WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float* data);

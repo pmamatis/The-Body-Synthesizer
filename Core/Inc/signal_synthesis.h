@@ -8,25 +8,34 @@
 #include <stdarg.h>
 #include "display.h"
 
-/**@brief maximal amplitude of output voltage in millivolts*/
+/*********************************
+ * @brief		Defines
+ *********************************/
+
+/** @brief maximal amplitude of output voltage in millivolts*/
 #define AMPLITUDE 	1000
-/**@brief digital DAC value for maximal output voltage (3,3V) */
+/** @brief digital DAC value for maximal output voltage (3,3V) */
 #define DAC_MAX 	4095
 /** @brief digital value for 1.65 V */
 #define OFFSET 2047
-/**@brief 4096/3300 */
+/** @brief 4096/3300 */
 #define DAC_MAXVALUE_TO_AMPLITUDE_RATIO  1.24121212121212
 
 /**@brief Maximum of SIgnals which can be played at the same time */
 #define MAX_SIGNAL_KOMBINATION 30
 
-/**@brief struct to store signals
+/*********************************
+ * @brief		Structs
+ *********************************/
+
+/**
+ * @brief struct to store signals
  * @param count: amount of signals
  * @param max: global Maximum of all added Signals, set to zero when construct or destruct a Signal
- * @param kind:
- * @param freq:
- * @param freqIndex:
- * @param
+ * @param kind: kind of the signal, e.g. sinus, triangle, noise etc.
+ * @param freq: frequency
+ * @param freqIndex: starting index of the LUT for the gicen frequency, all LUT's for all predefiend frequencys are in the same array
+ * @param current_LUT_Index: last used LUT index, neccessary to write the signal in arrays which are smaller or bigger than the LUT samples
  * @param ID: indicates the Signal where it comes from. 0-2 Synthesizer Voices. 3-5 Keyboard notes,
  * */
 struct signal_t{
@@ -41,7 +50,7 @@ struct signal_t{
 	uint8_t ID[MAX_SIGNAL_KOMBINATION];
 };
 
-struct signal_t signals1;
+
 
 //Effects
 struct effects_lfo_t{
@@ -54,9 +63,10 @@ struct effects_lfo_t{
 	bool lfo_done_flag;
 };
 
-struct effects_lfo_t lfo_tremolo;
-struct effects_lfo_t lfo_wahwah;
 
+/*********************************
+ * @brief		Enums
+ *********************************/
 /**@brief Signal kinds*/
 enum signal_kind_enum{
 	SIN = 1,
@@ -69,6 +79,14 @@ enum lfo_effect{
 	TREMOLO_LFO = 0,
 	WAHWAH_LFO
 };
+
+
+/*********************************
+ * @brief	Variables	
+ *********************************/
+struct signal_t signals1;
+struct effects_lfo_t lfo_tremolo;
+struct effects_lfo_t lfo_wahwah;
 
 /** defines volume of the Voices, Drummachine and Sequencer
  * 0 -> Voices
@@ -84,7 +102,9 @@ float calculate_keyboard[5];
 /** @brief Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK */
 uint8_t outputBuffer_position;
 
-// Functions
+/*********************************
+ * @brief		Functions
+ *********************************/
 HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac);
 HAL_StatusTypeDef Voices_Reset(void);
 void SetTimerSettings(TIM_HandleTypeDef* htim, uint32_t SR);

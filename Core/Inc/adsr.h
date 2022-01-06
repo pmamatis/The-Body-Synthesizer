@@ -11,6 +11,13 @@ typedef enum {
 	ADSR_OK = 1
 } ADSR_Status;
 
+/*********************************
+ * @brief	Structs
+ *********************************/
+/** TODO
+ * @brief 
+ * 
+ */
 struct adsr {
 	uint32_t adsr_counter;
 	float adsr_max_amp;
@@ -29,6 +36,11 @@ struct adsr {
 	bool adsr_done;
 };
 
+
+
+/*********************************
+ * @brief	Variables
+ *********************************/
 struct adsr envelope;
 
 // ADSR for sequencer notes
@@ -41,6 +53,10 @@ struct adsr adsr_SN4[16];
 // ADSR for the keyboard
 struct adsr adsr_keyboard[5];	// maximum 5 keys processed simultaneously
 
+
+/*********************************
+ * @brief	Functions
+ *********************************/
 ADSR_Status ADSR_Init(void);
 ADSR_Status SetupADSR(struct adsr* envelope);
 ADSR_Status ADSR_Reset(struct adsr* envelope);

@@ -2,7 +2,9 @@
 #define INC_MUSIC_NOTES_H_
 
 #include "main.h"
-
+/*********************************
+ * @brief		Enums
+ *********************************/
 enum chord_type{
 	fifth= 0,
 	seventh,
@@ -15,6 +17,9 @@ enum sex_type{
 	diminished
 };
 
+/*********************************
+ * @brief		Variables
+ *********************************/
 /** @brief lookuptable for respective note keys*/
 const char keys[26];
 
@@ -32,6 +37,9 @@ const uint32_t chord_7[4];		//7th-chord, Jazz
 const uint32_t chord_9[4];		//9th-chord, Math-Rock
 const uint32_t chord_dim[3];	//diminished-chord
 
+/*********************************
+ * @brief		Functions
+ *********************************/
 uint8_t Get_Keyindex(char key);
 double Get_Note_Frequency(uint8_t index,uint8_t octave);
 uint16_t Get_Note_Index(char key,uint8_t octave);

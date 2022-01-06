@@ -5,6 +5,12 @@
  * @parameter	Tremolo
  *********************************/
 
+/** 
+ * @brief Tremolo Init function 
+ * 
+ * @param Tremolo 
+ * @return Tremolo_Status 
+ */
 Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo) {
 
 	Tremolo->lfo = &lfo_tremolo;
@@ -21,6 +27,11 @@ Tremolo_Status Tremolo_Init(struct Tremolo_t* Tremolo) {
 	return TREMOLO_OK;
 }
 
+/**
+ * @brief resets all tremelo parameters
+ * 
+ * @return Tremolo_Status 
+ */
 Tremolo_Status Tremolo_Reset(void) {
 
 	Display.Tremolo_ONOFF = false;

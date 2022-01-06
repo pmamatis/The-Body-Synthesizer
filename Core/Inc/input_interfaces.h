@@ -4,8 +4,9 @@
 #include "main.h"
 
 
-
-/** defines */
+/*********************************
+ * @brief		Defines
+ *********************************/
 #define II_MAX_VOICES 3
 #define II_SR 50
 #define II_TREM_DEPTH_STEP_SIZE 20
@@ -21,7 +22,9 @@
 
 
 
-/** variables */
+/*********************************
+ * @brief	Variables
+ *********************************/
 
 /** value for Frequency as ln*/
 double log_mapping_F;
@@ -41,7 +44,9 @@ uint32_t gyro_delay_counter[2];
 
 bool emg_triggerd_flag;
 
-/** functions */
+/*********************************
+ * @brief	Functions
+ *********************************/
 void II_init();
 void II_startInterface(TIM_HandleTypeDef* htim);
 void II_raiseNote(uint8_t ID);

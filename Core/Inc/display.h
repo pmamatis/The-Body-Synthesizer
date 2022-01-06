@@ -9,6 +9,10 @@
 #include "epdpaint.h"
 #include "imagedata.h"
 
+/*********************************
+ * @brief		Defines
+ *********************************/
+
 #define COLORED      0
 #define UNCOLORED    1
 
@@ -27,6 +31,10 @@
 #define MAX_NUMBER_OF_NOTES 3
 #define NUMBER_OF_SEQUENCERSTEPS 8
 
+/***************************
+ * @brief		Enumeration
+ ***************************/
+
 //typedef enum {	// Waveshare 2.9 inch ePD
 //	CASE0 = 10,
 //	CASE1 = 20,
@@ -40,6 +48,8 @@
 //	CASE9 =	100,
 //	CASE10 = 110
 //}y_row_value;
+
+
 
 typedef enum {	// Waveshare 1.54 inch ePD
 	CASE0 = 10,
@@ -83,6 +93,14 @@ typedef enum {
 	MINOR = 2
 } keyandmode_t;
 
+/***************************
+ * @brief		Structs
+ ***************************/
+
+/**
+ * @brief struct for all variables related to the display, 
+ * 
+ */
 struct display_variables {
 
 	char source_names[NUMBER_OF_SOURCES][10];	// assumption: maximum length of 10 characters for a each source name

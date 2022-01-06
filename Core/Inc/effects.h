@@ -23,7 +23,7 @@ typedef enum effects_t_enum{
 
 
 /*********************************
- * @beief	Variables
+ * @brief	Variables
  *********************************/
 
 /** @brief array for activating effects */

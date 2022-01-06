@@ -3,7 +3,9 @@
 
 #include "main.h"
 
-// Defines
+/*********************************
+ * @brief		Defines
+ *********************************/
 #define KEYBOARD_SR 500 // in Hz
 #define KEYBOARD_VOICE_ID 4	// as big as NUMBER_OF_VOICES+1
 #define VOICES_ID 0
@@ -26,14 +28,19 @@
 #define NUMBER_OF_KEYBOARD_NOTES 13
 #define MAX_SIMULTANEOUS_KEYBOARD_NOTES 5
 
-const uint16_t keyboard_note_adcval[NUMBER_OF_KEYBOARD_NOTES];
-
 /** reserved position in the signal struct array.
  * 	(NewSignal from last pressed key)
  */
 #define KEYBOARD_SP MAX_SIGNAL_KOMBINATION
 
-/* Variables */
+
+
+
+/*********************************
+ * @brief		Variables
+ *********************************/
+const uint16_t keyboard_note_adcval[NUMBER_OF_KEYBOARD_NOTES];
+
 ADC_HandleTypeDef* KEYBOARD_ADC;
 
 /** Timer which triggers the keyboard ADC */
@@ -46,7 +53,9 @@ bool activate_processing[MAX_SIMULTANEOUS_KEYBOARD_NOTES];
 
 uint8_t active_keyboard_notes;
 
-// Functions
+/*********************************
+ * @brief		Functions
+ *********************************/
 void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler);
 HAL_StatusTypeDef keyboard_start_read(void);
 HAL_StatusTypeDef keyboard_stop_read(void);

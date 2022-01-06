@@ -1,6 +1,10 @@
 #ifndef __FATFS_SD_H
 #define __FATFS_SD_H
 
+
+/*********************************
+ * @brief		Defines
+ *********************************/
 /* Definitions for MMC/SDC command */
 #define CMD0     (0x40+0)     /* GO_IDLE_STATE */
 #define CMD1     (0x40+1)     /* SEND_OP_COND */
@@ -18,6 +22,10 @@
 #define CMD55    (0x40+55)    /* APP_CMD */
 #define CMD58    (0x40+58)    /* READ_OCR */
 
+
+/*********************************
+ * @brief	Functions
+ *********************************/
 DSTATUS SD_disk_initialize (BYTE pdrv);
 DSTATUS SD_disk_status (BYTE pdrv);
 DRESULT SD_disk_read (BYTE pdrv, BYTE* buff, DWORD sector, UINT count);

@@ -1327,6 +1327,11 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+/**
+ * @brief modifies the printf to output the strings to UART, so it can be receiced on a external terminal for debugging
+ * 
+ */
+
 /*printf() FUNCTIONS begin *********/
 int __io_putchar(int ch)
 {
@@ -1885,13 +1890,15 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		__NOP();
 	}
 }
-
+/**
+ * @brief Callback for every timer interruppt
+ * 
+ * @param htim 
+ */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	// Prevent unused argument(s) compilation warning
 	UNUSED(htim);
 
-	// NOTE : This function should not be modified, when the callback is needed,
-	//        the HAL_TIM_PeriodElapsedCallback could be implemented in the user file
 
 	if(htim->Instance == TIM2) {
 		//if(HAL_GPIO_ReadPin(BACK_GPIO_Port, BACK_Pin) == GPIO_PIN_SET) {

@@ -24,12 +24,18 @@ struct effects_distortion{
 	uint8_t distortion_maximum_gain;
 };
 
+/*********************************
+ * @beief	Variables
+ *********************************/
 struct effects_distortion HardClipping;
 struct effects_distortion SoftClipping;
 
 extern const float aquidistance;
 extern const float atan_LUT_y[8192];	// blocksize = 8192
 
+/*********************************
+ * @brief	Functions
+ *********************************/
 Distortion_Status Distortion_Init(void);
 Distortion_Status Distortion_Reset(void);
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping);
