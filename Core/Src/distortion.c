@@ -1,10 +1,12 @@
 #include "distortion.h"
 #include "atanLUT.h"
 
-/*********************************
- * @brief		Distortion functions
- * @parameter	Distortion
- *********************************/
+
+/**
+ * @brief	Distortion init functions
+ *
+ * @param	Distortion
+ */
 Distortion_Status Distortion_Init(void) {
 
 	SetupHardClippingDistortion(&HardClipping);
@@ -13,6 +15,11 @@ Distortion_Status Distortion_Init(void) {
 	return DISTORTION_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Distortion_Status 
+ */
 Distortion_Status Distortion_Reset(void) {
 
 	Display.Distortion_ONOFF = false;
@@ -29,7 +36,12 @@ Distortion_Status Distortion_Reset(void) {
 
 	return DISTORTION_OK;
 }
-
+/**
+ * @brief 
+ * 
+ * @param HardClipping 
+ * @return Distortion_Status 
+ */
 Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardClipping) {
 
 	HardClipping->distortion_gain = 1.0;
@@ -38,6 +50,12 @@ Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardCli
 	return DISTORTION_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param SoftClipping 
+ * @return Distortion_Status 
+ */
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping) {
 
 	SoftClipping->distortion_gain = 1.0;
@@ -59,6 +77,12 @@ Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftCli
 	return DISTORTION_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param data 
+ * @return Distortion_Status 
+ */
 Distortion_Status ProcessHardClippingDistortion(float* data) {
 
 	float calc = *data;
@@ -78,9 +102,16 @@ Distortion_Status ProcessHardClippingDistortion(float* data) {
 	return DISTORTION_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param data 
+ * @return Distortion_Status 
+ */
 Distortion_Status ProcessSoftClippingDistortion(float* data) {
 
 	float calc = *data;
+
 
 	// Sinnvoller Gain: 1 - 10
 	// Use known Arcustangens values, which have been estimated (LUT-style)

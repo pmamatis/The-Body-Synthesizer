@@ -8,8 +8,10 @@ void effects_init(void) {
 	}
 }
 
-/** @brief reads the effect_order[] and activates the processing functions for the effects
- * 	@param single sample value, where the effects should be applied
+/** 
+ * @brief reads the effect_order[] and activates the processing functions for the effects
+ * 
+ * @param single sample value, where the effects should be applied
  */
 void effects_process(float* calculate_value){
 
@@ -48,7 +50,8 @@ void keyboard_adsr_process(void){
 
 /**
  * @brief Inserts an entry in the effect_order[position]
- * @param effect: wanted effect listed in the effects_t_enum
+ *
+ *  @param effect: wanted effect listed in the effects_t_enum
  */
 void effects_add(effects_t_enum effect) {
 

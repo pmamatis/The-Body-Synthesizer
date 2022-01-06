@@ -1,7 +1,12 @@
 #include "keyboard.h"
 
 const uint16_t keyboard_note_adcval[] = {200, 400, 800, 1100, 1400, 1800, 2100, 2450, 2800, 3100, 3500, 3800, 4095};
-
+/**
+ * @brief Keyboaed Init funcrion
+ * 
+ * @param ADC_Handler 
+ * @param TIM_Handler 
+ */
 void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler) {
 	KEYBOARD_ADC = ADC_Handler;
 	KEYBOARD_TIM = TIM_Handler;
@@ -14,7 +19,8 @@ void keyboard_init(ADC_HandleTypeDef *ADC_Handler,TIM_HandleTypeDef* TIM_Handler
 	active_keyboard_notes = 0;
 }
 
-/** starts the keyboard reading process
+/**
+ * @brief starts the keyboard reading process
  * @note the ADC is controlled by the Timer keyboard_TIM, so the ADC-Read Command is inside the Timer Interrupt
  */
 HAL_StatusTypeDef keyboard_start_read(void) {
@@ -26,12 +32,22 @@ HAL_StatusTypeDef keyboard_start_read(void) {
 	return retval;
 }
 
-HAL_StatusTypeDef keyboard_stop_read(void) {
-
+/**
+ * @brief Stops teh Keyboard readout by stoping the timer-interrupt
+ * 
+ * @return HAL_StatusTypeDef 
+ */
+HAL_StatusTypeDef keyboard_stop_read() {
 	printf("end keyboard read....\r\n");
 	return HAL_TIM_Base_Stop_IT(KEYBOARD_TIM);
 }
 
+/**
+ * @brief This function handles the Data processing for the Keyboard ADC, depending on the given value a signal is generated and played untill the keyboard adsr end for this signal.  
+ * @param adc_value raw data from the keyboard adc
+ * @param signals 
+ * @param Display 
+ */
 void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct display_variables* Display) {
 
 	// Generate Signal

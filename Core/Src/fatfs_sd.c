@@ -1,3 +1,16 @@
+
+/** TODO woher kommt diese Datei? Referenz hinzufügen
+ * @file fatfs_sd.c
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-01-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
+
 #define TRUE  1
 #define FALSE 0
 #define bool BYTE

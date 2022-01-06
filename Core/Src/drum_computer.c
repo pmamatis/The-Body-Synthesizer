@@ -1,5 +1,11 @@
 #include "drum_computer.h"
 
+/** TODO
+ * @brief 
+ * 
+ * @param env 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 
 	// INIT: ADSR structs
@@ -17,7 +23,11 @@ HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 	return HAL_OK;
 }
 
-
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_CalcSample(void) {
 
 	for(int i = 0; i < FourFour; i++) {
@@ -170,6 +180,11 @@ HAL_StatusTypeDef Drum_Computer_CalcSample(void) {
 	return HAL_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_Reset(void) {
 
 	Display.Drumcomputer_ONOFF = false;
@@ -228,6 +243,11 @@ HAL_StatusTypeDef Drum_Computer_Reset(void) {
 	return HAL_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Sequencer_Reset(void) {
 
 	Display.Sequencer_ONOFF = false;
@@ -274,10 +294,13 @@ HAL_StatusTypeDef Sequencer_Reset(void) {
 	return HAL_OK;
 }
 
+/** 
+ * @brief Init function for the drumcomputer  
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_Init(void) {
 
-	// INIT: Sequencer state
-	//	sequencer_state = true;
 
 	// INIT: Tempo, SR, Counter
 	BPM = 120;
@@ -362,6 +385,11 @@ HAL_StatusTypeDef Drum_Computer_Init(void) {
 	return HAL_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_Process(void) {
 
 	// RESET: Drum sound bins
@@ -455,6 +483,10 @@ HAL_StatusTypeDef Drum_Computer_Process(void) {
 	return HAL_OK;
 }
 
+/** 
+ * @brief function to play the same sample each time it is triggerd, must be called inside Signal_Synthesis() 
+ * 
+ */
 void PlaySingleSample(void) {
 
 	single_sample = PSS[counter_single_sample];
@@ -466,6 +498,11 @@ void PlaySingleSample(void) {
 	}
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return HAL_StatusTypeDef 
+ */
 HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse() {
 
 	for(int i = 0; i < FourFour; i++) {

@@ -1,7 +1,11 @@
 #include "adsr.h"
 
 // Reference: The Audio Programming Book from Boulanger, Lazzarini and Mathews
-
+/** TODO
+ * @brief 
+ * 
+ * @return ADSR_Status 
+ */
 ADSR_Status ADSR_Init(void) {
 
 	SetupADSR(&envelope);
@@ -31,6 +35,12 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 	return ADSR_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param envelope 
+ * @return ADSR_Status 
+ */
 ADSR_Status ADSR_Reset(struct adsr* envelope) {
 
 	envelope->adsr_counter = 0;
@@ -64,6 +74,13 @@ ADSR_Status ADSR_Reset(struct adsr* envelope) {
 	return ADSR_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param envelope 
+ * @param calculate_value 
+ * @param flag 
+ */
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag) {
 
 	if(flag == true) {
@@ -102,7 +119,13 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 		}
 	}
 }
-
+/** TODO
+ * @brief 
+ * 
+ * @param envelope 
+ * @param calculate_value 
+ * @param flag 
+ */
 void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_value, bool flag) {
 
 	if(flag == true) {

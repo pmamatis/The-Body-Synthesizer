@@ -1,3 +1,10 @@
+/*
+ * emg.c
+ *
+ *  Created on: May 23, 2021
+ *  Author: paul mamatis
+ */
+
 #include "emg.h"
 
 /** @brief EMG Init*/

@@ -730,6 +730,11 @@ Display_Status p_StartingMenu(unsigned char* frame_buffer) {
 	return DISPLAY_OK;
 }
 
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ * @return Display_Status returns DISPLAY_OK when function reaches the end 
+ */
 Display_Status p_Drumcomputer_overview(void) {
 
 	// Header line
@@ -898,7 +903,11 @@ Display_Status p_Drumcomputer_overview(void) {
 
 	return DISPLAY_OK;
 }
-
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ * @return Display_Status returns DISPLAY_OK when function reaches the end 
+ */
 Display_Status p_Drumcomputer_Settings(void) {
 
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Last page", &Font12, COLORED);
@@ -1122,6 +1131,11 @@ Display_Status p_Drumcomputer_Settings(void) {
 	return DISPLAY_OK;
 }
 
+/**TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_DrawDrumcomputerPattern(void) {
 
 	uint8_t filledrectangle_subtract = 5;
@@ -1169,6 +1183,12 @@ Display_Status DISPLAY_DrawDrumcomputerPattern(void) {
 	return DISPLAY_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param Drumkit 
+ * @return Display_Status 
+ */
 Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 
 	if(Drumkit == 0) {
@@ -1218,6 +1238,13 @@ Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 	return DISPLAY_OK;
 }
 
+/**
+ * @brief 
+ * 
+ * @param SampleNUM 
+ * @param KitNUM 
+ * @return Display_Status 
+ */
 Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM) {
 
 	sd_card_mount();
@@ -1305,6 +1332,15 @@ Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @param S1 
+ * @param S2 
+ * @param S3 
+ * @param S4 
+ * @return Display_Status 
+ */
 Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char* S4) {
 
 	Paint_DrawStringAt(&paint, 1, CASE0, "DRUMCOMPUTER", &Font16, COLORED);
@@ -1322,6 +1358,12 @@ Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char*
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @param Drumsteps 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps) {
 
 	// Draw horizontal lines
@@ -1348,6 +1390,11 @@ Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_SetDrumcomputerStep(void) {
 
 	uint8_t filledrectangle_subtract = 5;
@@ -1576,6 +1623,11 @@ Display_Status DISPLAY_SetDrumcomputerStep(void) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_DeleteDrumcomputerStep(void) {
 
 	uint8_t filledrectangle_subtract = 5;
@@ -1804,6 +1856,11 @@ Display_Status DISPLAY_DeleteDrumcomputerStep(void) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_SetDrumcomputerStepCursor(void) {
 
 	uint8_t rectangle_subtract = 3;
@@ -1938,6 +1995,11 @@ Display_Status DISPLAY_SetDrumcomputerStepCursor(void) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void) {
 
 	uint8_t rectangle_subtract = 3;
@@ -2072,6 +2134,12 @@ Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void) {
 	return DISPLAY_OK;
 }
 
+
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ * @return Display_Status returns DISPLAY_OK when function reaches the end 
+ */
 Display_Status p_Sequencer_overview(void) {
 
 	// Header line
@@ -2245,7 +2313,6 @@ Display_Status p_Sequencer_overview(void) {
 	case 9:
 		// Sequencer Reset
 		Display.currentSequencer = 8;
-
 		if(Display.Reset == true) {
 			Sequencer_Reset();
 			Display.Reset = false;
@@ -2280,6 +2347,11 @@ Display_Status p_Sequencer_overview(void) {
 	return DISPLAY_OK;
 }
 
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ * @return Display_Status returns DISPLAY_OK when function reaches the end 
+ */
 Display_Status p_Sequencer_Settings(void) {
 
 	Paint_DrawStringAt(&paint, Display.row_start_x_position, CASE1, "Last page", &Font12, COLORED);
@@ -2313,6 +2385,11 @@ Display_Status p_Sequencer_Settings(void) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status Display_DrawSequencerIcons(void) {
 
 	Paint_DrawStringAt(&paint, 1, CASE0, "SEQUENCER", &Font16, COLORED);
@@ -2323,6 +2400,12 @@ Display_Status Display_DrawSequencerIcons(void) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @param Drumsteps 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps) {
 
 	// Draw horizontal lines
@@ -2348,6 +2431,11 @@ Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_SetSequencerStepCursor(void) {
 
 	uint8_t rectangle_subtract = 3;
@@ -2452,6 +2540,11 @@ Display_Status DISPLAY_SetSequencerStepCursor(void) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_DrawSequencerPattern(void) {
 
 	uint8_t filledrectangle_subtract = 5;
@@ -2496,6 +2589,12 @@ Display_Status DISPLAY_DrawSequencerPattern(void) {
 	return DISPLAY_OK;
 }
 
+
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_SetSequencerStep(void) {
 
 	uint8_t filledrectangle_subtract = 5;
@@ -2670,6 +2769,11 @@ Display_Status DISPLAY_SetSequencerStep(void) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_DeleteSequencerStep(void) {
 
 	uint8_t filledrectangle_subtract = 5;
@@ -2844,6 +2948,11 @@ Display_Status DISPLAY_DeleteSequencerStep(void) {
 	return DISPLAY_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @return Display_Status 
+ */
 Display_Status DISPLAY_DeleteSequencerStepCursor(void) {
 
 	uint8_t rectangle_subtract = 3;
@@ -2948,8 +3057,10 @@ Display_Status DISPLAY_DeleteSequencerStepCursor(void) {
 	return DISPLAY_OK;
 }
 
-/** @brief this function edits the ON/OFF settings of the Voices
- *
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ * @return Display_Status returns DISPLAY_OK when function reaches the end 
  */
 void p_Voices_overview(void) {
 
@@ -3078,6 +3189,11 @@ void p_Voices_overview(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE6, Display.value_str_voices_overview[4], &Font12, COLORED);
 }
 
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ * @return Display_Status returns DISPLAY_OK when function reaches the end 
+ */
 void p_Voices_Settings(void) {
 
 	if(Display.currentVoice >= 1 && Display.currentVoice < NUMBER_OF_VOICES+1) {
@@ -3174,8 +3290,8 @@ void p_Voices_Settings(void) {
 	}
 }
 
-/** @brief this function edits the settings of the ADSR, just the sources have can be edited on another page or you can switch to the next effect
- *
+/** 
+ * @brief this function edits the settings of the ADSR, just the sources have can be edited on another page or you can switch to the next effect
  */
 void p_ADSR_overview(void) {
 
@@ -3358,18 +3474,44 @@ void p_ADSR_Settings(void) {
 		switch(Display.JoystickParameterPosition) {
 		case 1:
 			// Attack Time Source
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE1, Display.value_end_x_position, CASE1+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[0] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[0] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[0], Display.source_names[mode_number]);
 			break;
 		case 2:
 			// Decay Time Source
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE2, Display.value_end_x_position, CASE2+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[1] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[1] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[1], Display.source_names[mode_number]);
 			break;
 		case 3:
 			// Sustain Time Source
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE3, Display.value_end_x_position, CASE3+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[2] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[2] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[2], Display.source_names[mode_number]);
 			break;
+
 		case 4:
 			// Sustain Level Source
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE4, Display.value_end_x_position, CASE4+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[3] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[3] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[3], Display.source_names[mode_number]);
 			break;
 		case 5:
 			// Release Time Source
+			//			//			Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+10, UNCOLORED);
+			//			mode_number = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1)));
+			//			//			Display.ADSR_Sources[4] = ((uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES)));
+			//			Display.ADSR_Sources[4] = mode_number;
+			//			//			strcpy(Display.value_str_adsr_settings[4], Display.source_names[mode_number]);
 			break;
 		default:
 			break;
@@ -3542,8 +3684,8 @@ void p_Equalizer_overview(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE7, Display.value_str_equalizer_overview[5], &Font12, COLORED);
 }
 
-/** @brief this function prints the Equalizer submenu and edits its values
- *  @param pointer to 5 Filter band structs
+/** 
+ * @brief this function prints the Equalizer submenu and edits its values
  */
 void p_Equalizer_Settings(void) {
 
@@ -3713,6 +3855,9 @@ void p_Equalizer_Settings(void) {
 	}
 }
 
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ */
 void p_WahWah_overview(void) {
 
 	// Header line
@@ -3794,6 +3939,11 @@ void p_WahWah_overview(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE4, Display.value_str_wahwah[14], &Font12, COLORED);
 }
 
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ * @param WahWah pointer to a WahWah-effect struct
+ */
 void p_WahWah_Settings(struct WahWah_t *WahWah) {
 
 	if(Display.WahWah_Mode == 0) {	// Normal WahWah
@@ -3910,14 +4060,46 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 			}
 			break;
 		case 4:	// Auto-WahWah LFO Frequency
+			//			if(WahWah->lfo->lfo_done_flag == true) {
+			//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-25, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);
+			//				index = (uint16_t)(((float)Display.ADC2inputs[2]/((float)Display.ADC_FullRange-100)) * (sizeof(LFO_FREQUENCYS)/sizeof(LFO_FREQUENCYS[0])-1));
+			//				Display.WahWah_LFOfreq = LFO_FREQUENCYS[index];
+			//				WahWah->lfo->lfo_frequency = Display.WahWah_LFOfreq;
+			//				WahWah->lfo->lfo_index = 0;
+			//				WahWah->lfo->lfo_quarter = 0;
+			//				sprintf(Display.value_str_wahwah[5], "%.3f", Display.WahWah_LFOfreq);
+			//				sprintf(Display.value_str_wahwah[9], "%.3f", Display.WahWah_LFOfreq);
+			//			}
 			break;
 		case 5:	// Auto-WahWah Mid Frequency Source
+			//			if(Display.poti_moved == true) {
+			//				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE5, Display.value_end_x_position, CASE5+VALUE_ROW_LENGTH, UNCOLORED);
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[0] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[2] = mode_number;
+			//				//				strcpy(Display.value_str_wahwah[10], Display.source_names[mode_number]);
+			//				//				strcpy(Display.value_str_wahwah[10], Display.source_names[Display.WahWah_Sources[0]]);
+			//			}
 			break;
 		case 6:	// Auto-WahWah Q Source
+			//			if(Display.poti_moved == true) {
+			//				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE6, Display.value_end_x_position, CASE6+VALUE_ROW_LENGTH, UNCOLORED);
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[1] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[3] = mode_number;
+			//				//				strcpy(Display.value_str_wahwah[11], Display.source_names[Display.WahWah_Sources[1]]);
+			//			}
 			break;
 		case 7:	// Auto-WahWah Range Source
 			break;
 		case 8:	// Auto-WahWah LFO Frequency Source
+			//			if(Display.poti_moved == true) {
+			//				//				Paint_DrawFilledRectangle(&paint, Display.value_start_x_position-30, CASE8, Display.value_end_x_position, CASE8+VALUE_ROW_LENGTH, UNCOLORED);
+			//				mode_number = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES-1));
+			//				//				Display.WahWah_Sources[3] = (uint8_t)(((float)Display.ADC2inputs[2] / (float)Display.ADC_FullRange) * (NUMBER_OF_SOURCES));
+			//				Display.WahWah_Sources[5] = mode_number;
+			//				//				strcpy(Display.value_str_wahwah[13], Display.source_names[Display.WahWah_Sources[3]]);
+			//			}
 			break;
 		default:
 			break;
@@ -3952,9 +4134,9 @@ void p_WahWah_Settings(struct WahWah_t *WahWah) {
 	}
 }
 
-/** @brief this function prints the Distortion submenu and edits its values
- *  @param HardClipping: struct of hard clipping distortion effect
- *
+/** 
+ * @brief this function prints the Distortion submenu and edits its values
+ * @param HardClipping: struct of hard clipping distortion effect
  */
 void p_Distortion(struct effects_distortion* HardClipping) {
 
@@ -4055,7 +4237,11 @@ void p_Distortion(struct effects_distortion* HardClipping) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE4, Display.value_str_distortion[3], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position, CASE5, Display.value_str_distortion[4], &Font12, COLORED);
 }
-
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ * @param Tremolo pointer to a Tremolo-effect struct 
+ */
 void p_Tremolo(struct Tremolo_t* Tremolo) {
 
 	// Header line
@@ -4142,6 +4328,10 @@ void p_Tremolo(struct Tremolo_t* Tremolo) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-30, CASE6, Display.value_str_tremolo[5], &Font12, COLORED);
 }
 
+/** 
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ */
 void p_EMG(void) {
 
 	// Header line
@@ -4360,6 +4550,10 @@ void p_EMG(void) {
 	}
 }
 
+/** TODO
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu 
+ * 
+ */
 void p_KeyAndMode(void) {
 
 	// Header line
@@ -4405,6 +4599,10 @@ void p_KeyAndMode(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-35, CASE2, Display.value_str_keyandmode[1], &Font12, COLORED);
 }
 
+/** 
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu
+ * 
+ */
 void p_Volume(void) {
 
 	// Header line
@@ -4462,7 +4660,10 @@ void p_Volume(void) {
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE3, Display.value_str_volume[2], &Font12, COLORED);
 	Paint_DrawStringAt(&paint, Display.value_start_x_position-25, CASE4, Display.value_str_volume[3], &Font12, COLORED);
 }
-
+/** 
+ * @brief Makes a full reset of all efffects paramter to the default values 
+ * 
+ */
 void Full_Reset(void) {
 
 	for(uint8_t i=0; i<3; i++)
@@ -4478,6 +4679,10 @@ void Full_Reset(void) {
 	Tremolo_Reset();
 }
 
+/**
+ * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu 
+ * 
+ */
 void p_Presets(void) {
 
 	// Header line
@@ -5176,3 +5381,4 @@ void p_Presets(void) {
 		break;
 	}
 }
+

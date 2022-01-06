@@ -21,6 +21,11 @@ float cutoff = 0;
 // Processing variables
 float band1, band2, band3, band4, band5 = 0;
 
+/**
+ * @brief Filter Init function
+ * 
+ * @return Filter_Status 
+ */
 Filter_Status Filters_Init(void){
 
 	/*****************************
@@ -144,6 +149,14 @@ Filter_Status Filters_Init(void){
 	return FILTER_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @param cutoff_d 
+ * @param Qfactor_d 
+ * @param gain_d 
+ * @return Filter_Status 
+ */
 Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d, float gain_d) {
 
 
@@ -156,6 +169,12 @@ Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d, float gai
 	return FILTER_OK;
 }
 
+/** TODO
+ * @brief 
+ * 
+ * @param cutoff 
+ * @return Filter_Status 
+ */
 Filter_Status Filters_Reinit_Gyro(float cutoff){
 
 	if (cutoff > LUT_FMIN)
@@ -168,7 +187,11 @@ Filter_Status Filters_Reinit_Gyro(float cutoff){
 }
 
 
-
+/** TODO
+ * @brief 
+ * 
+ * @return Filter_Status 
+ */
 Filter_Status Filters_Reinit_Poti(){
 
 	// GND debouncing
@@ -223,6 +246,11 @@ Filter_Status Filters_Reinit_Poti(){
 }
 
 
+/** TODO
+ * @brief 
+ * 
+ * @return Filter_Status 
+ */
 Filter_Status Equalizer_Reset(void) {
 
 	// BAND 1: Low-Shelf filter
@@ -288,7 +316,13 @@ Filter_Status Equalizer_Reset(void) {
 	return FILTER_OK;
 }
 
-
+/** TODO
+ * @brief 
+ * 
+ * @param F 
+ * @param data 
+ * @return Filter_Status 
+ */
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
 	float input = 0;
@@ -307,7 +341,12 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 	return FILTER_OK;
 }
 
-
+/** TODO
+ * @brief 
+ * 
+ * @param data 
+ * @return Filter_Status 
+ */
 Filter_Status ProcessEQ(float *data){
 
 	// BAND 1
@@ -329,8 +368,14 @@ Filter_Status ProcessEQ(float *data){
 	return FILTER_OK;
 }
 
-
-// Lowpass Filter
+/** TODO
+ * @brief Lowpass Filter
+ * 
+ * @param LP 
+ * @param cutoff 
+ * @param Q 
+ * @return Filter_Status 
+ */
 Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 
 	//float A = 1;
@@ -351,8 +396,14 @@ Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-
-// Highpass Filter
+/** TODO
+ * @brief  Highpass Filter
+ * 
+ * @param HP 
+ * @param cutoff 
+ * @param Q 
+ * @return Filter_Status 
+ */ 
 Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 
 	//float A = 1;
@@ -373,8 +424,14 @@ Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-
-// Constant Peak Gain Bandpass Filter
+/** TODO
+ * @brief Constant Peak Gain Bandpass Filter
+ * 
+ * @param BP 
+ * @param cutoff 
+ * @param Q 
+ * @return Filter_Status 
+ */
 Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q){
 
 	float w = 2 * M_PI * cutoff / samplerate;
@@ -395,7 +452,15 @@ Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q){
 }
 
 
-// Constant Skirt Gain Bandpass Filter
+// 
+/** 
+ * @brief Constant Skirt Gain Bandpass Filter
+ * 
+ * @param BP 
+ * @param cutoff 
+ * @param Q 
+ * @return Filter_Status 
+ */
 Filter_Status SetupBandpassCSG(struct BQFilter *BP, float cutoff, float Q){
 
 	float w = 2 * M_PI * cutoff / samplerate;
@@ -415,8 +480,14 @@ Filter_Status SetupBandpassCSG(struct BQFilter *BP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-
-// Notch Filter
+/**
+ * @brief Notch Filter
+ * 
+ * @param BP 
+ * @param cutoff 
+ * @param Q 
+ * @return Filter_Status 
+ */
 Filter_Status SetupNotch(struct BQFilter *BP, float cutoff, float Q){
 
 	float w = 2 * M_PI * cutoff / samplerate;
@@ -436,8 +507,15 @@ Filter_Status SetupNotch(struct BQFilter *BP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-
-// Peaking EQ Filter
+/** TODO
+ * @brief Peaking EQ Filter
+ * 
+ * @param BP 
+ * @param cutoff 
+ * @param Q 
+ * @param dBGain 
+ * @return Filter_Status 
+ */
 Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float dBGain){
 
 	//for dBGain in function() head use:
@@ -462,8 +540,15 @@ Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float d
 	return FILTER_OK;
 }
 
-
-// LowShelf Filter
+/**
+ * @brief LowShelf Filter 
+ * 
+ * @param LS 
+ * @param cutoff 
+ * @param Q 
+ * @param dBGain 
+ * @return Filter_Status 
+ */
 Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dBGain){
 
 	float exp = (dBGain) / 40;
@@ -486,7 +571,15 @@ Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dB
 }
 
 
-// HighShelf Filter
+/** TODO
+ * @brief HighShelf Filter 
+ * 
+ * @param HS 
+ * @param cutoff 
+ * @param Q 
+ * @param dBGain 
+ * @return Filter_Status 
+ */
 Filter_Status SetupHighShelf(struct BQFilter *HS, float cutoff, float Q, float dBGain){
 
 	float exp = (dBGain) / 40;
