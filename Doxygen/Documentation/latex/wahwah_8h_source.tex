@@ -1,0 +1,55 @@
+\hypertarget{wahwah_8h_source}{}\doxysection{wahwah.\+h}
+\label{wahwah_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wahwah.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wahwah.h}}
+\mbox{\hyperlink{wahwah_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef INC\_WAHWAH\_H\_}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00012}00012 \textcolor{preprocessor}{\#define INC\_WAHWAH\_H\_}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00015}00015 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00017}00017 \textcolor{comment}{/***************************}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00018}00018 \textcolor{comment}{ * @brief Enumeration for Tremolo Debugging}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00019}00019 \textcolor{comment}{ ***************************/}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00020}00020 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00021}00021     WAHWAH\_FAIL = -\/1,}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00022}00022     WAHWAH\_OK = 1}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00023}00023 \} WahWah\_Status;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00025}00025 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00026}00026 \textcolor{comment}{ * @brief       WahWah struct}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00027}00027 \textcolor{comment}{ * @parameter   WahWah}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00028}00028 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00029}\mbox{\hyperlink{structWahWah__t}{00029}} \textcolor{keyword}{struct }\mbox{\hyperlink{structWahWah__t}{WahWah\_t}}\{}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00031}00031     \textcolor{keyword}{struct }\mbox{\hyperlink{structeffects__lfo__t}{effects\_lfo\_t}}* lfo;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00032}00032     \textcolor{keyword}{struct }\mbox{\hyperlink{structBQFilter}{BQFilter}}* bandpass;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00033}00033     \textcolor{keywordtype}{float} mid\_freq;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00034}00034     \textcolor{keywordtype}{float} mid\_freq\_mod;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00035}00035     \textcolor{keywordtype}{float} range;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00036}00036     \textcolor{keywordtype}{float} gain;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00037}00037     \textcolor{keywordtype}{float} max\_mid\_freq;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00038}00038     \textcolor{keywordtype}{float} max\_range;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00039}00039     \textcolor{keywordtype}{float} max\_Q;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00040}00040     \textcolor{keywordtype}{float} max\_lfo\_depth;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00041}00041     uint32\_t reinit\_counter;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00042}00042 \};}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00044}00044 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00045}00045 \textcolor{comment}{ * @brief       Variables}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00046}00046 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00047}00047 \textcolor{keyword}{struct }\mbox{\hyperlink{structWahWah__t}{WahWah\_t}} WahWah;}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00050}00050 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00051}00051 \textcolor{comment}{ * @brief       Functions}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00052}00052 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00053}00053 WahWah\_Status \mbox{\hyperlink{wahwah_8h_afdc2b53d4cc3352bf6e51df974ce169e}{WahWah\_Init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah);}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00054}00054 WahWah\_Status \mbox{\hyperlink{wahwah_8h_a9b91a7fae64755689936b60cf1820535}{WahWah\_Reset}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah);}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00055}00055 WahWah\_Status \mbox{\hyperlink{wahwah_8h_a2fa3b9f5777f0876da0b828ee333673a}{ProcessWahWah}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah, \textcolor{keywordtype}{float}* data);}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00056}00056 WahWah\_Status \mbox{\hyperlink{wahwah_8h_a85d3b2ed1cf4a3aef7b32c97b2e64237}{ProcessAutoWahWah}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah, \textcolor{keywordtype}{float}* data);}
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{wahwah_8h_source_l00058}00058 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_WAHWAH\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,57 @@
+\hypertarget{tremolo_8c_source}{}\doxysection{tremolo.\+c}
+\label{tremolo_8c_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/tremolo.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/tremolo.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{tremolo_8h}{tremolo.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00003}00003 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00004}00004 \textcolor{comment}{ * @brief       Tremolo functions}}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00005}00005 \textcolor{comment}{ * @parameter   Tremolo}}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00006}00006 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00014}\mbox{\hyperlink{tremolo_8h_acb90f3df18e98cac0b0aadc519411a7a}{00014}} Tremolo\_Status \mbox{\hyperlink{tremolo_8h_acb90f3df18e98cac0b0aadc519411a7a}{Tremolo\_Init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structTremolo__t}{Tremolo\_t}}* Tremolo) \{}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00016}00016     Tremolo-\/>lfo = \&lfo\_tremolo;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00018}00018     Tremolo-\/>lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00019}00019     Tremolo-\/>lfo-\/>lfo\_frequency = 1;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00020}00020     Tremolo-\/>lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00021}00021     Tremolo-\/>lfo-\/>lfo\_depth = 0.5;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00022}00022     Tremolo-\/>lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00024}00024     Tremolo-\/>tremolo\_maximum\_rate = 16;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00025}00025     Tremolo-\/>tremolo\_maximum\_depth = 1.00;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00027}00027     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00028}00028 \}}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00035}\mbox{\hyperlink{tremolo_8h_a7ec31bc72214199a5efdbe88b3a3f8b8}{00035}} Tremolo\_Status \mbox{\hyperlink{tremolo_8h_a7ec31bc72214199a5efdbe88b3a3f8b8}{Tremolo\_Reset}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00037}00037     Display.Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00039}00039     Tremolo.lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00040}00040     Display.Tremolo\_Rate = Tremolo.lfo-\/>lfo\_frequency = 1;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00041}00041     Display.Tremolo\_Rate\_Index = Display.last\_Tremolo\_Rate\_Index  = 3;  \textcolor{comment}{// 1 Hz}}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00042}00042     Tremolo.lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00043}00043     Display.Tremolo\_Depth = Tremolo.lfo-\/>lfo\_depth = 0.5;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00044}00044     Tremolo.lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00046}00046     Display.Tremolo\_Sources[0] = POTI;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00047}00047     Display.Tremolo\_Sources[1] = POTI;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00049}00049     strcpy(Display.value\_str\_tremolo[0], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00051}00051     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00052}00052 \}}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00059}\mbox{\hyperlink{tremolo_8h_a922840d8712ad7bd4904f7813c8ac2f6}{00059}} Tremolo\_Status \mbox{\hyperlink{tremolo_8h_a922840d8712ad7bd4904f7813c8ac2f6}{ProcessTremolo}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structTremolo__t}{Tremolo\_t}}* Tremolo, \textcolor{keywordtype}{float}* data) \{}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00061}00061     \mbox{\hyperlink{signal__synthesis_8h_a381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(Tremolo-\/>lfo, TREMOLO\_LFO);}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00063}00063     \textcolor{keywordtype}{float} tremolo\_mod = (1 + Tremolo-\/>lfo-\/>lfo\_depth * Tremolo-\/>lfo-\/>lfo\_data);}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00064}00064     *data = (tremolo\_mod * *data) / (1+Tremolo-\/>lfo-\/>lfo\_depth);}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00066}00066     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00067}00067 \}}
+
+\end{DoxyCode}

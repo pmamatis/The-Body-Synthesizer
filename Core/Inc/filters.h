@@ -1,11 +1,25 @@
+/** TODO
+ * @file filters.h
+ * @author max lehmer
+ * @brief filter implentations
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_FILTERS_H_
 #define INC_FILTERS_H_
 
 #include "main.h"
 
 /*********************************
- * @brief		Biquad Filter struct
- * @parameter	BQFilter
+ * @brief Biquad Filter struct
+ * @param Q güte
+ * @param cutoff cutoff frequncy
+ * @param dBGain Gain in dB
+ * @param a TODO
+ * @param z  
  *********************************/
 struct BQFilter {
 

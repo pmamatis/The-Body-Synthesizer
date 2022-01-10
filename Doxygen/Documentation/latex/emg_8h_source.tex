@@ -1,0 +1,64 @@
+\hypertarget{emg_8h_source}{}\doxysection{emg.\+h}
+\label{emg_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/emg.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/emg.h}}
+\mbox{\hyperlink{emg_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef INC\_EMG\_H\_}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00012}00012 \textcolor{preprocessor}{\#define INC\_EMG\_H\_}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00016}00016 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00017}00017 \textcolor{comment}{ * @brief       Defines}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00018}00018 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00019}00019 \textcolor{preprocessor}{\#define EMG\_READ\_LENGTH 20}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00020}00020 \textcolor{preprocessor}{\#define EMG\_SR 5000}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00021}00021 \textcolor{preprocessor}{\#define EMG\_MI 1 }\textcolor{comment}{// Measuring Intervall in seconds}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00024}00024 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00025}00025 \textcolor{comment}{ * @brief   Variables}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00026}00026 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00027}00027 ADC\_HandleTypeDef* EMG\_ADC;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00028}00028 TIM\_HandleTypeDef* EMG\_TIM;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00030}00030 \textcolor{comment}{// buffer for ADC which senses the ecg and emg signal}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00031}00031 uint32\_t emg\_buffer[EMG\_READ\_LENGTH];}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00033}00033 \textcolor{comment}{// EMG variables}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00034}00034 uint32\_t emg\_detectionThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00035}00035 uint8\_t  emg\_peak;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00036}00036 uint32\_t emg\_toggleCounter;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00037}00037 uint32\_t emg\_toggleThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00038}00038 uint32\_t emg\_maxDetectionThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00039}00039 uint32\_t emg\_maxToggleThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00040}00040 \textcolor{keywordtype}{bool} emg\_toggled;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00042}00042 \textcolor{comment}{// ECG variables}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00043}00043 uint32\_t ecg\_measInt; \textcolor{comment}{// Measuring Intervall in seconds}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00044}00044 uint32\_t ecg\_detectionThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00045}00045 uint8\_t  ecg\_peaks;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00046}00046 uint32\_t ecg\_toggleCounter;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00047}00047 uint32\_t ecg\_toggleThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00048}00048 uint32\_t ecg\_maxDetectionThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00049}00049 uint32\_t ecg\_maxToggleThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00050}00050 uint32\_t ecg\_intCount; \textcolor{comment}{// Interval Counter}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00051}00051 \textcolor{keywordtype}{bool} ecg\_peak;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00052}00052 \textcolor{keywordtype}{bool} ecg\_toggled;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00053}00053 \textcolor{keywordtype}{float} heartrate;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00055}00055 uint8\_t inputBuffer\_position;}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00057}00057 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00058}00058 \textcolor{comment}{ * @brief   Functions}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00059}00059 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00060}00060 HAL\_StatusTypeDef \mbox{\hyperlink{emg_8h_aa7d92b6a1983e52614915f8e2cfb3140}{emg\_init}}(ADC\_HandleTypeDef *hadc, TIM\_HandleTypeDef *htim);}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00061}00061 HAL\_StatusTypeDef \mbox{\hyperlink{emg_8h_a98bf9a8015f7a7833276fbf6a72e255e}{ecg\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00062}00062 HAL\_StatusTypeDef \mbox{\hyperlink{emg_8h_ad8539de6db12ec20b070f6fb97f99a73}{emg\_start\_read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00063}00063 HAL\_StatusTypeDef \mbox{\hyperlink{emg_8h_a305d3a0240c6e197a771b26c8d4fd22a}{emg\_stop\_read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00064}00064 HAL\_StatusTypeDef \mbox{\hyperlink{emg_8h_a63f5337cb5d5feb55ddedd79bca265d9}{emg\_peak\_detection}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00065}00065 \textcolor{keywordtype}{void} \mbox{\hyperlink{emg_8h_a6ad14645e09a9e49124abbb14199027f}{ecg\_heartrate}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{emg_8h_source_l00067}00067 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_EMG\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -215,7 +215,7 @@ int main(void)
 	/* USER CODE BEGIN 2 */
 
 
-	printf("***Bodysynthesizer*** \r\n");
+	printf("***Bodysynthesizer Paul*** \r\n");
 
 	/* INIT FUNCTIONS begin*********************/
 

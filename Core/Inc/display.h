@@ -1,3 +1,13 @@
+/** TODO
+ * @file display.h
+ * @author marc bielen
+ * @brief all display related stuff, also needed for processing effects
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_DISPLAY_H_
 #define INC_DISPLAY_H_
 

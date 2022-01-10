@@ -1,3 +1,14 @@
+/** TODO
+ * @file distortion.h
+ * @author marc bielen
+ * @brief distortion effect
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #ifndef INC_DISTORTION_H_
 #define INC_DISTORTION_H_
 

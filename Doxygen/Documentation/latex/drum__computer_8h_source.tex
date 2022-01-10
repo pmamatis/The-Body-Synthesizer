@@ -1,0 +1,101 @@
+\hypertarget{drum__computer_8h_source}{}\doxysection{drum\+\_\+computer.\+h}
+\label{drum__computer_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/drum\_computer.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/drum\_computer.h}}
+\mbox{\hyperlink{drum__computer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00013}00013 \textcolor{preprocessor}{\#ifndef INC\_DRUM\_COMPUTER\_H\_}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00014}00014 \textcolor{preprocessor}{\#define INC\_DRUM\_COMPUTER\_H\_}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00016}00016 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00017}00017 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00018}00018 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{wav__LUT_8h}{wav\_LUT.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00020}00020 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00021}00021 \textcolor{comment}{ * @brief       Defines}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00022}00022 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00025}\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{00025}} \textcolor{preprocessor}{\#define FourFour 8}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00026}00026 \textcolor{preprocessor}{\#define ThreeFour 12}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00030}00030 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00031}00031 \textcolor{comment}{ * @brief   Variables}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00032}00032 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00034}\mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{00034}} \textcolor{keywordtype}{float} \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}};}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00035}00035 \textcolor{keywordtype}{float} BPM\_MAX;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00036}00036 \textcolor{keywordtype}{float} last\_BPM;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00037}00037 uint32\_t MasterClock;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00040}\mbox{\hyperlink{drum__computer_8h_ad32e19a8282780d0a134ec07797ac10b}{00040}} uint32\_t \mbox{\hyperlink{drum__computer_8h_ad32e19a8282780d0a134ec07797ac10b}{drum\_index}};}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00043}\mbox{\hyperlink{drum__computer_8h_a148d70203e23260f999890046d5509b0}{00043}} uint32\_t \mbox{\hyperlink{drum__computer_8h_a148d70203e23260f999890046d5509b0}{counter\_master}};}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00044}00044 uint32\_t counter\_DS1[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00045}00045 uint32\_t counter\_DS2[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00046}00046 uint32\_t counter\_DS3[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00047}00047 uint32\_t counter\_DS4[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00050}\mbox{\hyperlink{drum__computer_8h_a88744615d25a485f31d6718453e6d324}{00050}} uint32\_t \mbox{\hyperlink{drum__computer_8h_a88744615d25a485f31d6718453e6d324}{flag\_DS1}}[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00051}00051 uint32\_t flag\_DS2[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00052}00052 uint32\_t flag\_DS3[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00053}00053 uint32\_t flag\_DS4[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00056}\mbox{\hyperlink{drum__computer_8h_a4c0fb828065d1505aa1abfdd52afc7c3}{00056}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{drum__computer_8h_a4c0fb828065d1505aa1abfdd52afc7c3}{timing\_DS1}}[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00057}00057 \textcolor{keywordtype}{bool} timing\_DS2[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00058}00058 \textcolor{keywordtype}{bool} timing\_DS3[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00059}00059 \textcolor{keywordtype}{bool} timing\_DS4[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00060}00060 uint32\_t timing\_position\_in\_samples[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00063}\mbox{\hyperlink{drum__computer_8h_a1d0ce949a258b04a5822d3442fd73d83}{00063}} \textcolor{keywordtype}{float} \mbox{\hyperlink{drum__computer_8h_a1d0ce949a258b04a5822d3442fd73d83}{DS1s}};}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00064}00064 \textcolor{keywordtype}{float} DS2s;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00065}00065 \textcolor{keywordtype}{float} DS3s;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00066}00066 \textcolor{keywordtype}{float} DS4s;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00067}00067 \textcolor{keywordtype}{float} PSSs;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00068}00068 \textcolor{keywordtype}{float} drums;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00069}00069 \textcolor{keywordtype}{float} drums\_filtered;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00071}00071 \textcolor{keywordtype}{bool} timing\_SN1[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00072}00072 \textcolor{keywordtype}{bool} timing\_SN2[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00073}00073 \textcolor{keywordtype}{bool} timing\_SN3[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00074}00074 \textcolor{keywordtype}{bool} timing\_SN4[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00077}\mbox{\hyperlink{drum__computer_8h_a4211ba08e77d82a294762a623041e342}{00077}} uint16\_t \mbox{\hyperlink{drum__computer_8h_a4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}};}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00078}00078 uint16\_t freq\_index\_SN2;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00079}00079 uint16\_t freq\_index\_SN3;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00080}00080 uint16\_t freq\_index\_SN4;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00083}\mbox{\hyperlink{drum__computer_8h_abafd5c3bbb1d0bbc3e708889e904e3a7}{00083}} uint32\_t \mbox{\hyperlink{drum__computer_8h_abafd5c3bbb1d0bbc3e708889e904e3a7}{current\_LUT\_index\_SN1}}[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00084}00084 uint32\_t current\_LUT\_index\_SN2[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00085}00085 uint32\_t current\_LUT\_index\_SN3[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00086}00086 uint32\_t current\_LUT\_index\_SN4[\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}];}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00089}\mbox{\hyperlink{drum__computer_8h_a1578899be8b6d34fe965f44a84c16ecd}{00089}} \textcolor{keywordtype}{float} \mbox{\hyperlink{drum__computer_8h_a1578899be8b6d34fe965f44a84c16ecd}{SN1}};}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00090}00090 \textcolor{keywordtype}{float} SN2;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00091}00091 \textcolor{keywordtype}{float} SN3;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00092}00092 \textcolor{keywordtype}{float} SN4;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00094}00094 \textcolor{keywordtype}{float} SN1\_temp;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00095}00095 \textcolor{keywordtype}{float} SN2\_temp;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00096}00096 \textcolor{keywordtype}{float} SN3\_temp;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00097}00097 \textcolor{keywordtype}{float} SN4\_temp;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00099}00099 \textcolor{keywordtype}{float} sequencer;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00101}00101 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00102}00102 \textcolor{comment}{ * @brief   Functions}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00103}00103 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00104}00104 HAL\_StatusTypeDef \mbox{\hyperlink{drum__computer_8h_a98c7a5f46d897df7157cfd75e379afb3}{Drum\_Computer\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00105}00105 HAL\_StatusTypeDef \mbox{\hyperlink{drum__computer_8h_a0945a49b026be615b8a70c8ec885ac08}{Drum\_Computer\_Reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00106}00106 HAL\_StatusTypeDef \mbox{\hyperlink{drum__computer_8h_a08535ad247ef4e17b91bbba4b56833af}{Drum\_Computer\_Process}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00107}00107 HAL\_StatusTypeDef \mbox{\hyperlink{drum__computer_8h_ab1eca379f4f1b927be94270e748a87bf}{Drum\_Computer\_CalcSample}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00108}00108 HAL\_StatusTypeDef \mbox{\hyperlink{drum__computer_8h_af1fa77afa44aa624f611ecb1bcb9117e}{Sequencer\_Reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00109}00109 HAL\_StatusTypeDef \mbox{\hyperlink{drum__computer_8h_afe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\_ADSR\_Init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* env);}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00112}\mbox{\hyperlink{drum__computer_8h_a4f45ba3b9c8c3c6e57de16324bf23604}{00112}} \textcolor{keywordtype}{float} \mbox{\hyperlink{drum__computer_8h_a4f45ba3b9c8c3c6e57de16324bf23604}{single\_sample}};}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00113}00113 uint32\_t counter\_single\_sample;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00114}00114 \textcolor{keywordtype}{bool} play\_single\_sample\_flag;}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00115}00115 \textcolor{keywordtype}{void} \mbox{\hyperlink{drum__computer_8h_ab788a1e344e6956cb70a8e5e1ea4d0bd}{PlaySingleSample}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{drum__computer_8h_source_l00117}00117 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_DRUM\_COMPUTER\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

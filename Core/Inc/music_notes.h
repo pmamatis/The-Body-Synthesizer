@@ -1,3 +1,13 @@
+/**
+ * @file music_notes.h
+ * @author max lehmer & paul mamatis
+ * @brief converts music notes and keys to frequencys
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_MUSIC_NOTES_H_
 #define INC_MUSIC_NOTES_H_
 

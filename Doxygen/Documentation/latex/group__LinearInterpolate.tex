@@ -1,0 +1,327 @@
+\hypertarget{group__LinearInterpolate}{}\doxysection{Linear Interpolation}
+\label{group__LinearInterpolate}\index{Linear Interpolation@{Linear Interpolation}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE float32\+\_\+t \mbox{\hyperlink{group__LinearInterpolate_ga5335f60532bab8cee1e7c22f76a41805}{arm\+\_\+linear\+\_\+interp\+\_\+f32}} (\mbox{\hyperlink{structarm__linear__interp__instance__f32}{arm\+\_\+linear\+\_\+interp\+\_\+instance\+\_\+f32}} $\ast$S, float32\+\_\+t x)
+\begin{DoxyCompactList}\small\item\em Process function for the floating-\/point Linear Interpolation Function. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q31\+\_\+t \mbox{\hyperlink{group__LinearInterpolate_gaeaf31289367ac36c4727939e1ea73312}{arm\+\_\+linear\+\_\+interp\+\_\+q31}} (q31\+\_\+t $\ast$p\+YData, q31\+\_\+t x, uint32\+\_\+t n\+Values)
+\begin{DoxyCompactList}\small\item\em Process function for the Q31 Linear Interpolation Function. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q15\+\_\+t \mbox{\hyperlink{group__LinearInterpolate_ga9a308a0de4d4e4fe4a262a99b17121cd}{arm\+\_\+linear\+\_\+interp\+\_\+q15}} (q15\+\_\+t $\ast$p\+YData, q31\+\_\+t x, uint32\+\_\+t n\+Values)
+\begin{DoxyCompactList}\small\item\em Process function for the Q15 Linear Interpolation Function. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q7\+\_\+t \mbox{\hyperlink{group__LinearInterpolate_gafabd4124a8724055329b5c484419f936}{arm\+\_\+linear\+\_\+interp\+\_\+q7}} (q7\+\_\+t $\ast$p\+YData, q31\+\_\+t x, uint32\+\_\+t n\+Values)
+\begin{DoxyCompactList}\small\item\em Process function for the Q7 Linear Interpolation Function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+end of Inverse park group
+
+Linear interpolation is a method of curve fitting using linear polynomials. Linear interpolation works by effectively drawing a straight line between two neighboring samples and returning the appropriate point along that line
+
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+A Linear Interpolate function calculates an output value(y), for the input(x) using linear interpolation of the input values x0, x1( nearest input values) and the output values y0 and y1(nearest output values)
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Algorithm\+:}
+
+\begin{DoxyPre}
+      y = y0 + (x -\/ x0) * ((y1 -\/ y0)/(x1-\/x0))
+      where x0, x1 are nearest values of input x
+            y0, y1 are nearest values to output y
+\end{DoxyPre}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+This set of functions implements Linear interpolation process for Q7, Q15, Q31, and floating-\/point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. {\ttfamily S} points to an instance of the Linear Interpolate function data structure. {\ttfamily x} is the input sample value. The functions returns the output value.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+if x is outside of the table boundary, Linear interpolation returns first value of the table if x is below input range and returns last value of table if x is above range. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__LinearInterpolate_ga5335f60532bab8cee1e7c22f76a41805}\label{group__LinearInterpolate_ga5335f60532bab8cee1e7c22f76a41805}} 
+\index{Linear Interpolation@{Linear Interpolation}!arm\_linear\_interp\_f32@{arm\_linear\_interp\_f32}}
+\index{arm\_linear\_interp\_f32@{arm\_linear\_interp\_f32}!Linear Interpolation@{Linear Interpolation}}
+\doxysubsubsection{\texorpdfstring{arm\_linear\_interp\_f32()}{arm\_linear\_interp\_f32()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE float32\+\_\+t arm\+\_\+linear\+\_\+interp\+\_\+f32 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarm__linear__interp__instance__f32}{arm\+\_\+linear\+\_\+interp\+\_\+instance\+\_\+f32}} $\ast$}]{S,  }\item[{float32\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+
+
+Process function for the floating-\/point Linear Interpolation Function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em S} & is an instance of the floating-\/point Linear Interpolation structure \\
+\hline
+\mbox{\texttt{ in}}  & {\em x} & input sample to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+y processed output sample. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l06483}{6483}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{06486   \{}
+\DoxyCodeLine{06487     float32\_t y;}
+\DoxyCodeLine{06488     float32\_t x0, x1;                            \textcolor{comment}{/* Nearest input values */}}
+\DoxyCodeLine{06489     float32\_t y0, y1;                            \textcolor{comment}{/* Nearest output values */}}
+\DoxyCodeLine{06490     float32\_t xSpacing = S-\/>\mbox{\hyperlink{structarm__linear__interp__instance__f32_aa8e2d686b5434a406d390b347b183511}{xSpacing}};            \textcolor{comment}{/* spacing between input values */}}
+\DoxyCodeLine{06491     int32\_t i;                                   \textcolor{comment}{/* Index variable */}}
+\DoxyCodeLine{06492     float32\_t *pYData = S-\/>\mbox{\hyperlink{structarm__linear__interp__instance__f32_ab373001f6afad0850359c344a4d7eee4}{pYData}};               \textcolor{comment}{/* pointer to output table */}}
+\DoxyCodeLine{06493 }
+\DoxyCodeLine{06494     \textcolor{comment}{/* Calculation of index */}}
+\DoxyCodeLine{06495     i = (int32\_t) ((x -\/ S-\/>\mbox{\hyperlink{structarm__linear__interp__instance__f32_a08352dc6ea82fbc0827408e018535481}{x1}}) / xSpacing);}
+\DoxyCodeLine{06496 }
+\DoxyCodeLine{06497     \textcolor{keywordflow}{if} (i < 0)}
+\DoxyCodeLine{06498     \{}
+\DoxyCodeLine{06499       \textcolor{comment}{/* Iniatilize output for below specified range as least output value of table */}}
+\DoxyCodeLine{06500       y = pYData[0];}
+\DoxyCodeLine{06501     \}}
+\DoxyCodeLine{06502     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((uint32\_t)i >= (S-\/>\mbox{\hyperlink{structarm__linear__interp__instance__f32_a95f02a926b16d35359aca5b31e813b11}{nValues}} -\/ 1))}
+\DoxyCodeLine{06503     \{}
+\DoxyCodeLine{06504       \textcolor{comment}{/* Iniatilize output for above specified range as last output value of table */}}
+\DoxyCodeLine{06505       y = pYData[S-\/>\mbox{\hyperlink{structarm__linear__interp__instance__f32_a95f02a926b16d35359aca5b31e813b11}{nValues}} -\/ 1];}
+\DoxyCodeLine{06506     \}}
+\DoxyCodeLine{06507     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{06508     \{}
+\DoxyCodeLine{06509       \textcolor{comment}{/* Calculation of nearest input values */}}
+\DoxyCodeLine{06510       x0 = S-\/>\mbox{\hyperlink{structarm__linear__interp__instance__f32_a08352dc6ea82fbc0827408e018535481}{x1}} +  i      * xSpacing;}
+\DoxyCodeLine{06511       x1 = S-\/>\mbox{\hyperlink{structarm__linear__interp__instance__f32_a08352dc6ea82fbc0827408e018535481}{x1}} + (i + 1) * xSpacing;}
+\DoxyCodeLine{06512 }
+\DoxyCodeLine{06513       \textcolor{comment}{/* Read of nearest output values */}}
+\DoxyCodeLine{06514       y0 = pYData[i];}
+\DoxyCodeLine{06515       y1 = pYData[i + 1];}
+\DoxyCodeLine{06516 }
+\DoxyCodeLine{06517       \textcolor{comment}{/* Calculation of output */}}
+\DoxyCodeLine{06518       y = y0 + (x -\/ x0) * ((y1 -\/ y0) / (x1 -\/ x0));}
+\DoxyCodeLine{06519 }
+\DoxyCodeLine{06520     \}}
+\DoxyCodeLine{06521 }
+\DoxyCodeLine{06522     \textcolor{comment}{/* returns output value */}}
+\DoxyCodeLine{06523     \textcolor{keywordflow}{return} (y);}
+\DoxyCodeLine{06524   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__LinearInterpolate_ga9a308a0de4d4e4fe4a262a99b17121cd}\label{group__LinearInterpolate_ga9a308a0de4d4e4fe4a262a99b17121cd}} 
+\index{Linear Interpolation@{Linear Interpolation}!arm\_linear\_interp\_q15@{arm\_linear\_interp\_q15}}
+\index{arm\_linear\_interp\_q15@{arm\_linear\_interp\_q15}!Linear Interpolation@{Linear Interpolation}}
+\doxysubsubsection{\texorpdfstring{arm\_linear\_interp\_q15()}{arm\_linear\_interp\_q15()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q15\+\_\+t arm\+\_\+linear\+\_\+interp\+\_\+q15 (\begin{DoxyParamCaption}\item[{q15\+\_\+t $\ast$}]{p\+YData,  }\item[{q31\+\_\+t}]{x,  }\item[{uint32\+\_\+t}]{n\+Values }\end{DoxyParamCaption})}
+
+
+
+Process function for the Q15 Linear Interpolation Function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+YData} & pointer to Q15 Linear Interpolation table \\
+\hline
+\mbox{\texttt{ in}}  & {\em x} & input sample to process \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Values} & number of table values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+y processed output sample.
+\end{DoxyReturn}
+\begin{DoxyParagraph}{}
+Input sample {\ttfamily x} is in 12.\+20 format which contains 12 bits for table index and 20 bits for fractional part. This function can support maximum of table size 2$^\wedge$12. 
+\end{DoxyParagraph}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l06598}{6598}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{06602   \{}
+\DoxyCodeLine{06603     q63\_t y;                                     \textcolor{comment}{/* output */}}
+\DoxyCodeLine{06604     q15\_t y0, y1;                                \textcolor{comment}{/* Nearest output values */}}
+\DoxyCodeLine{06605     q31\_t fract;                                 \textcolor{comment}{/* fractional part */}}
+\DoxyCodeLine{06606     int32\_t index;                               \textcolor{comment}{/* Index to read nearest output values */}}
+\DoxyCodeLine{06607 }
+\DoxyCodeLine{06608     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{06609     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{06610     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{06611     index = ((x \& (int32\_t)0xFFF00000) >> 20);}
+\DoxyCodeLine{06612 }
+\DoxyCodeLine{06613     \textcolor{keywordflow}{if} (index >= (int32\_t)(nValues -\/ 1))}
+\DoxyCodeLine{06614     \{}
+\DoxyCodeLine{06615       \textcolor{keywordflow}{return} (pYData[nValues -\/ 1]);}
+\DoxyCodeLine{06616     \}}
+\DoxyCodeLine{06617     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index < 0)}
+\DoxyCodeLine{06618     \{}
+\DoxyCodeLine{06619       \textcolor{keywordflow}{return} (pYData[0]);}
+\DoxyCodeLine{06620     \}}
+\DoxyCodeLine{06621     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{06622     \{}
+\DoxyCodeLine{06623       \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{06624       \textcolor{comment}{/* fract is in 12.20 format */}}
+\DoxyCodeLine{06625       fract = (x \& 0x000FFFFF);}
+\DoxyCodeLine{06626 }
+\DoxyCodeLine{06627       \textcolor{comment}{/* Read two nearest output values from the index */}}
+\DoxyCodeLine{06628       y0 = pYData[index];}
+\DoxyCodeLine{06629       y1 = pYData[index + 1];}
+\DoxyCodeLine{06630 }
+\DoxyCodeLine{06631       \textcolor{comment}{/* Calculation of y0 * (1-\/fract) and y is in 13.35 format */}}
+\DoxyCodeLine{06632       y = ((q63\_t) y0 * (0xFFFFF -\/ fract));}
+\DoxyCodeLine{06633 }
+\DoxyCodeLine{06634       \textcolor{comment}{/* Calculation of (y0 * (1-\/fract) + y1 * fract) and y is in 13.35 format */}}
+\DoxyCodeLine{06635       y += ((q63\_t) y1 * (fract));}
+\DoxyCodeLine{06636 }
+\DoxyCodeLine{06637       \textcolor{comment}{/* convert y to 1.15 format */}}
+\DoxyCodeLine{06638       \textcolor{keywordflow}{return} (q15\_t) (y >> 20);}
+\DoxyCodeLine{06639     \}}
+\DoxyCodeLine{06640   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__LinearInterpolate_gaeaf31289367ac36c4727939e1ea73312}\label{group__LinearInterpolate_gaeaf31289367ac36c4727939e1ea73312}} 
+\index{Linear Interpolation@{Linear Interpolation}!arm\_linear\_interp\_q31@{arm\_linear\_interp\_q31}}
+\index{arm\_linear\_interp\_q31@{arm\_linear\_interp\_q31}!Linear Interpolation@{Linear Interpolation}}
+\doxysubsubsection{\texorpdfstring{arm\_linear\_interp\_q31()}{arm\_linear\_interp\_q31()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q31\+\_\+t arm\+\_\+linear\+\_\+interp\+\_\+q31 (\begin{DoxyParamCaption}\item[{q31\+\_\+t $\ast$}]{p\+YData,  }\item[{q31\+\_\+t}]{x,  }\item[{uint32\+\_\+t}]{n\+Values }\end{DoxyParamCaption})}
+
+
+
+Process function for the Q31 Linear Interpolation Function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+YData} & pointer to Q31 Linear Interpolation table \\
+\hline
+\mbox{\texttt{ in}}  & {\em x} & input sample to process \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Values} & number of table values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+y processed output sample.
+\end{DoxyReturn}
+\begin{DoxyParagraph}{}
+Input sample {\ttfamily x} is in 12.\+20 format which contains 12 bits for table index and 20 bits for fractional part. This function can support maximum of table size 2$^\wedge$12. 
+\end{DoxyParagraph}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l06540}{6540}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{06544   \{}
+\DoxyCodeLine{06545     q31\_t y;                                     \textcolor{comment}{/* output */}}
+\DoxyCodeLine{06546     q31\_t y0, y1;                                \textcolor{comment}{/* Nearest output values */}}
+\DoxyCodeLine{06547     q31\_t fract;                                 \textcolor{comment}{/* fractional part */}}
+\DoxyCodeLine{06548     int32\_t index;                               \textcolor{comment}{/* Index to read nearest output values */}}
+\DoxyCodeLine{06549 }
+\DoxyCodeLine{06550     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{06551     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{06552     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{06553     index = ((x \& (q31\_t)0xFFF00000) >> 20);}
+\DoxyCodeLine{06554 }
+\DoxyCodeLine{06555     \textcolor{keywordflow}{if} (index >= (int32\_t)(nValues -\/ 1))}
+\DoxyCodeLine{06556     \{}
+\DoxyCodeLine{06557       \textcolor{keywordflow}{return} (pYData[nValues -\/ 1]);}
+\DoxyCodeLine{06558     \}}
+\DoxyCodeLine{06559     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index < 0)}
+\DoxyCodeLine{06560     \{}
+\DoxyCodeLine{06561       \textcolor{keywordflow}{return} (pYData[0]);}
+\DoxyCodeLine{06562     \}}
+\DoxyCodeLine{06563     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{06564     \{}
+\DoxyCodeLine{06565       \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{06566       \textcolor{comment}{/* shift left by 11 to keep fract in 1.31 format */}}
+\DoxyCodeLine{06567       fract = (x \& 0x000FFFFF) << 11;}
+\DoxyCodeLine{06568 }
+\DoxyCodeLine{06569       \textcolor{comment}{/* Read two nearest output values from the index in 1.31(q31) format */}}
+\DoxyCodeLine{06570       y0 = pYData[index];}
+\DoxyCodeLine{06571       y1 = pYData[index + 1];}
+\DoxyCodeLine{06572 }
+\DoxyCodeLine{06573       \textcolor{comment}{/* Calculation of y0 * (1-\/fract) and y is in 2.30 format */}}
+\DoxyCodeLine{06574       y = ((q31\_t) ((q63\_t) y0 * (0x7FFFFFFF -\/ fract) >> 32));}
+\DoxyCodeLine{06575 }
+\DoxyCodeLine{06576       \textcolor{comment}{/* Calculation of y0 * (1-\/fract) + y1 *fract and y is in 2.30 format */}}
+\DoxyCodeLine{06577       y += ((q31\_t) (((q63\_t) y1 * fract) >> 32));}
+\DoxyCodeLine{06578 }
+\DoxyCodeLine{06579       \textcolor{comment}{/* Convert y to 1.31 format */}}
+\DoxyCodeLine{06580       \textcolor{keywordflow}{return} (y << 1U);}
+\DoxyCodeLine{06581     \}}
+\DoxyCodeLine{06582   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__LinearInterpolate_gafabd4124a8724055329b5c484419f936}\label{group__LinearInterpolate_gafabd4124a8724055329b5c484419f936}} 
+\index{Linear Interpolation@{Linear Interpolation}!arm\_linear\_interp\_q7@{arm\_linear\_interp\_q7}}
+\index{arm\_linear\_interp\_q7@{arm\_linear\_interp\_q7}!Linear Interpolation@{Linear Interpolation}}
+\doxysubsubsection{\texorpdfstring{arm\_linear\_interp\_q7()}{arm\_linear\_interp\_q7()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q7\+\_\+t arm\+\_\+linear\+\_\+interp\+\_\+q7 (\begin{DoxyParamCaption}\item[{q7\+\_\+t $\ast$}]{p\+YData,  }\item[{q31\+\_\+t}]{x,  }\item[{uint32\+\_\+t}]{n\+Values }\end{DoxyParamCaption})}
+
+
+
+Process function for the Q7 Linear Interpolation Function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+YData} & pointer to Q7 Linear Interpolation table \\
+\hline
+\mbox{\texttt{ in}}  & {\em x} & input sample to process \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Values} & number of table values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+y processed output sample.
+\end{DoxyReturn}
+\begin{DoxyParagraph}{}
+Input sample {\ttfamily x} is in 12.\+20 format which contains 12 bits for table index and 20 bits for fractional part. This function can support maximum of table size 2$^\wedge$12. 
+\end{DoxyParagraph}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l06655}{6655}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{06659   \{}
+\DoxyCodeLine{06660     q31\_t y;                                     \textcolor{comment}{/* output */}}
+\DoxyCodeLine{06661     q7\_t y0, y1;                                 \textcolor{comment}{/* Nearest output values */}}
+\DoxyCodeLine{06662     q31\_t fract;                                 \textcolor{comment}{/* fractional part */}}
+\DoxyCodeLine{06663     uint32\_t index;                              \textcolor{comment}{/* Index to read nearest output values */}}
+\DoxyCodeLine{06664 }
+\DoxyCodeLine{06665     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{06666     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{06667     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{06668     \textcolor{keywordflow}{if} (x < 0)}
+\DoxyCodeLine{06669     \{}
+\DoxyCodeLine{06670       \textcolor{keywordflow}{return} (pYData[0]);}
+\DoxyCodeLine{06671     \}}
+\DoxyCodeLine{06672     index = (x >> 20) \& 0xfff;}
+\DoxyCodeLine{06673 }
+\DoxyCodeLine{06674     \textcolor{keywordflow}{if} (index >= (nValues -\/ 1))}
+\DoxyCodeLine{06675     \{}
+\DoxyCodeLine{06676       \textcolor{keywordflow}{return} (pYData[nValues -\/ 1]);}
+\DoxyCodeLine{06677     \}}
+\DoxyCodeLine{06678     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{06679     \{}
+\DoxyCodeLine{06680       \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{06681       \textcolor{comment}{/* fract is in 12.20 format */}}
+\DoxyCodeLine{06682       fract = (x \& 0x000FFFFF);}
+\DoxyCodeLine{06683 }
+\DoxyCodeLine{06684       \textcolor{comment}{/* Read two nearest output values from the index and are in 1.7(q7) format */}}
+\DoxyCodeLine{06685       y0 = pYData[index];}
+\DoxyCodeLine{06686       y1 = pYData[index + 1];}
+\DoxyCodeLine{06687 }
+\DoxyCodeLine{06688       \textcolor{comment}{/* Calculation of y0 * (1-\/fract ) and y is in 13.27(q27) format */}}
+\DoxyCodeLine{06689       y = ((y0 * (0xFFFFF -\/ fract)));}
+\DoxyCodeLine{06690 }
+\DoxyCodeLine{06691       \textcolor{comment}{/* Calculation of y1 * fract + y0 * (1-\/fract) and y is in 13.27(q27) format */}}
+\DoxyCodeLine{06692       y += (y1 * fract);}
+\DoxyCodeLine{06693 }
+\DoxyCodeLine{06694       \textcolor{comment}{/* convert y to 1.7(q7) format */}}
+\DoxyCodeLine{06695       \textcolor{keywordflow}{return} (q7\_t) (y >> 20);}
+\DoxyCodeLine{06696      \}}
+\DoxyCodeLine{06697   \}}
+
+\end{DoxyCode}

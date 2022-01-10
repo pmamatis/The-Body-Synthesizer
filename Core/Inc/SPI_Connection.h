@@ -1,3 +1,13 @@
+/**
+ * @file SPI_Connection.h
+ * @author paul mamatis
+ * @brief spi connection to other STM, where the MPU6050 is processed
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_SPI_CONNECTION_H_
 #define INC_SPI_CONNECTION_H_
 #include "main.h"
@@ -11,6 +21,11 @@
 /*********************************
  * @brief		Structs
  *********************************/
+
+/**
+ * @brief tilt directions Flags, from MPU6050
+ * 
+ */
 typedef enum  tilt_direction_t{
   TILT_NONE  = 0x00,
   TILT_RIGHT = 0x01,

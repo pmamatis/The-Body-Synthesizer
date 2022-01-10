@@ -1,3 +1,13 @@
+/** TODO
+ * @file tremolo.h
+ * @author marc bielen
+ * @brief tremolo effect
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_TREMOLO_H_
 #define INC_TREMOLO_H_
 

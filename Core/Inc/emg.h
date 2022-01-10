@@ -1,3 +1,13 @@
+/**
+ * @file emg.h
+ * @author paul mamatis
+ * @brief emg and ecg 
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_EMG_H_
 #define INC_EMG_H_
 

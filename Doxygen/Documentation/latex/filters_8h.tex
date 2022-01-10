@@ -1,0 +1,1094 @@
+\hypertarget{filters_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/filters.h File Reference}
+\label{filters_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/filters.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/filters.h}}
+
+
+filter implentations  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Filter\+\_\+\+Status} \{ {\bfseries FILTER\+\_\+\+FAIL} = -\/1
+, {\bfseries FILTER\+\_\+\+OK} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_a44cc78d9063ea994317ac57c15b6eced}{Filters\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Filter Init function. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_adcc644218f3fbdbd5725f157286c155f}{Filters\+\_\+\+Reinit\+\_\+\+Poti}} (void)
+\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_aec8e59a44285b5c5d026199e59bedc1d}{Filters\+\_\+\+Reinit\+\_\+\+Gyro}} (float cutoff)
+\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_a251962656e367a604dfd084fabcc7076}{Drum\+Filters\+\_\+\+Reinit\+\_\+\+Gyro}} (float cutoff\+\_\+d, float Qfactor\+\_\+d, float gain\+\_\+d)
+\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_ab23086039f9e38c9538b24412c2e397d}{Equalizer\+\_\+\+Reset}} (void)
+\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_a1d45e64aaa786258dd8d43d5fd8e8cbe}{Setup\+Lowpass}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$LP, float cutoff, float Q)
+\begin{DoxyCompactList}\small\item\em Lowpass Filter. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_adf56f507b61ffa882eb78b346dec0f05}{Setup\+Highpass}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$HP, float cutoff, float Q)
+\begin{DoxyCompactList}\small\item\em Highpass Filter. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}{Setup\+Bandpass\+CPG}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$BP, float cutoff, float Q)
+\begin{DoxyCompactList}\small\item\em Constant Peak Gain Bandpass Filter. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_a3c5c39d8c8ea89c55cc12218899dbc7c}{Setup\+Bandpass\+CSG}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$BP, float cutoff, float Q)
+\begin{DoxyCompactList}\small\item\em Constant Skirt Gain Bandpass Filter. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_acb256e7bd3b663acfe846603e95f851a}{Setup\+Notch}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$BP, float cutoff, float Q)
+\begin{DoxyCompactList}\small\item\em Notch Filter. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{Setup\+Peaking\+EQ}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$BP, float cutoff, float Q, float d\+BGain)
+\begin{DoxyCompactList}\small\item\em Peaking EQ Filter. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{Setup\+Low\+Shelf}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$LS, float cutoff, float Q, float d\+BGain)
+\begin{DoxyCompactList}\small\item\em Low\+Shelf Filter. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_a03fcfa1037c98ff029c9fb59f6c312dc}{Setup\+High\+Shelf}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$HS, float cutoff, float Q, float d\+BGain)
+\begin{DoxyCompactList}\small\item\em High\+Shelf Filter. \end{DoxyCompactList}\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{Process\+Filter}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$F, float $\ast$data)
+\item 
+Filter\+\_\+\+Status \mbox{\hyperlink{filters_8h_aa615f53296529b29ed116c17bf41f422}{Process\+EQ}} (float $\ast$data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{filters_8h_a2a5f32bdea1d7c4e05f40d2654b8a6a4}{ADC\+\_\+value}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{filters_8h_a7f18f194d540e69f0c05dabecf69dc2c}{ADC\+\_\+value\+\_\+deb}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{filters_8h_a8fac2498fe5bd106b35d43af5bc91f6f}{flag}}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}} \mbox{\hyperlink{filters_8h_afb31aec893b74c3193e19d352b2047a1}{EQ\+\_\+\+BAND1}}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}} \mbox{\hyperlink{filters_8h_ae756ff10d1073a038394e529858f2098}{EQ\+\_\+\+BAND2}}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}} \mbox{\hyperlink{filters_8h_afcb286d6fa2d992d2cac96fd38ac015e}{EQ\+\_\+\+BAND3}}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}} \mbox{\hyperlink{filters_8h_ad86419fa4158b9f3c43cc4adbe7785aa}{EQ\+\_\+\+BAND4}}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}} \mbox{\hyperlink{filters_8h_ad0e98f4e353bad9c581cacbbeeb06083}{EQ\+\_\+\+BAND5}}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}} \mbox{\hyperlink{filters_8h_a8df6d275fc9b7ab2e0267668c936bbb9}{BP\+\_\+\+WAHWAH}}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}} \mbox{\hyperlink{filters_8h_aeb7d5fd1143c721af81f8e18d26e37a4}{LS\+\_\+\+DRUMS}}
+\item 
+struct \mbox{\hyperlink{structBQFilter}{BQFilter}} \mbox{\hyperlink{filters_8h_aab7a3b7d13f2bf51c6d328b1ebd26954}{LP\+\_\+\+AA}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+filter implentations 
+
+TODO
+
+\begin{DoxyAuthor}{Author}
+max lehmer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{filters_8h_a0be93170216516ba07790f6d540bd8af}\label{filters_8h_a0be93170216516ba07790f6d540bd8af}} 
+\index{filters.h@{filters.h}!Filter\_Status@{Filter\_Status}}
+\index{Filter\_Status@{Filter\_Status}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{Filter\_Status}{Filter\_Status}}
+{\footnotesize\ttfamily enum Filter\+\_\+\+Status}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00060}{60}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060              \{}
+\DoxyCodeLine{00061     FILTER\_FAIL = -\/1,}
+\DoxyCodeLine{00062     FILTER\_OK = 1}
+\DoxyCodeLine{00063 \} Filter\_Status;}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{filters_8h_a251962656e367a604dfd084fabcc7076}\label{filters_8h_a251962656e367a604dfd084fabcc7076}} 
+\index{filters.h@{filters.h}!DrumFilters\_Reinit\_Gyro@{DrumFilters\_Reinit\_Gyro}}
+\index{DrumFilters\_Reinit\_Gyro@{DrumFilters\_Reinit\_Gyro}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{DrumFilters\_Reinit\_Gyro()}{DrumFilters\_Reinit\_Gyro()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Drum\+Filters\+\_\+\+Reinit\+\_\+\+Gyro (\begin{DoxyParamCaption}\item[{float}]{cutoff\+\_\+d,  }\item[{float}]{Qfactor\+\_\+d,  }\item[{float}]{gain\+\_\+d }\end{DoxyParamCaption})}
+
+TODO 
+\begin{DoxyParams}{Parameters}
+{\em cutoff\+\_\+d} & \\
+\hline
+{\em Qfactor\+\_\+d} & \\
+\hline
+{\em gain\+\_\+d} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00160}{160}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00160                                                                                      \{}
+\DoxyCodeLine{00161 }
+\DoxyCodeLine{00162 }
+\DoxyCodeLine{00163     \textcolor{keywordflow}{if} (cutoff\_d > LUT\_FMIN)}
+\DoxyCodeLine{00164         \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&LS\_DRUMS, cutoff\_d, Qfactor\_d, gain\_d);}
+\DoxyCodeLine{00165 }
+\DoxyCodeLine{00166     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00167         \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&LS\_DRUMS, LUT\_FMIN, Qfactor\_d, gain\_d);}
+\DoxyCodeLine{00168 }
+\DoxyCodeLine{00169     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00170 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_ab23086039f9e38c9538b24412c2e397d}\label{filters_8h_ab23086039f9e38c9538b24412c2e397d}} 
+\index{filters.h@{filters.h}!Equalizer\_Reset@{Equalizer\_Reset}}
+\index{Equalizer\_Reset@{Equalizer\_Reset}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{Equalizer\_Reset()}{Equalizer\_Reset()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Equalizer\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+TODO \begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00254}{254}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00254                                     \{}
+\DoxyCodeLine{00255 }
+\DoxyCodeLine{00256     \textcolor{comment}{// BAND 1: Low-\/Shelf filter}}
+\DoxyCodeLine{00257     Display.Filter\_ONOFF[0] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00258     Display.Filter\_Q[0] = EQ\_BAND1.Q = 0.707;}
+\DoxyCodeLine{00259     Display.Filter\_Cutoff[0] = EQ\_BAND1.cutoff = 200;}
+\DoxyCodeLine{00260     Display.Filter\_Gain[0] = EQ\_BAND1.dBGain = 0;}
+\DoxyCodeLine{00261     \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&EQ\_BAND1, EQ\_BAND1.cutoff, EQ\_BAND1.Q, EQ\_BAND1.dBGain);}
+\DoxyCodeLine{00262 }
+\DoxyCodeLine{00263 }
+\DoxyCodeLine{00264     \textcolor{comment}{// BAND 2: Peaking-\/EQ}}
+\DoxyCodeLine{00265     Display.Filter\_ONOFF[1] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00266     Display.Filter\_Q[1] = EQ\_BAND2.Q = 0.707;}
+\DoxyCodeLine{00267     Display.Filter\_Cutoff[1] = EQ\_BAND2.cutoff = 400;}
+\DoxyCodeLine{00268     Display.Filter\_Gain[1] = EQ\_BAND2.dBGain = 0;}
+\DoxyCodeLine{00269     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND2, EQ\_BAND2.cutoff, EQ\_BAND2.Q, EQ\_BAND2.dBGain);}
+\DoxyCodeLine{00270 }
+\DoxyCodeLine{00271 }
+\DoxyCodeLine{00272     \textcolor{comment}{// BAND 3: Peaking-\/EQ}}
+\DoxyCodeLine{00273     Display.Filter\_ONOFF[2] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00274     Display.Filter\_Q[2] = EQ\_BAND3.Q = 0.707;}
+\DoxyCodeLine{00275     Display.Filter\_Cutoff[2] = EQ\_BAND3.cutoff = 800;}
+\DoxyCodeLine{00276     Display.Filter\_Gain[2] = EQ\_BAND3.dBGain = 0;}
+\DoxyCodeLine{00277     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND3, EQ\_BAND3.cutoff, EQ\_BAND3.Q, EQ\_BAND3.dBGain);}
+\DoxyCodeLine{00278 }
+\DoxyCodeLine{00279 }
+\DoxyCodeLine{00280     \textcolor{comment}{// BAND 4: Peaking-\/EQ}}
+\DoxyCodeLine{00281     Display.Filter\_ONOFF[3] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00282     Display.Filter\_Q[3] = EQ\_BAND4.Q = 0.707;}
+\DoxyCodeLine{00283     Display.Filter\_Cutoff[3] = EQ\_BAND4.cutoff = 1600;}
+\DoxyCodeLine{00284     Display.Filter\_Gain[3] = EQ\_BAND4.dBGain = 0;}
+\DoxyCodeLine{00285     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND4, EQ\_BAND4.cutoff, EQ\_BAND4.Q, EQ\_BAND4.dBGain);}
+\DoxyCodeLine{00286 }
+\DoxyCodeLine{00287 }
+\DoxyCodeLine{00288     \textcolor{comment}{// BAND 5: High-\/Shelf filter}}
+\DoxyCodeLine{00289     Display.Filter\_ONOFF[4] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00290     Display.Filter\_Q[4] = EQ\_BAND5.Q = 0.707;}
+\DoxyCodeLine{00291     Display.Filter\_Cutoff[4] = EQ\_BAND5.cutoff = 3200;}
+\DoxyCodeLine{00292     Display.Filter\_Gain[4] = EQ\_BAND5.dBGain = 0;}
+\DoxyCodeLine{00293     \mbox{\hyperlink{filters_8h_a03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\&EQ\_BAND5, EQ\_BAND5.cutoff, EQ\_BAND5.Q, EQ\_BAND5.dBGain);}
+\DoxyCodeLine{00294 }
+\DoxyCodeLine{00295 }
+\DoxyCodeLine{00296     \textcolor{comment}{// Drums Lowshelf}}
+\DoxyCodeLine{00297     Display.Drumfilter\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00298     \textcolor{comment}{//      LS\_DRUMS.Q = 10;}}
+\DoxyCodeLine{00299     \textcolor{comment}{//      LS\_DRUMS.cutoff = LUT\_FMIN;}}
+\DoxyCodeLine{00300     \textcolor{comment}{//      LS\_DRUMS.dBGain = -\/20;}}
+\DoxyCodeLine{00301     \textcolor{comment}{//      SetupLowShelf(\&LS\_DRUMS, LS\_DRUMS.cutoff, LS\_DRUMS.Q, LS\_DRUMS.dBGain);}}
+\DoxyCodeLine{00302 }
+\DoxyCodeLine{00303     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<5; i++) \{    \textcolor{comment}{// reset sources of all 5 filter bands}}
+\DoxyCodeLine{00304         Display.EQ\_Q\_factor\_Sources[i] = POTI;}
+\DoxyCodeLine{00305         Display.EQ\_Cutoff\_Sources[i] = POTI;}
+\DoxyCodeLine{00306         Display.EQ\_Gain\_Sources[i] = POTI;}
+\DoxyCodeLine{00307     \}}
+\DoxyCodeLine{00308 }
+\DoxyCodeLine{00309     strcpy(Display.value\_str\_equalizer\_overview[0], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00310     strcpy(Display.value\_str\_equalizer\_overview[1], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00311     strcpy(Display.value\_str\_equalizer\_overview[2], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00312     strcpy(Display.value\_str\_equalizer\_overview[3], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00313     strcpy(Display.value\_str\_equalizer\_overview[4], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00314     strcpy(Display.value\_str\_equalizer\_overview[5], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00315 }
+\DoxyCodeLine{00316     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00317 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_a44cc78d9063ea994317ac57c15b6eced}\label{filters_8h_a44cc78d9063ea994317ac57c15b6eced}} 
+\index{filters.h@{filters.h}!Filters\_Init@{Filters\_Init}}
+\index{Filters\_Init@{Filters\_Init}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{Filters\_Init()}{Filters\_Init()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Filters\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Filter Init function. 
+
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00029}{29}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029                                 \{}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031 \textcolor{comment}{    /*****************************}}
+\DoxyCodeLine{00032 \textcolor{comment}{     * Default EQ consisting of Low-\//Highshelfs and Peaking-\/EQ-\//Notch-\/Filter}}
+\DoxyCodeLine{00033 \textcolor{comment}{     *}}
+\DoxyCodeLine{00034 \textcolor{comment}{     * @brief   Band 1: LS   ,  200 Hz, Versatile Gain}}
+\DoxyCodeLine{00035 \textcolor{comment}{     * @brief   Band 3: PEQ/N,  400 Hz, PEQ: up to 6dB gain, Notch: up to ??dB Att.}}
+\DoxyCodeLine{00036 \textcolor{comment}{     * @brief   Band 4: PEQ/N,  800 Hz, PEQ: up to 6dB gain, Notch: up to ??dB Att.}}
+\DoxyCodeLine{00037 \textcolor{comment}{     * @brief   Band 5: PEQ/N, 1600 Hz, PEQ: up to 6dB gain, Notch: up to ??dB Att.}}
+\DoxyCodeLine{00038 \textcolor{comment}{     * @brief   Band 6: HS   , 3200 Hz, Versatile Gain}}
+\DoxyCodeLine{00039 \textcolor{comment}{     ******************************/}}
+\DoxyCodeLine{00040 }
+\DoxyCodeLine{00041     \textcolor{comment}{// BAND 1: Low-\/Shelf filter}}
+\DoxyCodeLine{00042     EQ\_BAND1.Q = 0.707;}
+\DoxyCodeLine{00043     EQ\_BAND1.cutoff = 200;}
+\DoxyCodeLine{00044     EQ\_BAND1.dBGain = 0;}
+\DoxyCodeLine{00045     EQ\_BAND1.maximum\_Q = 20.0;}
+\DoxyCodeLine{00046     EQ\_BAND1.maximum\_cutoff = LUT\_FMAX;}
+\DoxyCodeLine{00047     EQ\_BAND1.maximum\_dBGain = 6;}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049     \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&EQ\_BAND1, EQ\_BAND1.cutoff, EQ\_BAND1.Q, EQ\_BAND1.dBGain);}
+\DoxyCodeLine{00050 }
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052     \textcolor{comment}{// BAND 2: Peaking-\/EQ}}
+\DoxyCodeLine{00053     EQ\_BAND2.Q = 0.707;}
+\DoxyCodeLine{00054     EQ\_BAND2.cutoff = 400;}
+\DoxyCodeLine{00055     EQ\_BAND2.dBGain = 0;}
+\DoxyCodeLine{00056     EQ\_BAND2.maximum\_Q = 20.0;}
+\DoxyCodeLine{00057     EQ\_BAND2.maximum\_cutoff = LUT\_FMAX;}
+\DoxyCodeLine{00058     EQ\_BAND2.maximum\_dBGain = 6;}
+\DoxyCodeLine{00059 }
+\DoxyCodeLine{00060     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND2, EQ\_BAND2.cutoff, EQ\_BAND2.Q, EQ\_BAND2.dBGain);}
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063     \textcolor{comment}{// BAND 3: Peaking-\/EQ}}
+\DoxyCodeLine{00064     EQ\_BAND3.Q = 0.707;}
+\DoxyCodeLine{00065     EQ\_BAND3.cutoff = 800;}
+\DoxyCodeLine{00066     EQ\_BAND3.dBGain = 0;}
+\DoxyCodeLine{00067     EQ\_BAND3.maximum\_Q = 20.0;}
+\DoxyCodeLine{00068     EQ\_BAND3.maximum\_cutoff = LUT\_FMAX;}
+\DoxyCodeLine{00069     EQ\_BAND3.maximum\_dBGain = 6;}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND3, EQ\_BAND3.cutoff, EQ\_BAND3.Q, EQ\_BAND3.dBGain);}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073 }
+\DoxyCodeLine{00074     \textcolor{comment}{// BAND 4: Peaking-\/EQ}}
+\DoxyCodeLine{00075     EQ\_BAND4.Q = 0.707;}
+\DoxyCodeLine{00076     EQ\_BAND4.cutoff = 1600;}
+\DoxyCodeLine{00077     EQ\_BAND4.dBGain = 0;}
+\DoxyCodeLine{00078     EQ\_BAND4.maximum\_Q = 20.0;}
+\DoxyCodeLine{00079     EQ\_BAND4.maximum\_cutoff = LUT\_FMAX;}
+\DoxyCodeLine{00080     EQ\_BAND4.maximum\_dBGain = 6;}
+\DoxyCodeLine{00081 }
+\DoxyCodeLine{00082     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND4, EQ\_BAND4.cutoff, EQ\_BAND4.Q, EQ\_BAND4.dBGain);}
+\DoxyCodeLine{00083 }
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085     \textcolor{comment}{// BAND 5: High-\/Shelf filter}}
+\DoxyCodeLine{00086     EQ\_BAND5.Q = 0.707;}
+\DoxyCodeLine{00087     EQ\_BAND5.cutoff = 3200;}
+\DoxyCodeLine{00088     EQ\_BAND5.dBGain = 0;}
+\DoxyCodeLine{00089     EQ\_BAND5.maximum\_Q = 20.0;}
+\DoxyCodeLine{00090     EQ\_BAND5.maximum\_cutoff = LUT\_FMAX;}
+\DoxyCodeLine{00091     EQ\_BAND5.maximum\_dBGain = 6;}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093     \mbox{\hyperlink{filters_8h_a03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\&EQ\_BAND5, EQ\_BAND5.cutoff, EQ\_BAND5.Q, EQ\_BAND5.dBGain);}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096     \textcolor{comment}{// Drums Lowshelf}}
+\DoxyCodeLine{00097     LS\_DRUMS.Q = 0.707;}
+\DoxyCodeLine{00098     LS\_DRUMS.cutoff = II\_FILTER\_CUTOFF\_MIN;}
+\DoxyCodeLine{00099     LS\_DRUMS.dBGain = -\/10;}
+\DoxyCodeLine{00100     LS\_DRUMS.maximum\_Q = 15.0;}
+\DoxyCodeLine{00101     LS\_DRUMS.maximum\_cutoff = LUT\_FMAX;}
+\DoxyCodeLine{00102     LS\_DRUMS.maximum\_dBGain = 6;}
+\DoxyCodeLine{00103 }
+\DoxyCodeLine{00104     \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&LS\_DRUMS, LS\_DRUMS.cutoff, LS\_DRUMS.Q, LS\_DRUMS.dBGain);}
+\DoxyCodeLine{00105 }
+\DoxyCodeLine{00106 }
+\DoxyCodeLine{00107     \textcolor{comment}{// AA-\/Notch}}
+\DoxyCodeLine{00108     \textcolor{comment}{//  SetupNotch(\&LP\_AA, 50, 0.707);}}
+\DoxyCodeLine{00109 }
+\DoxyCodeLine{00110 }
+\DoxyCodeLine{00111 \textcolor{comment}{    /*****************************}}
+\DoxyCodeLine{00112 \textcolor{comment}{     * Alternative EQ with several stages (high CPU consumption)}}
+\DoxyCodeLine{00113 \textcolor{comment}{     *}}
+\DoxyCodeLine{00114 \textcolor{comment}{     * Default corner / center frequencies}}
+\DoxyCodeLine{00115 \textcolor{comment}{     *}}
+\DoxyCodeLine{00116 \textcolor{comment}{     * @brief   Band 1: LP,  200 Hz,    80 dB / Dec. (2 Stages)}}
+\DoxyCodeLine{00117 \textcolor{comment}{     * @brief   Band 3: BP,  400 Hz,    12 dB / Oct. (4 Stages)}}
+\DoxyCodeLine{00118 \textcolor{comment}{     * @brief   Band 4: BP,  800 Hz,    12 dB / Oct. (4 Stages)}}
+\DoxyCodeLine{00119 \textcolor{comment}{     * @brief   Band 5: BP, 1600 Hz,    12 dB / Oct. (4 Stages)}}
+\DoxyCodeLine{00120 \textcolor{comment}{     * @brief   Band 6: HP, 3200 Hz,    80 dB / Dec. (2 Stages)}}
+\DoxyCodeLine{00121 \textcolor{comment}{     ******************************/}}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123     \textcolor{comment}{//  // BAND 1: LP 4th order}}
+\DoxyCodeLine{00124     \textcolor{comment}{//  SetupLowpass (\&EQ\_BAND1\_I,  200, 0.707);}}
+\DoxyCodeLine{00125     \textcolor{comment}{//  SetupLowpass (\&EQ\_BAND1\_II, 200, 0.707);}}
+\DoxyCodeLine{00126     \textcolor{comment}{//}}
+\DoxyCodeLine{00127     \textcolor{comment}{//  // BAND 2: BP 8th order}}
+\DoxyCodeLine{00128     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND2\_I,  10, 20);}}
+\DoxyCodeLine{00129     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND2\_II, 400, 20);}}
+\DoxyCodeLine{00130     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND2\_III,400, 0.707);}}
+\DoxyCodeLine{00131     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND2\_IV, 400, 0.707);}}
+\DoxyCodeLine{00132     \textcolor{comment}{//}}
+\DoxyCodeLine{00133     \textcolor{comment}{//  // BAND 3: BP 8th order}}
+\DoxyCodeLine{00134     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND3\_I,  800, 0.707);}}
+\DoxyCodeLine{00135     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND3\_II, 800, 0.707);}}
+\DoxyCodeLine{00136     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND3\_III,800, 0.707);}}
+\DoxyCodeLine{00137     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND3\_IV, 800, 0.707);}}
+\DoxyCodeLine{00138     \textcolor{comment}{//}}
+\DoxyCodeLine{00139     \textcolor{comment}{//  // BAND 4: BP 8th order}}
+\DoxyCodeLine{00140     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND4\_I,  1600, 0.707);}}
+\DoxyCodeLine{00141     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND4\_II, 1600, 0.707);}}
+\DoxyCodeLine{00142     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND4\_III,1600, 0.707);}}
+\DoxyCodeLine{00143     \textcolor{comment}{//  SetupBandpassCPG(\&EQ\_BAND4\_IV, 1600, 0.707);}}
+\DoxyCodeLine{00144     \textcolor{comment}{//}}
+\DoxyCodeLine{00145     \textcolor{comment}{//  // BAND 5}}
+\DoxyCodeLine{00146     \textcolor{comment}{//  SetupHighpass(\&EQ\_BAND5\_I,  3200, 0.707);}}
+\DoxyCodeLine{00147     \textcolor{comment}{//  SetupHighpass(\&EQ\_BAND5\_II, 3200, 0.707);}}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00150 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_aec8e59a44285b5c5d026199e59bedc1d}\label{filters_8h_aec8e59a44285b5c5d026199e59bedc1d}} 
+\index{filters.h@{filters.h}!Filters\_Reinit\_Gyro@{Filters\_Reinit\_Gyro}}
+\index{Filters\_Reinit\_Gyro@{Filters\_Reinit\_Gyro}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{Filters\_Reinit\_Gyro()}{Filters\_Reinit\_Gyro()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Filters\+\_\+\+Reinit\+\_\+\+Gyro (\begin{DoxyParamCaption}\item[{float}]{cutoff }\end{DoxyParamCaption})}
+
+TODO 
+\begin{DoxyParams}{Parameters}
+{\em cutoff} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00178}{178}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00178                                                \{}
+\DoxyCodeLine{00179 }
+\DoxyCodeLine{00180     \textcolor{keywordflow}{if} (cutoff > LUT\_FMIN)}
+\DoxyCodeLine{00181         \mbox{\hyperlink{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(\&EQ\_BAND2,  cutoff, 0.707);}
+\DoxyCodeLine{00182 }
+\DoxyCodeLine{00183     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00184         \mbox{\hyperlink{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(\&EQ\_BAND2,  LUT\_FMIN, 0.707);}
+\DoxyCodeLine{00185 }
+\DoxyCodeLine{00186     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00187 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_adcc644218f3fbdbd5725f157286c155f}\label{filters_8h_adcc644218f3fbdbd5725f157286c155f}} 
+\index{filters.h@{filters.h}!Filters\_Reinit\_Poti@{Filters\_Reinit\_Poti}}
+\index{Filters\_Reinit\_Poti@{Filters\_Reinit\_Poti}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{Filters\_Reinit\_Poti()}{Filters\_Reinit\_Poti()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Filters\+\_\+\+Reinit\+\_\+\+Poti (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+TODO \begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00195}{195}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00195                                    \{}
+\DoxyCodeLine{00196 }
+\DoxyCodeLine{00197     \textcolor{comment}{// GND debouncing}}
+\DoxyCodeLine{00198     \textcolor{keywordflow}{if}(ADC\_value < ADC\_value\_thresh) ADC\_value = ADC\_value\_thresh;}
+\DoxyCodeLine{00199 }
+\DoxyCodeLine{00200     \textcolor{comment}{// General debouncing}}
+\DoxyCodeLine{00201     \textcolor{keywordflow}{if}(ADC\_value\_deb + ADC\_value\_thresh <= ADC\_value || ADC\_value\_deb -\/ ADC\_value\_thresh >= ADC\_value)}
+\DoxyCodeLine{00202     \{}
+\DoxyCodeLine{00203         ADC\_value\_deb = ADC\_value;}
+\DoxyCodeLine{00204         flag = 1;}
+\DoxyCodeLine{00205     \}}
+\DoxyCodeLine{00206     \textcolor{comment}{// IF: Value changed}}
+\DoxyCodeLine{00207     \textcolor{keywordflow}{if}(flag)}
+\DoxyCodeLine{00208     \{}
+\DoxyCodeLine{00209 \textcolor{comment}{        /*****************************}}
+\DoxyCodeLine{00210 \textcolor{comment}{         * @brief   HS / LS Gain: -\/18dB to 6dB}}
+\DoxyCodeLine{00211 \textcolor{comment}{         * @brief   Scaling 4095 (ADC\_value) to a range of 24dB by dividing with 170.625}}
+\DoxyCodeLine{00212 \textcolor{comment}{         * @brief   Center around 0dB by subtracting (4095/(2*170.625))}}
+\DoxyCodeLine{00213 \textcolor{comment}{         * @brief   Subtract 6dB for final adjust}}
+\DoxyCodeLine{00214 \textcolor{comment}{         ******************************/}}
+\DoxyCodeLine{00215         \textcolor{comment}{//parameter = ((float)ADC\_value / 170.625)-\/(4095/(2*170.625))-\/6;}}
+\DoxyCodeLine{00216 }
+\DoxyCodeLine{00217 }
+\DoxyCodeLine{00218 \textcolor{comment}{        /*****************************}}
+\DoxyCodeLine{00219 \textcolor{comment}{         * @brief   PEQ Gain: 0 to 6dB}}
+\DoxyCodeLine{00220 \textcolor{comment}{         ******************************/}}
+\DoxyCodeLine{00221         \textcolor{comment}{//parameter = ((float)ADC\_value / (2*341.25));}}
+\DoxyCodeLine{00222 }
+\DoxyCodeLine{00223 }
+\DoxyCodeLine{00224 \textcolor{comment}{        /*****************************}}
+\DoxyCodeLine{00225 \textcolor{comment}{         * @brief   Frequency: Cutoff / Center / Midshelf}}
+\DoxyCodeLine{00226 \textcolor{comment}{         * @brief   Ranging from 0 to 4000Hz}}
+\DoxyCodeLine{00227 \textcolor{comment}{         ******************************/}}
+\DoxyCodeLine{00228         \textcolor{comment}{//parameter = (float)ADC\_value * 4000 / 4095;}}
+\DoxyCodeLine{00229         cutoff = (float)ADC\_value/8;}
+\DoxyCodeLine{00230 }
+\DoxyCodeLine{00231         \textcolor{comment}{// REINIT:}}
+\DoxyCodeLine{00232         \textcolor{comment}{//SetupLowShelf (\&EQ\_BAND1\_I, cutoff, 20, -\/20);}}
+\DoxyCodeLine{00233         \textcolor{comment}{//      SetupHighShelf(\&EQ\_BAND1\_I, parameter, 0.707, -\/20);}}
+\DoxyCodeLine{00234         \textcolor{comment}{//      SetupPeakingEQ(\&EQ\_BAND2\_I, cutoff,          10, 20);}}
+\DoxyCodeLine{00235         \textcolor{comment}{//      SetupNotch(\&EQ\_BAND2\_I, parameter, 0.707);}}
+\DoxyCodeLine{00236 }
+\DoxyCodeLine{00237 }
+\DoxyCodeLine{00238         \mbox{\hyperlink{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(\&EQ\_BAND2,  cutoff, 20);}
+\DoxyCodeLine{00239         \textcolor{comment}{//SetupBandpassCPG(\&EQ\_BAND2\_II, cutoff, 20);}}
+\DoxyCodeLine{00240         \textcolor{comment}{//SetupHighpass   (\&EQ\_BAND1\_I,  parameter, 0.707);}}
+\DoxyCodeLine{00241         \textcolor{comment}{//SetupHighpass   (\&EQ\_BAND1\_II, parameter, 0.707);}}
+\DoxyCodeLine{00242 }
+\DoxyCodeLine{00243         flag = 0;}
+\DoxyCodeLine{00244     \}}
+\DoxyCodeLine{00245     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00246 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_aa615f53296529b29ed116c17bf41f422}\label{filters_8h_aa615f53296529b29ed116c17bf41f422}} 
+\index{filters.h@{filters.h}!ProcessEQ@{ProcessEQ}}
+\index{ProcessEQ@{ProcessEQ}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{ProcessEQ()}{ProcessEQ()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Process\+EQ (\begin{DoxyParamCaption}\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+TODO 
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00350}{350}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00350                                     \{}
+\DoxyCodeLine{00351 }
+\DoxyCodeLine{00352     \textcolor{comment}{// BAND 1}}
+\DoxyCodeLine{00353     \textcolor{keywordflow}{if}(Display.Filter\_ONOFF[0] == \textcolor{keyword}{true})}
+\DoxyCodeLine{00354         \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&EQ\_BAND1, data);}
+\DoxyCodeLine{00355     \textcolor{comment}{// BAND 2}}
+\DoxyCodeLine{00356     \textcolor{keywordflow}{if}(Display.Filter\_ONOFF[1] == \textcolor{keyword}{true})}
+\DoxyCodeLine{00357         \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&EQ\_BAND2, data);}
+\DoxyCodeLine{00358     \textcolor{comment}{// BAND 3}}
+\DoxyCodeLine{00359     \textcolor{keywordflow}{if}(Display.Filter\_ONOFF[2] == \textcolor{keyword}{true})}
+\DoxyCodeLine{00360         \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&EQ\_BAND3, data);}
+\DoxyCodeLine{00361     \textcolor{comment}{// BAND 4}}
+\DoxyCodeLine{00362     \textcolor{keywordflow}{if}(Display.Filter\_ONOFF[3] == \textcolor{keyword}{true})}
+\DoxyCodeLine{00363         \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&EQ\_BAND4, data);}
+\DoxyCodeLine{00364     \textcolor{comment}{// BAND 5}}
+\DoxyCodeLine{00365     \textcolor{keywordflow}{if}(Display.Filter\_ONOFF[4] == \textcolor{keyword}{true})}
+\DoxyCodeLine{00366         \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&EQ\_BAND5, data);}
+\DoxyCodeLine{00367 }
+\DoxyCodeLine{00368     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00369 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}\label{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}} 
+\index{filters.h@{filters.h}!ProcessFilter@{ProcessFilter}}
+\index{ProcessFilter@{ProcessFilter}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{ProcessFilter()}{ProcessFilter()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Process\+Filter (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{F,  }\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+TODO 
+\begin{DoxyParams}{Parameters}
+{\em F} & \\
+\hline
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00326}{326}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00326                                                              \{}
+\DoxyCodeLine{00327 }
+\DoxyCodeLine{00328     \textcolor{keywordtype}{float} input = 0;}
+\DoxyCodeLine{00329     \textcolor{keywordtype}{float} out = 0;}
+\DoxyCodeLine{00330 }
+\DoxyCodeLine{00331     input = *data;}
+\DoxyCodeLine{00332 }
+\DoxyCodeLine{00333     out = (F-\/>b0 / F-\/>a0) * input + (F-\/>b1 / F-\/>a0) * F-\/>z[0] + (F-\/>b2 / F-\/>a0) * F-\/>z[1] -\/ (F-\/>a1 / F-\/>a0) * F-\/>z[2] -\/ (F-\/>a2 / F-\/>a0) * F-\/>z[3];}
+\DoxyCodeLine{00334 }
+\DoxyCodeLine{00335     F-\/>z[3] = F-\/>z[2];}
+\DoxyCodeLine{00336     F-\/>z[2] = out;}
+\DoxyCodeLine{00337     F-\/>z[1] = F-\/>z[0];}
+\DoxyCodeLine{00338     F-\/>z[0] = input;}
+\DoxyCodeLine{00339     *data = out;}
+\DoxyCodeLine{00340 }
+\DoxyCodeLine{00341     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00342 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}\label{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}} 
+\index{filters.h@{filters.h}!SetupBandpassCPG@{SetupBandpassCPG}}
+\index{SetupBandpassCPG@{SetupBandpassCPG}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{SetupBandpassCPG()}{SetupBandpassCPG()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Setup\+Bandpass\+CPG (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{BP,  }\item[{float}]{cutoff,  }\item[{float}]{Q }\end{DoxyParamCaption})}
+
+
+
+Constant Peak Gain Bandpass Filter. 
+
+TODO
+
+
+\begin{DoxyParams}{Parameters}
+{\em BP} & \\
+\hline
+{\em cutoff} & \\
+\hline
+{\em Q} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00435}{435}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00435                                                                           \{}
+\DoxyCodeLine{00436 }
+\DoxyCodeLine{00437     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00438 }
+\DoxyCodeLine{00439     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00440     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00441 }
+\DoxyCodeLine{00442     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00443 }
+\DoxyCodeLine{00444     BP-\/>b0 = alpha;}
+\DoxyCodeLine{00445     BP-\/>b1 = 0;}
+\DoxyCodeLine{00446     BP-\/>b2 = -\/alpha;}
+\DoxyCodeLine{00447     BP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{00448     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00449     BP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{00450 }
+\DoxyCodeLine{00451     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00452 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_a3c5c39d8c8ea89c55cc12218899dbc7c}\label{filters_8h_a3c5c39d8c8ea89c55cc12218899dbc7c}} 
+\index{filters.h@{filters.h}!SetupBandpassCSG@{SetupBandpassCSG}}
+\index{SetupBandpassCSG@{SetupBandpassCSG}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{SetupBandpassCSG()}{SetupBandpassCSG()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Setup\+Bandpass\+CSG (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{BP,  }\item[{float}]{cutoff,  }\item[{float}]{Q }\end{DoxyParamCaption})}
+
+
+
+Constant Skirt Gain Bandpass Filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em BP} & \\
+\hline
+{\em cutoff} & \\
+\hline
+{\em Q} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00464}{464}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00464                                                                           \{}
+\DoxyCodeLine{00465 }
+\DoxyCodeLine{00466     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00467 }
+\DoxyCodeLine{00468     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00469     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00470 }
+\DoxyCodeLine{00471     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00472 }
+\DoxyCodeLine{00473     BP-\/>b0 = Q*alpha;}
+\DoxyCodeLine{00474     BP-\/>b1 = 0;}
+\DoxyCodeLine{00475     BP-\/>b2 = -\/Q*alpha;}
+\DoxyCodeLine{00476     BP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{00477     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00478     BP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{00479 }
+\DoxyCodeLine{00480     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00481 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_adf56f507b61ffa882eb78b346dec0f05}\label{filters_8h_adf56f507b61ffa882eb78b346dec0f05}} 
+\index{filters.h@{filters.h}!SetupHighpass@{SetupHighpass}}
+\index{SetupHighpass@{SetupHighpass}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{SetupHighpass()}{SetupHighpass()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Setup\+Highpass (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{HP,  }\item[{float}]{cutoff,  }\item[{float}]{Q }\end{DoxyParamCaption})}
+
+
+
+Highpass Filter. 
+
+TODO
+
+
+\begin{DoxyParams}{Parameters}
+{\em HP} & \\
+\hline
+{\em cutoff} & \\
+\hline
+{\em Q} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00407}{407}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00407                                                                        \{}
+\DoxyCodeLine{00408 }
+\DoxyCodeLine{00409     \textcolor{comment}{//float A = 1;}}
+\DoxyCodeLine{00410     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00411 }
+\DoxyCodeLine{00412     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00413     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00414 }
+\DoxyCodeLine{00415     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00416 }
+\DoxyCodeLine{00417     HP-\/>b0 = (1 + cos) / 2;}
+\DoxyCodeLine{00418     HP-\/>b1 = -\/(1 + cos);}
+\DoxyCodeLine{00419     HP-\/>b2 = HP-\/>b0;}
+\DoxyCodeLine{00420     HP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{00421     HP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00422     HP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{00423 }
+\DoxyCodeLine{00424     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00425 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_a03fcfa1037c98ff029c9fb59f6c312dc}\label{filters_8h_a03fcfa1037c98ff029c9fb59f6c312dc}} 
+\index{filters.h@{filters.h}!SetupHighShelf@{SetupHighShelf}}
+\index{SetupHighShelf@{SetupHighShelf}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{SetupHighShelf()}{SetupHighShelf()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Setup\+High\+Shelf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{HS,  }\item[{float}]{cutoff,  }\item[{float}]{Q,  }\item[{float}]{d\+BGain }\end{DoxyParamCaption})}
+
+
+
+High\+Shelf Filter. 
+
+TODO
+
+
+\begin{DoxyParams}{Parameters}
+{\em HS} & \\
+\hline
+{\em cutoff} & \\
+\hline
+{\em Q} & \\
+\hline
+{\em d\+BGain} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00583}{583}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00583                                                                                       \{}
+\DoxyCodeLine{00584 }
+\DoxyCodeLine{00585     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
+\DoxyCodeLine{00586     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{00587     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00588 }
+\DoxyCodeLine{00589     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00590     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00591 }
+\DoxyCodeLine{00592     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
+\DoxyCodeLine{00593 }
+\DoxyCodeLine{00594     HS-\/>b0 =      A * ((A + 1) + (A -\/ 1) * cos + beta * sin);}
+\DoxyCodeLine{00595     HS-\/>b1 = -\/2 * A * ((A -\/ 1) + (A + 1) * cos);}
+\DoxyCodeLine{00596     HS-\/>b2 =      A * ((A + 1) + (A -\/ 1) * cos -\/ beta * sin);}
+\DoxyCodeLine{00597     HS-\/>a0 =           (A + 1) -\/ (A -\/ 1) * cos + beta * sin;}
+\DoxyCodeLine{00598     HS-\/>a1 =      2 * ((A -\/ 1) -\/ (A + 1) * cos);}
+\DoxyCodeLine{00599     HS-\/>a2 =           (A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin;}
+\DoxyCodeLine{00600 }
+\DoxyCodeLine{00601     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00602 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_a1d45e64aaa786258dd8d43d5fd8e8cbe}\label{filters_8h_a1d45e64aaa786258dd8d43d5fd8e8cbe}} 
+\index{filters.h@{filters.h}!SetupLowpass@{SetupLowpass}}
+\index{SetupLowpass@{SetupLowpass}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{SetupLowpass()}{SetupLowpass()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Setup\+Lowpass (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{LP,  }\item[{float}]{cutoff,  }\item[{float}]{Q }\end{DoxyParamCaption})}
+
+
+
+Lowpass Filter. 
+
+TODO
+
+
+\begin{DoxyParams}{Parameters}
+{\em LP} & \\
+\hline
+{\em cutoff} & \\
+\hline
+{\em Q} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00379}{379}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00379                                                                       \{}
+\DoxyCodeLine{00380 }
+\DoxyCodeLine{00381     \textcolor{comment}{//float A = 1;}}
+\DoxyCodeLine{00382     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00383 }
+\DoxyCodeLine{00384     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00385     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00386 }
+\DoxyCodeLine{00387     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00388 }
+\DoxyCodeLine{00389     LP-\/>b0 = (1 -\/ cos) / 2;}
+\DoxyCodeLine{00390     LP-\/>b1 = 1 -\/ cos;}
+\DoxyCodeLine{00391     LP-\/>b2 = LP-\/>b0;}
+\DoxyCodeLine{00392     LP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{00393     LP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00394     LP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{00395 }
+\DoxyCodeLine{00396     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00397 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_a1345bd0312350f65e08e824e6413f219}\label{filters_8h_a1345bd0312350f65e08e824e6413f219}} 
+\index{filters.h@{filters.h}!SetupLowShelf@{SetupLowShelf}}
+\index{SetupLowShelf@{SetupLowShelf}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{SetupLowShelf()}{SetupLowShelf()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Setup\+Low\+Shelf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{LS,  }\item[{float}]{cutoff,  }\item[{float}]{Q,  }\item[{float}]{d\+BGain }\end{DoxyParamCaption})}
+
+
+
+Low\+Shelf Filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em LS} & \\
+\hline
+{\em cutoff} & \\
+\hline
+{\em Q} & \\
+\hline
+{\em d\+BGain} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00552}{552}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00552                                                                                      \{}
+\DoxyCodeLine{00553 }
+\DoxyCodeLine{00554     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
+\DoxyCodeLine{00555     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{00556     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00557 }
+\DoxyCodeLine{00558     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00559     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00560 }
+\DoxyCodeLine{00561     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
+\DoxyCodeLine{00562 }
+\DoxyCodeLine{00563     LS-\/>b0 =     A * ((A + 1) -\/ (A -\/ 1) * cos + beta * sin);}
+\DoxyCodeLine{00564     LS-\/>b1 = 2 * A * ((A -\/ 1) -\/ (A + 1) * cos);}
+\DoxyCodeLine{00565     LS-\/>b2 =     A * ((A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin);}
+\DoxyCodeLine{00566     LS-\/>a0 =          (A + 1) + (A -\/ 1) * cos + beta * sin;}
+\DoxyCodeLine{00567     LS-\/>a1 =    -\/2 * ((A -\/ 1) + (A + 1) * cos);}
+\DoxyCodeLine{00568     LS-\/>a2 =          (A + 1) + (A -\/ 1) * cos -\/ beta * sin;}
+\DoxyCodeLine{00569 }
+\DoxyCodeLine{00570     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00571 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_acb256e7bd3b663acfe846603e95f851a}\label{filters_8h_acb256e7bd3b663acfe846603e95f851a}} 
+\index{filters.h@{filters.h}!SetupNotch@{SetupNotch}}
+\index{SetupNotch@{SetupNotch}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{SetupNotch()}{SetupNotch()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Setup\+Notch (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{BP,  }\item[{float}]{cutoff,  }\item[{float}]{Q }\end{DoxyParamCaption})}
+
+
+
+Notch Filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em BP} & \\
+\hline
+{\em cutoff} & \\
+\hline
+{\em Q} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00491}{491}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00491                                                                     \{}
+\DoxyCodeLine{00492 }
+\DoxyCodeLine{00493     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00494 }
+\DoxyCodeLine{00495     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00496     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00497 }
+\DoxyCodeLine{00498     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00499 }
+\DoxyCodeLine{00500     BP-\/>b0 = 1;}
+\DoxyCodeLine{00501     BP-\/>b1 = -\/2 * cos;}
+\DoxyCodeLine{00502     BP-\/>b2 = 1;}
+\DoxyCodeLine{00503     BP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{00504     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00505     BP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{00506 }
+\DoxyCodeLine{00507     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00508 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{filters_8h_ae324262d60a906226a1ddf27ba0860b9}\label{filters_8h_ae324262d60a906226a1ddf27ba0860b9}} 
+\index{filters.h@{filters.h}!SetupPeakingEQ@{SetupPeakingEQ}}
+\index{SetupPeakingEQ@{SetupPeakingEQ}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{SetupPeakingEQ()}{SetupPeakingEQ()}}
+{\footnotesize\ttfamily Filter\+\_\+\+Status Setup\+Peaking\+EQ (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{BP,  }\item[{float}]{cutoff,  }\item[{float}]{Q,  }\item[{float}]{d\+BGain }\end{DoxyParamCaption})}
+
+
+
+Peaking EQ Filter. 
+
+TODO
+
+
+\begin{DoxyParams}{Parameters}
+{\em BP} & \\
+\hline
+{\em cutoff} & \\
+\hline
+{\em Q} & \\
+\hline
+{\em d\+BGain} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filters_8c_source_l00519}{519}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00519                                                                                       \{}
+\DoxyCodeLine{00520 }
+\DoxyCodeLine{00521     \textcolor{comment}{//for dBGain in function() head use:}}
+\DoxyCodeLine{00522     \textcolor{keywordtype}{float} exp = (dBGain) / 40.0;}
+\DoxyCodeLine{00523     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{00524 }
+\DoxyCodeLine{00525     \textcolor{comment}{//float A = dBGain;}}
+\DoxyCodeLine{00526     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00527 }
+\DoxyCodeLine{00528     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00529     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00530 }
+\DoxyCodeLine{00531     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00532 }
+\DoxyCodeLine{00533     BP-\/>b0 = 1 + alpha * A;}
+\DoxyCodeLine{00534     BP-\/>b1 = -\/2 * cos;}
+\DoxyCodeLine{00535     BP-\/>b2 = 1 -\/ alpha * A;}
+\DoxyCodeLine{00536     BP-\/>a0 = 1 + alpha / A;}
+\DoxyCodeLine{00537     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00538     BP-\/>a2 = 1 -\/ alpha / A;}
+\DoxyCodeLine{00539     \textcolor{comment}{//  printf("{}cutoff: \%f\(\backslash\)r\(\backslash\)n Gain: \%f\(\backslash\)r\(\backslash\)n"{},cutoff,dBGain);}}
+\DoxyCodeLine{00540     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00541 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{filters_8h_a2a5f32bdea1d7c4e05f40d2654b8a6a4}\label{filters_8h_a2a5f32bdea1d7c4e05f40d2654b8a6a4}} 
+\index{filters.h@{filters.h}!ADC\_value@{ADC\_value}}
+\index{ADC\_value@{ADC\_value}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_value}{ADC\_value}}
+{\footnotesize\ttfamily uint32\+\_\+t ADC\+\_\+value}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00037}{37}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_a7f18f194d540e69f0c05dabecf69dc2c}\label{filters_8h_a7f18f194d540e69f0c05dabecf69dc2c}} 
+\index{filters.h@{filters.h}!ADC\_value\_deb@{ADC\_value\_deb}}
+\index{ADC\_value\_deb@{ADC\_value\_deb}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_value\_deb}{ADC\_value\_deb}}
+{\footnotesize\ttfamily uint32\+\_\+t ADC\+\_\+value\+\_\+deb}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00038}{38}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_a8df6d275fc9b7ab2e0267668c936bbb9}\label{filters_8h_a8df6d275fc9b7ab2e0267668c936bbb9}} 
+\index{filters.h@{filters.h}!BP\_WAHWAH@{BP\_WAHWAH}}
+\index{BP\_WAHWAH@{BP\_WAHWAH}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{BP\_WAHWAH}{BP\_WAHWAH}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structBQFilter}{BQFilter}} BP\+\_\+\+WAHWAH}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00049}{49}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_afb31aec893b74c3193e19d352b2047a1}\label{filters_8h_afb31aec893b74c3193e19d352b2047a1}} 
+\index{filters.h@{filters.h}!EQ\_BAND1@{EQ\_BAND1}}
+\index{EQ\_BAND1@{EQ\_BAND1}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{EQ\_BAND1}{EQ\_BAND1}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structBQFilter}{BQFilter}} EQ\+\_\+\+BAND1}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00042}{42}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_ae756ff10d1073a038394e529858f2098}\label{filters_8h_ae756ff10d1073a038394e529858f2098}} 
+\index{filters.h@{filters.h}!EQ\_BAND2@{EQ\_BAND2}}
+\index{EQ\_BAND2@{EQ\_BAND2}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{EQ\_BAND2}{EQ\_BAND2}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structBQFilter}{BQFilter}} EQ\+\_\+\+BAND2}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00043}{43}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_afcb286d6fa2d992d2cac96fd38ac015e}\label{filters_8h_afcb286d6fa2d992d2cac96fd38ac015e}} 
+\index{filters.h@{filters.h}!EQ\_BAND3@{EQ\_BAND3}}
+\index{EQ\_BAND3@{EQ\_BAND3}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{EQ\_BAND3}{EQ\_BAND3}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structBQFilter}{BQFilter}} EQ\+\_\+\+BAND3}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00044}{44}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_ad86419fa4158b9f3c43cc4adbe7785aa}\label{filters_8h_ad86419fa4158b9f3c43cc4adbe7785aa}} 
+\index{filters.h@{filters.h}!EQ\_BAND4@{EQ\_BAND4}}
+\index{EQ\_BAND4@{EQ\_BAND4}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{EQ\_BAND4}{EQ\_BAND4}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structBQFilter}{BQFilter}} EQ\+\_\+\+BAND4}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00045}{45}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_ad0e98f4e353bad9c581cacbbeeb06083}\label{filters_8h_ad0e98f4e353bad9c581cacbbeeb06083}} 
+\index{filters.h@{filters.h}!EQ\_BAND5@{EQ\_BAND5}}
+\index{EQ\_BAND5@{EQ\_BAND5}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{EQ\_BAND5}{EQ\_BAND5}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structBQFilter}{BQFilter}} EQ\+\_\+\+BAND5}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00046}{46}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_a8fac2498fe5bd106b35d43af5bc91f6f}\label{filters_8h_a8fac2498fe5bd106b35d43af5bc91f6f}} 
+\index{filters.h@{filters.h}!flag@{flag}}
+\index{flag@{flag}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{flag}{flag}}
+{\footnotesize\ttfamily uint32\+\_\+t flag}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00039}{39}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_aab7a3b7d13f2bf51c6d328b1ebd26954}\label{filters_8h_aab7a3b7d13f2bf51c6d328b1ebd26954}} 
+\index{filters.h@{filters.h}!LP\_AA@{LP\_AA}}
+\index{LP\_AA@{LP\_AA}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{LP\_AA}{LP\_AA}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structBQFilter}{BQFilter}} LP\+\_\+\+AA}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00055}{55}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+
+\mbox{\Hypertarget{filters_8h_aeb7d5fd1143c721af81f8e18d26e37a4}\label{filters_8h_aeb7d5fd1143c721af81f8e18d26e37a4}} 
+\index{filters.h@{filters.h}!LS\_DRUMS@{LS\_DRUMS}}
+\index{LS\_DRUMS@{LS\_DRUMS}!filters.h@{filters.h}}
+\doxysubsubsection{\texorpdfstring{LS\_DRUMS}{LS\_DRUMS}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structBQFilter}{BQFilter}} LS\+\_\+\+DRUMS}
+
+
+
+Definition at line \mbox{\hyperlink{filters_8h_source_l00052}{52}} of file \mbox{\hyperlink{filters_8h_source}{filters.\+h}}.
+

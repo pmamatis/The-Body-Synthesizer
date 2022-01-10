@@ -1,3 +1,13 @@
+/**
+ * @file keyboard.h
+ * @author paul mamatis & marc bielen
+ * @brief keyboard adc data processing
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_KEYBOARD_H_
 #define INC_KEYBOARD_H_
 

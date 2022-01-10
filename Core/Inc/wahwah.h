@@ -1,3 +1,13 @@
+/** TODO
+ * @file wahwah.h
+ * @author ?????
+ * @brief wahwah effect
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_WAHWAH_H_
 #define INC_WAHWAH_H_
 

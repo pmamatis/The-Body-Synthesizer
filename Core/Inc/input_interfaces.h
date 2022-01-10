@@ -1,3 +1,13 @@
+/**
+ * @file input_interfaces.h
+ * @author paul mamatis
+ * @brief input device data processing, e.g. gyro emg ekc etc.
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_INPUT_INTERFACES_H_
 #define INC_INPUT_INTERFACES_H_
 

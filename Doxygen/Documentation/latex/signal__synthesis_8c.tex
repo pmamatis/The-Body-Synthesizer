@@ -1,0 +1,1694 @@
+\hypertarget{signal__synthesis_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/signal\+\_\+synthesis.c File Reference}
+\label{signal__synthesis_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/signal\_synthesis.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/signal\_synthesis.c}}
+{\ttfamily \#include \char`\"{}signal\+\_\+synthesis.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{signal__synthesis_8c_a9eda288feb5c689a0f90742249fe6da0}{Signal\+\_\+\+Synthesis\+\_\+\+Init}} (TIM\+\_\+\+Handle\+Type\+Def htim, DAC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})
+\begin{DoxyCompactList}\small\item\em Init funtion for the signal\+\_\+synthesis, must be used in order to use any other funtion of this .c. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{signal__synthesis_8c_af4829c3aeeaf3dbcda0b5266e2834898}{Voices\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em resets the voice parameter which can be changed in the GUI \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}{Set\+Timer\+Settings}} (TIM\+\_\+\+Handle\+Type\+Def $\ast$htim, uint32\+\_\+t SR)
+\begin{DoxyCompactList}\small\item\em Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__synthesis_8c_a381bb27bca64ed7f5df822a3db09707a}{LFO\+\_\+\+Single\+Value\+Process}} (struct \mbox{\hyperlink{structeffects__lfo__t}{effects\+\_\+lfo\+\_\+t}} $\ast$lfo, uint8\+\_\+t lfo\+\_\+effect)
+\begin{DoxyCompactList}\small\item\em Constructor for a signal, adds a signal into the signals1 struct. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{New\+Signal}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, uint8\+\_\+t kind, uint8\+\_\+t key, uint8\+\_\+t octave, uint8\+\_\+t ID)
+\begin{DoxyCompactList}\small\item\em generates a signal which is processed in the \mbox{\hyperlink{signal__synthesis_8c_a14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{Delete\+Signal}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int16\+\_\+t signal\+\_\+index)
+\begin{DoxyCompactList}\small\item\em deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDto\+Index}} (int16\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em converts an signal ID into its Index \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__synthesis_8c_a14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, uint8\+\_\+t output\+\_\+\+Channel)
+\begin{DoxyCompactList}\small\item\em generates a digital signal in the calculate\+\_\+vector, depending on the signals inside the struct signals1. To add signals use New\+Signal and to delete signals use Delete\+Signal \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{signal__synthesis_8c_a994b819c46cb3569b8854f25a13b54fc}{init\+Ramp}} (void)
+\item 
+float \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{Calc\+Rect\+Sample}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int index)
+\begin{DoxyCompactList}\small\item\em Rectangle wave based on struct signals. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{Calc\+Triangle\+Sample}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int index)
+\begin{DoxyCompactList}\small\item\em Triangle wave samples based on struct signals. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}{Noise\+\_\+\+Generator}} (void)
+\begin{DoxyCompactList}\small\item\em random number generator \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}{AWGN\+\_\+generator}} (void)
+\begin{DoxyCompactList}\small\item\em Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{max\+Value\+DAC}}
+\begin{DoxyCompactList}\small\item\em maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal\+\_\+sythesis.\+h and will be set in the Init function \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\+\_\+counter}} = 0
+\begin{DoxyCompactList}\small\item\em wirtes a starting ramp into the DAC-\/\+Buffer to avoid speaker damage \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+3.\+2 
+\end{DoxyVersion}
+
+
+Definition in file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}\label{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!AWGN\_generator@{AWGN\_generator}}
+\index{AWGN\_generator@{AWGN\_generator}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{AWGN\_generator()}{AWGN\_generator()}}
+{\footnotesize\ttfamily float AWGN\+\_\+generator (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. 
+
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01340}{1340}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01340                            \{}
+\DoxyCodeLine{01341 }
+\DoxyCodeLine{01342     \textcolor{keywordtype}{float} temp1;}
+\DoxyCodeLine{01343     \textcolor{keywordtype}{float} temp2;}
+\DoxyCodeLine{01344     \textcolor{keywordtype}{float} result;}
+\DoxyCodeLine{01345     \textcolor{keywordtype}{int} p;}
+\DoxyCodeLine{01346 }
+\DoxyCodeLine{01347     p = 1;}
+\DoxyCodeLine{01348 }
+\DoxyCodeLine{01349     \textcolor{keywordflow}{while}( p > 0 )}
+\DoxyCodeLine{01350     \{}
+\DoxyCodeLine{01351         temp2 = ( rand() / ( (float)RAND\_MAX ) ); \textcolor{comment}{/*  rand() function generates an }}
+\DoxyCodeLine{01352 \textcolor{comment}{                                                       integer between 0 and  RAND\_MAX, }}
+\DoxyCodeLine{01353 \textcolor{comment}{                                                       which is defined in stdlib.h. }}
+\DoxyCodeLine{01354 \textcolor{comment}{         */}}
+\DoxyCodeLine{01355 }
+\DoxyCodeLine{01356         \textcolor{keywordflow}{if} ( temp2 == 0 )}
+\DoxyCodeLine{01357         \{\textcolor{comment}{// temp2 is >= (RAND\_MAX / 2)}}
+\DoxyCodeLine{01358             p = 1;}
+\DoxyCodeLine{01359         \}\textcolor{comment}{// end if}}
+\DoxyCodeLine{01360         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01361         \{\textcolor{comment}{// temp2 is < (RAND\_MAX / 2)}}
+\DoxyCodeLine{01362             p = -\/1;}
+\DoxyCodeLine{01363         \}\textcolor{comment}{// end else}}
+\DoxyCodeLine{01364 }
+\DoxyCodeLine{01365     \}\textcolor{comment}{// end while()}}
+\DoxyCodeLine{01366 }
+\DoxyCodeLine{01367     temp1 = cos( ( 2.0 * (\textcolor{keywordtype}{float})PI ) * rand() / ( (\textcolor{keywordtype}{float})RAND\_MAX ) );}
+\DoxyCodeLine{01368     result = sqrt( -\/2.0 * log( temp2 ) ) * temp1;}
+\DoxyCodeLine{01369 }
+\DoxyCodeLine{01370     \textcolor{keywordflow}{return} result;  \textcolor{comment}{// return the generated random sample to the caller}}
+\DoxyCodeLine{01371 }
+\DoxyCodeLine{01372 \}\textcolor{comment}{// end AWGN\_generator()}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}\label{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!CalcRectSample@{CalcRectSample}}
+\index{CalcRectSample@{CalcRectSample}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{CalcRectSample()}{CalcRectSample()}}
+{\footnotesize\ttfamily float Calc\+Rect\+Sample (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$}]{signals,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Rectangle wave based on struct signals. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em signals} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01248}{1248}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01248                                                          \{}
+\DoxyCodeLine{01249 }
+\DoxyCodeLine{01250     \textcolor{keywordtype}{float} rect = 0;}
+\DoxyCodeLine{01251 }
+\DoxyCodeLine{01252     \textcolor{comment}{// Current Index:   signals-\/>current\_LUT\_Index[index]}}
+\DoxyCodeLine{01253     \textcolor{comment}{// Period:          LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]]}}
+\DoxyCodeLine{01254 }
+\DoxyCodeLine{01255     \textcolor{comment}{// IF: Length of period is even (e.g. 346)}}
+\DoxyCodeLine{01256     \textcolor{keywordflow}{if}(LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] \% 2 == 0)\{}
+\DoxyCodeLine{01257 }
+\DoxyCodeLine{01258         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:172 < 173)}}
+\DoxyCodeLine{01259         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{01260 }
+\DoxyCodeLine{01261             rect = 0.2;}
+\DoxyCodeLine{01262         \}}
+\DoxyCodeLine{01263         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (173:345 >= 173)}}
+\DoxyCodeLine{01264         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{01265 }
+\DoxyCodeLine{01266             rect = -\/0.2;}
+\DoxyCodeLine{01267         \}}
+\DoxyCodeLine{01268     \}}
+\DoxyCodeLine{01269     \textcolor{comment}{// IF: Length of period is odd (e.g. 347)}}
+\DoxyCodeLine{01270     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] \% 2 == 1)\{}
+\DoxyCodeLine{01271 }
+\DoxyCodeLine{01272         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:173 < 174) due to (period-\/1)/2 + 1}}
+\DoxyCodeLine{01273         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (((LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{01274 }
+\DoxyCodeLine{01275             rect = 0.2;}
+\DoxyCodeLine{01276         \}}
+\DoxyCodeLine{01277         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (174:346 >= 174) due to (period-\/1)/2 + 1}}
+\DoxyCodeLine{01278         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (((LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{01279 }
+\DoxyCodeLine{01280             rect = -\/0.2;}
+\DoxyCodeLine{01281         \}}
+\DoxyCodeLine{01282     \}}
+\DoxyCodeLine{01283     \textcolor{keywordflow}{return} rect;}
+\DoxyCodeLine{01284 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}\label{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!CalcTriangleSample@{CalcTriangleSample}}
+\index{CalcTriangleSample@{CalcTriangleSample}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{CalcTriangleSample()}{CalcTriangleSample()}}
+{\footnotesize\ttfamily float Calc\+Triangle\+Sample (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$}]{signals,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Triangle wave samples based on struct signals. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em signals} & \\
+\hline
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+triangle value 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01293}{1293}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01293                                                              \{}
+\DoxyCodeLine{01294 }
+\DoxyCodeLine{01295     \textcolor{keywordtype}{float} triangle      = 0;}
+\DoxyCodeLine{01296     \textcolor{keywordtype}{float} current\_index = (float)signals-\/>current\_LUT\_Index[index];}
+\DoxyCodeLine{01297     \textcolor{keywordtype}{float} period        = (\textcolor{keywordtype}{float})LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]];}
+\DoxyCodeLine{01298 }
+\DoxyCodeLine{01299     \textcolor{comment}{/* FORMULA: 4*a/p * abs((((x -\/ p/4) \% p) + p) \% p -\/ p/2) -\/ a }}
+\DoxyCodeLine{01300 \textcolor{comment}{     *}}
+\DoxyCodeLine{01301 \textcolor{comment}{     * a: Amplitude         >> 1 }}
+\DoxyCodeLine{01302 \textcolor{comment}{     * x: Current index     >> signals-\/>current\_LUT\_Index[index] }}
+\DoxyCodeLine{01303 \textcolor{comment}{     * p: Period            >> LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] }}
+\DoxyCodeLine{01304 \textcolor{comment}{     *}}
+\DoxyCodeLine{01305 \textcolor{comment}{     * Source: https://en.wikipedia.org/wiki/Triangle\_wave }}
+\DoxyCodeLine{01306 \textcolor{comment}{     *}}
+\DoxyCodeLine{01307 \textcolor{comment}{     */}}
+\DoxyCodeLine{01308 }
+\DoxyCodeLine{01309     triangle = fmodf(current\_index -\/ period/4, period);}
+\DoxyCodeLine{01310     triangle = triangle + period;}
+\DoxyCodeLine{01311     triangle = fmodf(triangle, period) -\/ period/2;}
+\DoxyCodeLine{01312     triangle = abs(triangle);}
+\DoxyCodeLine{01313     triangle = (4/period) * triangle -\/ 1;;}
+\DoxyCodeLine{01314 }
+\DoxyCodeLine{01315     \textcolor{keywordflow}{return} triangle;}
+\DoxyCodeLine{01316 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}\label{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!DeleteSignal@{DeleteSignal}}
+\index{DeleteSignal@{DeleteSignal}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{DeleteSignal()}{DeleteSignal()}}
+{\footnotesize\ttfamily void Delete\+Signal (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$}]{signals,  }\item[{int16\+\_\+t}]{signal\+\_\+index }\end{DoxyParamCaption})}
+
+
+
+deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & signal\+\_\+index\+: index of the signals which should be seleted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAttention}{Attention}
+if you wnat to delete two signals in a row, beware that the index of the second signal could have changed, e.\+g. signals1 contains three signals, you want to delete signals1\mbox{[}0\mbox{]} and signals1\mbox{[}1\mbox{]}. After using Delete\+Signal(0) you need to use Delete\+Signal(0) again, because signals1\mbox{[}1\mbox{]} became signals1\mbox{[}0\mbox{]} after first use 
+\end{DoxyAttention}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00794}{794}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00794                                                                  \{}
+\DoxyCodeLine{00795 }
+\DoxyCodeLine{00796     \textcolor{keywordflow}{if} (signals-\/>count > 0 \&\& signal\_index > -\/1)\{}
+\DoxyCodeLine{00797         \textcolor{comment}{//shift signals too left}}
+\DoxyCodeLine{00798         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} delete\_counter=signal\_index; delete\_counter < signals-\/>count; delete\_counter++ )\{}
+\DoxyCodeLine{00799             signals -\/> current\_LUT\_Index[delete\_counter] = signals -\/> current\_LUT\_Index[delete\_counter+1] ;}
+\DoxyCodeLine{00800             signals -\/> freq[delete\_counter] = signals -\/> freq[delete\_counter+1];}
+\DoxyCodeLine{00801             signals -\/> freqIndex[delete\_counter] = signals -\/> freqIndex[delete\_counter+1];}
+\DoxyCodeLine{00802             signals -\/> kind[delete\_counter] = signals -\/> kind[delete\_counter+1];}
+\DoxyCodeLine{00803             signals -\/> ID[delete\_counter] = signals -\/> ID[delete\_counter+1];}
+\DoxyCodeLine{00804         \}}
+\DoxyCodeLine{00805         signals -\/> count-\/=1;}
+\DoxyCodeLine{00806         signals -\/> max = 1;}
+\DoxyCodeLine{00807     \}}
+\DoxyCodeLine{00808     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00809         printf(\textcolor{stringliteral}{"{}delete ERROR\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00810     \}}
+\DoxyCodeLine{00811 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}\label{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!IDtoIndex@{IDtoIndex}}
+\index{IDtoIndex@{IDtoIndex}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{IDtoIndex()}{IDtoIndex()}}
+{\footnotesize\ttfamily int16\+\_\+t IDto\+Index (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{id }\end{DoxyParamCaption})}
+
+
+
+converts an signal ID into its Index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & ID of the wanted signal \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em } & Index of the signal with the given ID, or -\/1 when ID was not found \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00817}{817}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00817                               \{}
+\DoxyCodeLine{00818 }
+\DoxyCodeLine{00819     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i < \mbox{\hyperlink{signal__synthesis_8h_a74bf0cbaccfba1bf548d482148183a12}{MAX\_SIGNAL\_KOMBINATION}};i++)\{}
+\DoxyCodeLine{00820         \textcolor{keywordflow}{if} (signals1.ID[i] == \textcolor{keywordtype}{id})\{}
+\DoxyCodeLine{00821             \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{00822         \}}
+\DoxyCodeLine{00823     \}}
+\DoxyCodeLine{00824     \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00825 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_a994b819c46cb3569b8854f25a13b54fc}\label{signal__synthesis_8c_a994b819c46cb3569b8854f25a13b54fc}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!initRamp@{initRamp}}
+\index{initRamp@{initRamp}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{initRamp()}{initRamp()}}
+{\footnotesize\ttfamily bool init\+Ramp (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01202}{1202}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01202                    \{}
+\DoxyCodeLine{01203     \textcolor{keywordtype}{bool} retval = \textcolor{keyword}{false};}
+\DoxyCodeLine{01204     \textcolor{keywordtype}{float}* calculate\_vector\_tmp = \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
+\DoxyCodeLine{01205 }
+\DoxyCodeLine{01206     \textcolor{comment}{// ramp Duration of 0.5 seconds}}
+\DoxyCodeLine{01207     \textcolor{keywordtype}{float} ramp\_dur = 0.5*LUT\_SR;}
+\DoxyCodeLine{01208     \textcolor{comment}{// MAX Ramp Value in mV}}
+\DoxyCodeLine{01209     uint32\_t maxRamp = (uint32\_t)(1650 * \mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} );}
+\DoxyCodeLine{01210 }
+\DoxyCodeLine{01211     \textcolor{comment}{// Write into DAC-\/Buffer}}
+\DoxyCodeLine{01212     \textcolor{comment}{// decide if first half of BLOCKSIZE or second half}}
+\DoxyCodeLine{01213     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
+\DoxyCodeLine{01214     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
+\DoxyCodeLine{01215         BLOOCKSIZE\_startIndex = 0;}
+\DoxyCodeLine{01216         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{01217     \}}
+\DoxyCodeLine{01218     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
+\DoxyCodeLine{01219         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{01220         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
+\DoxyCodeLine{01221     \}}
+\DoxyCodeLine{01222 }
+\DoxyCodeLine{01223     \textcolor{comment}{//Write into DAC}}
+\DoxyCodeLine{01224     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} BLOCKSIZE\_counter = BLOOCKSIZE\_startIndex; BLOCKSIZE\_counter < BLOOCKSIZE\_endIndex; BLOCKSIZE\_counter++) \{}
+\DoxyCodeLine{01225 }
+\DoxyCodeLine{01226         \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} < ramp\_dur)\{}
+\DoxyCodeLine{01227             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((float)((\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}/ramp\_dur) * maxRamp));}
+\DoxyCodeLine{01228             \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}++;}
+\DoxyCodeLine{01229         \}}
+\DoxyCodeLine{01230         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)\{}
+\DoxyCodeLine{01231             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)(maxRamp);}
+\DoxyCodeLine{01232         \}}
+\DoxyCodeLine{01233     \}}
+\DoxyCodeLine{01234     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)}
+\DoxyCodeLine{01235         retval = \textcolor{keyword}{true};}
+\DoxyCodeLine{01236 }
+\DoxyCodeLine{01237     \textcolor{keywordflow}{return} retval;}
+\DoxyCodeLine{01238 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_a381bb27bca64ed7f5df822a3db09707a}\label{signal__synthesis_8c_a381bb27bca64ed7f5df822a3db09707a}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!LFO\_SingleValueProcess@{LFO\_SingleValueProcess}}
+\index{LFO\_SingleValueProcess@{LFO\_SingleValueProcess}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{LFO\_SingleValueProcess()}{LFO\_SingleValueProcess()}}
+{\footnotesize\ttfamily void LFO\+\_\+\+Single\+Value\+Process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structeffects__lfo__t}{effects\+\_\+lfo\+\_\+t}} $\ast$}]{lfo,  }\item[{uint8\+\_\+t}]{lfo\+\_\+effect }\end{DoxyParamCaption})}
+
+
+
+Constructor for a signal, adds a signal into the signals1 struct. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kind} & kind of the signal, use signal\+\_\+kind\+\_\+enum \\
+\hline
+{\em key} & is string which is a note key from C to b \\
+\hline
+{\em octave} & defines in which octave the key is settled. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAttention}{Attention}
+the combination of key and octave defines the frequency 
+\end{DoxyAttention}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00134}{134}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00134                                                                            \{}
+\DoxyCodeLine{00135 }
+\DoxyCodeLine{00136     lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00137 }
+\DoxyCodeLine{00138     \textcolor{comment}{// CASE 1: 0.125 Hz}}
+\DoxyCodeLine{00139     \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[0]) \{}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
+\DoxyCodeLine{00142         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00143             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00144                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00145             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00146                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[0]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00147             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00148         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00149             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00150                 lfo-\/>lfo\_data = 1;}
+\DoxyCodeLine{00151 }
+\DoxyCodeLine{00152                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00153                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
+\DoxyCodeLine{00154                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
+\DoxyCodeLine{00155                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00156                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{00157                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00158                     \}}
+\DoxyCodeLine{00159                 \}}
+\DoxyCodeLine{00160             \}}
+\DoxyCodeLine{00161             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00162                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[0]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00163             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00164         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00165             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00166                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00167             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00168                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[0] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00169             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00170         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00171             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00172                 lfo-\/>lfo\_data = -\/1;}
+\DoxyCodeLine{00173             \}}
+\DoxyCodeLine{00174             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00175                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[0]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00176             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00177         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00178             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00179         \}}
+\DoxyCodeLine{00180         lfo-\/>lfo\_index++;}
+\DoxyCodeLine{00181 }
+\DoxyCodeLine{00182         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
+\DoxyCodeLine{00183         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[0]) \{}
+\DoxyCodeLine{00184 }
+\DoxyCodeLine{00185             lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00186             lfo-\/>lfo\_quarter++;}
+\DoxyCodeLine{00187             \textcolor{keywordflow}{if} (lfo-\/>lfo\_quarter == 4) \{}
+\DoxyCodeLine{00188                 lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00189 }
+\DoxyCodeLine{00190                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00191                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
+\DoxyCodeLine{00192                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
+\DoxyCodeLine{00193 }
+\DoxyCodeLine{00194                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00195                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
+\DoxyCodeLine{00196                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00197                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
+\DoxyCodeLine{00198                     \}}
+\DoxyCodeLine{00199                 \}}
+\DoxyCodeLine{00200                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo\_effect == WAHWAH\_LFO) \{}
+\DoxyCodeLine{00201                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
+\DoxyCodeLine{00202                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
+\DoxyCodeLine{00203 }
+\DoxyCodeLine{00204                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00205                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{00206                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00207                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
+\DoxyCodeLine{00208                     \}}
+\DoxyCodeLine{00209                 \}}
+\DoxyCodeLine{00210             \}}
+\DoxyCodeLine{00211         \}}
+\DoxyCodeLine{00212     \}}
+\DoxyCodeLine{00213     \textcolor{comment}{// CASE 2: 0.25 Hz}}
+\DoxyCodeLine{00214     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[1]) \{}
+\DoxyCodeLine{00215 }
+\DoxyCodeLine{00216         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
+\DoxyCodeLine{00217         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00218             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00219                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00220             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00221                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[1]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00222             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00223         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00224             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00225                 lfo-\/>lfo\_data = 1;}
+\DoxyCodeLine{00226 }
+\DoxyCodeLine{00227                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00228                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
+\DoxyCodeLine{00229                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
+\DoxyCodeLine{00230                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00231                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{00232                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00233                     \}}
+\DoxyCodeLine{00234                 \}}
+\DoxyCodeLine{00235             \}}
+\DoxyCodeLine{00236             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00237                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[1]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00238             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00239         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00240             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00241                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00242             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00243                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[1] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00244             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00245         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00246             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00247                 lfo-\/>lfo\_data = -\/1;}
+\DoxyCodeLine{00248             \}}
+\DoxyCodeLine{00249             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00250                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[1]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00251             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00252         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00253             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00254         \}}
+\DoxyCodeLine{00255         lfo-\/>lfo\_index++;}
+\DoxyCodeLine{00256 }
+\DoxyCodeLine{00257         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
+\DoxyCodeLine{00258         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[1]) \{}
+\DoxyCodeLine{00259 }
+\DoxyCodeLine{00260             lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00261             lfo-\/>lfo\_quarter++;}
+\DoxyCodeLine{00262             \textcolor{keywordflow}{if} (lfo-\/>lfo\_quarter == 4) \{}
+\DoxyCodeLine{00263                 lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00264 }
+\DoxyCodeLine{00265                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00266                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
+\DoxyCodeLine{00267                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
+\DoxyCodeLine{00268 }
+\DoxyCodeLine{00269                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00270                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
+\DoxyCodeLine{00271                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00272                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
+\DoxyCodeLine{00273                     \}}
+\DoxyCodeLine{00274                 \}}
+\DoxyCodeLine{00275                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo\_effect == WAHWAH\_LFO) \{}
+\DoxyCodeLine{00276                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
+\DoxyCodeLine{00277                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
+\DoxyCodeLine{00278 }
+\DoxyCodeLine{00279                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00280                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{00281                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00282                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
+\DoxyCodeLine{00283                     \}}
+\DoxyCodeLine{00284                 \}}
+\DoxyCodeLine{00285             \}}
+\DoxyCodeLine{00286         \}}
+\DoxyCodeLine{00287     \}}
+\DoxyCodeLine{00288     \textcolor{comment}{// CASE 3: 0.5 Hz}}
+\DoxyCodeLine{00289     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[2]) \{}
+\DoxyCodeLine{00290 }
+\DoxyCodeLine{00291         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
+\DoxyCodeLine{00292         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00293             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00294                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00295             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00296                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[2]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00297             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00298         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00299             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00300                 lfo-\/>lfo\_data = 1;}
+\DoxyCodeLine{00301 }
+\DoxyCodeLine{00302                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00303                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
+\DoxyCodeLine{00304                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
+\DoxyCodeLine{00305                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00306                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{00307                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00308                     \}}
+\DoxyCodeLine{00309                 \}}
+\DoxyCodeLine{00310             \}}
+\DoxyCodeLine{00311             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00312                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[2]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00313             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00314         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00315             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00316                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00317             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00318                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[2] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00319             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00320         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00321             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00322                 lfo-\/>lfo\_data = -\/1;}
+\DoxyCodeLine{00323             \}}
+\DoxyCodeLine{00324             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00325                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[2]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00326             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00327         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00328             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00329         \}}
+\DoxyCodeLine{00330         lfo-\/>lfo\_index++;}
+\DoxyCodeLine{00331 }
+\DoxyCodeLine{00332         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
+\DoxyCodeLine{00333         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[2]) \{}
+\DoxyCodeLine{00334 }
+\DoxyCodeLine{00335             lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00336             lfo-\/>lfo\_quarter++;}
+\DoxyCodeLine{00337             \textcolor{keywordflow}{if} (lfo-\/>lfo\_quarter == 4) \{}
+\DoxyCodeLine{00338                 lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00339 }
+\DoxyCodeLine{00340                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00341                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
+\DoxyCodeLine{00342                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
+\DoxyCodeLine{00343 }
+\DoxyCodeLine{00344                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00345                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
+\DoxyCodeLine{00346                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00347                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
+\DoxyCodeLine{00348                     \}}
+\DoxyCodeLine{00349                 \}}
+\DoxyCodeLine{00350                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo\_effect == WAHWAH\_LFO) \{}
+\DoxyCodeLine{00351                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
+\DoxyCodeLine{00352                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
+\DoxyCodeLine{00353 }
+\DoxyCodeLine{00354                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00355                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{00356                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00357                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
+\DoxyCodeLine{00358                     \}}
+\DoxyCodeLine{00359                 \}}
+\DoxyCodeLine{00360             \}}
+\DoxyCodeLine{00361         \}}
+\DoxyCodeLine{00362     \}}
+\DoxyCodeLine{00363     \textcolor{comment}{// CASE 4: 1 Hz}}
+\DoxyCodeLine{00364     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[3]) \{}
+\DoxyCodeLine{00365 }
+\DoxyCodeLine{00366         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
+\DoxyCodeLine{00367         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00368             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00369                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00370             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00371                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[3]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00372             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00373         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00374             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00375                 lfo-\/>lfo\_data = 1;}
+\DoxyCodeLine{00376 }
+\DoxyCodeLine{00377                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00378                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
+\DoxyCodeLine{00379                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
+\DoxyCodeLine{00380                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00381                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{00382                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00383                     \}}
+\DoxyCodeLine{00384                 \}}
+\DoxyCodeLine{00385             \}}
+\DoxyCodeLine{00386             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00387                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[3]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00388             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00389         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00390             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00391                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00392             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00393                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[3] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00394             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00395         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00396             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00397                 lfo-\/>lfo\_data = -\/1;}
+\DoxyCodeLine{00398             \}}
+\DoxyCodeLine{00399             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00400                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[3]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00401             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00402         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00403             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00404         \}}
+\DoxyCodeLine{00405         lfo-\/>lfo\_index++;}
+\DoxyCodeLine{00406 }
+\DoxyCodeLine{00407         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
+\DoxyCodeLine{00408         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[3]) \{}
+\DoxyCodeLine{00409 }
+\DoxyCodeLine{00410             lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00411             lfo-\/>lfo\_quarter++;}
+\DoxyCodeLine{00412             \textcolor{keywordflow}{if} (lfo-\/>lfo\_quarter == 4) \{}
+\DoxyCodeLine{00413                 lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00414 }
+\DoxyCodeLine{00415                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00416                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
+\DoxyCodeLine{00417                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
+\DoxyCodeLine{00418 }
+\DoxyCodeLine{00419                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00420                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
+\DoxyCodeLine{00421                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00422                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
+\DoxyCodeLine{00423                     \}}
+\DoxyCodeLine{00424                 \}}
+\DoxyCodeLine{00425                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo\_effect == WAHWAH\_LFO) \{}
+\DoxyCodeLine{00426                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
+\DoxyCodeLine{00427                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
+\DoxyCodeLine{00428 }
+\DoxyCodeLine{00429                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00430                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{00431                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00432                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
+\DoxyCodeLine{00433                     \}}
+\DoxyCodeLine{00434                 \}}
+\DoxyCodeLine{00435             \}}
+\DoxyCodeLine{00436         \}}
+\DoxyCodeLine{00437     \}}
+\DoxyCodeLine{00438     \textcolor{comment}{// CASE 5: 2 Hz}}
+\DoxyCodeLine{00439     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[4]) \{}
+\DoxyCodeLine{00440 }
+\DoxyCodeLine{00441         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
+\DoxyCodeLine{00442         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00443             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00444                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00445             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00446                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[4]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00447             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00448         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00449             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00450                 lfo-\/>lfo\_data = 1;}
+\DoxyCodeLine{00451 }
+\DoxyCodeLine{00452                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00453                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
+\DoxyCodeLine{00454                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
+\DoxyCodeLine{00455                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00456                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{00457                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00458                     \}}
+\DoxyCodeLine{00459                 \}}
+\DoxyCodeLine{00460             \}}
+\DoxyCodeLine{00461             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00462                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[4]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00463             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00464         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00465             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00466                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00467             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00468                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[4] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00469             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00470         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00471             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00472                 lfo-\/>lfo\_data = -\/1;}
+\DoxyCodeLine{00473             \}}
+\DoxyCodeLine{00474             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00475                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[4]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00476             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00477         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00478             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00479         \}}
+\DoxyCodeLine{00480         lfo-\/>lfo\_index++;}
+\DoxyCodeLine{00481 }
+\DoxyCodeLine{00482         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
+\DoxyCodeLine{00483         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[4]) \{}
+\DoxyCodeLine{00484 }
+\DoxyCodeLine{00485             lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00486             lfo-\/>lfo\_quarter++;}
+\DoxyCodeLine{00487             \textcolor{keywordflow}{if} (lfo-\/>lfo\_quarter == 4) \{}
+\DoxyCodeLine{00488                 lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00489 }
+\DoxyCodeLine{00490                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00491                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
+\DoxyCodeLine{00492                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
+\DoxyCodeLine{00493 }
+\DoxyCodeLine{00494                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00495                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
+\DoxyCodeLine{00496                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00497                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
+\DoxyCodeLine{00498                     \}}
+\DoxyCodeLine{00499                 \}}
+\DoxyCodeLine{00500                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo\_effect == WAHWAH\_LFO) \{}
+\DoxyCodeLine{00501                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
+\DoxyCodeLine{00502                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
+\DoxyCodeLine{00503 }
+\DoxyCodeLine{00504                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00505                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{00506                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00507                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
+\DoxyCodeLine{00508                     \}}
+\DoxyCodeLine{00509                 \}}
+\DoxyCodeLine{00510             \}}
+\DoxyCodeLine{00511         \}}
+\DoxyCodeLine{00512     \}}
+\DoxyCodeLine{00513     \textcolor{comment}{// CASE 6: 4 Hz}}
+\DoxyCodeLine{00514     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[5]) \{}
+\DoxyCodeLine{00515 }
+\DoxyCodeLine{00516         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
+\DoxyCodeLine{00517         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00518             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00519                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00520             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00521                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[5]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00522             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00523         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00524             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00525                 lfo-\/>lfo\_data = 1;}
+\DoxyCodeLine{00526 }
+\DoxyCodeLine{00527                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00528                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
+\DoxyCodeLine{00529                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
+\DoxyCodeLine{00530                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00531                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{00532                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00533                     \}}
+\DoxyCodeLine{00534                 \}}
+\DoxyCodeLine{00535             \}}
+\DoxyCodeLine{00536             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00537                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[5]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00538             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00539         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00540             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00541                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00542             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00543                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[5] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00544             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00545         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00546             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00547                 lfo-\/>lfo\_data = -\/1;}
+\DoxyCodeLine{00548             \}}
+\DoxyCodeLine{00549             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00550                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[5]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00551             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00552         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00553             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00554         \}}
+\DoxyCodeLine{00555         lfo-\/>lfo\_index++;}
+\DoxyCodeLine{00556 }
+\DoxyCodeLine{00557         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
+\DoxyCodeLine{00558         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[5]) \{}
+\DoxyCodeLine{00559 }
+\DoxyCodeLine{00560             lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00561             lfo-\/>lfo\_quarter++;}
+\DoxyCodeLine{00562             \textcolor{keywordflow}{if} (lfo-\/>lfo\_quarter == 4) \{}
+\DoxyCodeLine{00563                 lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00564 }
+\DoxyCodeLine{00565                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00566                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
+\DoxyCodeLine{00567                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
+\DoxyCodeLine{00568 }
+\DoxyCodeLine{00569                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00570                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
+\DoxyCodeLine{00571                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00572                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
+\DoxyCodeLine{00573                     \}}
+\DoxyCodeLine{00574                 \}}
+\DoxyCodeLine{00575                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo\_effect == WAHWAH\_LFO) \{}
+\DoxyCodeLine{00576                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
+\DoxyCodeLine{00577                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
+\DoxyCodeLine{00578 }
+\DoxyCodeLine{00579                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00580                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{00581                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00582                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
+\DoxyCodeLine{00583                     \}}
+\DoxyCodeLine{00584                 \}}
+\DoxyCodeLine{00585             \}}
+\DoxyCodeLine{00586         \}}
+\DoxyCodeLine{00587     \}}
+\DoxyCodeLine{00588     \textcolor{comment}{// CASE 7: 8 Hz}}
+\DoxyCodeLine{00589     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[6]) \{}
+\DoxyCodeLine{00590 }
+\DoxyCodeLine{00591         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
+\DoxyCodeLine{00592         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00593             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00594                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00595             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00596                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[6]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00597             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00598         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00599             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00600                 lfo-\/>lfo\_data = 1;}
+\DoxyCodeLine{00601 }
+\DoxyCodeLine{00602                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00603                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
+\DoxyCodeLine{00604                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
+\DoxyCodeLine{00605                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00606                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{00607                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00608                     \}}
+\DoxyCodeLine{00609                 \}}
+\DoxyCodeLine{00610             \}}
+\DoxyCodeLine{00611             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00612                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[6]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00613             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00614         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00615             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00616                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00617             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00618                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[6] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00619             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00620         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00621             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00622                 lfo-\/>lfo\_data = -\/1;}
+\DoxyCodeLine{00623             \}}
+\DoxyCodeLine{00624             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00625                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[6]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00626             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00627         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00628             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00629         \}}
+\DoxyCodeLine{00630         lfo-\/>lfo\_index++;}
+\DoxyCodeLine{00631 }
+\DoxyCodeLine{00632         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
+\DoxyCodeLine{00633         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[6]) \{}
+\DoxyCodeLine{00634 }
+\DoxyCodeLine{00635             lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00636             lfo-\/>lfo\_quarter++;}
+\DoxyCodeLine{00637             \textcolor{keywordflow}{if} (lfo-\/>lfo\_quarter == 4) \{}
+\DoxyCodeLine{00638                 lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00639 }
+\DoxyCodeLine{00640                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00641                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
+\DoxyCodeLine{00642                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
+\DoxyCodeLine{00643 }
+\DoxyCodeLine{00644                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00645                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
+\DoxyCodeLine{00646                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00647                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
+\DoxyCodeLine{00648                     \}}
+\DoxyCodeLine{00649                 \}}
+\DoxyCodeLine{00650                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo\_effect == WAHWAH\_LFO) \{}
+\DoxyCodeLine{00651                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
+\DoxyCodeLine{00652                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
+\DoxyCodeLine{00653 }
+\DoxyCodeLine{00654                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00655                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{00656                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00657                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
+\DoxyCodeLine{00658                     \}}
+\DoxyCodeLine{00659                 \}}
+\DoxyCodeLine{00660             \}}
+\DoxyCodeLine{00661         \}}
+\DoxyCodeLine{00662     \}}
+\DoxyCodeLine{00663     \textcolor{comment}{// CASE 8: 16 Hz}}
+\DoxyCodeLine{00664     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[7]) \{}
+\DoxyCodeLine{00665 }
+\DoxyCodeLine{00666         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
+\DoxyCodeLine{00667         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00668             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00669                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00670             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00671                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[7]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00672             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00673         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00674             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00675                 lfo-\/>lfo\_data = 1;}
+\DoxyCodeLine{00676 }
+\DoxyCodeLine{00677                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00678                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
+\DoxyCodeLine{00679                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
+\DoxyCodeLine{00680                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00681                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{00682                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00683                     \}}
+\DoxyCodeLine{00684                 \}}
+\DoxyCodeLine{00685             \}}
+\DoxyCodeLine{00686             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00687                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[7]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00688             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00689         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00690             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
+\DoxyCodeLine{00691                 lfo-\/>lfo\_data = 0;}
+\DoxyCodeLine{00692             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00693                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[7] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00694             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00695         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00696             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
+\DoxyCodeLine{00697                 lfo-\/>lfo\_data = -\/1;}
+\DoxyCodeLine{00698             \}}
+\DoxyCodeLine{00699             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00700                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[7]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00701             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00702         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00703             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00704         \}}
+\DoxyCodeLine{00705         lfo-\/>lfo\_index++;}
+\DoxyCodeLine{00706 }
+\DoxyCodeLine{00707         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
+\DoxyCodeLine{00708         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[7]) \{}
+\DoxyCodeLine{00709 }
+\DoxyCodeLine{00710             lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00711             lfo-\/>lfo\_quarter++;}
+\DoxyCodeLine{00712             \textcolor{keywordflow}{if} (lfo-\/>lfo\_quarter == 4) \{}
+\DoxyCodeLine{00713                 lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00714 }
+\DoxyCodeLine{00715                 \textcolor{keywordflow}{if}(lfo\_effect == TREMOLO\_LFO) \{}
+\DoxyCodeLine{00716                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
+\DoxyCodeLine{00717                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
+\DoxyCodeLine{00718 }
+\DoxyCodeLine{00719                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00720                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
+\DoxyCodeLine{00721                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00722                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
+\DoxyCodeLine{00723                     \}}
+\DoxyCodeLine{00724                 \}}
+\DoxyCodeLine{00725                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo\_effect == WAHWAH\_LFO) \{}
+\DoxyCodeLine{00726                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
+\DoxyCodeLine{00727                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
+\DoxyCodeLine{00728 }
+\DoxyCodeLine{00729                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00730                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{00731                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00732                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
+\DoxyCodeLine{00733                     \}}
+\DoxyCodeLine{00734                 \}}
+\DoxyCodeLine{00735             \}}
+\DoxyCodeLine{00736         \}}
+\DoxyCodeLine{00737     \}}
+\DoxyCodeLine{00738 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}\label{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!NewSignal@{NewSignal}}
+\index{NewSignal@{NewSignal}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{NewSignal()}{NewSignal()}}
+{\footnotesize\ttfamily void New\+Signal (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$}]{signals,  }\item[{uint8\+\_\+t}]{kind,  }\item[{uint8\+\_\+t}]{key,  }\item[{uint8\+\_\+t}]{octave,  }\item[{uint8\+\_\+t}]{ID }\end{DoxyParamCaption})}
+
+
+
+generates a signal which is processed in the \mbox{\hyperlink{signal__synthesis_8c_a14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} 
+
+\begin{DoxyNote}{Note}
+for more information see siganls struct description
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em signals} & \\
+\hline
+{\em kind} & \\
+\hline
+{\em key} & \\
+\hline
+{\em octave} & \\
+\hline
+{\em ID} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00751}{751}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00751                                                                                                \{}
+\DoxyCodeLine{00752 }
+\DoxyCodeLine{00753     \textcolor{keywordflow}{if} (signals -\/> count <= \mbox{\hyperlink{signal__synthesis_8h_a74bf0cbaccfba1bf548d482148183a12}{MAX\_SIGNAL\_KOMBINATION}})\{}
+\DoxyCodeLine{00754         signals -\/> count += 1;}
+\DoxyCodeLine{00755         uint8\_t index = (signals-\/> count)-\/1;}
+\DoxyCodeLine{00756         signals -\/> ID[index]= ID;}
+\DoxyCodeLine{00757         signals -\/> kind[index] = kind;}
+\DoxyCodeLine{00758 }
+\DoxyCodeLine{00759         \textcolor{keywordflow}{switch}(kind) \{}
+\DoxyCodeLine{00760 }
+\DoxyCodeLine{00761         \textcolor{keywordflow}{case} SIN:}
+\DoxyCodeLine{00762             signals -\/> freq[index] = \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(key), octave);}
+\DoxyCodeLine{00763             signals -\/> freqIndex[index] = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(key,octave);}
+\DoxyCodeLine{00764             signals -\/> current\_LUT\_Index[index] = LUT\_STARTINDEX[signals -\/> freqIndex[index]];}
+\DoxyCodeLine{00765             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00766 }
+\DoxyCodeLine{00767         \textcolor{keywordflow}{case} RECT:}
+\DoxyCodeLine{00768             signals -\/> freq[index] = \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(key), octave);}
+\DoxyCodeLine{00769             signals -\/> freqIndex[index] = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(key,octave);}
+\DoxyCodeLine{00770             signals -\/> current\_LUT\_Index[index] = 0;}
+\DoxyCodeLine{00771             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00772 }
+\DoxyCodeLine{00773         \textcolor{keywordflow}{case} TRIANGLE:}
+\DoxyCodeLine{00774             signals -\/> freq[index] = \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(key), octave);}
+\DoxyCodeLine{00775             signals -\/> freqIndex[index] = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(key,octave);}
+\DoxyCodeLine{00776             signals -\/> current\_LUT\_Index[index] = 0;}
+\DoxyCodeLine{00777             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00778 }
+\DoxyCodeLine{00779         \textcolor{keywordflow}{case} NOISE:}
+\DoxyCodeLine{00780             signals -\/> freq[index] = 0;}
+\DoxyCodeLine{00781             signals -\/> freqIndex[index] = 0;}
+\DoxyCodeLine{00782             signals -\/> current\_LUT\_Index[index] = 0;}
+\DoxyCodeLine{00783             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00784         \}}
+\DoxyCodeLine{00785     \}}
+\DoxyCodeLine{00786     signals -\/> max = 1;}
+\DoxyCodeLine{00787 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}\label{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!Noise\_Generator@{Noise\_Generator}}
+\index{Noise\_Generator@{Noise\_Generator}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{Noise\_Generator()}{Noise\_Generator()}}
+{\footnotesize\ttfamily float Noise\+\_\+\+Generator (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+random number generator 
+
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01323}{1323}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01323                             \{}
+\DoxyCodeLine{01324 }
+\DoxyCodeLine{01325     \textcolor{keywordtype}{float} NoiseValue = 0;}
+\DoxyCodeLine{01326     \textcolor{keywordtype}{float} Noise\_Gain = 0.5;}
+\DoxyCodeLine{01327 }
+\DoxyCodeLine{01328     \textcolor{keywordflow}{if}(Display.Noise\_ONOFF == \textcolor{keyword}{true})}
+\DoxyCodeLine{01329         NoiseValue = (Noise\_Gain*Display.Noise\_Volume*(float)rand()/ (powf(2, 8*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}))) )-\/(Noise\_Gain*Display.Noise\_Volume*0.25); \textcolor{comment}{// Noise Gain = 8}}
+\DoxyCodeLine{01330 }
+\DoxyCodeLine{01331     \textcolor{keywordflow}{return} NoiseValue;}
+\DoxyCodeLine{01332 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}\label{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!SetTimerSettings@{SetTimerSettings}}
+\index{SetTimerSettings@{SetTimerSettings}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{SetTimerSettings()}{SetTimerSettings()}}
+{\footnotesize\ttfamily void Set\+Timer\+Settings (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{htim,  }\item[{uint32\+\_\+t}]{SR }\end{DoxyParamCaption})}
+
+
+
+Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & timer-\/handler which controls the DAC, timer have to be connected with DAC \\
+\hline
+{\em SR} & Sample Rate \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00080}{80}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080                                                             \{}
+\DoxyCodeLine{00081 }
+\DoxyCodeLine{00082     \textcolor{comment}{// Clock Sources of all 14 timers: 1 = APB1, 2 = APB2}}
+\DoxyCodeLine{00083     uint8\_t APBTimerCases[] = \{2,1,1,1,1,1,1,2,2,2,2,1,1,1\};}
+\DoxyCodeLine{00084     uint8\_t Timer = 0;}
+\DoxyCodeLine{00085     uint32\_t Clock = 0;}
+\DoxyCodeLine{00086 }
+\DoxyCodeLine{00087     \textcolor{keywordflow}{if}(htim-\/>Instance == TIM1) Timer = 1;}
+\DoxyCodeLine{00088     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM2) Timer = 2;}
+\DoxyCodeLine{00089     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM3) Timer = 3;}
+\DoxyCodeLine{00090     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM4) Timer = 4;}
+\DoxyCodeLine{00091     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM5) Timer = 5;}
+\DoxyCodeLine{00092     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM6) Timer = 6;}
+\DoxyCodeLine{00093     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM7) Timer = 7;}
+\DoxyCodeLine{00094     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM8) Timer = 8;}
+\DoxyCodeLine{00095     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM9) Timer = 9;}
+\DoxyCodeLine{00096     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM10) Timer = 10;}
+\DoxyCodeLine{00097     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM11) Timer = 11;}
+\DoxyCodeLine{00098     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM12) Timer = 12;}
+\DoxyCodeLine{00099     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM13) Timer = 13;}
+\DoxyCodeLine{00100     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(htim-\/>Instance == TIM14) Timer = 14;}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102     \textcolor{keywordflow}{if}(APBTimerCases[Timer-\/1] == 1)}
+\DoxyCodeLine{00103         Clock = 2 * HAL\_RCC\_GetPCLK1Freq(); \textcolor{comment}{// APB1 Timer Clock}}
+\DoxyCodeLine{00104 }
+\DoxyCodeLine{00105     \textcolor{keywordflow}{if}(APBTimerCases[Timer-\/1] == 2)}
+\DoxyCodeLine{00106         Clock = 2 * HAL\_RCC\_GetPCLK2Freq(); \textcolor{comment}{// APB2 Timer Clock}}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108     uint32\_t values\_length = 65536;}
+\DoxyCodeLine{00109     uint16\_t prescaler;}
+\DoxyCodeLine{00110     uint32\_t timerperiod = 0;}
+\DoxyCodeLine{00111 }
+\DoxyCodeLine{00112     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=1; i<values\_length; i++) \{}
+\DoxyCodeLine{00113 }
+\DoxyCodeLine{00114         prescaler = fmod(Clock, i); \textcolor{comment}{// modulo-\/operation}}
+\DoxyCodeLine{00115         \textcolor{keywordflow}{if}(prescaler == 0) \{\textcolor{comment}{// find possible prescaler Values}}
+\DoxyCodeLine{00116             prescaler = i;}
+\DoxyCodeLine{00117             timerperiod = Clock/( prescaler * SR );\textcolor{comment}{//set timerperiod}}
+\DoxyCodeLine{00118             \textcolor{keywordflow}{if} (timerperiod < values\_length)\{}
+\DoxyCodeLine{00119                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00120             \}}
+\DoxyCodeLine{00121         \}}
+\DoxyCodeLine{00122     \}\textcolor{comment}{//end for-\/loop}}
+\DoxyCodeLine{00123 }
+\DoxyCodeLine{00124     \_\_HAL\_TIM\_SET\_AUTORELOAD(htim, timerperiod-\/1);  \textcolor{comment}{// update timer settings}}
+\DoxyCodeLine{00125     \_\_HAL\_TIM\_SET\_PRESCALER(htim, prescaler-\/1);}
+\DoxyCodeLine{00126 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_a14e563872b7cc3bae6f534d36f016911}\label{signal__synthesis_8c_a14e563872b7cc3bae6f534d36f016911}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!Signal\_Synthesis@{Signal\_Synthesis}}
+\index{Signal\_Synthesis@{Signal\_Synthesis}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{Signal\_Synthesis()}{Signal\_Synthesis()}}
+{\footnotesize\ttfamily void Signal\+\_\+\+Synthesis (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$}]{signals,  }\item[{uint8\+\_\+t}]{output\+\_\+\+Channel }\end{DoxyParamCaption})}
+
+
+
+generates a digital signal in the calculate\+\_\+vector, depending on the signals inside the struct signals1. To add signals use New\+Signal and to delete signals use Delete\+Signal 
+
+
+\begin{DoxyParams}{Parameters}
+{\em signal} & is a \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} struct which contains the tones to be played \\
+\hline
+{\em output\+\_\+\+Channel} & decides if the Array connected to the DAC Channel one is filled or the array connected with the DAC channel two is filled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Channel 1 is connected to calculate\+\_\+vector1 and Channel 2 connected to calculate\+\_\+vector2 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00834}{834}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00834                                                                       \{}
+\DoxyCodeLine{00835 }
+\DoxyCodeLine{00836     \textcolor{comment}{//Variables}}
+\DoxyCodeLine{00837     \textcolor{keywordtype}{float} addValue=0;}
+\DoxyCodeLine{00838     uint8\_t count = signals -\/> count;}
+\DoxyCodeLine{00839 }
+\DoxyCodeLine{00840     \textcolor{comment}{// decide if Channel 1 or Channel 2}}
+\DoxyCodeLine{00841     \textcolor{keywordtype}{float}* calculate\_vector\_tmp = 0; \textcolor{comment}{// working array}}
+\DoxyCodeLine{00842 }
+\DoxyCodeLine{00843     \textcolor{keywordflow}{if}(output\_Channel == 1) \{}
+\DoxyCodeLine{00844         calculate\_vector\_tmp = \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
+\DoxyCodeLine{00845     \}}
+\DoxyCodeLine{00846     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(output\_Channel == 2) \{}
+\DoxyCodeLine{00847         calculate\_vector\_tmp = calculate\_vector2;}
+\DoxyCodeLine{00848     \}}
+\DoxyCodeLine{00849 }
+\DoxyCodeLine{00850     \textcolor{comment}{// decide if first half of BLOCKSIZE or second half}}
+\DoxyCodeLine{00851     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
+\DoxyCodeLine{00852     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
+\DoxyCodeLine{00853         BLOOCKSIZE\_startIndex = 0;}
+\DoxyCodeLine{00854         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{00855     \}}
+\DoxyCodeLine{00856     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
+\DoxyCodeLine{00857         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{00858         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
+\DoxyCodeLine{00859     \}}
+\DoxyCodeLine{00860 }
+\DoxyCodeLine{00861     \textcolor{comment}{// Loop for signal synthesis}}
+\DoxyCodeLine{00862     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} BLOCKSIZE\_counter = BLOOCKSIZE\_startIndex; BLOCKSIZE\_counter < BLOOCKSIZE\_endIndex; BLOCKSIZE\_counter++) \{}
+\DoxyCodeLine{00863 }
+\DoxyCodeLine{00864         addValue = 0;}
+\DoxyCodeLine{00865 }
+\DoxyCodeLine{00866         calculate\_keyboard[0] = 0;}
+\DoxyCodeLine{00867         calculate\_keyboard[1] = 0;}
+\DoxyCodeLine{00868         calculate\_keyboard[2] = 0;}
+\DoxyCodeLine{00869         calculate\_keyboard[3] = 0;}
+\DoxyCodeLine{00870         calculate\_keyboard[4] = 0;}
+\DoxyCodeLine{00871 }
+\DoxyCodeLine{00872         \textcolor{comment}{// Loop to reach all Signals}}
+\DoxyCodeLine{00873         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<count; j++) \{}
+\DoxyCodeLine{00874 }
+\DoxyCodeLine{00875             \textcolor{keywordflow}{switch} (signals-\/>kind[j]) \{}
+\DoxyCodeLine{00876 }
+\DoxyCodeLine{00877             \textcolor{keywordflow}{case} SIN:}
+\DoxyCodeLine{00878                 \textcolor{comment}{// adds all SIN values from the signals to addValue}}
+\DoxyCodeLine{00879                 addValue = addValue + LUT[signals -\/> current\_LUT\_Index[j]];}
+\DoxyCodeLine{00880                 }
+\DoxyCodeLine{00881                 \textcolor{comment}{// get index for the next sin value}}
+\DoxyCodeLine{00882                 signals-\/>current\_LUT\_Index[j]++;}
+\DoxyCodeLine{00883 }
+\DoxyCodeLine{00884                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] > LUT\_ENDINDEX[signals-\/>freqIndex[j]]) \{}
+\DoxyCodeLine{00885 }
+\DoxyCodeLine{00886                     signals-\/>current\_LUT\_Index[j] = LUT\_STARTINDEX[signals-\/>freqIndex[j]];}
+\DoxyCodeLine{00887 }
+\DoxyCodeLine{00888                     \textcolor{comment}{// create voice signals (maximum 3) to avoid plop sound if note or octave is varied}}
+\DoxyCodeLine{00889                     \textcolor{comment}{// this has to be done here to process the change immediately when the index is}}
+\DoxyCodeLine{00890                     \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID) \{}
+\DoxyCodeLine{00891 }
+\DoxyCodeLine{00892                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID] != Display.Voices\_Note[VOICES\_ID]) \{}
+\DoxyCodeLine{00893                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{00894                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{00895                             Display.last\_Voices\_Note[VOICES\_ID] = Display.Voices\_Note[VOICES\_ID];}
+\DoxyCodeLine{00896                         \}}
+\DoxyCodeLine{00897                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID] != Display.Voices\_Octave[VOICES\_ID]) \{}
+\DoxyCodeLine{00898                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{00899                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{00900                             Display.last\_Voices\_Octave[VOICES\_ID] = Display.Voices\_Octave[VOICES\_ID];}
+\DoxyCodeLine{00901                         \}}
+\DoxyCodeLine{00902                     \}}
+\DoxyCodeLine{00903                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+1) \{}
+\DoxyCodeLine{00904 }
+\DoxyCodeLine{00905                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+1] != Display.Voices\_Note[VOICES\_ID+1]) \{}
+\DoxyCodeLine{00906                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{00907                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{00908                             Display.last\_Voices\_Note[VOICES\_ID+1] = Display.Voices\_Note[VOICES\_ID+1];}
+\DoxyCodeLine{00909                         \}}
+\DoxyCodeLine{00910                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+1] != Display.Voices\_Octave[VOICES\_ID+1]) \{}
+\DoxyCodeLine{00911                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{00912                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{00913                             Display.last\_Voices\_Octave[VOICES\_ID+1] = Display.Voices\_Octave[VOICES\_ID+1];}
+\DoxyCodeLine{00914                         \}}
+\DoxyCodeLine{00915                     \}}
+\DoxyCodeLine{00916                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+2) \{}
+\DoxyCodeLine{00917 }
+\DoxyCodeLine{00918                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+2] != Display.Voices\_Note[VOICES\_ID+2]) \{}
+\DoxyCodeLine{00919                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{00920                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{00921                             Display.last\_Voices\_Note[VOICES\_ID+2] = Display.Voices\_Note[VOICES\_ID+2];}
+\DoxyCodeLine{00922                         \}}
+\DoxyCodeLine{00923                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+2] != Display.Voices\_Octave[VOICES\_ID+2]) \{}
+\DoxyCodeLine{00924                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{00925                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{00926                             Display.last\_Voices\_Octave[VOICES\_ID+2] = Display.Voices\_Octave[VOICES\_ID+2];}
+\DoxyCodeLine{00927                         \}}
+\DoxyCodeLine{00928                     \}}
+\DoxyCodeLine{00929                     \textcolor{comment}{// delete signal if voice off}}
+\DoxyCodeLine{00930                     \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00931                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{00932                         Display.Voices\_Created[VOICES\_ID] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00933                     \}}
+\DoxyCodeLine{00934                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+1]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+1] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00935                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{00936                         Display.Voices\_Created[VOICES\_ID+1] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00937                     \}}
+\DoxyCodeLine{00938                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+2]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+2] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00939                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{00940                         Display.Voices\_Created[VOICES\_ID+2] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00941                     \}}
+\DoxyCodeLine{00942                 \}}
+\DoxyCodeLine{00943                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00944 }
+\DoxyCodeLine{00945             \textcolor{keywordflow}{case} RECT:}
+\DoxyCodeLine{00946                 \textcolor{comment}{// keyboard signals}}
+\DoxyCodeLine{00947                 \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID)\{}
+\DoxyCodeLine{00948                     calculate\_keyboard[0] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{00949                 \}}
+\DoxyCodeLine{00950                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+1)\{}
+\DoxyCodeLine{00951                     calculate\_keyboard[1] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{00952                 \}}
+\DoxyCodeLine{00953                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+2)\{}
+\DoxyCodeLine{00954                     calculate\_keyboard[2] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{00955                 \}}
+\DoxyCodeLine{00956                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+3)\{}
+\DoxyCodeLine{00957                     calculate\_keyboard[3] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{00958                 \}}
+\DoxyCodeLine{00959                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+4)\{}
+\DoxyCodeLine{00960                     calculate\_keyboard[4] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{00961                 \}}
+\DoxyCodeLine{00962                 \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00963                     \textcolor{comment}{// adds all RECT values from the signals to addValue}}
+\DoxyCodeLine{00964                     addValue = addValue + \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{00965                 \}}
+\DoxyCodeLine{00966 }
+\DoxyCodeLine{00967                 \textcolor{comment}{// get index for the next rect value}}
+\DoxyCodeLine{00968                 signals-\/>current\_LUT\_Index[j]++;}
+\DoxyCodeLine{00969 }
+\DoxyCodeLine{00970                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] >= LUT\_SUPPORTPOINTS[signals-\/>freqIndex[j]]) \{}
+\DoxyCodeLine{00971 }
+\DoxyCodeLine{00972                     signals-\/>current\_LUT\_Index[j] = 0;}
+\DoxyCodeLine{00973 }
+\DoxyCodeLine{00974                     \textcolor{comment}{// create voice signals (maximum 3) to avoid plop sound if note or octave is varied}}
+\DoxyCodeLine{00975                     \textcolor{comment}{// this has to be done here to process the change immediately when the index is}}
+\DoxyCodeLine{00976                     \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID) \{}
+\DoxyCodeLine{00977 }
+\DoxyCodeLine{00978                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID] != Display.Voices\_Note[VOICES\_ID]) \{}
+\DoxyCodeLine{00979                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{00980                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{00981                             Display.last\_Voices\_Note[VOICES\_ID] = Display.Voices\_Note[VOICES\_ID];}
+\DoxyCodeLine{00982                         \}}
+\DoxyCodeLine{00983                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID] != Display.Voices\_Octave[VOICES\_ID]) \{}
+\DoxyCodeLine{00984                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{00985                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{00986                             Display.last\_Voices\_Octave[VOICES\_ID] = Display.Voices\_Octave[VOICES\_ID];}
+\DoxyCodeLine{00987                         \}}
+\DoxyCodeLine{00988                     \}}
+\DoxyCodeLine{00989                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+1) \{}
+\DoxyCodeLine{00990 }
+\DoxyCodeLine{00991                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+1] != Display.Voices\_Note[VOICES\_ID+1]) \{}
+\DoxyCodeLine{00992                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{00993                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{00994                             Display.last\_Voices\_Note[VOICES\_ID+1] = Display.Voices\_Note[VOICES\_ID+1];}
+\DoxyCodeLine{00995                         \}}
+\DoxyCodeLine{00996                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+1] != Display.Voices\_Octave[VOICES\_ID+1]) \{}
+\DoxyCodeLine{00997                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{00998                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{00999                             Display.last\_Voices\_Octave[VOICES\_ID+1] = Display.Voices\_Octave[VOICES\_ID+1];}
+\DoxyCodeLine{01000                         \}}
+\DoxyCodeLine{01001                     \}}
+\DoxyCodeLine{01002                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+2) \{}
+\DoxyCodeLine{01003 }
+\DoxyCodeLine{01004                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+2] != Display.Voices\_Note[VOICES\_ID+2]) \{}
+\DoxyCodeLine{01005                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{01006                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{01007                             Display.last\_Voices\_Note[VOICES\_ID+2] = Display.Voices\_Note[VOICES\_ID+2];}
+\DoxyCodeLine{01008                         \}}
+\DoxyCodeLine{01009                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+2] != Display.Voices\_Octave[VOICES\_ID+2]) \{}
+\DoxyCodeLine{01010                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{01011                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{01012                             Display.last\_Voices\_Octave[VOICES\_ID+2] = Display.Voices\_Octave[VOICES\_ID+2];}
+\DoxyCodeLine{01013                         \}}
+\DoxyCodeLine{01014                     \}}
+\DoxyCodeLine{01015                     \textcolor{comment}{// delete signal if voice off}}
+\DoxyCodeLine{01016                     \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01017                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{01018                         Display.Voices\_Created[VOICES\_ID] = \textcolor{keyword}{false};}
+\DoxyCodeLine{01019                     \}}
+\DoxyCodeLine{01020                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+1]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+1] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01021                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{01022                         Display.Voices\_Created[VOICES\_ID+1] = \textcolor{keyword}{false};}
+\DoxyCodeLine{01023                     \}}
+\DoxyCodeLine{01024                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+2]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+2] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01025                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{01026                         Display.Voices\_Created[VOICES\_ID+2] = \textcolor{keyword}{false};}
+\DoxyCodeLine{01027                     \}}
+\DoxyCodeLine{01028                 \}}
+\DoxyCodeLine{01029                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01030 }
+\DoxyCodeLine{01031             \textcolor{keywordflow}{case} TRIANGLE:}
+\DoxyCodeLine{01032                 \textcolor{comment}{// keyboard signals}}
+\DoxyCodeLine{01033                 \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID)\{}
+\DoxyCodeLine{01034                     calculate\_keyboard[0] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{01035                 \}}
+\DoxyCodeLine{01036                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+1)\{}
+\DoxyCodeLine{01037                     calculate\_keyboard[1] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{01038                 \}}
+\DoxyCodeLine{01039                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+2)\{}
+\DoxyCodeLine{01040                     calculate\_keyboard[2] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{01041                 \}}
+\DoxyCodeLine{01042                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+3)\{}
+\DoxyCodeLine{01043                     calculate\_keyboard[3] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{01044                 \}}
+\DoxyCodeLine{01045                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+4)\{}
+\DoxyCodeLine{01046                     calculate\_keyboard[4] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{01047                 \}}
+\DoxyCodeLine{01048                 \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{01049                     \textcolor{comment}{// adds all TRIANGLE values from the signals to addValue}}
+\DoxyCodeLine{01050                     addValue = addValue + \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{01051                 \}}
+\DoxyCodeLine{01052                 \textcolor{comment}{// get index for the next triangle value}}
+\DoxyCodeLine{01053                 signals-\/>current\_LUT\_Index[j]++;}
+\DoxyCodeLine{01054 }
+\DoxyCodeLine{01055                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] >= LUT\_SUPPORTPOINTS[signals-\/>freqIndex[j]]) \{}
+\DoxyCodeLine{01056 }
+\DoxyCodeLine{01057                     signals-\/>current\_LUT\_Index[j] = 0;}
+\DoxyCodeLine{01058 }
+\DoxyCodeLine{01059                     \textcolor{comment}{// create voice signals (maximum 3) to avoid plop sound if note or octave is varied}}
+\DoxyCodeLine{01060                     \textcolor{comment}{// this has to be done here to process the change immediately when the index is}}
+\DoxyCodeLine{01061                     \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID) \{}
+\DoxyCodeLine{01062 }
+\DoxyCodeLine{01063                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID] != Display.Voices\_Note[VOICES\_ID]) \{}
+\DoxyCodeLine{01064                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{01065                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{01066                             Display.last\_Voices\_Note[VOICES\_ID] = Display.Voices\_Note[VOICES\_ID];}
+\DoxyCodeLine{01067                         \}}
+\DoxyCodeLine{01068                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID] != Display.Voices\_Octave[VOICES\_ID]) \{}
+\DoxyCodeLine{01069                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{01070                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{01071                             Display.last\_Voices\_Octave[VOICES\_ID] = Display.Voices\_Octave[VOICES\_ID];}
+\DoxyCodeLine{01072                         \}}
+\DoxyCodeLine{01073                     \}}
+\DoxyCodeLine{01074                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+1) \{}
+\DoxyCodeLine{01075 }
+\DoxyCodeLine{01076                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+1] != Display.Voices\_Note[VOICES\_ID+1]) \{}
+\DoxyCodeLine{01077                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{01078                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{01079                             Display.last\_Voices\_Note[VOICES\_ID+1] = Display.Voices\_Note[VOICES\_ID+1];}
+\DoxyCodeLine{01080                         \}}
+\DoxyCodeLine{01081                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+1] != Display.Voices\_Octave[VOICES\_ID+1]) \{}
+\DoxyCodeLine{01082                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{01083                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{01084                             Display.last\_Voices\_Octave[VOICES\_ID+1] = Display.Voices\_Octave[VOICES\_ID+1];}
+\DoxyCodeLine{01085                         \}}
+\DoxyCodeLine{01086                     \}}
+\DoxyCodeLine{01087                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+2) \{}
+\DoxyCodeLine{01088 }
+\DoxyCodeLine{01089                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+2] != Display.Voices\_Note[VOICES\_ID+2]) \{}
+\DoxyCodeLine{01090                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{01091                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{01092                             Display.last\_Voices\_Note[VOICES\_ID+2] = Display.Voices\_Note[VOICES\_ID+2];}
+\DoxyCodeLine{01093                         \}}
+\DoxyCodeLine{01094                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+2] != Display.Voices\_Octave[VOICES\_ID+2]) \{}
+\DoxyCodeLine{01095                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{01096                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{01097                             Display.last\_Voices\_Octave[VOICES\_ID+2] = Display.Voices\_Octave[VOICES\_ID+2];}
+\DoxyCodeLine{01098                         \}}
+\DoxyCodeLine{01099                     \}}
+\DoxyCodeLine{01100                     \textcolor{comment}{// delete signal if voice off}}
+\DoxyCodeLine{01101                     \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01102                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{01103                         Display.Voices\_Created[VOICES\_ID] = \textcolor{keyword}{false};}
+\DoxyCodeLine{01104                     \}}
+\DoxyCodeLine{01105                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+1]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+1] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01106                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{01107                         Display.Voices\_Created[VOICES\_ID+1] = \textcolor{keyword}{false};}
+\DoxyCodeLine{01108                     \}}
+\DoxyCodeLine{01109                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+2]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+2] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01110                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{01111                         Display.Voices\_Created[VOICES\_ID+2] = \textcolor{keyword}{false};}
+\DoxyCodeLine{01112                     \}}
+\DoxyCodeLine{01113                 \}}
+\DoxyCodeLine{01114                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01115             \}}
+\DoxyCodeLine{01116 }
+\DoxyCodeLine{01117             \textcolor{keywordflow}{case} NOISE:}
+\DoxyCodeLine{01118                 \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+3] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01119                     addValue += (10*Display.Voices\_Volume[VOICES\_ID+3]*(float)rand()/ (powf(2, 8*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}))) )-\/(10*Display.Voices\_Volume[VOICES\_ID+3]*0.25);}
+\DoxyCodeLine{01120                 \}}
+\DoxyCodeLine{01121                 \textcolor{comment}{// delete signal if voice off}}
+\DoxyCodeLine{01122                 \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+3]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+3] == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01123                     \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+3));}
+\DoxyCodeLine{01124                     Display.Voices\_Created[VOICES\_ID+3] = \textcolor{keyword}{false};}
+\DoxyCodeLine{01125                 \}}
+\DoxyCodeLine{01126                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01127             \}\textcolor{comment}{// Switch-\/Case}}
+\DoxyCodeLine{01128 }
+\DoxyCodeLine{01129         \}\textcolor{comment}{// Signal counter for-\/loop}}
+\DoxyCodeLine{01130 }
+\DoxyCodeLine{01131 }
+\DoxyCodeLine{01132 }
+\DoxyCodeLine{01133         \textcolor{comment}{// NORM: Volume by signal count}}
+\DoxyCodeLine{01134         \textcolor{keywordflow}{if}(signals-\/>count -\/ active\_keyboard\_notes == 0) \{\}  \textcolor{comment}{// division by zero for addValue possible -\/> fuckup!}}
+\DoxyCodeLine{01135         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01136             addValue = addValue / (signals-\/>count -\/ active\_keyboard\_notes);}
+\DoxyCodeLine{01137 }
+\DoxyCodeLine{01138     }
+\DoxyCodeLine{01139 }
+\DoxyCodeLine{01140         \textcolor{comment}{// write voices (including noise) into calculate vector}}
+\DoxyCodeLine{01141         calculate\_vector\_tmp[BLOCKSIZE\_counter] = \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] * (addValue + \mbox{\hyperlink{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}());}
+\DoxyCodeLine{01142 }
+\DoxyCodeLine{01143 }
+\DoxyCodeLine{01144         \textcolor{comment}{// Drummachine}}
+\DoxyCodeLine{01145         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] > 0) || (\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] > 0))\{}
+\DoxyCodeLine{01146             \mbox{\hyperlink{drum__computer_8h_a08535ad247ef4e17b91bbba4b56833af}{Drum\_Computer\_Process}}();}
+\DoxyCodeLine{01147             drums\_filtered = drums;}
+\DoxyCodeLine{01148             \textcolor{keywordflow}{if}(Display.Drumfilter\_ONOFF)}
+\DoxyCodeLine{01149                 \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&LS\_DRUMS, \&drums\_filtered);}
+\DoxyCodeLine{01150         \}}
+\DoxyCodeLine{01151         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{01152             drums = 0;}
+\DoxyCodeLine{01153             sequencer = 0;}
+\DoxyCodeLine{01154         \}}
+\DoxyCodeLine{01155 }
+\DoxyCodeLine{01156         \textcolor{comment}{// Keyboard processing with effects}}
+\DoxyCodeLine{01157         \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{01158             \mbox{\hyperlink{effects_8h_a3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
+\DoxyCodeLine{01159             \textcolor{comment}{// summing up all played keyboard notes}}
+\DoxyCodeLine{01160             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
+\DoxyCodeLine{01161                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
+\DoxyCodeLine{01162         \}}
+\DoxyCodeLine{01163 }
+\DoxyCodeLine{01164         \textcolor{comment}{// Play single sample}}
+\DoxyCodeLine{01165         \textcolor{keywordflow}{if}(play\_single\_sample\_flag) \{}
+\DoxyCodeLine{01166             \mbox{\hyperlink{drum__computer_8h_ab788a1e344e6956cb70a8e5e1ea4d0bd}{PlaySingleSample}}();}
+\DoxyCodeLine{01167             calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{drum__computer_8h_a4f45ba3b9c8c3c6e57de16324bf23604}{single\_sample}};}
+\DoxyCodeLine{01168         \}}
+\DoxyCodeLine{01169 }
+\DoxyCodeLine{01170         effects\_process(\&calculate\_vector\_tmp[BLOCKSIZE\_counter]);}
+\DoxyCodeLine{01171 }
+\DoxyCodeLine{01172         \textcolor{comment}{// Keyboard processing without effects}}
+\DoxyCodeLine{01173         \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{01174             \mbox{\hyperlink{effects_8h_a3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
+\DoxyCodeLine{01175             \textcolor{comment}{// summing up all played keyboard notes}}
+\DoxyCodeLine{01176             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
+\DoxyCodeLine{01177                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
+\DoxyCodeLine{01178         \}}
+\DoxyCodeLine{01179 }
+\DoxyCodeLine{01180 }
+\DoxyCodeLine{01181         \textcolor{comment}{// Add all values}}
+\DoxyCodeLine{01182         calculate\_vector\_tmp[BLOCKSIZE\_counter] = calculate\_vector\_tmp[BLOCKSIZE\_counter] + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] * drums\_filtered + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] * sequencer;}
+\DoxyCodeLine{01183 }
+\DoxyCodeLine{01184         \textcolor{comment}{// to make sure that the output is 0 when a new drumkit is loaded into the drum computer}}
+\DoxyCodeLine{01185         \textcolor{keywordflow}{if}(Display.LoadDrumkit == \textcolor{keyword}{true})}
+\DoxyCodeLine{01186             calculate\_vector\_tmp[BLOCKSIZE\_counter] = 0;}
+\DoxyCodeLine{01187 }
+\DoxyCodeLine{01188         \textcolor{comment}{// Convert float to uint32 in order to make it readable for the DAC}}
+\DoxyCodeLine{01189         *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((0.5 * \mbox{\hyperlink{signal__synthesis_8h_aa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} * calculate\_vector\_tmp[BLOCKSIZE\_counter]+1.65) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}); \textcolor{comment}{// +1.65 is the middle of 0-\/3V3}}
+\DoxyCodeLine{01190     \}\textcolor{comment}{//End for-\/Loop}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_a9eda288feb5c689a0f90742249fe6da0}\label{signal__synthesis_8c_a9eda288feb5c689a0f90742249fe6da0}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!Signal\_Synthesis\_Init@{Signal\_Synthesis\_Init}}
+\index{Signal\_Synthesis\_Init@{Signal\_Synthesis\_Init}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{Signal\_Synthesis\_Init()}{Signal\_Synthesis\_Init()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def Signal\+\_\+\+Synthesis\+\_\+\+Init (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def}]{htim,  }\item[{DAC\+\_\+\+Handle\+Type\+Def}]{hdac }\end{DoxyParamCaption})}
+
+
+
+Init funtion for the signal\+\_\+synthesis, must be used in order to use any other funtion of this .c. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & timer-\/handler which controls the DAC, timer have to be connected with DAC \\
+\hline
+{\em hdac} & is the DAC handler \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+gives HAL-\/\+Status of started timer back 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00017}{17}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017                                                                                        \{}
+\DoxyCodeLine{00018 }
+\DoxyCodeLine{00019     \textcolor{comment}{// Sets the maximal digital value which the DAC converts into analog voltage}}
+\DoxyCodeLine{00020     \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}} = (double)\mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} * (\textcolor{keywordtype}{double})\mbox{\hyperlink{signal__synthesis_8h_ae2d3a48fb01bbc0fe795724379434d05}{AMPLITUDE}};}
+\DoxyCodeLine{00021     \mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = HALF\_BLOCK;}
+\DoxyCodeLine{00022     signals1.count = 0;}
+\DoxyCodeLine{00023     signals1.max = 1;}
+\DoxyCodeLine{00024 }
+\DoxyCodeLine{00025     \textcolor{comment}{// Set Volumes for Master\_Volume, Voices, Drumcomputer, Sequencer and Keyboard}}
+\DoxyCodeLine{00026     \mbox{\hyperlink{signal__synthesis_8h_aa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} = 1.0;}
+\DoxyCodeLine{00027     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<4; i++) \{}
+\DoxyCodeLine{00028         \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
+\DoxyCodeLine{00029     \}}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2; i++)}
+\DoxyCodeLine{00032         *((uint32\_t *)(\&\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034     \textcolor{comment}{// Inits and starts timer connected with DAC}}
+\DoxyCodeLine{00035     \mbox{\hyperlink{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim, LUT\_SR);}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037     \textcolor{keywordflow}{return} HAL\_TIM\_Base\_Start(\&htim);}
+\DoxyCodeLine{00038 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{signal__synthesis_8c_af4829c3aeeaf3dbcda0b5266e2834898}\label{signal__synthesis_8c_af4829c3aeeaf3dbcda0b5266e2834898}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!Voices\_Reset@{Voices\_Reset}}
+\index{Voices\_Reset@{Voices\_Reset}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{Voices\_Reset()}{Voices\_Reset()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def Voices\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+resets the voice parameter which can be changed in the GUI 
+
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00045}{45}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045                                      \{}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047     \textcolor{comment}{// Clear screen content of voices overview}}
+\DoxyCodeLine{00048     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position, CASE2, Display.value\_end\_x\_position, CASE2+VALUE\_ROW\_LENGTH , UNCOLORED);}
+\DoxyCodeLine{00049     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position, CASE3, Display.value\_end\_x\_position, CASE3+VALUE\_ROW\_LENGTH , UNCOLORED);}
+\DoxyCodeLine{00050     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position, CASE4, Display.value\_end\_x\_position, CASE4+VALUE\_ROW\_LENGTH , UNCOLORED);}
+\DoxyCodeLine{00051     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position, CASE5, Display.value\_end\_x\_position, CASE5+VALUE\_ROW\_LENGTH , UNCOLORED);}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053     \textcolor{comment}{// Voices Reset}}
+\DoxyCodeLine{00054     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<3; i++) \{}
+\DoxyCodeLine{00055         Display.Voices\_ONOFF[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00056         Display.Voices\_Noteindex[i] = 0;}
+\DoxyCodeLine{00057         Display.Voices\_Note[i]   = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[i] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00058         Display.Voices\_Octave[i] = 0;}
+\DoxyCodeLine{00059         Display.Voice\_Note\_Sources[i] = POTI;}
+\DoxyCodeLine{00060         Display.Voice\_Octave\_Sources[i] = POTI;}
+\DoxyCodeLine{00061         strcpy(Display.value\_str\_voices\_overview[i], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00062         sprintf(Display.value\_str\_voices\_settings[i][0], \textcolor{stringliteral}{"{}\%c"{}}, Display.Voices\_Note[i]);}
+\DoxyCodeLine{00063         sprintf(Display.value\_str\_voices\_settings[i][1], \textcolor{stringliteral}{"{}\%d"{}}, Display.Voices\_Octave[i]);}
+\DoxyCodeLine{00064         strcpy(Display.value\_str\_voices\_settings[i][2], Display.source\_names[0]);}
+\DoxyCodeLine{00065         strcpy(Display.value\_str\_voices\_settings[i][3], Display.source\_names[0]);}
+\DoxyCodeLine{00066     \}}
+\DoxyCodeLine{00067     \textcolor{comment}{// Noise Reset}}
+\DoxyCodeLine{00068     Display.Noise\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00069     strcpy(Display.value\_str\_voices\_overview[3], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00070     Display.Noise\_Volume = 1.0;}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{00073 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}\label{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!maxValueDAC@{maxValueDAC}}
+\index{maxValueDAC@{maxValueDAC}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{maxValueDAC}{maxValueDAC}}
+{\footnotesize\ttfamily double max\+Value\+DAC}
+
+
+
+maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal\+\_\+sythesis.\+h and will be set in the Init function 
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00010}{10}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+\mbox{\Hypertarget{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}\label{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!ramp\_counter@{ramp\_counter}}
+\index{ramp\_counter@{ramp\_counter}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{ramp\_counter}{ramp\_counter}}
+{\footnotesize\ttfamily float ramp\+\_\+counter = 0}
+
+
+
+wirtes a starting ramp into the DAC-\/\+Buffer to avoid speaker damage 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em returns} & a bool which indicates if ramp is finished or still in process \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01200}{1200}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+

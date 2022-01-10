@@ -1,0 +1,382 @@
+\hypertarget{distortion_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/distortion.h File Reference}
+\label{distortion_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/distortion.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/distortion.h}}
+
+
+distortion effect  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Distortion\+\_\+\+Status} \{ {\bfseries DISTORTION\+\_\+\+FAIL} = -\/1
+, {\bfseries DISTORTION\+\_\+\+OK} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{distortion_8h_a54ad82c4a3ecbc0c2784ae81c92eb22e}{Distortion\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Distortion init functions. \end{DoxyCompactList}\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{distortion_8h_ac69b82a1179f795d9205a246de59a37a}{Distortion\+\_\+\+Reset}} (void)
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{distortion_8h_a2a6725ec967773f5ddfbc3fc21d67049}{Setup\+Hard\+Clipping\+Distortion}} (struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} $\ast$Hard\+Clipping)
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{distortion_8h_a8a375c625074dc4492066cda7e9e175b}{Setup\+Soft\+Clipping\+Distortion}} (struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} $\ast$Soft\+Clipping)
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{distortion_8h_a7a68b2a90c4306d739161ee82b7eb89c}{Process\+Hard\+Clipping\+Distortion}} (float $\ast$data)
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{distortion_8h_a1676e7551d7621b89efb0ecc46092436}{Process\+Soft\+Clipping\+Distortion}} (float $\ast$data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} \mbox{\hyperlink{distortion_8h_afe398e89ade080fe269a7349a6d74987}{Hard\+Clipping}}
+\item 
+struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} \mbox{\hyperlink{distortion_8h_a1a0fdc608d881e90cf6fcbecd9bb5a34}{Soft\+Clipping}}
+\item 
+const float \mbox{\hyperlink{distortion_8h_a638ce07da32913582447f1e26b745c37}{aquidistance}}
+\item 
+const float \mbox{\hyperlink{distortion_8h_ab6549ea7290a59876018cb53511f134d}{atan\+\_\+\+LUT\+\_\+y}} \mbox{[}8192\mbox{]}
+\begin{DoxyCompactList}\small\item\em atan() look up table \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+distortion effect 
+
+TODO
+
+\begin{DoxyAuthor}{Author}
+marc bielen 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{distortion_8h_source}{distortion.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{distortion_8h_a0fd63d9165ab4d880bdde5f150edc131}\label{distortion_8h_a0fd63d9165ab4d880bdde5f150edc131}} 
+\index{distortion.h@{distortion.h}!Distortion\_Status@{Distortion\_Status}}
+\index{Distortion\_Status@{Distortion\_Status}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{Distortion\_Status}{Distortion\_Status}}
+{\footnotesize\ttfamily enum Distortion\+\_\+\+Status}
+
+
+
+Definition at line \mbox{\hyperlink{distortion_8h_source_l00020}{20}} of file \mbox{\hyperlink{distortion_8h_source}{distortion.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020              \{}
+\DoxyCodeLine{00021     DISTORTION\_FAIL = -\/1,}
+\DoxyCodeLine{00022     DISTORTION\_OK = 1}
+\DoxyCodeLine{00023 \} Distortion\_Status;}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{distortion_8h_a54ad82c4a3ecbc0c2784ae81c92eb22e}\label{distortion_8h_a54ad82c4a3ecbc0c2784ae81c92eb22e}} 
+\index{distortion.h@{distortion.h}!Distortion\_Init@{Distortion\_Init}}
+\index{Distortion\_Init@{Distortion\_Init}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{Distortion\_Init()}{Distortion\_Init()}}
+{\footnotesize\ttfamily Distortion\+\_\+\+Status Distortion\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Distortion init functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Distortion} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{distortion_8c_source_l00010}{10}} of file \mbox{\hyperlink{distortion_8c_source}{distortion.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010                                         \{}
+\DoxyCodeLine{00011 }
+\DoxyCodeLine{00012     \mbox{\hyperlink{distortion_8h_a2a6725ec967773f5ddfbc3fc21d67049}{SetupHardClippingDistortion}}(\&HardClipping);}
+\DoxyCodeLine{00013     \mbox{\hyperlink{distortion_8h_a8a375c625074dc4492066cda7e9e175b}{SetupSoftClippingDistortion}}(\&SoftClipping);}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00015     \textcolor{keywordflow}{return} DISTORTION\_OK;}
+\DoxyCodeLine{00016 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{distortion_8h_ac69b82a1179f795d9205a246de59a37a}\label{distortion_8h_ac69b82a1179f795d9205a246de59a37a}} 
+\index{distortion.h@{distortion.h}!Distortion\_Reset@{Distortion\_Reset}}
+\index{Distortion\_Reset@{Distortion\_Reset}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{Distortion\_Reset()}{Distortion\_Reset()}}
+{\footnotesize\ttfamily Distortion\+\_\+\+Status Distortion\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+TODO \begin{DoxyReturn}{Returns}
+Distortion\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{distortion_8c_source_l00023}{23}} of file \mbox{\hyperlink{distortion_8c_source}{distortion.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023                                          \{}
+\DoxyCodeLine{00024 }
+\DoxyCodeLine{00025     Display.Distortion\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00026 }
+\DoxyCodeLine{00027     Display.Distortion\_Gain = SoftClipping.distortion\_gain = 1.0;}
+\DoxyCodeLine{00028 }
+\DoxyCodeLine{00029     Display.Distortion\_Sources = POTI;}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     Display.Distortion\_Type = 0;    \textcolor{comment}{// Soft Clipping}}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033     strcpy(Display.value\_str\_distortion[1], \textcolor{stringliteral}{"{}Soft"{}});}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035     strcpy(Display.value\_str\_distortion[0], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037     \textcolor{keywordflow}{return} DISTORTION\_OK;}
+\DoxyCodeLine{00038 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{distortion_8h_a7a68b2a90c4306d739161ee82b7eb89c}\label{distortion_8h_a7a68b2a90c4306d739161ee82b7eb89c}} 
+\index{distortion.h@{distortion.h}!ProcessHardClippingDistortion@{ProcessHardClippingDistortion}}
+\index{ProcessHardClippingDistortion@{ProcessHardClippingDistortion}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{ProcessHardClippingDistortion()}{ProcessHardClippingDistortion()}}
+{\footnotesize\ttfamily Distortion\+\_\+\+Status Process\+Hard\+Clipping\+Distortion (\begin{DoxyParamCaption}\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distortion\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{distortion_8c_source_l00086}{86}} of file \mbox{\hyperlink{distortion_8c_source}{distortion.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086                                                              \{}
+\DoxyCodeLine{00087 }
+\DoxyCodeLine{00088     \textcolor{keywordtype}{float} calc = *data;}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090     \textcolor{keywordflow}{if}( HardClipping.distortion\_gain * calc <= -\/1 ) \{}
+\DoxyCodeLine{00091         calc = -\/1;}
+\DoxyCodeLine{00092     \}}
+\DoxyCodeLine{00093     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( (HardClipping.distortion\_gain * calc > -\/1) \&\& (HardClipping.distortion\_gain * calc < 1) ) \{}
+\DoxyCodeLine{00094         calc = HardClipping.distortion\_gain * calc;}
+\DoxyCodeLine{00095     \}}
+\DoxyCodeLine{00096     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( HardClipping.distortion\_gain * calc >= 1 ) \{}
+\DoxyCodeLine{00097         calc = 1;}
+\DoxyCodeLine{00098     \}}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100     *data = calc;}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102     \textcolor{keywordflow}{return} DISTORTION\_OK;}
+\DoxyCodeLine{00103 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{distortion_8h_a1676e7551d7621b89efb0ecc46092436}\label{distortion_8h_a1676e7551d7621b89efb0ecc46092436}} 
+\index{distortion.h@{distortion.h}!ProcessSoftClippingDistortion@{ProcessSoftClippingDistortion}}
+\index{ProcessSoftClippingDistortion@{ProcessSoftClippingDistortion}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{ProcessSoftClippingDistortion()}{ProcessSoftClippingDistortion()}}
+{\footnotesize\ttfamily Distortion\+\_\+\+Status Process\+Soft\+Clipping\+Distortion (\begin{DoxyParamCaption}\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distortion\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{distortion_8c_source_l00111}{111}} of file \mbox{\hyperlink{distortion_8c_source}{distortion.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111                                                              \{}
+\DoxyCodeLine{00112 }
+\DoxyCodeLine{00113     \textcolor{keywordtype}{float} calc = *data;}
+\DoxyCodeLine{00114 }
+\DoxyCodeLine{00115 }
+\DoxyCodeLine{00116     \textcolor{comment}{// Sinnvoller Gain: 1 -\/ 10}}
+\DoxyCodeLine{00117     \textcolor{comment}{// Use known Arcustangens values, which have been estimated (LUT-\/style)}}
+\DoxyCodeLine{00118 }
+\DoxyCodeLine{00119     SoftClipping.atan\_parameter = (SoftClipping.distortion\_gain * calc) + 10;   \textcolor{comment}{// SoftClipping.distortion\_maximum\_gain = 10}}
+\DoxyCodeLine{00120     SoftClipping.distortion\_index = round(SoftClipping.atan\_parameter/aquidistance);}
+\DoxyCodeLine{00121     calc = 0.5*\mbox{\hyperlink{atanLUT_8h_a44717ae85351202c8833c3880a6ef9e8}{atan\_LUT\_y}}[SoftClipping.distortion\_index]; \textcolor{comment}{// scale down the amplitude}}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123     \textcolor{keywordflow}{if}(0.0 <= SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 1.0)}
+\DoxyCodeLine{00124         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[0]);}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(1.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 2.0)}
+\DoxyCodeLine{00127         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[1]);}
+\DoxyCodeLine{00128 }
+\DoxyCodeLine{00129     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(2.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 3.0)}
+\DoxyCodeLine{00130         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[2]);}
+\DoxyCodeLine{00131 }
+\DoxyCodeLine{00132     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(3.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 4.0)}
+\DoxyCodeLine{00133         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[3]);}
+\DoxyCodeLine{00134 }
+\DoxyCodeLine{00135     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(4.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 5.0)}
+\DoxyCodeLine{00136         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[4]);}
+\DoxyCodeLine{00137 }
+\DoxyCodeLine{00138     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(5.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 6.0)}
+\DoxyCodeLine{00139         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[5]);}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(6.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 7.0)}
+\DoxyCodeLine{00142         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[6]);}
+\DoxyCodeLine{00143 }
+\DoxyCodeLine{00144     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(7.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 8.0)}
+\DoxyCodeLine{00145         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[7]);}
+\DoxyCodeLine{00146 }
+\DoxyCodeLine{00147     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(8.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 9.0)}
+\DoxyCodeLine{00148         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[8]);}
+\DoxyCodeLine{00149 }
+\DoxyCodeLine{00150     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(SoftClipping.distortion\_gain > 9.0)}
+\DoxyCodeLine{00151         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[9]);}
+\DoxyCodeLine{00152 }
+\DoxyCodeLine{00153     *data = calc;}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155     \textcolor{keywordflow}{return} DISTORTION\_OK;}
+\DoxyCodeLine{00156 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{distortion_8h_a2a6725ec967773f5ddfbc3fc21d67049}\label{distortion_8h_a2a6725ec967773f5ddfbc3fc21d67049}} 
+\index{distortion.h@{distortion.h}!SetupHardClippingDistortion@{SetupHardClippingDistortion}}
+\index{SetupHardClippingDistortion@{SetupHardClippingDistortion}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{SetupHardClippingDistortion()}{SetupHardClippingDistortion()}}
+{\footnotesize\ttfamily Distortion\+\_\+\+Status Setup\+Hard\+Clipping\+Distortion (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} $\ast$}]{Hard\+Clipping }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Hard\+Clipping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distortion\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{distortion_8c_source_l00045}{45}} of file \mbox{\hyperlink{distortion_8c_source}{distortion.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045                                                                                        \{}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047     HardClipping-\/>distortion\_gain = 1.0;}
+\DoxyCodeLine{00048     HardClipping-\/>distortion\_maximum\_gain = 9;}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050     \textcolor{keywordflow}{return} DISTORTION\_OK;}
+\DoxyCodeLine{00051 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{distortion_8h_a8a375c625074dc4492066cda7e9e175b}\label{distortion_8h_a8a375c625074dc4492066cda7e9e175b}} 
+\index{distortion.h@{distortion.h}!SetupSoftClippingDistortion@{SetupSoftClippingDistortion}}
+\index{SetupSoftClippingDistortion@{SetupSoftClippingDistortion}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{SetupSoftClippingDistortion()}{SetupSoftClippingDistortion()}}
+{\footnotesize\ttfamily Distortion\+\_\+\+Status Setup\+Soft\+Clipping\+Distortion (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} $\ast$}]{Soft\+Clipping }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Soft\+Clipping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distortion\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{distortion_8c_source_l00059}{59}} of file \mbox{\hyperlink{distortion_8c_source}{distortion.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00059                                                                                        \{}
+\DoxyCodeLine{00060 }
+\DoxyCodeLine{00061     SoftClipping-\/>distortion\_gain = 1.0;}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063     \textcolor{comment}{// 10 different distortion gain values, so the effect can be increased step-\/wise}}
+\DoxyCodeLine{00064     SoftClipping-\/>atan\_softclipping\_distortion\_max[0] = 0.392650;   \textcolor{comment}{// distortion\_gain = 1.0}}
+\DoxyCodeLine{00065     SoftClipping-\/>atan\_softclipping\_distortion\_max[1] = 0.553650;   \textcolor{comment}{// distortion\_gain = 2.0}}
+\DoxyCodeLine{00066     SoftClipping-\/>atan\_softclipping\_distortion\_max[2] = 0.624500;   \textcolor{comment}{// distortion\_gain = 3.0}}
+\DoxyCodeLine{00067     SoftClipping-\/>atan\_softclipping\_distortion\_max[3] = 0.662950;   \textcolor{comment}{// distortion\_gain = 4.0}}
+\DoxyCodeLine{00068     SoftClipping-\/>atan\_softclipping\_distortion\_max[4] = 0.686700;   \textcolor{comment}{// distortion\_gain = 5.0}}
+\DoxyCodeLine{00069     SoftClipping-\/>atan\_softclipping\_distortion\_max[5] = 0.702850;   \textcolor{comment}{// distortion\_gain = 6.0}}
+\DoxyCodeLine{00070     SoftClipping-\/>atan\_softclipping\_distortion\_max[6] = 0.714450;   \textcolor{comment}{// distortion\_gain = 7.0}}
+\DoxyCodeLine{00071     SoftClipping-\/>atan\_softclipping\_distortion\_max[7] = 0.723200;   \textcolor{comment}{// distortion\_gain = 8.0}}
+\DoxyCodeLine{00072     SoftClipping-\/>atan\_softclipping\_distortion\_max[8] = 0.730050;   \textcolor{comment}{// distortion\_gain = 9.0}}
+\DoxyCodeLine{00073     SoftClipping-\/>atan\_softclipping\_distortion\_max[9] = 0.735550;   \textcolor{comment}{// distortion\_gain = 10.0}}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075     SoftClipping-\/>distortion\_maximum\_gain = 10.0;}
+\DoxyCodeLine{00076 }
+\DoxyCodeLine{00077     \textcolor{keywordflow}{return} DISTORTION\_OK;}
+\DoxyCodeLine{00078 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{distortion_8h_a638ce07da32913582447f1e26b745c37}\label{distortion_8h_a638ce07da32913582447f1e26b745c37}} 
+\index{distortion.h@{distortion.h}!aquidistance@{aquidistance}}
+\index{aquidistance@{aquidistance}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{aquidistance}{aquidistance}}
+{\footnotesize\ttfamily const float aquidistance\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{atanLUT_8h_source_l00014}{14}} of file \mbox{\hyperlink{atanLUT_8h_source}{atan\+LUT.\+h}}.
+
+\mbox{\Hypertarget{distortion_8h_ab6549ea7290a59876018cb53511f134d}\label{distortion_8h_ab6549ea7290a59876018cb53511f134d}} 
+\index{distortion.h@{distortion.h}!atan\_LUT\_y@{atan\_LUT\_y}}
+\index{atan\_LUT\_y@{atan\_LUT\_y}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{atan\_LUT\_y}{atan\_LUT\_y}}
+{\footnotesize\ttfamily const float atan\+\_\+\+LUT\+\_\+y\mbox{[}8192\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+atan() look up table 
+
+
+
+Definition at line \mbox{\hyperlink{atanLUT_8h_source_l00019}{19}} of file \mbox{\hyperlink{atanLUT_8h_source}{atan\+LUT.\+h}}.
+
+\mbox{\Hypertarget{distortion_8h_afe398e89ade080fe269a7349a6d74987}\label{distortion_8h_afe398e89ade080fe269a7349a6d74987}} 
+\index{distortion.h@{distortion.h}!HardClipping@{HardClipping}}
+\index{HardClipping@{HardClipping}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{HardClipping}{HardClipping}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} Hard\+Clipping}
+
+
+
+Definition at line \mbox{\hyperlink{distortion_8h_source_l00041}{41}} of file \mbox{\hyperlink{distortion_8h_source}{distortion.\+h}}.
+
+\mbox{\Hypertarget{distortion_8h_a1a0fdc608d881e90cf6fcbecd9bb5a34}\label{distortion_8h_a1a0fdc608d881e90cf6fcbecd9bb5a34}} 
+\index{distortion.h@{distortion.h}!SoftClipping@{SoftClipping}}
+\index{SoftClipping@{SoftClipping}!distortion.h@{distortion.h}}
+\doxysubsubsection{\texorpdfstring{SoftClipping}{SoftClipping}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} Soft\+Clipping}
+
+
+
+Definition at line \mbox{\hyperlink{distortion_8h_source_l00042}{42}} of file \mbox{\hyperlink{distortion_8h_source}{distortion.\+h}}.
+

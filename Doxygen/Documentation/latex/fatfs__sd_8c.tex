@@ -1,0 +1,525 @@
+\hypertarget{fatfs__sd_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/fatfs\+\_\+sd.c File Reference}
+\label{fatfs__sd_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/fatfs\_sd.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/fatfs\_sd.c}}
+{\ttfamily \#include \char`\"{}stm32f7xx\+\_\+hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}diskio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fatfs\+\_\+sd.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fatfs__sd_8c_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}}~1
+\item 
+\#define \mbox{\hyperlink{fatfs__sd_8c_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}}~0
+\item 
+\#define \mbox{\hyperlink{fatfs__sd_8c_abb452686968e48b67397da5f97445f5b}{bool}}~BYTE
+\item 
+\#define \mbox{\hyperlink{fatfs__sd_8c_a5ea1ab41fa8054fb848670f3ba059bbd}{SD\+\_\+\+CS\+\_\+\+GPIO\+\_\+\+Port}}~GPIOF
+\item 
+\#define \mbox{\hyperlink{fatfs__sd_8c_a6cbeeb2c3a97ff142bb66798eeda14d2}{SD\+\_\+\+CS\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+10
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DSTATUS \mbox{\hyperlink{fatfs__sd_8c_a2a9756a0824608cafe4795652996c999}{SD\+\_\+disk\+\_\+initialize}} (BYTE drv)
+\item 
+DSTATUS \mbox{\hyperlink{fatfs__sd_8c_aab274cdd8e1c1d404ed23ed3ab08af7f}{SD\+\_\+disk\+\_\+status}} (BYTE drv)
+\item 
+DRESULT \mbox{\hyperlink{fatfs__sd_8c_af48460111fe5bb4f17ef7a44960aca5f}{SD\+\_\+disk\+\_\+read}} (BYTE pdrv, BYTE $\ast$buff, DWORD sector, UINT count)
+\item 
+DRESULT \mbox{\hyperlink{fatfs__sd_8c_aac0b616ac2848931b42f68495ea5f8f2}{SD\+\_\+disk\+\_\+write}} (BYTE pdrv, const BYTE $\ast$buff, DWORD sector, UINT count)
+\item 
+DRESULT \mbox{\hyperlink{fatfs__sd_8c_ad9dda39726dcb45694f3da737df6baae}{SD\+\_\+disk\+\_\+ioctl}} (BYTE drv, BYTE ctrl, void $\ast$buff)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+SPI\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{fatfs__sd_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{fatfs__sd_8c_a9963841bb1243906a136fe725492521e}{Timer1}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{fatfs__sd_8c_a1842f6ee4ba320821c21bcc34b28f6ce}{Timer2}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TODO woher kommt diese Datei? Referenz hinzufügen
+
+\begin{DoxyAuthor}{Author}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/05
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{fatfs__sd_8c_abb452686968e48b67397da5f97445f5b}\label{fatfs__sd_8c_abb452686968e48b67397da5f97445f5b}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!bool@{bool}}
+\index{bool@{bool}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{bool}{bool}}
+{\footnotesize\ttfamily \#define bool~BYTE}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00016}{16}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+\mbox{\Hypertarget{fatfs__sd_8c_aa93f0eb578d23995850d61f7d61c55c1}\label{fatfs__sd_8c_aa93f0eb578d23995850d61f7d61c55c1}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!FALSE@{FALSE}}
+\index{FALSE@{FALSE}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{FALSE}{FALSE}}
+{\footnotesize\ttfamily \#define FALSE~0}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00015}{15}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+\mbox{\Hypertarget{fatfs__sd_8c_a5ea1ab41fa8054fb848670f3ba059bbd}\label{fatfs__sd_8c_a5ea1ab41fa8054fb848670f3ba059bbd}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!SD\_CS\_GPIO\_Port@{SD\_CS\_GPIO\_Port}}
+\index{SD\_CS\_GPIO\_Port@{SD\_CS\_GPIO\_Port}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{SD\_CS\_GPIO\_Port}{SD\_CS\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define SD\+\_\+\+CS\+\_\+\+GPIO\+\_\+\+Port~GPIOF}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00024}{24}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+\mbox{\Hypertarget{fatfs__sd_8c_a6cbeeb2c3a97ff142bb66798eeda14d2}\label{fatfs__sd_8c_a6cbeeb2c3a97ff142bb66798eeda14d2}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!SD\_CS\_Pin@{SD\_CS\_Pin}}
+\index{SD\_CS\_Pin@{SD\_CS\_Pin}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{SD\_CS\_Pin}{SD\_CS\_Pin}}
+{\footnotesize\ttfamily \#define SD\+\_\+\+CS\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+10}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00025}{25}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+\mbox{\Hypertarget{fatfs__sd_8c_aa8cecfc5c5c054d2875c03e77b7be15d}\label{fatfs__sd_8c_aa8cecfc5c5c054d2875c03e77b7be15d}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!TRUE@{TRUE}}
+\index{TRUE@{TRUE}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{TRUE}{TRUE}}
+{\footnotesize\ttfamily \#define TRUE~1}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00014}{14}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{fatfs__sd_8c_a2a9756a0824608cafe4795652996c999}\label{fatfs__sd_8c_a2a9756a0824608cafe4795652996c999}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!SD\_disk\_initialize@{SD\_disk\_initialize}}
+\index{SD\_disk\_initialize@{SD\_disk\_initialize}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{SD\_disk\_initialize()}{SD\_disk\_initialize()}}
+{\footnotesize\ttfamily DSTATUS SD\+\_\+disk\+\_\+initialize (\begin{DoxyParamCaption}\item[{BYTE}]{drv }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00280}{280}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00281 \{}
+\DoxyCodeLine{00282   uint8\_t n, type, ocr[4];}
+\DoxyCodeLine{00283   }
+\DoxyCodeLine{00284   \textcolor{comment}{/* 한종류의 드라이브만 지원 */}}
+\DoxyCodeLine{00285   \textcolor{keywordflow}{if}(drv)}
+\DoxyCodeLine{00286     \textcolor{keywordflow}{return} STA\_NOINIT;  }
+\DoxyCodeLine{00287   }
+\DoxyCodeLine{00288   \textcolor{comment}{/* SD카드 미삽입 */}}
+\DoxyCodeLine{00289   \textcolor{keywordflow}{if}(Stat \& STA\_NODISK)}
+\DoxyCodeLine{00290     \textcolor{keywordflow}{return} Stat;        }
+\DoxyCodeLine{00291   }
+\DoxyCodeLine{00292   \textcolor{comment}{/* SD카드 Power On */}}
+\DoxyCodeLine{00293   SD\_PowerOn();         }
+\DoxyCodeLine{00294   }
+\DoxyCodeLine{00295   \textcolor{comment}{/* SPI 통신을 위해 Chip Select */}}
+\DoxyCodeLine{00296   SELECT();             }
+\DoxyCodeLine{00297   }
+\DoxyCodeLine{00298   \textcolor{comment}{/* SD카드 타입변수 초기화 */}}
+\DoxyCodeLine{00299   type = 0;}
+\DoxyCodeLine{00300   }
+\DoxyCodeLine{00301   \textcolor{comment}{/* Idle 상태 진입 */}}
+\DoxyCodeLine{00302   \textcolor{keywordflow}{if} (SD\_SendCmd(CMD0, 0) == 1) }
+\DoxyCodeLine{00303   \{ }
+\DoxyCodeLine{00304     \textcolor{comment}{/* 타이머 1초 설정 */}}
+\DoxyCodeLine{00305     Timer1 = 100;}
+\DoxyCodeLine{00306     }
+\DoxyCodeLine{00307     \textcolor{comment}{/* SD 인터페이스 동작 조건 확인 */}}
+\DoxyCodeLine{00308     \textcolor{keywordflow}{if} (SD\_SendCmd(CMD8, 0x1AA) == 1) }
+\DoxyCodeLine{00309     \{ }
+\DoxyCodeLine{00310       \textcolor{comment}{/* SDC Ver2+ */}}
+\DoxyCodeLine{00311       \textcolor{keywordflow}{for} (n = 0; n < 4; n++)}
+\DoxyCodeLine{00312       \{}
+\DoxyCodeLine{00313         ocr[n] = SPI\_RxByte();}
+\DoxyCodeLine{00314       \}}
+\DoxyCodeLine{00315       }
+\DoxyCodeLine{00316       \textcolor{keywordflow}{if} (ocr[2] == 0x01 \&\& ocr[3] == 0xAA) }
+\DoxyCodeLine{00317       \{ }
+\DoxyCodeLine{00318         \textcolor{comment}{/* 2.7-\/3.6V 전압범위 동작 */}}
+\DoxyCodeLine{00319         \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{00320           \textcolor{keywordflow}{if} (SD\_SendCmd(CMD55, 0) <= 1 \&\& SD\_SendCmd(CMD41, 1UL << 30) == 0)}
+\DoxyCodeLine{00321             \textcolor{keywordflow}{break}; \textcolor{comment}{/* ACMD41 with HCS bit */}}
+\DoxyCodeLine{00322         \} \textcolor{keywordflow}{while} (Timer1);}
+\DoxyCodeLine{00323         }
+\DoxyCodeLine{00324         \textcolor{keywordflow}{if} (Timer1 \&\& SD\_SendCmd(CMD58, 0) == 0) }
+\DoxyCodeLine{00325         \{ }
+\DoxyCodeLine{00326           \textcolor{comment}{/* Check CCS bit */}}
+\DoxyCodeLine{00327           \textcolor{keywordflow}{for} (n = 0; n < 4; n++)}
+\DoxyCodeLine{00328           \{}
+\DoxyCodeLine{00329             ocr[n] = SPI\_RxByte();}
+\DoxyCodeLine{00330           \}}
+\DoxyCodeLine{00331           }
+\DoxyCodeLine{00332           type = (ocr[0] \& 0x40) ? 6 : 2;}
+\DoxyCodeLine{00333         \}}
+\DoxyCodeLine{00334       \}}
+\DoxyCodeLine{00335     \} }
+\DoxyCodeLine{00336     \textcolor{keywordflow}{else} }
+\DoxyCodeLine{00337     \{ }
+\DoxyCodeLine{00338       \textcolor{comment}{/* SDC Ver1 or MMC */}}
+\DoxyCodeLine{00339       type = (SD\_SendCmd(CMD55, 0) <= 1 \&\& SD\_SendCmd(CMD41, 0) <= 1) ? 2 : 1; \textcolor{comment}{/* SDC : MMC */}}
+\DoxyCodeLine{00340       }
+\DoxyCodeLine{00341       \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{00342         \textcolor{keywordflow}{if} (type == 2) }
+\DoxyCodeLine{00343         \{}
+\DoxyCodeLine{00344           \textcolor{keywordflow}{if} (SD\_SendCmd(CMD55, 0) <= 1 \&\& SD\_SendCmd(CMD41, 0) == 0)}
+\DoxyCodeLine{00345             \textcolor{keywordflow}{break}; \textcolor{comment}{/* ACMD41 */}}
+\DoxyCodeLine{00346         \} }
+\DoxyCodeLine{00347         \textcolor{keywordflow}{else} }
+\DoxyCodeLine{00348         \{}
+\DoxyCodeLine{00349           \textcolor{keywordflow}{if} (SD\_SendCmd(CMD1, 0) == 0)}
+\DoxyCodeLine{00350             \textcolor{keywordflow}{break}; \textcolor{comment}{/* CMD1 */}}
+\DoxyCodeLine{00351         \}}
+\DoxyCodeLine{00352       \} \textcolor{keywordflow}{while} (Timer1);}
+\DoxyCodeLine{00353       }
+\DoxyCodeLine{00354       \textcolor{keywordflow}{if} (!Timer1 || SD\_SendCmd(CMD16, 512) != 0) }
+\DoxyCodeLine{00355       \{}
+\DoxyCodeLine{00356         \textcolor{comment}{/* 블럭 길이 선택 */}}
+\DoxyCodeLine{00357         type = 0;}
+\DoxyCodeLine{00358       \}}
+\DoxyCodeLine{00359     \}}
+\DoxyCodeLine{00360   \}}
+\DoxyCodeLine{00361   }
+\DoxyCodeLine{00362   CardType = type;}
+\DoxyCodeLine{00363   }
+\DoxyCodeLine{00364   DESELECT();}
+\DoxyCodeLine{00365   }
+\DoxyCodeLine{00366   SPI\_RxByte(); \textcolor{comment}{/* Idle 상태 전환 (Release DO) */}}
+\DoxyCodeLine{00367   }
+\DoxyCodeLine{00368   \textcolor{keywordflow}{if} (type) }
+\DoxyCodeLine{00369   \{}
+\DoxyCodeLine{00370     \textcolor{comment}{/* Clear STA\_NOINIT */}}
+\DoxyCodeLine{00371     Stat \&= \string~STA\_NOINIT; }
+\DoxyCodeLine{00372   \}}
+\DoxyCodeLine{00373   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00374   \{}
+\DoxyCodeLine{00375     \textcolor{comment}{/* Initialization failed */}}
+\DoxyCodeLine{00376     SD\_PowerOff();}
+\DoxyCodeLine{00377   \}}
+\DoxyCodeLine{00378   }
+\DoxyCodeLine{00379   \textcolor{keywordflow}{return} Stat;}
+\DoxyCodeLine{00380 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{fatfs__sd_8c_ad9dda39726dcb45694f3da737df6baae}\label{fatfs__sd_8c_ad9dda39726dcb45694f3da737df6baae}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!SD\_disk\_ioctl@{SD\_disk\_ioctl}}
+\index{SD\_disk\_ioctl@{SD\_disk\_ioctl}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{SD\_disk\_ioctl()}{SD\_disk\_ioctl()}}
+{\footnotesize\ttfamily DRESULT SD\+\_\+disk\+\_\+ioctl (\begin{DoxyParamCaption}\item[{BYTE}]{drv,  }\item[{BYTE}]{ctrl,  }\item[{void $\ast$}]{buff }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00491}{491}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00492 \{}
+\DoxyCodeLine{00493   DRESULT res;}
+\DoxyCodeLine{00494   BYTE n, csd[16], *ptr = buff;}
+\DoxyCodeLine{00495   WORD csize;}
+\DoxyCodeLine{00496   }
+\DoxyCodeLine{00497   \textcolor{keywordflow}{if} (drv)}
+\DoxyCodeLine{00498     \textcolor{keywordflow}{return} RES\_PARERR;}
+\DoxyCodeLine{00499   }
+\DoxyCodeLine{00500   res = RES\_ERROR;}
+\DoxyCodeLine{00501   }
+\DoxyCodeLine{00502   \textcolor{keywordflow}{if} (ctrl == CTRL\_POWER) }
+\DoxyCodeLine{00503   \{}
+\DoxyCodeLine{00504     \textcolor{keywordflow}{switch} (*ptr) }
+\DoxyCodeLine{00505     \{}
+\DoxyCodeLine{00506     \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{00507       \textcolor{keywordflow}{if} (SD\_CheckPower())}
+\DoxyCodeLine{00508         SD\_PowerOff();          \textcolor{comment}{/* Power Off */}}
+\DoxyCodeLine{00509       res = RES\_OK;}
+\DoxyCodeLine{00510       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00511     \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00512       SD\_PowerOn();             \textcolor{comment}{/* Power On */}}
+\DoxyCodeLine{00513       res = RES\_OK;}
+\DoxyCodeLine{00514       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00515     \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00516       *(ptr + 1) = (BYTE) SD\_CheckPower();}
+\DoxyCodeLine{00517       res = RES\_OK;             \textcolor{comment}{/* Power Check */}}
+\DoxyCodeLine{00518       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00519     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00520       res = RES\_PARERR;}
+\DoxyCodeLine{00521     \}}
+\DoxyCodeLine{00522   \} }
+\DoxyCodeLine{00523   \textcolor{keywordflow}{else} }
+\DoxyCodeLine{00524   \{}
+\DoxyCodeLine{00525     \textcolor{keywordflow}{if} (Stat \& STA\_NOINIT)}
+\DoxyCodeLine{00526       \textcolor{keywordflow}{return} RES\_NOTRDY;}
+\DoxyCodeLine{00527     }
+\DoxyCodeLine{00528     SELECT();}
+\DoxyCodeLine{00529     }
+\DoxyCodeLine{00530     \textcolor{keywordflow}{switch} (ctrl) }
+\DoxyCodeLine{00531     \{}
+\DoxyCodeLine{00532     \textcolor{keywordflow}{case} GET\_SECTOR\_COUNT: }
+\DoxyCodeLine{00533       \textcolor{comment}{/* SD카드 내 Sector의 개수 (DWORD) */}}
+\DoxyCodeLine{00534       \textcolor{keywordflow}{if} ((SD\_SendCmd(CMD9, 0) == 0) \&\& SD\_RxDataBlock(csd, 16)) }
+\DoxyCodeLine{00535       \{}
+\DoxyCodeLine{00536         \textcolor{keywordflow}{if} ((csd[0] >> 6) == 1) }
+\DoxyCodeLine{00537         \{ }
+\DoxyCodeLine{00538           \textcolor{comment}{/* SDC ver 2.00 */}}
+\DoxyCodeLine{00539           csize = csd[9] + ((WORD) csd[8] << 8) + 1;}
+\DoxyCodeLine{00540           *(DWORD*) buff = (DWORD) csize << 10;}
+\DoxyCodeLine{00541         \} }
+\DoxyCodeLine{00542         \textcolor{keywordflow}{else} }
+\DoxyCodeLine{00543         \{ }
+\DoxyCodeLine{00544           \textcolor{comment}{/* MMC or SDC ver 1.XX */}}
+\DoxyCodeLine{00545           n = (csd[5] \& 15) + ((csd[10] \& 128) >> 7) + ((csd[9] \& 3) << 1) + 2;}
+\DoxyCodeLine{00546           csize = (csd[8] >> 6) + ((WORD) csd[7] << 2) + ((WORD) (csd[6] \& 3) << 10) + 1;}
+\DoxyCodeLine{00547           *(DWORD*) buff = (DWORD) csize << (n -\/ 9);}
+\DoxyCodeLine{00548         \}}
+\DoxyCodeLine{00549         }
+\DoxyCodeLine{00550         res = RES\_OK;}
+\DoxyCodeLine{00551       \}}
+\DoxyCodeLine{00552       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00553       }
+\DoxyCodeLine{00554     \textcolor{keywordflow}{case} GET\_SECTOR\_SIZE: }
+\DoxyCodeLine{00555       \textcolor{comment}{/* 섹터의 단위 크기 (WORD) */}}
+\DoxyCodeLine{00556       *(WORD*) buff = 512;}
+\DoxyCodeLine{00557       res = RES\_OK;}
+\DoxyCodeLine{00558       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00559       }
+\DoxyCodeLine{00560     \textcolor{keywordflow}{case} CTRL\_SYNC: }
+\DoxyCodeLine{00561       \textcolor{comment}{/* 쓰기 동기화 */}}
+\DoxyCodeLine{00562       \textcolor{keywordflow}{if} (SD\_ReadyWait() == 0xFF)}
+\DoxyCodeLine{00563         res = RES\_OK;}
+\DoxyCodeLine{00564       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00565       }
+\DoxyCodeLine{00566     \textcolor{keywordflow}{case} MMC\_GET\_CSD: }
+\DoxyCodeLine{00567       \textcolor{comment}{/* CSD 정보 수신 (16 bytes) */}}
+\DoxyCodeLine{00568       \textcolor{keywordflow}{if} (SD\_SendCmd(CMD9, 0) == 0 \&\& SD\_RxDataBlock(ptr, 16))}
+\DoxyCodeLine{00569         res = RES\_OK;}
+\DoxyCodeLine{00570       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00571       }
+\DoxyCodeLine{00572     \textcolor{keywordflow}{case} MMC\_GET\_CID: }
+\DoxyCodeLine{00573       \textcolor{comment}{/* CID 정보 수신 (16 bytes) */}}
+\DoxyCodeLine{00574       \textcolor{keywordflow}{if} (SD\_SendCmd(CMD10, 0) == 0 \&\& SD\_RxDataBlock(ptr, 16))}
+\DoxyCodeLine{00575         res = RES\_OK;}
+\DoxyCodeLine{00576       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00577       }
+\DoxyCodeLine{00578     \textcolor{keywordflow}{case} MMC\_GET\_OCR: }
+\DoxyCodeLine{00579       \textcolor{comment}{/* OCR 정보 수신 (4 bytes) */}}
+\DoxyCodeLine{00580       \textcolor{keywordflow}{if} (SD\_SendCmd(CMD58, 0) == 0) }
+\DoxyCodeLine{00581       \{         }
+\DoxyCodeLine{00582         \textcolor{keywordflow}{for} (n = 0; n < 4; n++)}
+\DoxyCodeLine{00583         \{}
+\DoxyCodeLine{00584           *ptr++ = SPI\_RxByte();}
+\DoxyCodeLine{00585         \}}
+\DoxyCodeLine{00586         }
+\DoxyCodeLine{00587         res = RES\_OK;}
+\DoxyCodeLine{00588       \}     }
+\DoxyCodeLine{00589       }
+\DoxyCodeLine{00590     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00591       res = RES\_PARERR;}
+\DoxyCodeLine{00592     \}}
+\DoxyCodeLine{00593     }
+\DoxyCodeLine{00594     DESELECT();}
+\DoxyCodeLine{00595     SPI\_RxByte();}
+\DoxyCodeLine{00596   \}}
+\DoxyCodeLine{00597   }
+\DoxyCodeLine{00598   \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00599 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{fatfs__sd_8c_af48460111fe5bb4f17ef7a44960aca5f}\label{fatfs__sd_8c_af48460111fe5bb4f17ef7a44960aca5f}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!SD\_disk\_read@{SD\_disk\_read}}
+\index{SD\_disk\_read@{SD\_disk\_read}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{SD\_disk\_read()}{SD\_disk\_read()}}
+{\footnotesize\ttfamily DRESULT SD\+\_\+disk\+\_\+read (\begin{DoxyParamCaption}\item[{BYTE}]{pdrv,  }\item[{BYTE $\ast$}]{buff,  }\item[{DWORD}]{sector,  }\item[{UINT}]{count }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00392}{392}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00393 \{}
+\DoxyCodeLine{00394   \textcolor{keywordflow}{if} (pdrv || !count)}
+\DoxyCodeLine{00395     \textcolor{keywordflow}{return} RES\_PARERR;}
+\DoxyCodeLine{00396   }
+\DoxyCodeLine{00397   \textcolor{keywordflow}{if} (Stat \& STA\_NOINIT)}
+\DoxyCodeLine{00398     \textcolor{keywordflow}{return} RES\_NOTRDY;}
+\DoxyCodeLine{00399   }
+\DoxyCodeLine{00400   \textcolor{keywordflow}{if} (!(CardType \& 4))}
+\DoxyCodeLine{00401     sector *= 512;      \textcolor{comment}{/* 지정 sector를 Byte addressing 단위로 변경 */}}
+\DoxyCodeLine{00402   }
+\DoxyCodeLine{00403   SELECT();}
+\DoxyCodeLine{00404   }
+\DoxyCodeLine{00405   \textcolor{keywordflow}{if} (count == 1) }
+\DoxyCodeLine{00406   \{ }
+\DoxyCodeLine{00407     \textcolor{comment}{/* 싱글 블록 읽기 */}}
+\DoxyCodeLine{00408     \textcolor{keywordflow}{if} ((SD\_SendCmd(CMD17, sector) == 0) \&\& SD\_RxDataBlock(buff, 512))}
+\DoxyCodeLine{00409       count = 0;}
+\DoxyCodeLine{00410   \} }
+\DoxyCodeLine{00411   \textcolor{keywordflow}{else} }
+\DoxyCodeLine{00412   \{ }
+\DoxyCodeLine{00413     \textcolor{comment}{/* 다중 블록 읽기 */}}
+\DoxyCodeLine{00414     \textcolor{keywordflow}{if} (SD\_SendCmd(CMD18, sector) == 0) }
+\DoxyCodeLine{00415     \{       }
+\DoxyCodeLine{00416       \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{00417         \textcolor{keywordflow}{if} (!SD\_RxDataBlock(buff, 512))}
+\DoxyCodeLine{00418           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00419         }
+\DoxyCodeLine{00420         buff += 512;}
+\DoxyCodeLine{00421       \} \textcolor{keywordflow}{while} (-\/-\/count);}
+\DoxyCodeLine{00422       }
+\DoxyCodeLine{00423       \textcolor{comment}{/* STOP\_TRANSMISSION, 모든 블럭을 다 읽은 후, 전송 중지 요청 */}}
+\DoxyCodeLine{00424       SD\_SendCmd(CMD12, 0); }
+\DoxyCodeLine{00425     \}}
+\DoxyCodeLine{00426   \}}
+\DoxyCodeLine{00427   }
+\DoxyCodeLine{00428   DESELECT();}
+\DoxyCodeLine{00429   SPI\_RxByte(); \textcolor{comment}{/* Idle 상태(Release DO) */}}
+\DoxyCodeLine{00430   }
+\DoxyCodeLine{00431   \textcolor{keywordflow}{return} count ? RES\_ERROR : RES\_OK;}
+\DoxyCodeLine{00432 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{fatfs__sd_8c_aab274cdd8e1c1d404ed23ed3ab08af7f}\label{fatfs__sd_8c_aab274cdd8e1c1d404ed23ed3ab08af7f}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!SD\_disk\_status@{SD\_disk\_status}}
+\index{SD\_disk\_status@{SD\_disk\_status}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{SD\_disk\_status()}{SD\_disk\_status()}}
+{\footnotesize\ttfamily DSTATUS SD\+\_\+disk\+\_\+status (\begin{DoxyParamCaption}\item[{BYTE}]{drv }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00383}{383}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00384 \{}
+\DoxyCodeLine{00385   \textcolor{keywordflow}{if} (drv)}
+\DoxyCodeLine{00386     \textcolor{keywordflow}{return} STA\_NOINIT; }
+\DoxyCodeLine{00387   }
+\DoxyCodeLine{00388   \textcolor{keywordflow}{return} Stat;}
+\DoxyCodeLine{00389 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{fatfs__sd_8c_aac0b616ac2848931b42f68495ea5f8f2}\label{fatfs__sd_8c_aac0b616ac2848931b42f68495ea5f8f2}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!SD\_disk\_write@{SD\_disk\_write}}
+\index{SD\_disk\_write@{SD\_disk\_write}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{SD\_disk\_write()}{SD\_disk\_write()}}
+{\footnotesize\ttfamily DRESULT SD\+\_\+disk\+\_\+write (\begin{DoxyParamCaption}\item[{BYTE}]{pdrv,  }\item[{const BYTE $\ast$}]{buff,  }\item[{DWORD}]{sector,  }\item[{UINT}]{count }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00436}{436}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00437 \{}
+\DoxyCodeLine{00438   \textcolor{keywordflow}{if} (pdrv || !count)}
+\DoxyCodeLine{00439     \textcolor{keywordflow}{return} RES\_PARERR;}
+\DoxyCodeLine{00440   }
+\DoxyCodeLine{00441   \textcolor{keywordflow}{if} (Stat \& STA\_NOINIT)}
+\DoxyCodeLine{00442     \textcolor{keywordflow}{return} RES\_NOTRDY;}
+\DoxyCodeLine{00443   }
+\DoxyCodeLine{00444   \textcolor{keywordflow}{if} (Stat \& STA\_PROTECT)}
+\DoxyCodeLine{00445     \textcolor{keywordflow}{return} RES\_WRPRT;}
+\DoxyCodeLine{00446   }
+\DoxyCodeLine{00447   \textcolor{keywordflow}{if} (!(CardType \& 4))}
+\DoxyCodeLine{00448     sector *= 512; \textcolor{comment}{/* 지정 sector를 Byte addressing 단위로 변경 */}}
+\DoxyCodeLine{00449   }
+\DoxyCodeLine{00450   SELECT();}
+\DoxyCodeLine{00451   }
+\DoxyCodeLine{00452   \textcolor{keywordflow}{if} (count == 1) }
+\DoxyCodeLine{00453   \{ }
+\DoxyCodeLine{00454     \textcolor{comment}{/* 싱글 블록 쓰기 */}}
+\DoxyCodeLine{00455     \textcolor{keywordflow}{if} ((SD\_SendCmd(CMD24, sector) == 0) \&\& SD\_TxDataBlock(buff, 0xFE))}
+\DoxyCodeLine{00456       count = 0;}
+\DoxyCodeLine{00457   \} }
+\DoxyCodeLine{00458   \textcolor{keywordflow}{else} }
+\DoxyCodeLine{00459   \{ }
+\DoxyCodeLine{00460     \textcolor{comment}{/* 다중 블록 쓰기 */}}
+\DoxyCodeLine{00461     \textcolor{keywordflow}{if} (CardType \& 2) }
+\DoxyCodeLine{00462     \{}
+\DoxyCodeLine{00463       SD\_SendCmd(CMD55, 0);}
+\DoxyCodeLine{00464       SD\_SendCmd(CMD23, count); \textcolor{comment}{/* ACMD23 */}}
+\DoxyCodeLine{00465     \}}
+\DoxyCodeLine{00466     }
+\DoxyCodeLine{00467     \textcolor{keywordflow}{if} (SD\_SendCmd(CMD25, sector) == 0) }
+\DoxyCodeLine{00468     \{       }
+\DoxyCodeLine{00469       \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{00470         \textcolor{keywordflow}{if}(!SD\_TxDataBlock(buff, 0xFC))}
+\DoxyCodeLine{00471           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00472         }
+\DoxyCodeLine{00473         buff += 512;}
+\DoxyCodeLine{00474       \} \textcolor{keywordflow}{while} (-\/-\/count);}
+\DoxyCodeLine{00475       }
+\DoxyCodeLine{00476       \textcolor{keywordflow}{if}(!SD\_TxDataBlock(0, 0xFD))}
+\DoxyCodeLine{00477       \{        }
+\DoxyCodeLine{00478         count = 1;}
+\DoxyCodeLine{00479       \}}
+\DoxyCodeLine{00480     \}}
+\DoxyCodeLine{00481   \}}
+\DoxyCodeLine{00482   }
+\DoxyCodeLine{00483   DESELECT();}
+\DoxyCodeLine{00484   SPI\_RxByte();}
+\DoxyCodeLine{00485   }
+\DoxyCodeLine{00486   \textcolor{keywordflow}{return} count ? RES\_ERROR : RES\_OK;}
+\DoxyCodeLine{00487 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{fatfs__sd_8c_aec51920045aad7f70cbfd1f58228d866}\label{fatfs__sd_8c_aec51920045aad7f70cbfd1f58228d866}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!hspi3@{hspi3}}
+\index{hspi3@{hspi3}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{hspi3}{hspi3}}
+{\footnotesize\ttfamily SPI\+\_\+\+Handle\+Type\+Def hspi3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00066}{66}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{fatfs__sd_8c_a9963841bb1243906a136fe725492521e}\label{fatfs__sd_8c_a9963841bb1243906a136fe725492521e}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!Timer1@{Timer1}}
+\index{Timer1@{Timer1}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{Timer1}{Timer1}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t Timer1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00058}{58}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+\mbox{\Hypertarget{fatfs__sd_8c_a1842f6ee4ba320821c21bcc34b28f6ce}\label{fatfs__sd_8c_a1842f6ee4ba320821c21bcc34b28f6ce}} 
+\index{fatfs\_sd.c@{fatfs\_sd.c}!Timer2@{Timer2}}
+\index{Timer2@{Timer2}!fatfs\_sd.c@{fatfs\_sd.c}}
+\doxysubsubsection{\texorpdfstring{Timer2}{Timer2}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t Timer2}
+
+
+
+Definition at line \mbox{\hyperlink{fatfs__sd_8c_source_l00030}{30}} of file \mbox{\hyperlink{fatfs__sd_8c_source}{fatfs\+\_\+sd.\+c}}.
+

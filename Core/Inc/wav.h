@@ -1,18 +1,25 @@
-#ifndef __WAV_H__
-#define __WAV_H__
-
 /**
- * Simple PCM wav file I/O library
- *
- * Author: Zhaosheng Pan <zhaosheng.pan@sololand.moe>
- *
- * The API is designed to be similar to stdio.
+ * @file wav.h
+ * @author Zhaosheng Pan <zhaosheng.pan@sololand.moe>
+ * @brief Simple PCM wav file I/O library
+ * @note The API is designed to be similar to stdio.
  *
  * This library does not support:
  *  - formats other than PCM, IEEE float and log-PCM
  *  - extra chunks after the data chunk
  *  - big endian platforms (might be supported in the future)
  */
+
+#ifndef __WAV_H__
+#define __WAV_H__
+/**
+ * 
+ * 
+ */
+
+/**
+
+
 
 #ifdef __cplusplus
 extern "C" {

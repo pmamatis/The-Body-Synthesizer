@@ -1,0 +1,44 @@
+\hypertarget{fatfs__sd_8h_source}{}\doxysection{fatfs\+\_\+sd.\+h}
+\label{fatfs__sd_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/fatfs\_sd.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/fatfs\_sd.h}}
+\mbox{\hyperlink{fatfs__sd_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef \_\_FATFS\_SD\_H}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00012}00012 \textcolor{preprocessor}{\#define \_\_FATFS\_SD\_H}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00015}00015 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00016}00016 \textcolor{comment}{ * @brief       Defines}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00017}00017 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00018}00018 \textcolor{comment}{/* Definitions for MMC/SDC command */}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00019}00019 \textcolor{preprocessor}{\#define CMD0     (0x40+0)     }\textcolor{comment}{/* GO\_IDLE\_STATE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00020}00020 \textcolor{preprocessor}{\#define CMD1     (0x40+1)     }\textcolor{comment}{/* SEND\_OP\_COND */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00021}00021 \textcolor{preprocessor}{\#define CMD8     (0x40+8)     }\textcolor{comment}{/* SEND\_IF\_COND */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00022}00022 \textcolor{preprocessor}{\#define CMD9     (0x40+9)     }\textcolor{comment}{/* SEND\_CSD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00023}00023 \textcolor{preprocessor}{\#define CMD10    (0x40+10)    }\textcolor{comment}{/* SEND\_CID */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00024}00024 \textcolor{preprocessor}{\#define CMD12    (0x40+12)    }\textcolor{comment}{/* STOP\_TRANSMISSION */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00025}00025 \textcolor{preprocessor}{\#define CMD16    (0x40+16)    }\textcolor{comment}{/* SET\_BLOCKLEN */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00026}00026 \textcolor{preprocessor}{\#define CMD17    (0x40+17)    }\textcolor{comment}{/* READ\_SINGLE\_BLOCK */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00027}00027 \textcolor{preprocessor}{\#define CMD18    (0x40+18)    }\textcolor{comment}{/* READ\_MULTIPLE\_BLOCK */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00028}00028 \textcolor{preprocessor}{\#define CMD23    (0x40+23)    }\textcolor{comment}{/* SET\_BLOCK\_COUNT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00029}00029 \textcolor{preprocessor}{\#define CMD24    (0x40+24)    }\textcolor{comment}{/* WRITE\_BLOCK */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00030}00030 \textcolor{preprocessor}{\#define CMD25    (0x40+25)    }\textcolor{comment}{/* WRITE\_MULTIPLE\_BLOCK */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00031}00031 \textcolor{preprocessor}{\#define CMD41    (0x40+41)    }\textcolor{comment}{/* SEND\_OP\_COND (ACMD) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00032}00032 \textcolor{preprocessor}{\#define CMD55    (0x40+55)    }\textcolor{comment}{/* APP\_CMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00033}00033 \textcolor{preprocessor}{\#define CMD58    (0x40+58)    }\textcolor{comment}{/* READ\_OCR */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00036}00036 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00037}00037 \textcolor{comment}{ * @brief   Functions}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00038}00038 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00039}00039 DSTATUS SD\_disk\_initialize (BYTE pdrv);}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00040}00040 DSTATUS SD\_disk\_status (BYTE pdrv);}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00041}00041 DRESULT SD\_disk\_read (BYTE pdrv, BYTE* buff, DWORD sector, UINT count);}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00042}00042 DRESULT SD\_disk\_write (BYTE pdrv, \textcolor{keyword}{const} BYTE* buff, DWORD sector, UINT count);}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00043}00043 DRESULT SD\_disk\_ioctl (BYTE pdrv, BYTE cmd, \textcolor{keywordtype}{void}* buff);}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00045}00045 \textcolor{preprocessor}{\#define SPI\_TIMEOUT 1000}}
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{fatfs__sd_8h_source_l00047}00047 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

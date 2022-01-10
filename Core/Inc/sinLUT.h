@@ -1,3 +1,15 @@
+/**
+ * @file sinLUT.h
+ * @author paul mamatis
+ * @brief contains a certain amount of frequencys which can be accsed 
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ * @attention SIN LUT Data are only valid SIN's with given samplerate (LUT_SR)
+ */
+
 #ifndef INC_SINLUT_H_
 #define INC_SINLUT_H_
 

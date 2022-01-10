@@ -1,0 +1,74 @@
+\hypertarget{SPI__Connection_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/\+SPI\+\_\+\+Connection.c File Reference}
+\label{SPI__Connection_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/SPI\_Connection.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/SPI\_Connection.c}}
+
+
+spi connetcion to another STM32  
+
+
+{\ttfamily \#include \char`\"{}SPI\+\_\+\+Connection.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{SPI__Connection_8c_a87e70ebae58b5e371289ad557bb31b74}{spi\+C\+\_\+\+Init}} (SPI\+\_\+\+Handle\+Type\+Def $\ast$hspi, TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em spi connection init \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+spi connetcion to another STM32 
+
+\begin{DoxyAuthor}{Author}
+paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{SPI__Connection_8c_source}{SPI\+\_\+\+Connection.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{SPI__Connection_8c_a87e70ebae58b5e371289ad557bb31b74}\label{SPI__Connection_8c_a87e70ebae58b5e371289ad557bb31b74}} 
+\index{SPI\_Connection.c@{SPI\_Connection.c}!spiC\_Init@{spiC\_Init}}
+\index{spiC\_Init@{spiC\_Init}!SPI\_Connection.c@{SPI\_Connection.c}}
+\doxysubsubsection{\texorpdfstring{spiC\_Init()}{spiC\_Init()}}
+{\footnotesize\ttfamily void spi\+C\+\_\+\+Init (\begin{DoxyParamCaption}\item[{SPI\+\_\+\+Handle\+Type\+Def $\ast$}]{hspi,  }\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+
+
+spi connection init 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hspi} & \\
+\hline
+{\em htim} & timer which triggers the spi read command \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{SPI__Connection_8c_source_l00020}{20}} of file \mbox{\hyperlink{SPI__Connection_8c_source}{SPI\+\_\+\+Connection.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020                                                                 \{}
+\DoxyCodeLine{00021 }
+\DoxyCodeLine{00022     hSensorSPI= hspi;}
+\DoxyCodeLine{00023 }
+\DoxyCodeLine{00024     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} spiinit\_counter=0; spiinit\_counter < BUFFERSIZE;spiinit\_counter++)\{}
+\DoxyCodeLine{00025         pTxData[spiinit\_counter] = 0;}
+\DoxyCodeLine{00026         pRxData[spiinit\_counter] = 0;}
+\DoxyCodeLine{00027     \}}
+\DoxyCodeLine{00028 }
+\DoxyCodeLine{00029     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(htim,SPI\_SR);}
+\DoxyCodeLine{00030     HAL\_TIM\_Base\_Start\_IT(htim);}
+\DoxyCodeLine{00031 \}}
+
+\end{DoxyCode}

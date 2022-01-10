@@ -1,3 +1,13 @@
+/** TODO
+ * @file adsr.h
+ * @author marc bielen
+ * @brief adsr effect header
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef ADSR_H
 #define ADSR_H
 

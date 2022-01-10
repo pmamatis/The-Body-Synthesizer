@@ -1,0 +1,557 @@
+\hypertarget{sd__card_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/sd\+\_\+card.h File Reference}
+\label{sd__card_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/sd\_card.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/sd\_card.h}}
+
+
+sd card acces  
+
+
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sd__card_8h_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~1000
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sd__card_8h_a3d58516bba6fae33b5a617ca1ec8c5f2}{bufsize}} (char $\ast$buf)
+\item 
+void \mbox{\hyperlink{sd__card_8h_a876d5723d0511f25736dcd24ef3fd437}{clear\+\_\+buffer}} (void)
+\item 
+void \mbox{\hyperlink{sd__card_8h_af5bec5970e5694e62a95ddac43eb291f}{send\+\_\+uart}} (char $\ast$string, UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+char $\ast$ \mbox{\hyperlink{sd__card_8h_af2d13ce691654a78a1dc4f8ba84cceab}{find\+\_\+text\+\_\+file}} (UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+void \mbox{\hyperlink{sd__card_8h_a2052d8e246fcd7710baf786f61c59038}{sd\+\_\+card\+\_\+mount}} (void)
+\item 
+void \mbox{\hyperlink{sd__card_8h_a681b37ae98d83e58474c79cb836d0280}{sd\+\_\+card\+\_\+unmount}} (void)
+\item 
+void \mbox{\hyperlink{sd__card_8h_ac1fc753aea400af6d191ede49e9be778}{sd\+\_\+card\+\_\+free\+\_\+space}} (UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+void \mbox{\hyperlink{sd__card_8h_a6dacdaf5530cfe6c164de87795ec2189}{sd\+\_\+card\+\_\+write\+\_\+newfile}} (char $\ast$filename, char $\ast$filecontent, UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+void \mbox{\hyperlink{sd__card_8h_a0cf3082c520d42e71c3394eaf7accf05}{sd\+\_\+card\+\_\+write\+\_\+appendfile}} (char $\ast$filename, char $\ast$filecontent, UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+void \mbox{\hyperlink{sd__card_8h_a2fc37a80c9a1b6a1e130462705d888ca}{sd\+\_\+card\+\_\+read}} (char $\ast$filename, float $\ast$LUT)
+\item 
+void \mbox{\hyperlink{sd__card_8h_a26ed1f760dee256c3b76e753bfa22de2}{sd\+\_\+card\+\_\+remove\+\_\+file}} (char $\ast$filename, UART\+\_\+\+Handle\+Type\+Def huart)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+FATFS \mbox{\hyperlink{sd__card_8h_ae5bcde72e0e0b29ec86d00ba3e5cd51f}{fs}}
+\item 
+FIL \mbox{\hyperlink{sd__card_8h_a4be63952e3c9cb0f46f9e592b3c78714}{fil}}
+\item 
+FILINFO \mbox{\hyperlink{sd__card_8h_adb2adf9b3f315041beb78852fa37a984}{fno}}
+\item 
+FRESULT \mbox{\hyperlink{sd__card_8h_a6c01f12753eea998672735a0321e2baa}{fresult}}
+\item 
+char \mbox{\hyperlink{sd__card_8h_a5e8f218de29bd00e9c744eb52231d22b}{txtfile\+\_\+array}} \mbox{[}40000\mbox{]}
+\item 
+UINT \mbox{\hyperlink{sd__card_8h_af73466f2f9a9dc91e720750a58b422e4}{br}}
+\item 
+UINT \mbox{\hyperlink{sd__card_8h_a43bf7f8524c9a39d4b8d4fa43fc51620}{bw}}
+\item 
+DIR \mbox{\hyperlink{sd__card_8h_a90affc32512431e143844fa9721bf9d9}{dj}}
+\item 
+FATFS $\ast$ \mbox{\hyperlink{sd__card_8h_a73fc1d7f310236f10a83485a71a2ff07}{pfs}}
+\item 
+DWORD \mbox{\hyperlink{sd__card_8h_a09395a8369ae8b24191a9522d71c89c4}{fre\+\_\+clust}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{sd__card_8h_a5982fc6fd4a7c57ef565f0b7a2f1df6a}{total}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{sd__card_8h_aa34bbdee19d0822d5dac5e4f32dfa4db}{free\+\_\+space}}
+\item 
+char \mbox{\hyperlink{sd__card_8h_af00b615ca097c43dbb02ae3a00ea3a62}{buffer}} \mbox{[}BUFFER\+\_\+\+SIZE\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+sd card acces 
+
+TODO
+
+\begin{DoxyAuthor}{Author}
+?????? 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sd__card_8h_a6b20d41d6252e9871430c242cb1a56e7}\label{sd__card_8h_a6b20d41d6252e9871430c242cb1a56e7}} 
+\index{sd\_card.h@{sd\_card.h}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~1000}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00035}{35}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sd__card_8h_a3d58516bba6fae33b5a617ca1ec8c5f2}\label{sd__card_8h_a3d58516bba6fae33b5a617ca1ec8c5f2}} 
+\index{sd\_card.h@{sd\_card.h}!bufsize@{bufsize}}
+\index{bufsize@{bufsize}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{bufsize()}{bufsize()}}
+{\footnotesize\ttfamily int bufsize (\begin{DoxyParamCaption}\item[{char $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00014}{14}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014                         \{}
+\DoxyCodeLine{00015     \textcolor{keywordtype}{int} i=0;}
+\DoxyCodeLine{00016     \textcolor{keywordflow}{while} (*buf++ != \textcolor{charliteral}{'\(\backslash\)0'}) i++;}
+\DoxyCodeLine{00017     \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{00018 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_a876d5723d0511f25736dcd24ef3fd437}\label{sd__card_8h_a876d5723d0511f25736dcd24ef3fd437}} 
+\index{sd\_card.h@{sd\_card.h}!clear\_buffer@{clear\_buffer}}
+\index{clear\_buffer@{clear\_buffer}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{clear\_buffer()}{clear\_buffer()}}
+{\footnotesize\ttfamily void clear\+\_\+buffer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00020}{20}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020                          \{}
+\DoxyCodeLine{00021     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<BUFFER\_SIZE; i++) buffer[i] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00022 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_af2d13ce691654a78a1dc4f8ba84cceab}\label{sd__card_8h_af2d13ce691654a78a1dc4f8ba84cceab}} 
+\index{sd\_card.h@{sd\_card.h}!find\_text\_file@{find\_text\_file}}
+\index{find\_text\_file@{find\_text\_file}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{find\_text\_file()}{find\_text\_file()}}
+{\footnotesize\ttfamily char $\ast$ find\+\_\+text\+\_\+file (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def}]{huart }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00029}{29}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029                                                 \{}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     \textcolor{keywordtype}{char} txtfile\_array\_temp[100];}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033     fresult = f\_findfirst(\&dj, \&fno, \textcolor{stringliteral}{"{}"{}}, \textcolor{stringliteral}{"{}*.txt"{}});  \textcolor{comment}{// Start to search for text files}}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035     \textcolor{keywordflow}{while} (fresult == FR\_OK \&\& fno.fname[0]) \{          \textcolor{comment}{// Repeat while an item is found}}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037         strcpy(txtfile\_array\_temp, fno.fname);}
+\DoxyCodeLine{00038         strcat(txtfile\_array, txtfile\_array\_temp);}
+\DoxyCodeLine{00039         send\_uart (fno.fname, huart);                   \textcolor{comment}{// Print the object name}}
+\DoxyCodeLine{00040         send\_uart(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)r"{}}, huart);}
+\DoxyCodeLine{00041         fresult = f\_findnext(\&dj, \&fno);                \textcolor{comment}{// Search for next item}}
+\DoxyCodeLine{00042     \}}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044     f\_closedir(\&dj);}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046     \textcolor{keywordflow}{return} txtfile\_array;}
+\DoxyCodeLine{00047 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_ac1fc753aea400af6d191ede49e9be778}\label{sd__card_8h_ac1fc753aea400af6d191ede49e9be778}} 
+\index{sd\_card.h@{sd\_card.h}!sd\_card\_free\_space@{sd\_card\_free\_space}}
+\index{sd\_card\_free\_space@{sd\_card\_free\_space}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{sd\_card\_free\_space()}{sd\_card\_free\_space()}}
+{\footnotesize\ttfamily void sd\+\_\+card\+\_\+free\+\_\+space (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def}]{huart }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00063}{63}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063                                                   \{ \textcolor{comment}{// Check free space}}
+\DoxyCodeLine{00064 }
+\DoxyCodeLine{00065     f\_getfree(\textcolor{stringliteral}{"{}"{}}, \&fre\_clust, \&pfs);}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067     total = (uint32\_t)((pfs-\/>n\_fatent -\/ 2) * pfs-\/>csize * 0.5);}
+\DoxyCodeLine{00068     sprintf (buffer, \textcolor{stringliteral}{"{}SD CARD Total Size: \(\backslash\)t\%lu\(\backslash\)n\(\backslash\)r"{}},total);}
+\DoxyCodeLine{00069     send\_uart(buffer, huart);}
+\DoxyCodeLine{00070     clear\_buffer();}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072     free\_space = (uint32\_t)(fre\_clust * pfs-\/>csize * 0.5);}
+\DoxyCodeLine{00073     sprintf (buffer, \textcolor{stringliteral}{"{}SD CARD Free Space: \(\backslash\)t\%lu\(\backslash\)n\(\backslash\)r"{}},free\_space);}
+\DoxyCodeLine{00074     send\_uart(buffer, huart);}
+\DoxyCodeLine{00075     clear\_buffer();}
+\DoxyCodeLine{00076 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_a2052d8e246fcd7710baf786f61c59038}\label{sd__card_8h_a2052d8e246fcd7710baf786f61c59038}} 
+\index{sd\_card.h@{sd\_card.h}!sd\_card\_mount@{sd\_card\_mount}}
+\index{sd\_card\_mount@{sd\_card\_mount}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{sd\_card\_mount()}{sd\_card\_mount()}}
+{\footnotesize\ttfamily void sd\+\_\+card\+\_\+mount (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00049}{49}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049                          \{  \textcolor{comment}{// Mount SD Card (Einbinden der SD-\/Karte)}}
+\DoxyCodeLine{00050 }
+\DoxyCodeLine{00051     fresult = f\_mount(\&fs, \textcolor{stringliteral}{"{}"{}}, 0);}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053     clear\_buffer();}
+\DoxyCodeLine{00054 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_a2fc37a80c9a1b6a1e130462705d888ca}\label{sd__card_8h_a2fc37a80c9a1b6a1e130462705d888ca}} 
+\index{sd\_card.h@{sd\_card.h}!sd\_card\_read@{sd\_card\_read}}
+\index{sd\_card\_read@{sd\_card\_read}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{sd\_card\_read()}{sd\_card\_read()}}
+{\footnotesize\ttfamily void sd\+\_\+card\+\_\+read (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{float $\ast$}]{LUT }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00131}{131}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131                                               \{}
+\DoxyCodeLine{00132     \textcolor{comment}{// FA\_READ -\/ Specifies read access to the object. Data can be read from the file.}}
+\DoxyCodeLine{00133     \textcolor{comment}{// FA\_WRITE -\/ Specifies write access to the object. Data can be written to the file. Combine with FA\_READ for read-\/write access.}}
+\DoxyCodeLine{00134     \textcolor{comment}{// FA\_OPEN\_EXISTING -\/ Opens the file. The function fails if the file is not existing. (Default)}}
+\DoxyCodeLine{00135     \textcolor{comment}{// FA\_CREATE\_NEW -\/ Creates a new file. The function fails with FR\_EXIST if the file is existing.}}
+\DoxyCodeLine{00136     \textcolor{comment}{// FA\_CREATE\_ALWAYS -\/ Creates a new file. If the file is existing, it will be truncated and overwritten.}}
+\DoxyCodeLine{00137     \textcolor{comment}{// FA\_OPEN\_ALWAYS -\/ Opens the file if it is existing. If not, a new file will be created.}}
+\DoxyCodeLine{00138     \textcolor{comment}{// FA\_OPEN\_APPEND -\/ Same as FA\_OPEN\_ALWAYS except the read/write pointer is set end of the file.}}
+\DoxyCodeLine{00139 }
+\DoxyCodeLine{00140     \textcolor{comment}{// Open file to read}}
+\DoxyCodeLine{00141     fresult = f\_open(\&fil, filename, FA\_READ);}
+\DoxyCodeLine{00142     \textcolor{comment}{//if (fresult == FR\_OK)}}
+\DoxyCodeLine{00143         \textcolor{comment}{//send\_uart ("{}file is open and the data is shown below\(\backslash\)n\(\backslash\)r"{}, huart);}}
+\DoxyCodeLine{00144 }
+\DoxyCodeLine{00145     \textcolor{comment}{// Read data from the file -\/ Please see the function details for the arguments}}
+\DoxyCodeLine{00146 }
+\DoxyCodeLine{00147     uint32\_t Cycles = (uint32\_t)f\_size(\&fil) / BUFFER\_SIZE; \textcolor{comment}{// 100 = 10 Digits * 10000 Werte / BUFFER\_SIZE}}
+\DoxyCodeLine{00148     uint32\_t NoLength = 10;}
+\DoxyCodeLine{00149     uint32\_t NoSamples = 100;}
+\DoxyCodeLine{00150 }
+\DoxyCodeLine{00151     \textcolor{keywordtype}{char} SampleTemp[NoLength];}
+\DoxyCodeLine{00152 }
+\DoxyCodeLine{00153     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < Cycles; i++) \{}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155         f\_read (\&fil, buffer, BUFFER\_SIZE, \&br);}
+\DoxyCodeLine{00156         br = br + BUFFER\_SIZE;}
+\DoxyCodeLine{00157 }
+\DoxyCodeLine{00158         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j = 0; j < NoSamples; j++) \{}
+\DoxyCodeLine{00159 }
+\DoxyCodeLine{00160             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} k = 0; k < NoLength; k++)\{}
+\DoxyCodeLine{00161 }
+\DoxyCodeLine{00162                 SampleTemp[k] = buffer[j*NoLength+k];}
+\DoxyCodeLine{00163             \}}
+\DoxyCodeLine{00164             LUT[i*NoSamples+j] = atof(SampleTemp)-\/1;}
+\DoxyCodeLine{00165         \}}
+\DoxyCodeLine{00166     \}}
+\DoxyCodeLine{00167 }
+\DoxyCodeLine{00168     \textcolor{comment}{// Close file}}
+\DoxyCodeLine{00169     f\_close(\&fil);}
+\DoxyCodeLine{00170 }
+\DoxyCodeLine{00171     \textcolor{comment}{// Clear buffer}}
+\DoxyCodeLine{00172     clear\_buffer();}
+\DoxyCodeLine{00173 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_a26ed1f760dee256c3b76e753bfa22de2}\label{sd__card_8h_a26ed1f760dee256c3b76e753bfa22de2}} 
+\index{sd\_card.h@{sd\_card.h}!sd\_card\_remove\_file@{sd\_card\_remove\_file}}
+\index{sd\_card\_remove\_file@{sd\_card\_remove\_file}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{sd\_card\_remove\_file()}{sd\_card\_remove\_file()}}
+{\footnotesize\ttfamily void sd\+\_\+card\+\_\+remove\+\_\+file (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{UART\+\_\+\+Handle\+Type\+Def}]{huart }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00175}{175}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00175                                                                    \{}
+\DoxyCodeLine{00176 }
+\DoxyCodeLine{00177     strcat(\textcolor{stringliteral}{"{}/"{}},filename);}
+\DoxyCodeLine{00178     fresult = f\_unlink(filename);}
+\DoxyCodeLine{00179     \textcolor{keywordflow}{if} (fresult == FR\_OK) \{}
+\DoxyCodeLine{00180         send\_uart(filename, huart);}
+\DoxyCodeLine{00181         send\_uart(\textcolor{stringliteral}{"{} removed successfully...\(\backslash\)n\(\backslash\)r"{}}, huart);}
+\DoxyCodeLine{00182     \}}
+\DoxyCodeLine{00183 }
+\DoxyCodeLine{00184     clear\_buffer();}
+\DoxyCodeLine{00185 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_a681b37ae98d83e58474c79cb836d0280}\label{sd__card_8h_a681b37ae98d83e58474c79cb836d0280}} 
+\index{sd\_card.h@{sd\_card.h}!sd\_card\_unmount@{sd\_card\_unmount}}
+\index{sd\_card\_unmount@{sd\_card\_unmount}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{sd\_card\_unmount()}{sd\_card\_unmount()}}
+{\footnotesize\ttfamily void sd\+\_\+card\+\_\+unmount (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00056}{56}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056                            \{    \textcolor{comment}{// Unmount SD Card}}
+\DoxyCodeLine{00057 }
+\DoxyCodeLine{00058     fresult = f\_mount(NULL, \textcolor{stringliteral}{"{}/"{}}, 1);}
+\DoxyCodeLine{00059 }
+\DoxyCodeLine{00060     clear\_buffer();}
+\DoxyCodeLine{00061 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_a0cf3082c520d42e71c3394eaf7accf05}\label{sd__card_8h_a0cf3082c520d42e71c3394eaf7accf05}} 
+\index{sd\_card.h@{sd\_card.h}!sd\_card\_write\_appendfile@{sd\_card\_write\_appendfile}}
+\index{sd\_card\_write\_appendfile@{sd\_card\_write\_appendfile}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{sd\_card\_write\_appendfile()}{sd\_card\_write\_appendfile()}}
+{\footnotesize\ttfamily void sd\+\_\+card\+\_\+write\+\_\+appendfile (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{char $\ast$}]{filecontent,  }\item[{UART\+\_\+\+Handle\+Type\+Def}]{huart }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00108}{108}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00108                                                                                            \{}
+\DoxyCodeLine{00109     \textcolor{comment}{// FA\_READ -\/ Specifies read access to the object. Data can be read from the file.}}
+\DoxyCodeLine{00110     \textcolor{comment}{// FA\_WRITE -\/ Specifies write access to the object. Data can be written to the file. Combine with FA\_READ for read-\/write access.}}
+\DoxyCodeLine{00111     \textcolor{comment}{// FA\_OPEN\_EXISTING -\/ Opens the file. The function fails if the file is not existing. (Default)}}
+\DoxyCodeLine{00112     \textcolor{comment}{// FA\_CREATE\_NEW -\/ Creates a new file. The function fails with FR\_EXIST if the file is existing.}}
+\DoxyCodeLine{00113     \textcolor{comment}{// FA\_CREATE\_ALWAYS -\/ Creates a new file. If the file is existing, it will be truncated and overwritten.}}
+\DoxyCodeLine{00114     \textcolor{comment}{// FA\_OPEN\_ALWAYS -\/ Opens the file if it is existing. If not, a new file will be created.}}
+\DoxyCodeLine{00115     \textcolor{comment}{// FA\_OPEN\_APPEND -\/ Same as FA\_OPEN\_ALWAYS except the read/write pointer is set end of the file.}}
+\DoxyCodeLine{00116 }
+\DoxyCodeLine{00117     \textcolor{comment}{// Open file to write/ append data to end of file}}
+\DoxyCodeLine{00118     fresult = f\_open(\&fil, filename, FA\_OPEN\_APPEND | FA\_READ | FA\_WRITE);}
+\DoxyCodeLine{00119 }
+\DoxyCodeLine{00120     \textcolor{comment}{// Writing text}}
+\DoxyCodeLine{00121     f\_puts(filecontent, \&fil);}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123     \textcolor{comment}{// Close file}}
+\DoxyCodeLine{00124     fresult = f\_close(\&fil);}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126     \textcolor{keywordflow}{if} (fresult == FR\_OK)   send\_uart (\textcolor{stringliteral}{"{}File created and the data is written\(\backslash\)n\(\backslash\)r"{}}, huart);}
+\DoxyCodeLine{00127 }
+\DoxyCodeLine{00128     clear\_buffer();}
+\DoxyCodeLine{00129 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_a6dacdaf5530cfe6c164de87795ec2189}\label{sd__card_8h_a6dacdaf5530cfe6c164de87795ec2189}} 
+\index{sd\_card.h@{sd\_card.h}!sd\_card\_write\_newfile@{sd\_card\_write\_newfile}}
+\index{sd\_card\_write\_newfile@{sd\_card\_write\_newfile}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{sd\_card\_write\_newfile()}{sd\_card\_write\_newfile()}}
+{\footnotesize\ttfamily void sd\+\_\+card\+\_\+write\+\_\+newfile (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{char $\ast$}]{filecontent,  }\item[{UART\+\_\+\+Handle\+Type\+Def}]{huart }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00078}{78}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078                                                                                         \{}
+\DoxyCodeLine{00079     \textcolor{comment}{// FA\_READ -\/ Specifies read access to the object. Data can be read from the file.}}
+\DoxyCodeLine{00080     \textcolor{comment}{// FA\_WRITE -\/ Specifies write access to the object. Data can be written to the file. Combine with FA\_READ for read-\/write access.}}
+\DoxyCodeLine{00081     \textcolor{comment}{// FA\_OPEN\_EXISTING -\/ Opens the file. The function fails if the file is not existing. (Default)}}
+\DoxyCodeLine{00082     \textcolor{comment}{// FA\_CREATE\_NEW -\/ Creates a new file. The function fails with FR\_EXIST if the file is existing.}}
+\DoxyCodeLine{00083     \textcolor{comment}{// FA\_CREATE\_ALWAYS -\/ Creates a new file. If the file is existing, it will be truncated and overwritten.}}
+\DoxyCodeLine{00084     \textcolor{comment}{// FA\_OPEN\_ALWAYS -\/ Opens the file if it is existing. If not, a new file will be created.}}
+\DoxyCodeLine{00085     \textcolor{comment}{// FA\_OPEN\_APPEND -\/ Same as FA\_OPEN\_ALWAYS except the read/write pointer is set end of the file.}}
+\DoxyCodeLine{00086 }
+\DoxyCodeLine{00087     \textcolor{comment}{// Open file to write/ create a file if it doesn't exist}}
+\DoxyCodeLine{00088     fresult = f\_open(\&fil, filename, FA\_OPEN\_ALWAYS | FA\_READ | FA\_WRITE);}
+\DoxyCodeLine{00089     \textcolor{keywordflow}{if} (fresult == FR\_OK)}
+\DoxyCodeLine{00090         send\_uart (\textcolor{stringliteral}{"{}File created and the data is written\(\backslash\)n\(\backslash\)r"{}}, huart);}
+\DoxyCodeLine{00091     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00092         send\_uart (\textcolor{stringliteral}{"{}File can not be created\(\backslash\)n\(\backslash\)r"{}}, huart);}
+\DoxyCodeLine{00093 }
+\DoxyCodeLine{00094     \textcolor{comment}{// Writing text}}
+\DoxyCodeLine{00095     f\_puts(filecontent, \&fil);}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097     \textcolor{comment}{// Close file}}
+\DoxyCodeLine{00098     fresult = f\_close(\&fil);}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100     \textcolor{keywordflow}{if} (fresult == FR\_OK)}
+\DoxyCodeLine{00101         send\_uart (\textcolor{stringliteral}{"{}File created and the data is written\(\backslash\)n\(\backslash\)r"{}}, huart);}
+\DoxyCodeLine{00102     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00103         send\_uart (\textcolor{stringliteral}{"{}File can not be created\(\backslash\)n\(\backslash\)r"{}}, huart);}
+\DoxyCodeLine{00104 }
+\DoxyCodeLine{00105     clear\_buffer();}
+\DoxyCodeLine{00106 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sd__card_8h_af5bec5970e5694e62a95ddac43eb291f}\label{sd__card_8h_af5bec5970e5694e62a95ddac43eb291f}} 
+\index{sd\_card.h@{sd\_card.h}!send\_uart@{send\_uart}}
+\index{send\_uart@{send\_uart}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{send\_uart()}{send\_uart()}}
+{\footnotesize\ttfamily void send\+\_\+uart (\begin{DoxyParamCaption}\item[{char $\ast$}]{string,  }\item[{UART\+\_\+\+Handle\+Type\+Def}]{huart }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8c_source_l00024}{24}} of file \mbox{\hyperlink{sd__card_8c_source}{sd\+\_\+card.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024                                                        \{}
+\DoxyCodeLine{00025     uint8\_t len = strlen (\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00026     HAL\_UART\_Transmit(\&huart, (uint8\_t *) \textcolor{keywordtype}{string}, len, HAL\_MAX\_DELAY);  \textcolor{comment}{// transmit in blocking mode}}
+\DoxyCodeLine{00027 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{sd__card_8h_af73466f2f9a9dc91e720750a58b422e4}\label{sd__card_8h_af73466f2f9a9dc91e720750a58b422e4}} 
+\index{sd\_card.h@{sd\_card.h}!br@{br}}
+\index{br@{br}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{br}{br}}
+{\footnotesize\ttfamily UINT br}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00027}{27}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_af00b615ca097c43dbb02ae3a00ea3a62}\label{sd__card_8h_af00b615ca097c43dbb02ae3a00ea3a62}} 
+\index{sd\_card.h@{sd\_card.h}!buffer@{buffer}}
+\index{buffer@{buffer}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily char buffer\mbox{[}BUFFER\+\_\+\+SIZE\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00036}{36}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_a43bf7f8524c9a39d4b8d4fa43fc51620}\label{sd__card_8h_a43bf7f8524c9a39d4b8d4fa43fc51620}} 
+\index{sd\_card.h@{sd\_card.h}!bw@{bw}}
+\index{bw@{bw}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{bw}{bw}}
+{\footnotesize\ttfamily UINT bw}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00027}{27}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_a90affc32512431e143844fa9721bf9d9}\label{sd__card_8h_a90affc32512431e143844fa9721bf9d9}} 
+\index{sd\_card.h@{sd\_card.h}!dj@{dj}}
+\index{dj@{dj}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{dj}{dj}}
+{\footnotesize\ttfamily DIR dj}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00028}{28}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_a4be63952e3c9cb0f46f9e592b3c78714}\label{sd__card_8h_a4be63952e3c9cb0f46f9e592b3c78714}} 
+\index{sd\_card.h@{sd\_card.h}!fil@{fil}}
+\index{fil@{fil}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{fil}{fil}}
+{\footnotesize\ttfamily FIL fil}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00023}{23}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_adb2adf9b3f315041beb78852fa37a984}\label{sd__card_8h_adb2adf9b3f315041beb78852fa37a984}} 
+\index{sd\_card.h@{sd\_card.h}!fno@{fno}}
+\index{fno@{fno}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{fno}{fno}}
+{\footnotesize\ttfamily FILINFO fno}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00024}{24}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_a09395a8369ae8b24191a9522d71c89c4}\label{sd__card_8h_a09395a8369ae8b24191a9522d71c89c4}} 
+\index{sd\_card.h@{sd\_card.h}!fre\_clust@{fre\_clust}}
+\index{fre\_clust@{fre\_clust}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{fre\_clust}{fre\_clust}}
+{\footnotesize\ttfamily DWORD fre\+\_\+clust}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00032}{32}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_aa34bbdee19d0822d5dac5e4f32dfa4db}\label{sd__card_8h_aa34bbdee19d0822d5dac5e4f32dfa4db}} 
+\index{sd\_card.h@{sd\_card.h}!free\_space@{free\_space}}
+\index{free\_space@{free\_space}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{free\_space}{free\_space}}
+{\footnotesize\ttfamily uint32\+\_\+t free\+\_\+space}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00033}{33}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_a6c01f12753eea998672735a0321e2baa}\label{sd__card_8h_a6c01f12753eea998672735a0321e2baa}} 
+\index{sd\_card.h@{sd\_card.h}!fresult@{fresult}}
+\index{fresult@{fresult}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{fresult}{fresult}}
+{\footnotesize\ttfamily FRESULT fresult}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00025}{25}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_ae5bcde72e0e0b29ec86d00ba3e5cd51f}\label{sd__card_8h_ae5bcde72e0e0b29ec86d00ba3e5cd51f}} 
+\index{sd\_card.h@{sd\_card.h}!fs@{fs}}
+\index{fs@{fs}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{fs}{fs}}
+{\footnotesize\ttfamily FATFS fs}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00022}{22}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_a73fc1d7f310236f10a83485a71a2ff07}\label{sd__card_8h_a73fc1d7f310236f10a83485a71a2ff07}} 
+\index{sd\_card.h@{sd\_card.h}!pfs@{pfs}}
+\index{pfs@{pfs}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{pfs}{pfs}}
+{\footnotesize\ttfamily FATFS$\ast$ pfs}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00031}{31}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_a5982fc6fd4a7c57ef565f0b7a2f1df6a}\label{sd__card_8h_a5982fc6fd4a7c57ef565f0b7a2f1df6a}} 
+\index{sd\_card.h@{sd\_card.h}!total@{total}}
+\index{total@{total}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{total}{total}}
+{\footnotesize\ttfamily uint32\+\_\+t total}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00033}{33}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+
+\mbox{\Hypertarget{sd__card_8h_a5e8f218de29bd00e9c744eb52231d22b}\label{sd__card_8h_a5e8f218de29bd00e9c744eb52231d22b}} 
+\index{sd\_card.h@{sd\_card.h}!txtfile\_array@{txtfile\_array}}
+\index{txtfile\_array@{txtfile\_array}!sd\_card.h@{sd\_card.h}}
+\doxysubsubsection{\texorpdfstring{txtfile\_array}{txtfile\_array}}
+{\footnotesize\ttfamily char txtfile\+\_\+array\mbox{[}40000\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sd__card_8h_source_l00026}{26}} of file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+

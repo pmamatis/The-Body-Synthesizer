@@ -1,0 +1,69 @@
+\hypertarget{adsr_8h_source}{}\doxysection{adsr.\+h}
+\label{adsr_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/adsr.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/adsr.h}}
+\mbox{\hyperlink{adsr_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef ADSR\_H}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00012}00012 \textcolor{preprocessor}{\#define ADSR\_H}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00016}00016 \textcolor{comment}{/***************************}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00017}00017 \textcolor{comment}{ * @brief Enumeration for ADSR Debugging}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00018}00018 \textcolor{comment}{ ***************************/}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00019}00019 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00020}00020     ADSR\_FAIL = -\/1,}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00021}00021     ADSR\_OK = 1}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00022}00022 \} ADSR\_Status;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00024}00024 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00025}00025 \textcolor{comment}{ * @brief   Structs}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00026}00026 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00031}\mbox{\hyperlink{structadsr}{00031}} \textcolor{keyword}{struct }\mbox{\hyperlink{structadsr}{adsr}} \{}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00032}00032     uint32\_t adsr\_counter;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00033}00033     \textcolor{keywordtype}{float} adsr\_max\_amp;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00034}00034     \textcolor{keywordtype}{float} adsr\_duration\_time;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00035}00035     \textcolor{keywordtype}{float} adsr\_attack\_time;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00036}00036     \textcolor{keywordtype}{float} adsr\_decay\_time;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00037}00037     \textcolor{keywordtype}{float} adsr\_sustain\_time;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00038}00038     \textcolor{keywordtype}{float} adsr\_sustain\_amplitude;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00039}00039     \textcolor{keywordtype}{float} adsr\_release\_time;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00041}00041     \textcolor{keywordtype}{float} adsr\_maximum\_attack;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00042}00042     \textcolor{keywordtype}{float} adsr\_maximum\_decay;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00043}00043     \textcolor{keywordtype}{float} adsr\_maximum\_sustaintime;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00044}00044     \textcolor{keywordtype}{float} adsr\_maximum\_release;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00046}00046     \textcolor{keywordtype}{bool} adsr\_done;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00047}00047 \};}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00051}00051 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00052}00052 \textcolor{comment}{ * @brief   Variables}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00053}00053 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00054}00054 \textcolor{keyword}{struct }\mbox{\hyperlink{structadsr}{adsr}} envelope;}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00056}00056 \textcolor{comment}{// ADSR for sequencer notes}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00057}00057 \textcolor{comment}{// Length 16 is max. time steps: 1/16, 1/8, 1/4}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00058}00058 \textcolor{keyword}{struct }\mbox{\hyperlink{structadsr}{adsr}} adsr\_SN1[16];}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00059}00059 \textcolor{keyword}{struct }\mbox{\hyperlink{structadsr}{adsr}} adsr\_SN2[16];}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00060}00060 \textcolor{keyword}{struct }\mbox{\hyperlink{structadsr}{adsr}} adsr\_SN3[16];}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00061}00061 \textcolor{keyword}{struct }\mbox{\hyperlink{structadsr}{adsr}} adsr\_SN4[16];}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00063}00063 \textcolor{comment}{// ADSR for the keyboard}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00064}00064 \textcolor{keyword}{struct }\mbox{\hyperlink{structadsr}{adsr}} adsr\_keyboard[5];   \textcolor{comment}{// maximum 5 keys processed simultaneously}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00067}00067 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00068}00068 \textcolor{comment}{ * @brief   Functions}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00069}00069 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00070}00070 ADSR\_Status \mbox{\hyperlink{adsr_8h_ab26d8ec30eff40bfb82b160defd0af22}{ADSR\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00071}00071 ADSR\_Status SetupADSR(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* envelope);}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00072}00072 ADSR\_Status \mbox{\hyperlink{adsr_8h_ab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\_Reset}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* envelope);}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00073}00073 \textcolor{keywordtype}{void} \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* envelope, \textcolor{keywordtype}{float}* calculate\_value, \textcolor{keywordtype}{bool} flag);}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00074}00074 \textcolor{keywordtype}{void} \mbox{\hyperlink{adsr_8h_ac86ad75fa8ab7681c5ba8fdb66c4cbf0}{OnePress\_ADSR\_Sequencer\_Process}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* envelope, \textcolor{keywordtype}{float}* calculate\_value, \textcolor{keywordtype}{bool} flag);}
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{adsr_8h_source_l00076}00076 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

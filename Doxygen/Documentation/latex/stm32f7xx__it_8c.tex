@@ -1,0 +1,1357 @@
+\hypertarget{stm32f7xx__it_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/stm32f7xx\+\_\+it.c File Reference}
+\label{stm32f7xx__it_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/stm32f7xx\_it.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/stm32f7xx\_it.c}}
+
+
+Interrupt Service Routines.  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32f7xx\+\_\+it.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_adac3d2a67ed908e1b5938277292d314b}{SDTimer\+\_\+\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a6ad7a5e3ee69cb6db6a6b9111ba898bc}{NMI\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Non maskable interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a2bffc10d5bd4106753b7c30e86903bea}{Hard\+Fault\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Hard fault interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a3150f74512510287a942624aa9b44cc5}{Mem\+Manage\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Memory management fault. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a850cefb17a977292ae5eb4cafa9976c3}{Bus\+Fault\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Pre-\/fetch fault, memory access fault. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a1d98923de2ed6b7309b66f9ba2971647}{Usage\+Fault\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Undefined instruction or illegal state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a3e5ddb3df0d62f2dc357e64a3f04a6ce}{SVC\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles System service call via SWI instruction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_adbdfb05858cc36fc520974df37ec3cb0}{Debug\+Mon\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Debug monitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a6303e1f258cbdc1f970ce579cc015623}{Pend\+SV\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Pendable request for system service. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_ab5e09814056d617c521549e542639b7e}{Sys\+Tick\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles System tick timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_ac201b60d58b0eba2ce0b55710eb3c4d0}{DMA1\+\_\+\+Stream5\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA1 stream5 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_aa28fd448462a6347589129f63bb0a388}{DMA1\+\_\+\+Stream6\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA1 stream6 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a06406eadf297fa89a6eaf9586b227a69}{ADC\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles ADC1, ADC2 and ADC3 global interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a7b2096b8b2643286dc3a7e5110e5ae85}{EXTI9\+\_\+5\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles EXTI line\mbox{[}9\+:5\mbox{]} interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a3b60f6118cdd3449f4ed29fde4704236}{TIM1\+\_\+\+BRK\+\_\+\+TIM9\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM1 break interrupt and TIM9 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a38ad4725462bdc5e86c4ead4f04b9fc2}{TIM2\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM2 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_ac8e51d2183b5230cbd5481f8867adce9}{TIM3\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM3 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a7133f3f78767503641d307386e68bd28}{TIM4\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM4 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a738473a5b43f6c92b80ce1d3d6f77ed9}{EXTI15\+\_\+10\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles EXTI line\mbox{[}15\+:10\mbox{]} interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a4c8359a023f7ede4a9d9f94ea6fb92da}{TIM8\+\_\+\+TRG\+\_\+\+COM\+\_\+\+TIM14\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a5e66446caf21dd90191dc07a13ce2378}{TIM5\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM5 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a98cff83252098363b2dbca9608df964e}{TIM7\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM7 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_aaf6ce196dde98712e1223b99766e06c0}{DMA2\+\_\+\+Stream0\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream0 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_adab6f3e22e90bd5b1ceebb98022abdf2}{DMA2\+\_\+\+Stream1\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream1 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a7e367d7c7b74485c4c75cdef30ad01e1}{DMA2\+\_\+\+Stream2\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream2 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a877135f6494d6923d6f6ec32d75d9eeb}{DMA2\+\_\+\+Stream3\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream3 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_a295198ed574625d416158a5fc54205ea}{DMA2\+\_\+\+Stream4\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream4 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_ae5dcb5c1516cad8503ba1c778107c580}{SPI4\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles SPI4 global interrupt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{stm32f7xx__it_8c_abfd0324dc6a076ce94aac2e4ab05d1a2}{Fat\+Fs\+Cnt}} = 0
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{stm32f7xx__it_8c_a9963841bb1243906a136fe725492521e}{Timer1}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{stm32f7xx__it_8c_a1842f6ee4ba320821c21bcc34b28f6ce}{Timer2}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a1c126854bb1813d31ab4776b21dcc51f}{hdma\+\_\+adc1}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_ad99dd74cc50b61cf07680c1adaf80337}{hdma\+\_\+adc2}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a348c49f75bc918736d17997ac3f02e82}{hdma\+\_\+adc3}}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_acd9221f1aa19aebfe0b744947f2daf49}{hadc2}}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a984624bcf28d1b2fb7e4e18349f65d5c}{hadc3}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a0b091a815a18763d1ae04b35c8dc931f}{hdma\+\_\+dac1}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_aae5d903ccfcaf671396b79ed15eec0a3}{hdma\+\_\+dac2}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a7b5bae23cf8c5a2bae4a2dc352a6bf18}{hdma\+\_\+spi4\+\_\+rx}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_ad790392d1f26fe2990cd755d5497fbdb}{hdma\+\_\+spi4\+\_\+tx}}
+\item 
+SPI\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_ad11f23991deec4a1a2ffe474d1ef4ddd}{hspi4}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a25fc663547539bc49fecc0011bd76ab5}{htim1}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a2c80fd5510e2990a59a5c90d745c716c}{htim2}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_aac3d2c59ee0e3bbae1b99529a154eb62}{htim3}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a85788cec5a97ee377e4ee2e74f026484}{htim4}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_acefaeaaa3856ddddae7083b2d220fe4b}{htim5}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_abb71bf3ee68e2a051fbeec6c3ab3012d}{htim7}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a5faa27108379f799afb6984010bf0384}{htim8}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interrupt Service Routines. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2019 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 
+
+Definition in file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a06406eadf297fa89a6eaf9586b227a69}\label{stm32f7xx__it_8c_a06406eadf297fa89a6eaf9586b227a69}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!ADC\_IRQHandler@{ADC\_IRQHandler}}
+\index{ADC\_IRQHandler@{ADC\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{ADC\_IRQHandler()}{ADC\_IRQHandler()}}
+{\footnotesize\ttfamily void ADC\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles ADC1, ADC2 and ADC3 global interrupts. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00266}{266}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00267 \{}
+\DoxyCodeLine{00268   \textcolor{comment}{/* USER CODE BEGIN ADC\_IRQn 0 */}}
+\DoxyCodeLine{00269 }
+\DoxyCodeLine{00270   \textcolor{comment}{/* USER CODE END ADC\_IRQn 0 */}}
+\DoxyCodeLine{00271   HAL\_ADC\_IRQHandler(\&hadc1);}
+\DoxyCodeLine{00272   HAL\_ADC\_IRQHandler(\&hadc2);}
+\DoxyCodeLine{00273   HAL\_ADC\_IRQHandler(\&hadc3);}
+\DoxyCodeLine{00274   \textcolor{comment}{/* USER CODE BEGIN ADC\_IRQn 1 */}}
+\DoxyCodeLine{00275 }
+\DoxyCodeLine{00276   \textcolor{comment}{/* USER CODE END ADC\_IRQn 1 */}}
+\DoxyCodeLine{00277 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a850cefb17a977292ae5eb4cafa9976c3}\label{stm32f7xx__it_8c_a850cefb17a977292ae5eb4cafa9976c3}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!BusFault\_Handler@{BusFault\_Handler}}
+\index{BusFault\_Handler@{BusFault\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{BusFault\_Handler()}{BusFault\_Handler()}}
+{\footnotesize\ttfamily void Bus\+Fault\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles Pre-\/fetch fault, memory access fault. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00142}{142}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143 \{}
+\DoxyCodeLine{00144   \textcolor{comment}{/* USER CODE BEGIN BusFault\_IRQn 0 */}}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00146   \textcolor{comment}{/* USER CODE END BusFault\_IRQn 0 */}}
+\DoxyCodeLine{00147   \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00148   \{}
+\DoxyCodeLine{00149     \textcolor{comment}{/* USER CODE BEGIN W1\_BusFault\_IRQn 0 */}}
+\DoxyCodeLine{00150     \textcolor{comment}{/* USER CODE END W1\_BusFault\_IRQn 0 */}}
+\DoxyCodeLine{00151   \}}
+\DoxyCodeLine{00152 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_adbdfb05858cc36fc520974df37ec3cb0}\label{stm32f7xx__it_8c_adbdfb05858cc36fc520974df37ec3cb0}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!DebugMon\_Handler@{DebugMon\_Handler}}
+\index{DebugMon\_Handler@{DebugMon\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{DebugMon\_Handler()}{DebugMon\_Handler()}}
+{\footnotesize\ttfamily void Debug\+Mon\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles Debug monitor. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00185}{185}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00186 \{}
+\DoxyCodeLine{00187   \textcolor{comment}{/* USER CODE BEGIN DebugMonitor\_IRQn 0 */}}
+\DoxyCodeLine{00188 }
+\DoxyCodeLine{00189   \textcolor{comment}{/* USER CODE END DebugMonitor\_IRQn 0 */}}
+\DoxyCodeLine{00190   \textcolor{comment}{/* USER CODE BEGIN DebugMonitor\_IRQn 1 */}}
+\DoxyCodeLine{00191 }
+\DoxyCodeLine{00192   \textcolor{comment}{/* USER CODE END DebugMonitor\_IRQn 1 */}}
+\DoxyCodeLine{00193 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_ac201b60d58b0eba2ce0b55710eb3c4d0}\label{stm32f7xx__it_8c_ac201b60d58b0eba2ce0b55710eb3c4d0}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!DMA1\_Stream5\_IRQHandler@{DMA1\_Stream5\_IRQHandler}}
+\index{DMA1\_Stream5\_IRQHandler@{DMA1\_Stream5\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{DMA1\_Stream5\_IRQHandler()}{DMA1\_Stream5\_IRQHandler()}}
+{\footnotesize\ttfamily void DMA1\+\_\+\+Stream5\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles DMA1 stream5 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00238}{238}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00239 \{}
+\DoxyCodeLine{00240   \textcolor{comment}{/* USER CODE BEGIN DMA1\_Stream5\_IRQn 0 */}}
+\DoxyCodeLine{00241 }
+\DoxyCodeLine{00242   \textcolor{comment}{/* USER CODE END DMA1\_Stream5\_IRQn 0 */}}
+\DoxyCodeLine{00243   HAL\_DMA\_IRQHandler(\&hdma\_dac1);}
+\DoxyCodeLine{00244   \textcolor{comment}{/* USER CODE BEGIN DMA1\_Stream5\_IRQn 1 */}}
+\DoxyCodeLine{00245 }
+\DoxyCodeLine{00246   \textcolor{comment}{/* USER CODE END DMA1\_Stream5\_IRQn 1 */}}
+\DoxyCodeLine{00247 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_aa28fd448462a6347589129f63bb0a388}\label{stm32f7xx__it_8c_aa28fd448462a6347589129f63bb0a388}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!DMA1\_Stream6\_IRQHandler@{DMA1\_Stream6\_IRQHandler}}
+\index{DMA1\_Stream6\_IRQHandler@{DMA1\_Stream6\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{DMA1\_Stream6\_IRQHandler()}{DMA1\_Stream6\_IRQHandler()}}
+{\footnotesize\ttfamily void DMA1\+\_\+\+Stream6\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles DMA1 stream6 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00252}{252}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00253 \{}
+\DoxyCodeLine{00254   \textcolor{comment}{/* USER CODE BEGIN DMA1\_Stream6\_IRQn 0 */}}
+\DoxyCodeLine{00255 }
+\DoxyCodeLine{00256   \textcolor{comment}{/* USER CODE END DMA1\_Stream6\_IRQn 0 */}}
+\DoxyCodeLine{00257   HAL\_DMA\_IRQHandler(\&hdma\_dac2);}
+\DoxyCodeLine{00258   \textcolor{comment}{/* USER CODE BEGIN DMA1\_Stream6\_IRQn 1 */}}
+\DoxyCodeLine{00259 }
+\DoxyCodeLine{00260   \textcolor{comment}{/* USER CODE END DMA1\_Stream6\_IRQn 1 */}}
+\DoxyCodeLine{00261 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_aaf6ce196dde98712e1223b99766e06c0}\label{stm32f7xx__it_8c_aaf6ce196dde98712e1223b99766e06c0}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!DMA2\_Stream0\_IRQHandler@{DMA2\_Stream0\_IRQHandler}}
+\index{DMA2\_Stream0\_IRQHandler@{DMA2\_Stream0\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{DMA2\_Stream0\_IRQHandler()}{DMA2\_Stream0\_IRQHandler()}}
+{\footnotesize\ttfamily void DMA2\+\_\+\+Stream0\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles DMA2 stream0 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00424}{424}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00425 \{}
+\DoxyCodeLine{00426   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream0\_IRQn 0 */}}
+\DoxyCodeLine{00427 }
+\DoxyCodeLine{00428     \textcolor{comment}{// Key Release Sensing}}
+\DoxyCodeLine{00429     \textcolor{keywordflow}{if}(Display.ADC1input <= NO\_KEY\_ADC\_VALUE) \{}
+\DoxyCodeLine{00430 }
+\DoxyCodeLine{00431         \textcolor{keywordflow}{if}(keyboard\_pressed\_counter\%2==0)}
+\DoxyCodeLine{00432             keyboard\_pressed\_counter++;}
+\DoxyCodeLine{00433     \}}
+\DoxyCodeLine{00434     \textcolor{comment}{// Key Press Sensing}}
+\DoxyCodeLine{00435     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (Display.ADC1input > NO\_KEY\_ADC\_VALUE)\{}
+\DoxyCodeLine{00436 }
+\DoxyCodeLine{00437         \textcolor{keywordflow}{if}(keyboard\_pressed\_counter\%2==1)}
+\DoxyCodeLine{00438             keyboard\_pressed\_counter++;}
+\DoxyCodeLine{00439     \}}
+\DoxyCodeLine{00440 }
+\DoxyCodeLine{00441     \textcolor{comment}{// Reset counter}}
+\DoxyCodeLine{00442     \textcolor{keywordflow}{if} (keyboard\_pressed\_counter == 11)}
+\DoxyCodeLine{00443         keyboard\_pressed\_counter = 1;}
+\DoxyCodeLine{00444 }
+\DoxyCodeLine{00445     \textcolor{comment}{// Activate Processing}}
+\DoxyCodeLine{00446     \textcolor{keywordflow}{if} (keyboard\_pressed\_counter == 2)}
+\DoxyCodeLine{00447         activate\_processing[0] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00448     \textcolor{keywordflow}{if} (keyboard\_pressed\_counter == 4)}
+\DoxyCodeLine{00449         activate\_processing[1] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00450     \textcolor{keywordflow}{if}(keyboard\_pressed\_counter == 6)}
+\DoxyCodeLine{00451         activate\_processing[2] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00452     \textcolor{keywordflow}{if}(keyboard\_pressed\_counter == 8)}
+\DoxyCodeLine{00453         activate\_processing[3] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00454     \textcolor{keywordflow}{if}(keyboard\_pressed\_counter == 10)}
+\DoxyCodeLine{00455         activate\_processing[4] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00456 }
+\DoxyCodeLine{00457     \textcolor{comment}{// Process}}
+\DoxyCodeLine{00458     \mbox{\hyperlink{keyboard_8h_a4f8ca4fda6a27fe2ed6ad14c40339324}{OnePress\_keyboard\_process}}(Display.ADC1input, \&signals1, \&Display);}
+\DoxyCodeLine{00459 }
+\DoxyCodeLine{00460   \textcolor{comment}{/* USER CODE END DMA2\_Stream0\_IRQn 0 */}}
+\DoxyCodeLine{00461   HAL\_DMA\_IRQHandler(\&\mbox{\hyperlink{stm32f7xx__it_8c_a1c126854bb1813d31ab4776b21dcc51f}{hdma\_adc1}});}
+\DoxyCodeLine{00462   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream0\_IRQn 1 */}}
+\DoxyCodeLine{00463 }
+\DoxyCodeLine{00464   \textcolor{comment}{/* USER CODE END DMA2\_Stream0\_IRQn 1 */}}
+\DoxyCodeLine{00465 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_adab6f3e22e90bd5b1ceebb98022abdf2}\label{stm32f7xx__it_8c_adab6f3e22e90bd5b1ceebb98022abdf2}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!DMA2\_Stream1\_IRQHandler@{DMA2\_Stream1\_IRQHandler}}
+\index{DMA2\_Stream1\_IRQHandler@{DMA2\_Stream1\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{DMA2\_Stream1\_IRQHandler()}{DMA2\_Stream1\_IRQHandler()}}
+{\footnotesize\ttfamily void DMA2\+\_\+\+Stream1\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles DMA2 stream1 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00470}{470}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00471 \{}
+\DoxyCodeLine{00472   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream1\_IRQn 0 */}}
+\DoxyCodeLine{00473 }
+\DoxyCodeLine{00474   \textcolor{comment}{/* USER CODE END DMA2\_Stream1\_IRQn 0 */}}
+\DoxyCodeLine{00475   HAL\_DMA\_IRQHandler(\&hdma\_adc3);}
+\DoxyCodeLine{00476   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream1\_IRQn 1 */}}
+\DoxyCodeLine{00477   \textcolor{comment}{/* USER CODE END DMA2\_Stream1\_IRQn 1 */}}
+\DoxyCodeLine{00478 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a7e367d7c7b74485c4c75cdef30ad01e1}\label{stm32f7xx__it_8c_a7e367d7c7b74485c4c75cdef30ad01e1}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!DMA2\_Stream2\_IRQHandler@{DMA2\_Stream2\_IRQHandler}}
+\index{DMA2\_Stream2\_IRQHandler@{DMA2\_Stream2\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{DMA2\_Stream2\_IRQHandler()}{DMA2\_Stream2\_IRQHandler()}}
+{\footnotesize\ttfamily void DMA2\+\_\+\+Stream2\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles DMA2 stream2 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00484 \{}
+\DoxyCodeLine{00485   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream2\_IRQn 0 */}}
+\DoxyCodeLine{00486 }
+\DoxyCodeLine{00487     \textcolor{comment}{// START Drumcomputer Processing}}
+\DoxyCodeLine{00488     \textcolor{keywordflow}{if}(Display.EditDrums == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00489 }
+\DoxyCodeLine{00490         \textcolor{keywordflow}{if}(Display.ADC2inputs[1] < Display.LowerLimit) \{    \textcolor{comment}{// joystick down}}
+\DoxyCodeLine{00491             \mbox{\hyperlink{display_8h_a1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00492 }
+\DoxyCodeLine{00493             \textcolor{keywordflow}{if}(Display.CurrentSampleRow < MAX\_NUMBER\_OF\_SAMPLES+1)  \textcolor{comment}{// Display.CurrentSampleRow should be maximum the number of loaded samples}}
+\DoxyCodeLine{00494                 Display.CurrentSampleRow++;}
+\DoxyCodeLine{00495 }
+\DoxyCodeLine{00496             \textcolor{keywordflow}{if}(Display.CurrentSampleRow == MAX\_NUMBER\_OF\_SAMPLES+1) \textcolor{comment}{// cursor switches to first value when the limit is exceeded}}
+\DoxyCodeLine{00497                 Display.CurrentSampleRow = 1;}
+\DoxyCodeLine{00498 }
+\DoxyCodeLine{00499             \mbox{\hyperlink{display_8h_a6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00500         \}}
+\DoxyCodeLine{00501         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[1] > Display.UpperLimit) \{   \textcolor{comment}{// joystick up}}
+\DoxyCodeLine{00502             \mbox{\hyperlink{display_8h_a1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00503 }
+\DoxyCodeLine{00504             \textcolor{keywordflow}{if}(Display.CurrentSampleRow >= 1)   \textcolor{comment}{// Display.CurrentSampleRow should be minimum 1}}
+\DoxyCodeLine{00505                 Display.CurrentSampleRow-\/-\/;}
+\DoxyCodeLine{00506 }
+\DoxyCodeLine{00507             \textcolor{keywordflow}{if}(Display.CurrentSampleRow == 0)   \textcolor{comment}{// cursor switches to last value when the limit is exceeded}}
+\DoxyCodeLine{00508                 Display.CurrentSampleRow = MAX\_NUMBER\_OF\_SAMPLES;}
+\DoxyCodeLine{00509 }
+\DoxyCodeLine{00510             \mbox{\hyperlink{display_8h_a6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00511         \}}
+\DoxyCodeLine{00512         \textcolor{keywordflow}{if}(Display.ADC2inputs[0] > Display.UpperLimit) \{    \textcolor{comment}{// joystick left}}
+\DoxyCodeLine{00513             \mbox{\hyperlink{display_8h_a1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00514 }
+\DoxyCodeLine{00515             \textcolor{keywordflow}{if}(Display.CurrentDrumstep >= 1)    \textcolor{comment}{// Display.CurrentDrumstep should be minimum 1}}
+\DoxyCodeLine{00516                 Display.CurrentDrumstep-\/-\/;}
+\DoxyCodeLine{00517 }
+\DoxyCodeLine{00518             \textcolor{keywordflow}{if}(Display.CurrentDrumstep == 0)    \textcolor{comment}{// cursor switches to last value when the limit is exceeded}}
+\DoxyCodeLine{00519                 Display.CurrentDrumstep = NUMBER\_OF\_DRUMSTEPS;}
+\DoxyCodeLine{00520 }
+\DoxyCodeLine{00521             \mbox{\hyperlink{display_8h_a6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00522         \}}
+\DoxyCodeLine{00523         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[0] < Display.LowerLimit) \{   \textcolor{comment}{// joystick right}}
+\DoxyCodeLine{00524             \mbox{\hyperlink{display_8h_a1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00525 }
+\DoxyCodeLine{00526             \textcolor{keywordflow}{if}(Display.CurrentDrumstep < NUMBER\_OF\_DRUMSTEPS+1) \textcolor{comment}{// Display.CurrentDrumStep should be maximum the number of drumsteps}}
+\DoxyCodeLine{00527                 Display.CurrentDrumstep++;}
+\DoxyCodeLine{00528 }
+\DoxyCodeLine{00529             \textcolor{keywordflow}{if}(Display.CurrentDrumstep == NUMBER\_OF\_DRUMSTEPS+1)    \textcolor{comment}{// cursor switches to first value when the limit is exceeded}}
+\DoxyCodeLine{00530                 Display.CurrentDrumstep = 1;}
+\DoxyCodeLine{00531 }
+\DoxyCodeLine{00532             \mbox{\hyperlink{display_8h_a6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00533         \}}
+\DoxyCodeLine{00534     \}}
+\DoxyCodeLine{00535     \textcolor{comment}{// END Drumcomputer Processing}}
+\DoxyCodeLine{00536 }
+\DoxyCodeLine{00537     \textcolor{comment}{// START Sequencer Processing}}
+\DoxyCodeLine{00538     \textcolor{keywordflow}{if}(Display.EditSteps == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00539 }
+\DoxyCodeLine{00540         \textcolor{keywordflow}{if}(Display.ADC2inputs[1] < Display.LowerLimit) \{    \textcolor{comment}{// joystick down}}
+\DoxyCodeLine{00541             \mbox{\hyperlink{display_8h_ab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
+\DoxyCodeLine{00542 }
+\DoxyCodeLine{00543             \textcolor{keywordflow}{if}(Display.CurrentNoteRow < MAX\_NUMBER\_OF\_NOTES+1)  \textcolor{comment}{// Display.CurrentSampleRow should be maximum the number of loaded samples}}
+\DoxyCodeLine{00544                 Display.CurrentNoteRow++;}
+\DoxyCodeLine{00545 }
+\DoxyCodeLine{00546             \textcolor{keywordflow}{if}(Display.CurrentNoteRow == MAX\_NUMBER\_OF\_NOTES+1) \textcolor{comment}{// cursor switches to first value when the limit is exceeded}}
+\DoxyCodeLine{00547                 Display.CurrentNoteRow = 1;}
+\DoxyCodeLine{00548 }
+\DoxyCodeLine{00549             \mbox{\hyperlink{display_8h_acb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
+\DoxyCodeLine{00550         \}}
+\DoxyCodeLine{00551         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[1] > Display.UpperLimit) \{   \textcolor{comment}{// joystick up}}
+\DoxyCodeLine{00552             \mbox{\hyperlink{display_8h_ab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
+\DoxyCodeLine{00553 }
+\DoxyCodeLine{00554             \textcolor{keywordflow}{if}(Display.CurrentNoteRow >= 1) \textcolor{comment}{// Display.CurrentSampleRow should be minimum 1}}
+\DoxyCodeLine{00555                 Display.CurrentNoteRow-\/-\/;}
+\DoxyCodeLine{00556 }
+\DoxyCodeLine{00557             \textcolor{keywordflow}{if}(Display.CurrentNoteRow == 0) \textcolor{comment}{// cursor switches to last value when the limit is exceeded}}
+\DoxyCodeLine{00558                 Display.CurrentNoteRow = MAX\_NUMBER\_OF\_NOTES;}
+\DoxyCodeLine{00559 }
+\DoxyCodeLine{00560             \mbox{\hyperlink{display_8h_acb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
+\DoxyCodeLine{00561         \}}
+\DoxyCodeLine{00562         \textcolor{keywordflow}{if}(Display.ADC2inputs[0] > Display.UpperLimit) \{    \textcolor{comment}{// joystick left}}
+\DoxyCodeLine{00563             \mbox{\hyperlink{display_8h_ab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
+\DoxyCodeLine{00564 }
+\DoxyCodeLine{00565             \textcolor{keywordflow}{if}(Display.CurrentSequencestep >= 1)    \textcolor{comment}{// Display.CurrentDrumstep should be minimum 1}}
+\DoxyCodeLine{00566                 Display.CurrentSequencestep-\/-\/;}
+\DoxyCodeLine{00567 }
+\DoxyCodeLine{00568             \textcolor{keywordflow}{if}(Display.CurrentSequencestep == 0)    \textcolor{comment}{// cursor switches to last value when the limit is exceeded}}
+\DoxyCodeLine{00569                 Display.CurrentSequencestep = NUMBER\_OF\_SEQUENCERSTEPS;}
+\DoxyCodeLine{00570 }
+\DoxyCodeLine{00571             \mbox{\hyperlink{display_8h_acb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
+\DoxyCodeLine{00572         \}}
+\DoxyCodeLine{00573         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[0] < Display.LowerLimit) \{   \textcolor{comment}{// joystick right}}
+\DoxyCodeLine{00574             \mbox{\hyperlink{display_8h_ab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
+\DoxyCodeLine{00575 }
+\DoxyCodeLine{00576             \textcolor{keywordflow}{if}(Display.CurrentSequencestep < NUMBER\_OF\_SEQUENCERSTEPS+1)    \textcolor{comment}{// Display.CurrentDrumStep should be maximum the number of drumsteps}}
+\DoxyCodeLine{00577                 Display.CurrentSequencestep++;}
+\DoxyCodeLine{00578 }
+\DoxyCodeLine{00579             \textcolor{keywordflow}{if}(Display.CurrentSequencestep == NUMBER\_OF\_SEQUENCERSTEPS+1)   \textcolor{comment}{// cursor switches to first value when the limit is exceeded}}
+\DoxyCodeLine{00580                 Display.CurrentSequencestep = 1;}
+\DoxyCodeLine{00581 }
+\DoxyCodeLine{00582             \mbox{\hyperlink{display_8h_acb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
+\DoxyCodeLine{00583         \}}
+\DoxyCodeLine{00584     \}}
+\DoxyCodeLine{00585     \textcolor{comment}{// END Sequencer Processing}}
+\DoxyCodeLine{00586 }
+\DoxyCodeLine{00587     \textcolor{comment}{// joystick usable if sequencer steps and drums not edited at the moment}}
+\DoxyCodeLine{00588     \textcolor{keywordflow}{if}( !(Display.EditDrums || Display.EditSteps) ) \{}
+\DoxyCodeLine{00589         \textcolor{comment}{// arrow up or down}}
+\DoxyCodeLine{00590         \textcolor{keywordflow}{if} (Display.arrow\_flag == \textcolor{keyword}{true}) \{   \textcolor{comment}{// just in case we would not use the arrow, this flag should be false}}
+\DoxyCodeLine{00591             \textcolor{keywordflow}{if}(Display.ADC2inputs[1] < Display.LowerLimit) \{    \textcolor{comment}{// joystick-\/y goes down}}
+\DoxyCodeLine{00592                 \mbox{\hyperlink{display_8h_a44502944f0f57e797ed44a9d81e533e8}{DISPLAY\_ArrowDown}}(\&(Display.JoystickParameterPosition));}
+\DoxyCodeLine{00593                 \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00594                 Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00595             \}}
+\DoxyCodeLine{00596             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[1] > Display.UpperLimit) \{   \textcolor{comment}{// joystick-\/y goes up}}
+\DoxyCodeLine{00597                 \mbox{\hyperlink{display_8h_a66ef522eba7da71e294cabcccdd89adf}{DISPLAY\_ArrowUp}}(\&(Display.JoystickParameterPosition));}
+\DoxyCodeLine{00598                 \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00599                 Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00600             \}}
+\DoxyCodeLine{00601         \}}
+\DoxyCodeLine{00602         \textcolor{comment}{// switch page left or right}}
+\DoxyCodeLine{00603         \textcolor{keywordflow}{if}(Display.ADC2inputs[0] > Display.UpperLimit) \{    \textcolor{comment}{// switch to the left page}}
+\DoxyCodeLine{00604             \mbox{\hyperlink{display_8h_aad139dccbdea27c5c95092b327408a1a}{DISPLAY\_SwitchPageLeft}}();}
+\DoxyCodeLine{00605             \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00606             Display.JoystickParameterPosition = 1;}
+\DoxyCodeLine{00607             \mbox{\hyperlink{display_8h_a4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(1);}
+\DoxyCodeLine{00608             Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00609         \}}
+\DoxyCodeLine{00610         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[0] < Display.LowerLimit) \{   \textcolor{comment}{// switch to the right page}}
+\DoxyCodeLine{00611             \mbox{\hyperlink{display_8h_a6762942b296dabc3a6cfa0f14bd1c690}{DISPLAY\_SwitchPageRight}}();}
+\DoxyCodeLine{00612             \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00613             Display.JoystickParameterPosition = 1;}
+\DoxyCodeLine{00614             \mbox{\hyperlink{display_8h_a4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(1);}
+\DoxyCodeLine{00615             Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00616         \}}
+\DoxyCodeLine{00617     \}}
+\DoxyCodeLine{00618 }
+\DoxyCodeLine{00619     \textcolor{comment}{// calculate mean value of the potentiometer value}}
+\DoxyCodeLine{00620     Display.PotiMean\_tmp += Display.ADC2inputs[2];}
+\DoxyCodeLine{00621     \textcolor{keywordflow}{if}(Display.PotiMean\_counter == 10) \{}
+\DoxyCodeLine{00622         Display.PotiMean = Display.PotiMean\_tmp / Display.PotiMean\_counter;}
+\DoxyCodeLine{00623         Display.PotiMean\_counter = 0;}
+\DoxyCodeLine{00624         Display.PotiMean\_tmp = 0;}
+\DoxyCodeLine{00625     \}}
+\DoxyCodeLine{00626     Display.PotiMean\_counter++;}
+\DoxyCodeLine{00627 }
+\DoxyCodeLine{00628     \textcolor{comment}{// do not process the poti change if joystick is moved in x-\/ or y-\/direction}}
+\DoxyCodeLine{00629     \textcolor{keywordflow}{if}(abs(Display.ADC2inputs[0]-\/Display.JoystickMiddle)<100 \&\& abs(Display.ADC2inputs[1]-\/Display.JoystickMiddle)<100) \{}
+\DoxyCodeLine{00630         \textcolor{keywordflow}{if}(abs(Display.last\_Poti -\/ Display.PotiMean) > Display.Poti\_Threshold) \{}
+\DoxyCodeLine{00631             Display.poti\_moved = \textcolor{keyword}{true};}
+\DoxyCodeLine{00632             Display.last\_Poti = Display.PotiMean;}
+\DoxyCodeLine{00633             \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00634             Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00635         \}}
+\DoxyCodeLine{00636         \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00637             Display.poti\_moved = \textcolor{keyword}{false};}
+\DoxyCodeLine{00638             Display.last\_Poti = Display.PotiMean;}
+\DoxyCodeLine{00639         \}}
+\DoxyCodeLine{00640     \}}
+\DoxyCodeLine{00641 }
+\DoxyCodeLine{00642     \textcolor{comment}{// BPM setting}}
+\DoxyCodeLine{00643     \textcolor{comment}{// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!}}
+\DoxyCodeLine{00644     \textcolor{keywordflow}{if}(Display.poti\_moved == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00645         \textcolor{keywordflow}{if}(Display.pagePosition == 3 \&\& Display.currentDrumcomputer > 0 \&\& Display.JoystickParameterPosition == 2) \{}
+\DoxyCodeLine{00646 }
+\DoxyCodeLine{00647             \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}} = (((float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange) * (BPM\_MAX-\/60)) + 60; \textcolor{comment}{// minimum BPM of 60, cause low BPMs cause fuckups}}
+\DoxyCodeLine{00648             \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}} = roundf(\mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{00649 }
+\DoxyCodeLine{00650             sprintf(Display.value\_str\_drumcomputer[8], \textcolor{stringliteral}{"{}\%.f"{}}, \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{00651             Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position-\/50, CASE2, Display.value\_end\_x\_position, CASE2+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00652             Paint\_DrawStringAt(\&paint, Display.value\_start\_x\_position-\/50, CASE2, Display.value\_str\_drumcomputer[8], \&Font12, COLORED);}
+\DoxyCodeLine{00653             Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00654 }
+\DoxyCodeLine{00655             \textcolor{comment}{// further processing in drum computer process function to change the BPM only when drum loop / FourFour is done..}}
+\DoxyCodeLine{00656         \}}
+\DoxyCodeLine{00657     \}}
+\DoxyCodeLine{00658 }
+\DoxyCodeLine{00659     \textcolor{comment}{// necessary to update the display when the rate is changed in the LFO\_SingleValueProcess function}}
+\DoxyCodeLine{00660     \textcolor{keywordflow}{if}(Tremolo.lfo-\/>lfo\_done\_flag) \{}
+\DoxyCodeLine{00661         \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00662         Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00663         Tremolo.lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00664     \}}
+\DoxyCodeLine{00665     \textcolor{keywordflow}{if}(WahWah.lfo-\/>lfo\_done\_flag) \{}
+\DoxyCodeLine{00666         \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00667         Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00668         WahWah.lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00669     \}}
+\DoxyCodeLine{00670 }
+\DoxyCodeLine{00671     \textcolor{comment}{// process the display and and update it when one of the buttons is pressed, because otherwise the voices and sequencer notes and octaves are not updated}}
+\DoxyCodeLine{00672     \textcolor{keywordflow}{if}(Display.button\_pressed\_flag == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00673         \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00674         Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00675         Display.button\_pressed\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00676     \}}
+\DoxyCodeLine{00677 }
+\DoxyCodeLine{00678     \textcolor{comment}{// value of the gyro-\/sensor changed}}
+\DoxyCodeLine{00679     \textcolor{keywordflow}{if}(\mbox{\hyperlink{input__interfaces_8h_a192acf54301f05c84432d895bfc661e6}{gyrochanged}} == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00680         \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00681         Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00682         \mbox{\hyperlink{input__interfaces_8h_a192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{00683     \}}
+\DoxyCodeLine{00684 }
+\DoxyCodeLine{00685     \textcolor{keywordflow}{if}(Display.UpdateDisplay == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00686         \mbox{\hyperlink{display_8h_a0cf58d71eacb3fad194c7257fd5ce183}{DISPLAY\_Update}}();}
+\DoxyCodeLine{00687         Display.UpdateDisplay = \textcolor{keyword}{false};}
+\DoxyCodeLine{00688     \}}
+\DoxyCodeLine{00689 }
+\DoxyCodeLine{00690   \textcolor{comment}{/* USER CODE END DMA2\_Stream2\_IRQn 0 */}}
+\DoxyCodeLine{00691   HAL\_DMA\_IRQHandler(\&hdma\_adc2);}
+\DoxyCodeLine{00692   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream2\_IRQn 1 */}}
+\DoxyCodeLine{00693 }
+\DoxyCodeLine{00694   \textcolor{comment}{/* USER CODE END DMA2\_Stream2\_IRQn 1 */}}
+\DoxyCodeLine{00695 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a877135f6494d6923d6f6ec32d75d9eeb}\label{stm32f7xx__it_8c_a877135f6494d6923d6f6ec32d75d9eeb}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!DMA2\_Stream3\_IRQHandler@{DMA2\_Stream3\_IRQHandler}}
+\index{DMA2\_Stream3\_IRQHandler@{DMA2\_Stream3\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{DMA2\_Stream3\_IRQHandler()}{DMA2\_Stream3\_IRQHandler()}}
+{\footnotesize\ttfamily void DMA2\+\_\+\+Stream3\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles DMA2 stream3 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00700}{700}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00701 \{}
+\DoxyCodeLine{00702   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream3\_IRQn 0 */}}
+\DoxyCodeLine{00703 }
+\DoxyCodeLine{00704   \textcolor{comment}{/* USER CODE END DMA2\_Stream3\_IRQn 0 */}}
+\DoxyCodeLine{00705   HAL\_DMA\_IRQHandler(\&hdma\_spi4\_rx);}
+\DoxyCodeLine{00706   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream3\_IRQn 1 */}}
+\DoxyCodeLine{00707 }
+\DoxyCodeLine{00708   \textcolor{comment}{/* USER CODE END DMA2\_Stream3\_IRQn 1 */}}
+\DoxyCodeLine{00709 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a295198ed574625d416158a5fc54205ea}\label{stm32f7xx__it_8c_a295198ed574625d416158a5fc54205ea}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!DMA2\_Stream4\_IRQHandler@{DMA2\_Stream4\_IRQHandler}}
+\index{DMA2\_Stream4\_IRQHandler@{DMA2\_Stream4\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{DMA2\_Stream4\_IRQHandler()}{DMA2\_Stream4\_IRQHandler()}}
+{\footnotesize\ttfamily void DMA2\+\_\+\+Stream4\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles DMA2 stream4 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00714}{714}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00715 \{}
+\DoxyCodeLine{00716   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream4\_IRQn 0 */}}
+\DoxyCodeLine{00717 }
+\DoxyCodeLine{00718   \textcolor{comment}{/* USER CODE END DMA2\_Stream4\_IRQn 0 */}}
+\DoxyCodeLine{00719   HAL\_DMA\_IRQHandler(\&hdma\_spi4\_tx);}
+\DoxyCodeLine{00720   \textcolor{comment}{/* USER CODE BEGIN DMA2\_Stream4\_IRQn 1 */}}
+\DoxyCodeLine{00721 }
+\DoxyCodeLine{00722   \textcolor{comment}{/* USER CODE END DMA2\_Stream4\_IRQn 1 */}}
+\DoxyCodeLine{00723 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a738473a5b43f6c92b80ce1d3d6f77ed9}\label{stm32f7xx__it_8c_a738473a5b43f6c92b80ce1d3d6f77ed9}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!EXTI15\_10\_IRQHandler@{EXTI15\_10\_IRQHandler}}
+\index{EXTI15\_10\_IRQHandler@{EXTI15\_10\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{EXTI15\_10\_IRQHandler()}{EXTI15\_10\_IRQHandler()}}
+{\footnotesize\ttfamily void EXTI15\+\_\+10\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles EXTI line\mbox{[}15\+:10\mbox{]} interrupts. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00355}{355}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00356 \{}
+\DoxyCodeLine{00357   \textcolor{comment}{/* USER CODE BEGIN EXTI15\_10\_IRQn 0 */}}
+\DoxyCodeLine{00358 }
+\DoxyCodeLine{00359   \textcolor{comment}{/* USER CODE END EXTI15\_10\_IRQn 0 */}}
+\DoxyCodeLine{00360   HAL\_GPIO\_EXTI\_IRQHandler(GPIO\_PIN\_13);}
+\DoxyCodeLine{00361   \textcolor{comment}{/* USER CODE BEGIN EXTI15\_10\_IRQn 1 */}}
+\DoxyCodeLine{00362 }
+\DoxyCodeLine{00363   \textcolor{comment}{/* USER CODE END EXTI15\_10\_IRQn 1 */}}
+\DoxyCodeLine{00364 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a7b2096b8b2643286dc3a7e5110e5ae85}\label{stm32f7xx__it_8c_a7b2096b8b2643286dc3a7e5110e5ae85}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!EXTI9\_5\_IRQHandler@{EXTI9\_5\_IRQHandler}}
+\index{EXTI9\_5\_IRQHandler@{EXTI9\_5\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{EXTI9\_5\_IRQHandler()}{EXTI9\_5\_IRQHandler()}}
+{\footnotesize\ttfamily void EXTI9\+\_\+5\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles EXTI line\mbox{[}9\+:5\mbox{]} interrupts. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00282}{282}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00283 \{}
+\DoxyCodeLine{00284   \textcolor{comment}{/* USER CODE BEGIN EXTI9\_5\_IRQn 0 */}}
+\DoxyCodeLine{00285 }
+\DoxyCodeLine{00286   \textcolor{comment}{/* USER CODE END EXTI9\_5\_IRQn 0 */}}
+\DoxyCodeLine{00287   HAL\_GPIO\_EXTI\_IRQHandler(GPIO\_PIN\_8);}
+\DoxyCodeLine{00288   HAL\_GPIO\_EXTI\_IRQHandler(GPIO\_PIN\_9);}
+\DoxyCodeLine{00289   \textcolor{comment}{/* USER CODE BEGIN EXTI9\_5\_IRQn 1 */}}
+\DoxyCodeLine{00290 }
+\DoxyCodeLine{00291   \textcolor{comment}{/* USER CODE END EXTI9\_5\_IRQn 1 */}}
+\DoxyCodeLine{00292 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a2bffc10d5bd4106753b7c30e86903bea}\label{stm32f7xx__it_8c_a2bffc10d5bd4106753b7c30e86903bea}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!HardFault\_Handler@{HardFault\_Handler}}
+\index{HardFault\_Handler@{HardFault\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{HardFault\_Handler()}{HardFault\_Handler()}}
+{\footnotesize\ttfamily void Hard\+Fault\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles Hard fault interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00112}{112}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00113 \{}
+\DoxyCodeLine{00114   \textcolor{comment}{/* USER CODE BEGIN HardFault\_IRQn 0 */}}
+\DoxyCodeLine{00115 }
+\DoxyCodeLine{00116   \textcolor{comment}{/* USER CODE END HardFault\_IRQn 0 */}}
+\DoxyCodeLine{00117   \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00118   \{}
+\DoxyCodeLine{00119     \textcolor{comment}{/* USER CODE BEGIN W1\_HardFault\_IRQn 0 */}}
+\DoxyCodeLine{00120     \textcolor{comment}{/* USER CODE END W1\_HardFault\_IRQn 0 */}}
+\DoxyCodeLine{00121   \}}
+\DoxyCodeLine{00122 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a3150f74512510287a942624aa9b44cc5}\label{stm32f7xx__it_8c_a3150f74512510287a942624aa9b44cc5}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!MemManage\_Handler@{MemManage\_Handler}}
+\index{MemManage\_Handler@{MemManage\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{MemManage\_Handler()}{MemManage\_Handler()}}
+{\footnotesize\ttfamily void Mem\+Manage\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles Memory management fault. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00127}{127}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00128 \{}
+\DoxyCodeLine{00129   \textcolor{comment}{/* USER CODE BEGIN MemoryManagement\_IRQn 0 */}}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131   \textcolor{comment}{/* USER CODE END MemoryManagement\_IRQn 0 */}}
+\DoxyCodeLine{00132   \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00133   \{}
+\DoxyCodeLine{00134     \textcolor{comment}{/* USER CODE BEGIN W1\_MemoryManagement\_IRQn 0 */}}
+\DoxyCodeLine{00135     \textcolor{comment}{/* USER CODE END W1\_MemoryManagement\_IRQn 0 */}}
+\DoxyCodeLine{00136   \}}
+\DoxyCodeLine{00137 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a6ad7a5e3ee69cb6db6a6b9111ba898bc}\label{stm32f7xx__it_8c_a6ad7a5e3ee69cb6db6a6b9111ba898bc}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!NMI\_Handler@{NMI\_Handler}}
+\index{NMI\_Handler@{NMI\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{NMI\_Handler()}{NMI\_Handler()}}
+{\footnotesize\ttfamily void NMI\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles Non maskable interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00099}{99}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100 \{}
+\DoxyCodeLine{00101   \textcolor{comment}{/* USER CODE BEGIN NonMaskableInt\_IRQn 0 */}}
+\DoxyCodeLine{00102 }
+\DoxyCodeLine{00103   \textcolor{comment}{/* USER CODE END NonMaskableInt\_IRQn 0 */}}
+\DoxyCodeLine{00104   \textcolor{comment}{/* USER CODE BEGIN NonMaskableInt\_IRQn 1 */}}
+\DoxyCodeLine{00105 }
+\DoxyCodeLine{00106   \textcolor{comment}{/* USER CODE END NonMaskableInt\_IRQn 1 */}}
+\DoxyCodeLine{00107 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a6303e1f258cbdc1f970ce579cc015623}\label{stm32f7xx__it_8c_a6303e1f258cbdc1f970ce579cc015623}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!PendSV\_Handler@{PendSV\_Handler}}
+\index{PendSV\_Handler@{PendSV\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{PendSV\_Handler()}{PendSV\_Handler()}}
+{\footnotesize\ttfamily void Pend\+SV\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles Pendable request for system service. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00198}{198}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00199 \{}
+\DoxyCodeLine{00200   \textcolor{comment}{/* USER CODE BEGIN PendSV\_IRQn 0 */}}
+\DoxyCodeLine{00201 }
+\DoxyCodeLine{00202   \textcolor{comment}{/* USER CODE END PendSV\_IRQn 0 */}}
+\DoxyCodeLine{00203   \textcolor{comment}{/* USER CODE BEGIN PendSV\_IRQn 1 */}}
+\DoxyCodeLine{00204 }
+\DoxyCodeLine{00205   \textcolor{comment}{/* USER CODE END PendSV\_IRQn 1 */}}
+\DoxyCodeLine{00206 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_adac3d2a67ed908e1b5938277292d314b}\label{stm32f7xx__it_8c_adac3d2a67ed908e1b5938277292d314b}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!SDTimer\_Handler@{SDTimer\_Handler}}
+\index{SDTimer\_Handler@{SDTimer\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{SDTimer\_Handler()}{SDTimer\_Handler()}}
+{\footnotesize\ttfamily void SDTimer\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00060}{60}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060                            \{}
+\DoxyCodeLine{00061     \textcolor{keywordflow}{if}(Timer1 > 0)}
+\DoxyCodeLine{00062         Timer1-\/-\/;}
+\DoxyCodeLine{00063 }
+\DoxyCodeLine{00064     \textcolor{keywordflow}{if}(Timer2 > 0)}
+\DoxyCodeLine{00065         Timer2-\/-\/;}
+\DoxyCodeLine{00066 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_ae5dcb5c1516cad8503ba1c778107c580}\label{stm32f7xx__it_8c_ae5dcb5c1516cad8503ba1c778107c580}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!SPI4\_IRQHandler@{SPI4\_IRQHandler}}
+\index{SPI4\_IRQHandler@{SPI4\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{SPI4\_IRQHandler()}{SPI4\_IRQHandler()}}
+{\footnotesize\ttfamily void SPI4\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles SPI4 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00728}{728}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00729 \{}
+\DoxyCodeLine{00730   \textcolor{comment}{/* USER CODE BEGIN SPI4\_IRQn 0 */}}
+\DoxyCodeLine{00731 }
+\DoxyCodeLine{00732   \textcolor{comment}{/* USER CODE END SPI4\_IRQn 0 */}}
+\DoxyCodeLine{00733   HAL\_SPI\_IRQHandler(\&hspi4);}
+\DoxyCodeLine{00734   \textcolor{comment}{/* USER CODE BEGIN SPI4\_IRQn 1 */}}
+\DoxyCodeLine{00735   \textcolor{comment}{/* USER CODE END SPI4\_IRQn 1 */}}
+\DoxyCodeLine{00736 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a3e5ddb3df0d62f2dc357e64a3f04a6ce}\label{stm32f7xx__it_8c_a3e5ddb3df0d62f2dc357e64a3f04a6ce}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!SVC\_Handler@{SVC\_Handler}}
+\index{SVC\_Handler@{SVC\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{SVC\_Handler()}{SVC\_Handler()}}
+{\footnotesize\ttfamily void SVC\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles System service call via SWI instruction. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00172}{172}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173 \{}
+\DoxyCodeLine{00174   \textcolor{comment}{/* USER CODE BEGIN SVCall\_IRQn 0 */}}
+\DoxyCodeLine{00175 }
+\DoxyCodeLine{00176   \textcolor{comment}{/* USER CODE END SVCall\_IRQn 0 */}}
+\DoxyCodeLine{00177   \textcolor{comment}{/* USER CODE BEGIN SVCall\_IRQn 1 */}}
+\DoxyCodeLine{00178 }
+\DoxyCodeLine{00179   \textcolor{comment}{/* USER CODE END SVCall\_IRQn 1 */}}
+\DoxyCodeLine{00180 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_ab5e09814056d617c521549e542639b7e}\label{stm32f7xx__it_8c_ab5e09814056d617c521549e542639b7e}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!SysTick\_Handler@{SysTick\_Handler}}
+\index{SysTick\_Handler@{SysTick\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{SysTick\_Handler()}{SysTick\_Handler()}}
+{\footnotesize\ttfamily void Sys\+Tick\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles System tick timer. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00211}{211}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00212 \{}
+\DoxyCodeLine{00213   \textcolor{comment}{/* USER CODE BEGIN SysTick\_IRQn 0 */}}
+\DoxyCodeLine{00214 }
+\DoxyCodeLine{00215     \textcolor{comment}{/*FatFsCnt++; }}
+\DoxyCodeLine{00216 \textcolor{comment}{    if(FatFsCnt >= 10) \{ }}
+\DoxyCodeLine{00217 \textcolor{comment}{        FatFsCnt = 0; }}
+\DoxyCodeLine{00218 \textcolor{comment}{        SDTimer\_Handler(); }}
+\DoxyCodeLine{00219 \textcolor{comment}{    \}*/}}
+\DoxyCodeLine{00220 }
+\DoxyCodeLine{00221   \textcolor{comment}{/* USER CODE END SysTick\_IRQn 0 */}}
+\DoxyCodeLine{00222   HAL\_IncTick();}
+\DoxyCodeLine{00223   \textcolor{comment}{/* USER CODE BEGIN SysTick\_IRQn 1 */}}
+\DoxyCodeLine{00224 }
+\DoxyCodeLine{00225   \textcolor{comment}{/* USER CODE END SysTick\_IRQn 1 */}}
+\DoxyCodeLine{00226 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a3b60f6118cdd3449f4ed29fde4704236}\label{stm32f7xx__it_8c_a3b60f6118cdd3449f4ed29fde4704236}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!TIM1\_BRK\_TIM9\_IRQHandler@{TIM1\_BRK\_TIM9\_IRQHandler}}
+\index{TIM1\_BRK\_TIM9\_IRQHandler@{TIM1\_BRK\_TIM9\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{TIM1\_BRK\_TIM9\_IRQHandler()}{TIM1\_BRK\_TIM9\_IRQHandler()}}
+{\footnotesize\ttfamily void TIM1\+\_\+\+BRK\+\_\+\+TIM9\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles TIM1 break interrupt and TIM9 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00297}{297}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00298 \{}
+\DoxyCodeLine{00299   \textcolor{comment}{/* USER CODE BEGIN TIM1\_BRK\_TIM9\_IRQn 0 */}}
+\DoxyCodeLine{00300 }
+\DoxyCodeLine{00301   \textcolor{comment}{/* USER CODE END TIM1\_BRK\_TIM9\_IRQn 0 */}}
+\DoxyCodeLine{00302   HAL\_TIM\_IRQHandler(\&htim1);}
+\DoxyCodeLine{00303   \textcolor{comment}{/* USER CODE BEGIN TIM1\_BRK\_TIM9\_IRQn 1 */}}
+\DoxyCodeLine{00304 }
+\DoxyCodeLine{00305   \textcolor{comment}{/* USER CODE END TIM1\_BRK\_TIM9\_IRQn 1 */}}
+\DoxyCodeLine{00306 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a38ad4725462bdc5e86c4ead4f04b9fc2}\label{stm32f7xx__it_8c_a38ad4725462bdc5e86c4ead4f04b9fc2}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!TIM2\_IRQHandler@{TIM2\_IRQHandler}}
+\index{TIM2\_IRQHandler@{TIM2\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{TIM2\_IRQHandler()}{TIM2\_IRQHandler()}}
+{\footnotesize\ttfamily void TIM2\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles TIM2 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00311}{311}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00312 \{}
+\DoxyCodeLine{00313   \textcolor{comment}{/* USER CODE BEGIN TIM2\_IRQn 0 */}}
+\DoxyCodeLine{00314 }
+\DoxyCodeLine{00315   \textcolor{comment}{/* USER CODE END TIM2\_IRQn 0 */}}
+\DoxyCodeLine{00316   HAL\_TIM\_IRQHandler(\&htim2);}
+\DoxyCodeLine{00317   \textcolor{comment}{/* USER CODE BEGIN TIM2\_IRQn 1 */}}
+\DoxyCodeLine{00318 }
+\DoxyCodeLine{00319   \textcolor{comment}{/* USER CODE END TIM2\_IRQn 1 */}}
+\DoxyCodeLine{00320 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_ac8e51d2183b5230cbd5481f8867adce9}\label{stm32f7xx__it_8c_ac8e51d2183b5230cbd5481f8867adce9}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!TIM3\_IRQHandler@{TIM3\_IRQHandler}}
+\index{TIM3\_IRQHandler@{TIM3\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{TIM3\_IRQHandler()}{TIM3\_IRQHandler()}}
+{\footnotesize\ttfamily void TIM3\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles TIM3 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00325}{325}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00326 \{}
+\DoxyCodeLine{00327   \textcolor{comment}{/* USER CODE BEGIN TIM3\_IRQn 0 */}}
+\DoxyCodeLine{00328     II\_Display\_Voices();}
+\DoxyCodeLine{00329     \mbox{\hyperlink{input__interfaces_8h_a195e0c4273ec6831366f4ae54a1586ee}{II\_Display\_Effects}}();}
+\DoxyCodeLine{00330 }
+\DoxyCodeLine{00331   \textcolor{comment}{/* USER CODE END TIM3\_IRQn 0 */}}
+\DoxyCodeLine{00332   HAL\_TIM\_IRQHandler(\&htim3);}
+\DoxyCodeLine{00333   \textcolor{comment}{/* USER CODE BEGIN TIM3\_IRQn 1 */}}
+\DoxyCodeLine{00334 }
+\DoxyCodeLine{00335   \textcolor{comment}{/* USER CODE END TIM3\_IRQn 1 */}}
+\DoxyCodeLine{00336 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a7133f3f78767503641d307386e68bd28}\label{stm32f7xx__it_8c_a7133f3f78767503641d307386e68bd28}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!TIM4\_IRQHandler@{TIM4\_IRQHandler}}
+\index{TIM4\_IRQHandler@{TIM4\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{TIM4\_IRQHandler()}{TIM4\_IRQHandler()}}
+{\footnotesize\ttfamily void TIM4\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles TIM4 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00341}{341}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00342 \{}
+\DoxyCodeLine{00343   \textcolor{comment}{/* USER CODE BEGIN TIM4\_IRQn 0 */}}
+\DoxyCodeLine{00344 }
+\DoxyCodeLine{00345   \textcolor{comment}{/* USER CODE END TIM4\_IRQn 0 */}}
+\DoxyCodeLine{00346   HAL\_TIM\_IRQHandler(\&htim4);}
+\DoxyCodeLine{00347   \textcolor{comment}{/* USER CODE BEGIN TIM4\_IRQn 1 */}}
+\DoxyCodeLine{00348 }
+\DoxyCodeLine{00349   \textcolor{comment}{/* USER CODE END TIM4\_IRQn 1 */}}
+\DoxyCodeLine{00350 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a5e66446caf21dd90191dc07a13ce2378}\label{stm32f7xx__it_8c_a5e66446caf21dd90191dc07a13ce2378}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!TIM5\_IRQHandler@{TIM5\_IRQHandler}}
+\index{TIM5\_IRQHandler@{TIM5\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{TIM5\_IRQHandler()}{TIM5\_IRQHandler()}}
+{\footnotesize\ttfamily void TIM5\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles TIM5 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00383}{383}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00384 \{}
+\DoxyCodeLine{00385   \textcolor{comment}{/* USER CODE BEGIN TIM5\_IRQn 0 */}}
+\DoxyCodeLine{00386 }
+\DoxyCodeLine{00387   \textcolor{comment}{/* USER CODE END TIM5\_IRQn 0 */}}
+\DoxyCodeLine{00388   HAL\_TIM\_IRQHandler(\&htim5);}
+\DoxyCodeLine{00389   \textcolor{comment}{/* USER CODE BEGIN TIM5\_IRQn 1 */}}
+\DoxyCodeLine{00390 }
+\DoxyCodeLine{00391     HAL\_ADC\_Start\_DMA(KEYBOARD\_ADC, \&Display.ADC1input, 1);}
+\DoxyCodeLine{00392 }
+\DoxyCodeLine{00393   \textcolor{comment}{/* USER CODE END TIM5\_IRQn 1 */}}
+\DoxyCodeLine{00394 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a98cff83252098363b2dbca9608df964e}\label{stm32f7xx__it_8c_a98cff83252098363b2dbca9608df964e}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!TIM7\_IRQHandler@{TIM7\_IRQHandler}}
+\index{TIM7\_IRQHandler@{TIM7\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{TIM7\_IRQHandler()}{TIM7\_IRQHandler()}}
+{\footnotesize\ttfamily void TIM7\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles TIM7 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00399}{399}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00400 \{}
+\DoxyCodeLine{00401   \textcolor{comment}{/* USER CODE BEGIN TIM7\_IRQn 0 */}}
+\DoxyCodeLine{00402 }
+\DoxyCodeLine{00403   \textcolor{comment}{/* USER CODE END TIM7\_IRQn 0 */}}
+\DoxyCodeLine{00404   HAL\_TIM\_IRQHandler(\&htim7);}
+\DoxyCodeLine{00405   \textcolor{comment}{/* USER CODE BEGIN TIM7\_IRQn 1 */}}
+\DoxyCodeLine{00406 }
+\DoxyCodeLine{00407     HAL\_SPI\_TransmitReceive(hSensorSPI, pTxData, pRxData, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsensor__data}{sensor\_data\_t}}),100);}
+\DoxyCodeLine{00408 }
+\DoxyCodeLine{00409     \_\_disable\_irq();}
+\DoxyCodeLine{00410     memcpy(\&sensorData,\&pRxData, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsensor__data}{sensor\_data\_t}}));}
+\DoxyCodeLine{00411     \_\_enable\_irq();}
+\DoxyCodeLine{00412 }
+\DoxyCodeLine{00413     \textcolor{keywordflow}{if} (sensorData.gyro\_initilized == 1)}
+\DoxyCodeLine{00414         HAL\_GPIO\_WritePin(Blue\_User\_LED\_GPIO\_Port, Blue\_User\_LED\_Pin, GPIO\_PIN\_SET);}
+\DoxyCodeLine{00415     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(sensorData.gyro\_initilized != 1)}
+\DoxyCodeLine{00416         HAL\_GPIO\_WritePin(Blue\_User\_LED\_GPIO\_Port, Blue\_User\_LED\_Pin, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{00417 }
+\DoxyCodeLine{00418   \textcolor{comment}{/* USER CODE END TIM7\_IRQn 1 */}}
+\DoxyCodeLine{00419 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a4c8359a023f7ede4a9d9f94ea6fb92da}\label{stm32f7xx__it_8c_a4c8359a023f7ede4a9d9f94ea6fb92da}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!TIM8\_TRG\_COM\_TIM14\_IRQHandler@{TIM8\_TRG\_COM\_TIM14\_IRQHandler}}
+\index{TIM8\_TRG\_COM\_TIM14\_IRQHandler@{TIM8\_TRG\_COM\_TIM14\_IRQHandler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{TIM8\_TRG\_COM\_TIM14\_IRQHandler()}{TIM8\_TRG\_COM\_TIM14\_IRQHandler()}}
+{\footnotesize\ttfamily void TIM8\+\_\+\+TRG\+\_\+\+COM\+\_\+\+TIM14\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00369}{369}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00370 \{}
+\DoxyCodeLine{00371   \textcolor{comment}{/* USER CODE BEGIN TIM8\_TRG\_COM\_TIM14\_IRQn 0 */}}
+\DoxyCodeLine{00372 }
+\DoxyCodeLine{00373   \textcolor{comment}{/* USER CODE END TIM8\_TRG\_COM\_TIM14\_IRQn 0 */}}
+\DoxyCodeLine{00374   HAL\_TIM\_IRQHandler(\&htim8);}
+\DoxyCodeLine{00375   \textcolor{comment}{/* USER CODE BEGIN TIM8\_TRG\_COM\_TIM14\_IRQn 1 */}}
+\DoxyCodeLine{00376 }
+\DoxyCodeLine{00377   \textcolor{comment}{/* USER CODE END TIM8\_TRG\_COM\_TIM14\_IRQn 1 */}}
+\DoxyCodeLine{00378 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{stm32f7xx__it_8c_a1d98923de2ed6b7309b66f9ba2971647}\label{stm32f7xx__it_8c_a1d98923de2ed6b7309b66f9ba2971647}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!UsageFault\_Handler@{UsageFault\_Handler}}
+\index{UsageFault\_Handler@{UsageFault\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{UsageFault\_Handler()}{UsageFault\_Handler()}}
+{\footnotesize\ttfamily void Usage\+Fault\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function handles Undefined instruction or illegal state. 
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00157}{157}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00158 \{}
+\DoxyCodeLine{00159   \textcolor{comment}{/* USER CODE BEGIN UsageFault\_IRQn 0 */}}
+\DoxyCodeLine{00160 }
+\DoxyCodeLine{00161   \textcolor{comment}{/* USER CODE END UsageFault\_IRQn 0 */}}
+\DoxyCodeLine{00162   \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00163   \{}
+\DoxyCodeLine{00164     \textcolor{comment}{/* USER CODE BEGIN W1\_UsageFault\_IRQn 0 */}}
+\DoxyCodeLine{00165     \textcolor{comment}{/* USER CODE END W1\_UsageFault\_IRQn 0 */}}
+\DoxyCodeLine{00166   \}}
+\DoxyCodeLine{00167 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{stm32f7xx__it_8c_abfd0324dc6a076ce94aac2e4ab05d1a2}\label{stm32f7xx__it_8c_abfd0324dc6a076ce94aac2e4ab05d1a2}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!FatFsCnt@{FatFsCnt}}
+\index{FatFsCnt@{FatFsCnt}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{FatFsCnt}{FatFsCnt}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t Fat\+Fs\+Cnt = 0}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00057}{57}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a22b804736f5648d52f639b2647d4ed13}\label{stm32f7xx__it_8c_a22b804736f5648d52f639b2647d4ed13}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hadc1@{hadc1}}
+\index{hadc1@{hadc1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hadc1}{hadc1}}
+{\footnotesize\ttfamily ADC\+\_\+\+Handle\+Type\+Def hadc1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00052}{52}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_acd9221f1aa19aebfe0b744947f2daf49}\label{stm32f7xx__it_8c_acd9221f1aa19aebfe0b744947f2daf49}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hadc2@{hadc2}}
+\index{hadc2@{hadc2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hadc2}{hadc2}}
+{\footnotesize\ttfamily ADC\+\_\+\+Handle\+Type\+Def hadc2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00053}{53}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a984624bcf28d1b2fb7e4e18349f65d5c}\label{stm32f7xx__it_8c_a984624bcf28d1b2fb7e4e18349f65d5c}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hadc3@{hadc3}}
+\index{hadc3@{hadc3}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hadc3}{hadc3}}
+{\footnotesize\ttfamily ADC\+\_\+\+Handle\+Type\+Def hadc3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00054}{54}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a1c126854bb1813d31ab4776b21dcc51f}\label{stm32f7xx__it_8c_a1c126854bb1813d31ab4776b21dcc51f}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_adc1@{hdma\_adc1}}
+\index{hdma\_adc1@{hdma\_adc1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_adc1}{hdma\_adc1}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+adc1\hspace{0.3cm}{\ttfamily [extern]}}
+
+File Name \+: \mbox{\hyperlink{stm32f7xx__hal__msp_8c_source}{stm32f7xx\+\_\+hal\+\_\+msp.\+c}} Description \+: This file provides code for the MSP Initialization and de-\/\+Initialization codes.
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2019 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00055}{55}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_ad99dd74cc50b61cf07680c1adaf80337}\label{stm32f7xx__it_8c_ad99dd74cc50b61cf07680c1adaf80337}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_adc2@{hdma\_adc2}}
+\index{hdma\_adc2@{hdma\_adc2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_adc2}{hdma\_adc2}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+adc2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00056}{56}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a348c49f75bc918736d17997ac3f02e82}\label{stm32f7xx__it_8c_a348c49f75bc918736d17997ac3f02e82}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_adc3@{hdma\_adc3}}
+\index{hdma\_adc3@{hdma\_adc3}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_adc3}{hdma\_adc3}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+adc3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00057}{57}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a0b091a815a18763d1ae04b35c8dc931f}\label{stm32f7xx__it_8c_a0b091a815a18763d1ae04b35c8dc931f}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_dac1@{hdma\_dac1}}
+\index{hdma\_dac1@{hdma\_dac1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_dac1}{hdma\_dac1}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+dac1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00060}{60}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_aae5d903ccfcaf671396b79ed15eec0a3}\label{stm32f7xx__it_8c_aae5d903ccfcaf671396b79ed15eec0a3}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_dac2@{hdma\_dac2}}
+\index{hdma\_dac2@{hdma\_dac2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_dac2}{hdma\_dac2}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+dac2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00061}{61}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a7b5bae23cf8c5a2bae4a2dc352a6bf18}\label{stm32f7xx__it_8c_a7b5bae23cf8c5a2bae4a2dc352a6bf18}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_spi4\_rx@{hdma\_spi4\_rx}}
+\index{hdma\_spi4\_rx@{hdma\_spi4\_rx}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_spi4\_rx}{hdma\_spi4\_rx}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+spi4\+\_\+rx\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00068}{68}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_ad790392d1f26fe2990cd755d5497fbdb}\label{stm32f7xx__it_8c_ad790392d1f26fe2990cd755d5497fbdb}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_spi4\_tx@{hdma\_spi4\_tx}}
+\index{hdma\_spi4\_tx@{hdma\_spi4\_tx}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_spi4\_tx}{hdma\_spi4\_tx}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+spi4\+\_\+tx\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00069}{69}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_ad11f23991deec4a1a2ffe474d1ef4ddd}\label{stm32f7xx__it_8c_ad11f23991deec4a1a2ffe474d1ef4ddd}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hspi4@{hspi4}}
+\index{hspi4@{hspi4}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hspi4}{hspi4}}
+{\footnotesize\ttfamily SPI\+\_\+\+Handle\+Type\+Def hspi4\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00067}{67}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a25fc663547539bc49fecc0011bd76ab5}\label{stm32f7xx__it_8c_a25fc663547539bc49fecc0011bd76ab5}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim1@{htim1}}
+\index{htim1@{htim1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim1}{htim1}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00071}{71}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a2c80fd5510e2990a59a5c90d745c716c}\label{stm32f7xx__it_8c_a2c80fd5510e2990a59a5c90d745c716c}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim2@{htim2}}
+\index{htim2@{htim2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim2}{htim2}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00072}{72}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_aac3d2c59ee0e3bbae1b99529a154eb62}\label{stm32f7xx__it_8c_aac3d2c59ee0e3bbae1b99529a154eb62}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim3@{htim3}}
+\index{htim3@{htim3}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim3}{htim3}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00073}{73}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a85788cec5a97ee377e4ee2e74f026484}\label{stm32f7xx__it_8c_a85788cec5a97ee377e4ee2e74f026484}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim4@{htim4}}
+\index{htim4@{htim4}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim4}{htim4}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim4\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00074}{74}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_acefaeaaa3856ddddae7083b2d220fe4b}\label{stm32f7xx__it_8c_acefaeaaa3856ddddae7083b2d220fe4b}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim5@{htim5}}
+\index{htim5@{htim5}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim5}{htim5}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim5\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00075}{75}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_abb71bf3ee68e2a051fbeec6c3ab3012d}\label{stm32f7xx__it_8c_abb71bf3ee68e2a051fbeec6c3ab3012d}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim7@{htim7}}
+\index{htim7@{htim7}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim7}{htim7}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim7\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00077}{77}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a5faa27108379f799afb6984010bf0384}\label{stm32f7xx__it_8c_a5faa27108379f799afb6984010bf0384}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim8@{htim8}}
+\index{htim8@{htim8}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim8}{htim8}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim8\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00078}{78}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a9963841bb1243906a136fe725492521e}\label{stm32f7xx__it_8c_a9963841bb1243906a136fe725492521e}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!Timer1@{Timer1}}
+\index{Timer1@{Timer1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{Timer1}{Timer1}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t Timer1}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00058}{58}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a1842f6ee4ba320821c21bcc34b28f6ce}\label{stm32f7xx__it_8c_a1842f6ee4ba320821c21bcc34b28f6ce}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!Timer2@{Timer2}}
+\index{Timer2@{Timer2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{Timer2}{Timer2}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t Timer2}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00058}{58}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+

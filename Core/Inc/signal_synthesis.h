@@ -1,3 +1,13 @@
+/**
+ * @file signal_synthesis.h
+ * @author max lehmer & marc bielen & paul mamatis
+ * @brief sound synthesis, (Signals + Effects) -> DAC
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_SIGNAL_SYNTHESIS_H_
 #define INC_SIGNAL_SYNTHESIS_H_
 

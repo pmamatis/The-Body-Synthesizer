@@ -1,0 +1,165 @@
+\hypertarget{group__SQRT}{}\doxysection{Square Root}
+\label{group__SQRT}\index{Square Root@{Square Root}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE arm\+\_\+status \mbox{\hyperlink{group__SQRT_ga5f37f479666ee8ff9711b334286c60ed}{arm\+\_\+sqrt\+\_\+f32}} (float32\+\_\+t in, float32\+\_\+t $\ast$p\+Out)
+\begin{DoxyCompactList}\small\item\em Floating-\/point square root function. \end{DoxyCompactList}\item 
+arm\+\_\+status \mbox{\hyperlink{group__SQRT_ga119e25831e141d734d7ef10636670058}{arm\+\_\+sqrt\+\_\+q31}} (q31\+\_\+t in, q31\+\_\+t $\ast$p\+Out)
+\begin{DoxyCompactList}\small\item\em Q31 square root function. \end{DoxyCompactList}\item 
+arm\+\_\+status \mbox{\hyperlink{group__SQRT_ga5abe5ca724f3e15849662b03752c1238}{arm\+\_\+sqrt\+\_\+q15}} (q15\+\_\+t in, q15\+\_\+t $\ast$p\+Out)
+\begin{DoxyCompactList}\small\item\em Q15 square root function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SQRT_gaa9b8a2bea8a22489bfd968eb4687a7bd}{arm\+\_\+vsqrt\+\_\+f32}} (float32\+\_\+t $\ast$p\+In, float32\+\_\+t $\ast$p\+Out, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Vector Floating-\/point square root function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SQRT_ga5955b76f2a60c1636ff507182000193d}\label{group__SQRT_ga5955b76f2a60c1636ff507182000193d}} 
+void {\bfseries arm\+\_\+vsqrt\+\_\+q31} (q31\+\_\+t $\ast$p\+In, q31\+\_\+t $\ast$p\+Out, uint16\+\_\+t len)
+\item 
+\mbox{\Hypertarget{group__SQRT_ga793f913a2b3a8f45577db36136954cdc}\label{group__SQRT_ga793f913a2b3a8f45577db36136954cdc}} 
+void {\bfseries arm\+\_\+vsqrt\+\_\+q15} (q15\+\_\+t $\ast$p\+In, q15\+\_\+t $\ast$p\+Out, uint16\+\_\+t len)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes the square root of a number. There are separate functions for Q15, Q31, and floating-\/point data types. The square root function is computed using the Newton-\/\+Raphson algorithm. This is an iterative algorithm of the form\+: 
+\begin{DoxyPre}
+     x1 = x0 -\/ f(x0)/f'(x0)
+\end{DoxyPre}
+ where {\ttfamily x1} is the current estimate, {\ttfamily x0} is the previous estimate, and {\ttfamily f\textquotesingle{}(x0)} is the derivative of {\ttfamily f()} evaluated at {\ttfamily x0}. For the square root function, the algorithm reduces to\+: 
+\begin{DoxyPre}
+    x0 = in/2                         [initial guess]
+    x1 = 1/2 * ( x0 + in / x0)        [each iteration]
+\end{DoxyPre}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__SQRT_ga5f37f479666ee8ff9711b334286c60ed}\label{group__SQRT_ga5f37f479666ee8ff9711b334286c60ed}} 
+\index{Square Root@{Square Root}!arm\_sqrt\_f32@{arm\_sqrt\_f32}}
+\index{arm\_sqrt\_f32@{arm\_sqrt\_f32}!Square Root@{Square Root}}
+\doxysubsubsection{\texorpdfstring{arm\_sqrt\_f32()}{arm\_sqrt\_f32()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE arm\+\_\+status arm\+\_\+sqrt\+\_\+f32 (\begin{DoxyParamCaption}\item[{float32\+\_\+t}]{in,  }\item[{float32\+\_\+t $\ast$}]{p\+Out }\end{DoxyParamCaption})}
+
+
+
+Floating-\/point square root function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em in} & input value \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+Out} & square root of input value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+execution status
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+SUCCESS \+: input value is positive
+\item ARM\+\_\+\+MATH\+\_\+\+ARGUMENT\+\_\+\+ERROR \+: input value is negative; $\ast$p\+Out is set to 0 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l06820}{6820}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{06823   \{}
+\DoxyCodeLine{06824     \textcolor{keywordflow}{if} (in >= 0.0f)}
+\DoxyCodeLine{06825     \{}
+\DoxyCodeLine{06826 \textcolor{preprocessor}{\#if defined ( \_\_CC\_ARM )}}
+\DoxyCodeLine{06827 \textcolor{preprocessor}{  \#if defined \_\_TARGET\_FPU\_VFP}}
+\DoxyCodeLine{06828       *pOut = \_\_sqrtf(in);}
+\DoxyCodeLine{06829 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{06830       *pOut = sqrtf(in);}
+\DoxyCodeLine{06831 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{06832 }
+\DoxyCodeLine{06833 \textcolor{preprocessor}{\#elif defined ( \_\_ICCARM\_\_ )}}
+\DoxyCodeLine{06834 \textcolor{preprocessor}{  \#if defined \_\_ARMVFP\_\_}}
+\DoxyCodeLine{06835       \_\_ASM(\textcolor{stringliteral}{"{}VSQRT.F32 \%0,\%1"{}} : \textcolor{stringliteral}{"{}=t"{}}(*pOut) : \textcolor{stringliteral}{"{}t"{}}(in));}
+\DoxyCodeLine{06836 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{06837       *pOut = sqrtf(in);}
+\DoxyCodeLine{06838 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{06839 }
+\DoxyCodeLine{06840 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{06841       *pOut = sqrtf(in);}
+\DoxyCodeLine{06842 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{06843 }
+\DoxyCodeLine{06844       \textcolor{keywordflow}{return} (ARM\_MATH\_SUCCESS);}
+\DoxyCodeLine{06845     \}}
+\DoxyCodeLine{06846     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{06847     \{}
+\DoxyCodeLine{06848       *pOut = 0.0f;}
+\DoxyCodeLine{06849       \textcolor{keywordflow}{return} (ARM\_MATH\_ARGUMENT\_ERROR);}
+\DoxyCodeLine{06850     \}}
+\DoxyCodeLine{06851   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__SQRT_ga5abe5ca724f3e15849662b03752c1238}\label{group__SQRT_ga5abe5ca724f3e15849662b03752c1238}} 
+\index{Square Root@{Square Root}!arm\_sqrt\_q15@{arm\_sqrt\_q15}}
+\index{arm\_sqrt\_q15@{arm\_sqrt\_q15}!Square Root@{Square Root}}
+\doxysubsubsection{\texorpdfstring{arm\_sqrt\_q15()}{arm\_sqrt\_q15()}}
+{\footnotesize\ttfamily arm\+\_\+status arm\+\_\+sqrt\+\_\+q15 (\begin{DoxyParamCaption}\item[{q15\+\_\+t}]{in,  }\item[{q15\+\_\+t $\ast$}]{p\+Out }\end{DoxyParamCaption})}
+
+
+
+Q15 square root function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em in} & input value. The range of the input value is \mbox{[}0 +1) or 0x0000 to 0x7\+FFF \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+Out} & points to square root of input value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+execution status
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+SUCCESS \+: input value is positive
+\item ARM\+\_\+\+MATH\+\_\+\+ARGUMENT\+\_\+\+ERROR \+: input value is negative; $\ast$p\+Out is set to 0 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__SQRT_ga119e25831e141d734d7ef10636670058}\label{group__SQRT_ga119e25831e141d734d7ef10636670058}} 
+\index{Square Root@{Square Root}!arm\_sqrt\_q31@{arm\_sqrt\_q31}}
+\index{arm\_sqrt\_q31@{arm\_sqrt\_q31}!Square Root@{Square Root}}
+\doxysubsubsection{\texorpdfstring{arm\_sqrt\_q31()}{arm\_sqrt\_q31()}}
+{\footnotesize\ttfamily arm\+\_\+status arm\+\_\+sqrt\+\_\+q31 (\begin{DoxyParamCaption}\item[{q31\+\_\+t}]{in,  }\item[{q31\+\_\+t $\ast$}]{p\+Out }\end{DoxyParamCaption})}
+
+
+
+Q31 square root function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em in} & input value. The range of the input value is \mbox{[}0 +1) or 0x00000000 to 0x7\+FFFFFFF \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+Out} & points to square root of input value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+execution status
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+SUCCESS \+: input value is positive
+\item ARM\+\_\+\+MATH\+\_\+\+ARGUMENT\+\_\+\+ERROR \+: input value is negative; $\ast$p\+Out is set to 0 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__SQRT_gaa9b8a2bea8a22489bfd968eb4687a7bd}\label{group__SQRT_gaa9b8a2bea8a22489bfd968eb4687a7bd}} 
+\index{Square Root@{Square Root}!arm\_vsqrt\_f32@{arm\_vsqrt\_f32}}
+\index{arm\_vsqrt\_f32@{arm\_vsqrt\_f32}!Square Root@{Square Root}}
+\doxysubsubsection{\texorpdfstring{arm\_vsqrt\_f32()}{arm\_vsqrt\_f32()}}
+{\footnotesize\ttfamily void arm\+\_\+vsqrt\+\_\+f32 (\begin{DoxyParamCaption}\item[{float32\+\_\+t $\ast$}]{p\+In,  }\item[{float32\+\_\+t $\ast$}]{p\+Out,  }\item[{uint16\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Vector Floating-\/point square root function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+In} & input vector. \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+Out} & vector of square roots of input elements. \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & length of input vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The function returns ARM\+\_\+\+MATH\+\_\+\+SUCCESS if input value is positive value or ARM\+\_\+\+MATH\+\_\+\+ARGUMENT\+\_\+\+ERROR if {\ttfamily in} is negative value and returns zero output for negative values. 
+\end{DoxyReturn}

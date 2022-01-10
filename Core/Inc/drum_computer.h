@@ -1,9 +1,14 @@
-/*
- * drum_computer.h
- *
- *  Created on: 05.08.2021
- *      Author: Marc Bielen
+/** TODO
+ * @file drum_computer.h
+ * @author Marc Bielen & max lehmer
+ * @brief Drumcomputer 
+ * @version 0.1
+ * @date 05.08.2021
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
+
 
 #ifndef INC_DRUM_COMPUTER_H_
 #define INC_DRUM_COMPUTER_H_

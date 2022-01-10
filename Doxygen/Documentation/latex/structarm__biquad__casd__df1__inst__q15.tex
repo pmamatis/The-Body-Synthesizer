@@ -1,0 +1,77 @@
+\hypertarget{structarm__biquad__casd__df1__inst__q15}{}\doxysection{arm\+\_\+biquad\+\_\+casd\+\_\+df1\+\_\+inst\+\_\+q15 Struct Reference}
+\label{structarm__biquad__casd__df1__inst__q15}\index{arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}}
+
+
+Instance structure for the Q15 Biquad cascade filter.  
+
+
+
+
+{\ttfamily \#include $<$arm\+\_\+math.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \mbox{\hyperlink{structarm__biquad__casd__df1__inst__q15_ad6d95e70abcf4ff1300181415ad92153}{num\+Stages}}
+\item 
+q15\+\_\+t $\ast$ \mbox{\hyperlink{structarm__biquad__casd__df1__inst__q15_a5481104ef2f8f81360b80b47d69ae932}{p\+State}}
+\item 
+const q15\+\_\+t $\ast$ \mbox{\hyperlink{structarm__biquad__casd__df1__inst__q15_a9219b50b6ca227c92da85f2151ea362e}{p\+Coeffs}}
+\item 
+int8\+\_\+t \mbox{\hyperlink{structarm__biquad__casd__df1__inst__q15_ada7e9d6269e6ed4eacf8f68729e9832d}{post\+Shift}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Instance structure for the Q15 Biquad cascade filter. 
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l01930}{1930}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structarm__biquad__casd__df1__inst__q15_ad6d95e70abcf4ff1300181415ad92153}\label{structarm__biquad__casd__df1__inst__q15_ad6d95e70abcf4ff1300181415ad92153}} 
+\index{arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}!numStages@{numStages}}
+\index{numStages@{numStages}!arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}}
+\doxysubsubsection{\texorpdfstring{numStages}{numStages}}
+{\footnotesize\ttfamily int8\+\_\+t arm\+\_\+biquad\+\_\+casd\+\_\+df1\+\_\+inst\+\_\+q15\+::num\+Stages}
+
+number of 2nd order stages in the filter. Overall order is 2$\ast$num\+Stages. 
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l01932}{1932}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+\mbox{\Hypertarget{structarm__biquad__casd__df1__inst__q15_a9219b50b6ca227c92da85f2151ea362e}\label{structarm__biquad__casd__df1__inst__q15_a9219b50b6ca227c92da85f2151ea362e}} 
+\index{arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}!pCoeffs@{pCoeffs}}
+\index{pCoeffs@{pCoeffs}!arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}}
+\doxysubsubsection{\texorpdfstring{pCoeffs}{pCoeffs}}
+{\footnotesize\ttfamily const q15\+\_\+t$\ast$ arm\+\_\+biquad\+\_\+casd\+\_\+df1\+\_\+inst\+\_\+q15\+::p\+Coeffs}
+
+Points to the array of coefficients. The array is of length 5$\ast$num\+Stages. 
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l01934}{1934}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+\mbox{\Hypertarget{structarm__biquad__casd__df1__inst__q15_ada7e9d6269e6ed4eacf8f68729e9832d}\label{structarm__biquad__casd__df1__inst__q15_ada7e9d6269e6ed4eacf8f68729e9832d}} 
+\index{arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}!postShift@{postShift}}
+\index{postShift@{postShift}!arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}}
+\doxysubsubsection{\texorpdfstring{postShift}{postShift}}
+{\footnotesize\ttfamily int8\+\_\+t arm\+\_\+biquad\+\_\+casd\+\_\+df1\+\_\+inst\+\_\+q15\+::post\+Shift}
+
+Additional shift, in bits, applied to each output sample. 
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l01935}{1935}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+\mbox{\Hypertarget{structarm__biquad__casd__df1__inst__q15_a5481104ef2f8f81360b80b47d69ae932}\label{structarm__biquad__casd__df1__inst__q15_a5481104ef2f8f81360b80b47d69ae932}} 
+\index{arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}!pState@{pState}}
+\index{pState@{pState}!arm\_biquad\_casd\_df1\_inst\_q15@{arm\_biquad\_casd\_df1\_inst\_q15}}
+\doxysubsubsection{\texorpdfstring{pState}{pState}}
+{\footnotesize\ttfamily q15\+\_\+t$\ast$ arm\+\_\+biquad\+\_\+casd\+\_\+df1\+\_\+inst\+\_\+q15\+::p\+State}
+
+Points to the array of state coefficients. The array is of length 4$\ast$num\+Stages. 
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l01933}{1933}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/arm\+\_\+math.\+h\end{DoxyCompactItemize}

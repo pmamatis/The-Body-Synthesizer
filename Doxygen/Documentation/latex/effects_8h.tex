@@ -1,0 +1,253 @@
+\hypertarget{effects_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/effects.h File Reference}
+\label{effects_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/effects.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/effects.h}}
+
+
+processing for all effects  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{effects_8h_a10d4997e12a6984229c6f67c805ad007}{MAX\+\_\+\+EFFECTS}}~10
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{effects_8h_aaf616d5b72c389724fc41092b0cb4e77}\label{effects_8h_aaf616d5b72c389724fc41092b0cb4e77}} 
+typedef enum effects\+\_\+t\+\_\+enum {\bfseries effects\+\_\+t\+\_\+enum}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries effects\+\_\+t\+\_\+enum} \{ \newline
+{\bfseries TREM} = 1
+, {\bfseries DIST}
+, {\bfseries EQ}
+, {\bfseries ADSR}
+, \newline
+{\bfseries VOICES}
+, {\bfseries WAHWAH}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{effects_8h_a3b78cb1a6c0d05c3740b0d59f514a49e}{effects\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{effects_8h_a4dfb093ad0f349af12ad3030a11da8d9}{effects\+\_\+add}} (effects\+\_\+t\+\_\+enum effect)
+\begin{DoxyCompactList}\small\item\em Inserts an entry in the effect\+\_\+order\mbox{[}position\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{effects_8h_a3f7370371217adca4b93419901dc1c1f}{keyboard\+\_\+adsr\+\_\+process}} (void)
+\begin{DoxyCompactList}\small\item\em function for the keyboard adsr processing \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\+\_\+delete}} (effects\+\_\+t\+\_\+enum effect)
+\begin{DoxyCompactList}\small\item\em Deletes a certain effect inside the effect\+\_\+order\mbox{[}position\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+effects\+\_\+t\+\_\+enum \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\+\_\+order}} \mbox{[}MAX\+\_\+\+EFFECTS\mbox{]}
+\begin{DoxyCompactList}\small\item\em array for activating effects \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+processing for all effects 
+
+\begin{DoxyAuthor}{Author}
+paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{effects_8h_source}{effects.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{effects_8h_a10d4997e12a6984229c6f67c805ad007}\label{effects_8h_a10d4997e12a6984229c6f67c805ad007}} 
+\index{effects.h@{effects.h}!MAX\_EFFECTS@{MAX\_EFFECTS}}
+\index{MAX\_EFFECTS@{MAX\_EFFECTS}!effects.h@{effects.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_EFFECTS}{MAX\_EFFECTS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+EFFECTS~10}
+
+
+
+Definition at line \mbox{\hyperlink{effects_8h_source_l00021}{21}} of file \mbox{\hyperlink{effects_8h_source}{effects.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{effects_8h_aa6222ce976921e32c69284022666ebc6}\label{effects_8h_aa6222ce976921e32c69284022666ebc6}} 
+\index{effects.h@{effects.h}!effects\_t\_enum@{effects\_t\_enum}}
+\index{effects\_t\_enum@{effects\_t\_enum}!effects.h@{effects.h}}
+\doxysubsubsection{\texorpdfstring{effects\_t\_enum}{effects\_t\_enum}}
+{\footnotesize\ttfamily enum effects\+\_\+t\+\_\+enum}
+
+
+
+Definition at line \mbox{\hyperlink{effects_8h_source_l00026}{26}} of file \mbox{\hyperlink{effects_8h_source}{effects.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026                            \{}
+\DoxyCodeLine{00027     TREM = 1,   \textcolor{comment}{// Tremolo}}
+\DoxyCodeLine{00028     DIST,       \textcolor{comment}{// Distortion}}
+\DoxyCodeLine{00029     EQ,         \textcolor{comment}{// Equalizer}}
+\DoxyCodeLine{00030     ADSR,       \textcolor{comment}{// ADSR}}
+\DoxyCodeLine{00031     VOICES,     \textcolor{comment}{// Voices}}
+\DoxyCodeLine{00032     WAHWAH      \textcolor{comment}{// WahWah}}
+\DoxyCodeLine{00033 \} effects\_t\_enum;}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{effects_8h_a4dfb093ad0f349af12ad3030a11da8d9}\label{effects_8h_a4dfb093ad0f349af12ad3030a11da8d9}} 
+\index{effects.h@{effects.h}!effects\_add@{effects\_add}}
+\index{effects\_add@{effects\_add}!effects.h@{effects.h}}
+\doxysubsubsection{\texorpdfstring{effects\_add()}{effects\_add()}}
+{\footnotesize\ttfamily void effects\+\_\+add (\begin{DoxyParamCaption}\item[{effects\+\_\+t\+\_\+enum}]{effect }\end{DoxyParamCaption})}
+
+
+
+Inserts an entry in the effect\+\_\+order\mbox{[}position\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em effect} & wanted effect listed in the effects\+\_\+t\+\_\+enum \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{effects_8c_source_l00056}{56}} of file \mbox{\hyperlink{effects_8c_source}{effects.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056                                         \{}
+\DoxyCodeLine{00057 }
+\DoxyCodeLine{00058     \textcolor{keywordflow}{switch}(effect) \{}
+\DoxyCodeLine{00059     \textcolor{keywordflow}{case} EQ:}
+\DoxyCodeLine{00060         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[0] = EQ;}
+\DoxyCodeLine{00061         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00062     \textcolor{keywordflow}{case} TREM:}
+\DoxyCodeLine{00063         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[1] = TREM;}
+\DoxyCodeLine{00064         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00065 }
+\DoxyCodeLine{00066     \textcolor{keywordflow}{case} DIST:}
+\DoxyCodeLine{00067         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[2] = DIST;}
+\DoxyCodeLine{00068         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00069     \textcolor{keywordflow}{case} WAHWAH:}
+\DoxyCodeLine{00070         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[3] = WAHWAH;}
+\DoxyCodeLine{00071     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00072         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00073     \}}
+\DoxyCodeLine{00074 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}\label{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}} 
+\index{effects.h@{effects.h}!effects\_delete@{effects\_delete}}
+\index{effects\_delete@{effects\_delete}!effects.h@{effects.h}}
+\doxysubsubsection{\texorpdfstring{effects\_delete()}{effects\_delete()}}
+{\footnotesize\ttfamily void effects\+\_\+delete (\begin{DoxyParamCaption}\item[{effects\+\_\+t\+\_\+enum}]{effect }\end{DoxyParamCaption})}
+
+
+
+Deletes a certain effect inside the effect\+\_\+order\mbox{[}position\mbox{]}. 
+
+
+
+Definition at line \mbox{\hyperlink{effects_8c_source_l00078}{78}} of file \mbox{\hyperlink{effects_8c_source}{effects.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078                                            \{}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080 }
+\DoxyCodeLine{00081     \textcolor{keywordflow}{switch}(effect) \{}
+\DoxyCodeLine{00082     \textcolor{keywordflow}{case} EQ:}
+\DoxyCodeLine{00083         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[0] = 0;}
+\DoxyCodeLine{00084         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00085     \textcolor{keywordflow}{case} TREM:}
+\DoxyCodeLine{00086         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[1] = 0;}
+\DoxyCodeLine{00087         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089     \textcolor{keywordflow}{case} DIST:}
+\DoxyCodeLine{00090         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[2] = 0;}
+\DoxyCodeLine{00091         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00092     \textcolor{keywordflow}{case} WAHWAH:}
+\DoxyCodeLine{00093         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[3] = 0;}
+\DoxyCodeLine{00094     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00095         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00096     \}}
+\DoxyCodeLine{00097 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{effects_8h_a3b78cb1a6c0d05c3740b0d59f514a49e}\label{effects_8h_a3b78cb1a6c0d05c3740b0d59f514a49e}} 
+\index{effects.h@{effects.h}!effects\_init@{effects\_init}}
+\index{effects\_init@{effects\_init}!effects.h@{effects.h}}
+\doxysubsubsection{\texorpdfstring{effects\_init()}{effects\_init()}}
+{\footnotesize\ttfamily void effects\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{effects_8c_source_l00004}{4}} of file \mbox{\hyperlink{effects_8c_source}{effects.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00004                         \{}
+\DoxyCodeLine{00005 }
+\DoxyCodeLine{00006     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < MAX\_EFFECTS; i++)\{}
+\DoxyCodeLine{00007         \mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[i] = 0;}
+\DoxyCodeLine{00008     \}}
+\DoxyCodeLine{00009 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{effects_8h_a3f7370371217adca4b93419901dc1c1f}\label{effects_8h_a3f7370371217adca4b93419901dc1c1f}} 
+\index{effects.h@{effects.h}!keyboard\_adsr\_process@{keyboard\_adsr\_process}}
+\index{keyboard\_adsr\_process@{keyboard\_adsr\_process}!effects.h@{effects.h}}
+\doxysubsubsection{\texorpdfstring{keyboard\_adsr\_process()}{keyboard\_adsr\_process()}}
+{\footnotesize\ttfamily void keyboard\+\_\+adsr\+\_\+process (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+function for the keyboard adsr processing 
+
+
+
+Definition at line \mbox{\hyperlink{effects_8c_source_l00043}{43}} of file \mbox{\hyperlink{effects_8c_source}{effects.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043                                 \{}
+\DoxyCodeLine{00044     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[0], \&calculate\_keyboard[0], activate\_processing[0]);}
+\DoxyCodeLine{00045     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[1], \&calculate\_keyboard[1], activate\_processing[1]);}
+\DoxyCodeLine{00046     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[2], \&calculate\_keyboard[2], activate\_processing[2]);}
+\DoxyCodeLine{00047     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[3], \&calculate\_keyboard[3], activate\_processing[3]);}
+\DoxyCodeLine{00048     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[4], \&calculate\_keyboard[4], activate\_processing[4]);}
+\DoxyCodeLine{00049 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{effects_8h_a356f7e77328d3524cc7c5592b2237823}\label{effects_8h_a356f7e77328d3524cc7c5592b2237823}} 
+\index{effects.h@{effects.h}!effect\_order@{effect\_order}}
+\index{effect\_order@{effect\_order}!effects.h@{effects.h}}
+\doxysubsubsection{\texorpdfstring{effect\_order}{effect\_order}}
+{\footnotesize\ttfamily effects\+\_\+t\+\_\+enum effect\+\_\+order\mbox{[}MAX\+\_\+\+EFFECTS\mbox{]}}
+
+
+
+array for activating effects 
+
+
+
+Definition at line \mbox{\hyperlink{effects_8h_source_l00041}{41}} of file \mbox{\hyperlink{effects_8h_source}{effects.\+h}}.
+

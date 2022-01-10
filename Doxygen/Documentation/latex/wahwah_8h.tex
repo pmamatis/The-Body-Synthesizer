@@ -1,0 +1,295 @@
+\hypertarget{wahwah_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/wahwah.h File Reference}
+\label{wahwah_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wahwah.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wahwah.h}}
+
+
+wahwah effect  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Wah\+Wah\+\_\+\+Status} \{ {\bfseries WAHWAH\+\_\+\+FAIL} = -\/1
+, {\bfseries WAHWAH\+\_\+\+OK} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Wah\+Wah\+\_\+\+Status \mbox{\hyperlink{wahwah_8h_afdc2b53d4cc3352bf6e51df974ce169e}{Wah\+Wah\+\_\+\+Init}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah)
+\begin{DoxyCompactList}\small\item\em wahwah efffect init function \end{DoxyCompactList}\item 
+Wah\+Wah\+\_\+\+Status \mbox{\hyperlink{wahwah_8h_a9b91a7fae64755689936b60cf1820535}{Wah\+Wah\+\_\+\+Reset}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah)
+\begin{DoxyCompactList}\small\item\em resets all wahwah parameters \end{DoxyCompactList}\item 
+Wah\+Wah\+\_\+\+Status \mbox{\hyperlink{wahwah_8h_a2fa3b9f5777f0876da0b828ee333673a}{Process\+Wah\+Wah}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah, float $\ast$data)
+\begin{DoxyCompactList}\small\item\em Processed current tremolo sample. \end{DoxyCompactList}\item 
+Wah\+Wah\+\_\+\+Status \mbox{\hyperlink{wahwah_8h_a85d3b2ed1cf4a3aef7b32c97b2e64237}{Process\+Auto\+Wah\+Wah}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah, float $\ast$data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} \mbox{\hyperlink{wahwah_8h_a62a194fb1a3f2db2cb92a47784a1394d}{Wah\+Wah}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+wahwah effect 
+
+TODO
+
+\begin{DoxyAuthor}{Author}
+????? 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{wahwah_8h_source}{wahwah.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{wahwah_8h_a6531cf27e3b9fb782ba699256ddb596e}\label{wahwah_8h_a6531cf27e3b9fb782ba699256ddb596e}} 
+\index{wahwah.h@{wahwah.h}!WahWah\_Status@{WahWah\_Status}}
+\index{WahWah\_Status@{WahWah\_Status}!wahwah.h@{wahwah.h}}
+\doxysubsubsection{\texorpdfstring{WahWah\_Status}{WahWah\_Status}}
+{\footnotesize\ttfamily enum Wah\+Wah\+\_\+\+Status}
+
+
+
+Definition at line \mbox{\hyperlink{wahwah_8h_source_l00020}{20}} of file \mbox{\hyperlink{wahwah_8h_source}{wahwah.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020              \{}
+\DoxyCodeLine{00021     WAHWAH\_FAIL = -\/1,}
+\DoxyCodeLine{00022     WAHWAH\_OK = 1}
+\DoxyCodeLine{00023 \} WahWah\_Status;}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{wahwah_8h_a85d3b2ed1cf4a3aef7b32c97b2e64237}\label{wahwah_8h_a85d3b2ed1cf4a3aef7b32c97b2e64237}} 
+\index{wahwah.h@{wahwah.h}!ProcessAutoWahWah@{ProcessAutoWahWah}}
+\index{ProcessAutoWahWah@{ProcessAutoWahWah}!wahwah.h@{wahwah.h}}
+\doxysubsubsection{\texorpdfstring{ProcessAutoWahWah()}{ProcessAutoWahWah()}}
+{\footnotesize\ttfamily Wah\+Wah\+\_\+\+Status Process\+Auto\+Wah\+Wah (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$}]{Wah\+Wah,  }\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+TODO 
+\begin{DoxyParams}{Parameters}
+{\em Wah\+Wah} & \\
+\hline
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Wah\+Wah\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{wahwah_8c_source_l00105}{105}} of file \mbox{\hyperlink{wahwah_8c_source}{wahwah.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00105                                                                      \{}
+\DoxyCodeLine{00106 }
+\DoxyCodeLine{00107     \textcolor{comment}{// mid\_freq and range have to be set in the display function}}
+\DoxyCodeLine{00108 }
+\DoxyCodeLine{00109     \textcolor{comment}{// FETCH: actual LFO value}}
+\DoxyCodeLine{00110     \mbox{\hyperlink{signal__synthesis_8h_a381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(WahWah-\/>lfo, WAHWAH\_LFO);}
+\DoxyCodeLine{00111 }
+\DoxyCodeLine{00112     \textcolor{keywordflow}{if}(WahWah-\/>mid\_freq < 50)}
+\DoxyCodeLine{00113         WahWah-\/>mid\_freq = 50;  \textcolor{comment}{// 50 Hz Offset;}}
+\DoxyCodeLine{00114 }
+\DoxyCodeLine{00115     WahWah-\/>mid\_freq\_mod = WahWah-\/>mid\_freq + (WahWah-\/>range / 2) * WahWah-\/>lfo-\/>lfo\_data;}
+\DoxyCodeLine{00116 }
+\DoxyCodeLine{00117     \textcolor{comment}{// RESET: Filter after 100 samples (with SR = 24k Hz >> 240 times a second)}}
+\DoxyCodeLine{00118     \textcolor{keywordflow}{if}(WahWah-\/>reinit\_counter == 100)\{}
+\DoxyCodeLine{00119 }
+\DoxyCodeLine{00120         \mbox{\hyperlink{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq\_mod, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{00121         WahWah-\/>reinit\_counter = 0;}
+\DoxyCodeLine{00122     \}}
+\DoxyCodeLine{00123 }
+\DoxyCodeLine{00124     WahWah-\/>reinit\_counter++;}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126     \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(WahWah-\/>bandpass, data);}
+\DoxyCodeLine{00127 }
+\DoxyCodeLine{00128     \textcolor{keywordflow}{return} WAHWAH\_OK;}
+\DoxyCodeLine{00129 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{wahwah_8h_a2fa3b9f5777f0876da0b828ee333673a}\label{wahwah_8h_a2fa3b9f5777f0876da0b828ee333673a}} 
+\index{wahwah.h@{wahwah.h}!ProcessWahWah@{ProcessWahWah}}
+\index{ProcessWahWah@{ProcessWahWah}!wahwah.h@{wahwah.h}}
+\doxysubsubsection{\texorpdfstring{ProcessWahWah()}{ProcessWahWah()}}
+{\footnotesize\ttfamily Wah\+Wah\+\_\+\+Status Process\+Wah\+Wah (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$}]{Wah\+Wah,  }\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Processed current tremolo sample. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Tremolo} & struct for tremolo information \\
+\hline
+{\em data} & current sample \\
+\hline
+{\em lfo\+\_\+value} & current lfo value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{wahwah_8c_source_l00078}{78}} of file \mbox{\hyperlink{wahwah_8c_source}{wahwah.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078                                                                  \{}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080     \textcolor{comment}{// SET: mid frequency to at least 50 Hz due to filter response}}
+\DoxyCodeLine{00081     \textcolor{keywordflow}{if}(WahWah-\/>mid\_freq < 50)}
+\DoxyCodeLine{00082         WahWah-\/>mid\_freq = 50;  \textcolor{comment}{// 50 Hz Offset;}}
+\DoxyCodeLine{00083 }
+\DoxyCodeLine{00084     \textcolor{comment}{// RESET: Filter after 100 samples (with SR = 24k Hz >> 240 times a second)}}
+\DoxyCodeLine{00085     \textcolor{keywordflow}{if}(WahWah-\/>reinit\_counter == 100)\{}
+\DoxyCodeLine{00086 }
+\DoxyCodeLine{00087         \mbox{\hyperlink{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{00088         WahWah-\/>reinit\_counter = 0;}
+\DoxyCodeLine{00089     \}}
+\DoxyCodeLine{00090 }
+\DoxyCodeLine{00091     WahWah-\/>reinit\_counter++;}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093     \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(WahWah-\/>bandpass, data);}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095     \textcolor{keywordflow}{return} WAHWAH\_OK;}
+\DoxyCodeLine{00096 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{wahwah_8h_afdc2b53d4cc3352bf6e51df974ce169e}\label{wahwah_8h_afdc2b53d4cc3352bf6e51df974ce169e}} 
+\index{wahwah.h@{wahwah.h}!WahWah\_Init@{WahWah\_Init}}
+\index{WahWah\_Init@{WahWah\_Init}!wahwah.h@{wahwah.h}}
+\doxysubsubsection{\texorpdfstring{WahWah\_Init()}{WahWah\_Init()}}
+{\footnotesize\ttfamily Wah\+Wah\+\_\+\+Status Wah\+Wah\+\_\+\+Init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$}]{Wah\+Wah }\end{DoxyParamCaption})}
+
+
+
+wahwah efffect init function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Wah\+Wah} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Wah\+Wah\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{wahwah_8c_source_l00014}{14}} of file \mbox{\hyperlink{wahwah_8c_source}{wahwah.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014                                                    \{}
+\DoxyCodeLine{00015 }
+\DoxyCodeLine{00016     WahWah-\/>lfo = \&lfo\_wahwah;}
+\DoxyCodeLine{00017     WahWah-\/>bandpass = \&BP\_WAHWAH;}
+\DoxyCodeLine{00018 }
+\DoxyCodeLine{00019     WahWah-\/>lfo-\/>lfo\_index     = 0;}
+\DoxyCodeLine{00020     WahWah-\/>lfo-\/>lfo\_quarter   = 0;}
+\DoxyCodeLine{00021     WahWah-\/>lfo-\/>lfo\_frequency = 1; \textcolor{comment}{// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]}}
+\DoxyCodeLine{00022 }
+\DoxyCodeLine{00023     WahWah-\/>range        = 600;}
+\DoxyCodeLine{00024     WahWah-\/>mid\_freq     = 350;}
+\DoxyCodeLine{00025     WahWah-\/>mid\_freq\_mod = 0;}
+\DoxyCodeLine{00026 }
+\DoxyCodeLine{00027     WahWah-\/>max\_range = 500;}
+\DoxyCodeLine{00028     WahWah-\/>max\_mid\_freq = 2000;    \textcolor{comment}{// can be adjusted in the display to values 1000, 2000, 3000 and 4000}}
+\DoxyCodeLine{00029     WahWah-\/>max\_Q = 20;}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     WahWah-\/>reinit\_counter = 0;}
+\DoxyCodeLine{00032     WahWah-\/>bandpass-\/>Q = 1;}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034     \mbox{\hyperlink{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036     \textcolor{keywordflow}{return} WAHWAH\_OK;}
+\DoxyCodeLine{00037 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{wahwah_8h_a9b91a7fae64755689936b60cf1820535}\label{wahwah_8h_a9b91a7fae64755689936b60cf1820535}} 
+\index{wahwah.h@{wahwah.h}!WahWah\_Reset@{WahWah\_Reset}}
+\index{WahWah\_Reset@{WahWah\_Reset}!wahwah.h@{wahwah.h}}
+\doxysubsubsection{\texorpdfstring{WahWah\_Reset()}{WahWah\_Reset()}}
+{\footnotesize\ttfamily Wah\+Wah\+\_\+\+Status Wah\+Wah\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$}]{Wah\+Wah }\end{DoxyParamCaption})}
+
+
+
+resets all wahwah parameters 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Wah\+Wah} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Wah\+Wah\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{wahwah_8c_source_l00045}{45}} of file \mbox{\hyperlink{wahwah_8c_source}{wahwah.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045                                                     \{}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047     Display.WahWah\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049     WahWah-\/>lfo-\/>lfo\_index     = 0;}
+\DoxyCodeLine{00050     WahWah-\/>lfo-\/>lfo\_quarter   = 0;}
+\DoxyCodeLine{00051     Display.WahWah\_LFOfreq = WahWah-\/>lfo-\/>lfo\_frequency = 1;    \textcolor{comment}{// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]}}
+\DoxyCodeLine{00052     Display.WahWah\_LFOfreq\_Index = Display.last\_WahWah\_LFOfreq\_Index = 3;   \textcolor{comment}{// 1 Hz}}
+\DoxyCodeLine{00053 }
+\DoxyCodeLine{00054     Display.WahWah\_Range = WahWah-\/>range        = 600;}
+\DoxyCodeLine{00055     Display.WahWah\_MidFreq = WahWah-\/>mid\_freq     = 350;}
+\DoxyCodeLine{00056     WahWah-\/>mid\_freq\_mod = 0;}
+\DoxyCodeLine{00057 }
+\DoxyCodeLine{00058     WahWah-\/>reinit\_counter = 0;}
+\DoxyCodeLine{00059     Display.WahWah\_Q = WahWah-\/>bandpass-\/>Q = 1;}
+\DoxyCodeLine{00060 }
+\DoxyCodeLine{00061     Display.WahWah\_Sources[0] = POTI;}
+\DoxyCodeLine{00062     Display.WahWah\_Sources[1] = POTI;}
+\DoxyCodeLine{00063     Display.WahWah\_Sources[2] = POTI;}
+\DoxyCodeLine{00064     Display.WahWah\_Sources[3] = POTI;}
+\DoxyCodeLine{00065 }
+\DoxyCodeLine{00066     strcpy(Display.value\_str\_wahwah[0], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00067 }
+\DoxyCodeLine{00068     \mbox{\hyperlink{filters_8h_a30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{00069 }
+\DoxyCodeLine{00070     \textcolor{keywordflow}{return} WAHWAH\_OK;}
+\DoxyCodeLine{00071 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{wahwah_8h_a62a194fb1a3f2db2cb92a47784a1394d}\label{wahwah_8h_a62a194fb1a3f2db2cb92a47784a1394d}} 
+\index{wahwah.h@{wahwah.h}!WahWah@{WahWah}}
+\index{WahWah@{WahWah}!wahwah.h@{wahwah.h}}
+\doxysubsubsection{\texorpdfstring{WahWah}{WahWah}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} Wah\+Wah}
+
+
+
+Definition at line \mbox{\hyperlink{wahwah_8h_source_l00047}{47}} of file \mbox{\hyperlink{wahwah_8h_source}{wahwah.\+h}}.
+

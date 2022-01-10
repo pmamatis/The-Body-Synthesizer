@@ -1,3 +1,13 @@
+/**
+ * @file atanLUT.h
+ * @author marc bielen
+ * @brief LUT for atan() funtion, for better performance
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INC_ATANLUT_H_
 #define INC_ATANLUT_H_
 

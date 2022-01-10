@@ -1,0 +1,154 @@
+\hypertarget{index_autotoc_md0}{}\doxysubsection{Introduction}\label{index_autotoc_md0}
+This user manual describes the CMSIS DSP software library, a suite of common signal processing functions for use on Cortex-\/M and Cortex-\/A processor based devices.
+
+The library is divided into a number of functions each covering a specific category\+:
+\begin{DoxyItemize}
+\item Basic math functions
+\item Fast math functions
+\item Complex math functions
+\item Filtering functions
+\item Matrix functions
+\item Transform functions
+\item Motor control functions
+\item Statistical functions
+\item Support functions
+\item Interpolation functions
+\item Support Vector Machine functions (SVM)
+\item Bayes classifier functions
+\item Distance functions
+\end{DoxyItemize}
+
+The library has generally separate functions for operating on 8-\/bit integers, 16-\/bit integers, 32-\/bit integer and 32-\/bit floating-\/point values.\hypertarget{index_autotoc_md1}{}\doxysubsection{Using the Library}\label{index_autotoc_md1}
+The library installer contains prebuilt versions of the libraries in the {\ttfamily Lib} folder.
+
+Here is the list of pre-\/built libraries \+:
+\begin{DoxyItemize}
+\item arm\+\_\+cortex\+M7lfdp\+\_\+math.\+lib (Cortex-\/\+M7, Little endian, Double Precision Floating Point Unit)
+\item arm\+\_\+cortex\+M7bfdp\+\_\+math.\+lib (Cortex-\/\+M7, Big endian, Double Precision Floating Point Unit)
+\item arm\+\_\+cortex\+M7lfsp\+\_\+math.\+lib (Cortex-\/\+M7, Little endian, Single Precision Floating Point Unit)
+\item arm\+\_\+cortex\+M7bfsp\+\_\+math.\+lib (Cortex-\/\+M7, Big endian and Single Precision Floating Point Unit on)
+\item arm\+\_\+cortex\+M7l\+\_\+math.\+lib (Cortex-\/\+M7, Little endian)
+\item arm\+\_\+cortex\+M7b\+\_\+math.\+lib (Cortex-\/\+M7, Big endian)
+\item arm\+\_\+cortex\+M4lf\+\_\+math.\+lib (Cortex-\/\+M4, Little endian, Floating Point Unit)
+\item arm\+\_\+cortex\+M4bf\+\_\+math.\+lib (Cortex-\/\+M4, Big endian, Floating Point Unit)
+\item arm\+\_\+cortex\+M4l\+\_\+math.\+lib (Cortex-\/\+M4, Little endian)
+\item arm\+\_\+cortex\+M4b\+\_\+math.\+lib (Cortex-\/\+M4, Big endian)
+\item arm\+\_\+cortex\+M3l\+\_\+math.\+lib (Cortex-\/\+M3, Little endian)
+\item arm\+\_\+cortex\+M3b\+\_\+math.\+lib (Cortex-\/\+M3, Big endian)
+\item arm\+\_\+cortex\+M0l\+\_\+math.\+lib (Cortex-\/\+M0 / Cortex-\/\+M0+, Little endian)
+\item arm\+\_\+cortex\+M0b\+\_\+math.\+lib (Cortex-\/\+M0 / Cortex-\/\+M0+, Big endian)
+\item arm\+\_\+\+ARMv8\+MBLl\+\_\+math.\+lib (Armv8-\/M Baseline, Little endian)
+\item arm\+\_\+\+ARMv8\+MMLl\+\_\+math.\+lib (Armv8-\/M Mainline, Little endian)
+\item arm\+\_\+\+ARMv8\+MMLlfsp\+\_\+math.\+lib (Armv8-\/M Mainline, Little endian, Single Precision Floating Point Unit)
+\item arm\+\_\+\+ARMv8\+MMLld\+\_\+math.\+lib (Armv8-\/M Mainline, Little endian, DSP instructions)
+\item arm\+\_\+\+ARMv8\+MMLldfsp\+\_\+math.\+lib (Armv8-\/M Mainline, Little endian, DSP instructions, Single Precision Floating Point Unit)
+\end{DoxyItemize}
+
+The library functions are declared in the public file {\ttfamily \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}} which is placed in the {\ttfamily Include} folder. Simply include this file and link the appropriate library in the application and begin calling the library functions. The Library supports single public header file {\ttfamily  \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}} for Cortex-\/M cores with little endian and big endian. Same header file will be used for floating point unit(\+FPU) variants.\hypertarget{index_autotoc_md2}{}\doxysubsection{Examples}\label{index_autotoc_md2}
+The library ships with a number of examples which demonstrate how to use the library functions.\hypertarget{index_autotoc_md3}{}\doxysubsection{Toolchain Support}\label{index_autotoc_md3}
+The library is now tested on Fast Models building with cmake. Core M0, M7, A5 are tested.\hypertarget{index_autotoc_md4}{}\doxysubsection{Building the Library}\label{index_autotoc_md4}
+The library installer contains a project file to rebuild libraries on MDK toolchain in the {\ttfamily CMSIS\textbackslash{}DSP\textbackslash{}Projects\textbackslash{}ARM} folder.
+\begin{DoxyItemize}
+\item arm\+\_\+cortex\+M\+\_\+math.\+uvprojx
+\end{DoxyItemize}
+
+The libraries can be built by opening the arm\+\_\+cortex\+M\+\_\+math.\+uvprojx project in MDK-\/\+ARM, selecting a specific target, and defining the optional preprocessor macros detailed above.
+
+There is also a work in progress cmake build. The README file is giving more details.\hypertarget{index_autotoc_md5}{}\doxysubsection{Preprocessor Macros}\label{index_autotoc_md5}
+Each library project have different preprocessor macros.
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+BIG\+\_\+\+ENDIAN\+:
+\end{DoxyItemize}
+
+Define macro ARM\+\_\+\+MATH\+\_\+\+BIG\+\_\+\+ENDIAN to build the library for big endian targets. By default library builds for little endian targets.
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+MATRIX\+\_\+\+CHECK\+:
+\end{DoxyItemize}
+
+Define macro ARM\+\_\+\+MATH\+\_\+\+MATRIX\+\_\+\+CHECK for checking on the input and output sizes of matrices
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+ROUNDING\+:
+\end{DoxyItemize}
+
+Define macro ARM\+\_\+\+MATH\+\_\+\+ROUNDING for rounding on support functions
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+LOOPUNROLL\+:
+\end{DoxyItemize}
+
+Define macro ARM\+\_\+\+MATH\+\_\+\+LOOPUNROLL to enable manual loop unrolling in DSP functions
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+NEON\+:
+\end{DoxyItemize}
+
+Define macro ARM\+\_\+\+MATH\+\_\+\+NEON to enable Neon versions of the DSP functions. It is not enabled by default when Neon is available because performances are dependent on the compiler and target architecture.
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+NEON\+\_\+\+EXPERIMENTAL\+:
+\end{DoxyItemize}
+
+Define macro ARM\+\_\+\+MATH\+\_\+\+NEON\+\_\+\+EXPERIMENTAL to enable experimental Neon versions of of some DSP functions. Experimental Neon versions currently do not have better performances than the scalar versions.
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+HELIUM\+:
+\end{DoxyItemize}
+
+It implies the flags ARM\+\_\+\+MATH\+\_\+\+MVEF and ARM\+\_\+\+MATH\+\_\+\+MVEI and ARM\+\_\+\+MATH\+\_\+\+FLOAT16.
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+MVEF\+:
+\end{DoxyItemize}
+
+Select Helium versions of the f32 algorithms. It implies ARM\+\_\+\+MATH\+\_\+\+FLOAT16 and ARM\+\_\+\+MATH\+\_\+\+MVEI.
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+MVEI\+:
+\end{DoxyItemize}
+
+Select Helium versions of the int and fixed point algorithms.
+
+
+\begin{DoxyItemize}
+\item ARM\+\_\+\+MATH\+\_\+\+FLOAT16\+:
+\end{DoxyItemize}
+
+Float16 implementations of some algorithms (Requires MVE extension).
+
+\DoxyHorRuler{0}
+ \hypertarget{index_autotoc_md6}{}\doxysubsection{CMSIS-\/\+DSP in ARM\+::\+CMSIS Pack}\label{index_autotoc_md6}
+The following files relevant to CMSIS-\/\+DSP are present in the {\bfseries{ARM\+::\+CMSIS}} Pack directories\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File/\+Folder   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Content    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File/\+Folder   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Content    }\\\cline{1-2}
+\endhead
+{\bfseries{CMSIS\textbackslash{}Documentation\textbackslash{}DSP}}   &This documentation    \\\cline{1-2}
+{\bfseries{CMSIS\textbackslash{}DSP\textbackslash{}DSP\+\_\+\+Lib\+\_\+\+Test\+Suite}}   &DSP\+\_\+\+Lib test suite    \\\cline{1-2}
+{\bfseries{CMSIS\textbackslash{}DSP\textbackslash{}Examples}}   &Example projects demonstrating the usage of the library functions    \\\cline{1-2}
+{\bfseries{CMSIS\textbackslash{}DSP\textbackslash{}Include}}   &DSP\+\_\+\+Lib include files    \\\cline{1-2}
+{\bfseries{CMSIS\textbackslash{}DSP\textbackslash{}Lib}}   &DSP\+\_\+\+Lib binaries    \\\cline{1-2}
+{\bfseries{CMSIS\textbackslash{}DSP\textbackslash{}Projects}}   &Projects to rebuild DSP\+\_\+\+Lib binaries    \\\cline{1-2}
+{\bfseries{CMSIS\textbackslash{}DSP\textbackslash{}Source}}   &DSP\+\_\+\+Lib source files   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+ \hypertarget{index_autotoc_md7}{}\doxysubsection{Revision History of CMSIS-\/\+DSP}\label{index_autotoc_md7}
+Please refer to Change\+Log\+\_\+pg. 

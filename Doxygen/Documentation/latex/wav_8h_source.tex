@@ -1,0 +1,71 @@
+\hypertarget{wav_8h_source}{}\doxysection{wav.\+h}
+\label{wav_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wav.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wav.h}}
+\mbox{\hyperlink{wav_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00013}00013 \textcolor{preprocessor}{\#ifndef \_\_WAV\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00014}00014 \textcolor{preprocessor}{\#define \_\_WAV\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00032}\mbox{\hyperlink{wav_8h_a7ff724a7e59219c82177925476950735}{00032}} \textcolor{preprocessor}{\#define WAV\_FORMAT\_PCM 0x0001}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00033}00033 \textcolor{preprocessor}{\#define WAV\_FORMAT\_IEEE\_FLOAT 0x0003}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00034}00034 \textcolor{preprocessor}{\#define WAV\_FORMAT\_ALAW 0x0006}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00035}00035 \textcolor{preprocessor}{\#define WAV\_FORMAT\_MULAW 0x0007}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00036}00036 \textcolor{preprocessor}{\#define WAV\_FORMAT\_EXTENSIBLE 0xfffe}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00038}00038 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00039}00039     WAV\_OK,           \textcolor{comment}{/* no error */}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00040}00040     WAV\_ERROR\_NOMEM,  \textcolor{comment}{/* malloc failed */}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00041}00041     WAV\_ERROR\_OS,     \textcolor{comment}{/* error when \{wave\} called a stdio function */}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00042}00042     WAV\_ERROR\_FORMAT, \textcolor{comment}{/* not a wave file or unsupported wave format */}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00043}00043     WAV\_ERROR\_MODE,   \textcolor{comment}{/* incorrect mode when opening the wave file or calling mode-\/specific API */}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00044}00044     WAV\_ERROR\_PARAM,  \textcolor{comment}{/* incorrect parameter passed to the API function */}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00045}00045 \} WavError;}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00047}00047 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\_WavFile WavFile;}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00058}\mbox{\hyperlink{wav_8h_a36022ae34482d520db9e14d7e056bcbf}{00058}} WavFile* \mbox{\hyperlink{wav_8h_a36022ae34482d520db9e14d7e056bcbf}{wav\_open}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* filename, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* mode);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00059}00059 \textcolor{keywordtype}{int}      wav\_close(WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00060}00060 WavFile* wav\_reopen(WavFile* self, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* filename, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* mode);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00073}\mbox{\hyperlink{wav_8h_a9a818bd7facdfcce273c04ed41c99f68}{00073}} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{wav_8h_a9a818bd7facdfcce273c04ed41c99f68}{wav\_read}}(WavFile* self, \textcolor{keywordtype}{void}** buffers, \textcolor{keywordtype}{size\_t} count);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00086}\mbox{\hyperlink{wav_8h_a9d988d0342d7c19394e8e0f29d26e485}{00086}} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{wav_8h_a9d988d0342d7c19394e8e0f29d26e485}{wav\_write}}(WavFile* self, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* \textcolor{keyword}{const}* buffers, \textcolor{keywordtype}{size\_t} count);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00094}\mbox{\hyperlink{wav_8h_aa990c8c22d5039769d35f7cdae28310d}{00094}} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} \mbox{\hyperlink{wav_8h_aa990c8c22d5039769d35f7cdae28310d}{wav\_tell}}(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00096}00096 \textcolor{keywordtype}{int}  wav\_seek(WavFile* self, \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} offset, \textcolor{keywordtype}{int} origin);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00097}00097 \textcolor{keywordtype}{void} wav\_rewind(WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00106}\mbox{\hyperlink{wav_8h_a2ae347cfdc40d636285968e72294eb8c}{00106}} \textcolor{keywordtype}{int} \mbox{\hyperlink{wav_8h_a2ae347cfdc40d636285968e72294eb8c}{wav\_eof}}(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00114}\mbox{\hyperlink{wav_8h_af241642229468a37ee36ca86a06978a9}{00114}} \textcolor{keywordtype}{int} \mbox{\hyperlink{wav_8h_af241642229468a37ee36ca86a06978a9}{wav\_error}}(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00116}00116 \textcolor{keywordtype}{int} wav\_flush(WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00117}00117 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00124}\mbox{\hyperlink{wav_8h_a689b248101c33cc0412d625f497396ba}{00124}} WavError \mbox{\hyperlink{wav_8h_a689b248101c33cc0412d625f497396ba}{wav\_errno}}(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00135}\mbox{\hyperlink{wav_8h_a129bf98b4d0805e7068dbbba3ce9119c}{00135}} \textcolor{keywordtype}{void} \mbox{\hyperlink{wav_8h_a129bf98b4d0805e7068dbbba3ce9119c}{wav\_set\_format}}(WavFile* self, uint16\_t format);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00146}\mbox{\hyperlink{wav_8h_afc5fb77381d285f3bab78cb6b263db00}{00146}} \textcolor{keywordtype}{void} \mbox{\hyperlink{wav_8h_afc5fb77381d285f3bab78cb6b263db00}{wav\_set\_num\_channels}}(WavFile* self, uint16\_t num\_channels);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00147}00147 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00157}\mbox{\hyperlink{wav_8h_aec804cebb962f82451f2a7efca41cf8a}{00157}} \textcolor{keywordtype}{void} \mbox{\hyperlink{wav_8h_aec804cebb962f82451f2a7efca41cf8a}{wav\_set\_sample\_rate}}(WavFile* self, uint32\_t sample\_rate);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00158}00158 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00169}\mbox{\hyperlink{wav_8h_a50becd30ff6f8fcc4b42c84ff2df42b8}{00169}} \textcolor{keywordtype}{void} \mbox{\hyperlink{wav_8h_a50becd30ff6f8fcc4b42c84ff2df42b8}{wav\_set\_valid\_bits\_per\_sample}}(WavFile* self, uint16\_t bits);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00170}00170 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00182}\mbox{\hyperlink{wav_8h_a4505192e4d2b0dae0cec1421af9c8e9f}{00182}} \textcolor{keywordtype}{void} \mbox{\hyperlink{wav_8h_a4505192e4d2b0dae0cec1421af9c8e9f}{wav\_set\_sample\_size}}(WavFile* self, \textcolor{keywordtype}{size\_t} sample\_size);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00183}00183 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00186}00186 uint16\_t wav\_get\_format(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00187}00187 uint16\_t wav\_get\_num\_channels(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00188}00188 uint32\_t wav\_get\_sample\_rate(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00189}00189 uint16\_t wav\_get\_valid\_bits\_per\_sample(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00190}00190 \textcolor{keywordtype}{size\_t}   wav\_get\_sample\_size(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00191}00191 \textcolor{keywordtype}{size\_t}   wav\_get\_length(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00192}00192 uint32\_t wav\_get\_channel\_mask(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00193}00193 uint16\_t wav\_get\_sub\_format(\textcolor{keyword}{const} WavFile* self);}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00195}00195 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00196}00196 \}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00197}00197 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00198}00198 }
+\DoxyCodeLine{\Hypertarget{wav_8h_source_l00199}00199 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_WAV\_H\_\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

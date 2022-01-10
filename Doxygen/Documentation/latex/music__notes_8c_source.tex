@@ -1,0 +1,53 @@
+\hypertarget{music__notes_8c_source}{}\doxysection{music\+\_\+notes.\+c}
+\label{music__notes_8c_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/music\_notes.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/music\_notes.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{music__notes_8h}{music\_notes.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00004}00004 \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[] = \{\textcolor{charliteral}{'C'},\textcolor{charliteral}{'c'},\textcolor{charliteral}{'D'},\textcolor{charliteral}{'d'},\textcolor{charliteral}{'E'},\textcolor{charliteral}{'F'},\textcolor{charliteral}{'f'},\textcolor{charliteral}{'G'},\textcolor{charliteral}{'g'},\textcolor{charliteral}{'A'},\textcolor{charliteral}{'B'},\textcolor{charliteral}{'H'},\textcolor{charliteral}{'C'},\textcolor{charliteral}{'c'},\textcolor{charliteral}{'D'},\textcolor{charliteral}{'d'},\textcolor{charliteral}{'E'},\textcolor{charliteral}{'F'},\textcolor{charliteral}{'f'},\textcolor{charliteral}{'G'},\textcolor{charliteral}{'g'},\textcolor{charliteral}{'A'},\textcolor{charliteral}{'B'},\textcolor{charliteral}{'H'},\textcolor{charliteral}{'C'},\textcolor{charliteral}{'c'}\};}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00005}00005 \textcolor{comment}{//                        C\#      D\#          F\#      G\#                  C\#      D\#          F\#      G\#                  C\#}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00008}00008 \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{music__notes_8h_a4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[] =  \{0,2,4,5,7,9,11,12, 14\};     \textcolor{comment}{// \{2,2,1,2,2,2,1\}; Dur}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00009}00009 \textcolor{keyword}{const} uint32\_t minor\_scale[] =  \{0,2,3,5,7,8,10,12, 14\};        \textcolor{comment}{// \{2,1,2,2,1,2,2\}; Mol}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00012}00012 \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{music__notes_8h_a2222edaa79f27840e9e26c4d0076bd8c}{major\_chords}}[] = \{0,1,1,0,0,1, 2, 0, 1\};     \textcolor{comment}{// 0: major, 1: minor, 2: diminished}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00013}00013 \textcolor{keyword}{const} uint32\_t minor\_chords[] = \{1,2,0,1,1,0, 0, 1, 2\}; \textcolor{comment}{// 0: major, 1: minor, 2: diminished}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00016}00016 \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{music__notes_8h_af387d96b9f2a32b87121e2eae2c5ff16}{chord\_5}}[] = \{1,3,5\};   \textcolor{comment}{//5th-\/chord}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00017}00017 \textcolor{keyword}{const} uint32\_t chord\_7[] = \{1,3,5,7\}; \textcolor{comment}{//7th-\/chord, Jazz}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00018}00018 \textcolor{keyword}{const} uint32\_t chord\_9[] = \{1,3,5,9\}; \textcolor{comment}{//9th-\/chord, Math-\/Rock}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00019}00019 \textcolor{keyword}{const} uint32\_t chord\_dim[] = \{1,3,4\}; \textcolor{comment}{//diminished-\/chord}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00023}00023 \textcolor{keyword}{extern} DAC\_HandleTypeDef \mbox{\hyperlink{main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}};}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00024}00024 \textcolor{keyword}{extern} DMA\_HandleTypeDef hdma\_dac1;}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00026}00026 \textcolor{keyword}{extern} TIM\_HandleTypeDef htim6;}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00027}00027 \textcolor{keyword}{extern} TIM\_HandleTypeDef htim8;}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00029}00029 \textcolor{comment}{// Variables}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00031}00031 \textcolor{comment}{}\textcolor{keywordtype}{char} key = \textcolor{charliteral}{'C'};}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00033}00033 uint8\_t sex = 0;}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00036}00036 \textcolor{comment}{// Functions}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00041}\mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{00041}} \textcolor{comment}{}uint8\_t \mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\textcolor{keywordtype}{char} key)\{}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00043}00043     uint8\_t keyindex = 0;}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00045}00045     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 12; i++)\{}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00046}00046         \textcolor{keywordflow}{if}(key == \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i]) keyindex = i;}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00047}00047     \}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00048}00048 \textcolor{keywordflow}{return} keyindex;}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00049}00049 \}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00053}\mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{00053}} \textcolor{keywordtype}{double} \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(uint8\_t index,uint8\_t octave)\{}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00054}00054     \textcolor{keywordtype}{int} tmp\_octave = 12*octave; \textcolor{comment}{//DEBUG}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00055}00055     \textcolor{keywordtype}{double} note\_freq =LUT\_FREQUENCYS[tmp\_octave+index];}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00056}00056     \textcolor{keywordflow}{return} note\_freq;}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00057}00057 \}}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00061}\mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{00061}} uint16\_t \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{keywordtype}{char} key,uint8\_t octave)\{}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00062}00062     \textcolor{keywordflow}{return} 12*octave + \mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(key);}
+\DoxyCodeLine{\Hypertarget{music__notes_8c_source_l00063}00063 \}}
+
+\end{DoxyCode}

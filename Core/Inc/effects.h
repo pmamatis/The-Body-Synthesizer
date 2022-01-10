@@ -1,3 +1,14 @@
+/**
+ * @file effects.h
+ * @author paul mamatis
+ * @brief processing for all effects
+ * @version 0.1
+ * @date 2022-01-06
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "main.h"
 #include <stdbool.h>
 
