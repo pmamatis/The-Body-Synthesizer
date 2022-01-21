@@ -123,7 +123,7 @@
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00128}00128     clear\_buffer();}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00129}00129 \}}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00130}00130 }
-\DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00131}00131 \textcolor{keywordtype}{void} sd\_card\_read(\textcolor{keywordtype}{char} *filename, \textcolor{keywordtype}{float} *LUT) \{}
+\DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00131}00131 \textcolor{keywordtype}{void} sd\_card\_read(\textcolor{keywordtype}{char} *filename, \textcolor{keywordtype}{float} *\mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}) \{}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00132}00132     \textcolor{comment}{// FA\_READ -\/ Specifies read access to the object. Data can be read from the file.}}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00133}00133     \textcolor{comment}{// FA\_WRITE -\/ Specifies write access to the object. Data can be written to the file. Combine with FA\_READ for read-\/write access.}}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00134}00134     \textcolor{comment}{// FA\_OPEN\_EXISTING -\/ Opens the file. The function fails if the file is not existing. (Default)}}
@@ -156,7 +156,7 @@
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00161}00161 }
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00162}00162                 SampleTemp[k] = buffer[j*NoLength+k];}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00163}00163             \}}
-\DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00164}00164             LUT[i*NoSamples+j] = atof(SampleTemp)-\/1;}
+\DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00164}00164             \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}[i*NoSamples+j] = atof(SampleTemp)-\/1;}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00165}00165         \}}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00166}00166     \}}
 \DoxyCodeLine{\Hypertarget{sd__card_8c_source_l00167}00167 }

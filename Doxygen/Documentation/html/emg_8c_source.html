@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('emg_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">emg.c</div></div>
 </div><!--header-->
@@ -202,14 +218,14 @@ $(function() {
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            <span class="comment">//direct transfer of the heartrate to Drumcomputer</span></div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>            <span class="keywordflow">if</span>(Display.Drumcomputer_BPMbyECG_ONOFF == <span class="keyword">true</span>) {</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                <a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a> = heartrate;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                <a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a> = heartrate;</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            }</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        }</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="comment">//update drumcoputer-page and reset values drumcoputer when bpm changed, to avoid &quot;plop&quot;-noise</span></div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">if</span>(abs(last_BPM-<a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a>) &gt; 3) {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">if</span>(abs(last_BPM-<a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a>) &gt; 3) {</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="drum__computer_8h.html#a267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                <span class="comment">// INIT: Counter</span></div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                counter_DS1[i] = 0;</div>
@@ -217,21 +233,21 @@ $(function() {
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                counter_DS3[i] = 0;</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                counter_DS4[i] = 0;</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                <a class="code hl_variable" href="drum__computer_8h.html#ad32e19a8282780d0a134ec07797ac10b">drum_index</a> = 0;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                <a class="code hl_variable" href="drum__computer_8h.html#a148d70203e23260f999890046d5509b0">counter_master</a> = 0;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                <a class="code hl_variable" href="group__DrumComputer.html#gad32e19a8282780d0a134ec07797ac10b">drum_index</a> = 0;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                <a class="code hl_variable" href="group__DrumComputer.html#ga148d70203e23260f999890046d5509b0">counter_master</a> = 0;</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                <span class="comment">// RESET: Drum sound bins</span></div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                <a class="code hl_variable" href="drum__computer_8h.html#a1d0ce949a258b04a5822d3442fd73d83">DS1s</a> = 0;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                <a class="code hl_variable" href="group__DrumComputer.html#ga1d0ce949a258b04a5822d3442fd73d83">DS1s</a> = 0;</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                DS2s = 0;</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>                DS3s = 0;</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                DS4s = 0;</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                drums = 0;</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                timing_position_in_samples[i] = (<a class="code hl_define" href="drum__computer_8h.html#a267b06d60a7514d898b5cac91b4380ec">FourFour</a> / 4 ) * (i + 1) * (MasterClock / <a class="code hl_define" href="drum__computer_8h.html#a267b06d60a7514d898b5cac91b4380ec">FourFour</a>) * (60 / <a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a>);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                timing_position_in_samples[i] = (<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a> / 4 ) * (i + 1) * (MasterClock / <a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>) * (60 / <a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a>);</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            }</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            sprintf(Display.value_str_drumcomputer[8], <span class="stringliteral">&quot;%.f&quot;</span>, <a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a>);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            sprintf(Display.value_str_drumcomputer[8], <span class="stringliteral">&quot;%.f&quot;</span>, <a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a>);</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            <span class="comment">// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!</span></div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            <span class="comment">// BPM set by ECG and display only updated with new BPM value on drumcomputer settings page</span></div>
@@ -241,29 +257,33 @@ $(function() {
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>            }</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            Display.UpdateDisplay = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            last_BPM = <a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            last_BPM = <a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a>;</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        }</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        ecg_toggleCounter++;</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        ecg_intCount++;</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    }</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>}</div>
-<div class="ttc" id="adrum__computer_8h_html_a0065e192c774e20fd5e0ab3c342b7088"><div class="ttname"><a href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a></div><div class="ttdeci">float BPM</div><div class="ttdoc">Tempo.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00034">drum_computer.h:34</a></div></div>
-<div class="ttc" id="adrum__computer_8h_html_a148d70203e23260f999890046d5509b0"><div class="ttname"><a href="drum__computer_8h.html#a148d70203e23260f999890046d5509b0">counter_master</a></div><div class="ttdeci">uint32_t counter_master</div><div class="ttdoc">Counter.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00043">drum_computer.h:43</a></div></div>
-<div class="ttc" id="adrum__computer_8h_html_a1d0ce949a258b04a5822d3442fd73d83"><div class="ttname"><a href="drum__computer_8h.html#a1d0ce949a258b04a5822d3442fd73d83">DS1s</a></div><div class="ttdeci">float DS1s</div><div class="ttdoc">Sound bins.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00063">drum_computer.h:63</a></div></div>
-<div class="ttc" id="adrum__computer_8h_html_a267b06d60a7514d898b5cac91b4380ec"><div class="ttname"><a href="drum__computer_8h.html#a267b06d60a7514d898b5cac91b4380ec">FourFour</a></div><div class="ttdeci">#define FourFour</div><div class="ttdoc">Common Sample Length &amp; Time Signature.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00025">drum_computer.h:25</a></div></div>
-<div class="ttc" id="adrum__computer_8h_html_ad32e19a8282780d0a134ec07797ac10b"><div class="ttname"><a href="drum__computer_8h.html#ad32e19a8282780d0a134ec07797ac10b">drum_index</a></div><div class="ttdeci">uint32_t drum_index</div><div class="ttdoc">Index.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00040">drum_computer.h:40</a></div></div>
 <div class="ttc" id="aemg_8c_html_a305d3a0240c6e197a771b26c8d4fd22a"><div class="ttname"><a href="emg_8c.html#a305d3a0240c6e197a771b26c8d4fd22a">emg_stop_read</a></div><div class="ttdeci">HAL_StatusTypeDef emg_stop_read(void)</div><div class="ttdoc">Only stops the ADC reading of the connected EMG/ECG board.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00064">emg.c:64</a></div></div>
 <div class="ttc" id="aemg_8c_html_a63f5337cb5d5feb55ddedd79bca265d9"><div class="ttname"><a href="emg_8c.html#a63f5337cb5d5feb55ddedd79bca265d9">emg_peak_detection</a></div><div class="ttdeci">HAL_StatusTypeDef emg_peak_detection(void)</div><div class="ttdoc">detects an EMG peak and sets flags for further processing</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00070">emg.c:70</a></div></div>
 <div class="ttc" id="aemg_8c_html_a6ad14645e09a9e49124abbb14199027f"><div class="ttname"><a href="emg_8c.html#a6ad14645e09a9e49124abbb14199027f">ecg_heartrate</a></div><div class="ttdeci">void ecg_heartrate(void)</div><div class="ttdoc">detect heartrate and change the Drumcoputer BPM in realtime</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00111">emg.c:111</a></div></div>
 <div class="ttc" id="aemg_8c_html_a98bf9a8015f7a7833276fbf6a72e255e"><div class="ttname"><a href="emg_8c.html#a98bf9a8015f7a7833276fbf6a72e255e">ecg_init</a></div><div class="ttdeci">HAL_StatusTypeDef ecg_init(void)</div><div class="ttdoc">ECG init.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00037">emg.c:37</a></div></div>
 <div class="ttc" id="aemg_8c_html_ad8539de6db12ec20b070f6fb97f99a73"><div class="ttname"><a href="emg_8c.html#ad8539de6db12ec20b070f6fb97f99a73">emg_start_read</a></div><div class="ttdeci">HAL_StatusTypeDef emg_start_read(void)</div><div class="ttdoc">start all necessary peripherals for the EMG/ECG</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00055">emg.c:55</a></div></div>
 <div class="ttc" id="aemg_8h_html"><div class="ttname"><a href="emg_8h.html">emg.h</a></div><div class="ttdoc">emg and ecg</div></div>
+<div class="ttc" id="agroup__DrumComputer_html_ga0065e192c774e20fd5e0ab3c342b7088"><div class="ttname"><a href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a></div><div class="ttdeci">float BPM</div><div class="ttdoc">Tempo.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00039">drum_computer.h:39</a></div></div>
+<div class="ttc" id="agroup__DrumComputer_html_ga148d70203e23260f999890046d5509b0"><div class="ttname"><a href="group__DrumComputer.html#ga148d70203e23260f999890046d5509b0">counter_master</a></div><div class="ttdeci">uint32_t counter_master</div><div class="ttdoc">Counter.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00048">drum_computer.h:48</a></div></div>
+<div class="ttc" id="agroup__DrumComputer_html_ga1d0ce949a258b04a5822d3442fd73d83"><div class="ttname"><a href="group__DrumComputer.html#ga1d0ce949a258b04a5822d3442fd73d83">DS1s</a></div><div class="ttdeci">float DS1s</div><div class="ttdoc">Sound bins.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00068">drum_computer.h:68</a></div></div>
+<div class="ttc" id="agroup__DrumComputer_html_ga267b06d60a7514d898b5cac91b4380ec"><div class="ttname"><a href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a></div><div class="ttdeci">#define FourFour</div><div class="ttdoc">Common Sample Length &amp; Time Signature.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00030">drum_computer.h:30</a></div></div>
+<div class="ttc" id="agroup__DrumComputer_html_gad32e19a8282780d0a134ec07797ac10b"><div class="ttname"><a href="group__DrumComputer.html#gad32e19a8282780d0a134ec07797ac10b">drum_index</a></div><div class="ttdeci">uint32_t drum_index</div><div class="ttdoc">Index.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00045">drum_computer.h:45</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a class="el" href="emg_8c.html">emg.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

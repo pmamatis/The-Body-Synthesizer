@@ -70,11 +70,11 @@
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00096}00096     \textcolor{comment}{// Delete signal}}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00097}00097     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)\{}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00098}00098 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00099}00099         \textcolor{keywordflow}{if} (adsr\_keyboard[i].adsr\_done)\{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00099}00099         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i].adsr\_done)\{}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00100}00100             \textcolor{keywordtype}{int} index = \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(KEYBOARD\_VOICE\_ID+i);}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00101}00101 }
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00102}00102             \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(signals,index);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00103}00103             adsr\_keyboard[i].adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00103}00103             \mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i].adsr\_done = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00104}00104 }
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00105}00105             played\_keyboard\_note[i] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00106}00106 }

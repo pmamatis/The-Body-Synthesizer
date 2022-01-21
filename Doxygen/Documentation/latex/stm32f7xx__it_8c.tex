@@ -373,7 +373,7 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00488     \textcolor{keywordflow}{if}(Display.EditDrums == \textcolor{keyword}{true}) \{}
 \DoxyCodeLine{00489 }
 \DoxyCodeLine{00490         \textcolor{keywordflow}{if}(Display.ADC2inputs[1] < Display.LowerLimit) \{    \textcolor{comment}{// joystick down}}
-\DoxyCodeLine{00491             \mbox{\hyperlink{display_8h_a1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00491             \mbox{\hyperlink{group__Display_ga1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
 \DoxyCodeLine{00492 }
 \DoxyCodeLine{00493             \textcolor{keywordflow}{if}(Display.CurrentSampleRow < MAX\_NUMBER\_OF\_SAMPLES+1)  \textcolor{comment}{// Display.CurrentSampleRow should be maximum the number of loaded samples}}
 \DoxyCodeLine{00494                 Display.CurrentSampleRow++;}
@@ -381,10 +381,10 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00496             \textcolor{keywordflow}{if}(Display.CurrentSampleRow == MAX\_NUMBER\_OF\_SAMPLES+1) \textcolor{comment}{// cursor switches to first value when the limit is exceeded}}
 \DoxyCodeLine{00497                 Display.CurrentSampleRow = 1;}
 \DoxyCodeLine{00498 }
-\DoxyCodeLine{00499             \mbox{\hyperlink{display_8h_a6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00499             \mbox{\hyperlink{group__Display_ga6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
 \DoxyCodeLine{00500         \}}
 \DoxyCodeLine{00501         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[1] > Display.UpperLimit) \{   \textcolor{comment}{// joystick up}}
-\DoxyCodeLine{00502             \mbox{\hyperlink{display_8h_a1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00502             \mbox{\hyperlink{group__Display_ga1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
 \DoxyCodeLine{00503 }
 \DoxyCodeLine{00504             \textcolor{keywordflow}{if}(Display.CurrentSampleRow >= 1)   \textcolor{comment}{// Display.CurrentSampleRow should be minimum 1}}
 \DoxyCodeLine{00505                 Display.CurrentSampleRow-\/-\/;}
@@ -392,10 +392,10 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00507             \textcolor{keywordflow}{if}(Display.CurrentSampleRow == 0)   \textcolor{comment}{// cursor switches to last value when the limit is exceeded}}
 \DoxyCodeLine{00508                 Display.CurrentSampleRow = MAX\_NUMBER\_OF\_SAMPLES;}
 \DoxyCodeLine{00509 }
-\DoxyCodeLine{00510             \mbox{\hyperlink{display_8h_a6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00510             \mbox{\hyperlink{group__Display_ga6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
 \DoxyCodeLine{00511         \}}
 \DoxyCodeLine{00512         \textcolor{keywordflow}{if}(Display.ADC2inputs[0] > Display.UpperLimit) \{    \textcolor{comment}{// joystick left}}
-\DoxyCodeLine{00513             \mbox{\hyperlink{display_8h_a1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00513             \mbox{\hyperlink{group__Display_ga1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
 \DoxyCodeLine{00514 }
 \DoxyCodeLine{00515             \textcolor{keywordflow}{if}(Display.CurrentDrumstep >= 1)    \textcolor{comment}{// Display.CurrentDrumstep should be minimum 1}}
 \DoxyCodeLine{00516                 Display.CurrentDrumstep-\/-\/;}
@@ -403,10 +403,10 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00518             \textcolor{keywordflow}{if}(Display.CurrentDrumstep == 0)    \textcolor{comment}{// cursor switches to last value when the limit is exceeded}}
 \DoxyCodeLine{00519                 Display.CurrentDrumstep = NUMBER\_OF\_DRUMSTEPS;}
 \DoxyCodeLine{00520 }
-\DoxyCodeLine{00521             \mbox{\hyperlink{display_8h_a6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00521             \mbox{\hyperlink{group__Display_ga6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
 \DoxyCodeLine{00522         \}}
 \DoxyCodeLine{00523         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[0] < Display.LowerLimit) \{   \textcolor{comment}{// joystick right}}
-\DoxyCodeLine{00524             \mbox{\hyperlink{display_8h_a1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00524             \mbox{\hyperlink{group__Display_ga1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}();}
 \DoxyCodeLine{00525 }
 \DoxyCodeLine{00526             \textcolor{keywordflow}{if}(Display.CurrentDrumstep < NUMBER\_OF\_DRUMSTEPS+1) \textcolor{comment}{// Display.CurrentDrumStep should be maximum the number of drumsteps}}
 \DoxyCodeLine{00527                 Display.CurrentDrumstep++;}
@@ -414,7 +414,7 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00529             \textcolor{keywordflow}{if}(Display.CurrentDrumstep == NUMBER\_OF\_DRUMSTEPS+1)    \textcolor{comment}{// cursor switches to first value when the limit is exceeded}}
 \DoxyCodeLine{00530                 Display.CurrentDrumstep = 1;}
 \DoxyCodeLine{00531 }
-\DoxyCodeLine{00532             \mbox{\hyperlink{display_8h_a6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
+\DoxyCodeLine{00532             \mbox{\hyperlink{group__Display_ga6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}();}
 \DoxyCodeLine{00533         \}}
 \DoxyCodeLine{00534     \}}
 \DoxyCodeLine{00535     \textcolor{comment}{// END Drumcomputer Processing}}
@@ -423,7 +423,7 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00538     \textcolor{keywordflow}{if}(Display.EditSteps == \textcolor{keyword}{true}) \{}
 \DoxyCodeLine{00539 }
 \DoxyCodeLine{00540         \textcolor{keywordflow}{if}(Display.ADC2inputs[1] < Display.LowerLimit) \{    \textcolor{comment}{// joystick down}}
-\DoxyCodeLine{00541             \mbox{\hyperlink{display_8h_ab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
+\DoxyCodeLine{00541             \mbox{\hyperlink{group__Display_gab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
 \DoxyCodeLine{00542 }
 \DoxyCodeLine{00543             \textcolor{keywordflow}{if}(Display.CurrentNoteRow < MAX\_NUMBER\_OF\_NOTES+1)  \textcolor{comment}{// Display.CurrentSampleRow should be maximum the number of loaded samples}}
 \DoxyCodeLine{00544                 Display.CurrentNoteRow++;}
@@ -431,10 +431,10 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00546             \textcolor{keywordflow}{if}(Display.CurrentNoteRow == MAX\_NUMBER\_OF\_NOTES+1) \textcolor{comment}{// cursor switches to first value when the limit is exceeded}}
 \DoxyCodeLine{00547                 Display.CurrentNoteRow = 1;}
 \DoxyCodeLine{00548 }
-\DoxyCodeLine{00549             \mbox{\hyperlink{display_8h_acb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
+\DoxyCodeLine{00549             \mbox{\hyperlink{group__Display_gacb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
 \DoxyCodeLine{00550         \}}
 \DoxyCodeLine{00551         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[1] > Display.UpperLimit) \{   \textcolor{comment}{// joystick up}}
-\DoxyCodeLine{00552             \mbox{\hyperlink{display_8h_ab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
+\DoxyCodeLine{00552             \mbox{\hyperlink{group__Display_gab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
 \DoxyCodeLine{00553 }
 \DoxyCodeLine{00554             \textcolor{keywordflow}{if}(Display.CurrentNoteRow >= 1) \textcolor{comment}{// Display.CurrentSampleRow should be minimum 1}}
 \DoxyCodeLine{00555                 Display.CurrentNoteRow-\/-\/;}
@@ -442,10 +442,10 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00557             \textcolor{keywordflow}{if}(Display.CurrentNoteRow == 0) \textcolor{comment}{// cursor switches to last value when the limit is exceeded}}
 \DoxyCodeLine{00558                 Display.CurrentNoteRow = MAX\_NUMBER\_OF\_NOTES;}
 \DoxyCodeLine{00559 }
-\DoxyCodeLine{00560             \mbox{\hyperlink{display_8h_acb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
+\DoxyCodeLine{00560             \mbox{\hyperlink{group__Display_gacb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
 \DoxyCodeLine{00561         \}}
 \DoxyCodeLine{00562         \textcolor{keywordflow}{if}(Display.ADC2inputs[0] > Display.UpperLimit) \{    \textcolor{comment}{// joystick left}}
-\DoxyCodeLine{00563             \mbox{\hyperlink{display_8h_ab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
+\DoxyCodeLine{00563             \mbox{\hyperlink{group__Display_gab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
 \DoxyCodeLine{00564 }
 \DoxyCodeLine{00565             \textcolor{keywordflow}{if}(Display.CurrentSequencestep >= 1)    \textcolor{comment}{// Display.CurrentDrumstep should be minimum 1}}
 \DoxyCodeLine{00566                 Display.CurrentSequencestep-\/-\/;}
@@ -453,10 +453,10 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00568             \textcolor{keywordflow}{if}(Display.CurrentSequencestep == 0)    \textcolor{comment}{// cursor switches to last value when the limit is exceeded}}
 \DoxyCodeLine{00569                 Display.CurrentSequencestep = NUMBER\_OF\_SEQUENCERSTEPS;}
 \DoxyCodeLine{00570 }
-\DoxyCodeLine{00571             \mbox{\hyperlink{display_8h_acb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
+\DoxyCodeLine{00571             \mbox{\hyperlink{group__Display_gacb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
 \DoxyCodeLine{00572         \}}
 \DoxyCodeLine{00573         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[0] < Display.LowerLimit) \{   \textcolor{comment}{// joystick right}}
-\DoxyCodeLine{00574             \mbox{\hyperlink{display_8h_ab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
+\DoxyCodeLine{00574             \mbox{\hyperlink{group__Display_gab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}();}
 \DoxyCodeLine{00575 }
 \DoxyCodeLine{00576             \textcolor{keywordflow}{if}(Display.CurrentSequencestep < NUMBER\_OF\_SEQUENCERSTEPS+1)    \textcolor{comment}{// Display.CurrentDrumStep should be maximum the number of drumsteps}}
 \DoxyCodeLine{00577                 Display.CurrentSequencestep++;}
@@ -464,7 +464,7 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00579             \textcolor{keywordflow}{if}(Display.CurrentSequencestep == NUMBER\_OF\_SEQUENCERSTEPS+1)   \textcolor{comment}{// cursor switches to first value when the limit is exceeded}}
 \DoxyCodeLine{00580                 Display.CurrentSequencestep = 1;}
 \DoxyCodeLine{00581 }
-\DoxyCodeLine{00582             \mbox{\hyperlink{display_8h_acb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
+\DoxyCodeLine{00582             \mbox{\hyperlink{group__Display_gacb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}();}
 \DoxyCodeLine{00583         \}}
 \DoxyCodeLine{00584     \}}
 \DoxyCodeLine{00585     \textcolor{comment}{// END Sequencer Processing}}
@@ -474,29 +474,29 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00589         \textcolor{comment}{// arrow up or down}}
 \DoxyCodeLine{00590         \textcolor{keywordflow}{if} (Display.arrow\_flag == \textcolor{keyword}{true}) \{   \textcolor{comment}{// just in case we would not use the arrow, this flag should be false}}
 \DoxyCodeLine{00591             \textcolor{keywordflow}{if}(Display.ADC2inputs[1] < Display.LowerLimit) \{    \textcolor{comment}{// joystick-\/y goes down}}
-\DoxyCodeLine{00592                 \mbox{\hyperlink{display_8h_a44502944f0f57e797ed44a9d81e533e8}{DISPLAY\_ArrowDown}}(\&(Display.JoystickParameterPosition));}
-\DoxyCodeLine{00593                 \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00592                 \mbox{\hyperlink{group__DisplayProcess_ga44502944f0f57e797ed44a9d81e533e8}{DISPLAY\_ArrowDown}}(\&(Display.JoystickParameterPosition));}
+\DoxyCodeLine{00593                 \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00594                 Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00595             \}}
 \DoxyCodeLine{00596             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[1] > Display.UpperLimit) \{   \textcolor{comment}{// joystick-\/y goes up}}
-\DoxyCodeLine{00597                 \mbox{\hyperlink{display_8h_a66ef522eba7da71e294cabcccdd89adf}{DISPLAY\_ArrowUp}}(\&(Display.JoystickParameterPosition));}
-\DoxyCodeLine{00598                 \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00597                 \mbox{\hyperlink{group__DisplayProcess_ga66ef522eba7da71e294cabcccdd89adf}{DISPLAY\_ArrowUp}}(\&(Display.JoystickParameterPosition));}
+\DoxyCodeLine{00598                 \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00599                 Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00600             \}}
 \DoxyCodeLine{00601         \}}
 \DoxyCodeLine{00602         \textcolor{comment}{// switch page left or right}}
 \DoxyCodeLine{00603         \textcolor{keywordflow}{if}(Display.ADC2inputs[0] > Display.UpperLimit) \{    \textcolor{comment}{// switch to the left page}}
-\DoxyCodeLine{00604             \mbox{\hyperlink{display_8h_aad139dccbdea27c5c95092b327408a1a}{DISPLAY\_SwitchPageLeft}}();}
-\DoxyCodeLine{00605             \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00604             \mbox{\hyperlink{group__DisplayProcess_gaad139dccbdea27c5c95092b327408a1a}{DISPLAY\_SwitchPageLeft}}();}
+\DoxyCodeLine{00605             \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00606             Display.JoystickParameterPosition = 1;}
-\DoxyCodeLine{00607             \mbox{\hyperlink{display_8h_a4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(1);}
+\DoxyCodeLine{00607             \mbox{\hyperlink{group__DisplayProcess_ga4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(1);}
 \DoxyCodeLine{00608             Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00609         \}}
 \DoxyCodeLine{00610         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ADC2inputs[0] < Display.LowerLimit) \{   \textcolor{comment}{// switch to the right page}}
-\DoxyCodeLine{00611             \mbox{\hyperlink{display_8h_a6762942b296dabc3a6cfa0f14bd1c690}{DISPLAY\_SwitchPageRight}}();}
-\DoxyCodeLine{00612             \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00611             \mbox{\hyperlink{group__DisplayProcess_ga6762942b296dabc3a6cfa0f14bd1c690}{DISPLAY\_SwitchPageRight}}();}
+\DoxyCodeLine{00612             \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00613             Display.JoystickParameterPosition = 1;}
-\DoxyCodeLine{00614             \mbox{\hyperlink{display_8h_a4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(1);}
+\DoxyCodeLine{00614             \mbox{\hyperlink{group__DisplayProcess_ga4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(1);}
 \DoxyCodeLine{00615             Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00616         \}}
 \DoxyCodeLine{00617     \}}
@@ -515,7 +515,7 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00630         \textcolor{keywordflow}{if}(abs(Display.last\_Poti -\/ Display.PotiMean) > Display.Poti\_Threshold) \{}
 \DoxyCodeLine{00631             Display.poti\_moved = \textcolor{keyword}{true};}
 \DoxyCodeLine{00632             Display.last\_Poti = Display.PotiMean;}
-\DoxyCodeLine{00633             \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00633             \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00634             Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00635         \}}
 \DoxyCodeLine{00636         \textcolor{keywordflow}{else} \{}
@@ -529,10 +529,10 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00644     \textcolor{keywordflow}{if}(Display.poti\_moved == \textcolor{keyword}{true}) \{}
 \DoxyCodeLine{00645         \textcolor{keywordflow}{if}(Display.pagePosition == 3 \&\& Display.currentDrumcomputer > 0 \&\& Display.JoystickParameterPosition == 2) \{}
 \DoxyCodeLine{00646 }
-\DoxyCodeLine{00647             \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}} = (((float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange) * (BPM\_MAX-\/60)) + 60; \textcolor{comment}{// minimum BPM of 60, cause low BPMs cause fuckups}}
-\DoxyCodeLine{00648             \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}} = roundf(\mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{00647             \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}} = (((float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange) * (BPM\_MAX-\/60)) + 60; \textcolor{comment}{// minimum BPM of 60, cause low BPMs cause fuckups}}
+\DoxyCodeLine{00648             \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}} = roundf(\mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
 \DoxyCodeLine{00649 }
-\DoxyCodeLine{00650             sprintf(Display.value\_str\_drumcomputer[8], \textcolor{stringliteral}{"{}\%.f"{}}, \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{00650             sprintf(Display.value\_str\_drumcomputer[8], \textcolor{stringliteral}{"{}\%.f"{}}, \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
 \DoxyCodeLine{00651             Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position-\/50, CASE2, Display.value\_end\_x\_position, CASE2+VALUE\_ROW\_LENGTH, UNCOLORED);}
 \DoxyCodeLine{00652             Paint\_DrawStringAt(\&paint, Display.value\_start\_x\_position-\/50, CASE2, Display.value\_str\_drumcomputer[8], \&Font12, COLORED);}
 \DoxyCodeLine{00653             Display.UpdateDisplay = \textcolor{keyword}{true};}
@@ -543,32 +543,32 @@ Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00483}{483}} of fil
 \DoxyCodeLine{00658 }
 \DoxyCodeLine{00659     \textcolor{comment}{// necessary to update the display when the rate is changed in the LFO\_SingleValueProcess function}}
 \DoxyCodeLine{00660     \textcolor{keywordflow}{if}(Tremolo.lfo-\/>lfo\_done\_flag) \{}
-\DoxyCodeLine{00661         \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00661         \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00662         Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00663         Tremolo.lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
 \DoxyCodeLine{00664     \}}
 \DoxyCodeLine{00665     \textcolor{keywordflow}{if}(WahWah.lfo-\/>lfo\_done\_flag) \{}
-\DoxyCodeLine{00666         \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00666         \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00667         Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00668         WahWah.lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
 \DoxyCodeLine{00669     \}}
 \DoxyCodeLine{00670 }
 \DoxyCodeLine{00671     \textcolor{comment}{// process the display and and update it when one of the buttons is pressed, because otherwise the voices and sequencer notes and octaves are not updated}}
 \DoxyCodeLine{00672     \textcolor{keywordflow}{if}(Display.button\_pressed\_flag == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{00673         \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00673         \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00674         Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00675         Display.button\_pressed\_flag = \textcolor{keyword}{false};}
 \DoxyCodeLine{00676     \}}
 \DoxyCodeLine{00677 }
 \DoxyCodeLine{00678     \textcolor{comment}{// value of the gyro-\/sensor changed}}
 \DoxyCodeLine{00679     \textcolor{keywordflow}{if}(\mbox{\hyperlink{input__interfaces_8h_a192acf54301f05c84432d895bfc661e6}{gyrochanged}} == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{00680         \mbox{\hyperlink{display_8h_a58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
+\DoxyCodeLine{00680         \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}();}
 \DoxyCodeLine{00681         Display.UpdateDisplay = \textcolor{keyword}{true};}
 \DoxyCodeLine{00682         \mbox{\hyperlink{input__interfaces_8h_a192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{00683     \}}
 \DoxyCodeLine{00684 }
 \DoxyCodeLine{00685     \textcolor{keywordflow}{if}(Display.UpdateDisplay == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{00686         \mbox{\hyperlink{display_8h_a0cf58d71eacb3fad194c7257fd5ce183}{DISPLAY\_Update}}();}
+\DoxyCodeLine{00686         \mbox{\hyperlink{group__DisplayProcess_ga0cf58d71eacb3fad194c7257fd5ce183}{DISPLAY\_Update}}();}
 \DoxyCodeLine{00687         Display.UpdateDisplay = \textcolor{keyword}{false};}
 \DoxyCodeLine{00688     \}}
 \DoxyCodeLine{00689 }

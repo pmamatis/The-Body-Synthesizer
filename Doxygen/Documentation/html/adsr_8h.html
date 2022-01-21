@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('adsr_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_e2489e887f17afa3cbc07a4ec152cdd2.html">Inc</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -85,467 +101,63 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structadsr.html">adsr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">stores the state of the ADSR, aswell as the configuration  <a href="structadsr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a6be09edd58a7d02106bd5473abb9bae5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ADSR_Status</b> { <b>ADSR_FAIL</b> = -1
+<tr class="memitem:ga6be09edd58a7d02106bd5473abb9bae5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ADSR_Status</b> { <b>ADSR_FAIL</b> = -1
 , <b>ADSR_OK</b> = 1
  }</td></tr>
-<tr class="separator:a6be09edd58a7d02106bd5473abb9bae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ga6be09edd58a7d02106bd5473abb9bae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab26d8ec30eff40bfb82b160defd0af22"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#ab26d8ec30eff40bfb82b160defd0af22">ADSR_Init</a> (void)</td></tr>
-<tr class="separator:ab26d8ec30eff40bfb82b160defd0af22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5056dadba0e7d70cf66cb85475c599a1"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#a5056dadba0e7d70cf66cb85475c599a1">SetupADSR</a> (struct <a class="el" href="structadsr.html">adsr</a> *envelope)</td></tr>
-<tr class="separator:a5056dadba0e7d70cf66cb85475c599a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab059a1f2cde16bed41f0f4e0f113a5d9"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#ab059a1f2cde16bed41f0f4e0f113a5d9">ADSR_Reset</a> (struct <a class="el" href="structadsr.html">adsr</a> *envelope)</td></tr>
-<tr class="separator:ab059a1f2cde16bed41f0f4e0f113a5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02c74c2f9a8094da74c4d9b905d87550"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#a02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a> (struct <a class="el" href="structadsr.html">adsr</a> *envelope, float *calculate_value, bool flag)</td></tr>
-<tr class="separator:a02c74c2f9a8094da74c4d9b905d87550"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac86ad75fa8ab7681c5ba8fdb66c4cbf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#ac86ad75fa8ab7681c5ba8fdb66c4cbf0">OnePress_ADSR_Sequencer_Process</a> (struct <a class="el" href="structadsr.html">adsr</a> *envelope, float *calculate_value, bool flag)</td></tr>
-<tr class="separator:ac86ad75fa8ab7681c5ba8fdb66c4cbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab26d8ec30eff40bfb82b160defd0af22"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#gab26d8ec30eff40bfb82b160defd0af22">ADSR_Init</a> (void)</td></tr>
+<tr class="separator:gab26d8ec30eff40bfb82b160defd0af22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5056dadba0e7d70cf66cb85475c599a1"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#ga5056dadba0e7d70cf66cb85475c599a1">SetupADSR</a> (struct <a class="el" href="structadsr.html">adsr</a> *<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>)</td></tr>
+<tr class="separator:ga5056dadba0e7d70cf66cb85475c599a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab059a1f2cde16bed41f0f4e0f113a5d9"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9">ADSR_Reset</a> (struct <a class="el" href="structadsr.html">adsr</a> *<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>)</td></tr>
+<tr class="separator:gab059a1f2cde16bed41f0f4e0f113a5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02c74c2f9a8094da74c4d9b905d87550"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a> (struct <a class="el" href="structadsr.html">adsr</a> *<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>, float *calculate_value, bool flag)</td></tr>
+<tr class="separator:ga02c74c2f9a8094da74c4d9b905d87550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac86ad75fa8ab7681c5ba8fdb66c4cbf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#gac86ad75fa8ab7681c5ba8fdb66c4cbf0">OnePress_ADSR_Sequencer_Process</a> (struct <a class="el" href="structadsr.html">adsr</a> *<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>, float *calculate_value, bool flag)</td></tr>
+<tr class="separator:gac86ad75fa8ab7681c5ba8fdb66c4cbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a1fef3d5c4761374cfc9f8f5e9a48ddf0"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#a1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a></td></tr>
-<tr class="separator:a1fef3d5c4761374cfc9f8f5e9a48ddf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaadc1294c5e9298d0ae4a1fd75fd68a9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#aaadc1294c5e9298d0ae4a1fd75fd68a9">adsr_SN1</a> [16]</td></tr>
-<tr class="separator:aaadc1294c5e9298d0ae4a1fd75fd68a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7591a8d78bd729063748410fd9d35ae"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#ab7591a8d78bd729063748410fd9d35ae">adsr_SN2</a> [16]</td></tr>
-<tr class="separator:ab7591a8d78bd729063748410fd9d35ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39cbe7292e2d699f206aa1e7e89c4984"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#a39cbe7292e2d699f206aa1e7e89c4984">adsr_SN3</a> [16]</td></tr>
-<tr class="separator:a39cbe7292e2d699f206aa1e7e89c4984"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1372304559086561ead44f354b3361df"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#a1372304559086561ead44f354b3361df">adsr_SN4</a> [16]</td></tr>
-<tr class="separator:a1372304559086561ead44f354b3361df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a742e13f70ae8c573509abfd794271f44"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adsr_8h.html#a742e13f70ae8c573509abfd794271f44">adsr_keyboard</a> [5]</td></tr>
-<tr class="separator:a742e13f70ae8c573509abfd794271f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1fef3d5c4761374cfc9f8f5e9a48ddf0"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a></td></tr>
+<tr class="memdesc:ga1fef3d5c4761374cfc9f8f5e9a48ddf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADSR for the Voice notes.  <a href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">More...</a><br /></td></tr>
+<tr class="separator:ga1fef3d5c4761374cfc9f8f5e9a48ddf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaadc1294c5e9298d0ae4a1fd75fd68a9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#gaaadc1294c5e9298d0ae4a1fd75fd68a9">adsr_SN1</a> [16]</td></tr>
+<tr class="separator:gaaadc1294c5e9298d0ae4a1fd75fd68a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab7591a8d78bd729063748410fd9d35ae"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#gab7591a8d78bd729063748410fd9d35ae">adsr_SN2</a> [16]</td></tr>
+<tr class="separator:gab7591a8d78bd729063748410fd9d35ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39cbe7292e2d699f206aa1e7e89c4984"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#ga39cbe7292e2d699f206aa1e7e89c4984">adsr_SN3</a> [16]</td></tr>
+<tr class="separator:ga39cbe7292e2d699f206aa1e7e89c4984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1372304559086561ead44f354b3361df"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#ga1372304559086561ead44f354b3361df">adsr_SN4</a> [16]</td></tr>
+<tr class="separator:ga1372304559086561ead44f354b3361df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga742e13f70ae8c573509abfd794271f44"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structadsr.html">adsr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a> [5]</td></tr>
+<tr class="memdesc:ga742e13f70ae8c573509abfd794271f44"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADSR storage for the keyboard.  <a href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">More...</a><br /></td></tr>
+<tr class="separator:ga742e13f70ae8c573509abfd794271f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >adsr effect header </p>
 <p >TODO</p>
-<dl class="section author"><dt>Author</dt><dd>marc bielen </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Marc Bielen </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2022-01-06</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a6be09edd58a7d02106bd5473abb9bae5" name="a6be09edd58a7d02106bd5473abb9bae5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6be09edd58a7d02106bd5473abb9bae5">&#9670;&nbsp;</a></span>ADSR_Status</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum ADSR_Status</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00019">19</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>             {</div>
-<div class="line"><span class="lineno">   20</span>    ADSR_FAIL = -1,</div>
-<div class="line"><span class="lineno">   21</span>    ADSR_OK = 1</div>
-<div class="line"><span class="lineno">   22</span>} ADSR_Status;</div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ab26d8ec30eff40bfb82b160defd0af22" name="ab26d8ec30eff40bfb82b160defd0af22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab26d8ec30eff40bfb82b160defd0af22">&#9670;&nbsp;</a></span>ADSR_Init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ADSR_Status ADSR_Init </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >TODO </p><dl class="section return"><dt>Returns</dt><dd>ADSR_Status </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00019">19</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>                            {</div>
-<div class="line"><span class="lineno">   20</span> </div>
-<div class="line"><span class="lineno">   21</span>    SetupADSR(&amp;envelope);</div>
-<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)</div>
-<div class="line"><span class="lineno">   23</span>        SetupADSR(&amp;adsr_keyboard[i]);</div>
-<div class="line"><span class="lineno">   24</span> </div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
-<div class="line"><span class="lineno">   26</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ab059a1f2cde16bed41f0f4e0f113a5d9" name="ab059a1f2cde16bed41f0f4e0f113a5d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab059a1f2cde16bed41f0f4e0f113a5d9">&#9670;&nbsp;</a></span>ADSR_Reset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ADSR_Status ADSR_Reset </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structadsr.html">adsr</a> *&#160;</td>
-          <td class="paramname"><em>envelope</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">envelope</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>ADSR_Status </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00054">54</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   54</span>                                              {</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>    envelope-&gt;adsr_counter = 0;</div>
-<div class="line"><span class="lineno">   57</span>    envelope-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
-<div class="line"><span class="lineno">   58</span>    envelope-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
-<div class="line"><span class="lineno">   59</span>    envelope-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   60</span>    envelope-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
-<div class="line"><span class="lineno">   61</span>    envelope-&gt;adsr_sustain_amplitude = 0.5;</div>
-<div class="line"><span class="lineno">   62</span>    envelope-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>    envelope-&gt;adsr_done = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>    Display.ADSR_Attacktime = envelope-&gt;adsr_attack_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   67</span>    Display.ADSR_Decaytime = envelope-&gt;adsr_decay_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   68</span>    Display.ADSR_Sustaintime = envelope-&gt;adsr_sustain_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   69</span>    Display.ADSR_Sustainlevel = envelope-&gt;adsr_sustain_amplitude/LUT_SR;</div>
-<div class="line"><span class="lineno">   70</span>    Display.ADSR_Releasetime = envelope-&gt;adsr_release_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span>    Display.ADSR_Sources[0] = POTI;</div>
-<div class="line"><span class="lineno">   73</span>    Display.ADSR_Sources[1] = POTI;</div>
-<div class="line"><span class="lineno">   74</span>    Display.ADSR_Sources[2] = POTI;</div>
-<div class="line"><span class="lineno">   75</span>    Display.ADSR_Sources[3] = POTI;</div>
-<div class="line"><span class="lineno">   76</span>    Display.ADSR_Sources[4] = POTI;</div>
-<div class="line"><span class="lineno">   77</span> </div>
-<div class="line"><span class="lineno">   78</span>    strcpy(Display.value_str_adsr_settings[0], Display.source_names[Display.ADSR_Sources[0]]);</div>
-<div class="line"><span class="lineno">   79</span>    strcpy(Display.value_str_adsr_settings[1], Display.source_names[Display.ADSR_Sources[1]]);</div>
-<div class="line"><span class="lineno">   80</span>    strcpy(Display.value_str_adsr_settings[2], Display.source_names[Display.ADSR_Sources[2]]);</div>
-<div class="line"><span class="lineno">   81</span>    strcpy(Display.value_str_adsr_settings[3], Display.source_names[Display.ADSR_Sources[3]]);</div>
-<div class="line"><span class="lineno">   82</span>    strcpy(Display.value_str_adsr_settings[4], Display.source_names[Display.ADSR_Sources[4]]);</div>
-<div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
-<div class="line"><span class="lineno">   85</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a02c74c2f9a8094da74c4d9b905d87550" name="a02c74c2f9a8094da74c4d9b905d87550"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02c74c2f9a8094da74c4d9b905d87550">&#9670;&nbsp;</a></span>OnePress_ADSR_Linear_Process()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OnePress_ADSR_Linear_Process </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structadsr.html">adsr</a> *&#160;</td>
-          <td class="paramname"><em>envelope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float *&#160;</td>
-          <td class="paramname"><em>calculate_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>flag</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">envelope</td><td></td></tr>
-    <tr><td class="paramname">calculate_value</td><td></td></tr>
-    <tr><td class="paramname">flag</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00094">94</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   94</span>                                                                                            {</div>
-<div class="line"><span class="lineno">   95</span> </div>
-<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">   97</span> </div>
-<div class="line"><span class="lineno">   98</span>        <span class="keywordtype">float</span> calc = 0;</div>
-<div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>        envelope-&gt;adsr_duration_time = envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time + envelope-&gt;adsr_sustain_time + envelope-&gt;adsr_release_time;</div>
-<div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration</span></div>
-<div class="line"><span class="lineno">  103</span> </div>
-<div class="line"><span class="lineno">  104</span>            <span class="comment">// attack period</span></div>
-<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_attack_time)</div>
-<div class="line"><span class="lineno">  106</span>                calc = envelope-&gt;adsr_counter * (envelope-&gt;adsr_max_amp/envelope-&gt;adsr_attack_time);</div>
-<div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>            <span class="comment">// decay period</span></div>
-<div class="line"><span class="lineno">  109</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time))</div>
-<div class="line"><span class="lineno">  110</span>                calc = ((envelope-&gt;adsr_sustain_amplitude - envelope-&gt;adsr_max_amp)/envelope-&gt;adsr_decay_time) * (envelope-&gt;adsr_counter - envelope-&gt;adsr_attack_time) + envelope-&gt;adsr_max_amp;</div>
-<div class="line"><span class="lineno">  111</span> </div>
-<div class="line"><span class="lineno">  112</span>            <span class="comment">// sustain period</span></div>
-<div class="line"><span class="lineno">  113</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  114</span>                calc = envelope-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  115</span> </div>
-<div class="line"><span class="lineno">  116</span>            <span class="comment">// release period</span></div>
-<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  118</span>                calc = -(envelope-&gt;adsr_sustain_amplitude/envelope-&gt;adsr_release_time) * (envelope-&gt;adsr_counter - (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time)) + envelope-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>            *calculate_value = *calculate_value * calc;</div>
-<div class="line"><span class="lineno">  121</span>        }</div>
-<div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>        <span class="comment">// update adsr counter</span></div>
-<div class="line"><span class="lineno">  124</span>        envelope-&gt;adsr_counter++;</div>
-<div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= envelope-&gt;adsr_duration_time) {</div>
-<div class="line"><span class="lineno">  127</span>            envelope-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
-<div class="line"><span class="lineno">  128</span>            envelope-&gt;adsr_done = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  129</span>        }</div>
-<div class="line"><span class="lineno">  130</span>    }</div>
-<div class="line"><span class="lineno">  131</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ac86ad75fa8ab7681c5ba8fdb66c4cbf0" name="ac86ad75fa8ab7681c5ba8fdb66c4cbf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac86ad75fa8ab7681c5ba8fdb66c4cbf0">&#9670;&nbsp;</a></span>OnePress_ADSR_Sequencer_Process()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OnePress_ADSR_Sequencer_Process </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structadsr.html">adsr</a> *&#160;</td>
-          <td class="paramname"><em>envelope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float *&#160;</td>
-          <td class="paramname"><em>calculate_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>flag</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >TODO </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">envelope</td><td></td></tr>
-    <tr><td class="paramname">calculate_value</td><td></td></tr>
-    <tr><td class="paramname">flag</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00139">139</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  139</span>                                                                                               {</div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordtype">float</span> calc;</div>
-<div class="line"><span class="lineno">  144</span> </div>
-<div class="line"><span class="lineno">  145</span>        envelope-&gt;adsr_duration_time = envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time + envelope-&gt;adsr_sustain_time + envelope-&gt;adsr_release_time;</div>
-<div class="line"><span class="lineno">  146</span> </div>
-<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration time</span></div>
-<div class="line"><span class="lineno">  148</span> </div>
-<div class="line"><span class="lineno">  149</span>            <span class="comment">// attack period</span></div>
-<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_attack_time)</div>
-<div class="line"><span class="lineno">  151</span>                calc = envelope-&gt;adsr_counter * (envelope-&gt;adsr_max_amp/envelope-&gt;adsr_attack_time);</div>
-<div class="line"><span class="lineno">  152</span> </div>
-<div class="line"><span class="lineno">  153</span>            <span class="comment">// decay period</span></div>
-<div class="line"><span class="lineno">  154</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time))</div>
-<div class="line"><span class="lineno">  155</span>                calc = ((envelope-&gt;adsr_sustain_amplitude - envelope-&gt;adsr_max_amp)/envelope-&gt;adsr_decay_time) * (envelope-&gt;adsr_counter - envelope-&gt;adsr_attack_time) + envelope-&gt;adsr_max_amp;</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>            <span class="comment">// sustain period</span></div>
-<div class="line"><span class="lineno">  158</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  159</span>                calc = envelope-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  160</span> </div>
-<div class="line"><span class="lineno">  161</span>            <span class="comment">// release period</span></div>
-<div class="line"><span class="lineno">  162</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  163</span>                calc = -(envelope-&gt;adsr_sustain_amplitude/envelope-&gt;adsr_release_time) * (envelope-&gt;adsr_counter - (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time)) + envelope-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  164</span> </div>
-<div class="line"><span class="lineno">  165</span>            *calculate_value = *calculate_value * calc;</div>
-<div class="line"><span class="lineno">  166</span>        }</div>
-<div class="line"><span class="lineno">  167</span> </div>
-<div class="line"><span class="lineno">  168</span>        <span class="comment">// update adsr counter</span></div>
-<div class="line"><span class="lineno">  169</span>        envelope-&gt;adsr_counter++;</div>
-<div class="line"><span class="lineno">  170</span> </div>
-<div class="line"><span class="lineno">  171</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= envelope-&gt;adsr_duration_time) {</div>
-<div class="line"><span class="lineno">  172</span> </div>
-<div class="line"><span class="lineno">  173</span>            envelope-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
-<div class="line"><span class="lineno">  174</span>            envelope-&gt;adsr_done = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  175</span>        }</div>
-<div class="line"><span class="lineno">  176</span>    }</div>
-<div class="line"><span class="lineno">  177</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a5056dadba0e7d70cf66cb85475c599a1" name="a5056dadba0e7d70cf66cb85475c599a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5056dadba0e7d70cf66cb85475c599a1">&#9670;&nbsp;</a></span>SetupADSR()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ADSR_Status SetupADSR </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structadsr.html">adsr</a> *&#160;</td>
-          <td class="paramname"><em>envelope</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00028">28</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>                                             {</div>
-<div class="line"><span class="lineno">   29</span> </div>
-<div class="line"><span class="lineno">   30</span>    envelope-&gt;adsr_counter = 0;</div>
-<div class="line"><span class="lineno">   31</span>    envelope-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
-<div class="line"><span class="lineno">   32</span>    envelope-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
-<div class="line"><span class="lineno">   33</span>    envelope-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   34</span>    envelope-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
-<div class="line"><span class="lineno">   35</span>    envelope-&gt;adsr_sustain_amplitude = 0.5;</div>
-<div class="line"><span class="lineno">   36</span>    envelope-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>    envelope-&gt;adsr_maximum_attack = 1.00;   <span class="comment">// in seconds; maximum 4.0 seconds (-&gt; 4*LUT_SR), to display the value -&gt; uint16_t</span></div>
-<div class="line"><span class="lineno">   39</span>    envelope-&gt;adsr_maximum_decay = 1.00;</div>
-<div class="line"><span class="lineno">   40</span>    envelope-&gt;adsr_maximum_sustaintime = 2.00;</div>
-<div class="line"><span class="lineno">   41</span>    envelope-&gt;adsr_maximum_release = 1.00;</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>    envelope-&gt;adsr_done = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
-<div class="line"><span class="lineno">   46</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a742e13f70ae8c573509abfd794271f44" name="a742e13f70ae8c573509abfd794271f44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a742e13f70ae8c573509abfd794271f44">&#9670;&nbsp;</a></span>adsr_keyboard</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structadsr.html">adsr</a> adsr_keyboard[5]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00064">64</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
-
-</div>
-</div>
-<a id="aaadc1294c5e9298d0ae4a1fd75fd68a9" name="aaadc1294c5e9298d0ae4a1fd75fd68a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaadc1294c5e9298d0ae4a1fd75fd68a9">&#9670;&nbsp;</a></span>adsr_SN1</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structadsr.html">adsr</a> adsr_SN1[16]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00058">58</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
-
-</div>
-</div>
-<a id="ab7591a8d78bd729063748410fd9d35ae" name="ab7591a8d78bd729063748410fd9d35ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7591a8d78bd729063748410fd9d35ae">&#9670;&nbsp;</a></span>adsr_SN2</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structadsr.html">adsr</a> adsr_SN2[16]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00059">59</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
-
-</div>
-</div>
-<a id="a39cbe7292e2d699f206aa1e7e89c4984" name="a39cbe7292e2d699f206aa1e7e89c4984"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39cbe7292e2d699f206aa1e7e89c4984">&#9670;&nbsp;</a></span>adsr_SN3</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structadsr.html">adsr</a> adsr_SN3[16]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00060">60</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
-
-</div>
-</div>
-<a id="a1372304559086561ead44f354b3361df" name="a1372304559086561ead44f354b3361df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1372304559086561ead44f354b3361df">&#9670;&nbsp;</a></span>adsr_SN4</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structadsr.html">adsr</a> adsr_SN4[16]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00061">61</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
-
-</div>
-</div>
-<a id="a1fef3d5c4761374cfc9f8f5e9a48ddf0" name="a1fef3d5c4761374cfc9f8f5e9a48ddf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fef3d5c4761374cfc9f8f5e9a48ddf0">&#9670;&nbsp;</a></span>envelope</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structadsr.html">adsr</a> envelope</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00054">54</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_e2489e887f17afa3cbc07a4ec152cdd2.html">Inc</a></li><li class="navelem"><a class="el" href="adsr_8h.html">adsr.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('stm32f7xx__it_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a> &#124;
@@ -498,7 +514,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  488</span>    <span class="keywordflow">if</span>(Display.EditDrums == <span class="keyword">true</span>) {</div>
 <div class="line"><span class="lineno">  489</span> </div>
 <div class="line"><span class="lineno">  490</span>        <span class="keywordflow">if</span>(Display.ADC2inputs[1] &lt; Display.LowerLimit) {    <span class="comment">// joystick down</span></div>
-<div class="line"><span class="lineno">  491</span>            <a class="code hl_function" href="display_8h.html#a1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  491</span>            <a class="code hl_function" href="group__Display.html#ga1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  492</span> </div>
 <div class="line"><span class="lineno">  493</span>            <span class="keywordflow">if</span>(Display.CurrentSampleRow &lt; MAX_NUMBER_OF_SAMPLES+1)  <span class="comment">// Display.CurrentSampleRow should be maximum the number of loaded samples</span></div>
 <div class="line"><span class="lineno">  494</span>                Display.CurrentSampleRow++;</div>
@@ -506,10 +522,10 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  496</span>            <span class="keywordflow">if</span>(Display.CurrentSampleRow == MAX_NUMBER_OF_SAMPLES+1) <span class="comment">// cursor switches to first value when the limit is exceeded</span></div>
 <div class="line"><span class="lineno">  497</span>                Display.CurrentSampleRow = 1;</div>
 <div class="line"><span class="lineno">  498</span> </div>
-<div class="line"><span class="lineno">  499</span>            <a class="code hl_function" href="display_8h.html#a6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  499</span>            <a class="code hl_function" href="group__Display.html#ga6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  500</span>        }</div>
 <div class="line"><span class="lineno">  501</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ADC2inputs[1] &gt; Display.UpperLimit) {   <span class="comment">// joystick up</span></div>
-<div class="line"><span class="lineno">  502</span>            <a class="code hl_function" href="display_8h.html#a1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  502</span>            <a class="code hl_function" href="group__Display.html#ga1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  503</span> </div>
 <div class="line"><span class="lineno">  504</span>            <span class="keywordflow">if</span>(Display.CurrentSampleRow &gt;= 1)   <span class="comment">// Display.CurrentSampleRow should be minimum 1</span></div>
 <div class="line"><span class="lineno">  505</span>                Display.CurrentSampleRow--;</div>
@@ -517,10 +533,10 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  507</span>            <span class="keywordflow">if</span>(Display.CurrentSampleRow == 0)   <span class="comment">// cursor switches to last value when the limit is exceeded</span></div>
 <div class="line"><span class="lineno">  508</span>                Display.CurrentSampleRow = MAX_NUMBER_OF_SAMPLES;</div>
 <div class="line"><span class="lineno">  509</span> </div>
-<div class="line"><span class="lineno">  510</span>            <a class="code hl_function" href="display_8h.html#a6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  510</span>            <a class="code hl_function" href="group__Display.html#ga6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  511</span>        }</div>
 <div class="line"><span class="lineno">  512</span>        <span class="keywordflow">if</span>(Display.ADC2inputs[0] &gt; Display.UpperLimit) {    <span class="comment">// joystick left</span></div>
-<div class="line"><span class="lineno">  513</span>            <a class="code hl_function" href="display_8h.html#a1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  513</span>            <a class="code hl_function" href="group__Display.html#ga1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  514</span> </div>
 <div class="line"><span class="lineno">  515</span>            <span class="keywordflow">if</span>(Display.CurrentDrumstep &gt;= 1)    <span class="comment">// Display.CurrentDrumstep should be minimum 1</span></div>
 <div class="line"><span class="lineno">  516</span>                Display.CurrentDrumstep--;</div>
@@ -528,10 +544,10 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  518</span>            <span class="keywordflow">if</span>(Display.CurrentDrumstep == 0)    <span class="comment">// cursor switches to last value when the limit is exceeded</span></div>
 <div class="line"><span class="lineno">  519</span>                Display.CurrentDrumstep = NUMBER_OF_DRUMSTEPS;</div>
 <div class="line"><span class="lineno">  520</span> </div>
-<div class="line"><span class="lineno">  521</span>            <a class="code hl_function" href="display_8h.html#a6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  521</span>            <a class="code hl_function" href="group__Display.html#ga6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  522</span>        }</div>
 <div class="line"><span class="lineno">  523</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ADC2inputs[0] &lt; Display.LowerLimit) {   <span class="comment">// joystick right</span></div>
-<div class="line"><span class="lineno">  524</span>            <a class="code hl_function" href="display_8h.html#a1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  524</span>            <a class="code hl_function" href="group__Display.html#ga1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  525</span> </div>
 <div class="line"><span class="lineno">  526</span>            <span class="keywordflow">if</span>(Display.CurrentDrumstep &lt; NUMBER_OF_DRUMSTEPS+1) <span class="comment">// Display.CurrentDrumStep should be maximum the number of drumsteps</span></div>
 <div class="line"><span class="lineno">  527</span>                Display.CurrentDrumstep++;</div>
@@ -539,7 +555,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  529</span>            <span class="keywordflow">if</span>(Display.CurrentDrumstep == NUMBER_OF_DRUMSTEPS+1)    <span class="comment">// cursor switches to first value when the limit is exceeded</span></div>
 <div class="line"><span class="lineno">  530</span>                Display.CurrentDrumstep = 1;</div>
 <div class="line"><span class="lineno">  531</span> </div>
-<div class="line"><span class="lineno">  532</span>            <a class="code hl_function" href="display_8h.html#a6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  532</span>            <a class="code hl_function" href="group__Display.html#ga6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  533</span>        }</div>
 <div class="line"><span class="lineno">  534</span>    }</div>
 <div class="line"><span class="lineno">  535</span>    <span class="comment">// END Drumcomputer Processing</span></div>
@@ -548,7 +564,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  538</span>    <span class="keywordflow">if</span>(Display.EditSteps == <span class="keyword">true</span>) {</div>
 <div class="line"><span class="lineno">  539</span> </div>
 <div class="line"><span class="lineno">  540</span>        <span class="keywordflow">if</span>(Display.ADC2inputs[1] &lt; Display.LowerLimit) {    <span class="comment">// joystick down</span></div>
-<div class="line"><span class="lineno">  541</span>            <a class="code hl_function" href="display_8h.html#ab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  541</span>            <a class="code hl_function" href="group__Display.html#gab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  542</span> </div>
 <div class="line"><span class="lineno">  543</span>            <span class="keywordflow">if</span>(Display.CurrentNoteRow &lt; MAX_NUMBER_OF_NOTES+1)  <span class="comment">// Display.CurrentSampleRow should be maximum the number of loaded samples</span></div>
 <div class="line"><span class="lineno">  544</span>                Display.CurrentNoteRow++;</div>
@@ -556,10 +572,10 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  546</span>            <span class="keywordflow">if</span>(Display.CurrentNoteRow == MAX_NUMBER_OF_NOTES+1) <span class="comment">// cursor switches to first value when the limit is exceeded</span></div>
 <div class="line"><span class="lineno">  547</span>                Display.CurrentNoteRow = 1;</div>
 <div class="line"><span class="lineno">  548</span> </div>
-<div class="line"><span class="lineno">  549</span>            <a class="code hl_function" href="display_8h.html#acb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  549</span>            <a class="code hl_function" href="group__Display.html#gacb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  550</span>        }</div>
 <div class="line"><span class="lineno">  551</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ADC2inputs[1] &gt; Display.UpperLimit) {   <span class="comment">// joystick up</span></div>
-<div class="line"><span class="lineno">  552</span>            <a class="code hl_function" href="display_8h.html#ab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  552</span>            <a class="code hl_function" href="group__Display.html#gab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  553</span> </div>
 <div class="line"><span class="lineno">  554</span>            <span class="keywordflow">if</span>(Display.CurrentNoteRow &gt;= 1) <span class="comment">// Display.CurrentSampleRow should be minimum 1</span></div>
 <div class="line"><span class="lineno">  555</span>                Display.CurrentNoteRow--;</div>
@@ -567,10 +583,10 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  557</span>            <span class="keywordflow">if</span>(Display.CurrentNoteRow == 0) <span class="comment">// cursor switches to last value when the limit is exceeded</span></div>
 <div class="line"><span class="lineno">  558</span>                Display.CurrentNoteRow = MAX_NUMBER_OF_NOTES;</div>
 <div class="line"><span class="lineno">  559</span> </div>
-<div class="line"><span class="lineno">  560</span>            <a class="code hl_function" href="display_8h.html#acb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  560</span>            <a class="code hl_function" href="group__Display.html#gacb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  561</span>        }</div>
 <div class="line"><span class="lineno">  562</span>        <span class="keywordflow">if</span>(Display.ADC2inputs[0] &gt; Display.UpperLimit) {    <span class="comment">// joystick left</span></div>
-<div class="line"><span class="lineno">  563</span>            <a class="code hl_function" href="display_8h.html#ab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  563</span>            <a class="code hl_function" href="group__Display.html#gab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  564</span> </div>
 <div class="line"><span class="lineno">  565</span>            <span class="keywordflow">if</span>(Display.CurrentSequencestep &gt;= 1)    <span class="comment">// Display.CurrentDrumstep should be minimum 1</span></div>
 <div class="line"><span class="lineno">  566</span>                Display.CurrentSequencestep--;</div>
@@ -578,10 +594,10 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  568</span>            <span class="keywordflow">if</span>(Display.CurrentSequencestep == 0)    <span class="comment">// cursor switches to last value when the limit is exceeded</span></div>
 <div class="line"><span class="lineno">  569</span>                Display.CurrentSequencestep = NUMBER_OF_SEQUENCERSTEPS;</div>
 <div class="line"><span class="lineno">  570</span> </div>
-<div class="line"><span class="lineno">  571</span>            <a class="code hl_function" href="display_8h.html#acb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  571</span>            <a class="code hl_function" href="group__Display.html#gacb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  572</span>        }</div>
 <div class="line"><span class="lineno">  573</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ADC2inputs[0] &lt; Display.LowerLimit) {   <span class="comment">// joystick right</span></div>
-<div class="line"><span class="lineno">  574</span>            <a class="code hl_function" href="display_8h.html#ab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  574</span>            <a class="code hl_function" href="group__Display.html#gab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  575</span> </div>
 <div class="line"><span class="lineno">  576</span>            <span class="keywordflow">if</span>(Display.CurrentSequencestep &lt; NUMBER_OF_SEQUENCERSTEPS+1)    <span class="comment">// Display.CurrentDrumStep should be maximum the number of drumsteps</span></div>
 <div class="line"><span class="lineno">  577</span>                Display.CurrentSequencestep++;</div>
@@ -589,7 +605,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  579</span>            <span class="keywordflow">if</span>(Display.CurrentSequencestep == NUMBER_OF_SEQUENCERSTEPS+1)   <span class="comment">// cursor switches to first value when the limit is exceeded</span></div>
 <div class="line"><span class="lineno">  580</span>                Display.CurrentSequencestep = 1;</div>
 <div class="line"><span class="lineno">  581</span> </div>
-<div class="line"><span class="lineno">  582</span>            <a class="code hl_function" href="display_8h.html#acb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a>();</div>
+<div class="line"><span class="lineno">  582</span>            <a class="code hl_function" href="group__Display.html#gacb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a>();</div>
 <div class="line"><span class="lineno">  583</span>        }</div>
 <div class="line"><span class="lineno">  584</span>    }</div>
 <div class="line"><span class="lineno">  585</span>    <span class="comment">// END Sequencer Processing</span></div>
@@ -599,29 +615,29 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  589</span>        <span class="comment">// arrow up or down</span></div>
 <div class="line"><span class="lineno">  590</span>        <span class="keywordflow">if</span> (Display.arrow_flag == <span class="keyword">true</span>) {   <span class="comment">// just in case we would not use the arrow, this flag should be false</span></div>
 <div class="line"><span class="lineno">  591</span>            <span class="keywordflow">if</span>(Display.ADC2inputs[1] &lt; Display.LowerLimit) {    <span class="comment">// joystick-y goes down</span></div>
-<div class="line"><span class="lineno">  592</span>                <a class="code hl_function" href="display_8h.html#a44502944f0f57e797ed44a9d81e533e8">DISPLAY_ArrowDown</a>(&amp;(Display.JoystickParameterPosition));</div>
-<div class="line"><span class="lineno">  593</span>                <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  592</span>                <a class="code hl_function" href="group__DisplayProcess.html#ga44502944f0f57e797ed44a9d81e533e8">DISPLAY_ArrowDown</a>(&amp;(Display.JoystickParameterPosition));</div>
+<div class="line"><span class="lineno">  593</span>                <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  594</span>                Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  595</span>            }</div>
 <div class="line"><span class="lineno">  596</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ADC2inputs[1] &gt; Display.UpperLimit) {   <span class="comment">// joystick-y goes up</span></div>
-<div class="line"><span class="lineno">  597</span>                <a class="code hl_function" href="display_8h.html#a66ef522eba7da71e294cabcccdd89adf">DISPLAY_ArrowUp</a>(&amp;(Display.JoystickParameterPosition));</div>
-<div class="line"><span class="lineno">  598</span>                <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  597</span>                <a class="code hl_function" href="group__DisplayProcess.html#ga66ef522eba7da71e294cabcccdd89adf">DISPLAY_ArrowUp</a>(&amp;(Display.JoystickParameterPosition));</div>
+<div class="line"><span class="lineno">  598</span>                <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  599</span>                Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  600</span>            }</div>
 <div class="line"><span class="lineno">  601</span>        }</div>
 <div class="line"><span class="lineno">  602</span>        <span class="comment">// switch page left or right</span></div>
 <div class="line"><span class="lineno">  603</span>        <span class="keywordflow">if</span>(Display.ADC2inputs[0] &gt; Display.UpperLimit) {    <span class="comment">// switch to the left page</span></div>
-<div class="line"><span class="lineno">  604</span>            <a class="code hl_function" href="display_8h.html#aad139dccbdea27c5c95092b327408a1a">DISPLAY_SwitchPageLeft</a>();</div>
-<div class="line"><span class="lineno">  605</span>            <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  604</span>            <a class="code hl_function" href="group__DisplayProcess.html#gaad139dccbdea27c5c95092b327408a1a">DISPLAY_SwitchPageLeft</a>();</div>
+<div class="line"><span class="lineno">  605</span>            <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  606</span>            Display.JoystickParameterPosition = 1;</div>
-<div class="line"><span class="lineno">  607</span>            <a class="code hl_function" href="display_8h.html#a4170023d4ce93f468b83d6bd0f5c316d">DISPLAY_DrawArrow</a>(1);</div>
+<div class="line"><span class="lineno">  607</span>            <a class="code hl_function" href="group__DisplayProcess.html#ga4170023d4ce93f468b83d6bd0f5c316d">DISPLAY_DrawArrow</a>(1);</div>
 <div class="line"><span class="lineno">  608</span>            Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  609</span>        }</div>
 <div class="line"><span class="lineno">  610</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ADC2inputs[0] &lt; Display.LowerLimit) {   <span class="comment">// switch to the right page</span></div>
-<div class="line"><span class="lineno">  611</span>            <a class="code hl_function" href="display_8h.html#a6762942b296dabc3a6cfa0f14bd1c690">DISPLAY_SwitchPageRight</a>();</div>
-<div class="line"><span class="lineno">  612</span>            <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  611</span>            <a class="code hl_function" href="group__DisplayProcess.html#ga6762942b296dabc3a6cfa0f14bd1c690">DISPLAY_SwitchPageRight</a>();</div>
+<div class="line"><span class="lineno">  612</span>            <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  613</span>            Display.JoystickParameterPosition = 1;</div>
-<div class="line"><span class="lineno">  614</span>            <a class="code hl_function" href="display_8h.html#a4170023d4ce93f468b83d6bd0f5c316d">DISPLAY_DrawArrow</a>(1);</div>
+<div class="line"><span class="lineno">  614</span>            <a class="code hl_function" href="group__DisplayProcess.html#ga4170023d4ce93f468b83d6bd0f5c316d">DISPLAY_DrawArrow</a>(1);</div>
 <div class="line"><span class="lineno">  615</span>            Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  616</span>        }</div>
 <div class="line"><span class="lineno">  617</span>    }</div>
@@ -640,7 +656,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  630</span>        <span class="keywordflow">if</span>(abs(Display.last_Poti - Display.PotiMean) &gt; Display.Poti_Threshold) {</div>
 <div class="line"><span class="lineno">  631</span>            Display.poti_moved = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  632</span>            Display.last_Poti = Display.PotiMean;</div>
-<div class="line"><span class="lineno">  633</span>            <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  633</span>            <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  634</span>            Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  635</span>        }</div>
 <div class="line"><span class="lineno">  636</span>        <span class="keywordflow">else</span> {</div>
@@ -654,10 +670,10 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  644</span>    <span class="keywordflow">if</span>(Display.poti_moved == <span class="keyword">true</span>) {</div>
 <div class="line"><span class="lineno">  645</span>        <span class="keywordflow">if</span>(Display.pagePosition == 3 &amp;&amp; Display.currentDrumcomputer &gt; 0 &amp;&amp; Display.JoystickParameterPosition == 2) {</div>
 <div class="line"><span class="lineno">  646</span> </div>
-<div class="line"><span class="lineno">  647</span>            <a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a> = (((float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;    <span class="comment">// minimum BPM of 60, cause low BPMs cause fuckups</span></div>
-<div class="line"><span class="lineno">  648</span>            <a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a> = roundf(<a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a>);</div>
+<div class="line"><span class="lineno">  647</span>            <a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a> = (((float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange) * (BPM_MAX-60)) + 60;    <span class="comment">// minimum BPM of 60, cause low BPMs cause fuckups</span></div>
+<div class="line"><span class="lineno">  648</span>            <a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a> = roundf(<a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a>);</div>
 <div class="line"><span class="lineno">  649</span> </div>
-<div class="line"><span class="lineno">  650</span>            sprintf(Display.value_str_drumcomputer[8], <span class="stringliteral">&quot;%.f&quot;</span>, <a class="code hl_variable" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a>);</div>
+<div class="line"><span class="lineno">  650</span>            sprintf(Display.value_str_drumcomputer[8], <span class="stringliteral">&quot;%.f&quot;</span>, <a class="code hl_variable" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a>);</div>
 <div class="line"><span class="lineno">  651</span>            Paint_DrawFilledRectangle(&amp;paint, Display.value_start_x_position-50, CASE2, Display.value_end_x_position, CASE2+VALUE_ROW_LENGTH, UNCOLORED);</div>
 <div class="line"><span class="lineno">  652</span>            Paint_DrawStringAt(&amp;paint, Display.value_start_x_position-50, CASE2, Display.value_str_drumcomputer[8], &amp;Font12, COLORED);</div>
 <div class="line"><span class="lineno">  653</span>            Display.UpdateDisplay = <span class="keyword">true</span>;</div>
@@ -668,32 +684,32 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  658</span> </div>
 <div class="line"><span class="lineno">  659</span>    <span class="comment">// necessary to update the display when the rate is changed in the LFO_SingleValueProcess function</span></div>
 <div class="line"><span class="lineno">  660</span>    <span class="keywordflow">if</span>(Tremolo.lfo-&gt;lfo_done_flag) {</div>
-<div class="line"><span class="lineno">  661</span>        <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  661</span>        <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  662</span>        Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  663</span>        Tremolo.lfo-&gt;lfo_done_flag = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  664</span>    }</div>
 <div class="line"><span class="lineno">  665</span>    <span class="keywordflow">if</span>(WahWah.lfo-&gt;lfo_done_flag) {</div>
-<div class="line"><span class="lineno">  666</span>        <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  666</span>        <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  667</span>        Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  668</span>        WahWah.lfo-&gt;lfo_done_flag = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  669</span>    }</div>
 <div class="line"><span class="lineno">  670</span> </div>
 <div class="line"><span class="lineno">  671</span>    <span class="comment">// process the display and and update it when one of the buttons is pressed, because otherwise the voices and sequencer notes and octaves are not updated</span></div>
 <div class="line"><span class="lineno">  672</span>    <span class="keywordflow">if</span>(Display.button_pressed_flag == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">  673</span>        <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  673</span>        <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  674</span>        Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  675</span>        Display.button_pressed_flag = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  676</span>    }</div>
 <div class="line"><span class="lineno">  677</span> </div>
 <div class="line"><span class="lineno">  678</span>    <span class="comment">// value of the gyro-sensor changed</span></div>
 <div class="line"><span class="lineno">  679</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="input__interfaces_8h.html#a192acf54301f05c84432d895bfc661e6">gyrochanged</a> == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">  680</span>        <a class="code hl_function" href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
+<div class="line"><span class="lineno">  680</span>        <a class="code hl_function" href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a>();</div>
 <div class="line"><span class="lineno">  681</span>        Display.UpdateDisplay = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  682</span>        <a class="code hl_variable" href="input__interfaces_8h.html#a192acf54301f05c84432d895bfc661e6">gyrochanged</a> = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  683</span>    }</div>
 <div class="line"><span class="lineno">  684</span> </div>
 <div class="line"><span class="lineno">  685</span>    <span class="keywordflow">if</span>(Display.UpdateDisplay == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">  686</span>        <a class="code hl_function" href="display_8h.html#a0cf58d71eacb3fad194c7257fd5ce183">DISPLAY_Update</a>();</div>
+<div class="line"><span class="lineno">  686</span>        <a class="code hl_function" href="group__DisplayProcess.html#ga0cf58d71eacb3fad194c7257fd5ce183">DISPLAY_Update</a>();</div>
 <div class="line"><span class="lineno">  687</span>        Display.UpdateDisplay = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  688</span>    }</div>
 <div class="line"><span class="lineno">  689</span> </div>
@@ -703,18 +719,18 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  693</span> </div>
 <div class="line"><span class="lineno">  694</span>  <span class="comment">/* USER CODE END DMA2_Stream2_IRQn 1 */</span></div>
 <div class="line"><span class="lineno">  695</span>}</div>
-<div class="ttc" id="adisplay_8h_html_a0cf58d71eacb3fad194c7257fd5ce183"><div class="ttname"><a href="display_8h.html#a0cf58d71eacb3fad194c7257fd5ce183">DISPLAY_Update</a></div><div class="ttdeci">void DISPLAY_Update(void)</div><div class="ttdoc">this function updates the display</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00364">display.c:364</a></div></div>
-<div class="ttc" id="adisplay_8h_html_a1734a46d569f2b74ad09171b2802ca6b"><div class="ttname"><a href="display_8h.html#a1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a></div><div class="ttdeci">Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02013">display.c:2013</a></div></div>
-<div class="ttc" id="adisplay_8h_html_a4170023d4ce93f468b83d6bd0f5c316d"><div class="ttname"><a href="display_8h.html#a4170023d4ce93f468b83d6bd0f5c316d">DISPLAY_DrawArrow</a></div><div class="ttdeci">void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition)</div><div class="ttdoc">this function draws an arrow</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00374">display.c:374</a></div></div>
-<div class="ttc" id="adisplay_8h_html_a44502944f0f57e797ed44a9d81e533e8"><div class="ttname"><a href="display_8h.html#a44502944f0f57e797ed44a9d81e533e8">DISPLAY_ArrowDown</a></div><div class="ttdeci">void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition)</div><div class="ttdoc">this function sets the arrow one more position down</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00507">display.c:507</a></div></div>
-<div class="ttc" id="adisplay_8h_html_a58ba5f4736b652ed76bbb23f7d2cbe0e"><div class="ttname"><a href="display_8h.html#a58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a></div><div class="ttdeci">void DISPLAY_processing(void)</div><div class="ttdoc">this function is the main processing function of the display</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00626">display.c:626</a></div></div>
-<div class="ttc" id="adisplay_8h_html_a66ef522eba7da71e294cabcccdd89adf"><div class="ttname"><a href="display_8h.html#a66ef522eba7da71e294cabcccdd89adf">DISPLAY_ArrowUp</a></div><div class="ttdeci">void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition)</div><div class="ttdoc">this function sets the arrow one more position up</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00459">display.c:459</a></div></div>
-<div class="ttc" id="adisplay_8h_html_a6762942b296dabc3a6cfa0f14bd1c690"><div class="ttname"><a href="display_8h.html#a6762942b296dabc3a6cfa0f14bd1c690">DISPLAY_SwitchPageRight</a></div><div class="ttdeci">void DISPLAY_SwitchPageRight(void)</div><div class="ttdoc">this function switches to one page on the right</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00607">display.c:607</a></div></div>
-<div class="ttc" id="adisplay_8h_html_a6e1ecb52e8edebcd426cb409104aac47"><div class="ttname"><a href="display_8h.html#a6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a></div><div class="ttdeci">Display_Status DISPLAY_SetDrumcomputerStepCursor(void)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l01874">display.c:1874</a></div></div>
-<div class="ttc" id="adisplay_8h_html_aad139dccbdea27c5c95092b327408a1a"><div class="ttname"><a href="display_8h.html#aad139dccbdea27c5c95092b327408a1a">DISPLAY_SwitchPageLeft</a></div><div class="ttdeci">void DISPLAY_SwitchPageLeft(void)</div><div class="ttdoc">this function switches to one page on the left</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00579">display.c:579</a></div></div>
-<div class="ttc" id="adisplay_8h_html_ab4a4b9b1639809ba234afec57b86facb"><div class="ttname"><a href="display_8h.html#ab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a></div><div class="ttdeci">Display_Status DISPLAY_DeleteSequencerStepCursor(void)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02966">display.c:2966</a></div></div>
-<div class="ttc" id="adisplay_8h_html_acb106feb27895b4c32f2cd8770842848"><div class="ttname"><a href="display_8h.html#acb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a></div><div class="ttdeci">Display_Status DISPLAY_SetSequencerStepCursor(void)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02449">display.c:2449</a></div></div>
-<div class="ttc" id="adrum__computer_8h_html_a0065e192c774e20fd5e0ab3c342b7088"><div class="ttname"><a href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">BPM</a></div><div class="ttdeci">float BPM</div><div class="ttdoc">Tempo.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00034">drum_computer.h:34</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_ga0cf58d71eacb3fad194c7257fd5ce183"><div class="ttname"><a href="group__DisplayProcess.html#ga0cf58d71eacb3fad194c7257fd5ce183">DISPLAY_Update</a></div><div class="ttdeci">void DISPLAY_Update(void)</div><div class="ttdoc">this function updates the display</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00364">display.c:364</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_ga4170023d4ce93f468b83d6bd0f5c316d"><div class="ttname"><a href="group__DisplayProcess.html#ga4170023d4ce93f468b83d6bd0f5c316d">DISPLAY_DrawArrow</a></div><div class="ttdeci">void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition)</div><div class="ttdoc">this function draws an arrow</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00374">display.c:374</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_ga44502944f0f57e797ed44a9d81e533e8"><div class="ttname"><a href="group__DisplayProcess.html#ga44502944f0f57e797ed44a9d81e533e8">DISPLAY_ArrowDown</a></div><div class="ttdeci">void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition)</div><div class="ttdoc">this function sets the arrow one more position down</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00507">display.c:507</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_ga58ba5f4736b652ed76bbb23f7d2cbe0e"><div class="ttname"><a href="group__DisplayProcess.html#ga58ba5f4736b652ed76bbb23f7d2cbe0e">DISPLAY_processing</a></div><div class="ttdeci">void DISPLAY_processing(void)</div><div class="ttdoc">this function is the main processing function of the display</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00626">display.c:626</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_ga66ef522eba7da71e294cabcccdd89adf"><div class="ttname"><a href="group__DisplayProcess.html#ga66ef522eba7da71e294cabcccdd89adf">DISPLAY_ArrowUp</a></div><div class="ttdeci">void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition)</div><div class="ttdoc">this function sets the arrow one more position up</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00459">display.c:459</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_ga6762942b296dabc3a6cfa0f14bd1c690"><div class="ttname"><a href="group__DisplayProcess.html#ga6762942b296dabc3a6cfa0f14bd1c690">DISPLAY_SwitchPageRight</a></div><div class="ttdeci">void DISPLAY_SwitchPageRight(void)</div><div class="ttdoc">this function switches to one page on the right</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00607">display.c:607</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_gaad139dccbdea27c5c95092b327408a1a"><div class="ttname"><a href="group__DisplayProcess.html#gaad139dccbdea27c5c95092b327408a1a">DISPLAY_SwitchPageLeft</a></div><div class="ttdeci">void DISPLAY_SwitchPageLeft(void)</div><div class="ttdoc">this function switches to one page on the left</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00579">display.c:579</a></div></div>
+<div class="ttc" id="agroup__Display_html_ga1734a46d569f2b74ad09171b2802ca6b"><div class="ttname"><a href="group__Display.html#ga1734a46d569f2b74ad09171b2802ca6b">DISPLAY_DeleteDrumcomputerStepCursor</a></div><div class="ttdeci">Display_Status DISPLAY_DeleteDrumcomputerStepCursor(void)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02013">display.c:2013</a></div></div>
+<div class="ttc" id="agroup__Display_html_ga6e1ecb52e8edebcd426cb409104aac47"><div class="ttname"><a href="group__Display.html#ga6e1ecb52e8edebcd426cb409104aac47">DISPLAY_SetDrumcomputerStepCursor</a></div><div class="ttdeci">Display_Status DISPLAY_SetDrumcomputerStepCursor(void)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l01874">display.c:1874</a></div></div>
+<div class="ttc" id="agroup__Display_html_gab4a4b9b1639809ba234afec57b86facb"><div class="ttname"><a href="group__Display.html#gab4a4b9b1639809ba234afec57b86facb">DISPLAY_DeleteSequencerStepCursor</a></div><div class="ttdeci">Display_Status DISPLAY_DeleteSequencerStepCursor(void)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02966">display.c:2966</a></div></div>
+<div class="ttc" id="agroup__Display_html_gacb106feb27895b4c32f2cd8770842848"><div class="ttname"><a href="group__Display.html#gacb106feb27895b4c32f2cd8770842848">DISPLAY_SetSequencerStepCursor</a></div><div class="ttdeci">Display_Status DISPLAY_SetSequencerStepCursor(void)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02449">display.c:2449</a></div></div>
+<div class="ttc" id="agroup__DrumComputer_html_ga0065e192c774e20fd5e0ab3c342b7088"><div class="ttname"><a href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a></div><div class="ttdeci">float BPM</div><div class="ttdoc">Tempo.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00039">drum_computer.h:39</a></div></div>
 <div class="ttc" id="ainput__interfaces_8h_html_a192acf54301f05c84432d895bfc661e6"><div class="ttname"><a href="input__interfaces_8h.html#a192acf54301f05c84432d895bfc661e6">gyrochanged</a></div><div class="ttdeci">bool gyrochanged</div><div class="ttdef"><b>Definition:</b> <a href="input__interfaces_8h_source.html#l00047">input_interfaces.h:47</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1844,9 +1860,13 @@ Variables</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a class="el" href="stm32f7xx__it_8c.html">stm32f7xx_it.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

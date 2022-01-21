@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -48,6 +52,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('globals_vars.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -66,39 +86,42 @@ $(function() {
 &#160;
 
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
-<li>atan_LUT_y&#160;:&#160;<a class="el" href="atanLUT_8h.html#a44717ae85351202c8833c3880a6ef9e8">atanLUT.h</a>, <a class="el" href="distortion_8h.html#ab6549ea7290a59876018cb53511f134d">distortion.h</a></li>
+<li>adsr_keyboard&#160;:&#160;<a class="el" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr.h</a></li>
+<li>aquidistance&#160;:&#160;<a class="el" href="group__atanLUT.html#ga638ce07da32913582447f1e26b745c37">atanLUT.h</a>, <a class="el" href="group__Distortion.html#ga638ce07da32913582447f1e26b745c37">distortion.h</a></li>
+<li>atan_LUT_y&#160;:&#160;<a class="el" href="group__atanLUT.html#ga44717ae85351202c8833c3880a6ef9e8">atanLUT.h</a>, <a class="el" href="group__Distortion.html#gab6549ea7290a59876018cb53511f134d">distortion.h</a></li>
 </ul>
 
 
 <h3><a id="index_b" name="index_b"></a>- b -</h3><ul>
-<li>BPM&#160;:&#160;<a class="el" href="drum__computer_8h.html#a0065e192c774e20fd5e0ab3c342b7088">drum_computer.h</a></li>
+<li>BPM&#160;:&#160;<a class="el" href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">drum_computer.h</a></li>
 </ul>
 
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>calculate_vector1&#160;:&#160;<a class="el" href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">main.h</a></li>
 <li>chord_5&#160;:&#160;<a class="el" href="music__notes_8h.html#af387d96b9f2a32b87121e2eae2c5ff16">music_notes.h</a>, <a class="el" href="music__notes_8c.html#a5f7a199c28e64af888df934d8337c7ca">music_notes.c</a></li>
-<li>counter_master&#160;:&#160;<a class="el" href="drum__computer_8h.html#a148d70203e23260f999890046d5509b0">drum_computer.h</a></li>
-<li>current_LUT_index_SN1&#160;:&#160;<a class="el" href="drum__computer_8h.html#abafd5c3bbb1d0bbc3e708889e904e3a7">drum_computer.h</a></li>
+<li>counter_master&#160;:&#160;<a class="el" href="group__DrumComputer.html#ga148d70203e23260f999890046d5509b0">drum_computer.h</a></li>
+<li>current_LUT_index_SN1&#160;:&#160;<a class="el" href="group__Sequencer.html#gabafd5c3bbb1d0bbc3e708889e904e3a7">drum_computer.h</a></li>
 </ul>
 
 
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
-<li>drum_index&#160;:&#160;<a class="el" href="drum__computer_8h.html#ad32e19a8282780d0a134ec07797ac10b">drum_computer.h</a></li>
-<li>DS1s&#160;:&#160;<a class="el" href="drum__computer_8h.html#a1d0ce949a258b04a5822d3442fd73d83">drum_computer.h</a></li>
+<li>drum_index&#160;:&#160;<a class="el" href="group__DrumComputer.html#gad32e19a8282780d0a134ec07797ac10b">drum_computer.h</a></li>
+<li>DS1s&#160;:&#160;<a class="el" href="group__DrumComputer.html#ga1d0ce949a258b04a5822d3442fd73d83">drum_computer.h</a></li>
 </ul>
 
 
 <h3><a id="index_e" name="index_e"></a>- e -</h3><ul>
 <li>effect_LFO&#160;:&#160;<a class="el" href="main_8h.html#a69314a8057e0309d967d222b7703d013">main.h</a></li>
 <li>effect_order&#160;:&#160;<a class="el" href="effects_8h.html#a356f7e77328d3524cc7c5592b2237823">effects.h</a></li>
+<li>envelope&#160;:&#160;<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">adsr.h</a></li>
 </ul>
 
 
 <h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
 <li>filter_step_counter&#160;:&#160;<a class="el" href="input__interfaces_8h.html#a18a2130fd54d97626562fa2719aae572">input_interfaces.h</a></li>
-<li>flag_DS1&#160;:&#160;<a class="el" href="drum__computer_8h.html#a88744615d25a485f31d6718453e6d324">drum_computer.h</a></li>
-<li>freq_index_SN1&#160;:&#160;<a class="el" href="drum__computer_8h.html#a4211ba08e77d82a294762a623041e342">drum_computer.h</a></li>
+<li>flag_DS1&#160;:&#160;<a class="el" href="group__DrumComputer.html#ga88744615d25a485f31d6718453e6d324">drum_computer.h</a></li>
+<li>freq_index_SN1&#160;:&#160;<a class="el" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">drum_computer.h</a></li>
 </ul>
 
 
@@ -123,7 +146,17 @@ $(function() {
 
 
 <h3><a id="index_l" name="index_l"></a>- l -</h3><ul>
+<li>LFO&#160;:&#160;<a class="el" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">sinLUT.h</a></li>
+<li>LFO_ENDINDEX&#160;:&#160;<a class="el" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">sinLUT.h</a></li>
+<li>LFO_FREQUENCYS&#160;:&#160;<a class="el" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">sinLUT.h</a></li>
+<li>LFO_STARTINDEX&#160;:&#160;<a class="el" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">sinLUT.h</a></li>
+<li>LFO_SUPPORTPOINTS&#160;:&#160;<a class="el" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">sinLUT.h</a></li>
 <li>log_mapping_F&#160;:&#160;<a class="el" href="input__interfaces_8h.html#ad50ffb5e3431bdf97736f4dab39c252d">input_interfaces.h</a></li>
+<li>LUT&#160;:&#160;<a class="el" href="group__SINLUT.html#ga4f12a18a6cf6bdb4cf4b1f3a509f061e">sinLUT.h</a></li>
+<li>LUT_ENDINDEX&#160;:&#160;<a class="el" href="group__SINLUT.html#ga93f6110c104231e7959e446480c94834">sinLUT.h</a></li>
+<li>LUT_FREQUENCYS&#160;:&#160;<a class="el" href="group__SINLUT.html#ga9a9d9181987af97d8c0ee7492f2e17fc">sinLUT.h</a></li>
+<li>LUT_STARTINDEX&#160;:&#160;<a class="el" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">sinLUT.h</a></li>
+<li>LUT_SUPPORTPOINTS&#160;:&#160;<a class="el" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">sinLUT.h</a></li>
 </ul>
 
 
@@ -147,13 +180,11 @@ $(function() {
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
 <li>sex&#160;:&#160;<a class="el" href="music__notes_8c.html#af3ae983909bdbfc6666cbfda24d0d0ba">music_notes.c</a></li>
-<li>single_sample&#160;:&#160;<a class="el" href="drum__computer_8h.html#a4f45ba3b9c8c3c6e57de16324bf23604">drum_computer.h</a></li>
-<li>SN1&#160;:&#160;<a class="el" href="drum__computer_8h.html#a1578899be8b6d34fe965f44a84c16ecd">drum_computer.h</a></li>
 </ul>
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>timing_DS1&#160;:&#160;<a class="el" href="drum__computer_8h.html#a4c0fb828065d1505aa1abfdd52afc7c3">drum_computer.h</a></li>
+<li>timing_DS1&#160;:&#160;<a class="el" href="group__DrumComputer.html#ga4c0fb828065d1505aa1abfdd52afc7c3">drum_computer.h</a></li>
 </ul>
 
 
@@ -161,9 +192,12 @@ $(function() {
 <li>volume&#160;:&#160;<a class="el" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">signal_synthesis.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

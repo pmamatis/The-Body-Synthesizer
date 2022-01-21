@@ -1,6 +1,6 @@
 /** TODO
  * @file adsr.h
- * @author marc bielen
+ * @author Marc Bielen
  * @brief adsr effect header
  * @version 0.1
  * @date 2022-01-06
@@ -12,6 +12,12 @@
 #define ADSR_H
 
 #include "main.h"
+/**
+ * @defgroup ADSR ADSR Effect
+ * @ingroup Effects
+ * @brief Attack-Decay-Sustain-Release
+ * @{
+ */
 
 /***************************
  * @brief Enumeration for ADSR Debugging
@@ -25,7 +31,7 @@ typedef enum {
  * @brief	Structs
  *********************************/
 /** TODO
- * @brief 
+ * @brief stores the state of the ADSR, aswell as the configuration
  * 
  */
 struct adsr {
@@ -51,16 +57,31 @@ struct adsr {
 /*********************************
  * @brief	Variables
  *********************************/
+
+
+
+
+/**
+ * @brief ADSR for the Voice notes 
+ */
 struct adsr envelope;
 
-// ADSR for sequencer notes
-// Length 16 is max. time steps: 1/16, 1/8, 1/4
+/** 
+ * @defgroup ADSR Sequencer ADSR
+ * @brief ADSR storage for sequencer notes
+ * @note  Length 16 is max. time steps: 1/16, 1/8, 1/4
+ * @{
+ */
 struct adsr adsr_SN1[16];
 struct adsr adsr_SN2[16];
 struct adsr adsr_SN3[16];
 struct adsr adsr_SN4[16];
+/** @} */
 
-// ADSR for the keyboard
+/**
+ * @brief  ADSR storage for the keyboard
+ * 
+ */
 struct adsr adsr_keyboard[5];	// maximum 5 keys processed simultaneously
 
 
@@ -73,4 +94,5 @@ ADSR_Status ADSR_Reset(struct adsr* envelope);
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag);
 void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_value, bool flag);
 
+/** @}*/
 #endif

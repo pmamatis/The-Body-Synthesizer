@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['examples_0',['Examples',['../group__groupExamples.html',1,'']]]
+  ['input_20devices_0',['Input Devices',['../group__InputDevice.html',1,'']]]
 ];

@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('distortion_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -82,19 +98,19 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a54ad82c4a3ecbc0c2784ae81c92eb22e"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="distortion_8c.html#a54ad82c4a3ecbc0c2784ae81c92eb22e">Distortion_Init</a> (void)</td></tr>
-<tr class="memdesc:a54ad82c4a3ecbc0c2784ae81c92eb22e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distortion init functions.  <a href="distortion_8c.html#a54ad82c4a3ecbc0c2784ae81c92eb22e">More...</a><br /></td></tr>
-<tr class="separator:a54ad82c4a3ecbc0c2784ae81c92eb22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac69b82a1179f795d9205a246de59a37a"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="distortion_8c.html#ac69b82a1179f795d9205a246de59a37a">Distortion_Reset</a> (void)</td></tr>
-<tr class="separator:ac69b82a1179f795d9205a246de59a37a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a6725ec967773f5ddfbc3fc21d67049"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="distortion_8c.html#a2a6725ec967773f5ddfbc3fc21d67049">SetupHardClippingDistortion</a> (struct <a class="el" href="structeffects__distortion.html">effects_distortion</a> *HardClipping)</td></tr>
-<tr class="separator:a2a6725ec967773f5ddfbc3fc21d67049"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a375c625074dc4492066cda7e9e175b"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="distortion_8c.html#a8a375c625074dc4492066cda7e9e175b">SetupSoftClippingDistortion</a> (struct <a class="el" href="structeffects__distortion.html">effects_distortion</a> *SoftClipping)</td></tr>
-<tr class="separator:a8a375c625074dc4492066cda7e9e175b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a68b2a90c4306d739161ee82b7eb89c"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="distortion_8c.html#a7a68b2a90c4306d739161ee82b7eb89c">ProcessHardClippingDistortion</a> (float *data)</td></tr>
-<tr class="separator:a7a68b2a90c4306d739161ee82b7eb89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1676e7551d7621b89efb0ecc46092436"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="distortion_8c.html#a1676e7551d7621b89efb0ecc46092436">ProcessSoftClippingDistortion</a> (float *data)</td></tr>
-<tr class="separator:a1676e7551d7621b89efb0ecc46092436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga54ad82c4a3ecbc0c2784ae81c92eb22e"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Distortion.html#ga54ad82c4a3ecbc0c2784ae81c92eb22e">Distortion_Init</a> (void)</td></tr>
+<tr class="memdesc:ga54ad82c4a3ecbc0c2784ae81c92eb22e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distortion init functions.  <a href="group__Distortion.html#ga54ad82c4a3ecbc0c2784ae81c92eb22e">More...</a><br /></td></tr>
+<tr class="separator:ga54ad82c4a3ecbc0c2784ae81c92eb22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac69b82a1179f795d9205a246de59a37a"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Distortion.html#gac69b82a1179f795d9205a246de59a37a">Distortion_Reset</a> (void)</td></tr>
+<tr class="separator:gac69b82a1179f795d9205a246de59a37a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2a6725ec967773f5ddfbc3fc21d67049"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Distortion.html#ga2a6725ec967773f5ddfbc3fc21d67049">SetupHardClippingDistortion</a> (struct <a class="el" href="structeffects__distortion.html">effects_distortion</a> *HardClipping)</td></tr>
+<tr class="separator:ga2a6725ec967773f5ddfbc3fc21d67049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8a375c625074dc4492066cda7e9e175b"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Distortion.html#ga8a375c625074dc4492066cda7e9e175b">SetupSoftClippingDistortion</a> (struct <a class="el" href="structeffects__distortion.html">effects_distortion</a> *SoftClipping)</td></tr>
+<tr class="separator:ga8a375c625074dc4492066cda7e9e175b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a68b2a90c4306d739161ee82b7eb89c"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Distortion.html#ga7a68b2a90c4306d739161ee82b7eb89c">ProcessHardClippingDistortion</a> (float *data)</td></tr>
+<tr class="separator:ga7a68b2a90c4306d739161ee82b7eb89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1676e7551d7621b89efb0ecc46092436"><td class="memItemLeft" align="right" valign="top">Distortion_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Distortion.html#ga1676e7551d7621b89efb0ecc46092436">ProcessSoftClippingDistortion</a> (float *data)</td></tr>
+<tr class="separator:ga1676e7551d7621b89efb0ecc46092436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Distortion effect. </p>
@@ -104,285 +120,14 @@ Functions</h2></td></tr>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a54ad82c4a3ecbc0c2784ae81c92eb22e" name="a54ad82c4a3ecbc0c2784ae81c92eb22e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54ad82c4a3ecbc0c2784ae81c92eb22e">&#9670;&nbsp;</a></span>Distortion_Init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Distortion_Status Distortion_Init </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Distortion init functions. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Distortion</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00020">20</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>                                        {</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    <a class="code hl_function" href="distortion_8c.html#a2a6725ec967773f5ddfbc3fc21d67049">SetupHardClippingDistortion</a>(&amp;HardClipping);</div>
-<div class="line"><span class="lineno">   23</span>    <a class="code hl_function" href="distortion_8c.html#a8a375c625074dc4492066cda7e9e175b">SetupSoftClippingDistortion</a>(&amp;SoftClipping);</div>
-<div class="line"><span class="lineno">   24</span> </div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">   26</span>}</div>
-<div class="ttc" id="adistortion_8c_html_a2a6725ec967773f5ddfbc3fc21d67049"><div class="ttname"><a href="distortion_8c.html#a2a6725ec967773f5ddfbc3fc21d67049">SetupHardClippingDistortion</a></div><div class="ttdeci">Distortion_Status SetupHardClippingDistortion(struct effects_distortion *HardClipping)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00055">distortion.c:55</a></div></div>
-<div class="ttc" id="adistortion_8c_html_a8a375c625074dc4492066cda7e9e175b"><div class="ttname"><a href="distortion_8c.html#a8a375c625074dc4492066cda7e9e175b">SetupSoftClippingDistortion</a></div><div class="ttdeci">Distortion_Status SetupSoftClippingDistortion(struct effects_distortion *SoftClipping)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00069">distortion.c:69</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ac69b82a1179f795d9205a246de59a37a" name="ac69b82a1179f795d9205a246de59a37a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac69b82a1179f795d9205a246de59a37a">&#9670;&nbsp;</a></span>Distortion_Reset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Distortion_Status Distortion_Reset </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >TODO </p><dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00033">33</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   33</span>                                         {</div>
-<div class="line"><span class="lineno">   34</span> </div>
-<div class="line"><span class="lineno">   35</span>    Display.Distortion_ONOFF = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   36</span> </div>
-<div class="line"><span class="lineno">   37</span>    Display.Distortion_Gain = SoftClipping.distortion_gain = 1.0;</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>    Display.Distortion_Sources = POTI;</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    Display.Distortion_Type = 0;    <span class="comment">// Soft Clipping</span></div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>    strcpy(Display.value_str_distortion[1], <span class="stringliteral">&quot;Soft&quot;</span>);</div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>    strcpy(Display.value_str_distortion[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">   48</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a7a68b2a90c4306d739161ee82b7eb89c" name="a7a68b2a90c4306d739161ee82b7eb89c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a68b2a90c4306d739161ee82b7eb89c">&#9670;&nbsp;</a></span>ProcessHardClippingDistortion()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Distortion_Status ProcessHardClippingDistortion </td>
-          <td>(</td>
-          <td class="paramtype">float *&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00096">96</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   96</span>                                                             {</div>
-<div class="line"><span class="lineno">   97</span> </div>
-<div class="line"><span class="lineno">   98</span>    <span class="keywordtype">float</span> calc = *data;</div>
-<div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">if</span>( HardClipping.distortion_gain * calc &lt;= -1 ) {</div>
-<div class="line"><span class="lineno">  101</span>        calc = -1;</div>
-<div class="line"><span class="lineno">  102</span>    }</div>
-<div class="line"><span class="lineno">  103</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( (HardClipping.distortion_gain * calc &gt; -1) &amp;&amp; (HardClipping.distortion_gain * calc &lt; 1) ) {</div>
-<div class="line"><span class="lineno">  104</span>        calc = HardClipping.distortion_gain * calc;</div>
-<div class="line"><span class="lineno">  105</span>    }</div>
-<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( HardClipping.distortion_gain * calc &gt;= 1 ) {</div>
-<div class="line"><span class="lineno">  107</span>        calc = 1;</div>
-<div class="line"><span class="lineno">  108</span>    }</div>
-<div class="line"><span class="lineno">  109</span> </div>
-<div class="line"><span class="lineno">  110</span>    *data = calc;</div>
-<div class="line"><span class="lineno">  111</span> </div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">  113</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a1676e7551d7621b89efb0ecc46092436" name="a1676e7551d7621b89efb0ecc46092436"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1676e7551d7621b89efb0ecc46092436">&#9670;&nbsp;</a></span>ProcessSoftClippingDistortion()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Distortion_Status ProcessSoftClippingDistortion </td>
-          <td>(</td>
-          <td class="paramtype">float *&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00121">121</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  121</span>                                                             {</div>
-<div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>    <span class="keywordtype">float</span> calc = *data;</div>
-<div class="line"><span class="lineno">  124</span> </div>
-<div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>    <span class="comment">// Sinnvoller Gain: 1 - 10</span></div>
-<div class="line"><span class="lineno">  127</span>    <span class="comment">// Use known Arcustangens values, which have been estimated (LUT-style)</span></div>
-<div class="line"><span class="lineno">  128</span> </div>
-<div class="line"><span class="lineno">  129</span>    SoftClipping.atan_parameter = (SoftClipping.distortion_gain * calc) + 10;   <span class="comment">// SoftClipping.distortion_maximum_gain = 10</span></div>
-<div class="line"><span class="lineno">  130</span>    SoftClipping.distortion_index = round(SoftClipping.atan_parameter/aquidistance);</div>
-<div class="line"><span class="lineno">  131</span>    calc = 0.5*<a class="code hl_variable" href="atanLUT_8h.html#a44717ae85351202c8833c3880a6ef9e8">atan_LUT_y</a>[SoftClipping.distortion_index];   <span class="comment">// scale down the amplitude</span></div>
-<div class="line"><span class="lineno">  132</span> </div>
-<div class="line"><span class="lineno">  133</span>    <span class="keywordflow">if</span>(0.0 &lt;= SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 1.0)</div>
-<div class="line"><span class="lineno">  134</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[0]);</div>
-<div class="line"><span class="lineno">  135</span> </div>
-<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(1.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 2.0)</div>
-<div class="line"><span class="lineno">  137</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[1]);</div>
-<div class="line"><span class="lineno">  138</span> </div>
-<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(2.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 3.0)</div>
-<div class="line"><span class="lineno">  140</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[2]);</div>
-<div class="line"><span class="lineno">  141</span> </div>
-<div class="line"><span class="lineno">  142</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(3.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 4.0)</div>
-<div class="line"><span class="lineno">  143</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[3]);</div>
-<div class="line"><span class="lineno">  144</span> </div>
-<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(4.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 5.0)</div>
-<div class="line"><span class="lineno">  146</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[4]);</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(5.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 6.0)</div>
-<div class="line"><span class="lineno">  149</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[5]);</div>
-<div class="line"><span class="lineno">  150</span> </div>
-<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(6.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 7.0)</div>
-<div class="line"><span class="lineno">  152</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[6]);</div>
-<div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(7.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 8.0)</div>
-<div class="line"><span class="lineno">  155</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[7]);</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(8.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 9.0)</div>
-<div class="line"><span class="lineno">  158</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[8]);</div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(SoftClipping.distortion_gain &gt; 9.0)</div>
-<div class="line"><span class="lineno">  161</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[9]);</div>
-<div class="line"><span class="lineno">  162</span> </div>
-<div class="line"><span class="lineno">  163</span>    *data = calc;</div>
-<div class="line"><span class="lineno">  164</span> </div>
-<div class="line"><span class="lineno">  165</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">  166</span>}</div>
-<div class="ttc" id="aatanLUT_8h_html_a44717ae85351202c8833c3880a6ef9e8"><div class="ttname"><a href="atanLUT_8h.html#a44717ae85351202c8833c3880a6ef9e8">atan_LUT_y</a></div><div class="ttdeci">const float atan_LUT_y[]</div><div class="ttdoc">atan() look up table</div><div class="ttdef"><b>Definition:</b> <a href="atanLUT_8h_source.html#l00019">atanLUT.h:19</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a2a6725ec967773f5ddfbc3fc21d67049" name="a2a6725ec967773f5ddfbc3fc21d67049"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a6725ec967773f5ddfbc3fc21d67049">&#9670;&nbsp;</a></span>SetupHardClippingDistortion()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Distortion_Status SetupHardClippingDistortion </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structeffects__distortion.html">effects_distortion</a> *&#160;</td>
-          <td class="paramname"><em>HardClipping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">HardClipping</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00055">55</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   55</span>                                                                                       {</div>
-<div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>    HardClipping-&gt;distortion_gain = 1.0;</div>
-<div class="line"><span class="lineno">   58</span>    HardClipping-&gt;distortion_maximum_gain = 9;</div>
-<div class="line"><span class="lineno">   59</span> </div>
-<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">   61</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a8a375c625074dc4492066cda7e9e175b" name="a8a375c625074dc4492066cda7e9e175b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a375c625074dc4492066cda7e9e175b">&#9670;&nbsp;</a></span>SetupSoftClippingDistortion()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Distortion_Status SetupSoftClippingDistortion </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structeffects__distortion.html">effects_distortion</a> *&#160;</td>
-          <td class="paramname"><em>SoftClipping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">SoftClipping</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00069">69</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   69</span>                                                                                       {</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>    SoftClipping-&gt;distortion_gain = 1.0;</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>    <span class="comment">// 10 different distortion gain values, so the effect can be increased step-wise</span></div>
-<div class="line"><span class="lineno">   74</span>    SoftClipping-&gt;atan_softclipping_distortion_max[0] = 0.392650;   <span class="comment">// distortion_gain = 1.0</span></div>
-<div class="line"><span class="lineno">   75</span>    SoftClipping-&gt;atan_softclipping_distortion_max[1] = 0.553650;   <span class="comment">// distortion_gain = 2.0</span></div>
-<div class="line"><span class="lineno">   76</span>    SoftClipping-&gt;atan_softclipping_distortion_max[2] = 0.624500;   <span class="comment">// distortion_gain = 3.0</span></div>
-<div class="line"><span class="lineno">   77</span>    SoftClipping-&gt;atan_softclipping_distortion_max[3] = 0.662950;   <span class="comment">// distortion_gain = 4.0</span></div>
-<div class="line"><span class="lineno">   78</span>    SoftClipping-&gt;atan_softclipping_distortion_max[4] = 0.686700;   <span class="comment">// distortion_gain = 5.0</span></div>
-<div class="line"><span class="lineno">   79</span>    SoftClipping-&gt;atan_softclipping_distortion_max[5] = 0.702850;   <span class="comment">// distortion_gain = 6.0</span></div>
-<div class="line"><span class="lineno">   80</span>    SoftClipping-&gt;atan_softclipping_distortion_max[6] = 0.714450;   <span class="comment">// distortion_gain = 7.0</span></div>
-<div class="line"><span class="lineno">   81</span>    SoftClipping-&gt;atan_softclipping_distortion_max[7] = 0.723200;   <span class="comment">// distortion_gain = 8.0</span></div>
-<div class="line"><span class="lineno">   82</span>    SoftClipping-&gt;atan_softclipping_distortion_max[8] = 0.730050;   <span class="comment">// distortion_gain = 9.0</span></div>
-<div class="line"><span class="lineno">   83</span>    SoftClipping-&gt;atan_softclipping_distortion_max[9] = 0.735550;   <span class="comment">// distortion_gain = 10.0</span></div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>    SoftClipping-&gt;distortion_maximum_gain = 10.0;</div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">   88</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a class="el" href="distortion_8c.html">distortion.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

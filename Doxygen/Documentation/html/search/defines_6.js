@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['offset_0',['OFFSET',['../signal__synthesis_8h.html#a21005f9f4e2ce7597c5eb4351816d7e2',1,'signal_synthesis.h']]]
+  ['support_5fpoints_0',['SUPPORT_POINTS',['../main_8h.html#a50c9eb8f7641b83e2574475c29185cbe',1,'main.h']]]
 ];

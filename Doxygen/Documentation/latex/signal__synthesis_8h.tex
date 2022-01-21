@@ -264,29 +264,29 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01261}{1261}} o
 \DoxyCodeLine{01266     \textcolor{comment}{// Period:          LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]]}}
 \DoxyCodeLine{01267 }
 \DoxyCodeLine{01268     \textcolor{comment}{// IF: Length of period is even (e.g. 346)}}
-\DoxyCodeLine{01269     \textcolor{keywordflow}{if}(LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] \% 2 == 0)\{}
+\DoxyCodeLine{01269     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 0)\{}
 \DoxyCodeLine{01270 }
 \DoxyCodeLine{01271         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:172 < 173)}}
-\DoxyCodeLine{01272         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{01272         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
 \DoxyCodeLine{01273 }
 \DoxyCodeLine{01274             rect = 0.2;}
 \DoxyCodeLine{01275         \}}
 \DoxyCodeLine{01276         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (173:345 >= 173)}}
-\DoxyCodeLine{01277         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{01277         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
 \DoxyCodeLine{01278 }
 \DoxyCodeLine{01279             rect = -\/0.2;}
 \DoxyCodeLine{01280         \}}
 \DoxyCodeLine{01281     \}}
 \DoxyCodeLine{01282     \textcolor{comment}{// IF: Length of period is odd (e.g. 347)}}
-\DoxyCodeLine{01283     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] \% 2 == 1)\{}
+\DoxyCodeLine{01283     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 1)\{}
 \DoxyCodeLine{01284 }
 \DoxyCodeLine{01285         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:173 < 174) due to (period-\/1)/2 + 1}}
-\DoxyCodeLine{01286         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (((LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{01286         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
 \DoxyCodeLine{01287 }
 \DoxyCodeLine{01288             rect = 0.2;}
 \DoxyCodeLine{01289         \}}
 \DoxyCodeLine{01290         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (174:346 >= 174) due to (period-\/1)/2 + 1}}
-\DoxyCodeLine{01291         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (((LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{01291         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
 \DoxyCodeLine{01292 }
 \DoxyCodeLine{01293             rect = -\/0.2;}
 \DoxyCodeLine{01294         \}}
@@ -325,7 +325,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01306}{1306}} o
 \DoxyCodeLine{01307 }
 \DoxyCodeLine{01308     \textcolor{keywordtype}{float} triangle      = 0;}
 \DoxyCodeLine{01309     \textcolor{keywordtype}{float} current\_index = (float)signals-\/>current\_LUT\_Index[index];}
-\DoxyCodeLine{01310     \textcolor{keywordtype}{float} period        = (\textcolor{keywordtype}{float})LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]];}
+\DoxyCodeLine{01310     \textcolor{keywordtype}{float} period        = (\textcolor{keywordtype}{float})\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]];}
 \DoxyCodeLine{01311 }
 \DoxyCodeLine{01312     \textcolor{comment}{/* FORMULA: 4*a/p * abs((((x -\/ p/4) \% p) + p) \% p -\/ p/2) -\/ a }}
 \DoxyCodeLine{01313 \textcolor{comment}{     *}}
@@ -457,11 +457,11 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01215}{1215}} o
 \DoxyCodeLine{01226     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
 \DoxyCodeLine{01227     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
 \DoxyCodeLine{01228         BLOOCKSIZE\_startIndex = 0;}
-\DoxyCodeLine{01229         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{01229         BLOOCKSIZE\_endIndex = BLOCKSIZE/2;}
 \DoxyCodeLine{01230     \}}
 \DoxyCodeLine{01231     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
-\DoxyCodeLine{01232         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
-\DoxyCodeLine{01233         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
+\DoxyCodeLine{01232         BLOOCKSIZE\_startIndex = BLOCKSIZE/2;}
+\DoxyCodeLine{01233         BLOOCKSIZE\_endIndex  = BLOCKSIZE;}
 \DoxyCodeLine{01234     \}}
 \DoxyCodeLine{01235 }
 \DoxyCodeLine{01236     \textcolor{comment}{//Write into DAC}}
@@ -515,14 +515,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00149     lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00150 }
 \DoxyCodeLine{00151     \textcolor{comment}{// CASE 1: 0.125 Hz}}
-\DoxyCodeLine{00152     \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[0]) \{}
+\DoxyCodeLine{00152     \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[0]) \{}
 \DoxyCodeLine{00153 }
 \DoxyCodeLine{00154         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
 \DoxyCodeLine{00155         \textcolor{keywordflow}{case} 0:}
 \DoxyCodeLine{00156             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00157                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00158             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00159                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[0]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00159                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[0]  + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00160             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00161         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{00162             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
@@ -538,20 +538,20 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00172                 \}}
 \DoxyCodeLine{00173             \}}
 \DoxyCodeLine{00174             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00175                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[0]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00175                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[0]    -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00176             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00177         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{00178             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00179                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00180             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00181                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[0] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00181                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[0] + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00182             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00183         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{00184             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
 \DoxyCodeLine{00185                 lfo-\/>lfo\_data = -\/1;}
 \DoxyCodeLine{00186             \}}
 \DoxyCodeLine{00187             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00188                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[0]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00188                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[0]   -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00189             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00190         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{00191             \textcolor{keywordflow}{break};}
@@ -559,7 +559,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00193         lfo-\/>lfo\_index++;}
 \DoxyCodeLine{00194 }
 \DoxyCodeLine{00195         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
-\DoxyCodeLine{00196         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[0]) \{}
+\DoxyCodeLine{00196         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[0]) \{}
 \DoxyCodeLine{00197 }
 \DoxyCodeLine{00198             lfo-\/>lfo\_index = 0;}
 \DoxyCodeLine{00199             lfo-\/>lfo\_quarter++;}
@@ -570,7 +570,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00204                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
 \DoxyCodeLine{00205                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
 \DoxyCodeLine{00206 }
-\DoxyCodeLine{00207                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00207                         Display.Tremolo\_Rate = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.Tremolo\_Rate\_Index];}
 \DoxyCodeLine{00208                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
 \DoxyCodeLine{00209                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00210                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
@@ -580,7 +580,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00214                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
 \DoxyCodeLine{00215                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
 \DoxyCodeLine{00216 }
-\DoxyCodeLine{00217                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00217                         Display.WahWah\_LFOfreq = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.WahWah\_LFOfreq\_Index];}
 \DoxyCodeLine{00218                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
 \DoxyCodeLine{00219                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00220                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
@@ -590,14 +590,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00224         \}}
 \DoxyCodeLine{00225     \}}
 \DoxyCodeLine{00226     \textcolor{comment}{// CASE 2: 0.25 Hz}}
-\DoxyCodeLine{00227     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[1]) \{}
+\DoxyCodeLine{00227     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[1]) \{}
 \DoxyCodeLine{00228 }
 \DoxyCodeLine{00229         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
 \DoxyCodeLine{00230         \textcolor{keywordflow}{case} 0:}
 \DoxyCodeLine{00231             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00232                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00233             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00234                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[1]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00234                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[1]  + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00235             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00236         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{00237             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
@@ -613,20 +613,20 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00247                 \}}
 \DoxyCodeLine{00248             \}}
 \DoxyCodeLine{00249             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00250                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[1]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00250                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[1]    -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00251             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00252         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{00253             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00254                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00255             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00256                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[1] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00256                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[1] + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00257             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00258         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{00259             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
 \DoxyCodeLine{00260                 lfo-\/>lfo\_data = -\/1;}
 \DoxyCodeLine{00261             \}}
 \DoxyCodeLine{00262             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00263                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[1]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00263                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[1]   -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00264             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00265         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{00266             \textcolor{keywordflow}{break};}
@@ -634,7 +634,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00268         lfo-\/>lfo\_index++;}
 \DoxyCodeLine{00269 }
 \DoxyCodeLine{00270         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
-\DoxyCodeLine{00271         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[1]) \{}
+\DoxyCodeLine{00271         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[1]) \{}
 \DoxyCodeLine{00272 }
 \DoxyCodeLine{00273             lfo-\/>lfo\_index = 0;}
 \DoxyCodeLine{00274             lfo-\/>lfo\_quarter++;}
@@ -645,7 +645,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00279                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
 \DoxyCodeLine{00280                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
 \DoxyCodeLine{00281 }
-\DoxyCodeLine{00282                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00282                         Display.Tremolo\_Rate = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.Tremolo\_Rate\_Index];}
 \DoxyCodeLine{00283                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
 \DoxyCodeLine{00284                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00285                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
@@ -655,7 +655,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00289                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
 \DoxyCodeLine{00290                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
 \DoxyCodeLine{00291 }
-\DoxyCodeLine{00292                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00292                         Display.WahWah\_LFOfreq = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.WahWah\_LFOfreq\_Index];}
 \DoxyCodeLine{00293                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
 \DoxyCodeLine{00294                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00295                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
@@ -665,14 +665,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00299         \}}
 \DoxyCodeLine{00300     \}}
 \DoxyCodeLine{00301     \textcolor{comment}{// CASE 3: 0.5 Hz}}
-\DoxyCodeLine{00302     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[2]) \{}
+\DoxyCodeLine{00302     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[2]) \{}
 \DoxyCodeLine{00303 }
 \DoxyCodeLine{00304         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
 \DoxyCodeLine{00305         \textcolor{keywordflow}{case} 0:}
 \DoxyCodeLine{00306             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00307                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00308             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00309                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[2]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00309                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[2]  + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00310             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00311         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{00312             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
@@ -688,20 +688,20 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00322                 \}}
 \DoxyCodeLine{00323             \}}
 \DoxyCodeLine{00324             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00325                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[2]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00325                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[2]    -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00326             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00327         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{00328             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00329                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00330             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00331                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[2] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00331                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[2] + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00332             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00333         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{00334             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
 \DoxyCodeLine{00335                 lfo-\/>lfo\_data = -\/1;}
 \DoxyCodeLine{00336             \}}
 \DoxyCodeLine{00337             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00338                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[2]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00338                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[2]   -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00339             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00340         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{00341             \textcolor{keywordflow}{break};}
@@ -709,7 +709,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00343         lfo-\/>lfo\_index++;}
 \DoxyCodeLine{00344 }
 \DoxyCodeLine{00345         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
-\DoxyCodeLine{00346         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[2]) \{}
+\DoxyCodeLine{00346         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[2]) \{}
 \DoxyCodeLine{00347 }
 \DoxyCodeLine{00348             lfo-\/>lfo\_index = 0;}
 \DoxyCodeLine{00349             lfo-\/>lfo\_quarter++;}
@@ -720,7 +720,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00354                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
 \DoxyCodeLine{00355                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
 \DoxyCodeLine{00356 }
-\DoxyCodeLine{00357                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00357                         Display.Tremolo\_Rate = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.Tremolo\_Rate\_Index];}
 \DoxyCodeLine{00358                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
 \DoxyCodeLine{00359                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00360                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
@@ -730,7 +730,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00364                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
 \DoxyCodeLine{00365                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
 \DoxyCodeLine{00366 }
-\DoxyCodeLine{00367                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00367                         Display.WahWah\_LFOfreq = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.WahWah\_LFOfreq\_Index];}
 \DoxyCodeLine{00368                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
 \DoxyCodeLine{00369                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00370                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
@@ -740,14 +740,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00374         \}}
 \DoxyCodeLine{00375     \}}
 \DoxyCodeLine{00376     \textcolor{comment}{// CASE 4: 1 Hz}}
-\DoxyCodeLine{00377     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[3]) \{}
+\DoxyCodeLine{00377     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[3]) \{}
 \DoxyCodeLine{00378 }
 \DoxyCodeLine{00379         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
 \DoxyCodeLine{00380         \textcolor{keywordflow}{case} 0:}
 \DoxyCodeLine{00381             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00382                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00383             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00384                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[3]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00384                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[3]  + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00385             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00386         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{00387             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
@@ -763,20 +763,20 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00397                 \}}
 \DoxyCodeLine{00398             \}}
 \DoxyCodeLine{00399             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00400                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[3]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00400                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[3]    -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00401             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00402         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{00403             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00404                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00405             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00406                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[3] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00406                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[3] + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00407             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00408         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{00409             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
 \DoxyCodeLine{00410                 lfo-\/>lfo\_data = -\/1;}
 \DoxyCodeLine{00411             \}}
 \DoxyCodeLine{00412             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00413                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[3]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00413                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[3]   -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00414             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00415         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{00416             \textcolor{keywordflow}{break};}
@@ -784,7 +784,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00418         lfo-\/>lfo\_index++;}
 \DoxyCodeLine{00419 }
 \DoxyCodeLine{00420         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
-\DoxyCodeLine{00421         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[3]) \{}
+\DoxyCodeLine{00421         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[3]) \{}
 \DoxyCodeLine{00422 }
 \DoxyCodeLine{00423             lfo-\/>lfo\_index = 0;}
 \DoxyCodeLine{00424             lfo-\/>lfo\_quarter++;}
@@ -795,7 +795,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00429                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
 \DoxyCodeLine{00430                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
 \DoxyCodeLine{00431 }
-\DoxyCodeLine{00432                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00432                         Display.Tremolo\_Rate = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.Tremolo\_Rate\_Index];}
 \DoxyCodeLine{00433                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
 \DoxyCodeLine{00434                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00435                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
@@ -805,7 +805,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00439                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
 \DoxyCodeLine{00440                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
 \DoxyCodeLine{00441 }
-\DoxyCodeLine{00442                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00442                         Display.WahWah\_LFOfreq = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.WahWah\_LFOfreq\_Index];}
 \DoxyCodeLine{00443                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
 \DoxyCodeLine{00444                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00445                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
@@ -815,14 +815,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00449         \}}
 \DoxyCodeLine{00450     \}}
 \DoxyCodeLine{00451     \textcolor{comment}{// CASE 5: 2 Hz}}
-\DoxyCodeLine{00452     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[4]) \{}
+\DoxyCodeLine{00452     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[4]) \{}
 \DoxyCodeLine{00453 }
 \DoxyCodeLine{00454         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
 \DoxyCodeLine{00455         \textcolor{keywordflow}{case} 0:}
 \DoxyCodeLine{00456             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00457                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00458             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00459                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[4]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00459                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[4]  + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00460             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00461         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{00462             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
@@ -838,20 +838,20 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00472                 \}}
 \DoxyCodeLine{00473             \}}
 \DoxyCodeLine{00474             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00475                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[4]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00475                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[4]    -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00476             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00477         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{00478             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00479                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00480             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00481                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[4] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00481                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[4] + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00482             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00483         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{00484             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
 \DoxyCodeLine{00485                 lfo-\/>lfo\_data = -\/1;}
 \DoxyCodeLine{00486             \}}
 \DoxyCodeLine{00487             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00488                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[4]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00488                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[4]   -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00489             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00490         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{00491             \textcolor{keywordflow}{break};}
@@ -859,7 +859,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00493         lfo-\/>lfo\_index++;}
 \DoxyCodeLine{00494 }
 \DoxyCodeLine{00495         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
-\DoxyCodeLine{00496         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[4]) \{}
+\DoxyCodeLine{00496         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[4]) \{}
 \DoxyCodeLine{00497 }
 \DoxyCodeLine{00498             lfo-\/>lfo\_index = 0;}
 \DoxyCodeLine{00499             lfo-\/>lfo\_quarter++;}
@@ -870,7 +870,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00504                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
 \DoxyCodeLine{00505                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
 \DoxyCodeLine{00506 }
-\DoxyCodeLine{00507                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00507                         Display.Tremolo\_Rate = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.Tremolo\_Rate\_Index];}
 \DoxyCodeLine{00508                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
 \DoxyCodeLine{00509                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00510                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
@@ -880,7 +880,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00514                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
 \DoxyCodeLine{00515                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
 \DoxyCodeLine{00516 }
-\DoxyCodeLine{00517                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00517                         Display.WahWah\_LFOfreq = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.WahWah\_LFOfreq\_Index];}
 \DoxyCodeLine{00518                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
 \DoxyCodeLine{00519                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00520                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
@@ -890,14 +890,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00524         \}}
 \DoxyCodeLine{00525     \}}
 \DoxyCodeLine{00526     \textcolor{comment}{// CASE 6: 4 Hz}}
-\DoxyCodeLine{00527     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[5]) \{}
+\DoxyCodeLine{00527     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[5]) \{}
 \DoxyCodeLine{00528 }
 \DoxyCodeLine{00529         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
 \DoxyCodeLine{00530         \textcolor{keywordflow}{case} 0:}
 \DoxyCodeLine{00531             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00532                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00533             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00534                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[5]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00534                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[5]  + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00535             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00536         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{00537             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
@@ -913,20 +913,20 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00547                 \}}
 \DoxyCodeLine{00548             \}}
 \DoxyCodeLine{00549             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00550                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[5]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00550                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[5]    -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00551             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00552         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{00553             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00554                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00555             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00556                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[5] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00556                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[5] + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00557             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00558         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{00559             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
 \DoxyCodeLine{00560                 lfo-\/>lfo\_data = -\/1;}
 \DoxyCodeLine{00561             \}}
 \DoxyCodeLine{00562             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00563                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[5]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00563                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[5]   -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00564             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00565         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{00566             \textcolor{keywordflow}{break};}
@@ -934,7 +934,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00568         lfo-\/>lfo\_index++;}
 \DoxyCodeLine{00569 }
 \DoxyCodeLine{00570         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
-\DoxyCodeLine{00571         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[5]) \{}
+\DoxyCodeLine{00571         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[5]) \{}
 \DoxyCodeLine{00572 }
 \DoxyCodeLine{00573             lfo-\/>lfo\_index = 0;}
 \DoxyCodeLine{00574             lfo-\/>lfo\_quarter++;}
@@ -945,7 +945,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00579                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
 \DoxyCodeLine{00580                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
 \DoxyCodeLine{00581 }
-\DoxyCodeLine{00582                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00582                         Display.Tremolo\_Rate = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.Tremolo\_Rate\_Index];}
 \DoxyCodeLine{00583                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
 \DoxyCodeLine{00584                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00585                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
@@ -955,7 +955,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00589                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
 \DoxyCodeLine{00590                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
 \DoxyCodeLine{00591 }
-\DoxyCodeLine{00592                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00592                         Display.WahWah\_LFOfreq = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.WahWah\_LFOfreq\_Index];}
 \DoxyCodeLine{00593                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
 \DoxyCodeLine{00594                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00595                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
@@ -965,14 +965,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00599         \}}
 \DoxyCodeLine{00600     \}}
 \DoxyCodeLine{00601     \textcolor{comment}{// CASE 7: 8 Hz}}
-\DoxyCodeLine{00602     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[6]) \{}
+\DoxyCodeLine{00602     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[6]) \{}
 \DoxyCodeLine{00603 }
 \DoxyCodeLine{00604         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
 \DoxyCodeLine{00605         \textcolor{keywordflow}{case} 0:}
 \DoxyCodeLine{00606             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00607                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00608             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00609                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[6]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00609                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[6]  + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00610             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00611         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{00612             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
@@ -988,20 +988,20 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00622                 \}}
 \DoxyCodeLine{00623             \}}
 \DoxyCodeLine{00624             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00625                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[6]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00625                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[6]    -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00626             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00627         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{00628             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00629                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00630             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00631                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[6] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00631                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[6] + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00632             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00633         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{00634             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
 \DoxyCodeLine{00635                 lfo-\/>lfo\_data = -\/1;}
 \DoxyCodeLine{00636             \}}
 \DoxyCodeLine{00637             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00638                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[6]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00638                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[6]   -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00639             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00640         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{00641             \textcolor{keywordflow}{break};}
@@ -1009,7 +1009,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00643         lfo-\/>lfo\_index++;}
 \DoxyCodeLine{00644 }
 \DoxyCodeLine{00645         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
-\DoxyCodeLine{00646         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[6]) \{}
+\DoxyCodeLine{00646         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[6]) \{}
 \DoxyCodeLine{00647 }
 \DoxyCodeLine{00648             lfo-\/>lfo\_index = 0;}
 \DoxyCodeLine{00649             lfo-\/>lfo\_quarter++;}
@@ -1020,7 +1020,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00654                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
 \DoxyCodeLine{00655                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
 \DoxyCodeLine{00656 }
-\DoxyCodeLine{00657                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00657                         Display.Tremolo\_Rate = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.Tremolo\_Rate\_Index];}
 \DoxyCodeLine{00658                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
 \DoxyCodeLine{00659                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00660                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
@@ -1030,7 +1030,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00664                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
 \DoxyCodeLine{00665                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
 \DoxyCodeLine{00666 }
-\DoxyCodeLine{00667                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00667                         Display.WahWah\_LFOfreq = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.WahWah\_LFOfreq\_Index];}
 \DoxyCodeLine{00668                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
 \DoxyCodeLine{00669                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00670                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
@@ -1040,14 +1040,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00674         \}}
 \DoxyCodeLine{00675     \}}
 \DoxyCodeLine{00676     \textcolor{comment}{// CASE 8: 16 Hz}}
-\DoxyCodeLine{00677     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == LFO\_FREQUENCYS[7]) \{}
+\DoxyCodeLine{00677     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lfo-\/>lfo\_frequency == \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[7]) \{}
 \DoxyCodeLine{00678 }
 \DoxyCodeLine{00679         \textcolor{keywordflow}{switch}(lfo-\/>lfo\_quarter) \{}
 \DoxyCodeLine{00680         \textcolor{keywordflow}{case} 0:}
 \DoxyCodeLine{00681             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00682                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00683             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00684                 lfo-\/>lfo\_data = LFO[LFO\_STARTINDEX[7]  + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00684                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[7]  + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00685             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00686         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{00687             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
@@ -1063,20 +1063,20 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00697                 \}}
 \DoxyCodeLine{00698             \}}
 \DoxyCodeLine{00699             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00700                 lfo-\/>lfo\_data = LFO[LFO\_ENDINDEX[7]    -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00700                 lfo-\/>lfo\_data = \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[7]    -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00701             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00702         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{00703             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0)}
 \DoxyCodeLine{00704                 lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{00705             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00706                 lfo-\/>lfo\_data = -\/LFO[LFO\_STARTINDEX[7] + lfo-\/>lfo\_index];}
+\DoxyCodeLine{00706                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[7] + lfo-\/>lfo\_index];}
 \DoxyCodeLine{00707             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00708         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{00709             \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == 0) \{}
 \DoxyCodeLine{00710                 lfo-\/>lfo\_data = -\/1;}
 \DoxyCodeLine{00711             \}}
 \DoxyCodeLine{00712             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00713                 lfo-\/>lfo\_data = -\/LFO[LFO\_ENDINDEX[7]   -\/ lfo-\/>lfo\_index + 1];}
+\DoxyCodeLine{00713                 lfo-\/>lfo\_data = -\/\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[7]   -\/ lfo-\/>lfo\_index + 1];}
 \DoxyCodeLine{00714             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00715         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{00716             \textcolor{keywordflow}{break};}
@@ -1084,7 +1084,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00718         lfo-\/>lfo\_index++;}
 \DoxyCodeLine{00719 }
 \DoxyCodeLine{00720         \textcolor{comment}{// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero}}
-\DoxyCodeLine{00721         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == LFO\_SUPPORTPOINTS[7]) \{}
+\DoxyCodeLine{00721         \textcolor{keywordflow}{if}(lfo-\/>lfo\_index == \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[7]) \{}
 \DoxyCodeLine{00722 }
 \DoxyCodeLine{00723             lfo-\/>lfo\_index = 0;}
 \DoxyCodeLine{00724             lfo-\/>lfo\_quarter++;}
@@ -1095,7 +1095,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00729                     \textcolor{comment}{// to make sure that the tremolo restarts only when the LFO period is done}}
 \DoxyCodeLine{00730                     \textcolor{keywordflow}{if}(Display.Tremolo\_Rate\_Index != Display.last\_Tremolo\_Rate\_Index) \{}
 \DoxyCodeLine{00731 }
-\DoxyCodeLine{00732                         Display.Tremolo\_Rate = LFO\_FREQUENCYS[Display.Tremolo\_Rate\_Index];}
+\DoxyCodeLine{00732                         Display.Tremolo\_Rate = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.Tremolo\_Rate\_Index];}
 \DoxyCodeLine{00733                         Display.last\_Tremolo\_Rate\_Index = Display.Tremolo\_Rate\_Index;}
 \DoxyCodeLine{00734                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00735                         Tremolo.lfo-\/>lfo\_frequency = Display.Tremolo\_Rate;}
@@ -1105,7 +1105,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00147}{147}} of
 \DoxyCodeLine{00739                     \textcolor{comment}{// to make sure that the auto-\/wahwah restarts only when the LFO period is done}}
 \DoxyCodeLine{00740                     \textcolor{keywordflow}{if}(Display.WahWah\_LFOfreq\_Index != Display.last\_WahWah\_LFOfreq\_Index) \{}
 \DoxyCodeLine{00741 }
-\DoxyCodeLine{00742                         Display.WahWah\_LFOfreq = LFO\_FREQUENCYS[Display.WahWah\_LFOfreq\_Index];}
+\DoxyCodeLine{00742                         Display.WahWah\_LFOfreq = \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[Display.WahWah\_LFOfreq\_Index];}
 \DoxyCodeLine{00743                         Display.last\_WahWah\_LFOfreq\_Index = Display.WahWah\_LFOfreq\_Index;}
 \DoxyCodeLine{00744                         lfo-\/>lfo\_done\_flag = \textcolor{keyword}{true};}
 \DoxyCodeLine{00745                         WahWah.lfo-\/>lfo\_frequency = Display.WahWah\_LFOfreq;}
@@ -1162,7 +1162,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00764}{764}} of
 \DoxyCodeLine{00774         \textcolor{keywordflow}{case} SIN:}
 \DoxyCodeLine{00775             signals -\/> freq[index] = \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}), octave);}
 \DoxyCodeLine{00776             signals -\/> freqIndex[index] = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},octave);}
-\DoxyCodeLine{00777             signals -\/> current\_LUT\_Index[index] = LUT\_STARTINDEX[signals -\/> freqIndex[index]];}
+\DoxyCodeLine{00777             signals -\/> current\_LUT\_Index[index] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[signals -\/> freqIndex[index]];}
 \DoxyCodeLine{00778             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00779 }
 \DoxyCodeLine{00780         \textcolor{keywordflow}{case} RECT:}
@@ -1340,11 +1340,11 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{00864     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
 \DoxyCodeLine{00865     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
 \DoxyCodeLine{00866         BLOOCKSIZE\_startIndex = 0;}
-\DoxyCodeLine{00867         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{00867         BLOOCKSIZE\_endIndex = BLOCKSIZE/2;}
 \DoxyCodeLine{00868     \}}
 \DoxyCodeLine{00869     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
-\DoxyCodeLine{00870         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
-\DoxyCodeLine{00871         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
+\DoxyCodeLine{00870         BLOOCKSIZE\_startIndex = BLOCKSIZE/2;}
+\DoxyCodeLine{00871         BLOOCKSIZE\_endIndex  = BLOCKSIZE;}
 \DoxyCodeLine{00872     \}}
 \DoxyCodeLine{00873 }
 \DoxyCodeLine{00874     \textcolor{comment}{// Loop for signal synthesis}}
@@ -1365,14 +1365,14 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{00889 }
 \DoxyCodeLine{00890             \textcolor{keywordflow}{case} SIN:}
 \DoxyCodeLine{00891                 \textcolor{comment}{// adds all SIN values from the signals to addValue}}
-\DoxyCodeLine{00892                 addValue = addValue + LUT[signals -\/> current\_LUT\_Index[j]];}
+\DoxyCodeLine{00892                 addValue = addValue + \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}[signals -\/> current\_LUT\_Index[j]];}
 \DoxyCodeLine{00893                 }
 \DoxyCodeLine{00894                 \textcolor{comment}{// get index for the next sin value}}
 \DoxyCodeLine{00895                 signals-\/>current\_LUT\_Index[j]++;}
 \DoxyCodeLine{00896 }
-\DoxyCodeLine{00897                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] > LUT\_ENDINDEX[signals-\/>freqIndex[j]]) \{}
+\DoxyCodeLine{00897                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] > \mbox{\hyperlink{group__SINLUT_ga93f6110c104231e7959e446480c94834}{LUT\_ENDINDEX}}[signals-\/>freqIndex[j]]) \{}
 \DoxyCodeLine{00898 }
-\DoxyCodeLine{00899                     signals-\/>current\_LUT\_Index[j] = LUT\_STARTINDEX[signals-\/>freqIndex[j]];}
+\DoxyCodeLine{00899                     signals-\/>current\_LUT\_Index[j] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[signals-\/>freqIndex[j]];}
 \DoxyCodeLine{00900 }
 \DoxyCodeLine{00901                     \textcolor{comment}{// create voice signals (maximum 3) to avoid plop sound if note or octave is varied}}
 \DoxyCodeLine{00902                     \textcolor{comment}{// this has to be done here to process the change immediately when the index is}}
@@ -1456,7 +1456,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{00980                 \textcolor{comment}{// get index for the next rect value}}
 \DoxyCodeLine{00981                 signals-\/>current\_LUT\_Index[j]++;}
 \DoxyCodeLine{00982 }
-\DoxyCodeLine{00983                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] >= LUT\_SUPPORTPOINTS[signals-\/>freqIndex[j]]) \{}
+\DoxyCodeLine{00983                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] >= \mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[j]]) \{}
 \DoxyCodeLine{00984 }
 \DoxyCodeLine{00985                     signals-\/>current\_LUT\_Index[j] = 0;}
 \DoxyCodeLine{00986 }
@@ -1541,7 +1541,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{01065                 \textcolor{comment}{// get index for the next triangle value}}
 \DoxyCodeLine{01066                 signals-\/>current\_LUT\_Index[j]++;}
 \DoxyCodeLine{01067 }
-\DoxyCodeLine{01068                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] >= LUT\_SUPPORTPOINTS[signals-\/>freqIndex[j]]) \{}
+\DoxyCodeLine{01068                 \textcolor{keywordflow}{if} (signals-\/>current\_LUT\_Index[j] >= \mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[j]]) \{}
 \DoxyCodeLine{01069 }
 \DoxyCodeLine{01070                     signals-\/>current\_LUT\_Index[j] = 0;}
 \DoxyCodeLine{01071 }
@@ -1632,7 +1632,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{01156 }
 \DoxyCodeLine{01157         \textcolor{comment}{// Drummachine}}
 \DoxyCodeLine{01158         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] > 0) || (\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] > 0))\{}
-\DoxyCodeLine{01159             \mbox{\hyperlink{drum__computer_8h_a08535ad247ef4e17b91bbba4b56833af}{Drum\_Computer\_Process}}();}
+\DoxyCodeLine{01159             \mbox{\hyperlink{group__DrumComputer_ga08535ad247ef4e17b91bbba4b56833af}{Drum\_Computer\_Process}}();}
 \DoxyCodeLine{01160             drums\_filtered = drums;}
 \DoxyCodeLine{01161             \textcolor{keywordflow}{if}(Display.Drumfilter\_ONOFF)}
 \DoxyCodeLine{01162                 \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&LS\_DRUMS, \&drums\_filtered);}
@@ -1652,8 +1652,8 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{01176 }
 \DoxyCodeLine{01177         \textcolor{comment}{// Play single sample}}
 \DoxyCodeLine{01178         \textcolor{keywordflow}{if}(play\_single\_sample\_flag) \{}
-\DoxyCodeLine{01179             \mbox{\hyperlink{drum__computer_8h_ab788a1e344e6956cb70a8e5e1ea4d0bd}{PlaySingleSample}}();}
-\DoxyCodeLine{01180             calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{drum__computer_8h_a4f45ba3b9c8c3c6e57de16324bf23604}{single\_sample}};}
+\DoxyCodeLine{01179             \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{PlaySingleSample}}();}
+\DoxyCodeLine{01180             calculate\_vector\_tmp[BLOCKSIZE\_counter] += single\_sample;}
 \DoxyCodeLine{01181         \}}
 \DoxyCodeLine{01182 }
 \DoxyCodeLine{01183         \mbox{\hyperlink{effects_8c_a3cf8b82d8ee857615741a7e0e04dbdf1}{effects\_process}}(\&calculate\_vector\_tmp[BLOCKSIZE\_counter]);}
@@ -1719,8 +1719,8 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00030}{30}} of 
 \DoxyCodeLine{00041         \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
 \DoxyCodeLine{00042     \}}
 \DoxyCodeLine{00043 }
-\DoxyCodeLine{00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2; i++)}
-\DoxyCodeLine{00045         *((uint32\_t *)(\&\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
+\DoxyCodeLine{00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>BLOCKSIZE/2; i++)}
+\DoxyCodeLine{00045         *((uint32\_t *)(\&\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(BLOCKSIZE/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
 \DoxyCodeLine{00046 }
 \DoxyCodeLine{00047     \textcolor{comment}{// Inits and starts timer connected with DAC}}
 \DoxyCodeLine{00048     \mbox{\hyperlink{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim, LUT\_SR);}

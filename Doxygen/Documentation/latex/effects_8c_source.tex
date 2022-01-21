@@ -25,9 +25,9 @@
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00035}00035 }
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00036}00036     \textcolor{keywordflow}{if}(\mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[2] == DIST) \{}
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00037}00037         \textcolor{keywordflow}{if}(Display.Distortion\_Type == 0)}
-\DoxyCodeLine{\Hypertarget{effects_8c_source_l00038}00038             \mbox{\hyperlink{distortion_8h_a1676e7551d7621b89efb0ecc46092436}{ProcessSoftClippingDistortion}}(calculate\_value);}
+\DoxyCodeLine{\Hypertarget{effects_8c_source_l00038}00038             \mbox{\hyperlink{group__Distortion_ga1676e7551d7621b89efb0ecc46092436}{ProcessSoftClippingDistortion}}(calculate\_value);}
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00039}00039         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Distortion\_Type == 1)}
-\DoxyCodeLine{\Hypertarget{effects_8c_source_l00040}00040             \mbox{\hyperlink{distortion_8h_a7a68b2a90c4306d739161ee82b7eb89c}{ProcessHardClippingDistortion}}(calculate\_value);}
+\DoxyCodeLine{\Hypertarget{effects_8c_source_l00040}00040             \mbox{\hyperlink{group__Distortion_ga7a68b2a90c4306d739161ee82b7eb89c}{ProcessHardClippingDistortion}}(calculate\_value);}
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00041}00041     \}}
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00042}00042 }
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00043}00043     \textcolor{keywordflow}{if}(\mbox{\hyperlink{effects_8h_a356f7e77328d3524cc7c5592b2237823}{effect\_order}}[3] == WAHWAH) \{}
@@ -40,11 +40,11 @@
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00050}00050 }
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00051}00051 }
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00053}\mbox{\hyperlink{effects_8h_a3f7370371217adca4b93419901dc1c1f}{00053}} \textcolor{keywordtype}{void} \mbox{\hyperlink{effects_8c_a3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}(\textcolor{keywordtype}{void})\{}
-\DoxyCodeLine{\Hypertarget{effects_8c_source_l00054}00054     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[0], \&calculate\_keyboard[0], activate\_processing[0]);}
-\DoxyCodeLine{\Hypertarget{effects_8c_source_l00055}00055     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[1], \&calculate\_keyboard[1], activate\_processing[1]);}
-\DoxyCodeLine{\Hypertarget{effects_8c_source_l00056}00056     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[2], \&calculate\_keyboard[2], activate\_processing[2]);}
-\DoxyCodeLine{\Hypertarget{effects_8c_source_l00057}00057     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[3], \&calculate\_keyboard[3], activate\_processing[3]);}
-\DoxyCodeLine{\Hypertarget{effects_8c_source_l00058}00058     \mbox{\hyperlink{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&adsr\_keyboard[4], \&calculate\_keyboard[4], activate\_processing[4]);}
+\DoxyCodeLine{\Hypertarget{effects_8c_source_l00054}00054     \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[0], \&calculate\_keyboard[0], activate\_processing[0]);}
+\DoxyCodeLine{\Hypertarget{effects_8c_source_l00055}00055     \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[1], \&calculate\_keyboard[1], activate\_processing[1]);}
+\DoxyCodeLine{\Hypertarget{effects_8c_source_l00056}00056     \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[2], \&calculate\_keyboard[2], activate\_processing[2]);}
+\DoxyCodeLine{\Hypertarget{effects_8c_source_l00057}00057     \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[3], \&calculate\_keyboard[3], activate\_processing[3]);}
+\DoxyCodeLine{\Hypertarget{effects_8c_source_l00058}00058     \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[4], \&calculate\_keyboard[4], activate\_processing[4]);}
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00059}00059 \}}
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00060}00060 }
 \DoxyCodeLine{\Hypertarget{effects_8c_source_l00066}\mbox{\hyperlink{effects_8h_a4dfb093ad0f349af12ad3030a11da8d9}{00066}} \textcolor{keywordtype}{void} \mbox{\hyperlink{effects_8c_a4dfb093ad0f349af12ad3030a11da8d9}{effects\_add}}(effects\_t\_enum effect) \{}

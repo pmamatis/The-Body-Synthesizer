@@ -193,14 +193,14 @@ Definition at line \mbox{\hyperlink{emg_8c_source_l00111}{111}} of file \mbox{\h
 \DoxyCodeLine{00150             \textcolor{comment}{//direct transfer of the heartrate to Drumcomputer}}
 \DoxyCodeLine{00151             \textcolor{keywordflow}{if}(Display.Drumcomputer\_BPMbyECG\_ONOFF == \textcolor{keyword}{true}) \{}
 \DoxyCodeLine{00152 }
-\DoxyCodeLine{00153                 \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}} = heartrate;}
+\DoxyCodeLine{00153                 \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}} = heartrate;}
 \DoxyCodeLine{00154             \}}
 \DoxyCodeLine{00155         \}}
 \DoxyCodeLine{00156 }
 \DoxyCodeLine{00157         \textcolor{comment}{//update drumcoputer-\/page and reset values drumcoputer when bpm changed, to avoid "{}plop"{}-\/noise}}
-\DoxyCodeLine{00158         \textcolor{keywordflow}{if}(abs(last\_BPM-\/\mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}}) > 3) \{}
+\DoxyCodeLine{00158         \textcolor{keywordflow}{if}(abs(last\_BPM-\/\mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}}) > 3) \{}
 \DoxyCodeLine{00159 }
-\DoxyCodeLine{00160             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
+\DoxyCodeLine{00160             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{00161 }
 \DoxyCodeLine{00162                 \textcolor{comment}{// INIT: Counter}}
 \DoxyCodeLine{00163                 counter\_DS1[i] = 0;}
@@ -208,21 +208,21 @@ Definition at line \mbox{\hyperlink{emg_8c_source_l00111}{111}} of file \mbox{\h
 \DoxyCodeLine{00165                 counter\_DS3[i] = 0;}
 \DoxyCodeLine{00166                 counter\_DS4[i] = 0;}
 \DoxyCodeLine{00167 }
-\DoxyCodeLine{00168                 \mbox{\hyperlink{drum__computer_8h_ad32e19a8282780d0a134ec07797ac10b}{drum\_index}} = 0;}
-\DoxyCodeLine{00169                 \mbox{\hyperlink{drum__computer_8h_a148d70203e23260f999890046d5509b0}{counter\_master}} = 0;}
+\DoxyCodeLine{00168                 \mbox{\hyperlink{group__DrumComputer_gad32e19a8282780d0a134ec07797ac10b}{drum\_index}} = 0;}
+\DoxyCodeLine{00169                 \mbox{\hyperlink{group__DrumComputer_ga148d70203e23260f999890046d5509b0}{counter\_master}} = 0;}
 \DoxyCodeLine{00170 }
 \DoxyCodeLine{00171                 \textcolor{comment}{// RESET: Drum sound bins}}
-\DoxyCodeLine{00172                 \mbox{\hyperlink{drum__computer_8h_a1d0ce949a258b04a5822d3442fd73d83}{DS1s}} = 0;}
+\DoxyCodeLine{00172                 \mbox{\hyperlink{group__DrumComputer_ga1d0ce949a258b04a5822d3442fd73d83}{DS1s}} = 0;}
 \DoxyCodeLine{00173                 DS2s = 0;}
 \DoxyCodeLine{00174                 DS3s = 0;}
 \DoxyCodeLine{00175                 DS4s = 0;}
 \DoxyCodeLine{00176 }
 \DoxyCodeLine{00177                 drums = 0;}
 \DoxyCodeLine{00178 }
-\DoxyCodeLine{00179                 timing\_position\_in\_samples[i] = (\mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}} / 4 ) * (i + 1) * (MasterClock / \mbox{\hyperlink{drum__computer_8h_a267b06d60a7514d898b5cac91b4380ec}{FourFour}}) * (60 / \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{00179                 timing\_position\_in\_samples[i] = (\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}} / 4 ) * (i + 1) * (MasterClock / \mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}) * (60 / \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
 \DoxyCodeLine{00180             \}}
 \DoxyCodeLine{00181 }
-\DoxyCodeLine{00182             sprintf(Display.value\_str\_drumcomputer[8], \textcolor{stringliteral}{"{}\%.f"{}}, \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{00182             sprintf(Display.value\_str\_drumcomputer[8], \textcolor{stringliteral}{"{}\%.f"{}}, \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
 \DoxyCodeLine{00183 }
 \DoxyCodeLine{00184             \textcolor{comment}{// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!}}
 \DoxyCodeLine{00185             \textcolor{comment}{// BPM set by ECG and display only updated with new BPM value on drumcomputer settings page}}
@@ -232,7 +232,7 @@ Definition at line \mbox{\hyperlink{emg_8c_source_l00111}{111}} of file \mbox{\h
 \DoxyCodeLine{00189             \}}
 \DoxyCodeLine{00190 }
 \DoxyCodeLine{00191             Display.UpdateDisplay = \textcolor{keyword}{true};}
-\DoxyCodeLine{00192             last\_BPM = \mbox{\hyperlink{drum__computer_8h_a0065e192c774e20fd5e0ab3c342b7088}{BPM}};}
+\DoxyCodeLine{00192             last\_BPM = \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}};}
 \DoxyCodeLine{00193         \}}
 \DoxyCodeLine{00194 }
 \DoxyCodeLine{00195         ecg\_toggleCounter++;}

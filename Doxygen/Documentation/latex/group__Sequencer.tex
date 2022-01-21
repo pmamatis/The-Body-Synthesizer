@@ -1,0 +1,230 @@
+\hypertarget{group__Sequencer}{}\doxysection{Sequencer}
+\label{group__Sequencer}\index{Sequencer@{Sequencer}}
+\doxysubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__SoundBinSequencer}{Sound bins sequencer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}{Sequencer\+\_\+\+Reset}} (void)
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\+\_\+\+ADSR\+\_\+\+Init}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$env)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\+\_\+index\+\_\+\+SN1}}
+\begin{DoxyCompactList}\small\item\em Frequency index sequencer. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__Sequencer_ga293fbfcf8787bd80eae1045c50ce7930}{freq\+\_\+index\+\_\+\+SN2}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__Sequencer_ga0ddb00b49386070cc056f71880a16215}{freq\+\_\+index\+\_\+\+SN3}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__Sequencer_ga9de3fd8c6de51c0cd59bc06b93e6bead}{freq\+\_\+index\+\_\+\+SN4}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_gabafd5c3bbb1d0bbc3e708889e904e3a7}{current\+\_\+\+LUT\+\_\+index\+\_\+\+SN1}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Current LUT index sequencer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_ga51da216a9e0dc66de3deb7cefcd77f30}{current\+\_\+\+LUT\+\_\+index\+\_\+\+SN2}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_ga0e2c70b4b41ba25a4d81e29bce62c2e7}{current\+\_\+\+LUT\+\_\+index\+\_\+\+SN3}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_gaa9cc0ac2c5813c64e55e66d728074dd6}{current\+\_\+\+LUT\+\_\+index\+\_\+\+SN4}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}\label{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}} 
+\index{Sequencer@{Sequencer}!Sequencer\_ADSR\_Init@{Sequencer\_ADSR\_Init}}
+\index{Sequencer\_ADSR\_Init@{Sequencer\_ADSR\_Init}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{Sequencer\_ADSR\_Init()}{Sequencer\_ADSR\_Init()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def Sequencer\+\_\+\+ADSR\+\_\+\+Init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$}]{env }\end{DoxyParamCaption})}
+
+TODO 
+\begin{DoxyParams}{Parameters}
+{\em env} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8c_source_l00019}{19}} of file \mbox{\hyperlink{drum__computer_8c_source}{drum\+\_\+computer.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019                                                        \{}
+\DoxyCodeLine{00020 }
+\DoxyCodeLine{00021     \textcolor{comment}{// INIT: ADSR structs}}
+\DoxyCodeLine{00022     env-\/>adsr\_counter = 0;}
+\DoxyCodeLine{00023     env-\/>adsr\_max\_amp = 1.00;                   \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{00024 }
+\DoxyCodeLine{00025     env-\/>adsr\_attack\_time = 0.01 * LUT\_SR;}
+\DoxyCodeLine{00026     env-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00027     env-\/>adsr\_sustain\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00028     env-\/>adsr\_sustain\_amplitude = 0.3;}
+\DoxyCodeLine{00029     env-\/>adsr\_release\_time = 0.01 * LUT\_SR;}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     env-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{00034 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}\label{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}} 
+\index{Sequencer@{Sequencer}!Sequencer\_Reset@{Sequencer\_Reset}}
+\index{Sequencer\_Reset@{Sequencer\_Reset}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{Sequencer\_Reset()}{Sequencer\_Reset()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def Sequencer\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+TODO \begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8c_source_l00261}{261}} of file \mbox{\hyperlink{drum__computer_8c_source}{drum\+\_\+computer.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00261                                         \{}
+\DoxyCodeLine{00262 }
+\DoxyCodeLine{00263     Display.Sequencer\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00264 }
+\DoxyCodeLine{00265     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<MAX\_NUMBER\_OF\_NOTES; i++) \{}
+\DoxyCodeLine{00266         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<NUMBER\_OF\_SEQUENCERSTEPS; j++) \{}
+\DoxyCodeLine{00267             Display.SequencerMatrix[i][j] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00268         \}}
+\DoxyCodeLine{00269         Display.Sequencer\_Note[i] = \textcolor{charliteral}{'C'};}
+\DoxyCodeLine{00270         Display.Sequencer\_Noteindex[i] = 0;}
+\DoxyCodeLine{00271         Display.Sequencer\_Octave[i] = 0;}
+\DoxyCodeLine{00272     \}}
+\DoxyCodeLine{00273 }
+\DoxyCodeLine{00274     \textcolor{comment}{// FOR: all steps in sequencer}}
+\DoxyCodeLine{00275     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
+\DoxyCodeLine{00276 }
+\DoxyCodeLine{00277         \textcolor{comment}{// INIT: Sequencer timing positions}}
+\DoxyCodeLine{00278         timing\_SN1[i] = 0;}
+\DoxyCodeLine{00279         timing\_SN2[i] = 0;}
+\DoxyCodeLine{00280         timing\_SN3[i] = 0;}
+\DoxyCodeLine{00281         timing\_SN4[i] = 0;}
+\DoxyCodeLine{00282 }
+\DoxyCodeLine{00283         \textcolor{comment}{// INIT: Sequencer start index}}
+\DoxyCodeLine{00284         \mbox{\hyperlink{group__Sequencer_gabafd5c3bbb1d0bbc3e708889e904e3a7}{current\_LUT\_index\_SN1}}[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[\mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}}];}
+\DoxyCodeLine{00285         current\_LUT\_index\_SN2[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[freq\_index\_SN2];}
+\DoxyCodeLine{00286         current\_LUT\_index\_SN3[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[freq\_index\_SN3];}
+\DoxyCodeLine{00287         current\_LUT\_index\_SN4[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[freq\_index\_SN4];}
+\DoxyCodeLine{00288 }
+\DoxyCodeLine{00289         \textcolor{comment}{// INIT: ADSR structs}}
+\DoxyCodeLine{00290         \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\_ADSR\_Init}}(\&adsr\_SN1[i]);}
+\DoxyCodeLine{00291         \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\_ADSR\_Init}}(\&adsr\_SN2[i]);}
+\DoxyCodeLine{00292         \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\_ADSR\_Init}}(\&adsr\_SN3[i]);}
+\DoxyCodeLine{00293         \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\_ADSR\_Init}}(\&adsr\_SN4[i]);}
+\DoxyCodeLine{00294     \}}
+\DoxyCodeLine{00295 }
+\DoxyCodeLine{00296     strcpy(Display.value\_str\_sequencer[0], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00297     sprintf(Display.value\_str\_sequencer[1], \textcolor{stringliteral}{"{}\%c"{}}, Display.Sequencer\_Note[0]);}
+\DoxyCodeLine{00298     sprintf(Display.value\_str\_sequencer[2], \textcolor{stringliteral}{"{}\%d"{}}, Display.Sequencer\_Octave[0]);}
+\DoxyCodeLine{00299     sprintf(Display.value\_str\_sequencer[3], \textcolor{stringliteral}{"{}\%c"{}}, Display.Sequencer\_Note[1]);}
+\DoxyCodeLine{00300     sprintf(Display.value\_str\_sequencer[4], \textcolor{stringliteral}{"{}\%d"{}}, Display.Sequencer\_Octave[1]);}
+\DoxyCodeLine{00301     sprintf(Display.value\_str\_sequencer[5], \textcolor{stringliteral}{"{}\%c"{}}, Display.Sequencer\_Note[2]);}
+\DoxyCodeLine{00302     sprintf(Display.value\_str\_sequencer[6], \textcolor{stringliteral}{"{}\%d"{}}, Display.Sequencer\_Octave[2]);}
+\DoxyCodeLine{00303 }
+\DoxyCodeLine{00304     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{00305 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__Sequencer_gabafd5c3bbb1d0bbc3e708889e904e3a7}\label{group__Sequencer_gabafd5c3bbb1d0bbc3e708889e904e3a7}} 
+\index{Sequencer@{Sequencer}!current\_LUT\_index\_SN1@{current\_LUT\_index\_SN1}}
+\index{current\_LUT\_index\_SN1@{current\_LUT\_index\_SN1}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{current\_LUT\_index\_SN1}{current\_LUT\_index\_SN1}}
+{\footnotesize\ttfamily uint32\+\_\+t current\+\_\+\+LUT\+\_\+index\+\_\+\+SN1\mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}}
+
+
+
+Current LUT index sequencer. 
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00095}{95}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__Sequencer_ga51da216a9e0dc66de3deb7cefcd77f30}\label{group__Sequencer_ga51da216a9e0dc66de3deb7cefcd77f30}} 
+\index{Sequencer@{Sequencer}!current\_LUT\_index\_SN2@{current\_LUT\_index\_SN2}}
+\index{current\_LUT\_index\_SN2@{current\_LUT\_index\_SN2}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{current\_LUT\_index\_SN2}{current\_LUT\_index\_SN2}}
+{\footnotesize\ttfamily uint32\+\_\+t current\+\_\+\+LUT\+\_\+index\+\_\+\+SN2\mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00096}{96}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__Sequencer_ga0e2c70b4b41ba25a4d81e29bce62c2e7}\label{group__Sequencer_ga0e2c70b4b41ba25a4d81e29bce62c2e7}} 
+\index{Sequencer@{Sequencer}!current\_LUT\_index\_SN3@{current\_LUT\_index\_SN3}}
+\index{current\_LUT\_index\_SN3@{current\_LUT\_index\_SN3}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{current\_LUT\_index\_SN3}{current\_LUT\_index\_SN3}}
+{\footnotesize\ttfamily uint32\+\_\+t current\+\_\+\+LUT\+\_\+index\+\_\+\+SN3\mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00097}{97}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__Sequencer_gaa9cc0ac2c5813c64e55e66d728074dd6}\label{group__Sequencer_gaa9cc0ac2c5813c64e55e66d728074dd6}} 
+\index{Sequencer@{Sequencer}!current\_LUT\_index\_SN4@{current\_LUT\_index\_SN4}}
+\index{current\_LUT\_index\_SN4@{current\_LUT\_index\_SN4}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{current\_LUT\_index\_SN4}{current\_LUT\_index\_SN4}}
+{\footnotesize\ttfamily uint32\+\_\+t current\+\_\+\+LUT\+\_\+index\+\_\+\+SN4\mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00098}{98}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__Sequencer_ga4211ba08e77d82a294762a623041e342}\label{group__Sequencer_ga4211ba08e77d82a294762a623041e342}} 
+\index{Sequencer@{Sequencer}!freq\_index\_SN1@{freq\_index\_SN1}}
+\index{freq\_index\_SN1@{freq\_index\_SN1}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{freq\_index\_SN1}{freq\_index\_SN1}}
+{\footnotesize\ttfamily uint16\+\_\+t freq\+\_\+index\+\_\+\+SN1}
+
+
+
+Frequency index sequencer. 
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00089}{89}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__Sequencer_ga293fbfcf8787bd80eae1045c50ce7930}\label{group__Sequencer_ga293fbfcf8787bd80eae1045c50ce7930}} 
+\index{Sequencer@{Sequencer}!freq\_index\_SN2@{freq\_index\_SN2}}
+\index{freq\_index\_SN2@{freq\_index\_SN2}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{freq\_index\_SN2}{freq\_index\_SN2}}
+{\footnotesize\ttfamily uint16\+\_\+t freq\+\_\+index\+\_\+\+SN2}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00090}{90}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__Sequencer_ga0ddb00b49386070cc056f71880a16215}\label{group__Sequencer_ga0ddb00b49386070cc056f71880a16215}} 
+\index{Sequencer@{Sequencer}!freq\_index\_SN3@{freq\_index\_SN3}}
+\index{freq\_index\_SN3@{freq\_index\_SN3}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{freq\_index\_SN3}{freq\_index\_SN3}}
+{\footnotesize\ttfamily uint16\+\_\+t freq\+\_\+index\+\_\+\+SN3}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00091}{91}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__Sequencer_ga9de3fd8c6de51c0cd59bc06b93e6bead}\label{group__Sequencer_ga9de3fd8c6de51c0cd59bc06b93e6bead}} 
+\index{Sequencer@{Sequencer}!freq\_index\_SN4@{freq\_index\_SN4}}
+\index{freq\_index\_SN4@{freq\_index\_SN4}!Sequencer@{Sequencer}}
+\doxysubsubsection{\texorpdfstring{freq\_index\_SN4}{freq\_index\_SN4}}
+{\footnotesize\ttfamily uint16\+\_\+t freq\+\_\+index\+\_\+\+SN4}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00092}{92}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+

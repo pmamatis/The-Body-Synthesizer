@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('fatfs__sd_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_e2489e887f17afa3cbc07a4ec152cdd2.html">Inc</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
@@ -410,107 +426,96 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00280">280</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  281</span>{</div>
-<div class="line"><span class="lineno">  282</span>  uint8_t n, type, ocr[4];</div>
-<div class="line"><span class="lineno">  283</span>  </div>
-<div class="line"><span class="lineno">  284</span>  <span class="comment">/* 한종류의 드라이브만 지원 */</span></div>
-<div class="line"><span class="lineno">  285</span>  <span class="keywordflow">if</span>(drv)</div>
-<div class="line"><span class="lineno">  286</span>    <span class="keywordflow">return</span> STA_NOINIT;  </div>
-<div class="line"><span class="lineno">  287</span>  </div>
-<div class="line"><span class="lineno">  288</span>  <span class="comment">/* SD카드 미삽입 */</span></div>
-<div class="line"><span class="lineno">  289</span>  <span class="keywordflow">if</span>(Stat &amp; STA_NODISK)</div>
-<div class="line"><span class="lineno">  290</span>    <span class="keywordflow">return</span> Stat;        </div>
-<div class="line"><span class="lineno">  291</span>  </div>
-<div class="line"><span class="lineno">  292</span>  <span class="comment">/* SD카드 Power On */</span></div>
-<div class="line"><span class="lineno">  293</span>  SD_PowerOn();         </div>
-<div class="line"><span class="lineno">  294</span>  </div>
-<div class="line"><span class="lineno">  295</span>  <span class="comment">/* SPI 통신을 위해 Chip Select */</span></div>
-<div class="line"><span class="lineno">  296</span>  SELECT();             </div>
-<div class="line"><span class="lineno">  297</span>  </div>
-<div class="line"><span class="lineno">  298</span>  <span class="comment">/* SD카드 타입변수 초기화 */</span></div>
-<div class="line"><span class="lineno">  299</span>  type = 0;</div>
-<div class="line"><span class="lineno">  300</span>  </div>
-<div class="line"><span class="lineno">  301</span>  <span class="comment">/* Idle 상태 진입 */</span></div>
-<div class="line"><span class="lineno">  302</span>  <span class="keywordflow">if</span> (SD_SendCmd(CMD0, 0) == 1) </div>
-<div class="line"><span class="lineno">  303</span>  { </div>
-<div class="line"><span class="lineno">  304</span>    <span class="comment">/* 타이머 1초 설정 */</span></div>
-<div class="line"><span class="lineno">  305</span>    Timer1 = 100;</div>
-<div class="line"><span class="lineno">  306</span>    </div>
-<div class="line"><span class="lineno">  307</span>    <span class="comment">/* SD 인터페이스 동작 조건 확인 */</span></div>
-<div class="line"><span class="lineno">  308</span>    <span class="keywordflow">if</span> (SD_SendCmd(CMD8, 0x1AA) == 1) </div>
-<div class="line"><span class="lineno">  309</span>    { </div>
-<div class="line"><span class="lineno">  310</span>      <span class="comment">/* SDC Ver2+ */</span></div>
-<div class="line"><span class="lineno">  311</span>      <span class="keywordflow">for</span> (n = 0; n &lt; 4; n++)</div>
-<div class="line"><span class="lineno">  312</span>      {</div>
-<div class="line"><span class="lineno">  313</span>        ocr[n] = SPI_RxByte();</div>
-<div class="line"><span class="lineno">  314</span>      }</div>
-<div class="line"><span class="lineno">  315</span>      </div>
-<div class="line"><span class="lineno">  316</span>      <span class="keywordflow">if</span> (ocr[2] == 0x01 &amp;&amp; ocr[3] == 0xAA) </div>
-<div class="line"><span class="lineno">  317</span>      { </div>
-<div class="line"><span class="lineno">  318</span>        <span class="comment">/* 2.7-3.6V 전압범위 동작 */</span></div>
-<div class="line"><span class="lineno">  319</span>        <span class="keywordflow">do</span> {</div>
-<div class="line"><span class="lineno">  320</span>          <span class="keywordflow">if</span> (SD_SendCmd(CMD55, 0) &lt;= 1 &amp;&amp; SD_SendCmd(CMD41, 1UL &lt;&lt; 30) == 0)</div>
-<div class="line"><span class="lineno">  321</span>            <span class="keywordflow">break</span>; <span class="comment">/* ACMD41 with HCS bit */</span></div>
-<div class="line"><span class="lineno">  322</span>        } <span class="keywordflow">while</span> (Timer1);</div>
-<div class="line"><span class="lineno">  323</span>        </div>
-<div class="line"><span class="lineno">  324</span>        <span class="keywordflow">if</span> (Timer1 &amp;&amp; SD_SendCmd(CMD58, 0) == 0) </div>
-<div class="line"><span class="lineno">  325</span>        { </div>
-<div class="line"><span class="lineno">  326</span>          <span class="comment">/* Check CCS bit */</span></div>
-<div class="line"><span class="lineno">  327</span>          <span class="keywordflow">for</span> (n = 0; n &lt; 4; n++)</div>
-<div class="line"><span class="lineno">  328</span>          {</div>
-<div class="line"><span class="lineno">  329</span>            ocr[n] = SPI_RxByte();</div>
-<div class="line"><span class="lineno">  330</span>          }</div>
-<div class="line"><span class="lineno">  331</span>          </div>
-<div class="line"><span class="lineno">  332</span>          type = (ocr[0] &amp; 0x40) ? 6 : 2;</div>
-<div class="line"><span class="lineno">  333</span>        }</div>
-<div class="line"><span class="lineno">  334</span>      }</div>
-<div class="line"><span class="lineno">  335</span>    } </div>
-<div class="line"><span class="lineno">  336</span>    <span class="keywordflow">else</span> </div>
-<div class="line"><span class="lineno">  337</span>    { </div>
-<div class="line"><span class="lineno">  338</span>      <span class="comment">/* SDC Ver1 or MMC */</span></div>
-<div class="line"><span class="lineno">  339</span>      type = (SD_SendCmd(CMD55, 0) &lt;= 1 &amp;&amp; SD_SendCmd(CMD41, 0) &lt;= 1) ? 2 : 1; <span class="comment">/* SDC : MMC */</span></div>
-<div class="line"><span class="lineno">  340</span>      </div>
-<div class="line"><span class="lineno">  341</span>      <span class="keywordflow">do</span> {</div>
-<div class="line"><span class="lineno">  342</span>        <span class="keywordflow">if</span> (type == 2) </div>
-<div class="line"><span class="lineno">  343</span>        {</div>
-<div class="line"><span class="lineno">  344</span>          <span class="keywordflow">if</span> (SD_SendCmd(CMD55, 0) &lt;= 1 &amp;&amp; SD_SendCmd(CMD41, 0) == 0)</div>
-<div class="line"><span class="lineno">  345</span>            <span class="keywordflow">break</span>; <span class="comment">/* ACMD41 */</span></div>
-<div class="line"><span class="lineno">  346</span>        } </div>
-<div class="line"><span class="lineno">  347</span>        <span class="keywordflow">else</span> </div>
-<div class="line"><span class="lineno">  348</span>        {</div>
-<div class="line"><span class="lineno">  349</span>          <span class="keywordflow">if</span> (SD_SendCmd(CMD1, 0) == 0)</div>
-<div class="line"><span class="lineno">  350</span>            <span class="keywordflow">break</span>; <span class="comment">/* CMD1 */</span></div>
-<div class="line"><span class="lineno">  351</span>        }</div>
-<div class="line"><span class="lineno">  352</span>      } <span class="keywordflow">while</span> (Timer1);</div>
-<div class="line"><span class="lineno">  353</span>      </div>
-<div class="line"><span class="lineno">  354</span>      <span class="keywordflow">if</span> (!Timer1 || SD_SendCmd(CMD16, 512) != 0) </div>
-<div class="line"><span class="lineno">  355</span>      {</div>
-<div class="line"><span class="lineno">  356</span>        <span class="comment">/* 블럭 길이 선택 */</span></div>
-<div class="line"><span class="lineno">  357</span>        type = 0;</div>
-<div class="line"><span class="lineno">  358</span>      }</div>
-<div class="line"><span class="lineno">  359</span>    }</div>
-<div class="line"><span class="lineno">  360</span>  }</div>
-<div class="line"><span class="lineno">  361</span>  </div>
-<div class="line"><span class="lineno">  362</span>  CardType = type;</div>
-<div class="line"><span class="lineno">  363</span>  </div>
-<div class="line"><span class="lineno">  364</span>  DESELECT();</div>
-<div class="line"><span class="lineno">  365</span>  </div>
-<div class="line"><span class="lineno">  366</span>  SPI_RxByte(); <span class="comment">/* Idle 상태 전환 (Release DO) */</span></div>
-<div class="line"><span class="lineno">  367</span>  </div>
-<div class="line"><span class="lineno">  368</span>  <span class="keywordflow">if</span> (type) </div>
-<div class="line"><span class="lineno">  369</span>  {</div>
-<div class="line"><span class="lineno">  370</span>    <span class="comment">/* Clear STA_NOINIT */</span></div>
-<div class="line"><span class="lineno">  371</span>    Stat &amp;= ~STA_NOINIT; </div>
-<div class="line"><span class="lineno">  372</span>  }</div>
-<div class="line"><span class="lineno">  373</span>  <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  374</span>  {</div>
-<div class="line"><span class="lineno">  375</span>    <span class="comment">/* Initialization failed */</span></div>
-<div class="line"><span class="lineno">  376</span>    SD_PowerOff();</div>
-<div class="line"><span class="lineno">  377</span>  }</div>
-<div class="line"><span class="lineno">  378</span>  </div>
-<div class="line"><span class="lineno">  379</span>  <span class="keywordflow">return</span> Stat;</div>
-<div class="line"><span class="lineno">  380</span>}</div>
+<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00254">254</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  255</span>{</div>
+<div class="line"><span class="lineno">  256</span>  uint8_t n, type, ocr[4];</div>
+<div class="line"><span class="lineno">  257</span>  </div>
+<div class="line"><span class="lineno">  258</span>  <span class="keywordflow">if</span>(drv)</div>
+<div class="line"><span class="lineno">  259</span>    <span class="keywordflow">return</span> STA_NOINIT;  </div>
+<div class="line"><span class="lineno">  260</span>  </div>
+<div class="line"><span class="lineno">  261</span>  <span class="keywordflow">if</span>(Stat &amp; STA_NODISK)</div>
+<div class="line"><span class="lineno">  262</span>    <span class="keywordflow">return</span> Stat;        </div>
+<div class="line"><span class="lineno">  263</span>  </div>
+<div class="line"><span class="lineno">  264</span>  SD_PowerOn();         </div>
+<div class="line"><span class="lineno">  265</span>  </div>
+<div class="line"><span class="lineno">  266</span>  SELECT();             </div>
+<div class="line"><span class="lineno">  267</span>  </div>
+<div class="line"><span class="lineno">  268</span>  type = 0;</div>
+<div class="line"><span class="lineno">  269</span>  </div>
+<div class="line"><span class="lineno">  270</span>  <span class="keywordflow">if</span> (SD_SendCmd(CMD0, 0) == 1) </div>
+<div class="line"><span class="lineno">  271</span>  { </div>
+<div class="line"><span class="lineno">  272</span>    Timer1 = 100;</div>
+<div class="line"><span class="lineno">  273</span>    </div>
+<div class="line"><span class="lineno">  274</span>    <span class="keywordflow">if</span> (SD_SendCmd(CMD8, 0x1AA) == 1) </div>
+<div class="line"><span class="lineno">  275</span>    { </div>
+<div class="line"><span class="lineno">  276</span>      <span class="keywordflow">for</span> (n = 0; n &lt; 4; n++)</div>
+<div class="line"><span class="lineno">  277</span>      {</div>
+<div class="line"><span class="lineno">  278</span>        ocr[n] = SPI_RxByte();</div>
+<div class="line"><span class="lineno">  279</span>      }</div>
+<div class="line"><span class="lineno">  280</span>      </div>
+<div class="line"><span class="lineno">  281</span>      <span class="keywordflow">if</span> (ocr[2] == 0x01 &amp;&amp; ocr[3] == 0xAA) </div>
+<div class="line"><span class="lineno">  282</span>      { </div>
+<div class="line"><span class="lineno">  283</span>        <span class="keywordflow">do</span> {</div>
+<div class="line"><span class="lineno">  284</span>          <span class="keywordflow">if</span> (SD_SendCmd(CMD55, 0) &lt;= 1 &amp;&amp; SD_SendCmd(CMD41, 1UL &lt;&lt; 30) == 0)</div>
+<div class="line"><span class="lineno">  285</span>            <span class="keywordflow">break</span>; <span class="comment">/* ACMD41 with HCS bit */</span></div>
+<div class="line"><span class="lineno">  286</span>        } <span class="keywordflow">while</span> (Timer1);</div>
+<div class="line"><span class="lineno">  287</span>        </div>
+<div class="line"><span class="lineno">  288</span>        <span class="keywordflow">if</span> (Timer1 &amp;&amp; SD_SendCmd(CMD58, 0) == 0) </div>
+<div class="line"><span class="lineno">  289</span>        { </div>
+<div class="line"><span class="lineno">  290</span>          <span class="comment">/* Check CCS bit */</span></div>
+<div class="line"><span class="lineno">  291</span>          <span class="keywordflow">for</span> (n = 0; n &lt; 4; n++)</div>
+<div class="line"><span class="lineno">  292</span>          {</div>
+<div class="line"><span class="lineno">  293</span>            ocr[n] = SPI_RxByte();</div>
+<div class="line"><span class="lineno">  294</span>          }</div>
+<div class="line"><span class="lineno">  295</span>          </div>
+<div class="line"><span class="lineno">  296</span>          type = (ocr[0] &amp; 0x40) ? 6 : 2;</div>
+<div class="line"><span class="lineno">  297</span>        }</div>
+<div class="line"><span class="lineno">  298</span>      }</div>
+<div class="line"><span class="lineno">  299</span>    } </div>
+<div class="line"><span class="lineno">  300</span>    <span class="keywordflow">else</span> </div>
+<div class="line"><span class="lineno">  301</span>    { </div>
+<div class="line"><span class="lineno">  302</span>      <span class="comment">/* SDC Ver1 or MMC */</span></div>
+<div class="line"><span class="lineno">  303</span>      type = (SD_SendCmd(CMD55, 0) &lt;= 1 &amp;&amp; SD_SendCmd(CMD41, 0) &lt;= 1) ? 2 : 1; <span class="comment">/* SDC : MMC */</span></div>
+<div class="line"><span class="lineno">  304</span>      </div>
+<div class="line"><span class="lineno">  305</span>      <span class="keywordflow">do</span> {</div>
+<div class="line"><span class="lineno">  306</span>        <span class="keywordflow">if</span> (type == 2) </div>
+<div class="line"><span class="lineno">  307</span>        {</div>
+<div class="line"><span class="lineno">  308</span>          <span class="keywordflow">if</span> (SD_SendCmd(CMD55, 0) &lt;= 1 &amp;&amp; SD_SendCmd(CMD41, 0) == 0)</div>
+<div class="line"><span class="lineno">  309</span>            <span class="keywordflow">break</span>; <span class="comment">/* ACMD41 */</span></div>
+<div class="line"><span class="lineno">  310</span>        } </div>
+<div class="line"><span class="lineno">  311</span>        <span class="keywordflow">else</span> </div>
+<div class="line"><span class="lineno">  312</span>        {</div>
+<div class="line"><span class="lineno">  313</span>          <span class="keywordflow">if</span> (SD_SendCmd(CMD1, 0) == 0)</div>
+<div class="line"><span class="lineno">  314</span>            <span class="keywordflow">break</span>; <span class="comment">/* CMD1 */</span></div>
+<div class="line"><span class="lineno">  315</span>        }</div>
+<div class="line"><span class="lineno">  316</span>      } <span class="keywordflow">while</span> (Timer1);</div>
+<div class="line"><span class="lineno">  317</span>      </div>
+<div class="line"><span class="lineno">  318</span>      <span class="keywordflow">if</span> (!Timer1 || SD_SendCmd(CMD16, 512) != 0) </div>
+<div class="line"><span class="lineno">  319</span>      {</div>
+<div class="line"><span class="lineno">  320</span>        type = 0;</div>
+<div class="line"><span class="lineno">  321</span>      }</div>
+<div class="line"><span class="lineno">  322</span>    }</div>
+<div class="line"><span class="lineno">  323</span>  }</div>
+<div class="line"><span class="lineno">  324</span>  </div>
+<div class="line"><span class="lineno">  325</span>  CardType = type;</div>
+<div class="line"><span class="lineno">  326</span>  </div>
+<div class="line"><span class="lineno">  327</span>  DESELECT();</div>
+<div class="line"><span class="lineno">  328</span>  </div>
+<div class="line"><span class="lineno">  329</span>  SPI_RxByte(); </div>
+<div class="line"><span class="lineno">  330</span>  </div>
+<div class="line"><span class="lineno">  331</span>  <span class="keywordflow">if</span> (type) </div>
+<div class="line"><span class="lineno">  332</span>  {</div>
+<div class="line"><span class="lineno">  333</span>    <span class="comment">/* Clear STA_NOINIT */</span></div>
+<div class="line"><span class="lineno">  334</span>    Stat &amp;= ~STA_NOINIT; </div>
+<div class="line"><span class="lineno">  335</span>  }</div>
+<div class="line"><span class="lineno">  336</span>  <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  337</span>  {</div>
+<div class="line"><span class="lineno">  338</span>    <span class="comment">/* Initialization failed */</span></div>
+<div class="line"><span class="lineno">  339</span>    SD_PowerOff();</div>
+<div class="line"><span class="lineno">  340</span>  }</div>
+<div class="line"><span class="lineno">  341</span>  </div>
+<div class="line"><span class="lineno">  342</span>  <span class="keywordflow">return</span> Stat;</div>
+<div class="line"><span class="lineno">  343</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -546,115 +551,109 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00491">491</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  492</span>{</div>
-<div class="line"><span class="lineno">  493</span>  DRESULT res;</div>
-<div class="line"><span class="lineno">  494</span>  BYTE n, csd[16], *ptr = buff;</div>
-<div class="line"><span class="lineno">  495</span>  WORD csize;</div>
-<div class="line"><span class="lineno">  496</span>  </div>
-<div class="line"><span class="lineno">  497</span>  <span class="keywordflow">if</span> (drv)</div>
-<div class="line"><span class="lineno">  498</span>    <span class="keywordflow">return</span> RES_PARERR;</div>
-<div class="line"><span class="lineno">  499</span>  </div>
-<div class="line"><span class="lineno">  500</span>  res = RES_ERROR;</div>
-<div class="line"><span class="lineno">  501</span>  </div>
-<div class="line"><span class="lineno">  502</span>  <span class="keywordflow">if</span> (ctrl == CTRL_POWER) </div>
-<div class="line"><span class="lineno">  503</span>  {</div>
-<div class="line"><span class="lineno">  504</span>    <span class="keywordflow">switch</span> (*ptr) </div>
-<div class="line"><span class="lineno">  505</span>    {</div>
-<div class="line"><span class="lineno">  506</span>    <span class="keywordflow">case</span> 0:</div>
-<div class="line"><span class="lineno">  507</span>      <span class="keywordflow">if</span> (SD_CheckPower())</div>
-<div class="line"><span class="lineno">  508</span>        SD_PowerOff();          <span class="comment">/* Power Off */</span></div>
+<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00445">445</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  446</span>{</div>
+<div class="line"><span class="lineno">  447</span>  DRESULT res;</div>
+<div class="line"><span class="lineno">  448</span>  BYTE n, csd[16], *ptr = buff;</div>
+<div class="line"><span class="lineno">  449</span>  WORD csize;</div>
+<div class="line"><span class="lineno">  450</span>  </div>
+<div class="line"><span class="lineno">  451</span>  <span class="keywordflow">if</span> (drv)</div>
+<div class="line"><span class="lineno">  452</span>    <span class="keywordflow">return</span> RES_PARERR;</div>
+<div class="line"><span class="lineno">  453</span>  </div>
+<div class="line"><span class="lineno">  454</span>  res = RES_ERROR;</div>
+<div class="line"><span class="lineno">  455</span>  </div>
+<div class="line"><span class="lineno">  456</span>  <span class="keywordflow">if</span> (ctrl == CTRL_POWER) </div>
+<div class="line"><span class="lineno">  457</span>  {</div>
+<div class="line"><span class="lineno">  458</span>    <span class="keywordflow">switch</span> (*ptr) </div>
+<div class="line"><span class="lineno">  459</span>    {</div>
+<div class="line"><span class="lineno">  460</span>    <span class="keywordflow">case</span> 0:</div>
+<div class="line"><span class="lineno">  461</span>      <span class="keywordflow">if</span> (SD_CheckPower())</div>
+<div class="line"><span class="lineno">  462</span>        SD_PowerOff();          <span class="comment">/* Power Off */</span></div>
+<div class="line"><span class="lineno">  463</span>      res = RES_OK;</div>
+<div class="line"><span class="lineno">  464</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  465</span>    <span class="keywordflow">case</span> 1:</div>
+<div class="line"><span class="lineno">  466</span>      SD_PowerOn();             <span class="comment">/* Power On */</span></div>
+<div class="line"><span class="lineno">  467</span>      res = RES_OK;</div>
+<div class="line"><span class="lineno">  468</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  469</span>    <span class="keywordflow">case</span> 2:</div>
+<div class="line"><span class="lineno">  470</span>      *(ptr + 1) = (BYTE) SD_CheckPower();</div>
+<div class="line"><span class="lineno">  471</span>      res = RES_OK;             <span class="comment">/* Power Check */</span></div>
+<div class="line"><span class="lineno">  472</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  473</span>    <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  474</span>      res = RES_PARERR;</div>
+<div class="line"><span class="lineno">  475</span>    }</div>
+<div class="line"><span class="lineno">  476</span>  } </div>
+<div class="line"><span class="lineno">  477</span>  <span class="keywordflow">else</span> </div>
+<div class="line"><span class="lineno">  478</span>  {</div>
+<div class="line"><span class="lineno">  479</span>    <span class="keywordflow">if</span> (Stat &amp; STA_NOINIT)</div>
+<div class="line"><span class="lineno">  480</span>      <span class="keywordflow">return</span> RES_NOTRDY;</div>
+<div class="line"><span class="lineno">  481</span>    </div>
+<div class="line"><span class="lineno">  482</span>    SELECT();</div>
+<div class="line"><span class="lineno">  483</span>    </div>
+<div class="line"><span class="lineno">  484</span>    <span class="keywordflow">switch</span> (ctrl) </div>
+<div class="line"><span class="lineno">  485</span>    {</div>
+<div class="line"><span class="lineno">  486</span>    <span class="keywordflow">case</span> GET_SECTOR_COUNT: </div>
+<div class="line"><span class="lineno">  487</span>      <span class="keywordflow">if</span> ((SD_SendCmd(CMD9, 0) == 0) &amp;&amp; SD_RxDataBlock(csd, 16)) </div>
+<div class="line"><span class="lineno">  488</span>      {</div>
+<div class="line"><span class="lineno">  489</span>        <span class="keywordflow">if</span> ((csd[0] &gt;&gt; 6) == 1) </div>
+<div class="line"><span class="lineno">  490</span>        { </div>
+<div class="line"><span class="lineno">  491</span>          <span class="comment">/* SDC ver 2.00 */</span></div>
+<div class="line"><span class="lineno">  492</span>          csize = csd[9] + ((WORD) csd[8] &lt;&lt; 8) + 1;</div>
+<div class="line"><span class="lineno">  493</span>          *(DWORD*) buff = (DWORD) csize &lt;&lt; 10;</div>
+<div class="line"><span class="lineno">  494</span>        } </div>
+<div class="line"><span class="lineno">  495</span>        <span class="keywordflow">else</span> </div>
+<div class="line"><span class="lineno">  496</span>        { </div>
+<div class="line"><span class="lineno">  497</span>          <span class="comment">/* MMC or SDC ver 1.XX */</span></div>
+<div class="line"><span class="lineno">  498</span>          n = (csd[5] &amp; 15) + ((csd[10] &amp; 128) &gt;&gt; 7) + ((csd[9] &amp; 3) &lt;&lt; 1) + 2;</div>
+<div class="line"><span class="lineno">  499</span>          csize = (csd[8] &gt;&gt; 6) + ((WORD) csd[7] &lt;&lt; 2) + ((WORD) (csd[6] &amp; 3) &lt;&lt; 10) + 1;</div>
+<div class="line"><span class="lineno">  500</span>          *(DWORD*) buff = (DWORD) csize &lt;&lt; (n - 9);</div>
+<div class="line"><span class="lineno">  501</span>        }</div>
+<div class="line"><span class="lineno">  502</span>        </div>
+<div class="line"><span class="lineno">  503</span>        res = RES_OK;</div>
+<div class="line"><span class="lineno">  504</span>      }</div>
+<div class="line"><span class="lineno">  505</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  506</span>      </div>
+<div class="line"><span class="lineno">  507</span>    <span class="keywordflow">case</span> GET_SECTOR_SIZE: </div>
+<div class="line"><span class="lineno">  508</span>      *(WORD*) buff = 512;</div>
 <div class="line"><span class="lineno">  509</span>      res = RES_OK;</div>
 <div class="line"><span class="lineno">  510</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  511</span>    <span class="keywordflow">case</span> 1:</div>
-<div class="line"><span class="lineno">  512</span>      SD_PowerOn();             <span class="comment">/* Power On */</span></div>
-<div class="line"><span class="lineno">  513</span>      res = RES_OK;</div>
-<div class="line"><span class="lineno">  514</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  515</span>    <span class="keywordflow">case</span> 2:</div>
-<div class="line"><span class="lineno">  516</span>      *(ptr + 1) = (BYTE) SD_CheckPower();</div>
-<div class="line"><span class="lineno">  517</span>      res = RES_OK;             <span class="comment">/* Power Check */</span></div>
-<div class="line"><span class="lineno">  518</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  519</span>    <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  520</span>      res = RES_PARERR;</div>
-<div class="line"><span class="lineno">  521</span>    }</div>
-<div class="line"><span class="lineno">  522</span>  } </div>
-<div class="line"><span class="lineno">  523</span>  <span class="keywordflow">else</span> </div>
-<div class="line"><span class="lineno">  524</span>  {</div>
-<div class="line"><span class="lineno">  525</span>    <span class="keywordflow">if</span> (Stat &amp; STA_NOINIT)</div>
-<div class="line"><span class="lineno">  526</span>      <span class="keywordflow">return</span> RES_NOTRDY;</div>
-<div class="line"><span class="lineno">  527</span>    </div>
-<div class="line"><span class="lineno">  528</span>    SELECT();</div>
-<div class="line"><span class="lineno">  529</span>    </div>
-<div class="line"><span class="lineno">  530</span>    <span class="keywordflow">switch</span> (ctrl) </div>
-<div class="line"><span class="lineno">  531</span>    {</div>
-<div class="line"><span class="lineno">  532</span>    <span class="keywordflow">case</span> GET_SECTOR_COUNT: </div>
-<div class="line"><span class="lineno">  533</span>      <span class="comment">/* SD카드 내 Sector의 개수 (DWORD) */</span></div>
-<div class="line"><span class="lineno">  534</span>      <span class="keywordflow">if</span> ((SD_SendCmd(CMD9, 0) == 0) &amp;&amp; SD_RxDataBlock(csd, 16)) </div>
-<div class="line"><span class="lineno">  535</span>      {</div>
-<div class="line"><span class="lineno">  536</span>        <span class="keywordflow">if</span> ((csd[0] &gt;&gt; 6) == 1) </div>
-<div class="line"><span class="lineno">  537</span>        { </div>
-<div class="line"><span class="lineno">  538</span>          <span class="comment">/* SDC ver 2.00 */</span></div>
-<div class="line"><span class="lineno">  539</span>          csize = csd[9] + ((WORD) csd[8] &lt;&lt; 8) + 1;</div>
-<div class="line"><span class="lineno">  540</span>          *(DWORD*) buff = (DWORD) csize &lt;&lt; 10;</div>
-<div class="line"><span class="lineno">  541</span>        } </div>
-<div class="line"><span class="lineno">  542</span>        <span class="keywordflow">else</span> </div>
-<div class="line"><span class="lineno">  543</span>        { </div>
-<div class="line"><span class="lineno">  544</span>          <span class="comment">/* MMC or SDC ver 1.XX */</span></div>
-<div class="line"><span class="lineno">  545</span>          n = (csd[5] &amp; 15) + ((csd[10] &amp; 128) &gt;&gt; 7) + ((csd[9] &amp; 3) &lt;&lt; 1) + 2;</div>
-<div class="line"><span class="lineno">  546</span>          csize = (csd[8] &gt;&gt; 6) + ((WORD) csd[7] &lt;&lt; 2) + ((WORD) (csd[6] &amp; 3) &lt;&lt; 10) + 1;</div>
-<div class="line"><span class="lineno">  547</span>          *(DWORD*) buff = (DWORD) csize &lt;&lt; (n - 9);</div>
-<div class="line"><span class="lineno">  548</span>        }</div>
-<div class="line"><span class="lineno">  549</span>        </div>
-<div class="line"><span class="lineno">  550</span>        res = RES_OK;</div>
-<div class="line"><span class="lineno">  551</span>      }</div>
-<div class="line"><span class="lineno">  552</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  553</span>      </div>
-<div class="line"><span class="lineno">  554</span>    <span class="keywordflow">case</span> GET_SECTOR_SIZE: </div>
-<div class="line"><span class="lineno">  555</span>      <span class="comment">/* 섹터의 단위 크기 (WORD) */</span></div>
-<div class="line"><span class="lineno">  556</span>      *(WORD*) buff = 512;</div>
-<div class="line"><span class="lineno">  557</span>      res = RES_OK;</div>
-<div class="line"><span class="lineno">  558</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  559</span>      </div>
-<div class="line"><span class="lineno">  560</span>    <span class="keywordflow">case</span> CTRL_SYNC: </div>
-<div class="line"><span class="lineno">  561</span>      <span class="comment">/* 쓰기 동기화 */</span></div>
-<div class="line"><span class="lineno">  562</span>      <span class="keywordflow">if</span> (SD_ReadyWait() == 0xFF)</div>
-<div class="line"><span class="lineno">  563</span>        res = RES_OK;</div>
-<div class="line"><span class="lineno">  564</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  565</span>      </div>
-<div class="line"><span class="lineno">  566</span>    <span class="keywordflow">case</span> MMC_GET_CSD: </div>
-<div class="line"><span class="lineno">  567</span>      <span class="comment">/* CSD 정보 수신 (16 bytes) */</span></div>
-<div class="line"><span class="lineno">  568</span>      <span class="keywordflow">if</span> (SD_SendCmd(CMD9, 0) == 0 &amp;&amp; SD_RxDataBlock(ptr, 16))</div>
-<div class="line"><span class="lineno">  569</span>        res = RES_OK;</div>
-<div class="line"><span class="lineno">  570</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  571</span>      </div>
-<div class="line"><span class="lineno">  572</span>    <span class="keywordflow">case</span> MMC_GET_CID: </div>
-<div class="line"><span class="lineno">  573</span>      <span class="comment">/* CID 정보 수신 (16 bytes) */</span></div>
-<div class="line"><span class="lineno">  574</span>      <span class="keywordflow">if</span> (SD_SendCmd(CMD10, 0) == 0 &amp;&amp; SD_RxDataBlock(ptr, 16))</div>
-<div class="line"><span class="lineno">  575</span>        res = RES_OK;</div>
-<div class="line"><span class="lineno">  576</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  577</span>      </div>
-<div class="line"><span class="lineno">  578</span>    <span class="keywordflow">case</span> MMC_GET_OCR: </div>
-<div class="line"><span class="lineno">  579</span>      <span class="comment">/* OCR 정보 수신 (4 bytes) */</span></div>
-<div class="line"><span class="lineno">  580</span>      <span class="keywordflow">if</span> (SD_SendCmd(CMD58, 0) == 0) </div>
-<div class="line"><span class="lineno">  581</span>      {         </div>
-<div class="line"><span class="lineno">  582</span>        <span class="keywordflow">for</span> (n = 0; n &lt; 4; n++)</div>
-<div class="line"><span class="lineno">  583</span>        {</div>
-<div class="line"><span class="lineno">  584</span>          *ptr++ = SPI_RxByte();</div>
-<div class="line"><span class="lineno">  585</span>        }</div>
-<div class="line"><span class="lineno">  586</span>        </div>
-<div class="line"><span class="lineno">  587</span>        res = RES_OK;</div>
-<div class="line"><span class="lineno">  588</span>      }     </div>
-<div class="line"><span class="lineno">  589</span>      </div>
-<div class="line"><span class="lineno">  590</span>    <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  591</span>      res = RES_PARERR;</div>
-<div class="line"><span class="lineno">  592</span>    }</div>
-<div class="line"><span class="lineno">  593</span>    </div>
-<div class="line"><span class="lineno">  594</span>    DESELECT();</div>
-<div class="line"><span class="lineno">  595</span>    SPI_RxByte();</div>
-<div class="line"><span class="lineno">  596</span>  }</div>
-<div class="line"><span class="lineno">  597</span>  </div>
-<div class="line"><span class="lineno">  598</span>  <span class="keywordflow">return</span> res;</div>
-<div class="line"><span class="lineno">  599</span>}</div>
+<div class="line"><span class="lineno">  511</span>      </div>
+<div class="line"><span class="lineno">  512</span>    <span class="keywordflow">case</span> CTRL_SYNC: </div>
+<div class="line"><span class="lineno">  513</span>      <span class="keywordflow">if</span> (SD_ReadyWait() == 0xFF)</div>
+<div class="line"><span class="lineno">  514</span>        res = RES_OK;</div>
+<div class="line"><span class="lineno">  515</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  516</span>      </div>
+<div class="line"><span class="lineno">  517</span>    <span class="keywordflow">case</span> MMC_GET_CSD: </div>
+<div class="line"><span class="lineno">  518</span>      <span class="keywordflow">if</span> (SD_SendCmd(CMD9, 0) == 0 &amp;&amp; SD_RxDataBlock(ptr, 16))</div>
+<div class="line"><span class="lineno">  519</span>        res = RES_OK;</div>
+<div class="line"><span class="lineno">  520</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  521</span>      </div>
+<div class="line"><span class="lineno">  522</span>    <span class="keywordflow">case</span> MMC_GET_CID: </div>
+<div class="line"><span class="lineno">  523</span>      <span class="keywordflow">if</span> (SD_SendCmd(CMD10, 0) == 0 &amp;&amp; SD_RxDataBlock(ptr, 16))</div>
+<div class="line"><span class="lineno">  524</span>        res = RES_OK;</div>
+<div class="line"><span class="lineno">  525</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  526</span>      </div>
+<div class="line"><span class="lineno">  527</span>    <span class="keywordflow">case</span> MMC_GET_OCR: </div>
+<div class="line"><span class="lineno">  528</span>      <span class="keywordflow">if</span> (SD_SendCmd(CMD58, 0) == 0) </div>
+<div class="line"><span class="lineno">  529</span>      {         </div>
+<div class="line"><span class="lineno">  530</span>        <span class="keywordflow">for</span> (n = 0; n &lt; 4; n++)</div>
+<div class="line"><span class="lineno">  531</span>        {</div>
+<div class="line"><span class="lineno">  532</span>          *ptr++ = SPI_RxByte();</div>
+<div class="line"><span class="lineno">  533</span>        }</div>
+<div class="line"><span class="lineno">  534</span>        </div>
+<div class="line"><span class="lineno">  535</span>        res = RES_OK;</div>
+<div class="line"><span class="lineno">  536</span>      }     </div>
+<div class="line"><span class="lineno">  537</span>      </div>
+<div class="line"><span class="lineno">  538</span>    <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  539</span>      res = RES_PARERR;</div>
+<div class="line"><span class="lineno">  540</span>    }</div>
+<div class="line"><span class="lineno">  541</span>    </div>
+<div class="line"><span class="lineno">  542</span>    DESELECT();</div>
+<div class="line"><span class="lineno">  543</span>    SPI_RxByte();</div>
+<div class="line"><span class="lineno">  544</span>  }</div>
+<div class="line"><span class="lineno">  545</span>  </div>
+<div class="line"><span class="lineno">  546</span>  <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">  547</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -696,47 +695,44 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00392">392</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  393</span>{</div>
-<div class="line"><span class="lineno">  394</span>  <span class="keywordflow">if</span> (pdrv || !count)</div>
-<div class="line"><span class="lineno">  395</span>    <span class="keywordflow">return</span> RES_PARERR;</div>
-<div class="line"><span class="lineno">  396</span>  </div>
-<div class="line"><span class="lineno">  397</span>  <span class="keywordflow">if</span> (Stat &amp; STA_NOINIT)</div>
-<div class="line"><span class="lineno">  398</span>    <span class="keywordflow">return</span> RES_NOTRDY;</div>
-<div class="line"><span class="lineno">  399</span>  </div>
-<div class="line"><span class="lineno">  400</span>  <span class="keywordflow">if</span> (!(CardType &amp; 4))</div>
-<div class="line"><span class="lineno">  401</span>    sector *= 512;      <span class="comment">/* 지정 sector를 Byte addressing 단위로 변경 */</span></div>
-<div class="line"><span class="lineno">  402</span>  </div>
-<div class="line"><span class="lineno">  403</span>  SELECT();</div>
-<div class="line"><span class="lineno">  404</span>  </div>
-<div class="line"><span class="lineno">  405</span>  <span class="keywordflow">if</span> (count == 1) </div>
-<div class="line"><span class="lineno">  406</span>  { </div>
-<div class="line"><span class="lineno">  407</span>    <span class="comment">/* 싱글 블록 읽기 */</span></div>
-<div class="line"><span class="lineno">  408</span>    <span class="keywordflow">if</span> ((SD_SendCmd(CMD17, sector) == 0) &amp;&amp; SD_RxDataBlock(buff, 512))</div>
-<div class="line"><span class="lineno">  409</span>      count = 0;</div>
-<div class="line"><span class="lineno">  410</span>  } </div>
-<div class="line"><span class="lineno">  411</span>  <span class="keywordflow">else</span> </div>
-<div class="line"><span class="lineno">  412</span>  { </div>
-<div class="line"><span class="lineno">  413</span>    <span class="comment">/* 다중 블록 읽기 */</span></div>
-<div class="line"><span class="lineno">  414</span>    <span class="keywordflow">if</span> (SD_SendCmd(CMD18, sector) == 0) </div>
-<div class="line"><span class="lineno">  415</span>    {       </div>
-<div class="line"><span class="lineno">  416</span>      <span class="keywordflow">do</span> {</div>
-<div class="line"><span class="lineno">  417</span>        <span class="keywordflow">if</span> (!SD_RxDataBlock(buff, 512))</div>
-<div class="line"><span class="lineno">  418</span>          <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  419</span>        </div>
-<div class="line"><span class="lineno">  420</span>        buff += 512;</div>
-<div class="line"><span class="lineno">  421</span>      } <span class="keywordflow">while</span> (--count);</div>
-<div class="line"><span class="lineno">  422</span>      </div>
-<div class="line"><span class="lineno">  423</span>      <span class="comment">/* STOP_TRANSMISSION, 모든 블럭을 다 읽은 후, 전송 중지 요청 */</span></div>
-<div class="line"><span class="lineno">  424</span>      SD_SendCmd(CMD12, 0); </div>
-<div class="line"><span class="lineno">  425</span>    }</div>
-<div class="line"><span class="lineno">  426</span>  }</div>
-<div class="line"><span class="lineno">  427</span>  </div>
-<div class="line"><span class="lineno">  428</span>  DESELECT();</div>
-<div class="line"><span class="lineno">  429</span>  SPI_RxByte(); <span class="comment">/* Idle 상태(Release DO) */</span></div>
-<div class="line"><span class="lineno">  430</span>  </div>
-<div class="line"><span class="lineno">  431</span>  <span class="keywordflow">return</span> count ? RES_ERROR : RES_OK;</div>
-<div class="line"><span class="lineno">  432</span>}</div>
+<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00353">353</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  354</span>{</div>
+<div class="line"><span class="lineno">  355</span>  <span class="keywordflow">if</span> (pdrv || !count)</div>
+<div class="line"><span class="lineno">  356</span>    <span class="keywordflow">return</span> RES_PARERR;</div>
+<div class="line"><span class="lineno">  357</span>  </div>
+<div class="line"><span class="lineno">  358</span>  <span class="keywordflow">if</span> (Stat &amp; STA_NOINIT)</div>
+<div class="line"><span class="lineno">  359</span>    <span class="keywordflow">return</span> RES_NOTRDY;</div>
+<div class="line"><span class="lineno">  360</span>  </div>
+<div class="line"><span class="lineno">  361</span>  <span class="keywordflow">if</span> (!(CardType &amp; 4))</div>
+<div class="line"><span class="lineno">  362</span>    sector *= 512;      </div>
+<div class="line"><span class="lineno">  363</span>  </div>
+<div class="line"><span class="lineno">  364</span>  SELECT();</div>
+<div class="line"><span class="lineno">  365</span>  </div>
+<div class="line"><span class="lineno">  366</span>  <span class="keywordflow">if</span> (count == 1) </div>
+<div class="line"><span class="lineno">  367</span>  { </div>
+<div class="line"><span class="lineno">  368</span>    <span class="keywordflow">if</span> ((SD_SendCmd(CMD17, sector) == 0) &amp;&amp; SD_RxDataBlock(buff, 512))</div>
+<div class="line"><span class="lineno">  369</span>      count = 0;</div>
+<div class="line"><span class="lineno">  370</span>  } </div>
+<div class="line"><span class="lineno">  371</span>  <span class="keywordflow">else</span> </div>
+<div class="line"><span class="lineno">  372</span>  { </div>
+<div class="line"><span class="lineno">  373</span>    <span class="keywordflow">if</span> (SD_SendCmd(CMD18, sector) == 0) </div>
+<div class="line"><span class="lineno">  374</span>    {       </div>
+<div class="line"><span class="lineno">  375</span>      <span class="keywordflow">do</span> {</div>
+<div class="line"><span class="lineno">  376</span>        <span class="keywordflow">if</span> (!SD_RxDataBlock(buff, 512))</div>
+<div class="line"><span class="lineno">  377</span>          <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  378</span>        </div>
+<div class="line"><span class="lineno">  379</span>        buff += 512;</div>
+<div class="line"><span class="lineno">  380</span>      } <span class="keywordflow">while</span> (--count);</div>
+<div class="line"><span class="lineno">  381</span>      </div>
+<div class="line"><span class="lineno">  382</span>      SD_SendCmd(CMD12, 0); </div>
+<div class="line"><span class="lineno">  383</span>    }</div>
+<div class="line"><span class="lineno">  384</span>  }</div>
+<div class="line"><span class="lineno">  385</span>  </div>
+<div class="line"><span class="lineno">  386</span>  DESELECT();</div>
+<div class="line"><span class="lineno">  387</span>  SPI_RxByte(); </div>
+<div class="line"><span class="lineno">  388</span>  </div>
+<div class="line"><span class="lineno">  389</span>  <span class="keywordflow">return</span> count ? RES_ERROR : RES_OK;</div>
+<div class="line"><span class="lineno">  390</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -756,13 +752,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00383">383</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  384</span>{</div>
-<div class="line"><span class="lineno">  385</span>  <span class="keywordflow">if</span> (drv)</div>
-<div class="line"><span class="lineno">  386</span>    <span class="keywordflow">return</span> STA_NOINIT; </div>
-<div class="line"><span class="lineno">  387</span>  </div>
-<div class="line"><span class="lineno">  388</span>  <span class="keywordflow">return</span> Stat;</div>
-<div class="line"><span class="lineno">  389</span>}</div>
+<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00345">345</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  346</span>{</div>
+<div class="line"><span class="lineno">  347</span>  <span class="keywordflow">if</span> (drv)</div>
+<div class="line"><span class="lineno">  348</span>    <span class="keywordflow">return</span> STA_NOINIT; </div>
+<div class="line"><span class="lineno">  349</span>  </div>
+<div class="line"><span class="lineno">  350</span>  <span class="keywordflow">return</span> Stat;</div>
+<div class="line"><span class="lineno">  351</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -804,65 +800,67 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00436">436</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  437</span>{</div>
-<div class="line"><span class="lineno">  438</span>  <span class="keywordflow">if</span> (pdrv || !count)</div>
-<div class="line"><span class="lineno">  439</span>    <span class="keywordflow">return</span> RES_PARERR;</div>
+<p class="definition">Definition at line <a class="el" href="fatfs__sd_8c_source.html#l00393">393</a> of file <a class="el" href="fatfs__sd_8c_source.html">fatfs_sd.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  394</span>{</div>
+<div class="line"><span class="lineno">  395</span>  <span class="keywordflow">if</span> (pdrv || !count)</div>
+<div class="line"><span class="lineno">  396</span>    <span class="keywordflow">return</span> RES_PARERR;</div>
+<div class="line"><span class="lineno">  397</span>  </div>
+<div class="line"><span class="lineno">  398</span>  <span class="keywordflow">if</span> (Stat &amp; STA_NOINIT)</div>
+<div class="line"><span class="lineno">  399</span>    <span class="keywordflow">return</span> RES_NOTRDY;</div>
+<div class="line"><span class="lineno">  400</span>  </div>
+<div class="line"><span class="lineno">  401</span>  <span class="keywordflow">if</span> (Stat &amp; STA_PROTECT)</div>
+<div class="line"><span class="lineno">  402</span>    <span class="keywordflow">return</span> RES_WRPRT;</div>
+<div class="line"><span class="lineno">  403</span>  </div>
+<div class="line"><span class="lineno">  404</span>  <span class="keywordflow">if</span> (!(CardType &amp; 4))</div>
+<div class="line"><span class="lineno">  405</span>    sector *= 512; </div>
+<div class="line"><span class="lineno">  406</span>  </div>
+<div class="line"><span class="lineno">  407</span>  SELECT();</div>
+<div class="line"><span class="lineno">  408</span>  </div>
+<div class="line"><span class="lineno">  409</span>  <span class="keywordflow">if</span> (count == 1) </div>
+<div class="line"><span class="lineno">  410</span>  { </div>
+<div class="line"><span class="lineno">  411</span>    <span class="keywordflow">if</span> ((SD_SendCmd(CMD24, sector) == 0) &amp;&amp; SD_TxDataBlock(buff, 0xFE))</div>
+<div class="line"><span class="lineno">  412</span>      count = 0;</div>
+<div class="line"><span class="lineno">  413</span>  } </div>
+<div class="line"><span class="lineno">  414</span>  <span class="keywordflow">else</span> </div>
+<div class="line"><span class="lineno">  415</span>  { </div>
+<div class="line"><span class="lineno">  416</span>    <span class="keywordflow">if</span> (CardType &amp; 2) </div>
+<div class="line"><span class="lineno">  417</span>    {</div>
+<div class="line"><span class="lineno">  418</span>      SD_SendCmd(CMD55, 0);</div>
+<div class="line"><span class="lineno">  419</span>      SD_SendCmd(CMD23, count); <span class="comment">/* ACMD23 */</span></div>
+<div class="line"><span class="lineno">  420</span>    }</div>
+<div class="line"><span class="lineno">  421</span>    </div>
+<div class="line"><span class="lineno">  422</span>    <span class="keywordflow">if</span> (SD_SendCmd(CMD25, sector) == 0) </div>
+<div class="line"><span class="lineno">  423</span>    {       </div>
+<div class="line"><span class="lineno">  424</span>      <span class="keywordflow">do</span> {</div>
+<div class="line"><span class="lineno">  425</span>        <span class="keywordflow">if</span>(!SD_TxDataBlock(buff, 0xFC))</div>
+<div class="line"><span class="lineno">  426</span>          <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  427</span>        </div>
+<div class="line"><span class="lineno">  428</span>        buff += 512;</div>
+<div class="line"><span class="lineno">  429</span>      } <span class="keywordflow">while</span> (--count);</div>
+<div class="line"><span class="lineno">  430</span>      </div>
+<div class="line"><span class="lineno">  431</span>      <span class="keywordflow">if</span>(!SD_TxDataBlock(0, 0xFD))</div>
+<div class="line"><span class="lineno">  432</span>      {        </div>
+<div class="line"><span class="lineno">  433</span>        count = 1;</div>
+<div class="line"><span class="lineno">  434</span>      }</div>
+<div class="line"><span class="lineno">  435</span>    }</div>
+<div class="line"><span class="lineno">  436</span>  }</div>
+<div class="line"><span class="lineno">  437</span>  </div>
+<div class="line"><span class="lineno">  438</span>  DESELECT();</div>
+<div class="line"><span class="lineno">  439</span>  SPI_RxByte();</div>
 <div class="line"><span class="lineno">  440</span>  </div>
-<div class="line"><span class="lineno">  441</span>  <span class="keywordflow">if</span> (Stat &amp; STA_NOINIT)</div>
-<div class="line"><span class="lineno">  442</span>    <span class="keywordflow">return</span> RES_NOTRDY;</div>
-<div class="line"><span class="lineno">  443</span>  </div>
-<div class="line"><span class="lineno">  444</span>  <span class="keywordflow">if</span> (Stat &amp; STA_PROTECT)</div>
-<div class="line"><span class="lineno">  445</span>    <span class="keywordflow">return</span> RES_WRPRT;</div>
-<div class="line"><span class="lineno">  446</span>  </div>
-<div class="line"><span class="lineno">  447</span>  <span class="keywordflow">if</span> (!(CardType &amp; 4))</div>
-<div class="line"><span class="lineno">  448</span>    sector *= 512; <span class="comment">/* 지정 sector를 Byte addressing 단위로 변경 */</span></div>
-<div class="line"><span class="lineno">  449</span>  </div>
-<div class="line"><span class="lineno">  450</span>  SELECT();</div>
-<div class="line"><span class="lineno">  451</span>  </div>
-<div class="line"><span class="lineno">  452</span>  <span class="keywordflow">if</span> (count == 1) </div>
-<div class="line"><span class="lineno">  453</span>  { </div>
-<div class="line"><span class="lineno">  454</span>    <span class="comment">/* 싱글 블록 쓰기 */</span></div>
-<div class="line"><span class="lineno">  455</span>    <span class="keywordflow">if</span> ((SD_SendCmd(CMD24, sector) == 0) &amp;&amp; SD_TxDataBlock(buff, 0xFE))</div>
-<div class="line"><span class="lineno">  456</span>      count = 0;</div>
-<div class="line"><span class="lineno">  457</span>  } </div>
-<div class="line"><span class="lineno">  458</span>  <span class="keywordflow">else</span> </div>
-<div class="line"><span class="lineno">  459</span>  { </div>
-<div class="line"><span class="lineno">  460</span>    <span class="comment">/* 다중 블록 쓰기 */</span></div>
-<div class="line"><span class="lineno">  461</span>    <span class="keywordflow">if</span> (CardType &amp; 2) </div>
-<div class="line"><span class="lineno">  462</span>    {</div>
-<div class="line"><span class="lineno">  463</span>      SD_SendCmd(CMD55, 0);</div>
-<div class="line"><span class="lineno">  464</span>      SD_SendCmd(CMD23, count); <span class="comment">/* ACMD23 */</span></div>
-<div class="line"><span class="lineno">  465</span>    }</div>
-<div class="line"><span class="lineno">  466</span>    </div>
-<div class="line"><span class="lineno">  467</span>    <span class="keywordflow">if</span> (SD_SendCmd(CMD25, sector) == 0) </div>
-<div class="line"><span class="lineno">  468</span>    {       </div>
-<div class="line"><span class="lineno">  469</span>      <span class="keywordflow">do</span> {</div>
-<div class="line"><span class="lineno">  470</span>        <span class="keywordflow">if</span>(!SD_TxDataBlock(buff, 0xFC))</div>
-<div class="line"><span class="lineno">  471</span>          <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  472</span>        </div>
-<div class="line"><span class="lineno">  473</span>        buff += 512;</div>
-<div class="line"><span class="lineno">  474</span>      } <span class="keywordflow">while</span> (--count);</div>
-<div class="line"><span class="lineno">  475</span>      </div>
-<div class="line"><span class="lineno">  476</span>      <span class="keywordflow">if</span>(!SD_TxDataBlock(0, 0xFD))</div>
-<div class="line"><span class="lineno">  477</span>      {        </div>
-<div class="line"><span class="lineno">  478</span>        count = 1;</div>
-<div class="line"><span class="lineno">  479</span>      }</div>
-<div class="line"><span class="lineno">  480</span>    }</div>
-<div class="line"><span class="lineno">  481</span>  }</div>
-<div class="line"><span class="lineno">  482</span>  </div>
-<div class="line"><span class="lineno">  483</span>  DESELECT();</div>
-<div class="line"><span class="lineno">  484</span>  SPI_RxByte();</div>
-<div class="line"><span class="lineno">  485</span>  </div>
-<div class="line"><span class="lineno">  486</span>  <span class="keywordflow">return</span> count ? RES_ERROR : RES_OK;</div>
-<div class="line"><span class="lineno">  487</span>}</div>
+<div class="line"><span class="lineno">  441</span>  <span class="keywordflow">return</span> count ? RES_ERROR : RES_OK;</div>
+<div class="line"><span class="lineno">  442</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_e2489e887f17afa3cbc07a4ec152cdd2.html">Inc</a></li><li class="navelem"><a class="el" href="fatfs__sd_8h.html">fatfs_sd.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

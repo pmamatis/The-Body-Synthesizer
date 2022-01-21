@@ -1,6 +1,6 @@
 /** TODO
  * @file display.h
- * @author marc bielen
+ * @author Marc Bielen & Max Lehmer & Paul Mamatis
  * @brief all display related stuff, also needed for processing effects
  * @version 0.1
  * @date 2022-01-06
@@ -60,8 +60,12 @@
 //}y_row_value;
 
 
-
-typedef enum {	// Waveshare 1.54 inch ePD
+/**
+ * @ingroup EPDLib 
+ * @brief spacing enum for Waveshare 1.54 inch ePD
+ * @{
+ */
+typedef enum {	
 	CASE0 = 10,
 	CASE1 = 30,
 	CASE2 = 50,
@@ -85,7 +89,7 @@ typedef enum {
 	STEP7 = 160,
 	STEP8 = 180
 } drumcomputer_step_coordinate;
-
+/** @} /*
 typedef enum {
 	DISPLAY_FAIL = -1,
 	DISPLAY_OK = 1
@@ -106,6 +110,13 @@ typedef enum {
 /***************************
  * @brief		Structs
  ***************************/
+
+/** TODO
+ * @defgroup Display Display 
+ * @brief functions and variables for the display are mainly for the visual monitoring but could also be part of certain processing routines, TODO EPD Libary explanation
+ * 
+ * @{
+ */
 
 /**
  * @brief struct for all variables related to the display, 
@@ -308,15 +319,33 @@ struct display_variables {
 };
 
 struct display_variables Display;
+
+/**
+ * @defgroup EPDLib EPD-Libary variables
+ * @brief neccessary variables from the epd-libary
+ * @ingroup Display
+ * @{
+ */
 EPD epd;
 Paint paint;
 unsigned char* frame_buffer;
+  /** @} */
 
+
+
+
+
+
+
+/**
+ * @defgroup DisplayProcess Display processing and navigation funtions
+ * @brief handles the processing and navigation of the diplay menu
+ * @ingroup Display
+ * @{
+ */
 Display_Status Display_Init(struct display_variables* Display);
-
 Display_Status Display_Start(EPD* epd, Paint* paint, unsigned char* frame_buffer);
-
-// Display draw functions
+void DISPLAY_processing(void);
 void DISPLAY_PrintCurrentPage(void);
 void DISPLAY_ArrowDown(uint8_t *JoystickParameterPosition);
 void DISPLAY_ArrowUp(uint8_t *JoystickParameterPosition);
@@ -324,7 +353,7 @@ void DISPLAY_SwitchPageLeft(void);
 void DISPLAY_SwitchPageRight(void);
 void DISPLAY_Update(void);
 void DISPLAY_DrawArrow(uint8_t JoystickParameterPosition);
-
+/** @} */
 
 // Display Drum Computer
 Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char* S4);
@@ -348,7 +377,14 @@ Display_Status DISPLAY_DeleteSequencerStepCursor(void);
 
 
 // Page functions
-void DISPLAY_processing(void);
+
+/**
+ * @defgroup DisplayPage Display Pages
+ * @ingroup Display 
+ * @brief Functions containing the display pages
+ * 
+ * @{
+ */
 Display_Status p_StartingMenu(unsigned char* frame_buffer);
 void p_Voices_overview(void);
 void p_Voices_Settings(void);
@@ -370,5 +406,7 @@ Display_Status p_Drumcomputer_overview(void);
 Display_Status p_Drumcomputer_Settings(void);
 Display_Status p_Sequencer_overview(void);
 Display_Status p_Sequencer_Settings(void);
+/** @}
+ */
 
 #endif /* INC_DISPLAY_H_ */

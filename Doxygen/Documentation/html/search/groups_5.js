@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['interpolation_20functions_0',['Interpolation Functions',['../group__groupInterpolation.html',1,'']]]
+  ['play_20single_20sample_0',['Play Single Sample',['../group__SingleSample.html',1,'']]]
 ];

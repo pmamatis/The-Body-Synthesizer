@@ -14,6 +14,14 @@
 
 #include "main.h"
 
+
+/**
+ * @defgroup Distortion Distortion Effect
+ * @ingroup Effects
+ * @brief Distortion Effect
+ * @{
+ * 
+ */
 /***************************
  * @brief Enumeration for Distortion Debugging
  ***************************/
@@ -53,5 +61,6 @@ Distortion_Status SetupHardClippingDistortion(struct effects_distortion* HardCli
 Distortion_Status SetupSoftClippingDistortion(struct effects_distortion* SoftClipping);
 Distortion_Status ProcessHardClippingDistortion(float* data);
 Distortion_Status ProcessSoftClippingDistortion(float* data);
+/** @} */
 
 #endif /* INC_DISTORTION_H_ */

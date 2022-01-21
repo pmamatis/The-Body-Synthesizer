@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('effects_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -150,7 +166,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   82</span>        <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">   83</span>    }</div>
 <div class="line"><span class="lineno">   84</span>}</div>
-<div class="ttc" id="aeffects_8h_html_a356f7e77328d3524cc7c5592b2237823"><div class="ttname"><a href="effects_8h.html#a356f7e77328d3524cc7c5592b2237823">effect_order</a></div><div class="ttdeci">effects_t_enum effect_order[MAX_EFFECTS]</div><div class="ttdoc">array for activating effects</div><div class="ttdef"><b>Definition:</b> <a href="effects_8h_source.html#l00041">effects.h:41</a></div></div>
+<div class="ttc" id="aeffects_8h_html_a356f7e77328d3524cc7c5592b2237823"><div class="ttname"><a href="effects_8h.html#a356f7e77328d3524cc7c5592b2237823">effect_order</a></div><div class="ttdeci">effects_t_enum effect_order[MAX_EFFECTS]</div><div class="ttdoc">array for activating effects</div><div class="ttdef"><b>Definition:</b> <a href="effects_8h_source.html#l00049">effects.h:49</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -259,9 +275,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   35</span> </div>
 <div class="line"><span class="lineno">   36</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="effects_8h.html#a356f7e77328d3524cc7c5592b2237823">effect_order</a>[2] == DIST) {</div>
 <div class="line"><span class="lineno">   37</span>        <span class="keywordflow">if</span>(Display.Distortion_Type == 0)</div>
-<div class="line"><span class="lineno">   38</span>            <a class="code hl_function" href="distortion_8h.html#a1676e7551d7621b89efb0ecc46092436">ProcessSoftClippingDistortion</a>(calculate_value);</div>
+<div class="line"><span class="lineno">   38</span>            <a class="code hl_function" href="group__Distortion.html#ga1676e7551d7621b89efb0ecc46092436">ProcessSoftClippingDistortion</a>(calculate_value);</div>
 <div class="line"><span class="lineno">   39</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.Distortion_Type == 1)</div>
-<div class="line"><span class="lineno">   40</span>            <a class="code hl_function" href="distortion_8h.html#a7a68b2a90c4306d739161ee82b7eb89c">ProcessHardClippingDistortion</a>(calculate_value);</div>
+<div class="line"><span class="lineno">   40</span>            <a class="code hl_function" href="group__Distortion.html#ga7a68b2a90c4306d739161ee82b7eb89c">ProcessHardClippingDistortion</a>(calculate_value);</div>
 <div class="line"><span class="lineno">   41</span>    }</div>
 <div class="line"><span class="lineno">   42</span> </div>
 <div class="line"><span class="lineno">   43</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="effects_8h.html#a356f7e77328d3524cc7c5592b2237823">effect_order</a>[3] == WAHWAH) {</div>
@@ -271,9 +287,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   47</span>            <a class="code hl_function" href="wahwah_8h.html#a85d3b2ed1cf4a3aef7b32c97b2e64237">ProcessAutoWahWah</a>(&amp;WahWah, calculate_value);</div>
 <div class="line"><span class="lineno">   48</span>    }</div>
 <div class="line"><span class="lineno">   49</span>}</div>
-<div class="ttc" id="adistortion_8h_html_a1676e7551d7621b89efb0ecc46092436"><div class="ttname"><a href="distortion_8h.html#a1676e7551d7621b89efb0ecc46092436">ProcessSoftClippingDistortion</a></div><div class="ttdeci">Distortion_Status ProcessSoftClippingDistortion(float *data)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00121">distortion.c:121</a></div></div>
-<div class="ttc" id="adistortion_8h_html_a7a68b2a90c4306d739161ee82b7eb89c"><div class="ttname"><a href="distortion_8h.html#a7a68b2a90c4306d739161ee82b7eb89c">ProcessHardClippingDistortion</a></div><div class="ttdeci">Distortion_Status ProcessHardClippingDistortion(float *data)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00096">distortion.c:96</a></div></div>
 <div class="ttc" id="afilters_8h_html_aa615f53296529b29ed116c17bf41f422"><div class="ttname"><a href="filters_8h.html#aa615f53296529b29ed116c17bf41f422">ProcessEQ</a></div><div class="ttdeci">Filter_Status ProcessEQ(float *data)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00361">filters.c:361</a></div></div>
+<div class="ttc" id="agroup__Distortion_html_ga1676e7551d7621b89efb0ecc46092436"><div class="ttname"><a href="group__Distortion.html#ga1676e7551d7621b89efb0ecc46092436">ProcessSoftClippingDistortion</a></div><div class="ttdeci">Distortion_Status ProcessSoftClippingDistortion(float *data)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00121">distortion.c:121</a></div></div>
+<div class="ttc" id="agroup__Distortion_html_ga7a68b2a90c4306d739161ee82b7eb89c"><div class="ttname"><a href="group__Distortion.html#ga7a68b2a90c4306d739161ee82b7eb89c">ProcessHardClippingDistortion</a></div><div class="ttdeci">Distortion_Status ProcessHardClippingDistortion(float *data)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00096">distortion.c:96</a></div></div>
 <div class="ttc" id="atremolo_8h_html_a922840d8712ad7bd4904f7813c8ac2f6"><div class="ttname"><a href="tremolo_8h.html#a922840d8712ad7bd4904f7813c8ac2f6">ProcessTremolo</a></div><div class="ttdeci">Tremolo_Status ProcessTremolo(struct Tremolo_t *Tremolo, float *data)</div><div class="ttdoc">Processed current tremolo sample.</div><div class="ttdef"><b>Definition:</b> <a href="tremolo_8c_source.html#l00069">tremolo.c:69</a></div></div>
 <div class="ttc" id="awahwah_8h_html_a2fa3b9f5777f0876da0b828ee333673a"><div class="ttname"><a href="wahwah_8h.html#a2fa3b9f5777f0876da0b828ee333673a">ProcessWahWah</a></div><div class="ttdeci">WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float *data)</div><div class="ttdoc">Processed current tremolo sample.</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00088">wahwah.c:88</a></div></div>
 <div class="ttc" id="awahwah_8h_html_a85d3b2ed1cf4a3aef7b32c97b2e64237"><div class="ttname"><a href="wahwah_8h.html#a85d3b2ed1cf4a3aef7b32c97b2e64237">ProcessAutoWahWah</a></div><div class="ttdeci">WahWah_Status ProcessAutoWahWah(struct WahWah_t *WahWah, float *data)</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00115">wahwah.c:115</a></div></div>
@@ -300,20 +316,25 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="effects_8c_source.html#l00053">53</a> of file <a class="el" href="effects_8c_source.html">effects.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   53</span>                                {</div>
-<div class="line"><span class="lineno">   54</span>    <a class="code hl_function" href="adsr_8h.html#a02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;adsr_keyboard[0], &amp;calculate_keyboard[0], activate_processing[0]);</div>
-<div class="line"><span class="lineno">   55</span>    <a class="code hl_function" href="adsr_8h.html#a02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;adsr_keyboard[1], &amp;calculate_keyboard[1], activate_processing[1]);</div>
-<div class="line"><span class="lineno">   56</span>    <a class="code hl_function" href="adsr_8h.html#a02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;adsr_keyboard[2], &amp;calculate_keyboard[2], activate_processing[2]);</div>
-<div class="line"><span class="lineno">   57</span>    <a class="code hl_function" href="adsr_8h.html#a02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;adsr_keyboard[3], &amp;calculate_keyboard[3], activate_processing[3]);</div>
-<div class="line"><span class="lineno">   58</span>    <a class="code hl_function" href="adsr_8h.html#a02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;adsr_keyboard[4], &amp;calculate_keyboard[4], activate_processing[4]);</div>
+<div class="line"><span class="lineno">   54</span>    <a class="code hl_function" href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[0], &amp;calculate_keyboard[0], activate_processing[0]);</div>
+<div class="line"><span class="lineno">   55</span>    <a class="code hl_function" href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[1], &amp;calculate_keyboard[1], activate_processing[1]);</div>
+<div class="line"><span class="lineno">   56</span>    <a class="code hl_function" href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[2], &amp;calculate_keyboard[2], activate_processing[2]);</div>
+<div class="line"><span class="lineno">   57</span>    <a class="code hl_function" href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[3], &amp;calculate_keyboard[3], activate_processing[3]);</div>
+<div class="line"><span class="lineno">   58</span>    <a class="code hl_function" href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[4], &amp;calculate_keyboard[4], activate_processing[4]);</div>
 <div class="line"><span class="lineno">   59</span>}</div>
-<div class="ttc" id="aadsr_8h_html_a02c74c2f9a8094da74c4d9b905d87550"><div class="ttname"><a href="adsr_8h.html#a02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a></div><div class="ttdeci">void OnePress_ADSR_Linear_Process(struct adsr *envelope, float *calculate_value, bool flag)</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8c_source.html#l00094">adsr.c:94</a></div></div>
+<div class="ttc" id="agroup__ADSR_html_ga02c74c2f9a8094da74c4d9b905d87550"><div class="ttname"><a href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a></div><div class="ttdeci">void OnePress_ADSR_Linear_Process(struct adsr *envelope, float *calculate_value, bool flag)</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8c_source.html#l00094">adsr.c:94</a></div></div>
+<div class="ttc" id="agroup__ADSR_html_ga742e13f70ae8c573509abfd794271f44"><div class="ttname"><a href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a></div><div class="ttdeci">struct adsr adsr_keyboard[5]</div><div class="ttdoc">ADSR storage for the keyboard.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8h_source.html#l00085">adsr.h:85</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a class="el" href="effects_8c.html">effects.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

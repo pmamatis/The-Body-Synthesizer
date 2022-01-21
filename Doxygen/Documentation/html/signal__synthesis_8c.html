@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('signal__synthesis_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a> &#124;
@@ -242,35 +258,36 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1266</span>    <span class="comment">// Period:          LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]]</span></div>
 <div class="line"><span class="lineno"> 1267</span> </div>
 <div class="line"><span class="lineno"> 1268</span>    <span class="comment">// IF: Length of period is even (e.g. 346)</span></div>
-<div class="line"><span class="lineno"> 1269</span>    <span class="keywordflow">if</span>(LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]] % 2 == 0){</div>
+<div class="line"><span class="lineno"> 1269</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] % 2 == 0){</div>
 <div class="line"><span class="lineno"> 1270</span> </div>
 <div class="line"><span class="lineno"> 1271</span>        <span class="comment">// IF: Current index &lt; length of period of desired frequency (0:172 &lt; 173)</span></div>
-<div class="line"><span class="lineno"> 1272</span>        <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &lt; (LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]] / 2)){</div>
+<div class="line"><span class="lineno"> 1272</span>        <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &lt; (<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] / 2)){</div>
 <div class="line"><span class="lineno"> 1273</span> </div>
 <div class="line"><span class="lineno"> 1274</span>            rect = 0.2;</div>
 <div class="line"><span class="lineno"> 1275</span>        }</div>
 <div class="line"><span class="lineno"> 1276</span>        <span class="comment">// IF: Current index &gt;= length of period of desired frequency (173:345 &gt;= 173)</span></div>
-<div class="line"><span class="lineno"> 1277</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &gt;= (LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]] / 2)){</div>
+<div class="line"><span class="lineno"> 1277</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &gt;= (<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] / 2)){</div>
 <div class="line"><span class="lineno"> 1278</span> </div>
 <div class="line"><span class="lineno"> 1279</span>            rect = -0.2;</div>
 <div class="line"><span class="lineno"> 1280</span>        }</div>
 <div class="line"><span class="lineno"> 1281</span>    }</div>
 <div class="line"><span class="lineno"> 1282</span>    <span class="comment">// IF: Length of period is odd (e.g. 347)</span></div>
-<div class="line"><span class="lineno"> 1283</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]] % 2 == 1){</div>
+<div class="line"><span class="lineno"> 1283</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] % 2 == 1){</div>
 <div class="line"><span class="lineno"> 1284</span> </div>
 <div class="line"><span class="lineno"> 1285</span>        <span class="comment">// IF: Current index &lt; length of period of desired frequency (0:173 &lt; 174) due to (period-1)/2 + 1</span></div>
-<div class="line"><span class="lineno"> 1286</span>        <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &lt; (((LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]] - 1) / 2) + 1)){</div>
+<div class="line"><span class="lineno"> 1286</span>        <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &lt; (((<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] - 1) / 2) + 1)){</div>
 <div class="line"><span class="lineno"> 1287</span> </div>
 <div class="line"><span class="lineno"> 1288</span>            rect = 0.2;</div>
 <div class="line"><span class="lineno"> 1289</span>        }</div>
 <div class="line"><span class="lineno"> 1290</span>        <span class="comment">// IF: Current index &gt;= length of period of desired frequency (174:346 &gt;= 174) due to (period-1)/2 + 1</span></div>
-<div class="line"><span class="lineno"> 1291</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &gt;= (((LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]] - 1) / 2) + 1)){</div>
+<div class="line"><span class="lineno"> 1291</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &gt;= (((<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] - 1) / 2) + 1)){</div>
 <div class="line"><span class="lineno"> 1292</span> </div>
 <div class="line"><span class="lineno"> 1293</span>            rect = -0.2;</div>
 <div class="line"><span class="lineno"> 1294</span>        }</div>
 <div class="line"><span class="lineno"> 1295</span>    }</div>
 <div class="line"><span class="lineno"> 1296</span>    <span class="keywordflow">return</span> rect;</div>
 <div class="line"><span class="lineno"> 1297</span>}</div>
+<div class="ttc" id="agroup__SINLUT_html_ga1380f2886548602aeb7849aa7ba76435"><div class="ttname"><a href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a></div><div class="ttdeci">const uint32_t LUT_SUPPORTPOINTS[73]</div><div class="ttdoc">contains the support points for each frequncy</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00051">sinLUT.h:51</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -315,7 +332,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1307</span> </div>
 <div class="line"><span class="lineno"> 1308</span>    <span class="keywordtype">float</span> triangle      = 0;</div>
 <div class="line"><span class="lineno"> 1309</span>    <span class="keywordtype">float</span> current_index = (float)signals-&gt;current_LUT_Index[index];</div>
-<div class="line"><span class="lineno"> 1310</span>    <span class="keywordtype">float</span> period        = (<span class="keywordtype">float</span>)LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]];</div>
+<div class="line"><span class="lineno"> 1310</span>    <span class="keywordtype">float</span> period        = (<span class="keywordtype">float</span>)<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]];</div>
 <div class="line"><span class="lineno"> 1311</span> </div>
 <div class="line"><span class="lineno"> 1312</span>    <span class="comment">/* FORMULA: 4*a/p * abs((((x - p/4) % p) + p) % p - p/2) - a</span></div>
 <div class="line"><span class="lineno"> 1313</span><span class="comment">     *</span></div>
@@ -471,11 +488,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1226</span>    uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;</div>
 <div class="line"><span class="lineno"> 1227</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == HALF_BLOCK){</div>
 <div class="line"><span class="lineno"> 1228</span>        BLOOCKSIZE_startIndex = 0;</div>
-<div class="line"><span class="lineno"> 1229</span>        BLOOCKSIZE_endIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
+<div class="line"><span class="lineno"> 1229</span>        BLOOCKSIZE_endIndex = BLOCKSIZE/2;</div>
 <div class="line"><span class="lineno"> 1230</span>    }</div>
 <div class="line"><span class="lineno"> 1231</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == FULL_BLOCK){</div>
-<div class="line"><span class="lineno"> 1232</span>        BLOOCKSIZE_startIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
-<div class="line"><span class="lineno"> 1233</span>        BLOOCKSIZE_endIndex  = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>;</div>
+<div class="line"><span class="lineno"> 1232</span>        BLOOCKSIZE_startIndex = BLOCKSIZE/2;</div>
+<div class="line"><span class="lineno"> 1233</span>        BLOOCKSIZE_endIndex  = BLOCKSIZE;</div>
 <div class="line"><span class="lineno"> 1234</span>    }</div>
 <div class="line"><span class="lineno"> 1235</span> </div>
 <div class="line"><span class="lineno"> 1236</span>    <span class="comment">//Write into DAC</span></div>
@@ -495,7 +512,6 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1250</span>    <span class="keywordflow">return</span> retval;</div>
 <div class="line"><span class="lineno"> 1251</span>}</div>
 <div class="ttc" id="amain_8h_html_a25be00c869033fae5b8206c20aeb3861"><div class="ttname"><a href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a></div><div class="ttdeci">float calculate_vector1[BLOCKSIZE]</div><div class="ttdoc">DAC output array.</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00158">main.h:158</a></div></div>
-<div class="ttc" id="amain_8h_html_afcf795f5a96fd55561abe69f56224630"><div class="ttname"><a href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a></div><div class="ttdeci">#define BLOCKSIZE</div><div class="ttdoc">output array size</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00146">main.h:146</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_a406aefd47c82521bb2c5a14ef93c85d2"><div class="ttname"><a href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a></div><div class="ttdeci">float ramp_counter</div><div class="ttdoc">wirtes a starting ramp into the DAC-Buffer to avoid speaker damage</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01213">signal_synthesis.c:1213</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_a5b4caaf313594423ca462cb11a33eca9"><div class="ttname"><a href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a></div><div class="ttdeci">uint8_t outputBuffer_position</div><div class="ttdoc">Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00113">signal_synthesis.h:113</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_a9403bb31e6a5748c0bfc57f7523ef483"><div class="ttname"><a href="signal__synthesis_8h.html#a9403bb31e6a5748c0bfc57f7523ef483">DAC_MAXVALUE_TO_AMPLITUDE_RATIO</a></div><div class="ttdeci">#define DAC_MAXVALUE_TO_AMPLITUDE_RATIO</div><div class="ttdoc">4096/3300</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00032">signal_synthesis.h:32</a></div></div>
@@ -545,14 +561,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  149</span>    lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  150</span> </div>
 <div class="line"><span class="lineno">  151</span>    <span class="comment">// CASE 1: 0.125 Hz</span></div>
-<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == LFO_FREQUENCYS[0]) {</div>
+<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[0]) {</div>
 <div class="line"><span class="lineno">  153</span> </div>
 <div class="line"><span class="lineno">  154</span>        <span class="keywordflow">switch</span>(lfo-&gt;lfo_quarter) {</div>
 <div class="line"><span class="lineno">  155</span>        <span class="keywordflow">case</span> 0:</div>
 <div class="line"><span class="lineno">  156</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  157</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  158</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  159</span>                lfo-&gt;lfo_data = LFO[LFO_STARTINDEX[0]  + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  159</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[0]  + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  160</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  161</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno">  162</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
@@ -568,20 +584,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  172</span>                }</div>
 <div class="line"><span class="lineno">  173</span>            }</div>
 <div class="line"><span class="lineno">  174</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  175</span>                lfo-&gt;lfo_data = LFO[LFO_ENDINDEX[0]    - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  175</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[0]    - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  176</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  177</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno">  178</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  179</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  180</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  181</span>                lfo-&gt;lfo_data = -LFO[LFO_STARTINDEX[0] + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  181</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[0] + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  182</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  183</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno">  184</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
 <div class="line"><span class="lineno">  185</span>                lfo-&gt;lfo_data = -1;</div>
 <div class="line"><span class="lineno">  186</span>            }</div>
 <div class="line"><span class="lineno">  187</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  188</span>                lfo-&gt;lfo_data = -LFO[LFO_ENDINDEX[0]   - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  188</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[0]   - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  189</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  190</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  191</span>            <span class="keywordflow">break</span>;</div>
@@ -589,7 +605,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  193</span>        lfo-&gt;lfo_index++;</div>
 <div class="line"><span class="lineno">  194</span> </div>
 <div class="line"><span class="lineno">  195</span>        <span class="comment">// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero</span></div>
-<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == LFO_SUPPORTPOINTS[0]) {</div>
+<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == <a class="code hl_variable" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a>[0]) {</div>
 <div class="line"><span class="lineno">  197</span> </div>
 <div class="line"><span class="lineno">  198</span>            lfo-&gt;lfo_index = 0;</div>
 <div class="line"><span class="lineno">  199</span>            lfo-&gt;lfo_quarter++;</div>
@@ -600,7 +616,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  204</span>                    <span class="comment">// to make sure that the tremolo restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  205</span>                    <span class="keywordflow">if</span>(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {</div>
 <div class="line"><span class="lineno">  206</span> </div>
-<div class="line"><span class="lineno">  207</span>                        Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];</div>
+<div class="line"><span class="lineno">  207</span>                        Display.Tremolo_Rate = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.Tremolo_Rate_Index];</div>
 <div class="line"><span class="lineno">  208</span>                        Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;</div>
 <div class="line"><span class="lineno">  209</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  210</span>                        Tremolo.lfo-&gt;lfo_frequency = Display.Tremolo_Rate;</div>
@@ -610,7 +626,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  214</span>                    <span class="comment">// to make sure that the auto-wahwah restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  215</span>                    <span class="keywordflow">if</span>(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {</div>
 <div class="line"><span class="lineno">  216</span> </div>
-<div class="line"><span class="lineno">  217</span>                        Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];</div>
+<div class="line"><span class="lineno">  217</span>                        Display.WahWah_LFOfreq = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.WahWah_LFOfreq_Index];</div>
 <div class="line"><span class="lineno">  218</span>                        Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;</div>
 <div class="line"><span class="lineno">  219</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  220</span>                        WahWah.lfo-&gt;lfo_frequency = Display.WahWah_LFOfreq;</div>
@@ -620,14 +636,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  224</span>        }</div>
 <div class="line"><span class="lineno">  225</span>    }</div>
 <div class="line"><span class="lineno">  226</span>    <span class="comment">// CASE 2: 0.25 Hz</span></div>
-<div class="line"><span class="lineno">  227</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == LFO_FREQUENCYS[1]) {</div>
+<div class="line"><span class="lineno">  227</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[1]) {</div>
 <div class="line"><span class="lineno">  228</span> </div>
 <div class="line"><span class="lineno">  229</span>        <span class="keywordflow">switch</span>(lfo-&gt;lfo_quarter) {</div>
 <div class="line"><span class="lineno">  230</span>        <span class="keywordflow">case</span> 0:</div>
 <div class="line"><span class="lineno">  231</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  232</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  233</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  234</span>                lfo-&gt;lfo_data = LFO[LFO_STARTINDEX[1]  + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  234</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[1]  + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  235</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  236</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno">  237</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
@@ -643,20 +659,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  247</span>                }</div>
 <div class="line"><span class="lineno">  248</span>            }</div>
 <div class="line"><span class="lineno">  249</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  250</span>                lfo-&gt;lfo_data = LFO[LFO_ENDINDEX[1]    - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  250</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[1]    - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  251</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  252</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno">  253</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  254</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  255</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  256</span>                lfo-&gt;lfo_data = -LFO[LFO_STARTINDEX[1] + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  256</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[1] + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  257</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  258</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno">  259</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
 <div class="line"><span class="lineno">  260</span>                lfo-&gt;lfo_data = -1;</div>
 <div class="line"><span class="lineno">  261</span>            }</div>
 <div class="line"><span class="lineno">  262</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  263</span>                lfo-&gt;lfo_data = -LFO[LFO_ENDINDEX[1]   - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  263</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[1]   - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  264</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  265</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  266</span>            <span class="keywordflow">break</span>;</div>
@@ -664,7 +680,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  268</span>        lfo-&gt;lfo_index++;</div>
 <div class="line"><span class="lineno">  269</span> </div>
 <div class="line"><span class="lineno">  270</span>        <span class="comment">// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero</span></div>
-<div class="line"><span class="lineno">  271</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == LFO_SUPPORTPOINTS[1]) {</div>
+<div class="line"><span class="lineno">  271</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == <a class="code hl_variable" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a>[1]) {</div>
 <div class="line"><span class="lineno">  272</span> </div>
 <div class="line"><span class="lineno">  273</span>            lfo-&gt;lfo_index = 0;</div>
 <div class="line"><span class="lineno">  274</span>            lfo-&gt;lfo_quarter++;</div>
@@ -675,7 +691,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  279</span>                    <span class="comment">// to make sure that the tremolo restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  280</span>                    <span class="keywordflow">if</span>(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {</div>
 <div class="line"><span class="lineno">  281</span> </div>
-<div class="line"><span class="lineno">  282</span>                        Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];</div>
+<div class="line"><span class="lineno">  282</span>                        Display.Tremolo_Rate = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.Tremolo_Rate_Index];</div>
 <div class="line"><span class="lineno">  283</span>                        Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;</div>
 <div class="line"><span class="lineno">  284</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  285</span>                        Tremolo.lfo-&gt;lfo_frequency = Display.Tremolo_Rate;</div>
@@ -685,7 +701,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  289</span>                    <span class="comment">// to make sure that the auto-wahwah restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  290</span>                    <span class="keywordflow">if</span>(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {</div>
 <div class="line"><span class="lineno">  291</span> </div>
-<div class="line"><span class="lineno">  292</span>                        Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];</div>
+<div class="line"><span class="lineno">  292</span>                        Display.WahWah_LFOfreq = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.WahWah_LFOfreq_Index];</div>
 <div class="line"><span class="lineno">  293</span>                        Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;</div>
 <div class="line"><span class="lineno">  294</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  295</span>                        WahWah.lfo-&gt;lfo_frequency = Display.WahWah_LFOfreq;</div>
@@ -695,14 +711,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  299</span>        }</div>
 <div class="line"><span class="lineno">  300</span>    }</div>
 <div class="line"><span class="lineno">  301</span>    <span class="comment">// CASE 3: 0.5 Hz</span></div>
-<div class="line"><span class="lineno">  302</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == LFO_FREQUENCYS[2]) {</div>
+<div class="line"><span class="lineno">  302</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[2]) {</div>
 <div class="line"><span class="lineno">  303</span> </div>
 <div class="line"><span class="lineno">  304</span>        <span class="keywordflow">switch</span>(lfo-&gt;lfo_quarter) {</div>
 <div class="line"><span class="lineno">  305</span>        <span class="keywordflow">case</span> 0:</div>
 <div class="line"><span class="lineno">  306</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  307</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  308</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  309</span>                lfo-&gt;lfo_data = LFO[LFO_STARTINDEX[2]  + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  309</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[2]  + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  310</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  311</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno">  312</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
@@ -718,20 +734,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  322</span>                }</div>
 <div class="line"><span class="lineno">  323</span>            }</div>
 <div class="line"><span class="lineno">  324</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  325</span>                lfo-&gt;lfo_data = LFO[LFO_ENDINDEX[2]    - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  325</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[2]    - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  326</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  327</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno">  328</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  329</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  330</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  331</span>                lfo-&gt;lfo_data = -LFO[LFO_STARTINDEX[2] + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  331</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[2] + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  332</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  333</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno">  334</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
 <div class="line"><span class="lineno">  335</span>                lfo-&gt;lfo_data = -1;</div>
 <div class="line"><span class="lineno">  336</span>            }</div>
 <div class="line"><span class="lineno">  337</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  338</span>                lfo-&gt;lfo_data = -LFO[LFO_ENDINDEX[2]   - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  338</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[2]   - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  339</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  340</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  341</span>            <span class="keywordflow">break</span>;</div>
@@ -739,7 +755,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  343</span>        lfo-&gt;lfo_index++;</div>
 <div class="line"><span class="lineno">  344</span> </div>
 <div class="line"><span class="lineno">  345</span>        <span class="comment">// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero</span></div>
-<div class="line"><span class="lineno">  346</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == LFO_SUPPORTPOINTS[2]) {</div>
+<div class="line"><span class="lineno">  346</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == <a class="code hl_variable" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a>[2]) {</div>
 <div class="line"><span class="lineno">  347</span> </div>
 <div class="line"><span class="lineno">  348</span>            lfo-&gt;lfo_index = 0;</div>
 <div class="line"><span class="lineno">  349</span>            lfo-&gt;lfo_quarter++;</div>
@@ -750,7 +766,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  354</span>                    <span class="comment">// to make sure that the tremolo restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  355</span>                    <span class="keywordflow">if</span>(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {</div>
 <div class="line"><span class="lineno">  356</span> </div>
-<div class="line"><span class="lineno">  357</span>                        Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];</div>
+<div class="line"><span class="lineno">  357</span>                        Display.Tremolo_Rate = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.Tremolo_Rate_Index];</div>
 <div class="line"><span class="lineno">  358</span>                        Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;</div>
 <div class="line"><span class="lineno">  359</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  360</span>                        Tremolo.lfo-&gt;lfo_frequency = Display.Tremolo_Rate;</div>
@@ -760,7 +776,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  364</span>                    <span class="comment">// to make sure that the auto-wahwah restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  365</span>                    <span class="keywordflow">if</span>(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {</div>
 <div class="line"><span class="lineno">  366</span> </div>
-<div class="line"><span class="lineno">  367</span>                        Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];</div>
+<div class="line"><span class="lineno">  367</span>                        Display.WahWah_LFOfreq = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.WahWah_LFOfreq_Index];</div>
 <div class="line"><span class="lineno">  368</span>                        Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;</div>
 <div class="line"><span class="lineno">  369</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  370</span>                        WahWah.lfo-&gt;lfo_frequency = Display.WahWah_LFOfreq;</div>
@@ -770,14 +786,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  374</span>        }</div>
 <div class="line"><span class="lineno">  375</span>    }</div>
 <div class="line"><span class="lineno">  376</span>    <span class="comment">// CASE 4: 1 Hz</span></div>
-<div class="line"><span class="lineno">  377</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == LFO_FREQUENCYS[3]) {</div>
+<div class="line"><span class="lineno">  377</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[3]) {</div>
 <div class="line"><span class="lineno">  378</span> </div>
 <div class="line"><span class="lineno">  379</span>        <span class="keywordflow">switch</span>(lfo-&gt;lfo_quarter) {</div>
 <div class="line"><span class="lineno">  380</span>        <span class="keywordflow">case</span> 0:</div>
 <div class="line"><span class="lineno">  381</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  382</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  383</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  384</span>                lfo-&gt;lfo_data = LFO[LFO_STARTINDEX[3]  + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  384</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[3]  + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  385</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  386</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno">  387</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
@@ -793,20 +809,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  397</span>                }</div>
 <div class="line"><span class="lineno">  398</span>            }</div>
 <div class="line"><span class="lineno">  399</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  400</span>                lfo-&gt;lfo_data = LFO[LFO_ENDINDEX[3]    - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  400</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[3]    - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  401</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  402</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno">  403</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  404</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  405</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  406</span>                lfo-&gt;lfo_data = -LFO[LFO_STARTINDEX[3] + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  406</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[3] + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  407</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  408</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno">  409</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
 <div class="line"><span class="lineno">  410</span>                lfo-&gt;lfo_data = -1;</div>
 <div class="line"><span class="lineno">  411</span>            }</div>
 <div class="line"><span class="lineno">  412</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  413</span>                lfo-&gt;lfo_data = -LFO[LFO_ENDINDEX[3]   - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  413</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[3]   - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  414</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  415</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  416</span>            <span class="keywordflow">break</span>;</div>
@@ -814,7 +830,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  418</span>        lfo-&gt;lfo_index++;</div>
 <div class="line"><span class="lineno">  419</span> </div>
 <div class="line"><span class="lineno">  420</span>        <span class="comment">// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero</span></div>
-<div class="line"><span class="lineno">  421</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == LFO_SUPPORTPOINTS[3]) {</div>
+<div class="line"><span class="lineno">  421</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == <a class="code hl_variable" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a>[3]) {</div>
 <div class="line"><span class="lineno">  422</span> </div>
 <div class="line"><span class="lineno">  423</span>            lfo-&gt;lfo_index = 0;</div>
 <div class="line"><span class="lineno">  424</span>            lfo-&gt;lfo_quarter++;</div>
@@ -825,7 +841,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  429</span>                    <span class="comment">// to make sure that the tremolo restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  430</span>                    <span class="keywordflow">if</span>(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {</div>
 <div class="line"><span class="lineno">  431</span> </div>
-<div class="line"><span class="lineno">  432</span>                        Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];</div>
+<div class="line"><span class="lineno">  432</span>                        Display.Tremolo_Rate = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.Tremolo_Rate_Index];</div>
 <div class="line"><span class="lineno">  433</span>                        Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;</div>
 <div class="line"><span class="lineno">  434</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  435</span>                        Tremolo.lfo-&gt;lfo_frequency = Display.Tremolo_Rate;</div>
@@ -835,7 +851,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  439</span>                    <span class="comment">// to make sure that the auto-wahwah restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  440</span>                    <span class="keywordflow">if</span>(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {</div>
 <div class="line"><span class="lineno">  441</span> </div>
-<div class="line"><span class="lineno">  442</span>                        Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];</div>
+<div class="line"><span class="lineno">  442</span>                        Display.WahWah_LFOfreq = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.WahWah_LFOfreq_Index];</div>
 <div class="line"><span class="lineno">  443</span>                        Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;</div>
 <div class="line"><span class="lineno">  444</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  445</span>                        WahWah.lfo-&gt;lfo_frequency = Display.WahWah_LFOfreq;</div>
@@ -845,14 +861,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  449</span>        }</div>
 <div class="line"><span class="lineno">  450</span>    }</div>
 <div class="line"><span class="lineno">  451</span>    <span class="comment">// CASE 5: 2 Hz</span></div>
-<div class="line"><span class="lineno">  452</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == LFO_FREQUENCYS[4]) {</div>
+<div class="line"><span class="lineno">  452</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[4]) {</div>
 <div class="line"><span class="lineno">  453</span> </div>
 <div class="line"><span class="lineno">  454</span>        <span class="keywordflow">switch</span>(lfo-&gt;lfo_quarter) {</div>
 <div class="line"><span class="lineno">  455</span>        <span class="keywordflow">case</span> 0:</div>
 <div class="line"><span class="lineno">  456</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  457</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  458</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  459</span>                lfo-&gt;lfo_data = LFO[LFO_STARTINDEX[4]  + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  459</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[4]  + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  460</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  461</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno">  462</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
@@ -868,20 +884,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  472</span>                }</div>
 <div class="line"><span class="lineno">  473</span>            }</div>
 <div class="line"><span class="lineno">  474</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  475</span>                lfo-&gt;lfo_data = LFO[LFO_ENDINDEX[4]    - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  475</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[4]    - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  476</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  477</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno">  478</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  479</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  480</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  481</span>                lfo-&gt;lfo_data = -LFO[LFO_STARTINDEX[4] + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  481</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[4] + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  482</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  483</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno">  484</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
 <div class="line"><span class="lineno">  485</span>                lfo-&gt;lfo_data = -1;</div>
 <div class="line"><span class="lineno">  486</span>            }</div>
 <div class="line"><span class="lineno">  487</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  488</span>                lfo-&gt;lfo_data = -LFO[LFO_ENDINDEX[4]   - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  488</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[4]   - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  489</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  490</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  491</span>            <span class="keywordflow">break</span>;</div>
@@ -889,7 +905,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  493</span>        lfo-&gt;lfo_index++;</div>
 <div class="line"><span class="lineno">  494</span> </div>
 <div class="line"><span class="lineno">  495</span>        <span class="comment">// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero</span></div>
-<div class="line"><span class="lineno">  496</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == LFO_SUPPORTPOINTS[4]) {</div>
+<div class="line"><span class="lineno">  496</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == <a class="code hl_variable" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a>[4]) {</div>
 <div class="line"><span class="lineno">  497</span> </div>
 <div class="line"><span class="lineno">  498</span>            lfo-&gt;lfo_index = 0;</div>
 <div class="line"><span class="lineno">  499</span>            lfo-&gt;lfo_quarter++;</div>
@@ -900,7 +916,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  504</span>                    <span class="comment">// to make sure that the tremolo restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  505</span>                    <span class="keywordflow">if</span>(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {</div>
 <div class="line"><span class="lineno">  506</span> </div>
-<div class="line"><span class="lineno">  507</span>                        Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];</div>
+<div class="line"><span class="lineno">  507</span>                        Display.Tremolo_Rate = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.Tremolo_Rate_Index];</div>
 <div class="line"><span class="lineno">  508</span>                        Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;</div>
 <div class="line"><span class="lineno">  509</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  510</span>                        Tremolo.lfo-&gt;lfo_frequency = Display.Tremolo_Rate;</div>
@@ -910,7 +926,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  514</span>                    <span class="comment">// to make sure that the auto-wahwah restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  515</span>                    <span class="keywordflow">if</span>(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {</div>
 <div class="line"><span class="lineno">  516</span> </div>
-<div class="line"><span class="lineno">  517</span>                        Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];</div>
+<div class="line"><span class="lineno">  517</span>                        Display.WahWah_LFOfreq = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.WahWah_LFOfreq_Index];</div>
 <div class="line"><span class="lineno">  518</span>                        Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;</div>
 <div class="line"><span class="lineno">  519</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  520</span>                        WahWah.lfo-&gt;lfo_frequency = Display.WahWah_LFOfreq;</div>
@@ -920,14 +936,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  524</span>        }</div>
 <div class="line"><span class="lineno">  525</span>    }</div>
 <div class="line"><span class="lineno">  526</span>    <span class="comment">// CASE 6: 4 Hz</span></div>
-<div class="line"><span class="lineno">  527</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == LFO_FREQUENCYS[5]) {</div>
+<div class="line"><span class="lineno">  527</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[5]) {</div>
 <div class="line"><span class="lineno">  528</span> </div>
 <div class="line"><span class="lineno">  529</span>        <span class="keywordflow">switch</span>(lfo-&gt;lfo_quarter) {</div>
 <div class="line"><span class="lineno">  530</span>        <span class="keywordflow">case</span> 0:</div>
 <div class="line"><span class="lineno">  531</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  532</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  533</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  534</span>                lfo-&gt;lfo_data = LFO[LFO_STARTINDEX[5]  + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  534</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[5]  + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  535</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  536</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno">  537</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
@@ -943,20 +959,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  547</span>                }</div>
 <div class="line"><span class="lineno">  548</span>            }</div>
 <div class="line"><span class="lineno">  549</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  550</span>                lfo-&gt;lfo_data = LFO[LFO_ENDINDEX[5]    - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  550</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[5]    - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  551</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  552</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno">  553</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  554</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  555</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  556</span>                lfo-&gt;lfo_data = -LFO[LFO_STARTINDEX[5] + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  556</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[5] + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  557</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  558</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno">  559</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
 <div class="line"><span class="lineno">  560</span>                lfo-&gt;lfo_data = -1;</div>
 <div class="line"><span class="lineno">  561</span>            }</div>
 <div class="line"><span class="lineno">  562</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  563</span>                lfo-&gt;lfo_data = -LFO[LFO_ENDINDEX[5]   - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  563</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[5]   - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  564</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  565</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  566</span>            <span class="keywordflow">break</span>;</div>
@@ -964,7 +980,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  568</span>        lfo-&gt;lfo_index++;</div>
 <div class="line"><span class="lineno">  569</span> </div>
 <div class="line"><span class="lineno">  570</span>        <span class="comment">// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero</span></div>
-<div class="line"><span class="lineno">  571</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == LFO_SUPPORTPOINTS[5]) {</div>
+<div class="line"><span class="lineno">  571</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == <a class="code hl_variable" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a>[5]) {</div>
 <div class="line"><span class="lineno">  572</span> </div>
 <div class="line"><span class="lineno">  573</span>            lfo-&gt;lfo_index = 0;</div>
 <div class="line"><span class="lineno">  574</span>            lfo-&gt;lfo_quarter++;</div>
@@ -975,7 +991,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  579</span>                    <span class="comment">// to make sure that the tremolo restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  580</span>                    <span class="keywordflow">if</span>(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {</div>
 <div class="line"><span class="lineno">  581</span> </div>
-<div class="line"><span class="lineno">  582</span>                        Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];</div>
+<div class="line"><span class="lineno">  582</span>                        Display.Tremolo_Rate = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.Tremolo_Rate_Index];</div>
 <div class="line"><span class="lineno">  583</span>                        Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;</div>
 <div class="line"><span class="lineno">  584</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  585</span>                        Tremolo.lfo-&gt;lfo_frequency = Display.Tremolo_Rate;</div>
@@ -985,7 +1001,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  589</span>                    <span class="comment">// to make sure that the auto-wahwah restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  590</span>                    <span class="keywordflow">if</span>(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {</div>
 <div class="line"><span class="lineno">  591</span> </div>
-<div class="line"><span class="lineno">  592</span>                        Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];</div>
+<div class="line"><span class="lineno">  592</span>                        Display.WahWah_LFOfreq = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.WahWah_LFOfreq_Index];</div>
 <div class="line"><span class="lineno">  593</span>                        Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;</div>
 <div class="line"><span class="lineno">  594</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  595</span>                        WahWah.lfo-&gt;lfo_frequency = Display.WahWah_LFOfreq;</div>
@@ -995,14 +1011,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  599</span>        }</div>
 <div class="line"><span class="lineno">  600</span>    }</div>
 <div class="line"><span class="lineno">  601</span>    <span class="comment">// CASE 7: 8 Hz</span></div>
-<div class="line"><span class="lineno">  602</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == LFO_FREQUENCYS[6]) {</div>
+<div class="line"><span class="lineno">  602</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[6]) {</div>
 <div class="line"><span class="lineno">  603</span> </div>
 <div class="line"><span class="lineno">  604</span>        <span class="keywordflow">switch</span>(lfo-&gt;lfo_quarter) {</div>
 <div class="line"><span class="lineno">  605</span>        <span class="keywordflow">case</span> 0:</div>
 <div class="line"><span class="lineno">  606</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  607</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  608</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  609</span>                lfo-&gt;lfo_data = LFO[LFO_STARTINDEX[6]  + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  609</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[6]  + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  610</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  611</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno">  612</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
@@ -1018,20 +1034,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  622</span>                }</div>
 <div class="line"><span class="lineno">  623</span>            }</div>
 <div class="line"><span class="lineno">  624</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  625</span>                lfo-&gt;lfo_data = LFO[LFO_ENDINDEX[6]    - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  625</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[6]    - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  626</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  627</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno">  628</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  629</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  630</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  631</span>                lfo-&gt;lfo_data = -LFO[LFO_STARTINDEX[6] + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  631</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[6] + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  632</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  633</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno">  634</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
 <div class="line"><span class="lineno">  635</span>                lfo-&gt;lfo_data = -1;</div>
 <div class="line"><span class="lineno">  636</span>            }</div>
 <div class="line"><span class="lineno">  637</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  638</span>                lfo-&gt;lfo_data = -LFO[LFO_ENDINDEX[6]   - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  638</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[6]   - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  639</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  640</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  641</span>            <span class="keywordflow">break</span>;</div>
@@ -1039,7 +1055,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  643</span>        lfo-&gt;lfo_index++;</div>
 <div class="line"><span class="lineno">  644</span> </div>
 <div class="line"><span class="lineno">  645</span>        <span class="comment">// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero</span></div>
-<div class="line"><span class="lineno">  646</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == LFO_SUPPORTPOINTS[6]) {</div>
+<div class="line"><span class="lineno">  646</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == <a class="code hl_variable" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a>[6]) {</div>
 <div class="line"><span class="lineno">  647</span> </div>
 <div class="line"><span class="lineno">  648</span>            lfo-&gt;lfo_index = 0;</div>
 <div class="line"><span class="lineno">  649</span>            lfo-&gt;lfo_quarter++;</div>
@@ -1050,7 +1066,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  654</span>                    <span class="comment">// to make sure that the tremolo restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  655</span>                    <span class="keywordflow">if</span>(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {</div>
 <div class="line"><span class="lineno">  656</span> </div>
-<div class="line"><span class="lineno">  657</span>                        Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];</div>
+<div class="line"><span class="lineno">  657</span>                        Display.Tremolo_Rate = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.Tremolo_Rate_Index];</div>
 <div class="line"><span class="lineno">  658</span>                        Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;</div>
 <div class="line"><span class="lineno">  659</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  660</span>                        Tremolo.lfo-&gt;lfo_frequency = Display.Tremolo_Rate;</div>
@@ -1060,7 +1076,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  664</span>                    <span class="comment">// to make sure that the auto-wahwah restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  665</span>                    <span class="keywordflow">if</span>(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {</div>
 <div class="line"><span class="lineno">  666</span> </div>
-<div class="line"><span class="lineno">  667</span>                        Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];</div>
+<div class="line"><span class="lineno">  667</span>                        Display.WahWah_LFOfreq = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.WahWah_LFOfreq_Index];</div>
 <div class="line"><span class="lineno">  668</span>                        Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;</div>
 <div class="line"><span class="lineno">  669</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  670</span>                        WahWah.lfo-&gt;lfo_frequency = Display.WahWah_LFOfreq;</div>
@@ -1070,14 +1086,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  674</span>        }</div>
 <div class="line"><span class="lineno">  675</span>    }</div>
 <div class="line"><span class="lineno">  676</span>    <span class="comment">// CASE 8: 16 Hz</span></div>
-<div class="line"><span class="lineno">  677</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == LFO_FREQUENCYS[7]) {</div>
+<div class="line"><span class="lineno">  677</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(lfo-&gt;lfo_frequency == <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[7]) {</div>
 <div class="line"><span class="lineno">  678</span> </div>
 <div class="line"><span class="lineno">  679</span>        <span class="keywordflow">switch</span>(lfo-&gt;lfo_quarter) {</div>
 <div class="line"><span class="lineno">  680</span>        <span class="keywordflow">case</span> 0:</div>
 <div class="line"><span class="lineno">  681</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  682</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  683</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  684</span>                lfo-&gt;lfo_data = LFO[LFO_STARTINDEX[7]  + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  684</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[7]  + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  685</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  686</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno">  687</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
@@ -1093,20 +1109,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  697</span>                }</div>
 <div class="line"><span class="lineno">  698</span>            }</div>
 <div class="line"><span class="lineno">  699</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  700</span>                lfo-&gt;lfo_data = LFO[LFO_ENDINDEX[7]    - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  700</span>                lfo-&gt;lfo_data = <a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[7]    - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  701</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  702</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno">  703</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0)</div>
 <div class="line"><span class="lineno">  704</span>                lfo-&gt;lfo_data = 0;</div>
 <div class="line"><span class="lineno">  705</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  706</span>                lfo-&gt;lfo_data = -LFO[LFO_STARTINDEX[7] + lfo-&gt;lfo_index];</div>
+<div class="line"><span class="lineno">  706</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a>[7] + lfo-&gt;lfo_index];</div>
 <div class="line"><span class="lineno">  707</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  708</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno">  709</span>            <span class="keywordflow">if</span>(lfo-&gt;lfo_index == 0) {</div>
 <div class="line"><span class="lineno">  710</span>                lfo-&gt;lfo_data = -1;</div>
 <div class="line"><span class="lineno">  711</span>            }</div>
 <div class="line"><span class="lineno">  712</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  713</span>                lfo-&gt;lfo_data = -LFO[LFO_ENDINDEX[7]   - lfo-&gt;lfo_index + 1];</div>
+<div class="line"><span class="lineno">  713</span>                lfo-&gt;lfo_data = -<a class="code hl_variable" href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a>[<a class="code hl_variable" href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a>[7]   - lfo-&gt;lfo_index + 1];</div>
 <div class="line"><span class="lineno">  714</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  715</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno">  716</span>            <span class="keywordflow">break</span>;</div>
@@ -1114,7 +1130,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  718</span>        lfo-&gt;lfo_index++;</div>
 <div class="line"><span class="lineno">  719</span> </div>
 <div class="line"><span class="lineno">  720</span>        <span class="comment">// CHECK: if end of quarter is reached, if yes then increment quarter and set index to zero</span></div>
-<div class="line"><span class="lineno">  721</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == LFO_SUPPORTPOINTS[7]) {</div>
+<div class="line"><span class="lineno">  721</span>        <span class="keywordflow">if</span>(lfo-&gt;lfo_index == <a class="code hl_variable" href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a>[7]) {</div>
 <div class="line"><span class="lineno">  722</span> </div>
 <div class="line"><span class="lineno">  723</span>            lfo-&gt;lfo_index = 0;</div>
 <div class="line"><span class="lineno">  724</span>            lfo-&gt;lfo_quarter++;</div>
@@ -1125,7 +1141,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  729</span>                    <span class="comment">// to make sure that the tremolo restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  730</span>                    <span class="keywordflow">if</span>(Display.Tremolo_Rate_Index != Display.last_Tremolo_Rate_Index) {</div>
 <div class="line"><span class="lineno">  731</span> </div>
-<div class="line"><span class="lineno">  732</span>                        Display.Tremolo_Rate = LFO_FREQUENCYS[Display.Tremolo_Rate_Index];</div>
+<div class="line"><span class="lineno">  732</span>                        Display.Tremolo_Rate = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.Tremolo_Rate_Index];</div>
 <div class="line"><span class="lineno">  733</span>                        Display.last_Tremolo_Rate_Index = Display.Tremolo_Rate_Index;</div>
 <div class="line"><span class="lineno">  734</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  735</span>                        Tremolo.lfo-&gt;lfo_frequency = Display.Tremolo_Rate;</div>
@@ -1135,7 +1151,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  739</span>                    <span class="comment">// to make sure that the auto-wahwah restarts only when the LFO period is done</span></div>
 <div class="line"><span class="lineno">  740</span>                    <span class="keywordflow">if</span>(Display.WahWah_LFOfreq_Index != Display.last_WahWah_LFOfreq_Index) {</div>
 <div class="line"><span class="lineno">  741</span> </div>
-<div class="line"><span class="lineno">  742</span>                        Display.WahWah_LFOfreq = LFO_FREQUENCYS[Display.WahWah_LFOfreq_Index];</div>
+<div class="line"><span class="lineno">  742</span>                        Display.WahWah_LFOfreq = <a class="code hl_variable" href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a>[Display.WahWah_LFOfreq_Index];</div>
 <div class="line"><span class="lineno">  743</span>                        Display.last_WahWah_LFOfreq_Index = Display.WahWah_LFOfreq_Index;</div>
 <div class="line"><span class="lineno">  744</span>                        lfo-&gt;lfo_done_flag = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  745</span>                        WahWah.lfo-&gt;lfo_frequency = Display.WahWah_LFOfreq;</div>
@@ -1146,6 +1162,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  750</span>    }</div>
 <div class="line"><span class="lineno">  751</span>}</div>
 <div class="ttc" id="aeffects_8h_html_a050a7ed0cb582067293e423a9c3fd7a9"><div class="ttname"><a href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a></div><div class="ttdeci">void effects_delete(effects_t_enum effect)</div><div class="ttdoc">Deletes a certain effect inside the effect_order[position].</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00088">effects.c:88</a></div></div>
+<div class="ttc" id="agroup__SINLUT_html_ga56c49e449311b56a93feb559198762fe"><div class="ttname"><a href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a></div><div class="ttdeci">const uint32_t LFO_STARTINDEX[8]</div><div class="ttdoc">contains all startindizies of the frequencies in the LFO-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00060">sinLUT.h:60</a></div></div>
+<div class="ttc" id="agroup__SINLUT_html_ga8ed6c93a3575a1bca18ba7ae1ab1735a"><div class="ttname"><a href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a></div><div class="ttdeci">const float LFO[95625]</div><div class="ttdoc">containing the LFO values</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00056">sinLUT.h:56</a></div></div>
+<div class="ttc" id="agroup__SINLUT_html_ga956e265f52e43419b6840913fb23f8d0"><div class="ttname"><a href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a></div><div class="ttdeci">const uint32_t LFO_SUPPORTPOINTS[8]</div><div class="ttdoc">contains the support points for each LFO-frequncy</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00062">sinLUT.h:62</a></div></div>
+<div class="ttc" id="agroup__SINLUT_html_gaa9c9ea0c186709ce908f4a8ad5e0975d"><div class="ttname"><a href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a></div><div class="ttdeci">const float LFO_FREQUENCYS[8]</div><div class="ttdoc">gives the the LFO-frquency value</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00064">sinLUT.h:64</a></div></div>
+<div class="ttc" id="agroup__SINLUT_html_gadd64de359bd581eccdc0c439dd3add66"><div class="ttname"><a href="group__SINLUT.html#gadd64de359bd581eccdc0c439dd3add66">LFO_ENDINDEX</a></div><div class="ttdeci">const uint32_t LFO_ENDINDEX[8]</div><div class="ttdoc">contains all startindizies of the frequencies in the LFO-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00058">sinLUT.h:58</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1220,7 +1241,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  774</span>        <span class="keywordflow">case</span> SIN:</div>
 <div class="line"><span class="lineno">  775</span>            signals -&gt; freq[index] = <a class="code hl_function" href="music__notes_8h.html#a3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a>(<a class="code hl_function" href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>), octave);</div>
 <div class="line"><span class="lineno">  776</span>            signals -&gt; freqIndex[index] = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>,octave);</div>
-<div class="line"><span class="lineno">  777</span>            signals -&gt; current_LUT_Index[index] = LUT_STARTINDEX[signals -&gt; freqIndex[index]];</div>
+<div class="line"><span class="lineno">  777</span>            signals -&gt; current_LUT_Index[index] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[signals -&gt; freqIndex[index]];</div>
 <div class="line"><span class="lineno">  778</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  779</span> </div>
 <div class="line"><span class="lineno">  780</span>        <span class="keywordflow">case</span> RECT:</div>
@@ -1244,6 +1265,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  798</span>    }</div>
 <div class="line"><span class="lineno">  799</span>    signals -&gt; max = 1;</div>
 <div class="line"><span class="lineno">  800</span>}</div>
+<div class="ttc" id="agroup__SINLUT_html_ga2e5122eebde8d369cf949da93586ec2e"><div class="ttname"><a href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a></div><div class="ttdeci">const uint32_t LUT_STARTINDEX[73]</div><div class="ttdoc">contains all startindizies of the frequencies in the SIN-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00049">sinLUT.h:49</a></div></div>
 <div class="ttc" id="amusic__notes_8c_html_acad36f7a1211e9e9da68e181667d9c3f"><div class="ttname"><a href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a></div><div class="ttdeci">char key</div><div class="ttdoc">music key</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00041">music_notes.c:41</a></div></div>
 <div class="ttc" id="amusic__notes_8h_html_a24334366425c42178a955c3c969ad9a8"><div class="ttname"><a href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a></div><div class="ttdeci">uint8_t Get_Keyindex(char key)</div><div class="ttdoc">returns the index of a note-letter depending on the keys-array</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00051">music_notes.c:51</a></div></div>
 <div class="ttc" id="amusic__notes_8h_html_a3fc1bdf03e12b5dee3aa887f100421bf"><div class="ttname"><a href="music__notes_8h.html#a3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a></div><div class="ttdeci">double Get_Note_Frequency(uint8_t index, uint8_t octave)</div><div class="ttdoc">returns the frequency of a music note listed in the</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00063">music_notes.c:63</a></div></div>
@@ -1428,11 +1450,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  864</span>    uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;</div>
 <div class="line"><span class="lineno">  865</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == HALF_BLOCK){</div>
 <div class="line"><span class="lineno">  866</span>        BLOOCKSIZE_startIndex = 0;</div>
-<div class="line"><span class="lineno">  867</span>        BLOOCKSIZE_endIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
+<div class="line"><span class="lineno">  867</span>        BLOOCKSIZE_endIndex = BLOCKSIZE/2;</div>
 <div class="line"><span class="lineno">  868</span>    }</div>
 <div class="line"><span class="lineno">  869</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == FULL_BLOCK){</div>
-<div class="line"><span class="lineno">  870</span>        BLOOCKSIZE_startIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
-<div class="line"><span class="lineno">  871</span>        BLOOCKSIZE_endIndex  = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>;</div>
+<div class="line"><span class="lineno">  870</span>        BLOOCKSIZE_startIndex = BLOCKSIZE/2;</div>
+<div class="line"><span class="lineno">  871</span>        BLOOCKSIZE_endIndex  = BLOCKSIZE;</div>
 <div class="line"><span class="lineno">  872</span>    }</div>
 <div class="line"><span class="lineno">  873</span> </div>
 <div class="line"><span class="lineno">  874</span>    <span class="comment">// Loop for signal synthesis</span></div>
@@ -1453,14 +1475,14 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  889</span> </div>
 <div class="line"><span class="lineno">  890</span>            <span class="keywordflow">case</span> SIN:</div>
 <div class="line"><span class="lineno">  891</span>                <span class="comment">// adds all SIN values from the signals to addValue</span></div>
-<div class="line"><span class="lineno">  892</span>                addValue = addValue + LUT[signals -&gt; current_LUT_Index[j]];</div>
+<div class="line"><span class="lineno">  892</span>                addValue = addValue + <a class="code hl_variable" href="group__SINLUT.html#ga4f12a18a6cf6bdb4cf4b1f3a509f061e">LUT</a>[signals -&gt; current_LUT_Index[j]];</div>
 <div class="line"><span class="lineno">  893</span>                </div>
 <div class="line"><span class="lineno">  894</span>                <span class="comment">// get index for the next sin value</span></div>
 <div class="line"><span class="lineno">  895</span>                signals-&gt;current_LUT_Index[j]++;</div>
 <div class="line"><span class="lineno">  896</span> </div>
-<div class="line"><span class="lineno">  897</span>                <span class="keywordflow">if</span> (signals-&gt;current_LUT_Index[j] &gt; LUT_ENDINDEX[signals-&gt;freqIndex[j]]) {</div>
+<div class="line"><span class="lineno">  897</span>                <span class="keywordflow">if</span> (signals-&gt;current_LUT_Index[j] &gt; <a class="code hl_variable" href="group__SINLUT.html#ga93f6110c104231e7959e446480c94834">LUT_ENDINDEX</a>[signals-&gt;freqIndex[j]]) {</div>
 <div class="line"><span class="lineno">  898</span> </div>
-<div class="line"><span class="lineno">  899</span>                    signals-&gt;current_LUT_Index[j] = LUT_STARTINDEX[signals-&gt;freqIndex[j]];</div>
+<div class="line"><span class="lineno">  899</span>                    signals-&gt;current_LUT_Index[j] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[signals-&gt;freqIndex[j]];</div>
 <div class="line"><span class="lineno">  900</span> </div>
 <div class="line"><span class="lineno">  901</span>                    <span class="comment">// create voice signals (maximum 3) to avoid plop sound if note or octave is varied</span></div>
 <div class="line"><span class="lineno">  902</span>                    <span class="comment">// this has to be done here to process the change immediately when the index is</span></div>
@@ -1544,7 +1566,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  980</span>                <span class="comment">// get index for the next rect value</span></div>
 <div class="line"><span class="lineno">  981</span>                signals-&gt;current_LUT_Index[j]++;</div>
 <div class="line"><span class="lineno">  982</span> </div>
-<div class="line"><span class="lineno">  983</span>                <span class="keywordflow">if</span> (signals-&gt;current_LUT_Index[j] &gt;= LUT_SUPPORTPOINTS[signals-&gt;freqIndex[j]]) {</div>
+<div class="line"><span class="lineno">  983</span>                <span class="keywordflow">if</span> (signals-&gt;current_LUT_Index[j] &gt;= <a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[j]]) {</div>
 <div class="line"><span class="lineno">  984</span> </div>
 <div class="line"><span class="lineno">  985</span>                    signals-&gt;current_LUT_Index[j] = 0;</div>
 <div class="line"><span class="lineno">  986</span> </div>
@@ -1629,7 +1651,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1065</span>                <span class="comment">// get index for the next triangle value</span></div>
 <div class="line"><span class="lineno"> 1066</span>                signals-&gt;current_LUT_Index[j]++;</div>
 <div class="line"><span class="lineno"> 1067</span> </div>
-<div class="line"><span class="lineno"> 1068</span>                <span class="keywordflow">if</span> (signals-&gt;current_LUT_Index[j] &gt;= LUT_SUPPORTPOINTS[signals-&gt;freqIndex[j]]) {</div>
+<div class="line"><span class="lineno"> 1068</span>                <span class="keywordflow">if</span> (signals-&gt;current_LUT_Index[j] &gt;= <a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[j]]) {</div>
 <div class="line"><span class="lineno"> 1069</span> </div>
 <div class="line"><span class="lineno"> 1070</span>                    signals-&gt;current_LUT_Index[j] = 0;</div>
 <div class="line"><span class="lineno"> 1071</span> </div>
@@ -1720,7 +1742,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1156</span> </div>
 <div class="line"><span class="lineno"> 1157</span>        <span class="comment">// Drummachine</span></div>
 <div class="line"><span class="lineno"> 1158</span>        <span class="keywordflow">if</span> ((<a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] &gt; 0) || (<a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] &gt; 0)){</div>
-<div class="line"><span class="lineno"> 1159</span>            <a class="code hl_function" href="drum__computer_8h.html#a08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a>();</div>
+<div class="line"><span class="lineno"> 1159</span>            <a class="code hl_function" href="group__DrumComputer.html#ga08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a>();</div>
 <div class="line"><span class="lineno"> 1160</span>            drums_filtered = drums;</div>
 <div class="line"><span class="lineno"> 1161</span>            <span class="keywordflow">if</span>(Display.Drumfilter_ONOFF)</div>
 <div class="line"><span class="lineno"> 1162</span>                <a class="code hl_function" href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(&amp;LS_DRUMS, &amp;drums_filtered);</div>
@@ -1740,8 +1762,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1176</span> </div>
 <div class="line"><span class="lineno"> 1177</span>        <span class="comment">// Play single sample</span></div>
 <div class="line"><span class="lineno"> 1178</span>        <span class="keywordflow">if</span>(play_single_sample_flag) {</div>
-<div class="line"><span class="lineno"> 1179</span>            <a class="code hl_function" href="drum__computer_8h.html#ab788a1e344e6956cb70a8e5e1ea4d0bd">PlaySingleSample</a>();</div>
-<div class="line"><span class="lineno"> 1180</span>            calculate_vector_tmp[BLOCKSIZE_counter] += <a class="code hl_variable" href="drum__computer_8h.html#a4f45ba3b9c8c3c6e57de16324bf23604">single_sample</a>;</div>
+<div class="line"><span class="lineno"> 1179</span>            <a class="code hl_function" href="group__SingleSample.html#gab788a1e344e6956cb70a8e5e1ea4d0bd">PlaySingleSample</a>();</div>
+<div class="line"><span class="lineno"> 1180</span>            calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;</div>
 <div class="line"><span class="lineno"> 1181</span>        }</div>
 <div class="line"><span class="lineno"> 1182</span> </div>
 <div class="line"><span class="lineno"> 1183</span>        <a class="code hl_function" href="effects_8c.html#a3cf8b82d8ee857615741a7e0e04dbdf1">effects_process</a>(&amp;calculate_vector_tmp[BLOCKSIZE_counter]);</div>
@@ -1765,12 +1787,13 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1201</span>        <span class="comment">// Convert float to uint32 in order to make it readable for the DAC</span></div>
 <div class="line"><span class="lineno"> 1202</span>        *((uint32_t *)(&amp;calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * <a class="code hl_variable" href="signal__synthesis_8h.html#aa15347ac4d705e4e9db618dfa95640e7">Master_Volume</a> * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * <a class="code hl_variable" href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a>); <span class="comment">// +1.65 is the middle of 0-3V3</span></div>
 <div class="line"><span class="lineno"> 1203</span>    }<span class="comment">//End for-Loop</span></div>
-<div class="ttc" id="adrum__computer_8h_html_a08535ad247ef4e17b91bbba4b56833af"><div class="ttname"><a href="drum__computer_8h.html#a08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a></div><div class="ttdeci">HAL_StatusTypeDef Drum_Computer_Process(void)</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00403">drum_computer.c:403</a></div></div>
-<div class="ttc" id="adrum__computer_8h_html_a4f45ba3b9c8c3c6e57de16324bf23604"><div class="ttname"><a href="drum__computer_8h.html#a4f45ba3b9c8c3c6e57de16324bf23604">single_sample</a></div><div class="ttdeci">float single_sample</div><div class="ttdoc">Single Sample.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00112">drum_computer.h:112</a></div></div>
-<div class="ttc" id="adrum__computer_8h_html_ab788a1e344e6956cb70a8e5e1ea4d0bd"><div class="ttname"><a href="drum__computer_8h.html#ab788a1e344e6956cb70a8e5e1ea4d0bd">PlaySingleSample</a></div><div class="ttdeci">void PlaySingleSample(void)</div><div class="ttdoc">function to play the same sample each time it is triggerd, must be called inside Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00500">drum_computer.c:500</a></div></div>
 <div class="ttc" id="aeffects_8c_html_a3cf8b82d8ee857615741a7e0e04dbdf1"><div class="ttname"><a href="effects_8c.html#a3cf8b82d8ee857615741a7e0e04dbdf1">effects_process</a></div><div class="ttdeci">void effects_process(float *calculate_value)</div><div class="ttdoc">reads the effect_order[] and activates the processing functions for the effects</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00026">effects.c:26</a></div></div>
 <div class="ttc" id="aeffects_8h_html_a3f7370371217adca4b93419901dc1c1f"><div class="ttname"><a href="effects_8h.html#a3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a></div><div class="ttdeci">void keyboard_adsr_process(void)</div><div class="ttdoc">function for the keyboard adsr processing</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00053">effects.c:53</a></div></div>
 <div class="ttc" id="afilters_8h_html_ad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00337">filters.c:337</a></div></div>
+<div class="ttc" id="agroup__DrumComputer_html_ga08535ad247ef4e17b91bbba4b56833af"><div class="ttname"><a href="group__DrumComputer.html#ga08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a></div><div class="ttdeci">HAL_StatusTypeDef Drum_Computer_Process(void)</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00403">drum_computer.c:403</a></div></div>
+<div class="ttc" id="agroup__SINLUT_html_ga4f12a18a6cf6bdb4cf4b1f3a509f061e"><div class="ttname"><a href="group__SINLUT.html#ga4f12a18a6cf6bdb4cf4b1f3a509f061e">LUT</a></div><div class="ttdeci">const float LUT[6439]</div><div class="ttdoc">SIN-LUT, contains all values of 1/4-Sin's for the frequency from LUT_FMIN to LUT_FMAX</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00045">sinLUT.h:45</a></div></div>
+<div class="ttc" id="agroup__SINLUT_html_ga93f6110c104231e7959e446480c94834"><div class="ttname"><a href="group__SINLUT.html#ga93f6110c104231e7959e446480c94834">LUT_ENDINDEX</a></div><div class="ttdeci">const uint32_t LUT_ENDINDEX[73]</div><div class="ttdoc">contains all endindizies of the frequencies in the SIN-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00047">sinLUT.h:47</a></div></div>
+<div class="ttc" id="agroup__SingleSample_html_gab788a1e344e6956cb70a8e5e1ea4d0bd"><div class="ttname"><a href="group__SingleSample.html#gab788a1e344e6956cb70a8e5e1ea4d0bd">PlaySingleSample</a></div><div class="ttdeci">void PlaySingleSample(void)</div><div class="ttdoc">function to play the same sample each time it is triggerd, must be called inside Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00500">drum_computer.c:500</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_a100668ad3cefb7abc0f65f866ea508ba"><div class="ttname"><a href="signal__synthesis_8c.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a></div><div class="ttdeci">int16_t IDtoIndex(int16_t id)</div><div class="ttdoc">converts an signal ID into its Index</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00830">signal_synthesis.c:830</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_a15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="signal__synthesis_8c.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00764">signal_synthesis.c:764</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_a2b8c4b7d554c97fbb68f2226c8202acd"><div class="ttname"><a href="signal__synthesis_8c.html#a2b8c4b7d554c97fbb68f2226c8202acd">CalcRectSample</a></div><div class="ttdeci">float CalcRectSample(struct signal_t *signals, int index)</div><div class="ttdoc">Rectangle wave based on struct signals.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01261">signal_synthesis.c:1261</a></div></div>
@@ -1834,8 +1857,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   41</span>        <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[i] = 1;</div>
 <div class="line"><span class="lineno">   42</span>    }</div>
 <div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0; i&gt;<a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2; i++)</div>
-<div class="line"><span class="lineno">   45</span>        *((uint32_t *)(&amp;<a class="code hl_variable" href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a>[i] )) = (uint32_t)((i/(<a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2)) * <a class="code hl_variable" href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a>/2); <span class="comment">// TODO muss noch angepasst werden</span></div>
+<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0; i&gt;BLOCKSIZE/2; i++)</div>
+<div class="line"><span class="lineno">   45</span>        *((uint32_t *)(&amp;<a class="code hl_variable" href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a>[i] )) = (uint32_t)((i/(BLOCKSIZE/2)) * <a class="code hl_variable" href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a>/2); <span class="comment">// TODO muss noch angepasst werden</span></div>
 <div class="line"><span class="lineno">   46</span> </div>
 <div class="line"><span class="lineno">   47</span>    <span class="comment">// Inits and starts timer connected with DAC</span></div>
 <div class="line"><span class="lineno">   48</span>    <a class="code hl_function" href="signal__synthesis_8c.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(&amp;htim, LUT_SR);</div>
@@ -1944,9 +1967,13 @@ Variables</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a class="el" href="signal__synthesis_8c.html">signal_synthesis.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

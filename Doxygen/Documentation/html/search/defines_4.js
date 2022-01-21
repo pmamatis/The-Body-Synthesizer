@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyboard_5fsp_0',['KEYBOARD_SP',['../keyboard_8h.html#a223f58b0e6ba7585a26967062d8c6e17',1,'keyboard.h']]]
+  ['offset_0',['OFFSET',['../signal__synthesis_8h.html#a21005f9f4e2ce7597c5eb4351816d7e2',1,'signal_synthesis.h']]]
 ];

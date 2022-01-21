@@ -22,7 +22,7 @@ void \mbox{\hyperlink{sd__card_8c_a6dacdaf5530cfe6c164de87795ec2189}{sd\+\_\+car
 \item 
 void \mbox{\hyperlink{sd__card_8c_a0cf3082c520d42e71c3394eaf7accf05}{sd\+\_\+card\+\_\+write\+\_\+appendfile}} (char $\ast$filename, char $\ast$filecontent, UART\+\_\+\+Handle\+Type\+Def huart)
 \item 
-void \mbox{\hyperlink{sd__card_8c_a2fc37a80c9a1b6a1e130462705d888ca}{sd\+\_\+card\+\_\+read}} (char $\ast$filename, float $\ast$LUT)
+void \mbox{\hyperlink{sd__card_8c_a2fc37a80c9a1b6a1e130462705d888ca}{sd\+\_\+card\+\_\+read}} (char $\ast$filename, float $\ast$\mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}})
 \item 
 void \mbox{\hyperlink{sd__card_8c_a26ed1f760dee256c3b76e753bfa22de2}{sd\+\_\+card\+\_\+remove\+\_\+file}} (char $\ast$filename, UART\+\_\+\+Handle\+Type\+Def huart)
 \end{DoxyCompactItemize}
@@ -212,7 +212,7 @@ Definition at line \mbox{\hyperlink{sd__card_8c_source_l00131}{131}} of file \mb
 \DoxyCodeLine{00161 }
 \DoxyCodeLine{00162                 SampleTemp[k] = buffer[j*NoLength+k];}
 \DoxyCodeLine{00163             \}}
-\DoxyCodeLine{00164             LUT[i*NoSamples+j] = atof(SampleTemp)-\/1;}
+\DoxyCodeLine{00164             \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}[i*NoSamples+j] = atof(SampleTemp)-\/1;}
 \DoxyCodeLine{00165         \}}
 \DoxyCodeLine{00166     \}}
 \DoxyCodeLine{00167 }

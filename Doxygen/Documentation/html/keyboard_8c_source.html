@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('keyboard_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">keyboard.c</div></div>
 </div><!--header-->
@@ -138,11 +154,11 @@ $(function() {
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// Delete signal</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++){</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">if</span> (adsr_keyboard[i].adsr_done){</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[i].adsr_done){</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <span class="keywordtype">int</span> index = <a class="code hl_function" href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(KEYBOARD_VOICE_ID+i);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <a class="code hl_function" href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(signals,index);</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            adsr_keyboard[i].adsr_done = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            <a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[i].adsr_done = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            played_keyboard_note[i] = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
@@ -152,6 +168,7 @@ $(function() {
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        }</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
+<div class="ttc" id="agroup__ADSR_html_ga742e13f70ae8c573509abfd794271f44"><div class="ttname"><a href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a></div><div class="ttdeci">struct adsr adsr_keyboard[5]</div><div class="ttdoc">ADSR storage for the keyboard.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8h_source.html#l00085">adsr.h:85</a></div></div>
 <div class="ttc" id="akeyboard_8c_html_a49b74c118843f9046a50a49296e3ce37"><div class="ttname"><a href="keyboard_8c.html#a49b74c118843f9046a50a49296e3ce37">keyboard_init</a></div><div class="ttdeci">void keyboard_init(ADC_HandleTypeDef *ADC_Handler, TIM_HandleTypeDef *TIM_Handler)</div><div class="ttdoc">Keyboaed Init funcrion.</div><div class="ttdef"><b>Definition:</b> <a href="keyboard_8c_source.html#l00020">keyboard.c:20</a></div></div>
 <div class="ttc" id="akeyboard_8c_html_a4f8ca4fda6a27fe2ed6ad14c40339324"><div class="ttname"><a href="keyboard_8c.html#a4f8ca4fda6a27fe2ed6ad14c40339324">OnePress_keyboard_process</a></div><div class="ttdeci">void OnePress_keyboard_process(uint32_t adc_value, struct signal_t *signals, struct display_variables *Display)</div><div class="ttdoc">This function handles the Data processing for the Keyboard ADC, depending on the given value a signal...</div><div class="ttdef"><b>Definition:</b> <a href="keyboard_8c_source.html#l00061">keyboard.c:61</a></div></div>
 <div class="ttc" id="akeyboard_8c_html_a86de1f5c40ab14dddcc12fbf3eafde08"><div class="ttname"><a href="keyboard_8c.html#a86de1f5c40ab14dddcc12fbf3eafde08">keyboard_start_read</a></div><div class="ttdeci">HAL_StatusTypeDef keyboard_start_read(void)</div><div class="ttdoc">starts the keyboard reading process</div><div class="ttdef"><b>Definition:</b> <a href="keyboard_8c_source.html#l00036">keyboard.c:36</a></div></div>
@@ -163,12 +180,16 @@ $(function() {
 <div class="ttc" id="asignal__synthesis_8h_html_a15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00764">signal_synthesis.c:764</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_aff4b96bd9a6fb74a10215a54f141d06d"><div class="ttname"><a href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a></div><div class="ttdeci">void DeleteSignal(struct signal_t *signals, int16_t signal_index)</div><div class="ttdoc">deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal t...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00807">signal_synthesis.c:807</a></div></div>
-<div class="ttc" id="astructdisplay__variables_html"><div class="ttname"><a href="structdisplay__variables.html">display_variables</a></div><div class="ttdoc">struct for all variables related to the display,</div><div class="ttdef"><b>Definition:</b> <a href="display_8h_source.html#l00114">display.h:114</a></div></div>
+<div class="ttc" id="astructdisplay__variables_html"><div class="ttname"><a href="structdisplay__variables.html">display_variables</a></div><div class="ttdoc">struct for all variables related to the display,</div><div class="ttdef"><b>Definition:</b> <a href="display_8h_source.html#l00125">display.h:125</a></div></div>
 <div class="ttc" id="astructsignal__t_html"><div class="ttname"><a href="structsignal__t.html">signal_t</a></div><div class="ttdoc">struct to store signals</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00051">signal_synthesis.h:51</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a class="el" href="keyboard_8c.html">keyboard.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>

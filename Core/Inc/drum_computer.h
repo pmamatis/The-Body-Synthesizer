@@ -13,6 +13,11 @@
 #ifndef INC_DRUM_COMPUTER_H_
 #define INC_DRUM_COMPUTER_H_
 
+/** 
+ * @defgroup DrumComputer Drum Computer 
+ * @ingroup SoundSynth
+ * @{
+ */
 #include "main.h"
 #include <stdint.h>
 #include "wav_LUT.h"
@@ -72,6 +77,13 @@ bool timing_SN1[FourFour];
 bool timing_SN2[FourFour];
 bool timing_SN3[FourFour];
 bool timing_SN4[FourFour];
+/** @} */
+
+/** 
+ * @defgroup Sequencer Sequencer
+ * @ingroup SoundSynth 
+ * @{
+*/
 
 /** @brief Frequency index sequencer */
 uint16_t freq_index_SN1;
@@ -84,8 +96,13 @@ uint32_t current_LUT_index_SN1[FourFour];
 uint32_t current_LUT_index_SN2[FourFour];
 uint32_t current_LUT_index_SN3[FourFour];
 uint32_t current_LUT_index_SN4[FourFour];
+/** @} */
 
-/** @brief Sound bins sequencer */
+/** @defgroup SoundBinSequencer Sound bins sequencer
+ * @ingroup Sequencer 
+ * @{ 
+ *  */
+
 float SN1;
 float SN2;
 float SN3;
@@ -97,21 +114,35 @@ float SN3_temp;
 float SN4_temp;
 
 float sequencer;
-
+/** @} /*
 /*********************************
  * @brief	Functions
  *********************************/
+
+/** @addtogroup DrumComputer
+ * @{ */
 HAL_StatusTypeDef Drum_Computer_Init(void);
 HAL_StatusTypeDef Drum_Computer_Reset(void);
 HAL_StatusTypeDef Drum_Computer_Process(void);
 HAL_StatusTypeDef Drum_Computer_CalcSample(void);
+/**@}*/
+
+/** 
+ * @addtogroup Sequencer 
+ * @{ */
 HAL_StatusTypeDef Sequencer_Reset(void);
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env);
+/** @} */
 
-/** @brief Single Sample */
+/** 
+ * @defgroup SingleSample Play Single Sample
+ * @brief play a singles sample triggerd by the EMG
+ * @ingroup SoundSynth
+ * @{
+ * */
 float single_sample;
 uint32_t counter_single_sample;
 bool play_single_sample_flag;
 void PlaySingleSample(void);
-
+/** @{ */
 #endif /* INC_DRUM_COMPUTER_H_ */

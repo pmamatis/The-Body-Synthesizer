@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['distance_20functions_0',['Distance functions',['../group__groupDistance.html',1,'']]]
+  ['effects_0',['Effects',['../group__Effects.html',1,'']]],
+  ['epd_2dlibary_20variables_1',['EPD-Libary variables',['../group__EPDLib.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fourfour_0',['FourFour',['../drum__computer_8h.html#a267b06d60a7514d898b5cac91b4380ec',1,'drum_computer.h']]]
+  ['max_5fsignal_5fkombination_0',['MAX_SIGNAL_KOMBINATION',['../signal__synthesis_8h.html#a74bf0cbaccfba1bf548d482148183a12',1,'signal_synthesis.h']]]
 ];
