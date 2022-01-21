@@ -1,5 +1,18 @@
 /**
  * @file signal_synthesis.c
+ * @author Marc Bielen & Max Lehmer & Paul Mamatis
+ * @brief Signal Synthesis and related functions
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
+
+
+/**
+ * @file signal_synthesis.c
  * @author paul mamatis
  * @version 3.2
  */

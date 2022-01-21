@@ -179,17 +179,17 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="tremolo_8c_source.html#l00059">59</a> of file <a class="el" href="tremolo_8c_source.html">tremolo.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   59</span>                                                                      {</div>
-<div class="line"><span class="lineno">   60</span> </div>
-<div class="line"><span class="lineno">   61</span>    <a class="code hl_function" href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a>(Tremolo-&gt;lfo, TREMOLO_LFO);</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordtype">float</span> tremolo_mod = (1 + Tremolo-&gt;lfo-&gt;lfo_depth * Tremolo-&gt;lfo-&gt;lfo_data);</div>
-<div class="line"><span class="lineno">   64</span>    *data = (tremolo_mod * *data) / (1+Tremolo-&gt;lfo-&gt;lfo_depth);</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">return</span> TREMOLO_OK;</div>
-<div class="line"><span class="lineno">   67</span>}</div>
-<div class="ttc" id="asignal__synthesis_8h_html_a381bb27bca64ed7f5df822a3db09707a"><div class="ttname"><a href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a></div><div class="ttdeci">void LFO_SingleValueProcess(struct effects_lfo_t *lfo, uint8_t lfo_effect)</div><div class="ttdoc">Constructor for a signal, adds a signal into the signals1 struct.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00134">signal_synthesis.c:134</a></div></div>
+<p class="definition">Definition at line <a class="el" href="tremolo_8c_source.html#l00069">69</a> of file <a class="el" href="tremolo_8c_source.html">tremolo.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   69</span>                                                                      {</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    <a class="code hl_function" href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a>(Tremolo-&gt;lfo, TREMOLO_LFO);</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>    <span class="keywordtype">float</span> tremolo_mod = (1 + Tremolo-&gt;lfo-&gt;lfo_depth * Tremolo-&gt;lfo-&gt;lfo_data);</div>
+<div class="line"><span class="lineno">   74</span>    *data = (tremolo_mod * *data) / (1+Tremolo-&gt;lfo-&gt;lfo_depth);</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">return</span> TREMOLO_OK;</div>
+<div class="line"><span class="lineno">   77</span>}</div>
+<div class="ttc" id="asignal__synthesis_8h_html_a381bb27bca64ed7f5df822a3db09707a"><div class="ttname"><a href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a></div><div class="ttdeci">void LFO_SingleValueProcess(struct effects_lfo_t *lfo, uint8_t lfo_effect)</div><div class="ttdoc">Constructor for a signal, adds a signal into the signals1 struct.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00147">signal_synthesis.c:147</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -218,22 +218,22 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Tremolo_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tremolo_8c_source.html#l00014">14</a> of file <a class="el" href="tremolo_8c_source.html">tremolo.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>                                                       {</div>
-<div class="line"><span class="lineno">   15</span> </div>
-<div class="line"><span class="lineno">   16</span>    Tremolo-&gt;lfo = &amp;lfo_tremolo;</div>
-<div class="line"><span class="lineno">   17</span> </div>
-<div class="line"><span class="lineno">   18</span>    Tremolo-&gt;lfo-&gt;lfo_index = 0;</div>
-<div class="line"><span class="lineno">   19</span>    Tremolo-&gt;lfo-&gt;lfo_frequency = 1;</div>
-<div class="line"><span class="lineno">   20</span>    Tremolo-&gt;lfo-&gt;lfo_quarter = 0;</div>
-<div class="line"><span class="lineno">   21</span>    Tremolo-&gt;lfo-&gt;lfo_depth = 0.5;</div>
-<div class="line"><span class="lineno">   22</span>    Tremolo-&gt;lfo-&gt;lfo_done_flag = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>    Tremolo-&gt;tremolo_maximum_rate = 16;</div>
-<div class="line"><span class="lineno">   25</span>    Tremolo-&gt;tremolo_maximum_depth = 1.00;</div>
-<div class="line"><span class="lineno">   26</span> </div>
-<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">return</span> TREMOLO_OK;</div>
-<div class="line"><span class="lineno">   28</span>}</div>
+<p class="definition">Definition at line <a class="el" href="tremolo_8c_source.html#l00024">24</a> of file <a class="el" href="tremolo_8c_source.html">tremolo.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                       {</div>
+<div class="line"><span class="lineno">   25</span> </div>
+<div class="line"><span class="lineno">   26</span>    Tremolo-&gt;lfo = &amp;lfo_tremolo;</div>
+<div class="line"><span class="lineno">   27</span> </div>
+<div class="line"><span class="lineno">   28</span>    Tremolo-&gt;lfo-&gt;lfo_index = 0;</div>
+<div class="line"><span class="lineno">   29</span>    Tremolo-&gt;lfo-&gt;lfo_frequency = 1;</div>
+<div class="line"><span class="lineno">   30</span>    Tremolo-&gt;lfo-&gt;lfo_quarter = 0;</div>
+<div class="line"><span class="lineno">   31</span>    Tremolo-&gt;lfo-&gt;lfo_depth = 0.5;</div>
+<div class="line"><span class="lineno">   32</span>    Tremolo-&gt;lfo-&gt;lfo_done_flag = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>    Tremolo-&gt;tremolo_maximum_rate = 16;</div>
+<div class="line"><span class="lineno">   35</span>    Tremolo-&gt;tremolo_maximum_depth = 1.00;</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> TREMOLO_OK;</div>
+<div class="line"><span class="lineno">   38</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -256,25 +256,25 @@ Variables</h2></td></tr>
 <p>resets all tremelo parameters </p>
 <dl class="section return"><dt>Returns</dt><dd>Tremolo_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tremolo_8c_source.html#l00035">35</a> of file <a class="el" href="tremolo_8c_source.html">tremolo.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>                                   {</div>
-<div class="line"><span class="lineno">   36</span> </div>
-<div class="line"><span class="lineno">   37</span>    Display.Tremolo_ONOFF = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>    Tremolo.lfo-&gt;lfo_index = 0;</div>
-<div class="line"><span class="lineno">   40</span>    Display.Tremolo_Rate = Tremolo.lfo-&gt;lfo_frequency = 1;</div>
-<div class="line"><span class="lineno">   41</span>    Display.Tremolo_Rate_Index = Display.last_Tremolo_Rate_Index  = 3;  <span class="comment">// 1 Hz</span></div>
-<div class="line"><span class="lineno">   42</span>    Tremolo.lfo-&gt;lfo_quarter = 0;</div>
-<div class="line"><span class="lineno">   43</span>    Display.Tremolo_Depth = Tremolo.lfo-&gt;lfo_depth = 0.5;</div>
-<div class="line"><span class="lineno">   44</span>    Tremolo.lfo-&gt;lfo_done_flag = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>    Display.Tremolo_Sources[0] = POTI;</div>
-<div class="line"><span class="lineno">   47</span>    Display.Tremolo_Sources[1] = POTI;</div>
+<p class="definition">Definition at line <a class="el" href="tremolo_8c_source.html#l00045">45</a> of file <a class="el" href="tremolo_8c_source.html">tremolo.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   45</span>                                   {</div>
+<div class="line"><span class="lineno">   46</span> </div>
+<div class="line"><span class="lineno">   47</span>    Display.Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>    strcpy(Display.value_str_tremolo[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
-<div class="line"><span class="lineno">   50</span> </div>
-<div class="line"><span class="lineno">   51</span>    <span class="keywordflow">return</span> TREMOLO_OK;</div>
-<div class="line"><span class="lineno">   52</span>}</div>
+<div class="line"><span class="lineno">   49</span>    Tremolo.lfo-&gt;lfo_index = 0;</div>
+<div class="line"><span class="lineno">   50</span>    Display.Tremolo_Rate = Tremolo.lfo-&gt;lfo_frequency = 1;</div>
+<div class="line"><span class="lineno">   51</span>    Display.Tremolo_Rate_Index = Display.last_Tremolo_Rate_Index  = 3;  <span class="comment">// 1 Hz</span></div>
+<div class="line"><span class="lineno">   52</span>    Tremolo.lfo-&gt;lfo_quarter = 0;</div>
+<div class="line"><span class="lineno">   53</span>    Display.Tremolo_Depth = Tremolo.lfo-&gt;lfo_depth = 0.5;</div>
+<div class="line"><span class="lineno">   54</span>    Tremolo.lfo-&gt;lfo_done_flag = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>    Display.Tremolo_Sources[0] = POTI;</div>
+<div class="line"><span class="lineno">   57</span>    Display.Tremolo_Sources[1] = POTI;</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>    strcpy(Display.value_str_tremolo[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>    <span class="keywordflow">return</span> TREMOLO_OK;</div>
+<div class="line"><span class="lineno">   62</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

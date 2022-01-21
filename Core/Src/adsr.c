@@ -1,3 +1,13 @@
+/**
+ * @file adsr.c
+ * @author Marc Bielen
+ * @brief Source code for the adsr effect
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "adsr.h"
 
 // Reference: The Audio Programming Book from Boulanger, Lazzarini and Mathews

@@ -1,9 +1,17 @@
-/*
- * input_interfaces.c
- *
- *  Created on: Aug 15, 2021
- *      Author: Paul Mamatis
+/**
+ * @file input_interfaces.c
+ * @author Paul Mamatis
+ * @brief controller between sensors, display and signal synthesis
+ * @version 0.1
+ * @date Aug 15, 2021
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
+
+
+
+
 
 #include "input_interfaces.h"
 

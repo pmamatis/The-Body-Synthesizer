@@ -1,3 +1,13 @@
+/**
+ * @file effects.c
+ * @author Paul Mamatis
+ * @brief effect proccesing 
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "effects.h"
 #include "display.h"
 

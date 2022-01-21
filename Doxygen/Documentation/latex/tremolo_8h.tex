@@ -101,19 +101,19 @@ Processed current tremolo sample.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{tremolo_8c_source_l00059}{59}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
+Definition at line \mbox{\hyperlink{tremolo_8c_source_l00069}{69}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00059                                                                       \{}
-\DoxyCodeLine{00060 }
-\DoxyCodeLine{00061     \mbox{\hyperlink{signal__synthesis_8h_a381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(Tremolo-\/>lfo, TREMOLO\_LFO);}
-\DoxyCodeLine{00062 }
-\DoxyCodeLine{00063     \textcolor{keywordtype}{float} tremolo\_mod = (1 + Tremolo-\/>lfo-\/>lfo\_depth * Tremolo-\/>lfo-\/>lfo\_data);}
-\DoxyCodeLine{00064     *data = (tremolo\_mod * *data) / (1+Tremolo-\/>lfo-\/>lfo\_depth);}
-\DoxyCodeLine{00065 }
-\DoxyCodeLine{00066     \textcolor{keywordflow}{return} TREMOLO\_OK;}
-\DoxyCodeLine{00067 \}}
+\DoxyCodeLine{00069                                                                       \{}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071     \mbox{\hyperlink{signal__synthesis_8h_a381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(Tremolo-\/>lfo, TREMOLO\_LFO);}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073     \textcolor{keywordtype}{float} tremolo\_mod = (1 + Tremolo-\/>lfo-\/>lfo\_depth * Tremolo-\/>lfo-\/>lfo\_data);}
+\DoxyCodeLine{00074     *data = (tremolo\_mod * *data) / (1+Tremolo-\/>lfo-\/>lfo\_depth);}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{00077 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{tremolo_8h_acb90f3df18e98cac0b0aadc519411a7a}\label{tremolo_8h_acb90f3df18e98cac0b0aadc519411a7a}} 
@@ -136,25 +136,25 @@ Tremolo\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{tremolo_8c_source_l00014}{14}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
+Definition at line \mbox{\hyperlink{tremolo_8c_source_l00024}{24}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00014                                                        \{}
-\DoxyCodeLine{00015 }
-\DoxyCodeLine{00016     Tremolo-\/>lfo = \&lfo\_tremolo;}
-\DoxyCodeLine{00017 }
-\DoxyCodeLine{00018     Tremolo-\/>lfo-\/>lfo\_index = 0;}
-\DoxyCodeLine{00019     Tremolo-\/>lfo-\/>lfo\_frequency = 1;}
-\DoxyCodeLine{00020     Tremolo-\/>lfo-\/>lfo\_quarter = 0;}
-\DoxyCodeLine{00021     Tremolo-\/>lfo-\/>lfo\_depth = 0.5;}
-\DoxyCodeLine{00022     Tremolo-\/>lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
-\DoxyCodeLine{00023 }
-\DoxyCodeLine{00024     Tremolo-\/>tremolo\_maximum\_rate = 16;}
-\DoxyCodeLine{00025     Tremolo-\/>tremolo\_maximum\_depth = 1.00;}
-\DoxyCodeLine{00026 }
-\DoxyCodeLine{00027     \textcolor{keywordflow}{return} TREMOLO\_OK;}
-\DoxyCodeLine{00028 \}}
+\DoxyCodeLine{00024                                                        \{}
+\DoxyCodeLine{00025 }
+\DoxyCodeLine{00026     Tremolo-\/>lfo = \&lfo\_tremolo;}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028     Tremolo-\/>lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00029     Tremolo-\/>lfo-\/>lfo\_frequency = 1;}
+\DoxyCodeLine{00030     Tremolo-\/>lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00031     Tremolo-\/>lfo-\/>lfo\_depth = 0.5;}
+\DoxyCodeLine{00032     Tremolo-\/>lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034     Tremolo-\/>tremolo\_maximum\_rate = 16;}
+\DoxyCodeLine{00035     Tremolo-\/>tremolo\_maximum\_depth = 1.00;}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{00038 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{tremolo_8h_a7ec31bc72214199a5efdbe88b3a3f8b8}\label{tremolo_8h_a7ec31bc72214199a5efdbe88b3a3f8b8}} 
@@ -172,28 +172,28 @@ Tremolo\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{tremolo_8c_source_l00035}{35}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
+Definition at line \mbox{\hyperlink{tremolo_8c_source_l00045}{45}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00035                                    \{}
-\DoxyCodeLine{00036 }
-\DoxyCodeLine{00037     Display.Tremolo\_ONOFF = \textcolor{keyword}{false};}
-\DoxyCodeLine{00038 }
-\DoxyCodeLine{00039     Tremolo.lfo-\/>lfo\_index = 0;}
-\DoxyCodeLine{00040     Display.Tremolo\_Rate = Tremolo.lfo-\/>lfo\_frequency = 1;}
-\DoxyCodeLine{00041     Display.Tremolo\_Rate\_Index = Display.last\_Tremolo\_Rate\_Index  = 3;  \textcolor{comment}{// 1 Hz}}
-\DoxyCodeLine{00042     Tremolo.lfo-\/>lfo\_quarter = 0;}
-\DoxyCodeLine{00043     Display.Tremolo\_Depth = Tremolo.lfo-\/>lfo\_depth = 0.5;}
-\DoxyCodeLine{00044     Tremolo.lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
-\DoxyCodeLine{00045 }
-\DoxyCodeLine{00046     Display.Tremolo\_Sources[0] = POTI;}
-\DoxyCodeLine{00047     Display.Tremolo\_Sources[1] = POTI;}
+\DoxyCodeLine{00045                                    \{}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047     Display.Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{00048 }
-\DoxyCodeLine{00049     strcpy(Display.value\_str\_tremolo[0], \textcolor{stringliteral}{"{}OFF"{}});}
-\DoxyCodeLine{00050 }
-\DoxyCodeLine{00051     \textcolor{keywordflow}{return} TREMOLO\_OK;}
-\DoxyCodeLine{00052 \}}
+\DoxyCodeLine{00049     Tremolo.lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00050     Display.Tremolo\_Rate = Tremolo.lfo-\/>lfo\_frequency = 1;}
+\DoxyCodeLine{00051     Display.Tremolo\_Rate\_Index = Display.last\_Tremolo\_Rate\_Index  = 3;  \textcolor{comment}{// 1 Hz}}
+\DoxyCodeLine{00052     Tremolo.lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00053     Display.Tremolo\_Depth = Tremolo.lfo-\/>lfo\_depth = 0.5;}
+\DoxyCodeLine{00054     Tremolo.lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00055 }
+\DoxyCodeLine{00056     Display.Tremolo\_Sources[0] = POTI;}
+\DoxyCodeLine{00057     Display.Tremolo\_Sources[1] = POTI;}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059     strcpy(Display.value\_str\_tremolo[0], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00060 }
+\DoxyCodeLine{00061     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{00062 \}}
 
 \end{DoxyCode}
 

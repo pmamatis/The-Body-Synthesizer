@@ -1,3 +1,13 @@
+/**
+ * @file sinLUT.c
+ * @author Paul Mamatis
+ * @brief SIN Look Up Table
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "sinLUT.h"
 
 const float LUT[] __attribute__ ((section(".rodata"))) = {

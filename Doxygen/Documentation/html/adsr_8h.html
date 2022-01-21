@@ -170,15 +170,15 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p >TODO </p><dl class="section return"><dt>Returns</dt><dd>ADSR_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00009">9</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    9</span>                            {</div>
-<div class="line"><span class="lineno">   10</span> </div>
-<div class="line"><span class="lineno">   11</span>    SetupADSR(&amp;envelope);</div>
-<div class="line"><span class="lineno">   12</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)</div>
-<div class="line"><span class="lineno">   13</span>        SetupADSR(&amp;adsr_keyboard[i]);</div>
-<div class="line"><span class="lineno">   14</span> </div>
-<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
-<div class="line"><span class="lineno">   16</span>}</div>
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00019">19</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>                            {</div>
+<div class="line"><span class="lineno">   20</span> </div>
+<div class="line"><span class="lineno">   21</span>    SetupADSR(&amp;envelope);</div>
+<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)</div>
+<div class="line"><span class="lineno">   23</span>        SetupADSR(&amp;adsr_keyboard[i]);</div>
+<div class="line"><span class="lineno">   24</span> </div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
+<div class="line"><span class="lineno">   26</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -205,39 +205,39 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ADSR_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00044">44</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   44</span>                                              {</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>    envelope-&gt;adsr_counter = 0;</div>
-<div class="line"><span class="lineno">   47</span>    envelope-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
-<div class="line"><span class="lineno">   48</span>    envelope-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
-<div class="line"><span class="lineno">   49</span>    envelope-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   50</span>    envelope-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
-<div class="line"><span class="lineno">   51</span>    envelope-&gt;adsr_sustain_amplitude = 0.5;</div>
-<div class="line"><span class="lineno">   52</span>    envelope-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    envelope-&gt;adsr_done = <span class="keyword">false</span>;</div>
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00054">54</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>                                              {</div>
 <div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>    Display.ADSR_Attacktime = envelope-&gt;adsr_attack_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   57</span>    Display.ADSR_Decaytime = envelope-&gt;adsr_decay_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   58</span>    Display.ADSR_Sustaintime = envelope-&gt;adsr_sustain_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   59</span>    Display.ADSR_Sustainlevel = envelope-&gt;adsr_sustain_amplitude/LUT_SR;</div>
-<div class="line"><span class="lineno">   60</span>    Display.ADSR_Releasetime = envelope-&gt;adsr_release_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>    Display.ADSR_Sources[0] = POTI;</div>
-<div class="line"><span class="lineno">   63</span>    Display.ADSR_Sources[1] = POTI;</div>
-<div class="line"><span class="lineno">   64</span>    Display.ADSR_Sources[2] = POTI;</div>
-<div class="line"><span class="lineno">   65</span>    Display.ADSR_Sources[3] = POTI;</div>
-<div class="line"><span class="lineno">   66</span>    Display.ADSR_Sources[4] = POTI;</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>    strcpy(Display.value_str_adsr_settings[0], Display.source_names[Display.ADSR_Sources[0]]);</div>
-<div class="line"><span class="lineno">   69</span>    strcpy(Display.value_str_adsr_settings[1], Display.source_names[Display.ADSR_Sources[1]]);</div>
-<div class="line"><span class="lineno">   70</span>    strcpy(Display.value_str_adsr_settings[2], Display.source_names[Display.ADSR_Sources[2]]);</div>
-<div class="line"><span class="lineno">   71</span>    strcpy(Display.value_str_adsr_settings[3], Display.source_names[Display.ADSR_Sources[3]]);</div>
-<div class="line"><span class="lineno">   72</span>    strcpy(Display.value_str_adsr_settings[4], Display.source_names[Display.ADSR_Sources[4]]);</div>
-<div class="line"><span class="lineno">   73</span> </div>
-<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
-<div class="line"><span class="lineno">   75</span>}</div>
+<div class="line"><span class="lineno">   56</span>    envelope-&gt;adsr_counter = 0;</div>
+<div class="line"><span class="lineno">   57</span>    envelope-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
+<div class="line"><span class="lineno">   58</span>    envelope-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
+<div class="line"><span class="lineno">   59</span>    envelope-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
+<div class="line"><span class="lineno">   60</span>    envelope-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
+<div class="line"><span class="lineno">   61</span>    envelope-&gt;adsr_sustain_amplitude = 0.5;</div>
+<div class="line"><span class="lineno">   62</span>    envelope-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>    envelope-&gt;adsr_done = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>    Display.ADSR_Attacktime = envelope-&gt;adsr_attack_time/LUT_SR;</div>
+<div class="line"><span class="lineno">   67</span>    Display.ADSR_Decaytime = envelope-&gt;adsr_decay_time/LUT_SR;</div>
+<div class="line"><span class="lineno">   68</span>    Display.ADSR_Sustaintime = envelope-&gt;adsr_sustain_time/LUT_SR;</div>
+<div class="line"><span class="lineno">   69</span>    Display.ADSR_Sustainlevel = envelope-&gt;adsr_sustain_amplitude/LUT_SR;</div>
+<div class="line"><span class="lineno">   70</span>    Display.ADSR_Releasetime = envelope-&gt;adsr_release_time/LUT_SR;</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>    Display.ADSR_Sources[0] = POTI;</div>
+<div class="line"><span class="lineno">   73</span>    Display.ADSR_Sources[1] = POTI;</div>
+<div class="line"><span class="lineno">   74</span>    Display.ADSR_Sources[2] = POTI;</div>
+<div class="line"><span class="lineno">   75</span>    Display.ADSR_Sources[3] = POTI;</div>
+<div class="line"><span class="lineno">   76</span>    Display.ADSR_Sources[4] = POTI;</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>    strcpy(Display.value_str_adsr_settings[0], Display.source_names[Display.ADSR_Sources[0]]);</div>
+<div class="line"><span class="lineno">   79</span>    strcpy(Display.value_str_adsr_settings[1], Display.source_names[Display.ADSR_Sources[1]]);</div>
+<div class="line"><span class="lineno">   80</span>    strcpy(Display.value_str_adsr_settings[2], Display.source_names[Display.ADSR_Sources[2]]);</div>
+<div class="line"><span class="lineno">   81</span>    strcpy(Display.value_str_adsr_settings[3], Display.source_names[Display.ADSR_Sources[3]]);</div>
+<div class="line"><span class="lineno">   82</span>    strcpy(Display.value_str_adsr_settings[4], Display.source_names[Display.ADSR_Sources[4]]);</div>
+<div class="line"><span class="lineno">   83</span> </div>
+<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
+<div class="line"><span class="lineno">   85</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -281,45 +281,45 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00084">84</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   84</span>                                                                                            {</div>
-<div class="line"><span class="lineno">   85</span> </div>
-<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>        <span class="keywordtype">float</span> calc = 0;</div>
-<div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>        envelope-&gt;adsr_duration_time = envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time + envelope-&gt;adsr_sustain_time + envelope-&gt;adsr_release_time;</div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration</span></div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>            <span class="comment">// attack period</span></div>
-<div class="line"><span class="lineno">   95</span>            <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_attack_time)</div>
-<div class="line"><span class="lineno">   96</span>                calc = envelope-&gt;adsr_counter * (envelope-&gt;adsr_max_amp/envelope-&gt;adsr_attack_time);</div>
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00094">94</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>                                                                                            {</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
 <div class="line"><span class="lineno">   97</span> </div>
-<div class="line"><span class="lineno">   98</span>            <span class="comment">// decay period</span></div>
-<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time))</div>
-<div class="line"><span class="lineno">  100</span>                calc = ((envelope-&gt;adsr_sustain_amplitude - envelope-&gt;adsr_max_amp)/envelope-&gt;adsr_decay_time) * (envelope-&gt;adsr_counter - envelope-&gt;adsr_attack_time) + envelope-&gt;adsr_max_amp;</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordtype">float</span> calc = 0;</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>        envelope-&gt;adsr_duration_time = envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time + envelope-&gt;adsr_sustain_time + envelope-&gt;adsr_release_time;</div>
 <div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>            <span class="comment">// sustain period</span></div>
-<div class="line"><span class="lineno">  103</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  104</span>                calc = envelope-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  105</span> </div>
-<div class="line"><span class="lineno">  106</span>            <span class="comment">// release period</span></div>
-<div class="line"><span class="lineno">  107</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  108</span>                calc = -(envelope-&gt;adsr_sustain_amplitude/envelope-&gt;adsr_release_time) * (envelope-&gt;adsr_counter - (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time)) + envelope-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  109</span> </div>
-<div class="line"><span class="lineno">  110</span>            *calculate_value = *calculate_value * calc;</div>
-<div class="line"><span class="lineno">  111</span>        }</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>        <span class="comment">// update adsr counter</span></div>
-<div class="line"><span class="lineno">  114</span>        envelope-&gt;adsr_counter++;</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration</span></div>
+<div class="line"><span class="lineno">  103</span> </div>
+<div class="line"><span class="lineno">  104</span>            <span class="comment">// attack period</span></div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_attack_time)</div>
+<div class="line"><span class="lineno">  106</span>                calc = envelope-&gt;adsr_counter * (envelope-&gt;adsr_max_amp/envelope-&gt;adsr_attack_time);</div>
+<div class="line"><span class="lineno">  107</span> </div>
+<div class="line"><span class="lineno">  108</span>            <span class="comment">// decay period</span></div>
+<div class="line"><span class="lineno">  109</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time))</div>
+<div class="line"><span class="lineno">  110</span>                calc = ((envelope-&gt;adsr_sustain_amplitude - envelope-&gt;adsr_max_amp)/envelope-&gt;adsr_decay_time) * (envelope-&gt;adsr_counter - envelope-&gt;adsr_attack_time) + envelope-&gt;adsr_max_amp;</div>
+<div class="line"><span class="lineno">  111</span> </div>
+<div class="line"><span class="lineno">  112</span>            <span class="comment">// sustain period</span></div>
+<div class="line"><span class="lineno">  113</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
+<div class="line"><span class="lineno">  114</span>                calc = envelope-&gt;adsr_sustain_amplitude;</div>
 <div class="line"><span class="lineno">  115</span> </div>
-<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= envelope-&gt;adsr_duration_time) {</div>
-<div class="line"><span class="lineno">  117</span>            envelope-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
-<div class="line"><span class="lineno">  118</span>            envelope-&gt;adsr_done = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  119</span>        }</div>
-<div class="line"><span class="lineno">  120</span>    }</div>
-<div class="line"><span class="lineno">  121</span>}</div>
+<div class="line"><span class="lineno">  116</span>            <span class="comment">// release period</span></div>
+<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
+<div class="line"><span class="lineno">  118</span>                calc = -(envelope-&gt;adsr_sustain_amplitude/envelope-&gt;adsr_release_time) * (envelope-&gt;adsr_counter - (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time)) + envelope-&gt;adsr_sustain_amplitude;</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>            *calculate_value = *calculate_value * calc;</div>
+<div class="line"><span class="lineno">  121</span>        }</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>        <span class="comment">// update adsr counter</span></div>
+<div class="line"><span class="lineno">  124</span>        envelope-&gt;adsr_counter++;</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= envelope-&gt;adsr_duration_time) {</div>
+<div class="line"><span class="lineno">  127</span>            envelope-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
+<div class="line"><span class="lineno">  128</span>            envelope-&gt;adsr_done = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  129</span>        }</div>
+<div class="line"><span class="lineno">  130</span>    }</div>
+<div class="line"><span class="lineno">  131</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -363,46 +363,46 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00129">129</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  129</span>                                                                                               {</div>
-<div class="line"><span class="lineno">  130</span> </div>
-<div class="line"><span class="lineno">  131</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">  132</span> </div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordtype">float</span> calc;</div>
-<div class="line"><span class="lineno">  134</span> </div>
-<div class="line"><span class="lineno">  135</span>        envelope-&gt;adsr_duration_time = envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time + envelope-&gt;adsr_sustain_time + envelope-&gt;adsr_release_time;</div>
-<div class="line"><span class="lineno">  136</span> </div>
-<div class="line"><span class="lineno">  137</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration time</span></div>
-<div class="line"><span class="lineno">  138</span> </div>
-<div class="line"><span class="lineno">  139</span>            <span class="comment">// attack period</span></div>
-<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_attack_time)</div>
-<div class="line"><span class="lineno">  141</span>                calc = envelope-&gt;adsr_counter * (envelope-&gt;adsr_max_amp/envelope-&gt;adsr_attack_time);</div>
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00139">139</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  139</span>                                                                                               {</div>
+<div class="line"><span class="lineno">  140</span> </div>
+<div class="line"><span class="lineno">  141</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
 <div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>            <span class="comment">// decay period</span></div>
-<div class="line"><span class="lineno">  144</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time))</div>
-<div class="line"><span class="lineno">  145</span>                calc = ((envelope-&gt;adsr_sustain_amplitude - envelope-&gt;adsr_max_amp)/envelope-&gt;adsr_decay_time) * (envelope-&gt;adsr_counter - envelope-&gt;adsr_attack_time) + envelope-&gt;adsr_max_amp;</div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordtype">float</span> calc;</div>
+<div class="line"><span class="lineno">  144</span> </div>
+<div class="line"><span class="lineno">  145</span>        envelope-&gt;adsr_duration_time = envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time + envelope-&gt;adsr_sustain_time + envelope-&gt;adsr_release_time;</div>
 <div class="line"><span class="lineno">  146</span> </div>
-<div class="line"><span class="lineno">  147</span>            <span class="comment">// sustain period</span></div>
-<div class="line"><span class="lineno">  148</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  149</span>                calc = envelope-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  150</span> </div>
-<div class="line"><span class="lineno">  151</span>            <span class="comment">// release period</span></div>
-<div class="line"><span class="lineno">  152</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  153</span>                calc = -(envelope-&gt;adsr_sustain_amplitude/envelope-&gt;adsr_release_time) * (envelope-&gt;adsr_counter - (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time)) + envelope-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  154</span> </div>
-<div class="line"><span class="lineno">  155</span>            *calculate_value = *calculate_value * calc;</div>
-<div class="line"><span class="lineno">  156</span>        }</div>
-<div class="line"><span class="lineno">  157</span> </div>
-<div class="line"><span class="lineno">  158</span>        <span class="comment">// update adsr counter</span></div>
-<div class="line"><span class="lineno">  159</span>        envelope-&gt;adsr_counter++;</div>
+<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration time</span></div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>            <span class="comment">// attack period</span></div>
+<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; envelope-&gt;adsr_attack_time)</div>
+<div class="line"><span class="lineno">  151</span>                calc = envelope-&gt;adsr_counter * (envelope-&gt;adsr_max_amp/envelope-&gt;adsr_attack_time);</div>
+<div class="line"><span class="lineno">  152</span> </div>
+<div class="line"><span class="lineno">  153</span>            <span class="comment">// decay period</span></div>
+<div class="line"><span class="lineno">  154</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_attack_time + envelope-&gt;adsr_decay_time))</div>
+<div class="line"><span class="lineno">  155</span>                calc = ((envelope-&gt;adsr_sustain_amplitude - envelope-&gt;adsr_max_amp)/envelope-&gt;adsr_decay_time) * (envelope-&gt;adsr_counter - envelope-&gt;adsr_attack_time) + envelope-&gt;adsr_max_amp;</div>
+<div class="line"><span class="lineno">  156</span> </div>
+<div class="line"><span class="lineno">  157</span>            <span class="comment">// sustain period</span></div>
+<div class="line"><span class="lineno">  158</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &lt; (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
+<div class="line"><span class="lineno">  159</span>                calc = envelope-&gt;adsr_sustain_amplitude;</div>
 <div class="line"><span class="lineno">  160</span> </div>
-<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= envelope-&gt;adsr_duration_time) {</div>
-<div class="line"><span class="lineno">  162</span> </div>
-<div class="line"><span class="lineno">  163</span>            envelope-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
-<div class="line"><span class="lineno">  164</span>            envelope-&gt;adsr_done = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  165</span>        }</div>
-<div class="line"><span class="lineno">  166</span>    }</div>
-<div class="line"><span class="lineno">  167</span>}</div>
+<div class="line"><span class="lineno">  161</span>            <span class="comment">// release period</span></div>
+<div class="line"><span class="lineno">  162</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time))</div>
+<div class="line"><span class="lineno">  163</span>                calc = -(envelope-&gt;adsr_sustain_amplitude/envelope-&gt;adsr_release_time) * (envelope-&gt;adsr_counter - (envelope-&gt;adsr_duration_time - envelope-&gt;adsr_release_time)) + envelope-&gt;adsr_sustain_amplitude;</div>
+<div class="line"><span class="lineno">  164</span> </div>
+<div class="line"><span class="lineno">  165</span>            *calculate_value = *calculate_value * calc;</div>
+<div class="line"><span class="lineno">  166</span>        }</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>        <span class="comment">// update adsr counter</span></div>
+<div class="line"><span class="lineno">  169</span>        envelope-&gt;adsr_counter++;</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>        <span class="keywordflow">if</span>(envelope-&gt;adsr_counter &gt;= envelope-&gt;adsr_duration_time) {</div>
+<div class="line"><span class="lineno">  172</span> </div>
+<div class="line"><span class="lineno">  173</span>            envelope-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
+<div class="line"><span class="lineno">  174</span>            envelope-&gt;adsr_done = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  175</span>        }</div>
+<div class="line"><span class="lineno">  176</span>    }</div>
+<div class="line"><span class="lineno">  177</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -422,26 +422,26 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00018">18</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>                                             {</div>
-<div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>    envelope-&gt;adsr_counter = 0;</div>
-<div class="line"><span class="lineno">   21</span>    envelope-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
-<div class="line"><span class="lineno">   22</span>    envelope-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
-<div class="line"><span class="lineno">   23</span>    envelope-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   24</span>    envelope-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
-<div class="line"><span class="lineno">   25</span>    envelope-&gt;adsr_sustain_amplitude = 0.5;</div>
-<div class="line"><span class="lineno">   26</span>    envelope-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>    envelope-&gt;adsr_maximum_attack = 1.00;   <span class="comment">// in seconds; maximum 4.0 seconds (-&gt; 4*LUT_SR), to display the value -&gt; uint16_t</span></div>
-<div class="line"><span class="lineno">   29</span>    envelope-&gt;adsr_maximum_decay = 1.00;</div>
-<div class="line"><span class="lineno">   30</span>    envelope-&gt;adsr_maximum_sustaintime = 2.00;</div>
-<div class="line"><span class="lineno">   31</span>    envelope-&gt;adsr_maximum_release = 1.00;</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>    envelope-&gt;adsr_done = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   34</span> </div>
-<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
-<div class="line"><span class="lineno">   36</span>}</div>
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00028">28</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>                                             {</div>
+<div class="line"><span class="lineno">   29</span> </div>
+<div class="line"><span class="lineno">   30</span>    envelope-&gt;adsr_counter = 0;</div>
+<div class="line"><span class="lineno">   31</span>    envelope-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
+<div class="line"><span class="lineno">   32</span>    envelope-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
+<div class="line"><span class="lineno">   33</span>    envelope-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
+<div class="line"><span class="lineno">   34</span>    envelope-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
+<div class="line"><span class="lineno">   35</span>    envelope-&gt;adsr_sustain_amplitude = 0.5;</div>
+<div class="line"><span class="lineno">   36</span>    envelope-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>    envelope-&gt;adsr_maximum_attack = 1.00;   <span class="comment">// in seconds; maximum 4.0 seconds (-&gt; 4*LUT_SR), to display the value -&gt; uint16_t</span></div>
+<div class="line"><span class="lineno">   39</span>    envelope-&gt;adsr_maximum_decay = 1.00;</div>
+<div class="line"><span class="lineno">   40</span>    envelope-&gt;adsr_maximum_sustaintime = 2.00;</div>
+<div class="line"><span class="lineno">   41</span>    envelope-&gt;adsr_maximum_release = 1.00;</div>
+<div class="line"><span class="lineno">   42</span> </div>
+<div class="line"><span class="lineno">   43</span>    envelope-&gt;adsr_done = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
+<div class="line"><span class="lineno">   46</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -1,3 +1,13 @@
+/**
+ * @file music_notes.c
+ * @author Max Lehmer & Paul Mamatis
+ * @brief abstarction from music notes to frequencys
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "music_notes.h"
 
 /** @brief lookuptable for respective note keys*/

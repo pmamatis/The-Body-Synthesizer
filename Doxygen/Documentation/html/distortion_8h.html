@@ -177,16 +177,16 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00010">10</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   10</span>                                        {</div>
-<div class="line"><span class="lineno">   11</span> </div>
-<div class="line"><span class="lineno">   12</span>    <a class="code hl_function" href="distortion_8h.html#a2a6725ec967773f5ddfbc3fc21d67049">SetupHardClippingDistortion</a>(&amp;HardClipping);</div>
-<div class="line"><span class="lineno">   13</span>    <a class="code hl_function" href="distortion_8h.html#a8a375c625074dc4492066cda7e9e175b">SetupSoftClippingDistortion</a>(&amp;SoftClipping);</div>
-<div class="line"><span class="lineno">   14</span> </div>
-<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">   16</span>}</div>
-<div class="ttc" id="adistortion_8h_html_a2a6725ec967773f5ddfbc3fc21d67049"><div class="ttname"><a href="distortion_8h.html#a2a6725ec967773f5ddfbc3fc21d67049">SetupHardClippingDistortion</a></div><div class="ttdeci">Distortion_Status SetupHardClippingDistortion(struct effects_distortion *HardClipping)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00045">distortion.c:45</a></div></div>
-<div class="ttc" id="adistortion_8h_html_a8a375c625074dc4492066cda7e9e175b"><div class="ttname"><a href="distortion_8h.html#a8a375c625074dc4492066cda7e9e175b">SetupSoftClippingDistortion</a></div><div class="ttdeci">Distortion_Status SetupSoftClippingDistortion(struct effects_distortion *SoftClipping)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00059">distortion.c:59</a></div></div>
+<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00020">20</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>                                        {</div>
+<div class="line"><span class="lineno">   21</span> </div>
+<div class="line"><span class="lineno">   22</span>    <a class="code hl_function" href="distortion_8c.html#a2a6725ec967773f5ddfbc3fc21d67049">SetupHardClippingDistortion</a>(&amp;HardClipping);</div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_function" href="distortion_8c.html#a8a375c625074dc4492066cda7e9e175b">SetupSoftClippingDistortion</a>(&amp;SoftClipping);</div>
+<div class="line"><span class="lineno">   24</span> </div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
+<div class="line"><span class="lineno">   26</span>}</div>
+<div class="ttc" id="adistortion_8c_html_a2a6725ec967773f5ddfbc3fc21d67049"><div class="ttname"><a href="distortion_8c.html#a2a6725ec967773f5ddfbc3fc21d67049">SetupHardClippingDistortion</a></div><div class="ttdeci">Distortion_Status SetupHardClippingDistortion(struct effects_distortion *HardClipping)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00055">distortion.c:55</a></div></div>
+<div class="ttc" id="adistortion_8c_html_a8a375c625074dc4492066cda7e9e175b"><div class="ttname"><a href="distortion_8c.html#a8a375c625074dc4492066cda7e9e175b">SetupSoftClippingDistortion</a></div><div class="ttdeci">Distortion_Status SetupSoftClippingDistortion(struct effects_distortion *SoftClipping)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00069">distortion.c:69</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -207,23 +207,23 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p >TODO </p><dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00023">23</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   23</span>                                         {</div>
-<div class="line"><span class="lineno">   24</span> </div>
-<div class="line"><span class="lineno">   25</span>    Display.Distortion_ONOFF = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   26</span> </div>
-<div class="line"><span class="lineno">   27</span>    Display.Distortion_Gain = SoftClipping.distortion_gain = 1.0;</div>
-<div class="line"><span class="lineno">   28</span> </div>
-<div class="line"><span class="lineno">   29</span>    Display.Distortion_Sources = POTI;</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    Display.Distortion_Type = 0;    <span class="comment">// Soft Clipping</span></div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>    strcpy(Display.value_str_distortion[1], <span class="stringliteral">&quot;Soft&quot;</span>);</div>
+<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00033">33</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>                                         {</div>
 <div class="line"><span class="lineno">   34</span> </div>
-<div class="line"><span class="lineno">   35</span>    strcpy(Display.value_str_distortion[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
+<div class="line"><span class="lineno">   35</span>    Display.Distortion_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   36</span> </div>
-<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">   38</span>}</div>
+<div class="line"><span class="lineno">   37</span>    Display.Distortion_Gain = SoftClipping.distortion_gain = 1.0;</div>
+<div class="line"><span class="lineno">   38</span> </div>
+<div class="line"><span class="lineno">   39</span>    Display.Distortion_Sources = POTI;</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>    Display.Distortion_Type = 0;    <span class="comment">// Soft Clipping</span></div>
+<div class="line"><span class="lineno">   42</span> </div>
+<div class="line"><span class="lineno">   43</span>    strcpy(Display.value_str_distortion[1], <span class="stringliteral">&quot;Soft&quot;</span>);</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>    strcpy(Display.value_str_distortion[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
+<div class="line"><span class="lineno">   46</span> </div>
+<div class="line"><span class="lineno">   47</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
+<div class="line"><span class="lineno">   48</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -250,25 +250,25 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00086">86</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   86</span>                                                             {</div>
-<div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>    <span class="keywordtype">float</span> calc = *data;</div>
-<div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">if</span>( HardClipping.distortion_gain * calc &lt;= -1 ) {</div>
-<div class="line"><span class="lineno">   91</span>        calc = -1;</div>
-<div class="line"><span class="lineno">   92</span>    }</div>
-<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( (HardClipping.distortion_gain * calc &gt; -1) &amp;&amp; (HardClipping.distortion_gain * calc &lt; 1) ) {</div>
-<div class="line"><span class="lineno">   94</span>        calc = HardClipping.distortion_gain * calc;</div>
-<div class="line"><span class="lineno">   95</span>    }</div>
-<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( HardClipping.distortion_gain * calc &gt;= 1 ) {</div>
-<div class="line"><span class="lineno">   97</span>        calc = 1;</div>
-<div class="line"><span class="lineno">   98</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00096">96</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   96</span>                                                             {</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>    <span class="keywordtype">float</span> calc = *data;</div>
 <div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>    *data = calc;</div>
-<div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">  103</span>}</div>
+<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">if</span>( HardClipping.distortion_gain * calc &lt;= -1 ) {</div>
+<div class="line"><span class="lineno">  101</span>        calc = -1;</div>
+<div class="line"><span class="lineno">  102</span>    }</div>
+<div class="line"><span class="lineno">  103</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( (HardClipping.distortion_gain * calc &gt; -1) &amp;&amp; (HardClipping.distortion_gain * calc &lt; 1) ) {</div>
+<div class="line"><span class="lineno">  104</span>        calc = HardClipping.distortion_gain * calc;</div>
+<div class="line"><span class="lineno">  105</span>    }</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( HardClipping.distortion_gain * calc &gt;= 1 ) {</div>
+<div class="line"><span class="lineno">  107</span>        calc = 1;</div>
+<div class="line"><span class="lineno">  108</span>    }</div>
+<div class="line"><span class="lineno">  109</span> </div>
+<div class="line"><span class="lineno">  110</span>    *data = calc;</div>
+<div class="line"><span class="lineno">  111</span> </div>
+<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
+<div class="line"><span class="lineno">  113</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -295,53 +295,53 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00111">111</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  111</span>                                                             {</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>    <span class="keywordtype">float</span> calc = *data;</div>
-<div class="line"><span class="lineno">  114</span> </div>
-<div class="line"><span class="lineno">  115</span> </div>
-<div class="line"><span class="lineno">  116</span>    <span class="comment">// Sinnvoller Gain: 1 - 10</span></div>
-<div class="line"><span class="lineno">  117</span>    <span class="comment">// Use known Arcustangens values, which have been estimated (LUT-style)</span></div>
-<div class="line"><span class="lineno">  118</span> </div>
-<div class="line"><span class="lineno">  119</span>    SoftClipping.atan_parameter = (SoftClipping.distortion_gain * calc) + 10;   <span class="comment">// SoftClipping.distortion_maximum_gain = 10</span></div>
-<div class="line"><span class="lineno">  120</span>    SoftClipping.distortion_index = round(SoftClipping.atan_parameter/aquidistance);</div>
-<div class="line"><span class="lineno">  121</span>    calc = 0.5*<a class="code hl_variable" href="atanLUT_8h.html#a44717ae85351202c8833c3880a6ef9e8">atan_LUT_y</a>[SoftClipping.distortion_index];   <span class="comment">// scale down the amplitude</span></div>
+<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00121">121</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  121</span>                                                             {</div>
 <div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>    <span class="keywordflow">if</span>(0.0 &lt;= SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 1.0)</div>
-<div class="line"><span class="lineno">  124</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[0]);</div>
+<div class="line"><span class="lineno">  123</span>    <span class="keywordtype">float</span> calc = *data;</div>
+<div class="line"><span class="lineno">  124</span> </div>
 <div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(1.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 2.0)</div>
-<div class="line"><span class="lineno">  127</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[1]);</div>
+<div class="line"><span class="lineno">  126</span>    <span class="comment">// Sinnvoller Gain: 1 - 10</span></div>
+<div class="line"><span class="lineno">  127</span>    <span class="comment">// Use known Arcustangens values, which have been estimated (LUT-style)</span></div>
 <div class="line"><span class="lineno">  128</span> </div>
-<div class="line"><span class="lineno">  129</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(2.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 3.0)</div>
-<div class="line"><span class="lineno">  130</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[2]);</div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(3.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 4.0)</div>
-<div class="line"><span class="lineno">  133</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[3]);</div>
-<div class="line"><span class="lineno">  134</span> </div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(4.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 5.0)</div>
-<div class="line"><span class="lineno">  136</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[4]);</div>
-<div class="line"><span class="lineno">  137</span> </div>
-<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(5.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 6.0)</div>
-<div class="line"><span class="lineno">  139</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[5]);</div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(6.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 7.0)</div>
-<div class="line"><span class="lineno">  142</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[6]);</div>
-<div class="line"><span class="lineno">  143</span> </div>
-<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(7.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 8.0)</div>
-<div class="line"><span class="lineno">  145</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[7]);</div>
-<div class="line"><span class="lineno">  146</span> </div>
-<div class="line"><span class="lineno">  147</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(8.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 9.0)</div>
-<div class="line"><span class="lineno">  148</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[8]);</div>
-<div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(SoftClipping.distortion_gain &gt; 9.0)</div>
-<div class="line"><span class="lineno">  151</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[9]);</div>
-<div class="line"><span class="lineno">  152</span> </div>
-<div class="line"><span class="lineno">  153</span>    *data = calc;</div>
-<div class="line"><span class="lineno">  154</span> </div>
-<div class="line"><span class="lineno">  155</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">  156</span>}</div>
+<div class="line"><span class="lineno">  129</span>    SoftClipping.atan_parameter = (SoftClipping.distortion_gain * calc) + 10;   <span class="comment">// SoftClipping.distortion_maximum_gain = 10</span></div>
+<div class="line"><span class="lineno">  130</span>    SoftClipping.distortion_index = round(SoftClipping.atan_parameter/aquidistance);</div>
+<div class="line"><span class="lineno">  131</span>    calc = 0.5*<a class="code hl_variable" href="atanLUT_8h.html#a44717ae85351202c8833c3880a6ef9e8">atan_LUT_y</a>[SoftClipping.distortion_index];   <span class="comment">// scale down the amplitude</span></div>
+<div class="line"><span class="lineno">  132</span> </div>
+<div class="line"><span class="lineno">  133</span>    <span class="keywordflow">if</span>(0.0 &lt;= SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 1.0)</div>
+<div class="line"><span class="lineno">  134</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[0]);</div>
+<div class="line"><span class="lineno">  135</span> </div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(1.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 2.0)</div>
+<div class="line"><span class="lineno">  137</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[1]);</div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(2.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 3.0)</div>
+<div class="line"><span class="lineno">  140</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[2]);</div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(3.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 4.0)</div>
+<div class="line"><span class="lineno">  143</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[3]);</div>
+<div class="line"><span class="lineno">  144</span> </div>
+<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(4.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 5.0)</div>
+<div class="line"><span class="lineno">  146</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[4]);</div>
+<div class="line"><span class="lineno">  147</span> </div>
+<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(5.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 6.0)</div>
+<div class="line"><span class="lineno">  149</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[5]);</div>
+<div class="line"><span class="lineno">  150</span> </div>
+<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(6.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 7.0)</div>
+<div class="line"><span class="lineno">  152</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[6]);</div>
+<div class="line"><span class="lineno">  153</span> </div>
+<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(7.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 8.0)</div>
+<div class="line"><span class="lineno">  155</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[7]);</div>
+<div class="line"><span class="lineno">  156</span> </div>
+<div class="line"><span class="lineno">  157</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(8.0 &lt; SoftClipping.distortion_gain &amp;&amp; SoftClipping.distortion_gain &lt;= 9.0)</div>
+<div class="line"><span class="lineno">  158</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[8]);</div>
+<div class="line"><span class="lineno">  159</span> </div>
+<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(SoftClipping.distortion_gain &gt; 9.0)</div>
+<div class="line"><span class="lineno">  161</span>        calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[9]);</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>    *data = calc;</div>
+<div class="line"><span class="lineno">  164</span> </div>
+<div class="line"><span class="lineno">  165</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
+<div class="line"><span class="lineno">  166</span>}</div>
 <div class="ttc" id="aatanLUT_8h_html_a44717ae85351202c8833c3880a6ef9e8"><div class="ttname"><a href="atanLUT_8h.html#a44717ae85351202c8833c3880a6ef9e8">atan_LUT_y</a></div><div class="ttdeci">const float atan_LUT_y[]</div><div class="ttdoc">atan() look up table</div><div class="ttdef"><b>Definition:</b> <a href="atanLUT_8h_source.html#l00019">atanLUT.h:19</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -369,14 +369,14 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00045">45</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   45</span>                                                                                       {</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>    HardClipping-&gt;distortion_gain = 1.0;</div>
-<div class="line"><span class="lineno">   48</span>    HardClipping-&gt;distortion_maximum_gain = 9;</div>
-<div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">   51</span>}</div>
+<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00055">55</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   55</span>                                                                                       {</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>    HardClipping-&gt;distortion_gain = 1.0;</div>
+<div class="line"><span class="lineno">   58</span>    HardClipping-&gt;distortion_maximum_gain = 9;</div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
+<div class="line"><span class="lineno">   61</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -403,27 +403,27 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Distortion_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00059">59</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   59</span>                                                                                       {</div>
-<div class="line"><span class="lineno">   60</span> </div>
-<div class="line"><span class="lineno">   61</span>    SoftClipping-&gt;distortion_gain = 1.0;</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>    <span class="comment">// 10 different distortion gain values, so the effect can be increased step-wise</span></div>
-<div class="line"><span class="lineno">   64</span>    SoftClipping-&gt;atan_softclipping_distortion_max[0] = 0.392650;   <span class="comment">// distortion_gain = 1.0</span></div>
-<div class="line"><span class="lineno">   65</span>    SoftClipping-&gt;atan_softclipping_distortion_max[1] = 0.553650;   <span class="comment">// distortion_gain = 2.0</span></div>
-<div class="line"><span class="lineno">   66</span>    SoftClipping-&gt;atan_softclipping_distortion_max[2] = 0.624500;   <span class="comment">// distortion_gain = 3.0</span></div>
-<div class="line"><span class="lineno">   67</span>    SoftClipping-&gt;atan_softclipping_distortion_max[3] = 0.662950;   <span class="comment">// distortion_gain = 4.0</span></div>
-<div class="line"><span class="lineno">   68</span>    SoftClipping-&gt;atan_softclipping_distortion_max[4] = 0.686700;   <span class="comment">// distortion_gain = 5.0</span></div>
-<div class="line"><span class="lineno">   69</span>    SoftClipping-&gt;atan_softclipping_distortion_max[5] = 0.702850;   <span class="comment">// distortion_gain = 6.0</span></div>
-<div class="line"><span class="lineno">   70</span>    SoftClipping-&gt;atan_softclipping_distortion_max[6] = 0.714450;   <span class="comment">// distortion_gain = 7.0</span></div>
-<div class="line"><span class="lineno">   71</span>    SoftClipping-&gt;atan_softclipping_distortion_max[7] = 0.723200;   <span class="comment">// distortion_gain = 8.0</span></div>
-<div class="line"><span class="lineno">   72</span>    SoftClipping-&gt;atan_softclipping_distortion_max[8] = 0.730050;   <span class="comment">// distortion_gain = 9.0</span></div>
-<div class="line"><span class="lineno">   73</span>    SoftClipping-&gt;atan_softclipping_distortion_max[9] = 0.735550;   <span class="comment">// distortion_gain = 10.0</span></div>
-<div class="line"><span class="lineno">   74</span> </div>
-<div class="line"><span class="lineno">   75</span>    SoftClipping-&gt;distortion_maximum_gain = 10.0;</div>
-<div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
-<div class="line"><span class="lineno">   78</span>}</div>
+<p class="definition">Definition at line <a class="el" href="distortion_8c_source.html#l00069">69</a> of file <a class="el" href="distortion_8c_source.html">distortion.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   69</span>                                                                                       {</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    SoftClipping-&gt;distortion_gain = 1.0;</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>    <span class="comment">// 10 different distortion gain values, so the effect can be increased step-wise</span></div>
+<div class="line"><span class="lineno">   74</span>    SoftClipping-&gt;atan_softclipping_distortion_max[0] = 0.392650;   <span class="comment">// distortion_gain = 1.0</span></div>
+<div class="line"><span class="lineno">   75</span>    SoftClipping-&gt;atan_softclipping_distortion_max[1] = 0.553650;   <span class="comment">// distortion_gain = 2.0</span></div>
+<div class="line"><span class="lineno">   76</span>    SoftClipping-&gt;atan_softclipping_distortion_max[2] = 0.624500;   <span class="comment">// distortion_gain = 3.0</span></div>
+<div class="line"><span class="lineno">   77</span>    SoftClipping-&gt;atan_softclipping_distortion_max[3] = 0.662950;   <span class="comment">// distortion_gain = 4.0</span></div>
+<div class="line"><span class="lineno">   78</span>    SoftClipping-&gt;atan_softclipping_distortion_max[4] = 0.686700;   <span class="comment">// distortion_gain = 5.0</span></div>
+<div class="line"><span class="lineno">   79</span>    SoftClipping-&gt;atan_softclipping_distortion_max[5] = 0.702850;   <span class="comment">// distortion_gain = 6.0</span></div>
+<div class="line"><span class="lineno">   80</span>    SoftClipping-&gt;atan_softclipping_distortion_max[6] = 0.714450;   <span class="comment">// distortion_gain = 7.0</span></div>
+<div class="line"><span class="lineno">   81</span>    SoftClipping-&gt;atan_softclipping_distortion_max[7] = 0.723200;   <span class="comment">// distortion_gain = 8.0</span></div>
+<div class="line"><span class="lineno">   82</span>    SoftClipping-&gt;atan_softclipping_distortion_max[8] = 0.730050;   <span class="comment">// distortion_gain = 9.0</span></div>
+<div class="line"><span class="lineno">   83</span>    SoftClipping-&gt;atan_softclipping_distortion_max[9] = 0.735550;   <span class="comment">// distortion_gain = 10.0</span></div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>    SoftClipping-&gt;distortion_maximum_gain = 10.0;</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">return</span> DISTORTION_OK;</div>
+<div class="line"><span class="lineno">   88</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

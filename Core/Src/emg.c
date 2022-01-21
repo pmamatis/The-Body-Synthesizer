@@ -1,9 +1,17 @@
-/*
- * emg.c
- *
- *  Created on: May 23, 2021
- *  Author: paul mamatis
+/**
+ * @file emg.c
+ * @author Paul Mamatis
+ * @brief emg/ecg processing
+ * @version 0.1
+ * @date May 23, 2021
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
+ 
+ 
+  Created on: 
+
 
 #include "emg.h"
 

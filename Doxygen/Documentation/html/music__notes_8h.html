@@ -96,13 +96,13 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a24334366425c42178a955c3c969ad9a8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a> (char key)</td></tr>
+<tr class="memitem:a24334366425c42178a955c3c969ad9a8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a> (char <a class="el" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>)</td></tr>
 <tr class="memdesc:a24334366425c42178a955c3c969ad9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the index of a note-letter depending on the keys-array  <a href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">More...</a><br /></td></tr>
 <tr class="separator:a24334366425c42178a955c3c969ad9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fc1bdf03e12b5dee3aa887f100421bf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="music__notes_8h.html#a3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a> (uint8_t index, uint8_t octave)</td></tr>
 <tr class="memdesc:a3fc1bdf03e12b5dee3aa887f100421bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the frequency of a music note listed in the  <a href="music__notes_8h.html#a3fc1bdf03e12b5dee3aa887f100421bf">More...</a><br /></td></tr>
 <tr class="separator:a3fc1bdf03e12b5dee3aa887f100421bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71407d53f2b1100f1ab93dc2681dfe48"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a> (char key, uint8_t octave)</td></tr>
+<tr class="memitem:a71407d53f2b1100f1ab93dc2681dfe48"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a> (char <a class="el" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>, uint8_t octave)</td></tr>
 <tr class="memdesc:a71407d53f2b1100f1ab93dc2681dfe48"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the frequency of a music note listed in the  <a href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">More...</a><br /></td></tr>
 <tr class="separator:a71407d53f2b1100f1ab93dc2681dfe48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -208,17 +208,18 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>key index </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="music__notes_8c_source.html#l00041">41</a> of file <a class="el" href="music__notes_8c_source.html">music_notes.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   41</span>                              {</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>    uint8_t keyindex = 0;</div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 12; i++){</div>
-<div class="line"><span class="lineno">   46</span>        <span class="keywordflow">if</span>(key == <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i]) keyindex = i;</div>
-<div class="line"><span class="lineno">   47</span>    }</div>
-<div class="line"><span class="lineno">   48</span><span class="keywordflow">return</span> keyindex;</div>
-<div class="line"><span class="lineno">   49</span>}</div>
-<div class="ttc" id="amusic__notes_8h_html_aa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00034">music_notes.h:34</a></div></div>
+<p class="definition">Definition at line <a class="el" href="music__notes_8c_source.html#l00051">51</a> of file <a class="el" href="music__notes_8c_source.html">music_notes.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>                              {</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>    uint8_t keyindex = 0;</div>
+<div class="line"><span class="lineno">   54</span> </div>
+<div class="line"><span class="lineno">   55</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 12; i++){</div>
+<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a> == <a class="code hl_variable" href="music__notes_8c.html#aaeba6af94f85d3f8a58e358b842e96f5">keys</a>[i]) keyindex = i;</div>
+<div class="line"><span class="lineno">   57</span>    }</div>
+<div class="line"><span class="lineno">   58</span><span class="keywordflow">return</span> keyindex;</div>
+<div class="line"><span class="lineno">   59</span>}</div>
+<div class="ttc" id="amusic__notes_8c_html_aaeba6af94f85d3f8a58e358b842e96f5"><div class="ttname"><a href="music__notes_8c.html#aaeba6af94f85d3f8a58e358b842e96f5">keys</a></div><div class="ttdeci">const char keys[]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00014">music_notes.c:14</a></div></div>
+<div class="ttc" id="amusic__notes_8c_html_acad36f7a1211e9e9da68e181667d9c3f"><div class="ttname"><a href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a></div><div class="ttdeci">char key</div><div class="ttdoc">music key</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00041">music_notes.c:41</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -250,12 +251,12 @@ Variables</h2></td></tr>
 
 <p>returns the frequency of a music note listed in the </p>
 
-<p class="definition">Definition at line <a class="el" href="music__notes_8c_source.html#l00053">53</a> of file <a class="el" href="music__notes_8c_source.html">music_notes.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   53</span>                                                       {</div>
-<div class="line"><span class="lineno">   54</span>    <span class="keywordtype">int</span> tmp_octave = 12*octave; <span class="comment">//DEBUG</span></div>
-<div class="line"><span class="lineno">   55</span>    <span class="keywordtype">double</span> note_freq =LUT_FREQUENCYS[tmp_octave+index];</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">return</span> note_freq;</div>
-<div class="line"><span class="lineno">   57</span>}</div>
+<p class="definition">Definition at line <a class="el" href="music__notes_8c_source.html#l00063">63</a> of file <a class="el" href="music__notes_8c_source.html">music_notes.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>                                                       {</div>
+<div class="line"><span class="lineno">   64</span>    <span class="keywordtype">int</span> tmp_octave = 12*octave; <span class="comment">//DEBUG</span></div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordtype">double</span> note_freq =LUT_FREQUENCYS[tmp_octave+index];</div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">return</span> note_freq;</div>
+<div class="line"><span class="lineno">   67</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -287,11 +288,11 @@ Variables</h2></td></tr>
 
 <p>returns the frequency of a music note listed in the </p>
 
-<p class="definition">Definition at line <a class="el" href="music__notes_8c_source.html#l00061">61</a> of file <a class="el" href="music__notes_8c_source.html">music_notes.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   61</span>                                                {</div>
-<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">return</span> 12*octave + <a class="code hl_function" href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(key);</div>
-<div class="line"><span class="lineno">   63</span>}</div>
-<div class="ttc" id="amusic__notes_8h_html_a24334366425c42178a955c3c969ad9a8"><div class="ttname"><a href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a></div><div class="ttdeci">uint8_t Get_Keyindex(char key)</div><div class="ttdoc">returns the index of a note-letter depending on the keys-array</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00041">music_notes.c:41</a></div></div>
+<p class="definition">Definition at line <a class="el" href="music__notes_8c_source.html#l00071">71</a> of file <a class="el" href="music__notes_8c_source.html">music_notes.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>                                                {</div>
+<div class="line"><span class="lineno">   72</span>    <span class="keywordflow">return</span> 12*octave + <a class="code hl_function" href="music__notes_8c.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>);</div>
+<div class="line"><span class="lineno">   73</span>}</div>
+<div class="ttc" id="amusic__notes_8c_html_a24334366425c42178a955c3c969ad9a8"><div class="ttname"><a href="music__notes_8c.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a></div><div class="ttdeci">uint8_t Get_Keyindex(char key)</div><div class="ttdoc">returns the index of a note-letter depending on the keys-array</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00051">music_notes.c:51</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

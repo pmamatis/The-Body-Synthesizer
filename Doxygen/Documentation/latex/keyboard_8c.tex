@@ -1,0 +1,232 @@
+\hypertarget{keyboard_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/keyboard.c File Reference}
+\label{keyboard_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/keyboard.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/keyboard.c}}
+
+
+Keyboard processing.  
+
+
+{\ttfamily \#include \char`\"{}keyboard.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{keyboard_8c_a49b74c118843f9046a50a49296e3ce37}{keyboard\+\_\+init}} (ADC\+\_\+\+Handle\+Type\+Def $\ast$ADC\+\_\+\+Handler, TIM\+\_\+\+Handle\+Type\+Def $\ast$TIM\+\_\+\+Handler)
+\begin{DoxyCompactList}\small\item\em Keyboaed Init funcrion. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{keyboard_8c_a86de1f5c40ab14dddcc12fbf3eafde08}{keyboard\+\_\+start\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em starts the keyboard reading process \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{keyboard_8c_aa85d423d42fee22db58e1ac22ed45ab3}{keyboard\+\_\+stop\+\_\+read}} ()
+\begin{DoxyCompactList}\small\item\em Stops teh Keyboard readout by stoping the timer-\/interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{keyboard_8c_a4f8ca4fda6a27fe2ed6ad14c40339324}{One\+Press\+\_\+keyboard\+\_\+process}} (uint32\+\_\+t adc\+\_\+value, struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, struct \mbox{\hyperlink{structdisplay__variables}{display\+\_\+variables}} $\ast$Display)
+\begin{DoxyCompactList}\small\item\em This function handles the Data processing for the Keyboard ADC, depending on the given value a signal is generated and played untill the keyboard adsr end for this signal. ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{keyboard_8c_a4fe0f890c983b0d8b4e969d60d287a33}{keyboard\+\_\+note\+\_\+adcval}} \mbox{[}$\,$\mbox{]} = \{200, 400, 800, 1100, 1400, 1800, 2100, 2450, 2800, 3100, 3500, 3800, 4095\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Keyboard processing. 
+
+\begin{DoxyAuthor}{Author}
+Marc Bielen \& Paul Mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{keyboard_8c_source}{keyboard.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{keyboard_8c_a49b74c118843f9046a50a49296e3ce37}\label{keyboard_8c_a49b74c118843f9046a50a49296e3ce37}} 
+\index{keyboard.c@{keyboard.c}!keyboard\_init@{keyboard\_init}}
+\index{keyboard\_init@{keyboard\_init}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{keyboard\_init()}{keyboard\_init()}}
+{\footnotesize\ttfamily void keyboard\+\_\+init (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def $\ast$}]{ADC\+\_\+\+Handler,  }\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{TIM\+\_\+\+Handler }\end{DoxyParamCaption})}
+
+
+
+Keyboaed Init funcrion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ADC\+\_\+\+Handler} & \\
+\hline
+{\em TIM\+\_\+\+Handler} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{keyboard_8c_source_l00020}{20}} of file \mbox{\hyperlink{keyboard_8c_source}{keyboard.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020                                                                                   \{}
+\DoxyCodeLine{00021     KEYBOARD\_ADC = ADC\_Handler;}
+\DoxyCodeLine{00022     \mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}} = TIM\_Handler;}
+\DoxyCodeLine{00023     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(TIM\_Handler, KEYBOARD\_SR);}
+\DoxyCodeLine{00024     keyboard\_pressed\_counter = 0;}
+\DoxyCodeLine{00025     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++) \{}
+\DoxyCodeLine{00026         played\_keyboard\_note[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00027         activate\_processing[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00028     \}}
+\DoxyCodeLine{00029     active\_keyboard\_notes = 0;}
+\DoxyCodeLine{00030 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{keyboard_8c_a86de1f5c40ab14dddcc12fbf3eafde08}\label{keyboard_8c_a86de1f5c40ab14dddcc12fbf3eafde08}} 
+\index{keyboard.c@{keyboard.c}!keyboard\_start\_read@{keyboard\_start\_read}}
+\index{keyboard\_start\_read@{keyboard\_start\_read}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{keyboard\_start\_read()}{keyboard\_start\_read()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def keyboard\+\_\+start\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+starts the keyboard reading process 
+
+\begin{DoxyNote}{Note}
+the ADC is controlled by the Timer keyboard\+\_\+\+TIM, so the ADC-\/\+Read Command is inside the Timer Interrupt 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{keyboard_8c_source_l00036}{36}} of file \mbox{\hyperlink{keyboard_8c_source}{keyboard.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036                                             \{}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038     HAL\_StatusTypeDef retval;}
+\DoxyCodeLine{00039     printf(\textcolor{stringliteral}{"{}start keyboard read....\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00040     retval = HAL\_TIM\_Base\_Start\_IT(\mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}});}
+\DoxyCodeLine{00041     HAL\_ADC\_Start\_DMA(KEYBOARD\_ADC, \&Display.ADC1input, 1);}
+\DoxyCodeLine{00042     \textcolor{keywordflow}{return} retval;}
+\DoxyCodeLine{00043 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{keyboard_8c_aa85d423d42fee22db58e1ac22ed45ab3}\label{keyboard_8c_aa85d423d42fee22db58e1ac22ed45ab3}} 
+\index{keyboard.c@{keyboard.c}!keyboard\_stop\_read@{keyboard\_stop\_read}}
+\index{keyboard\_stop\_read@{keyboard\_stop\_read}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{keyboard\_stop\_read()}{keyboard\_stop\_read()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def keyboard\+\_\+stop\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Stops teh Keyboard readout by stoping the timer-\/interrupt. 
+
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{keyboard_8c_source_l00050}{50}} of file \mbox{\hyperlink{keyboard_8c_source}{keyboard.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050                                        \{}
+\DoxyCodeLine{00051     printf(\textcolor{stringliteral}{"{}end keyboard read....\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00052     \textcolor{keywordflow}{return} HAL\_TIM\_Base\_Stop\_IT(\mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}});}
+\DoxyCodeLine{00053 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{keyboard_8c_a4f8ca4fda6a27fe2ed6ad14c40339324}\label{keyboard_8c_a4f8ca4fda6a27fe2ed6ad14c40339324}} 
+\index{keyboard.c@{keyboard.c}!OnePress\_keyboard\_process@{OnePress\_keyboard\_process}}
+\index{OnePress\_keyboard\_process@{OnePress\_keyboard\_process}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{OnePress\_keyboard\_process()}{OnePress\_keyboard\_process()}}
+{\footnotesize\ttfamily void One\+Press\+\_\+keyboard\+\_\+process (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{adc\+\_\+value,  }\item[{struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$}]{signals,  }\item[{struct \mbox{\hyperlink{structdisplay__variables}{display\+\_\+variables}} $\ast$}]{Display }\end{DoxyParamCaption})}
+
+
+
+This function handles the Data processing for the Keyboard ADC, depending on the given value a signal is generated and played untill the keyboard adsr end for this signal. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adc\+\_\+value} & raw data from the keyboard adc \\
+\hline
+{\em signals} & \\
+\hline
+{\em Display} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{keyboard_8c_source_l00061}{61}} of file \mbox{\hyperlink{keyboard_8c_source}{keyboard.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061                                                                                                                 \{}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063     \textcolor{comment}{// Generate Signal}}
+\DoxyCodeLine{00064     \textcolor{keywordflow}{for}(uint8\_t i=0; i<(NUMBER\_OF\_KEYBOARD\_NOTES-\/1); i++) \{}
+\DoxyCodeLine{00065 }
+\DoxyCodeLine{00066         \textcolor{keywordflow}{if}(adc\_value > keyboard\_note\_adcval[i] \&\& adc\_value < keyboard\_note\_adcval[i+1]) \{}
+\DoxyCodeLine{00067 }
+\DoxyCodeLine{00068             \textcolor{keywordflow}{if}(!played\_keyboard\_note[0] \&\& activate\_processing[0])\{}
+\DoxyCodeLine{00069                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID);}
+\DoxyCodeLine{00070                 played\_keyboard\_note[0] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00071                 active\_keyboard\_notes++;}
+\DoxyCodeLine{00072             \}}
+\DoxyCodeLine{00073             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[1] \&\& activate\_processing[1])\{}
+\DoxyCodeLine{00074                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+1);}
+\DoxyCodeLine{00075                 played\_keyboard\_note[1] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00076                 active\_keyboard\_notes++;}
+\DoxyCodeLine{00077             \}}
+\DoxyCodeLine{00078             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[2] \&\& activate\_processing[2])\{}
+\DoxyCodeLine{00079                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+2);}
+\DoxyCodeLine{00080                 played\_keyboard\_note[2] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00081                 active\_keyboard\_notes++;}
+\DoxyCodeLine{00082             \}}
+\DoxyCodeLine{00083             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[3] \&\& activate\_processing[3])\{}
+\DoxyCodeLine{00084                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+3);}
+\DoxyCodeLine{00085                 played\_keyboard\_note[3] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00086                 active\_keyboard\_notes++;}
+\DoxyCodeLine{00087             \}}
+\DoxyCodeLine{00088             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[4] \&\& activate\_processing[4])\{}
+\DoxyCodeLine{00089                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+4);}
+\DoxyCodeLine{00090                 played\_keyboard\_note[4] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00091                 active\_keyboard\_notes++;}
+\DoxyCodeLine{00092             \}}
+\DoxyCodeLine{00093         \}}
+\DoxyCodeLine{00094     \}}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096     \textcolor{comment}{// Delete signal}}
+\DoxyCodeLine{00097     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)\{}
+\DoxyCodeLine{00098 }
+\DoxyCodeLine{00099         \textcolor{keywordflow}{if} (adsr\_keyboard[i].adsr\_done)\{}
+\DoxyCodeLine{00100             \textcolor{keywordtype}{int} index = \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(KEYBOARD\_VOICE\_ID+i);}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102             \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(signals,index);}
+\DoxyCodeLine{00103             adsr\_keyboard[i].adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00104 }
+\DoxyCodeLine{00105             played\_keyboard\_note[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00106 }
+\DoxyCodeLine{00107             activate\_processing[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{00108 }
+\DoxyCodeLine{00109             active\_keyboard\_notes-\/-\/;}
+\DoxyCodeLine{00110         \}}
+\DoxyCodeLine{00111     \}}
+\DoxyCodeLine{00112 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{keyboard_8c_a4fe0f890c983b0d8b4e969d60d287a33}\label{keyboard_8c_a4fe0f890c983b0d8b4e969d60d287a33}} 
+\index{keyboard.c@{keyboard.c}!keyboard\_note\_adcval@{keyboard\_note\_adcval}}
+\index{keyboard\_note\_adcval@{keyboard\_note\_adcval}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{keyboard\_note\_adcval}{keyboard\_note\_adcval}}
+{\footnotesize\ttfamily const uint16\+\_\+t keyboard\+\_\+note\+\_\+adcval\mbox{[}$\,$\mbox{]} = \{200, 400, 800, 1100, 1400, 1800, 2100, 2450, 2800, 3100, 3500, 3800, 4095\}}
+
+
+
+Definition at line \mbox{\hyperlink{keyboard_8c_source_l00013}{13}} of file \mbox{\hyperlink{keyboard_8c_source}{keyboard.\+c}}.
+

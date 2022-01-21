@@ -1,3 +1,13 @@
+/**
+ * @file keyboard.c
+ * @author Marc Bielen & Paul Mamatis
+ * @brief Keyboard processing
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "keyboard.h"
 
 const uint16_t keyboard_note_adcval[] = {200, 400, 800, 1100, 1400, 1800, 2100, 2450, 2800, 3100, 3500, 3800, 4095};

@@ -1,3 +1,13 @@
+/**
+ * @file distortion.c
+ * @author Marc Bielen
+ * @brief Distortion effect
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "distortion.h"
 #include "atanLUT.h"
 

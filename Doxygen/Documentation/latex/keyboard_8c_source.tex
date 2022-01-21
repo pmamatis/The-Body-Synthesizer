@@ -1,87 +1,88 @@
 \hypertarget{keyboard_8c_source}{}\doxysection{keyboard.\+c}
 \label{keyboard_8c_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/keyboard.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/keyboard.c}}
-
+\mbox{\hyperlink{keyboard_8c}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{keyboard_8h}{keyboard.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00002}00002 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00003}00003 \textcolor{keyword}{const} uint16\_t keyboard\_note\_adcval[] = \{200, 400, 800, 1100, 1400, 1800, 2100, 2450, 2800, 3100, 3500, 3800, 4095\};}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00010}\mbox{\hyperlink{keyboard_8h_a49b74c118843f9046a50a49296e3ce37}{00010}} \textcolor{keywordtype}{void} \mbox{\hyperlink{keyboard_8h_a49b74c118843f9046a50a49296e3ce37}{keyboard\_init}}(ADC\_HandleTypeDef *ADC\_Handler,TIM\_HandleTypeDef* TIM\_Handler) \{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00011}00011     KEYBOARD\_ADC = ADC\_Handler;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00012}00012     \mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}} = TIM\_Handler;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00013}00013     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(TIM\_Handler, KEYBOARD\_SR);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00014}00014     keyboard\_pressed\_counter = 0;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00015}00015     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++) \{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00016}00016         played\_keyboard\_note[i] = \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00017}00017         activate\_processing[i] = \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00018}00018     \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00019}00019     active\_keyboard\_notes = 0;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00020}00020 \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00021}00021 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00026}\mbox{\hyperlink{keyboard_8h_a86de1f5c40ab14dddcc12fbf3eafde08}{00026}} HAL\_StatusTypeDef \mbox{\hyperlink{keyboard_8h_a86de1f5c40ab14dddcc12fbf3eafde08}{keyboard\_start\_read}}(\textcolor{keywordtype}{void}) \{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00027}00027 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00028}00028     HAL\_StatusTypeDef retval;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00029}00029     printf(\textcolor{stringliteral}{"{}start keyboard read....\(\backslash\)r\(\backslash\)n"{}});}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00030}00030     retval = HAL\_TIM\_Base\_Start\_IT(\mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}});}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00031}00031     HAL\_ADC\_Start\_DMA(KEYBOARD\_ADC, \&Display.ADC1input, 1);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00032}00032     \textcolor{keywordflow}{return} retval;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00033}00033 \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00034}00034 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00040}\mbox{\hyperlink{keyboard_8h_a2482802c0a6906975f7ad3f6143bd456}{00040}} HAL\_StatusTypeDef \mbox{\hyperlink{keyboard_8h_a2482802c0a6906975f7ad3f6143bd456}{keyboard\_stop\_read}}() \{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00041}00041     printf(\textcolor{stringliteral}{"{}end keyboard read....\(\backslash\)r\(\backslash\)n"{}});}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00042}00042     \textcolor{keywordflow}{return} HAL\_TIM\_Base\_Stop\_IT(\mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}});}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00011}00011 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{keyboard_8h}{keyboard.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00013}00013 \textcolor{keyword}{const} uint16\_t keyboard\_note\_adcval[] = \{200, 400, 800, 1100, 1400, 1800, 2100, 2450, 2800, 3100, 3500, 3800, 4095\};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00020}\mbox{\hyperlink{keyboard_8h_a49b74c118843f9046a50a49296e3ce37}{00020}} \textcolor{keywordtype}{void} \mbox{\hyperlink{keyboard_8c_a49b74c118843f9046a50a49296e3ce37}{keyboard\_init}}(ADC\_HandleTypeDef *ADC\_Handler,TIM\_HandleTypeDef* TIM\_Handler) \{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00021}00021     KEYBOARD\_ADC = ADC\_Handler;}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00022}00022     \mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}} = TIM\_Handler;}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00023}00023     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(TIM\_Handler, KEYBOARD\_SR);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00024}00024     keyboard\_pressed\_counter = 0;}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00025}00025     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++) \{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00026}00026         played\_keyboard\_note[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00027}00027         activate\_processing[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00028}00028     \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00029}00029     active\_keyboard\_notes = 0;}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00030}00030 \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00036}\mbox{\hyperlink{keyboard_8h_a86de1f5c40ab14dddcc12fbf3eafde08}{00036}} HAL\_StatusTypeDef \mbox{\hyperlink{keyboard_8c_a86de1f5c40ab14dddcc12fbf3eafde08}{keyboard\_start\_read}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00038}00038     HAL\_StatusTypeDef retval;}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00039}00039     printf(\textcolor{stringliteral}{"{}start keyboard read....\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00040}00040     retval = HAL\_TIM\_Base\_Start\_IT(\mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}});}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00041}00041     HAL\_ADC\_Start\_DMA(KEYBOARD\_ADC, \&Display.ADC1input, 1);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00042}00042     \textcolor{keywordflow}{return} retval;}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00043}00043 \}}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00044}00044 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00051}\mbox{\hyperlink{keyboard_8h_a4f8ca4fda6a27fe2ed6ad14c40339324}{00051}} \textcolor{keywordtype}{void} \mbox{\hyperlink{keyboard_8h_a4f8ca4fda6a27fe2ed6ad14c40339324}{OnePress\_keyboard\_process}}(uint32\_t adc\_value, \textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keyword}{struct} \mbox{\hyperlink{structdisplay__variables}{display\_variables}}* Display) \{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00052}00052 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00053}00053     \textcolor{comment}{// Generate Signal}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00054}00054     \textcolor{keywordflow}{for}(uint8\_t i=0; i<(NUMBER\_OF\_KEYBOARD\_NOTES-\/1); i++) \{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00055}00055 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00056}00056         \textcolor{keywordflow}{if}(adc\_value > keyboard\_note\_adcval[i] \&\& adc\_value < keyboard\_note\_adcval[i+1]) \{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00057}00057 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00058}00058             \textcolor{keywordflow}{if}(!played\_keyboard\_note[0] \&\& activate\_processing[0])\{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00059}00059                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00060}00060                 played\_keyboard\_note[0] = \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00061}00061                 active\_keyboard\_notes++;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00062}00062             \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00063}00063             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[1] \&\& activate\_processing[1])\{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00064}00064                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+1);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00065}00065                 played\_keyboard\_note[1] = \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00066}00066                 active\_keyboard\_notes++;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00067}00067             \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00068}00068             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[2] \&\& activate\_processing[2])\{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00069}00069                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+2);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00070}00070                 played\_keyboard\_note[2] = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00050}\mbox{\hyperlink{keyboard_8h_a2482802c0a6906975f7ad3f6143bd456}{00050}} HAL\_StatusTypeDef \mbox{\hyperlink{keyboard_8c_aa85d423d42fee22db58e1ac22ed45ab3}{keyboard\_stop\_read}}() \{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00051}00051     printf(\textcolor{stringliteral}{"{}end keyboard read....\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00052}00052     \textcolor{keywordflow}{return} HAL\_TIM\_Base\_Stop\_IT(\mbox{\hyperlink{keyboard_8h_a7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\_TIM}});}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00053}00053 \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00061}\mbox{\hyperlink{keyboard_8h_a4f8ca4fda6a27fe2ed6ad14c40339324}{00061}} \textcolor{keywordtype}{void} \mbox{\hyperlink{keyboard_8c_a4f8ca4fda6a27fe2ed6ad14c40339324}{OnePress\_keyboard\_process}}(uint32\_t adc\_value, \textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keyword}{struct} \mbox{\hyperlink{structdisplay__variables}{display\_variables}}* Display) \{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00063}00063     \textcolor{comment}{// Generate Signal}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00064}00064     \textcolor{keywordflow}{for}(uint8\_t i=0; i<(NUMBER\_OF\_KEYBOARD\_NOTES-\/1); i++) \{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00066}00066         \textcolor{keywordflow}{if}(adc\_value > keyboard\_note\_adcval[i] \&\& adc\_value < keyboard\_note\_adcval[i+1]) \{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00068}00068             \textcolor{keywordflow}{if}(!played\_keyboard\_note[0] \&\& activate\_processing[0])\{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00069}00069                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00070}00070                 played\_keyboard\_note[0] = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00071}00071                 active\_keyboard\_notes++;}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00072}00072             \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00073}00073             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[3] \&\& activate\_processing[3])\{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00074}00074                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+3);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00075}00075                 played\_keyboard\_note[3] = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00073}00073             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[1] \&\& activate\_processing[1])\{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00074}00074                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+1);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00075}00075                 played\_keyboard\_note[1] = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00076}00076                 active\_keyboard\_notes++;}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00077}00077             \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00078}00078             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[4] \&\& activate\_processing[4])\{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00079}00079                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+4);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00080}00080                 played\_keyboard\_note[4] = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00078}00078             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[2] \&\& activate\_processing[2])\{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00079}00079                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+2);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00080}00080                 played\_keyboard\_note[2] = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00081}00081                 active\_keyboard\_notes++;}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00082}00082             \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00083}00083         \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00084}00084     \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00085}00085 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00086}00086     \textcolor{comment}{// Delete signal}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00087}00087     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)\{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00088}00088 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00089}00089         \textcolor{keywordflow}{if} (adsr\_keyboard[i].adsr\_done)\{}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00090}00090             \textcolor{keywordtype}{int} index = \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(KEYBOARD\_VOICE\_ID+i);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00091}00091 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00092}00092             \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(signals,index);}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00093}00093             adsr\_keyboard[i].adsr\_done = \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00094}00094 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00095}00095             played\_keyboard\_note[i] = \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00096}00096 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00097}00097             activate\_processing[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00083}00083             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[3] \&\& activate\_processing[3])\{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00084}00084                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+3);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00085}00085                 played\_keyboard\_note[3] = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00086}00086                 active\_keyboard\_notes++;}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00087}00087             \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00088}00088             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!played\_keyboard\_note[4] \&\& activate\_processing[4])\{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00089}00089                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(signals, RECT, \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[i], Display-\/>Keyboard\_Octave, KEYBOARD\_VOICE\_ID+4);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00090}00090                 played\_keyboard\_note[4] = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00091}00091                 active\_keyboard\_notes++;}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00092}00092             \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00093}00093         \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00094}00094     \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00096}00096     \textcolor{comment}{// Delete signal}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00097}00097     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)\{}
 \DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00098}00098 }
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00099}00099             active\_keyboard\_notes-\/-\/;}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00100}00100         \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00101}00101     \}}
-\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00102}00102 \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00099}00099         \textcolor{keywordflow}{if} (adsr\_keyboard[i].adsr\_done)\{}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00100}00100             \textcolor{keywordtype}{int} index = \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(KEYBOARD\_VOICE\_ID+i);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00102}00102             \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(signals,index);}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00103}00103             adsr\_keyboard[i].adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00105}00105             played\_keyboard\_note[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00107}00107             activate\_processing[i] = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00109}00109             active\_keyboard\_notes-\/-\/;}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00110}00110         \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00111}00111     \}}
+\DoxyCodeLine{\Hypertarget{keyboard_8c_source_l00112}00112 \}}
 
 \end{DoxyCode}

@@ -289,20 +289,20 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="keyboard_8c_source.html#l00010">10</a> of file <a class="el" href="keyboard_8c_source.html">keyboard.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   10</span>                                                                                  {</div>
-<div class="line"><span class="lineno">   11</span>    KEYBOARD_ADC = ADC_Handler;</div>
-<div class="line"><span class="lineno">   12</span>    <a class="code hl_variable" href="keyboard_8h.html#a7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a> = TIM_Handler;</div>
-<div class="line"><span class="lineno">   13</span>    <a class="code hl_function" href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(TIM_Handler, KEYBOARD_SR);</div>
-<div class="line"><span class="lineno">   14</span>    keyboard_pressed_counter = 0;</div>
-<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++) {</div>
-<div class="line"><span class="lineno">   16</span>        played_keyboard_note[i] = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   17</span>        activate_processing[i] = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   18</span>    }</div>
-<div class="line"><span class="lineno">   19</span>    active_keyboard_notes = 0;</div>
-<div class="line"><span class="lineno">   20</span>}</div>
+<p class="definition">Definition at line <a class="el" href="keyboard_8c_source.html#l00020">20</a> of file <a class="el" href="keyboard_8c_source.html">keyboard.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>                                                                                  {</div>
+<div class="line"><span class="lineno">   21</span>    KEYBOARD_ADC = ADC_Handler;</div>
+<div class="line"><span class="lineno">   22</span>    <a class="code hl_variable" href="keyboard_8h.html#a7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a> = TIM_Handler;</div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_function" href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(TIM_Handler, KEYBOARD_SR);</div>
+<div class="line"><span class="lineno">   24</span>    keyboard_pressed_counter = 0;</div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++) {</div>
+<div class="line"><span class="lineno">   26</span>        played_keyboard_note[i] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   27</span>        activate_processing[i] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   28</span>    }</div>
+<div class="line"><span class="lineno">   29</span>    active_keyboard_notes = 0;</div>
+<div class="line"><span class="lineno">   30</span>}</div>
 <div class="ttc" id="akeyboard_8h_html_a7786cb1b74bd2aa2a9b97f1372a3e308"><div class="ttname"><a href="keyboard_8h.html#a7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a></div><div class="ttdeci">TIM_HandleTypeDef * KEYBOARD_TIM</div><div class="ttdef"><b>Definition:</b> <a href="keyboard_8h_source.html#l00057">keyboard.h:57</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00080">signal_synthesis.c:80</a></div></div>
+<div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -325,15 +325,15 @@ Variables</h2></td></tr>
 <p>starts the keyboard reading process </p>
 <dl class="section note"><dt>Note</dt><dd>the ADC is controlled by the Timer keyboard_TIM, so the ADC-Read Command is inside the Timer Interrupt </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="keyboard_8c_source.html#l00026">26</a> of file <a class="el" href="keyboard_8c_source.html">keyboard.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   26</span>                                            {</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>    HAL_StatusTypeDef retval;</div>
-<div class="line"><span class="lineno">   29</span>    printf(<span class="stringliteral">&quot;start keyboard read....\r\n&quot;</span>);</div>
-<div class="line"><span class="lineno">   30</span>    retval = HAL_TIM_Base_Start_IT(<a class="code hl_variable" href="keyboard_8h.html#a7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a>);</div>
-<div class="line"><span class="lineno">   31</span>    HAL_ADC_Start_DMA(KEYBOARD_ADC, &amp;Display.ADC1input, 1);</div>
-<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">return</span> retval;</div>
-<div class="line"><span class="lineno">   33</span>}</div>
+<p class="definition">Definition at line <a class="el" href="keyboard_8c_source.html#l00036">36</a> of file <a class="el" href="keyboard_8c_source.html">keyboard.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>                                            {</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>    HAL_StatusTypeDef retval;</div>
+<div class="line"><span class="lineno">   39</span>    printf(<span class="stringliteral">&quot;start keyboard read....\r\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   40</span>    retval = HAL_TIM_Base_Start_IT(<a class="code hl_variable" href="keyboard_8h.html#a7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a>);</div>
+<div class="line"><span class="lineno">   41</span>    HAL_ADC_Start_DMA(KEYBOARD_ADC, &amp;Display.ADC1input, 1);</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">return</span> retval;</div>
+<div class="line"><span class="lineno">   43</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -356,11 +356,11 @@ Variables</h2></td></tr>
 <p>Stops teh Keyboard readout by stoping the timer-interrupt. </p>
 <dl class="section return"><dt>Returns</dt><dd>HAL_StatusTypeDef </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="keyboard_8c_source.html#l00040">40</a> of file <a class="el" href="keyboard_8c_source.html">keyboard.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   40</span>                                       {</div>
-<div class="line"><span class="lineno">   41</span>    printf(<span class="stringliteral">&quot;end keyboard read....\r\n&quot;</span>);</div>
-<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">return</span> HAL_TIM_Base_Stop_IT(<a class="code hl_variable" href="keyboard_8h.html#a7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a>);</div>
-<div class="line"><span class="lineno">   43</span>}</div>
+<p class="definition">Definition at line <a class="el" href="keyboard_8c_source.html#l00050">50</a> of file <a class="el" href="keyboard_8c_source.html">keyboard.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   50</span>                                       {</div>
+<div class="line"><span class="lineno">   51</span>    printf(<span class="stringliteral">&quot;end keyboard read....\r\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">return</span> HAL_TIM_Base_Stop_IT(<a class="code hl_variable" href="keyboard_8h.html#a7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a>);</div>
+<div class="line"><span class="lineno">   53</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -407,63 +407,63 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="keyboard_8c_source.html#l00051">51</a> of file <a class="el" href="keyboard_8c_source.html">keyboard.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   51</span>                                                                                                                {</div>
-<div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>    <span class="comment">// Generate Signal</span></div>
-<div class="line"><span class="lineno">   54</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;(NUMBER_OF_KEYBOARD_NOTES-1); i++) {</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">if</span>(adc_value &gt; keyboard_note_adcval[i] &amp;&amp; adc_value &lt; keyboard_note_adcval[i+1]) {</div>
-<div class="line"><span class="lineno">   57</span> </div>
-<div class="line"><span class="lineno">   58</span>            <span class="keywordflow">if</span>(!played_keyboard_note[0] &amp;&amp; activate_processing[0]){</div>
-<div class="line"><span class="lineno">   59</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID);</div>
-<div class="line"><span class="lineno">   60</span>                played_keyboard_note[0] = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   61</span>                active_keyboard_notes++;</div>
-<div class="line"><span class="lineno">   62</span>            }</div>
-<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[1] &amp;&amp; activate_processing[1]){</div>
-<div class="line"><span class="lineno">   64</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+1);</div>
-<div class="line"><span class="lineno">   65</span>                played_keyboard_note[1] = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   66</span>                active_keyboard_notes++;</div>
-<div class="line"><span class="lineno">   67</span>            }</div>
-<div class="line"><span class="lineno">   68</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[2] &amp;&amp; activate_processing[2]){</div>
-<div class="line"><span class="lineno">   69</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+2);</div>
-<div class="line"><span class="lineno">   70</span>                played_keyboard_note[2] = <span class="keyword">true</span>;</div>
+<p class="definition">Definition at line <a class="el" href="keyboard_8c_source.html#l00061">61</a> of file <a class="el" href="keyboard_8c_source.html">keyboard.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   61</span>                                                                                                                {</div>
+<div class="line"><span class="lineno">   62</span> </div>
+<div class="line"><span class="lineno">   63</span>    <span class="comment">// Generate Signal</span></div>
+<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;(NUMBER_OF_KEYBOARD_NOTES-1); i++) {</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">if</span>(adc_value &gt; keyboard_note_adcval[i] &amp;&amp; adc_value &lt; keyboard_note_adcval[i+1]) {</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>            <span class="keywordflow">if</span>(!played_keyboard_note[0] &amp;&amp; activate_processing[0]){</div>
+<div class="line"><span class="lineno">   69</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID);</div>
+<div class="line"><span class="lineno">   70</span>                played_keyboard_note[0] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   71</span>                active_keyboard_notes++;</div>
 <div class="line"><span class="lineno">   72</span>            }</div>
-<div class="line"><span class="lineno">   73</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[3] &amp;&amp; activate_processing[3]){</div>
-<div class="line"><span class="lineno">   74</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+3);</div>
-<div class="line"><span class="lineno">   75</span>                played_keyboard_note[3] = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   73</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[1] &amp;&amp; activate_processing[1]){</div>
+<div class="line"><span class="lineno">   74</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+1);</div>
+<div class="line"><span class="lineno">   75</span>                played_keyboard_note[1] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   76</span>                active_keyboard_notes++;</div>
 <div class="line"><span class="lineno">   77</span>            }</div>
-<div class="line"><span class="lineno">   78</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[4] &amp;&amp; activate_processing[4]){</div>
-<div class="line"><span class="lineno">   79</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+4);</div>
-<div class="line"><span class="lineno">   80</span>                played_keyboard_note[4] = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   78</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[2] &amp;&amp; activate_processing[2]){</div>
+<div class="line"><span class="lineno">   79</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+2);</div>
+<div class="line"><span class="lineno">   80</span>                played_keyboard_note[2] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   81</span>                active_keyboard_notes++;</div>
 <div class="line"><span class="lineno">   82</span>            }</div>
-<div class="line"><span class="lineno">   83</span>        }</div>
-<div class="line"><span class="lineno">   84</span>    }</div>
-<div class="line"><span class="lineno">   85</span> </div>
-<div class="line"><span class="lineno">   86</span>    <span class="comment">// Delete signal</span></div>
-<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++){</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">if</span> (adsr_keyboard[i].adsr_done){</div>
-<div class="line"><span class="lineno">   90</span>            <span class="keywordtype">int</span> index = <a class="code hl_function" href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(KEYBOARD_VOICE_ID+i);</div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>            <a class="code hl_function" href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(signals,index);</div>
-<div class="line"><span class="lineno">   93</span>            adsr_keyboard[i].adsr_done = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   94</span> </div>
-<div class="line"><span class="lineno">   95</span>            played_keyboard_note[i] = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>            activate_processing[i] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[3] &amp;&amp; activate_processing[3]){</div>
+<div class="line"><span class="lineno">   84</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+3);</div>
+<div class="line"><span class="lineno">   85</span>                played_keyboard_note[3] = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   86</span>                active_keyboard_notes++;</div>
+<div class="line"><span class="lineno">   87</span>            }</div>
+<div class="line"><span class="lineno">   88</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[4] &amp;&amp; activate_processing[4]){</div>
+<div class="line"><span class="lineno">   89</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+4);</div>
+<div class="line"><span class="lineno">   90</span>                played_keyboard_note[4] = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   91</span>                active_keyboard_notes++;</div>
+<div class="line"><span class="lineno">   92</span>            }</div>
+<div class="line"><span class="lineno">   93</span>        }</div>
+<div class="line"><span class="lineno">   94</span>    }</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>    <span class="comment">// Delete signal</span></div>
+<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++){</div>
 <div class="line"><span class="lineno">   98</span> </div>
-<div class="line"><span class="lineno">   99</span>            active_keyboard_notes--;</div>
-<div class="line"><span class="lineno">  100</span>        }</div>
-<div class="line"><span class="lineno">  101</span>    }</div>
-<div class="line"><span class="lineno">  102</span>}</div>
+<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">if</span> (adsr_keyboard[i].adsr_done){</div>
+<div class="line"><span class="lineno">  100</span>            <span class="keywordtype">int</span> index = <a class="code hl_function" href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(KEYBOARD_VOICE_ID+i);</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>            <a class="code hl_function" href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(signals,index);</div>
+<div class="line"><span class="lineno">  103</span>            adsr_keyboard[i].adsr_done = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  104</span> </div>
+<div class="line"><span class="lineno">  105</span>            played_keyboard_note[i] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  106</span> </div>
+<div class="line"><span class="lineno">  107</span>            activate_processing[i] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  108</span> </div>
+<div class="line"><span class="lineno">  109</span>            active_keyboard_notes--;</div>
+<div class="line"><span class="lineno">  110</span>        }</div>
+<div class="line"><span class="lineno">  111</span>    }</div>
+<div class="line"><span class="lineno">  112</span>}</div>
 <div class="ttc" id="amusic__notes_8h_html_aa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00034">music_notes.h:34</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a100668ad3cefb7abc0f65f866ea508ba"><div class="ttname"><a href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a></div><div class="ttdeci">int16_t IDtoIndex(int16_t id)</div><div class="ttdoc">converts an signal ID into its Index</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00817">signal_synthesis.c:817</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00751">signal_synthesis.c:751</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_aff4b96bd9a6fb74a10215a54f141d06d"><div class="ttname"><a href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a></div><div class="ttdeci">void DeleteSignal(struct signal_t *signals, int16_t signal_index)</div><div class="ttdoc">deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal t...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00794">signal_synthesis.c:794</a></div></div>
+<div class="ttc" id="asignal__synthesis_8h_html_a100668ad3cefb7abc0f65f866ea508ba"><div class="ttname"><a href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a></div><div class="ttdeci">int16_t IDtoIndex(int16_t id)</div><div class="ttdoc">converts an signal ID into its Index</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00830">signal_synthesis.c:830</a></div></div>
+<div class="ttc" id="asignal__synthesis_8h_html_a15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00764">signal_synthesis.c:764</a></div></div>
+<div class="ttc" id="asignal__synthesis_8h_html_aff4b96bd9a6fb74a10215a54f141d06d"><div class="ttname"><a href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a></div><div class="ttdeci">void DeleteSignal(struct signal_t *signals, int16_t signal_index)</div><div class="ttdoc">deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal t...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00807">signal_synthesis.c:807</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -104,18 +104,18 @@ ADSR\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00009}{9}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00019}{19}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00009                             \{}
-\DoxyCodeLine{00010 }
-\DoxyCodeLine{00011     SetupADSR(\&envelope);}
-\DoxyCodeLine{00012     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
-\DoxyCodeLine{00013         SetupADSR(\&adsr\_keyboard[i]);}
-\DoxyCodeLine{00014 }
-\DoxyCodeLine{00015     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{00016 \}}
+\DoxyCodeLine{00019                             \{}
+\DoxyCodeLine{00020 }
+\DoxyCodeLine{00021     SetupADSR(\&envelope);}
+\DoxyCodeLine{00022     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
+\DoxyCodeLine{00023         SetupADSR(\&adsr\_keyboard[i]);}
+\DoxyCodeLine{00024 }
+\DoxyCodeLine{00025     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00026 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{adsr_8h_ab059a1f2cde16bed41f0f4e0f113a5d9}\label{adsr_8h_ab059a1f2cde16bed41f0f4e0f113a5d9}} 
@@ -134,42 +134,42 @@ ADSR\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00044}{44}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00054}{54}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00044                                               \{}
-\DoxyCodeLine{00045 }
-\DoxyCodeLine{00046     envelope-\/>adsr\_counter = 0;}
-\DoxyCodeLine{00047     envelope-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
-\DoxyCodeLine{00048     envelope-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
-\DoxyCodeLine{00049     envelope-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{00050     envelope-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
-\DoxyCodeLine{00051     envelope-\/>adsr\_sustain\_amplitude = 0.5;}
-\DoxyCodeLine{00052     envelope-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{00053 }
-\DoxyCodeLine{00054     envelope-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00054                                               \{}
 \DoxyCodeLine{00055 }
-\DoxyCodeLine{00056     Display.ADSR\_Attacktime = envelope-\/>adsr\_attack\_time/LUT\_SR;}
-\DoxyCodeLine{00057     Display.ADSR\_Decaytime = envelope-\/>adsr\_decay\_time/LUT\_SR;}
-\DoxyCodeLine{00058     Display.ADSR\_Sustaintime = envelope-\/>adsr\_sustain\_time/LUT\_SR;}
-\DoxyCodeLine{00059     Display.ADSR\_Sustainlevel = envelope-\/>adsr\_sustain\_amplitude/LUT\_SR;}
-\DoxyCodeLine{00060     Display.ADSR\_Releasetime = envelope-\/>adsr\_release\_time/LUT\_SR;}
-\DoxyCodeLine{00061 }
-\DoxyCodeLine{00062     Display.ADSR\_Sources[0] = POTI;}
-\DoxyCodeLine{00063     Display.ADSR\_Sources[1] = POTI;}
-\DoxyCodeLine{00064     Display.ADSR\_Sources[2] = POTI;}
-\DoxyCodeLine{00065     Display.ADSR\_Sources[3] = POTI;}
-\DoxyCodeLine{00066     Display.ADSR\_Sources[4] = POTI;}
-\DoxyCodeLine{00067 }
-\DoxyCodeLine{00068     strcpy(Display.value\_str\_adsr\_settings[0], Display.source\_names[Display.ADSR\_Sources[0]]);}
-\DoxyCodeLine{00069     strcpy(Display.value\_str\_adsr\_settings[1], Display.source\_names[Display.ADSR\_Sources[1]]);}
-\DoxyCodeLine{00070     strcpy(Display.value\_str\_adsr\_settings[2], Display.source\_names[Display.ADSR\_Sources[2]]);}
-\DoxyCodeLine{00071     strcpy(Display.value\_str\_adsr\_settings[3], Display.source\_names[Display.ADSR\_Sources[3]]);}
-\DoxyCodeLine{00072     strcpy(Display.value\_str\_adsr\_settings[4], Display.source\_names[Display.ADSR\_Sources[4]]);}
-\DoxyCodeLine{00073 }
-\DoxyCodeLine{00074     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{00075 \}}
+\DoxyCodeLine{00056     envelope-\/>adsr\_counter = 0;}
+\DoxyCodeLine{00057     envelope-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{00058     envelope-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
+\DoxyCodeLine{00059     envelope-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00060     envelope-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
+\DoxyCodeLine{00061     envelope-\/>adsr\_sustain\_amplitude = 0.5;}
+\DoxyCodeLine{00062     envelope-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00063 }
+\DoxyCodeLine{00064     envelope-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00065 }
+\DoxyCodeLine{00066     Display.ADSR\_Attacktime = envelope-\/>adsr\_attack\_time/LUT\_SR;}
+\DoxyCodeLine{00067     Display.ADSR\_Decaytime = envelope-\/>adsr\_decay\_time/LUT\_SR;}
+\DoxyCodeLine{00068     Display.ADSR\_Sustaintime = envelope-\/>adsr\_sustain\_time/LUT\_SR;}
+\DoxyCodeLine{00069     Display.ADSR\_Sustainlevel = envelope-\/>adsr\_sustain\_amplitude/LUT\_SR;}
+\DoxyCodeLine{00070     Display.ADSR\_Releasetime = envelope-\/>adsr\_release\_time/LUT\_SR;}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072     Display.ADSR\_Sources[0] = POTI;}
+\DoxyCodeLine{00073     Display.ADSR\_Sources[1] = POTI;}
+\DoxyCodeLine{00074     Display.ADSR\_Sources[2] = POTI;}
+\DoxyCodeLine{00075     Display.ADSR\_Sources[3] = POTI;}
+\DoxyCodeLine{00076     Display.ADSR\_Sources[4] = POTI;}
+\DoxyCodeLine{00077 }
+\DoxyCodeLine{00078     strcpy(Display.value\_str\_adsr\_settings[0], Display.source\_names[Display.ADSR\_Sources[0]]);}
+\DoxyCodeLine{00079     strcpy(Display.value\_str\_adsr\_settings[1], Display.source\_names[Display.ADSR\_Sources[1]]);}
+\DoxyCodeLine{00080     strcpy(Display.value\_str\_adsr\_settings[2], Display.source\_names[Display.ADSR\_Sources[2]]);}
+\DoxyCodeLine{00081     strcpy(Display.value\_str\_adsr\_settings[3], Display.source\_names[Display.ADSR\_Sources[3]]);}
+\DoxyCodeLine{00082     strcpy(Display.value\_str\_adsr\_settings[4], Display.source\_names[Display.ADSR\_Sources[4]]);}
+\DoxyCodeLine{00083 }
+\DoxyCodeLine{00084     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00085 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}\label{adsr_8h_a02c74c2f9a8094da74c4d9b905d87550}} 
@@ -189,48 +189,48 @@ Definition at line \mbox{\hyperlink{adsr_8c_source_l00044}{44}} of file \mbox{\h
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00084}{84}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00094}{94}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00084                                                                                             \{}
-\DoxyCodeLine{00085 }
-\DoxyCodeLine{00086     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{00087 }
-\DoxyCodeLine{00088         \textcolor{keywordtype}{float} calc = 0;}
-\DoxyCodeLine{00089 }
-\DoxyCodeLine{00090         envelope-\/>adsr\_duration\_time = envelope-\/>adsr\_attack\_time + envelope-\/>adsr\_decay\_time + envelope-\/>adsr\_sustain\_time + envelope-\/>adsr\_release\_time;}
-\DoxyCodeLine{00091 }
-\DoxyCodeLine{00092         \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < envelope-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration}}
-\DoxyCodeLine{00093 }
-\DoxyCodeLine{00094             \textcolor{comment}{// attack period}}
-\DoxyCodeLine{00095             \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < envelope-\/>adsr\_attack\_time)}
-\DoxyCodeLine{00096                 calc = envelope-\/>adsr\_counter * (envelope-\/>adsr\_max\_amp/envelope-\/>adsr\_attack\_time);}
+\DoxyCodeLine{00094                                                                                             \{}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
 \DoxyCodeLine{00097 }
-\DoxyCodeLine{00098             \textcolor{comment}{// decay period}}
-\DoxyCodeLine{00099             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < (envelope-\/>adsr\_attack\_time + envelope-\/>adsr\_decay\_time))}
-\DoxyCodeLine{00100                 calc = ((envelope-\/>adsr\_sustain\_amplitude -\/ envelope-\/>adsr\_max\_amp)/envelope-\/>adsr\_decay\_time) * (envelope-\/>adsr\_counter -\/ envelope-\/>adsr\_attack\_time) + envelope-\/>adsr\_max\_amp;}
+\DoxyCodeLine{00098         \textcolor{keywordtype}{float} calc = 0;}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100         envelope-\/>adsr\_duration\_time = envelope-\/>adsr\_attack\_time + envelope-\/>adsr\_decay\_time + envelope-\/>adsr\_sustain\_time + envelope-\/>adsr\_release\_time;}
 \DoxyCodeLine{00101 }
-\DoxyCodeLine{00102             \textcolor{comment}{// sustain period}}
-\DoxyCodeLine{00103             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time))}
-\DoxyCodeLine{00104                 calc = envelope-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{00105 }
-\DoxyCodeLine{00106             \textcolor{comment}{// release period}}
-\DoxyCodeLine{00107             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter >= (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time))}
-\DoxyCodeLine{00108                 calc = -\/(envelope-\/>adsr\_sustain\_amplitude/envelope-\/>adsr\_release\_time) * (envelope-\/>adsr\_counter -\/ (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time)) + envelope-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{00109 }
-\DoxyCodeLine{00110             *calculate\_value = *calculate\_value * calc;}
-\DoxyCodeLine{00111         \}}
-\DoxyCodeLine{00112 }
-\DoxyCodeLine{00113         \textcolor{comment}{// update adsr counter}}
-\DoxyCodeLine{00114         envelope-\/>adsr\_counter++;}
+\DoxyCodeLine{00102         \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < envelope-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration}}
+\DoxyCodeLine{00103 }
+\DoxyCodeLine{00104             \textcolor{comment}{// attack period}}
+\DoxyCodeLine{00105             \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < envelope-\/>adsr\_attack\_time)}
+\DoxyCodeLine{00106                 calc = envelope-\/>adsr\_counter * (envelope-\/>adsr\_max\_amp/envelope-\/>adsr\_attack\_time);}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108             \textcolor{comment}{// decay period}}
+\DoxyCodeLine{00109             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < (envelope-\/>adsr\_attack\_time + envelope-\/>adsr\_decay\_time))}
+\DoxyCodeLine{00110                 calc = ((envelope-\/>adsr\_sustain\_amplitude -\/ envelope-\/>adsr\_max\_amp)/envelope-\/>adsr\_decay\_time) * (envelope-\/>adsr\_counter -\/ envelope-\/>adsr\_attack\_time) + envelope-\/>adsr\_max\_amp;}
+\DoxyCodeLine{00111 }
+\DoxyCodeLine{00112             \textcolor{comment}{// sustain period}}
+\DoxyCodeLine{00113             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time))}
+\DoxyCodeLine{00114                 calc = envelope-\/>adsr\_sustain\_amplitude;}
 \DoxyCodeLine{00115 }
-\DoxyCodeLine{00116         \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter >= envelope-\/>adsr\_duration\_time) \{}
-\DoxyCodeLine{00117             envelope-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
-\DoxyCodeLine{00118             envelope-\/>adsr\_done = \textcolor{keyword}{true};}
-\DoxyCodeLine{00119         \}}
-\DoxyCodeLine{00120     \}}
-\DoxyCodeLine{00121 \}}
+\DoxyCodeLine{00116             \textcolor{comment}{// release period}}
+\DoxyCodeLine{00117             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter >= (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time))}
+\DoxyCodeLine{00118                 calc = -\/(envelope-\/>adsr\_sustain\_amplitude/envelope-\/>adsr\_release\_time) * (envelope-\/>adsr\_counter -\/ (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time)) + envelope-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00119 }
+\DoxyCodeLine{00120             *calculate\_value = *calculate\_value * calc;}
+\DoxyCodeLine{00121         \}}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123         \textcolor{comment}{// update adsr counter}}
+\DoxyCodeLine{00124         envelope-\/>adsr\_counter++;}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126         \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter >= envelope-\/>adsr\_duration\_time) \{}
+\DoxyCodeLine{00127             envelope-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
+\DoxyCodeLine{00128             envelope-\/>adsr\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{00129         \}}
+\DoxyCodeLine{00130     \}}
+\DoxyCodeLine{00131 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{adsr_8h_ac86ad75fa8ab7681c5ba8fdb66c4cbf0}\label{adsr_8h_ac86ad75fa8ab7681c5ba8fdb66c4cbf0}} 
@@ -250,49 +250,49 @@ TODO
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00129}{129}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00139}{139}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00129                                                                                                \{}
-\DoxyCodeLine{00130 }
-\DoxyCodeLine{00131     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{00132 }
-\DoxyCodeLine{00133         \textcolor{keywordtype}{float} calc;}
-\DoxyCodeLine{00134 }
-\DoxyCodeLine{00135         envelope-\/>adsr\_duration\_time = envelope-\/>adsr\_attack\_time + envelope-\/>adsr\_decay\_time + envelope-\/>adsr\_sustain\_time + envelope-\/>adsr\_release\_time;}
-\DoxyCodeLine{00136 }
-\DoxyCodeLine{00137         \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < envelope-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration time}}
-\DoxyCodeLine{00138 }
-\DoxyCodeLine{00139             \textcolor{comment}{// attack period}}
-\DoxyCodeLine{00140             \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < envelope-\/>adsr\_attack\_time)}
-\DoxyCodeLine{00141                 calc = envelope-\/>adsr\_counter * (envelope-\/>adsr\_max\_amp/envelope-\/>adsr\_attack\_time);}
+\DoxyCodeLine{00139                                                                                                \{}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
 \DoxyCodeLine{00142 }
-\DoxyCodeLine{00143             \textcolor{comment}{// decay period}}
-\DoxyCodeLine{00144             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < (envelope-\/>adsr\_attack\_time + envelope-\/>adsr\_decay\_time))}
-\DoxyCodeLine{00145                 calc = ((envelope-\/>adsr\_sustain\_amplitude -\/ envelope-\/>adsr\_max\_amp)/envelope-\/>adsr\_decay\_time) * (envelope-\/>adsr\_counter -\/ envelope-\/>adsr\_attack\_time) + envelope-\/>adsr\_max\_amp;}
+\DoxyCodeLine{00143         \textcolor{keywordtype}{float} calc;}
+\DoxyCodeLine{00144 }
+\DoxyCodeLine{00145         envelope-\/>adsr\_duration\_time = envelope-\/>adsr\_attack\_time + envelope-\/>adsr\_decay\_time + envelope-\/>adsr\_sustain\_time + envelope-\/>adsr\_release\_time;}
 \DoxyCodeLine{00146 }
-\DoxyCodeLine{00147             \textcolor{comment}{// sustain period}}
-\DoxyCodeLine{00148             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time))}
-\DoxyCodeLine{00149                 calc = envelope-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{00150 }
-\DoxyCodeLine{00151             \textcolor{comment}{// release period}}
-\DoxyCodeLine{00152             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter >= (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time))}
-\DoxyCodeLine{00153                 calc = -\/(envelope-\/>adsr\_sustain\_amplitude/envelope-\/>adsr\_release\_time) * (envelope-\/>adsr\_counter -\/ (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time)) + envelope-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{00154 }
-\DoxyCodeLine{00155             *calculate\_value = *calculate\_value * calc;}
-\DoxyCodeLine{00156         \}}
-\DoxyCodeLine{00157 }
-\DoxyCodeLine{00158         \textcolor{comment}{// update adsr counter}}
-\DoxyCodeLine{00159         envelope-\/>adsr\_counter++;}
+\DoxyCodeLine{00147         \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < envelope-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration time}}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149             \textcolor{comment}{// attack period}}
+\DoxyCodeLine{00150             \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < envelope-\/>adsr\_attack\_time)}
+\DoxyCodeLine{00151                 calc = envelope-\/>adsr\_counter * (envelope-\/>adsr\_max\_amp/envelope-\/>adsr\_attack\_time);}
+\DoxyCodeLine{00152 }
+\DoxyCodeLine{00153             \textcolor{comment}{// decay period}}
+\DoxyCodeLine{00154             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < (envelope-\/>adsr\_attack\_time + envelope-\/>adsr\_decay\_time))}
+\DoxyCodeLine{00155                 calc = ((envelope-\/>adsr\_sustain\_amplitude -\/ envelope-\/>adsr\_max\_amp)/envelope-\/>adsr\_decay\_time) * (envelope-\/>adsr\_counter -\/ envelope-\/>adsr\_attack\_time) + envelope-\/>adsr\_max\_amp;}
+\DoxyCodeLine{00156 }
+\DoxyCodeLine{00157             \textcolor{comment}{// sustain period}}
+\DoxyCodeLine{00158             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter < (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time))}
+\DoxyCodeLine{00159                 calc = envelope-\/>adsr\_sustain\_amplitude;}
 \DoxyCodeLine{00160 }
-\DoxyCodeLine{00161         \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter >= envelope-\/>adsr\_duration\_time) \{}
-\DoxyCodeLine{00162 }
-\DoxyCodeLine{00163             envelope-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
-\DoxyCodeLine{00164             envelope-\/>adsr\_done = \textcolor{keyword}{true};}
-\DoxyCodeLine{00165         \}}
-\DoxyCodeLine{00166     \}}
-\DoxyCodeLine{00167 \}}
+\DoxyCodeLine{00161             \textcolor{comment}{// release period}}
+\DoxyCodeLine{00162             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter >= (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time))}
+\DoxyCodeLine{00163                 calc = -\/(envelope-\/>adsr\_sustain\_amplitude/envelope-\/>adsr\_release\_time) * (envelope-\/>adsr\_counter -\/ (envelope-\/>adsr\_duration\_time -\/ envelope-\/>adsr\_release\_time)) + envelope-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00164 }
+\DoxyCodeLine{00165             *calculate\_value = *calculate\_value * calc;}
+\DoxyCodeLine{00166         \}}
+\DoxyCodeLine{00167 }
+\DoxyCodeLine{00168         \textcolor{comment}{// update adsr counter}}
+\DoxyCodeLine{00169         envelope-\/>adsr\_counter++;}
+\DoxyCodeLine{00170 }
+\DoxyCodeLine{00171         \textcolor{keywordflow}{if}(envelope-\/>adsr\_counter >= envelope-\/>adsr\_duration\_time) \{}
+\DoxyCodeLine{00172 }
+\DoxyCodeLine{00173             envelope-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
+\DoxyCodeLine{00174             envelope-\/>adsr\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{00175         \}}
+\DoxyCodeLine{00176     \}}
+\DoxyCodeLine{00177 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{adsr_8h_a5056dadba0e7d70cf66cb85475c599a1}\label{adsr_8h_a5056dadba0e7d70cf66cb85475c599a1}} 
@@ -303,29 +303,29 @@ Definition at line \mbox{\hyperlink{adsr_8c_source_l00129}{129}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00018}{18}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00028}{28}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00018                                              \{}
-\DoxyCodeLine{00019 }
-\DoxyCodeLine{00020     envelope-\/>adsr\_counter = 0;}
-\DoxyCodeLine{00021     envelope-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
-\DoxyCodeLine{00022     envelope-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
-\DoxyCodeLine{00023     envelope-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{00024     envelope-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
-\DoxyCodeLine{00025     envelope-\/>adsr\_sustain\_amplitude = 0.5;}
-\DoxyCodeLine{00026     envelope-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{00027 }
-\DoxyCodeLine{00028     envelope-\/>adsr\_maximum\_attack = 1.00;   \textcolor{comment}{// in seconds; maximum 4.0 seconds (-\/> 4*LUT\_SR), to display the value -\/> uint16\_t}}
-\DoxyCodeLine{00029     envelope-\/>adsr\_maximum\_decay = 1.00;}
-\DoxyCodeLine{00030     envelope-\/>adsr\_maximum\_sustaintime = 2.00;}
-\DoxyCodeLine{00031     envelope-\/>adsr\_maximum\_release = 1.00;}
-\DoxyCodeLine{00032 }
-\DoxyCodeLine{00033     envelope-\/>adsr\_done = \textcolor{keyword}{false};}
-\DoxyCodeLine{00034 }
-\DoxyCodeLine{00035     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{00036 \}}
+\DoxyCodeLine{00028                                              \{}
+\DoxyCodeLine{00029 }
+\DoxyCodeLine{00030     envelope-\/>adsr\_counter = 0;}
+\DoxyCodeLine{00031     envelope-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{00032     envelope-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
+\DoxyCodeLine{00033     envelope-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00034     envelope-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
+\DoxyCodeLine{00035     envelope-\/>adsr\_sustain\_amplitude = 0.5;}
+\DoxyCodeLine{00036     envelope-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038     envelope-\/>adsr\_maximum\_attack = 1.00;   \textcolor{comment}{// in seconds; maximum 4.0 seconds (-\/> 4*LUT\_SR), to display the value -\/> uint16\_t}}
+\DoxyCodeLine{00039     envelope-\/>adsr\_maximum\_decay = 1.00;}
+\DoxyCodeLine{00040     envelope-\/>adsr\_maximum\_sustaintime = 2.00;}
+\DoxyCodeLine{00041     envelope-\/>adsr\_maximum\_release = 1.00;}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043     envelope-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00044 }
+\DoxyCodeLine{00045     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00046 \}}
 
 \end{DoxyCode}
 

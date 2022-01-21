@@ -22,9 +22,9 @@ void \mbox{\hyperlink{main_8c_ad7e3dafc08886b97b9c9e23267645b9e}{HAL\+\_\+\+ADC\
 \item 
 void \mbox{\hyperlink{main_8c_af20a88180db1113be1e89266917d148b}{HAL\+\_\+\+ADC\+\_\+\+Conv\+Cplt\+Callback}} (ADC\+\_\+\+Handle\+Type\+Def $\ast$hadc)
 \item 
-void \mbox{\hyperlink{main_8c_ae8d236b1014fad4b2246f1ff553f8fd4}{HAL\+\_\+\+DACEx\+\_\+\+Conv\+Half\+Cplt\+Callback\+Ch2}} (DAC\+\_\+\+Handle\+Type\+Def $\ast$\mbox{\hyperlink{main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})
+void \mbox{\hyperlink{main_8c_ae8d236b1014fad4b2246f1ff553f8fd4}{HAL\+\_\+\+DACEx\+\_\+\+Conv\+Half\+Cplt\+Callback\+Ch2}} (DAC\+\_\+\+Handle\+Type\+Def $\ast$\mbox{\hyperlink{music__notes_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})
 \item 
-void \mbox{\hyperlink{main_8c_adf84b0c08bfe452d7861563fd4ee424d}{HAL\+\_\+\+DACEx\+\_\+\+Conv\+Cplt\+Callback\+Ch2}} (DAC\+\_\+\+Handle\+Type\+Def $\ast$\mbox{\hyperlink{main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})
+void \mbox{\hyperlink{main_8c_adf84b0c08bfe452d7861563fd4ee424d}{HAL\+\_\+\+DACEx\+\_\+\+Conv\+Cplt\+Callback\+Ch2}} (DAC\+\_\+\+Handle\+Type\+Def $\ast$\mbox{\hyperlink{music__notes_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})
 \item 
 int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
 \begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
@@ -943,7 +943,7 @@ Definition at line \mbox{\hyperlink{main_8c_source_l00169}{169}} of file \mbox{\
 \DoxyCodeLine{00215     \textcolor{comment}{/* USER CODE BEGIN 2 */}}
 \DoxyCodeLine{00216 }
 \DoxyCodeLine{00217 }
-\DoxyCodeLine{00218     printf(\textcolor{stringliteral}{"{}***Bodysynthesizer*** \(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00218     printf(\textcolor{stringliteral}{"{}***Bodysynthesizer Paul*** \(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{00219 }
 \DoxyCodeLine{00220     \textcolor{comment}{/* INIT FUNCTIONS begin*********************/}}
 \DoxyCodeLine{00221 }
@@ -979,7 +979,7 @@ Definition at line \mbox{\hyperlink{main_8c_source_l00169}{169}} of file \mbox{\
 \DoxyCodeLine{00251     \mbox{\hyperlink{SPI__Connection_8h_a87e70ebae58b5e371289ad557bb31b74}{spiC\_Init}}(\&hspi4, \&htim7);}
 \DoxyCodeLine{00252 }
 \DoxyCodeLine{00253     \textcolor{comment}{//EMG init}}
-\DoxyCodeLine{00254     \mbox{\hyperlink{emg_8h_aa7d92b6a1983e52614915f8e2cfb3140}{emg\_init}}(\&hadc3,\&htim1);}
+\DoxyCodeLine{00254     emg\_init(\&hadc3,\&htim1);}
 \DoxyCodeLine{00255     \mbox{\hyperlink{emg_8h_a98bf9a8015f7a7833276fbf6a72e255e}{ecg\_init}}();}
 \DoxyCodeLine{00256 }
 \DoxyCodeLine{00257     \textcolor{comment}{// WahWah Init}}

@@ -1,0 +1,888 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.1.21)  21 JAN 2022 12:53
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**distortion_8c_source.tex
+(./distortion_8c_source.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+! Undefined control sequence.
+l.1 \hypertarget
+                {distortion_8c_source}{}\doxysection{distortion.\+c}
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \hypertarget{d
+                  istortion_8c_source}{}\doxysection{distortion.\+c}
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1 \hypertarget{distortion_
+                            8c_source}{}\doxysection{distortion.\+c}
+? 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 1.
+! Extra }, or forgotten $.
+l.1 \hypertarget{distortion_8c_source}
+                                      {}\doxysection{distortion.\+c}
+? 
+! Undefined control sequence.
+l.1 ...rtarget{distortion_8c_source}{}\doxysection
+                                                  {distortion.\+c}
+? 
+! Undefined control sequence.
+l.1 ...tion_8c_source}{}\doxysection{distortion.\+
+                                                  c}
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8c}{Go to the documentation of this file.}
+l.3 ...8c}{Go to the documentation of this file.}}
+                                                  
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.3 ...8c}{Go to the documentation of this file.}}
+                                                  
+? 
+! Extra }, or forgotten $.
+<argument> \hyperlink {distortion_8c}
+                                     {Go to the documentation of this file.}
+l.3 ...8c}{Go to the documentation of this file.}}
+                                                  
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.3 ...8c}{Go to the documentation of this file.}}
+                                                  
+? 
+
+! LaTeX Error: Environment DoxyCode undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{DoxyCode}
+                    {0}
+? 
+! Undefined control sequence.
+l.5 \DoxyCodeLine
+                 {\Hypertarget{distortion_8c_source_l00001}00001 }
+? 
+! Undefined control sequence.
+l.5 \DoxyCodeLine{\Hypertarget
+                              {distortion_8c_source_l00001}00001 }
+? 
+! Undefined control sequence.
+l.6 \DoxyCodeLine
+                 {\Hypertarget{distortion_8c_source_l00011}00011 \textcolor{...
+
+? 
+! Undefined control sequence.
+l.6 \DoxyCodeLine{\Hypertarget
+                              {distortion_8c_source_l00011}00011 \textcolor{...
+
+? 
+! Undefined control sequence.
+l.6 ...istortion_8c_source_l00011}00011 \textcolor
+                                                  {preprocessor}{\#include "...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8h}{distortion.h}
+l.6 ...ox{\hyperlink{distortion_8h}{distortion.h}}
+                                                  "{}}}
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.6 ...ox{\hyperlink{distortion_8h}{distortion.h}}
+                                                  "{}}}
+? 
+! Extra }, or forgotten $.
+<argument> \hyperlink {distortion_8h}
+                                     {distortion.h}
+l.6 ...ox{\hyperlink{distortion_8h}{distortion.h}}
+                                                  "{}}}
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.6 ...ox{\hyperlink{distortion_8h}{distortion.h}}
+                                                  "{}}}
+? 
+! Extra }, or forgotten $.
+l.6 ...hyperlink{distortion_8h}{distortion.h}}"{}}
+                                                  }
+? 
+! Extra }, or forgotten $.
+l.6 ...yperlink{distortion_8h}{distortion.h}}"{}}}
+                                                  
+? 
+! Undefined control sequence.
+l.7 \DoxyCodeLine
+                 {\Hypertarget{distortion_8c_source_l00012}00012 \textcolor{...
+
+? 
+! Undefined control sequence.
+l.7 \DoxyCodeLine{\Hypertarget
+                              {distortion_8c_source_l00012}00012 \textcolor{...
+
+? 
+! Undefined control sequence.
+l.7 ...istortion_8c_source_l00012}00012 \textcolor
+                                                  {preprocessor}{\#include "...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {atanLUT_8h}{atanLUT.h}
+l.7 ..."{}\mbox{\hyperlink{atanLUT_8h}{atanLUT.h}}
+                                                  "{}}}
+? 
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no U in font nullfont!
+Missing character: There is no T in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.7 ..."{}\mbox{\hyperlink{atanLUT_8h}{atanLUT.h}}
+                                                  "{}}}
+? 
+! Extra }, or forgotten $.
+<argument> \hyperlink {atanLUT_8h}
+                                  {atanLUT.h}
+l.7 ..."{}\mbox{\hyperlink{atanLUT_8h}{atanLUT.h}}
+                                                  "{}}}
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.7 ..."{}\mbox{\hyperlink{atanLUT_8h}{atanLUT.h}}
+                                                  "{}}}
+? 
+! Extra }, or forgotten $.
+l.7 ...mbox{\hyperlink{atanLUT_8h}{atanLUT.h}}"{}}
+                                                  }
+? 
+! Extra }, or forgotten $.
+l.7 ...box{\hyperlink{atanLUT_8h}{atanLUT.h}}"{}}}
+                                                  
+? 
+! Undefined control sequence.
+l.8 \DoxyCodeLine
+                 {\Hypertarget{distortion_8c_source_l00013}00013 }
+? 
+! Undefined control sequence.
+l.8 \DoxyCodeLine{\Hypertarget
+                              {distortion_8c_source_l00013}00013 }
+? 
+! Undefined control sequence.
+l.9 \DoxyCodeLine
+                 {\Hypertarget{distortion_8c_source_l00014}00014 }
+? 
+! Undefined control sequence.
+l.9 \DoxyCodeLine{\Hypertarget
+                              {distortion_8c_source_l00014}00014 }
+? 
+! Undefined control sequence.
+l.10 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00020}\mbox{\hyperlink...
+
+? 
+! Undefined control sequence.
+l.10 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00020}\mbox{\hyperlink...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8h_a54ad82c4a3ecbc0c2784ae81c92eb22e}{00020}
+l.10 ...a54ad82c4a3ecbc0c2784ae81c92eb22e}{00020}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.10 ...a54ad82c4a3ecbc0c2784ae81c92eb22e}{00020}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Extra }, or forgotten $.
+<argument> ...h_a54ad82c4a3ecbc0c2784ae81c92eb22e}
+                                                  {00020}
+l.10 ...a54ad82c4a3ecbc0c2784ae81c92eb22e}{00020}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Interruption.
+<to be read again> 
+                   {
+l.10 ...a54ad82c4a3ecbc0c2784ae81c92eb22e}{00020}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.10 ...a54ad82c4a3ecbc0c2784ae81c92eb22e}{00020}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8c_a54ad82c4a3ecbc0c2784ae81c92eb22e}{Dist...
+l.10 ...ecbc0c2784ae81c92eb22e}{Distortion\_Init}}
+                                                  (\textcolor{keywordtype}{v...
+
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.10 ...ecbc0c2784ae81c92eb22e}{Distortion\_Init}}
+                                                  (\textcolor{keywordtype}{v...
+
+? 
+! Extra }, or forgotten $.
+<argument> ...c_a54ad82c4a3ecbc0c2784ae81c92eb22e}
+                                                  {Distortion\_Init}
+l.10 ...ecbc0c2784ae81c92eb22e}{Distortion\_Init}}
+                                                  (\textcolor{keywordtype}{v...
+
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.10 ...ecbc0c2784ae81c92eb22e}{Distortion\_Init}}
+                                                  (\textcolor{keywordtype}{v...
+
+? 
+! Undefined control sequence.
+l.10 ...e81c92eb22e}{Distortion\_Init}}(\textcolor
+                                                  {keywordtype}{void}) \{}
+? 
+! Extra }, or forgotten $.
+l.10 ..._Init}}(\textcolor{keywordtype}{void}) \{}
+                                                  
+? 
+! Undefined control sequence.
+l.11 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00021}00021 }
+? 
+! Undefined control sequence.
+l.11 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00021}00021 }
+? 
+! Undefined control sequence.
+l.12 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00022}00022     \mbox{...
+
+? 
+! Undefined control sequence.
+l.12 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00022}00022     \mbox{...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8c_a2a6725ec967773f5ddfbc3fc21d67049}{Setu...
+l.12 ...3fc21d67049}{SetupHardClippingDistortion}}
+                                                  (\&HardClipping);}
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.12 ...3fc21d67049}{SetupHardClippingDistortion}}
+                                                  (\&HardClipping);}
+? 
+! Extra }, or forgotten $.
+<argument> ...c_a2a6725ec967773f5ddfbc3fc21d67049}
+                                                  {SetupHardClippingDistortion}
+l.12 ...3fc21d67049}{SetupHardClippingDistortion}}
+                                                  (\&HardClipping);}
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.12 ...3fc21d67049}{SetupHardClippingDistortion}}
+                                                  (\&HardClipping);}
+? 
+! Extra }, or forgotten $.
+l.12 ...HardClippingDistortion}}(\&HardClipping);}
+                                                  
+? 
+! Undefined control sequence.
+l.13 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00023}00023     \mbox{...
+
+? 
+! Undefined control sequence.
+l.13 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00023}00023     \mbox{...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8c_a8a375c625074dc4492066cda7e9e175b}{Setu...
+l.13 ...cda7e9e175b}{SetupSoftClippingDistortion}}
+                                                  (\&SoftClipping);}
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.13 ...cda7e9e175b}{SetupSoftClippingDistortion}}
+                                                  (\&SoftClipping);}
+? 
+! Extra }, or forgotten $.
+<argument> ...c_a8a375c625074dc4492066cda7e9e175b}
+                                                  {SetupSoftClippingDistortion}
+l.13 ...cda7e9e175b}{SetupSoftClippingDistortion}}
+                                                  (\&SoftClipping);}
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.13 ...cda7e9e175b}{SetupSoftClippingDistortion}}
+                                                  (\&SoftClipping);}
+? 
+! Extra }, or forgotten $.
+l.13 ...SoftClippingDistortion}}(\&SoftClipping);}
+                                                  
+? 
+! Undefined control sequence.
+l.14 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00024}00024 }
+? 
+! Undefined control sequence.
+l.14 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00024}00024 }
+? 
+! Undefined control sequence.
+l.15 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00025}00025     \textc...
+
+? 
+! Undefined control sequence.
+l.15 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00025}00025     \textc...
+
+? 
+! Undefined control sequence.
+l.15 ...tion_8c_source_l00025}00025     \textcolor
+                                                  {keywordflow}{return} DIST...
+
+? 
+! Undefined control sequence.
+l.16 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00026}00026 \}}
+? 
+! Undefined control sequence.
+l.16 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00026}00026 \}}
+? 
+! Undefined control sequence.
+l.17 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00027}00027 }
+? 
+! Undefined control sequence.
+l.17 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00027}00027 }
+? 
+! Undefined control sequence.
+l.18 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00033}\mbox{\hyperlink...
+
+? 
+! Undefined control sequence.
+l.18 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00033}\mbox{\hyperlink...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8h_ac69b82a1179f795d9205a246de59a37a}{00033}
+l.18 ...ac69b82a1179f795d9205a246de59a37a}{00033}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.18 ...ac69b82a1179f795d9205a246de59a37a}{00033}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Extra }, or forgotten $.
+<argument> ...h_ac69b82a1179f795d9205a246de59a37a}
+                                                  {00033}
+l.18 ...ac69b82a1179f795d9205a246de59a37a}{00033}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.18 ...ac69b82a1179f795d9205a246de59a37a}{00033}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8c_ac69b82a1179f795d9205a246de59a37a}{Dist...
+l.18 ...f795d9205a246de59a37a}{Distortion\_Reset}}
+                                                  (\textcolor{keywordtype}{v...
+
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.18 ...f795d9205a246de59a37a}{Distortion\_Reset}}
+                                                  (\textcolor{keywordtype}{v...
+
+? 
+! Extra }, or forgotten $.
+<argument> ...c_ac69b82a1179f795d9205a246de59a37a}
+                                                  {Distortion\_Reset}
+l.18 ...f795d9205a246de59a37a}{Distortion\_Reset}}
+                                                  (\textcolor{keywordtype}{v...
+
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.18 ...f795d9205a246de59a37a}{Distortion\_Reset}}
+                                                  (\textcolor{keywordtype}{v...
+
+? 
+! Undefined control sequence.
+l.18 ...46de59a37a}{Distortion\_Reset}}(\textcolor
+                                                  {keywordtype}{void}) \{}
+? 
+! Extra }, or forgotten $.
+l.18 ...Reset}}(\textcolor{keywordtype}{void}) \{}
+                                                  
+? 
+! Undefined control sequence.
+l.19 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00034}00034 }
+? 
+! Undefined control sequence.
+l.19 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00034}00034 }
+? 
+! Undefined control sequence.
+l.20 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00035}00035     Displa...
+
+? 
+! Undefined control sequence.
+l.20 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00035}00035     Displa...
+
+? 
+! Undefined control sequence.
+l.20 ...    Display.Distortion\_ONOFF = \textcolor
+                                                  {keyword}{false};}
+? 
+! Undefined control sequence.
+l.21 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00036}00036 }
+? 
+! Undefined control sequence.
+l.21 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00036}00036 }
+? 
+! Undefined control sequence.
+l.22 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00037}00037     Displa...
+
+? 
+! Undefined control sequence.
+l.22 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00037}00037     Displa...
+
+? 
+! Undefined control sequence.
+l.23 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00038}00038 }
+? 
+! Undefined control sequence.
+l.23 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00038}00038 }
+? 
+! Undefined control sequence.
+l.24 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00039}00039     Displa...
+
+? 
+! Undefined control sequence.
+l.24 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00039}00039     Displa...
+
+? 
+! Undefined control sequence.
+l.25 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00040}00040 }
+? 
+! Undefined control sequence.
+l.25 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00040}00040 }
+? 
+! Undefined control sequence.
+l.26 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00041}00041     Displa...
+
+? 
+! Undefined control sequence.
+l.26 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00041}00041     Displa...
+
+? 
+! Undefined control sequence.
+l.26 ...isplay.Distortion\_Type = 0;    \textcolor
+                                                  {comment}{// Soft Clipping}}
+? 
+! Undefined control sequence.
+l.27 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00042}00042 }
+? 
+! Undefined control sequence.
+l.27 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00042}00042 }
+? 
+! Undefined control sequence.
+l.28 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00043}00043     strcpy...
+
+? 
+! Undefined control sequence.
+l.28 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00043}00043     strcpy...
+
+? 
+! Undefined control sequence.
+l.28 ...play.value\_str\_distortion[1], \textcolor
+                                                  {stringliteral}{"{}Soft"{}...
+
+? 
+! Undefined control sequence.
+l.29 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00044}00044 }
+? 
+! Undefined control sequence.
+l.29 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00044}00044 }
+? 
+! Undefined control sequence.
+l.30 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00045}00045     strcpy...
+
+? 
+! Undefined control sequence.
+l.30 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00045}00045     strcpy...
+
+? 
+! Undefined control sequence.
+l.30 ...play.value\_str\_distortion[0], \textcolor
+                                                  {stringliteral}{"{}OFF"{}});}
+
+? 
+! Undefined control sequence.
+l.31 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00046}00046 }
+? 
+! Undefined control sequence.
+l.31 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00046}00046 }
+? 
+! Undefined control sequence.
+l.32 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00047}00047     \textc...
+
+? 
+! Undefined control sequence.
+l.32 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00047}00047     \textc...
+
+? 
+! Undefined control sequence.
+l.32 ...tion_8c_source_l00047}00047     \textcolor
+                                                  {keywordflow}{return} DIST...
+
+? 
+! Undefined control sequence.
+l.33 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00048}00048 \}}
+? 
+! Undefined control sequence.
+l.33 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00048}00048 \}}
+? 
+! Undefined control sequence.
+l.34 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00055}\mbox{\hyperlink...
+
+? 
+! Undefined control sequence.
+l.34 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00055}\mbox{\hyperlink...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8h_a2a6725ec967773f5ddfbc3fc21d67049}{00055}
+l.34 ...a2a6725ec967773f5ddfbc3fc21d67049}{00055}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.34 ...a2a6725ec967773f5ddfbc3fc21d67049}{00055}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Extra }, or forgotten $.
+<argument> ...h_a2a6725ec967773f5ddfbc3fc21d67049}
+                                                  {00055}
+l.34 ...a2a6725ec967773f5ddfbc3fc21d67049}{00055}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.34 ...a2a6725ec967773f5ddfbc3fc21d67049}{00055}}
+                                                   Distortion\_Status \mbox{...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {distortion_8c_a2a6725ec967773f5ddfbc3fc21d67049}{Setu...
+l.34 ...3fc21d67049}{SetupHardClippingDistortion}}
+                                                  (\textcolor{keyword}{struc...
+
+? 
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.34 ...3fc21d67049}{SetupHardClippingDistortion}}
+                                                  (\textcolor{keyword}{struc...
+
+? 
+! Extra }, or forgotten $.
+<argument> ...c_a2a6725ec967773f5ddfbc3fc21d67049}
+                                                  {SetupHardClippingDistortion}
+l.34 ...3fc21d67049}{SetupHardClippingDistortion}}
+                                                  (\textcolor{keyword}{struc...
+
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.34 ...3fc21d67049}{SetupHardClippingDistortion}}
+                                                  (\textcolor{keyword}{struc...
+
+? 
+! Undefined control sequence.
+l.34 ...}{SetupHardClippingDistortion}}(\textcolor
+                                                  {keyword}{struct} \mbox{\h...
+
+? 
+! Undefined control sequence.
+<argument> \hyperlink 
+                      {structeffects__distortion}{effects\_distortion}
+l.34 ...effects__distortion}{effects\_distortion}}
+                                                  * HardClipping) \{}
+? 
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.34 ...effects__distortion}{effects\_distortion}}
+                                                  * HardClipping) \{}
+? 
+! Missing { inserted.
+<to be read again> 
+                   _
+l.34 ...effects__distortion}{effects\_distortion}}
+                                                  * HardClipping) \{}
+? 
+! Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.34 ...effects__distortion}{effects\_distortion}}
+                                                  * HardClipping) \{}
+? 
+! Extra }, or forgotten $.
+l.34 ...}{effects\_distortion}}* HardClipping) \{}
+                                                  
+? 
+! Undefined control sequence.
+l.35 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00056}00056 }
+? 
+! Undefined control sequence.
+l.35 \DoxyCodeLine{\Hypertarget
+                               {distortion_8c_source_l00056}00056 }
+? 
+! Undefined control sequence.
+l.36 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00057}00057     HardCl...
+
+? 
+! Emergency stop.
+l.36 \DoxyCodeLine
+                  {\Hypertarget{distortion_8c_source_l00057}00057     HardCl...
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 20 strings out of 483183
+ 493 string characters out of 5966292
+ 239602 words of memory out of 5000000
+ 15137 multiletter control sequences out of 15000+600000
+ 532338 words of font info for 24 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 18i,38n,15p,399b,193s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

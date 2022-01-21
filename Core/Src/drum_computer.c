@@ -1,3 +1,13 @@
+/**
+ * @file drum_computer.c
+ * @author Max Lehmer & Marc Bielen
+ * @brief Drumcomputer functions
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "drum_computer.h"
 
 /** TODO

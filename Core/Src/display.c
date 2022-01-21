@@ -1,3 +1,13 @@
+/**
+ * @file display.c
+ * @author Marc Bielen
+ * @brief contains all Display related functions and variables
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "display.h"
 #include <stdio.h>
 #include <stdlib.h>

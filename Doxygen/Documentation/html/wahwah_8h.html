@@ -179,35 +179,35 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>WahWah_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="wahwah_8c_source.html#l00105">105</a> of file <a class="el" href="wahwah_8c_source.html">wahwah.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  105</span>                                                                     {</div>
-<div class="line"><span class="lineno">  106</span> </div>
-<div class="line"><span class="lineno">  107</span>    <span class="comment">// mid_freq and range have to be set in the display function</span></div>
-<div class="line"><span class="lineno">  108</span> </div>
-<div class="line"><span class="lineno">  109</span>    <span class="comment">// FETCH: actual LFO value</span></div>
-<div class="line"><span class="lineno">  110</span>    <a class="code hl_function" href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a>(WahWah-&gt;lfo, WAHWAH_LFO);</div>
-<div class="line"><span class="lineno">  111</span> </div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span>(WahWah-&gt;mid_freq &lt; 50)</div>
-<div class="line"><span class="lineno">  113</span>        WahWah-&gt;mid_freq = 50;  <span class="comment">// 50 Hz Offset;</span></div>
-<div class="line"><span class="lineno">  114</span> </div>
-<div class="line"><span class="lineno">  115</span>    WahWah-&gt;mid_freq_mod = WahWah-&gt;mid_freq + (WahWah-&gt;range / 2) * WahWah-&gt;lfo-&gt;lfo_data;</div>
+<p class="definition">Definition at line <a class="el" href="wahwah_8c_source.html#l00115">115</a> of file <a class="el" href="wahwah_8c_source.html">wahwah.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  115</span>                                                                     {</div>
 <div class="line"><span class="lineno">  116</span> </div>
-<div class="line"><span class="lineno">  117</span>    <span class="comment">// RESET: Filter after 100 samples (with SR = 24k Hz &gt;&gt; 240 times a second)</span></div>
-<div class="line"><span class="lineno">  118</span>    <span class="keywordflow">if</span>(WahWah-&gt;reinit_counter == 100){</div>
-<div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>        <a class="code hl_function" href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq_mod, WahWah-&gt;bandpass-&gt;Q);</div>
-<div class="line"><span class="lineno">  121</span>        WahWah-&gt;reinit_counter = 0;</div>
-<div class="line"><span class="lineno">  122</span>    }</div>
-<div class="line"><span class="lineno">  123</span> </div>
-<div class="line"><span class="lineno">  124</span>    WahWah-&gt;reinit_counter++;</div>
-<div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>    <a class="code hl_function" href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(WahWah-&gt;bandpass, data);</div>
-<div class="line"><span class="lineno">  127</span> </div>
-<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
-<div class="line"><span class="lineno">  129</span>}</div>
-<div class="ttc" id="afilters_8h_html_a30d8b183489ac4208a5fe11ba3a5dd40"><div class="ttname"><a href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a></div><div class="ttdeci">Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q)</div><div class="ttdoc">Constant Peak Gain Bandpass Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00435">filters.c:435</a></div></div>
-<div class="ttc" id="afilters_8h_html_ad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00326">filters.c:326</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a381bb27bca64ed7f5df822a3db09707a"><div class="ttname"><a href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a></div><div class="ttdeci">void LFO_SingleValueProcess(struct effects_lfo_t *lfo, uint8_t lfo_effect)</div><div class="ttdoc">Constructor for a signal, adds a signal into the signals1 struct.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00134">signal_synthesis.c:134</a></div></div>
+<div class="line"><span class="lineno">  117</span>    <span class="comment">// mid_freq and range have to be set in the display function</span></div>
+<div class="line"><span class="lineno">  118</span> </div>
+<div class="line"><span class="lineno">  119</span>    <span class="comment">// FETCH: actual LFO value</span></div>
+<div class="line"><span class="lineno">  120</span>    <a class="code hl_function" href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a>(WahWah-&gt;lfo, WAHWAH_LFO);</div>
+<div class="line"><span class="lineno">  121</span> </div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">if</span>(WahWah-&gt;mid_freq &lt; 50)</div>
+<div class="line"><span class="lineno">  123</span>        WahWah-&gt;mid_freq = 50;  <span class="comment">// 50 Hz Offset;</span></div>
+<div class="line"><span class="lineno">  124</span> </div>
+<div class="line"><span class="lineno">  125</span>    WahWah-&gt;mid_freq_mod = WahWah-&gt;mid_freq + (WahWah-&gt;range / 2) * WahWah-&gt;lfo-&gt;lfo_data;</div>
+<div class="line"><span class="lineno">  126</span> </div>
+<div class="line"><span class="lineno">  127</span>    <span class="comment">// RESET: Filter after 100 samples (with SR = 24k Hz &gt;&gt; 240 times a second)</span></div>
+<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">if</span>(WahWah-&gt;reinit_counter == 100){</div>
+<div class="line"><span class="lineno">  129</span> </div>
+<div class="line"><span class="lineno">  130</span>        <a class="code hl_function" href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq_mod, WahWah-&gt;bandpass-&gt;Q);</div>
+<div class="line"><span class="lineno">  131</span>        WahWah-&gt;reinit_counter = 0;</div>
+<div class="line"><span class="lineno">  132</span>    }</div>
+<div class="line"><span class="lineno">  133</span> </div>
+<div class="line"><span class="lineno">  134</span>    WahWah-&gt;reinit_counter++;</div>
+<div class="line"><span class="lineno">  135</span> </div>
+<div class="line"><span class="lineno">  136</span>    <a class="code hl_function" href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(WahWah-&gt;bandpass, data);</div>
+<div class="line"><span class="lineno">  137</span> </div>
+<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
+<div class="line"><span class="lineno">  139</span>}</div>
+<div class="ttc" id="afilters_8h_html_a30d8b183489ac4208a5fe11ba3a5dd40"><div class="ttname"><a href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a></div><div class="ttdeci">Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q)</div><div class="ttdoc">Constant Peak Gain Bandpass Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00446">filters.c:446</a></div></div>
+<div class="ttc" id="afilters_8h_html_ad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00337">filters.c:337</a></div></div>
+<div class="ttc" id="asignal__synthesis_8h_html_a381bb27bca64ed7f5df822a3db09707a"><div class="ttname"><a href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a></div><div class="ttdeci">void LFO_SingleValueProcess(struct effects_lfo_t *lfo, uint8_t lfo_effect)</div><div class="ttdoc">Constructor for a signal, adds a signal into the signals1 struct.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00147">signal_synthesis.c:147</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -247,26 +247,26 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="wahwah_8c_source.html#l00078">78</a> of file <a class="el" href="wahwah_8c_source.html">wahwah.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   78</span>                                                                 {</div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>    <span class="comment">// SET: mid frequency to at least 50 Hz due to filter response</span></div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">if</span>(WahWah-&gt;mid_freq &lt; 50)</div>
-<div class="line"><span class="lineno">   82</span>        WahWah-&gt;mid_freq = 50;  <span class="comment">// 50 Hz Offset;</span></div>
-<div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>    <span class="comment">// RESET: Filter after 100 samples (with SR = 24k Hz &gt;&gt; 240 times a second)</span></div>
-<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">if</span>(WahWah-&gt;reinit_counter == 100){</div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>        <a class="code hl_function" href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
-<div class="line"><span class="lineno">   88</span>        WahWah-&gt;reinit_counter = 0;</div>
-<div class="line"><span class="lineno">   89</span>    }</div>
-<div class="line"><span class="lineno">   90</span> </div>
-<div class="line"><span class="lineno">   91</span>    WahWah-&gt;reinit_counter++;</div>
-<div class="line"><span class="lineno">   92</span> </div>
-<div class="line"><span class="lineno">   93</span>    <a class="code hl_function" href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(WahWah-&gt;bandpass, data);</div>
-<div class="line"><span class="lineno">   94</span> </div>
-<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
-<div class="line"><span class="lineno">   96</span>}</div>
+<p class="definition">Definition at line <a class="el" href="wahwah_8c_source.html#l00088">88</a> of file <a class="el" href="wahwah_8c_source.html">wahwah.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   88</span>                                                                 {</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>    <span class="comment">// SET: mid frequency to at least 50 Hz due to filter response</span></div>
+<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">if</span>(WahWah-&gt;mid_freq &lt; 50)</div>
+<div class="line"><span class="lineno">   92</span>        WahWah-&gt;mid_freq = 50;  <span class="comment">// 50 Hz Offset;</span></div>
+<div class="line"><span class="lineno">   93</span> </div>
+<div class="line"><span class="lineno">   94</span>    <span class="comment">// RESET: Filter after 100 samples (with SR = 24k Hz &gt;&gt; 240 times a second)</span></div>
+<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">if</span>(WahWah-&gt;reinit_counter == 100){</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>        <a class="code hl_function" href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
+<div class="line"><span class="lineno">   98</span>        WahWah-&gt;reinit_counter = 0;</div>
+<div class="line"><span class="lineno">   99</span>    }</div>
+<div class="line"><span class="lineno">  100</span> </div>
+<div class="line"><span class="lineno">  101</span>    WahWah-&gt;reinit_counter++;</div>
+<div class="line"><span class="lineno">  102</span> </div>
+<div class="line"><span class="lineno">  103</span>    <a class="code hl_function" href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(WahWah-&gt;bandpass, data);</div>
+<div class="line"><span class="lineno">  104</span> </div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
+<div class="line"><span class="lineno">  106</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -295,31 +295,31 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>WahWah_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="wahwah_8c_source.html#l00014">14</a> of file <a class="el" href="wahwah_8c_source.html">wahwah.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>                                                   {</div>
-<div class="line"><span class="lineno">   15</span> </div>
-<div class="line"><span class="lineno">   16</span>    WahWah-&gt;lfo = &amp;lfo_wahwah;</div>
-<div class="line"><span class="lineno">   17</span>    WahWah-&gt;bandpass = &amp;BP_WAHWAH;</div>
-<div class="line"><span class="lineno">   18</span> </div>
-<div class="line"><span class="lineno">   19</span>    WahWah-&gt;lfo-&gt;lfo_index     = 0;</div>
-<div class="line"><span class="lineno">   20</span>    WahWah-&gt;lfo-&gt;lfo_quarter   = 0;</div>
-<div class="line"><span class="lineno">   21</span>    WahWah-&gt;lfo-&gt;lfo_frequency = 1; <span class="comment">// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]</span></div>
-<div class="line"><span class="lineno">   22</span> </div>
-<div class="line"><span class="lineno">   23</span>    WahWah-&gt;range        = 600;</div>
-<div class="line"><span class="lineno">   24</span>    WahWah-&gt;mid_freq     = 350;</div>
-<div class="line"><span class="lineno">   25</span>    WahWah-&gt;mid_freq_mod = 0;</div>
-<div class="line"><span class="lineno">   26</span> </div>
-<div class="line"><span class="lineno">   27</span>    WahWah-&gt;max_range = 500;</div>
-<div class="line"><span class="lineno">   28</span>    WahWah-&gt;max_mid_freq = 2000;    <span class="comment">// can be adjusted in the display to values 1000, 2000, 3000 and 4000</span></div>
-<div class="line"><span class="lineno">   29</span>    WahWah-&gt;max_Q = 20;</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    WahWah-&gt;reinit_counter = 0;</div>
-<div class="line"><span class="lineno">   32</span>    WahWah-&gt;bandpass-&gt;Q = 1;</div>
-<div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>    <a class="code hl_function" href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
-<div class="line"><span class="lineno">   37</span>}</div>
+<p class="definition">Definition at line <a class="el" href="wahwah_8c_source.html#l00024">24</a> of file <a class="el" href="wahwah_8c_source.html">wahwah.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                   {</div>
+<div class="line"><span class="lineno">   25</span> </div>
+<div class="line"><span class="lineno">   26</span>    WahWah-&gt;lfo = &amp;lfo_wahwah;</div>
+<div class="line"><span class="lineno">   27</span>    WahWah-&gt;bandpass = &amp;BP_WAHWAH;</div>
+<div class="line"><span class="lineno">   28</span> </div>
+<div class="line"><span class="lineno">   29</span>    WahWah-&gt;lfo-&gt;lfo_index     = 0;</div>
+<div class="line"><span class="lineno">   30</span>    WahWah-&gt;lfo-&gt;lfo_quarter   = 0;</div>
+<div class="line"><span class="lineno">   31</span>    WahWah-&gt;lfo-&gt;lfo_frequency = 1; <span class="comment">// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]</span></div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>    WahWah-&gt;range        = 600;</div>
+<div class="line"><span class="lineno">   34</span>    WahWah-&gt;mid_freq     = 350;</div>
+<div class="line"><span class="lineno">   35</span>    WahWah-&gt;mid_freq_mod = 0;</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>    WahWah-&gt;max_range = 500;</div>
+<div class="line"><span class="lineno">   38</span>    WahWah-&gt;max_mid_freq = 2000;    <span class="comment">// can be adjusted in the display to values 1000, 2000, 3000 and 4000</span></div>
+<div class="line"><span class="lineno">   39</span>    WahWah-&gt;max_Q = 20;</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>    WahWah-&gt;reinit_counter = 0;</div>
+<div class="line"><span class="lineno">   42</span>    WahWah-&gt;bandpass-&gt;Q = 1;</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    <a class="code hl_function" href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
+<div class="line"><span class="lineno">   45</span> </div>
+<div class="line"><span class="lineno">   46</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
+<div class="line"><span class="lineno">   47</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -348,34 +348,34 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>WahWah_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="wahwah_8c_source.html#l00045">45</a> of file <a class="el" href="wahwah_8c_source.html">wahwah.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   45</span>                                                    {</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>    Display.WahWah_ONOFF = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>    WahWah-&gt;lfo-&gt;lfo_index     = 0;</div>
-<div class="line"><span class="lineno">   50</span>    WahWah-&gt;lfo-&gt;lfo_quarter   = 0;</div>
-<div class="line"><span class="lineno">   51</span>    Display.WahWah_LFOfreq = WahWah-&gt;lfo-&gt;lfo_frequency = 1;    <span class="comment">// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]</span></div>
-<div class="line"><span class="lineno">   52</span>    Display.WahWah_LFOfreq_Index = Display.last_WahWah_LFOfreq_Index = 3;   <span class="comment">// 1 Hz</span></div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    Display.WahWah_Range = WahWah-&gt;range        = 600;</div>
-<div class="line"><span class="lineno">   55</span>    Display.WahWah_MidFreq = WahWah-&gt;mid_freq     = 350;</div>
-<div class="line"><span class="lineno">   56</span>    WahWah-&gt;mid_freq_mod = 0;</div>
-<div class="line"><span class="lineno">   57</span> </div>
-<div class="line"><span class="lineno">   58</span>    WahWah-&gt;reinit_counter = 0;</div>
-<div class="line"><span class="lineno">   59</span>    Display.WahWah_Q = WahWah-&gt;bandpass-&gt;Q = 1;</div>
-<div class="line"><span class="lineno">   60</span> </div>
-<div class="line"><span class="lineno">   61</span>    Display.WahWah_Sources[0] = POTI;</div>
-<div class="line"><span class="lineno">   62</span>    Display.WahWah_Sources[1] = POTI;</div>
-<div class="line"><span class="lineno">   63</span>    Display.WahWah_Sources[2] = POTI;</div>
-<div class="line"><span class="lineno">   64</span>    Display.WahWah_Sources[3] = POTI;</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>    strcpy(Display.value_str_wahwah[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
+<p class="definition">Definition at line <a class="el" href="wahwah_8c_source.html#l00055">55</a> of file <a class="el" href="wahwah_8c_source.html">wahwah.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   55</span>                                                    {</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>    Display.WahWah_ONOFF = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>    WahWah-&gt;lfo-&gt;lfo_index     = 0;</div>
+<div class="line"><span class="lineno">   60</span>    WahWah-&gt;lfo-&gt;lfo_quarter   = 0;</div>
+<div class="line"><span class="lineno">   61</span>    Display.WahWah_LFOfreq = WahWah-&gt;lfo-&gt;lfo_frequency = 1;    <span class="comment">// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]</span></div>
+<div class="line"><span class="lineno">   62</span>    Display.WahWah_LFOfreq_Index = Display.last_WahWah_LFOfreq_Index = 3;   <span class="comment">// 1 Hz</span></div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>    Display.WahWah_Range = WahWah-&gt;range        = 600;</div>
+<div class="line"><span class="lineno">   65</span>    Display.WahWah_MidFreq = WahWah-&gt;mid_freq     = 350;</div>
+<div class="line"><span class="lineno">   66</span>    WahWah-&gt;mid_freq_mod = 0;</div>
 <div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>    <a class="code hl_function" href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
-<div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
-<div class="line"><span class="lineno">   71</span>}</div>
+<div class="line"><span class="lineno">   68</span>    WahWah-&gt;reinit_counter = 0;</div>
+<div class="line"><span class="lineno">   69</span>    Display.WahWah_Q = WahWah-&gt;bandpass-&gt;Q = 1;</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    Display.WahWah_Sources[0] = POTI;</div>
+<div class="line"><span class="lineno">   72</span>    Display.WahWah_Sources[1] = POTI;</div>
+<div class="line"><span class="lineno">   73</span>    Display.WahWah_Sources[2] = POTI;</div>
+<div class="line"><span class="lineno">   74</span>    Display.WahWah_Sources[3] = POTI;</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>    strcpy(Display.value_str_wahwah[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>    <a class="code hl_function" href="filters_8h.html#a30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
+<div class="line"><span class="lineno">   81</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

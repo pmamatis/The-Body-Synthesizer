@@ -1,0 +1,334 @@
+\hypertarget{music__notes_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/music\+\_\+notes.c File Reference}
+\label{music__notes_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/music\_notes.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/music\_notes.c}}
+
+
+abstarction from music notes to frequencys  
+
+
+{\ttfamily \#include \char`\"{}music\+\_\+notes.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{music__notes_8c_a24334366425c42178a955c3c969ad9a8}{Get\+\_\+\+Keyindex}} (char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}})
+\begin{DoxyCompactList}\small\item\em returns the index of a note-\/letter depending on the keys-\/array \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{music__notes_8c_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\+\_\+\+Note\+\_\+\+Frequency}} (uint8\+\_\+t index, uint8\+\_\+t octave)
+\begin{DoxyCompactList}\small\item\em returns the frequency of a music note listed in the \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{music__notes_8c_a71407d53f2b1100f1ab93dc2681dfe48}{Get\+\_\+\+Note\+\_\+\+Index}} (char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}, uint8\+\_\+t octave)
+\begin{DoxyCompactList}\small\item\em returns the frequency of a music note listed in the \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \mbox{\hyperlink{music__notes_8c_aaeba6af94f85d3f8a58e358b842e96f5}{keys}} \mbox{[}$\,$\mbox{]} = \{\textquotesingle{}C\textquotesingle{},\textquotesingle{}c\textquotesingle{},\textquotesingle{}D\textquotesingle{},\textquotesingle{}d\textquotesingle{},\textquotesingle{}E\textquotesingle{},\textquotesingle{}F\textquotesingle{},\textquotesingle{}f\textquotesingle{},\textquotesingle{}G\textquotesingle{},\textquotesingle{}g\textquotesingle{},\textquotesingle{}A\textquotesingle{},\textquotesingle{}B\textquotesingle{},\textquotesingle{}H\textquotesingle{},\textquotesingle{}C\textquotesingle{},\textquotesingle{}c\textquotesingle{},\textquotesingle{}D\textquotesingle{},\textquotesingle{}d\textquotesingle{},\textquotesingle{}E\textquotesingle{},\textquotesingle{}F\textquotesingle{},\textquotesingle{}f\textquotesingle{},\textquotesingle{}G\textquotesingle{},\textquotesingle{}g\textquotesingle{},\textquotesingle{}A\textquotesingle{},\textquotesingle{}B\textquotesingle{},\textquotesingle{}H\textquotesingle{},\textquotesingle{}C\textquotesingle{},\textquotesingle{}c\textquotesingle{}\}
+\begin{DoxyCompactList}\small\item\em lookuptable for respective note keys \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{music__notes_8c_a66e704f0ec2f815319d4f7e1670a5544}{major\+\_\+scale}} \mbox{[}$\,$\mbox{]} = \{0,2,4,5,7,9,11,12, 14\}
+\begin{DoxyCompactList}\small\item\em minor/major tone scale in semi tone steps, according to the array keys \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{music__notes_8c_a23eb44790bfba8081acac0267ea5bcc6}{minor\+\_\+scale}} \mbox{[}$\,$\mbox{]} = \{0,2,3,5,7,8,10,12, 14\}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{music__notes_8c_a6b305b78e131e7e4741cd5ef7a8d01f2}{major\+\_\+chords}} \mbox{[}$\,$\mbox{]} = \{0,1,1,0,0,1, 2, 0, 1\}
+\begin{DoxyCompactList}\small\item\em minor/major tone chords in semi tone steps, according to the array keys \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{music__notes_8c_aadfb30dd7de547c2812c5205f12b42cc}{minor\+\_\+chords}} \mbox{[}$\,$\mbox{]} = \{1,2,0,1,1,0, 0, 1, 2\}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{music__notes_8c_a5f7a199c28e64af888df934d8337c7ca}{chord\+\_\+5}} \mbox{[}$\,$\mbox{]} = \{1,3,5\}
+\begin{DoxyCompactList}\small\item\em chords, numbers give information of position in scale array(must be -\/1 if used directly) \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{music__notes_8c_aaed61e87dc3f9041d4daf23a19ff5d39}{chord\+\_\+7}} \mbox{[}$\,$\mbox{]} = \{1,3,5,7\}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{music__notes_8c_a8652fe57c8238b93a69699414f672e43}{chord\+\_\+9}} \mbox{[}$\,$\mbox{]} = \{1,3,5,9\}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{music__notes_8c_a8b178dffb325797c197a7e2b13668db2}{chord\+\_\+dim}} \mbox{[}$\,$\mbox{]} = \{1,3,4\}
+\item 
+DAC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{music__notes_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}
+\begin{DoxyCompactList}\small\item\em Extern variables. \end{DoxyCompactList}\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{music__notes_8c_a0b091a815a18763d1ae04b35c8dc931f}{hdma\+\_\+dac1}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{music__notes_8c_a1564492831a79fa18466467c3420c3c3}{htim6}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{music__notes_8c_a5faa27108379f799afb6984010bf0384}{htim8}}
+\item 
+char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}} = \textquotesingle{}C\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em music key \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{music__notes_8c_af3ae983909bdbfc6666cbfda24d0d0ba}{sex}} = 0
+\begin{DoxyCompactList}\small\item\em key mode \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+abstarction from music notes to frequencys 
+
+\begin{DoxyAuthor}{Author}
+Max Lehmer \& Paul Mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{music__notes_8c_a24334366425c42178a955c3c969ad9a8}\label{music__notes_8c_a24334366425c42178a955c3c969ad9a8}} 
+\index{music\_notes.c@{music\_notes.c}!Get\_Keyindex@{Get\_Keyindex}}
+\index{Get\_Keyindex@{Get\_Keyindex}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{Get\_Keyindex()}{Get\_Keyindex()}}
+{\footnotesize\ttfamily uint8\+\_\+t Get\+\_\+\+Keyindex (\begin{DoxyParamCaption}\item[{char}]{key }\end{DoxyParamCaption})}
+
+
+
+returns the index of a note-\/letter depending on the keys-\/array 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & note-\/letter e.\+g. C \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+key index 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00051}{51}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051                               \{}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053     uint8\_t keyindex = 0;}
+\DoxyCodeLine{00054 }
+\DoxyCodeLine{00055     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 12; i++)\{}
+\DoxyCodeLine{00056         \textcolor{keywordflow}{if}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}} == \mbox{\hyperlink{music__notes_8c_aaeba6af94f85d3f8a58e358b842e96f5}{keys}}[i]) keyindex = i;}
+\DoxyCodeLine{00057     \}}
+\DoxyCodeLine{00058 \textcolor{keywordflow}{return} keyindex;}
+\DoxyCodeLine{00059 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{music__notes_8c_a3fc1bdf03e12b5dee3aa887f100421bf}\label{music__notes_8c_a3fc1bdf03e12b5dee3aa887f100421bf}} 
+\index{music\_notes.c@{music\_notes.c}!Get\_Note\_Frequency@{Get\_Note\_Frequency}}
+\index{Get\_Note\_Frequency@{Get\_Note\_Frequency}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{Get\_Note\_Frequency()}{Get\_Note\_Frequency()}}
+{\footnotesize\ttfamily double Get\+\_\+\+Note\+\_\+\+Frequency (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index,  }\item[{uint8\+\_\+t}]{octave }\end{DoxyParamCaption})}
+
+
+
+returns the frequency of a music note listed in the 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00063}{63}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063                                                        \{}
+\DoxyCodeLine{00064     \textcolor{keywordtype}{int} tmp\_octave = 12*octave; \textcolor{comment}{//DEBUG}}
+\DoxyCodeLine{00065     \textcolor{keywordtype}{double} note\_freq =LUT\_FREQUENCYS[tmp\_octave+index];}
+\DoxyCodeLine{00066     \textcolor{keywordflow}{return} note\_freq;}
+\DoxyCodeLine{00067 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{music__notes_8c_a71407d53f2b1100f1ab93dc2681dfe48}\label{music__notes_8c_a71407d53f2b1100f1ab93dc2681dfe48}} 
+\index{music\_notes.c@{music\_notes.c}!Get\_Note\_Index@{Get\_Note\_Index}}
+\index{Get\_Note\_Index@{Get\_Note\_Index}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{Get\_Note\_Index()}{Get\_Note\_Index()}}
+{\footnotesize\ttfamily uint16\+\_\+t Get\+\_\+\+Note\+\_\+\+Index (\begin{DoxyParamCaption}\item[{char}]{key,  }\item[{uint8\+\_\+t}]{octave }\end{DoxyParamCaption})}
+
+
+
+returns the frequency of a music note listed in the 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00071}{71}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071                                                 \{}
+\DoxyCodeLine{00072     \textcolor{keywordflow}{return} 12*octave + \mbox{\hyperlink{music__notes_8c_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}});}
+\DoxyCodeLine{00073 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{music__notes_8c_a5f7a199c28e64af888df934d8337c7ca}\label{music__notes_8c_a5f7a199c28e64af888df934d8337c7ca}} 
+\index{music\_notes.c@{music\_notes.c}!chord\_5@{chord\_5}}
+\index{chord\_5@{chord\_5}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{chord\_5}{chord\_5}}
+{\footnotesize\ttfamily const uint32\+\_\+t chord\+\_\+5\mbox{[}$\,$\mbox{]} = \{1,3,5\}}
+
+
+
+chords, numbers give information of position in scale array(must be -\/1 if used directly) 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00026}{26}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_aaed61e87dc3f9041d4daf23a19ff5d39}\label{music__notes_8c_aaed61e87dc3f9041d4daf23a19ff5d39}} 
+\index{music\_notes.c@{music\_notes.c}!chord\_7@{chord\_7}}
+\index{chord\_7@{chord\_7}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{chord\_7}{chord\_7}}
+{\footnotesize\ttfamily const uint32\+\_\+t chord\+\_\+7\mbox{[}$\,$\mbox{]} = \{1,3,5,7\}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00027}{27}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a8652fe57c8238b93a69699414f672e43}\label{music__notes_8c_a8652fe57c8238b93a69699414f672e43}} 
+\index{music\_notes.c@{music\_notes.c}!chord\_9@{chord\_9}}
+\index{chord\_9@{chord\_9}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{chord\_9}{chord\_9}}
+{\footnotesize\ttfamily const uint32\+\_\+t chord\+\_\+9\mbox{[}$\,$\mbox{]} = \{1,3,5,9\}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00028}{28}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a8b178dffb325797c197a7e2b13668db2}\label{music__notes_8c_a8b178dffb325797c197a7e2b13668db2}} 
+\index{music\_notes.c@{music\_notes.c}!chord\_dim@{chord\_dim}}
+\index{chord\_dim@{chord\_dim}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{chord\_dim}{chord\_dim}}
+{\footnotesize\ttfamily const uint32\+\_\+t chord\+\_\+dim\mbox{[}$\,$\mbox{]} = \{1,3,4\}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00029}{29}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a40a0d1383beda58531dfda6218720e45}\label{music__notes_8c_a40a0d1383beda58531dfda6218720e45}} 
+\index{music\_notes.c@{music\_notes.c}!hdac@{hdac}}
+\index{hdac@{hdac}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{hdac}{hdac}}
+{\footnotesize\ttfamily DAC\+\_\+\+Handle\+Type\+Def hdac\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Extern variables. 
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00059}{59}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a0b091a815a18763d1ae04b35c8dc931f}\label{music__notes_8c_a0b091a815a18763d1ae04b35c8dc931f}} 
+\index{music\_notes.c@{music\_notes.c}!hdma\_dac1@{hdma\_dac1}}
+\index{hdma\_dac1@{hdma\_dac1}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_dac1}{hdma\_dac1}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+dac1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00060}{60}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a1564492831a79fa18466467c3420c3c3}\label{music__notes_8c_a1564492831a79fa18466467c3420c3c3}} 
+\index{music\_notes.c@{music\_notes.c}!htim6@{htim6}}
+\index{htim6@{htim6}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{htim6}{htim6}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim6\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00076}{76}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a5faa27108379f799afb6984010bf0384}\label{music__notes_8c_a5faa27108379f799afb6984010bf0384}} 
+\index{music\_notes.c@{music\_notes.c}!htim8@{htim8}}
+\index{htim8@{htim8}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{htim8}{htim8}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim8\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00078}{78}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}\label{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}} 
+\index{music\_notes.c@{music\_notes.c}!key@{key}}
+\index{key@{key}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{key}{key}}
+{\footnotesize\ttfamily char key = \textquotesingle{}C\textquotesingle{}}
+
+
+
+music key 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00041}{41}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_aaeba6af94f85d3f8a58e358b842e96f5}\label{music__notes_8c_aaeba6af94f85d3f8a58e358b842e96f5}} 
+\index{music\_notes.c@{music\_notes.c}!keys@{keys}}
+\index{keys@{keys}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{keys}{keys}}
+{\footnotesize\ttfamily const char keys\mbox{[}$\,$\mbox{]} = \{\textquotesingle{}C\textquotesingle{},\textquotesingle{}c\textquotesingle{},\textquotesingle{}D\textquotesingle{},\textquotesingle{}d\textquotesingle{},\textquotesingle{}E\textquotesingle{},\textquotesingle{}F\textquotesingle{},\textquotesingle{}f\textquotesingle{},\textquotesingle{}G\textquotesingle{},\textquotesingle{}g\textquotesingle{},\textquotesingle{}A\textquotesingle{},\textquotesingle{}B\textquotesingle{},\textquotesingle{}H\textquotesingle{},\textquotesingle{}C\textquotesingle{},\textquotesingle{}c\textquotesingle{},\textquotesingle{}D\textquotesingle{},\textquotesingle{}d\textquotesingle{},\textquotesingle{}E\textquotesingle{},\textquotesingle{}F\textquotesingle{},\textquotesingle{}f\textquotesingle{},\textquotesingle{}G\textquotesingle{},\textquotesingle{}g\textquotesingle{},\textquotesingle{}A\textquotesingle{},\textquotesingle{}B\textquotesingle{},\textquotesingle{}H\textquotesingle{},\textquotesingle{}C\textquotesingle{},\textquotesingle{}c\textquotesingle{}\}}
+
+
+
+lookuptable for respective note keys 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00014}{14}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a6b305b78e131e7e4741cd5ef7a8d01f2}\label{music__notes_8c_a6b305b78e131e7e4741cd5ef7a8d01f2}} 
+\index{music\_notes.c@{music\_notes.c}!major\_chords@{major\_chords}}
+\index{major\_chords@{major\_chords}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{major\_chords}{major\_chords}}
+{\footnotesize\ttfamily const uint32\+\_\+t major\+\_\+chords\mbox{[}$\,$\mbox{]} = \{0,1,1,0,0,1, 2, 0, 1\}}
+
+
+
+minor/major tone chords in semi tone steps, according to the array keys 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00022}{22}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a66e704f0ec2f815319d4f7e1670a5544}\label{music__notes_8c_a66e704f0ec2f815319d4f7e1670a5544}} 
+\index{music\_notes.c@{music\_notes.c}!major\_scale@{major\_scale}}
+\index{major\_scale@{major\_scale}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{major\_scale}{major\_scale}}
+{\footnotesize\ttfamily const uint32\+\_\+t major\+\_\+scale\mbox{[}$\,$\mbox{]} = \{0,2,4,5,7,9,11,12, 14\}}
+
+
+
+minor/major tone scale in semi tone steps, according to the array keys 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00018}{18}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_aadfb30dd7de547c2812c5205f12b42cc}\label{music__notes_8c_aadfb30dd7de547c2812c5205f12b42cc}} 
+\index{music\_notes.c@{music\_notes.c}!minor\_chords@{minor\_chords}}
+\index{minor\_chords@{minor\_chords}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{minor\_chords}{minor\_chords}}
+{\footnotesize\ttfamily const uint32\+\_\+t minor\+\_\+chords\mbox{[}$\,$\mbox{]} = \{1,2,0,1,1,0, 0, 1, 2\}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00023}{23}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_a23eb44790bfba8081acac0267ea5bcc6}\label{music__notes_8c_a23eb44790bfba8081acac0267ea5bcc6}} 
+\index{music\_notes.c@{music\_notes.c}!minor\_scale@{minor\_scale}}
+\index{minor\_scale@{minor\_scale}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{minor\_scale}{minor\_scale}}
+{\footnotesize\ttfamily const uint32\+\_\+t minor\+\_\+scale\mbox{[}$\,$\mbox{]} = \{0,2,3,5,7,8,10,12, 14\}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00019}{19}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+\mbox{\Hypertarget{music__notes_8c_af3ae983909bdbfc6666cbfda24d0d0ba}\label{music__notes_8c_af3ae983909bdbfc6666cbfda24d0d0ba}} 
+\index{music\_notes.c@{music\_notes.c}!sex@{sex}}
+\index{sex@{sex}!music\_notes.c@{music\_notes.c}}
+\doxysubsubsection{\texorpdfstring{sex}{sex}}
+{\footnotesize\ttfamily uint8\+\_\+t sex = 0}
+
+
+
+key mode 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00043}{43}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+

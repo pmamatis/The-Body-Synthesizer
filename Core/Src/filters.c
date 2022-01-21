@@ -1,5 +1,16 @@
-// Based on Audio-EQ cookbook
-// https://github.com/libaudioverse/libaudioverse/blob/master/audio%20eq%20cookbook.txt
+/**
+ * @file filters.c
+ * @author Max Lehmer
+ * @brief Filter functions, 
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ *
+ * @note Based on Audio-EQ cookbook, https://github.com/libaudioverse/libaudioverse/blob/master/audio%20eq%20cookbook.txt
+*/
+
 #include "filters.h"
 
 /* ------------------------------------------------------------------

@@ -1,3 +1,13 @@
+/**
+ * @file tremolo.c
+ * @author Marc Bielen 
+ * @brief Tremolo effect
+ * @version 0.1
+ * @date 2022-01-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "tremolo.h"
 
 /*********************************
