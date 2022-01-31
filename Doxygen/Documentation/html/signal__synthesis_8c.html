@@ -488,11 +488,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1226</span>    uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;</div>
 <div class="line"><span class="lineno"> 1227</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == HALF_BLOCK){</div>
 <div class="line"><span class="lineno"> 1228</span>        BLOOCKSIZE_startIndex = 0;</div>
-<div class="line"><span class="lineno"> 1229</span>        BLOOCKSIZE_endIndex = BLOCKSIZE/2;</div>
+<div class="line"><span class="lineno"> 1229</span>        BLOOCKSIZE_endIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
 <div class="line"><span class="lineno"> 1230</span>    }</div>
 <div class="line"><span class="lineno"> 1231</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == FULL_BLOCK){</div>
-<div class="line"><span class="lineno"> 1232</span>        BLOOCKSIZE_startIndex = BLOCKSIZE/2;</div>
-<div class="line"><span class="lineno"> 1233</span>        BLOOCKSIZE_endIndex  = BLOCKSIZE;</div>
+<div class="line"><span class="lineno"> 1232</span>        BLOOCKSIZE_startIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
+<div class="line"><span class="lineno"> 1233</span>        BLOOCKSIZE_endIndex  = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>;</div>
 <div class="line"><span class="lineno"> 1234</span>    }</div>
 <div class="line"><span class="lineno"> 1235</span> </div>
 <div class="line"><span class="lineno"> 1236</span>    <span class="comment">//Write into DAC</span></div>
@@ -512,6 +512,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1250</span>    <span class="keywordflow">return</span> retval;</div>
 <div class="line"><span class="lineno"> 1251</span>}</div>
 <div class="ttc" id="amain_8h_html_a25be00c869033fae5b8206c20aeb3861"><div class="ttname"><a href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a></div><div class="ttdeci">float calculate_vector1[BLOCKSIZE]</div><div class="ttdoc">DAC output array.</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00158">main.h:158</a></div></div>
+<div class="ttc" id="amain_8h_html_afcf795f5a96fd55561abe69f56224630"><div class="ttname"><a href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a></div><div class="ttdeci">#define BLOCKSIZE</div><div class="ttdoc">output array size</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00146">main.h:146</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_a406aefd47c82521bb2c5a14ef93c85d2"><div class="ttname"><a href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a></div><div class="ttdeci">float ramp_counter</div><div class="ttdoc">wirtes a starting ramp into the DAC-Buffer to avoid speaker damage</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01213">signal_synthesis.c:1213</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_a5b4caaf313594423ca462cb11a33eca9"><div class="ttname"><a href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a></div><div class="ttdeci">uint8_t outputBuffer_position</div><div class="ttdoc">Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00113">signal_synthesis.h:113</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_a9403bb31e6a5748c0bfc57f7523ef483"><div class="ttname"><a href="signal__synthesis_8h.html#a9403bb31e6a5748c0bfc57f7523ef483">DAC_MAXVALUE_TO_AMPLITUDE_RATIO</a></div><div class="ttdeci">#define DAC_MAXVALUE_TO_AMPLITUDE_RATIO</div><div class="ttdoc">4096/3300</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00032">signal_synthesis.h:32</a></div></div>
@@ -578,7 +579,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  166</span>                    Tremolo.lfo-&gt;lfo_depth = Display.Tremolo_Depth; <span class="comment">// tremolo depth has to be updated when the maximum amplitude is reached</span></div>
 <div class="line"><span class="lineno">  167</span>                    <span class="comment">// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude</span></div>
 <div class="line"><span class="lineno">  168</span>                    <span class="keywordflow">if</span>(Display.Tremolo_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  169</span>                        <a class="code hl_function" href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
+<div class="line"><span class="lineno">  169</span>                        <a class="code hl_function" href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
 <div class="line"><span class="lineno">  170</span>                        Display.last_Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  171</span>                    }</div>
 <div class="line"><span class="lineno">  172</span>                }</div>
@@ -653,7 +654,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  241</span>                    Tremolo.lfo-&gt;lfo_depth = Display.Tremolo_Depth; <span class="comment">// tremolo depth has to be updated when the maximum amplitude is reached</span></div>
 <div class="line"><span class="lineno">  242</span>                    <span class="comment">// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude</span></div>
 <div class="line"><span class="lineno">  243</span>                    <span class="keywordflow">if</span>(Display.Tremolo_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  244</span>                        <a class="code hl_function" href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
+<div class="line"><span class="lineno">  244</span>                        <a class="code hl_function" href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
 <div class="line"><span class="lineno">  245</span>                        Display.last_Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  246</span>                    }</div>
 <div class="line"><span class="lineno">  247</span>                }</div>
@@ -728,7 +729,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  316</span>                    Tremolo.lfo-&gt;lfo_depth = Display.Tremolo_Depth; <span class="comment">// tremolo depth has to be updated when the maximum amplitude is reached</span></div>
 <div class="line"><span class="lineno">  317</span>                    <span class="comment">// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude</span></div>
 <div class="line"><span class="lineno">  318</span>                    <span class="keywordflow">if</span>(Display.Tremolo_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  319</span>                        <a class="code hl_function" href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
+<div class="line"><span class="lineno">  319</span>                        <a class="code hl_function" href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
 <div class="line"><span class="lineno">  320</span>                        Display.last_Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  321</span>                    }</div>
 <div class="line"><span class="lineno">  322</span>                }</div>
@@ -803,7 +804,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  391</span>                    Tremolo.lfo-&gt;lfo_depth = Display.Tremolo_Depth; <span class="comment">// tremolo depth has to be updated when the maximum amplitude is reached</span></div>
 <div class="line"><span class="lineno">  392</span>                    <span class="comment">// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude</span></div>
 <div class="line"><span class="lineno">  393</span>                    <span class="keywordflow">if</span>(Display.Tremolo_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  394</span>                        <a class="code hl_function" href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
+<div class="line"><span class="lineno">  394</span>                        <a class="code hl_function" href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
 <div class="line"><span class="lineno">  395</span>                        Display.last_Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  396</span>                    }</div>
 <div class="line"><span class="lineno">  397</span>                }</div>
@@ -878,7 +879,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  466</span>                    Tremolo.lfo-&gt;lfo_depth = Display.Tremolo_Depth; <span class="comment">// tremolo depth has to be updated when the maximum amplitude is reached</span></div>
 <div class="line"><span class="lineno">  467</span>                    <span class="comment">// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude</span></div>
 <div class="line"><span class="lineno">  468</span>                    <span class="keywordflow">if</span>(Display.Tremolo_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  469</span>                        <a class="code hl_function" href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
+<div class="line"><span class="lineno">  469</span>                        <a class="code hl_function" href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
 <div class="line"><span class="lineno">  470</span>                        Display.last_Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  471</span>                    }</div>
 <div class="line"><span class="lineno">  472</span>                }</div>
@@ -953,7 +954,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  541</span>                    Tremolo.lfo-&gt;lfo_depth = Display.Tremolo_Depth; <span class="comment">// tremolo depth has to be updated when the maximum amplitude is reached</span></div>
 <div class="line"><span class="lineno">  542</span>                    <span class="comment">// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude</span></div>
 <div class="line"><span class="lineno">  543</span>                    <span class="keywordflow">if</span>(Display.Tremolo_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  544</span>                        <a class="code hl_function" href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
+<div class="line"><span class="lineno">  544</span>                        <a class="code hl_function" href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
 <div class="line"><span class="lineno">  545</span>                        Display.last_Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  546</span>                    }</div>
 <div class="line"><span class="lineno">  547</span>                }</div>
@@ -1028,7 +1029,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  616</span>                    Tremolo.lfo-&gt;lfo_depth = Display.Tremolo_Depth; <span class="comment">// tremolo depth has to be updated when the maximum amplitude is reached</span></div>
 <div class="line"><span class="lineno">  617</span>                    <span class="comment">// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude</span></div>
 <div class="line"><span class="lineno">  618</span>                    <span class="keywordflow">if</span>(Display.Tremolo_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  619</span>                        <a class="code hl_function" href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
+<div class="line"><span class="lineno">  619</span>                        <a class="code hl_function" href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
 <div class="line"><span class="lineno">  620</span>                        Display.last_Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  621</span>                    }</div>
 <div class="line"><span class="lineno">  622</span>                }</div>
@@ -1103,7 +1104,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  691</span>                    Tremolo.lfo-&gt;lfo_depth = Display.Tremolo_Depth; <span class="comment">// tremolo depth has to be updated when the maximum amplitude is reached</span></div>
 <div class="line"><span class="lineno">  692</span>                    <span class="comment">// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude</span></div>
 <div class="line"><span class="lineno">  693</span>                    <span class="keywordflow">if</span>(Display.Tremolo_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  694</span>                        <a class="code hl_function" href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
+<div class="line"><span class="lineno">  694</span>                        <a class="code hl_function" href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a>(TREM);</div>
 <div class="line"><span class="lineno">  695</span>                        Display.last_Tremolo_ONOFF = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  696</span>                    }</div>
 <div class="line"><span class="lineno">  697</span>                }</div>
@@ -1161,7 +1162,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  749</span>        }</div>
 <div class="line"><span class="lineno">  750</span>    }</div>
 <div class="line"><span class="lineno">  751</span>}</div>
-<div class="ttc" id="aeffects_8h_html_a050a7ed0cb582067293e423a9c3fd7a9"><div class="ttname"><a href="effects_8h.html#a050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a></div><div class="ttdeci">void effects_delete(effects_t_enum effect)</div><div class="ttdoc">Deletes a certain effect inside the effect_order[position].</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00088">effects.c:88</a></div></div>
+<div class="ttc" id="agroup__EffectProcessing_html_ga050a7ed0cb582067293e423a9c3fd7a9"><div class="ttname"><a href="group__EffectProcessing.html#ga050a7ed0cb582067293e423a9c3fd7a9">effects_delete</a></div><div class="ttdeci">void effects_delete(effects_t_enum effect)</div><div class="ttdoc">Deletes a certain effect inside the effect_order[position].</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00088">effects.c:88</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga56c49e449311b56a93feb559198762fe"><div class="ttname"><a href="group__SINLUT.html#ga56c49e449311b56a93feb559198762fe">LFO_STARTINDEX</a></div><div class="ttdeci">const uint32_t LFO_STARTINDEX[8]</div><div class="ttdoc">contains all startindizies of the frequencies in the LFO-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00060">sinLUT.h:60</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga8ed6c93a3575a1bca18ba7ae1ab1735a"><div class="ttname"><a href="group__SINLUT.html#ga8ed6c93a3575a1bca18ba7ae1ab1735a">LFO</a></div><div class="ttdeci">const float LFO[95625]</div><div class="ttdoc">containing the LFO values</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00056">sinLUT.h:56</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga956e265f52e43419b6840913fb23f8d0"><div class="ttname"><a href="group__SINLUT.html#ga956e265f52e43419b6840913fb23f8d0">LFO_SUPPORTPOINTS</a></div><div class="ttdeci">const uint32_t LFO_SUPPORTPOINTS[8]</div><div class="ttdoc">contains the support points for each LFO-frequncy</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00062">sinLUT.h:62</a></div></div>
@@ -1239,20 +1240,20 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  772</span>        <span class="keywordflow">switch</span>(kind) {</div>
 <div class="line"><span class="lineno">  773</span> </div>
 <div class="line"><span class="lineno">  774</span>        <span class="keywordflow">case</span> SIN:</div>
-<div class="line"><span class="lineno">  775</span>            signals -&gt; freq[index] = <a class="code hl_function" href="music__notes_8h.html#a3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a>(<a class="code hl_function" href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>), octave);</div>
-<div class="line"><span class="lineno">  776</span>            signals -&gt; freqIndex[index] = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>,octave);</div>
+<div class="line"><span class="lineno">  775</span>            signals -&gt; freq[index] = <a class="code hl_function" href="group__MusicNotes.html#ga3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a>(<a class="code hl_function" href="group__MusicNotes.html#ga24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>), octave);</div>
+<div class="line"><span class="lineno">  776</span>            signals -&gt; freqIndex[index] = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>,octave);</div>
 <div class="line"><span class="lineno">  777</span>            signals -&gt; current_LUT_Index[index] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[signals -&gt; freqIndex[index]];</div>
 <div class="line"><span class="lineno">  778</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  779</span> </div>
 <div class="line"><span class="lineno">  780</span>        <span class="keywordflow">case</span> RECT:</div>
-<div class="line"><span class="lineno">  781</span>            signals -&gt; freq[index] = <a class="code hl_function" href="music__notes_8h.html#a3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a>(<a class="code hl_function" href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>), octave);</div>
-<div class="line"><span class="lineno">  782</span>            signals -&gt; freqIndex[index] = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>,octave);</div>
+<div class="line"><span class="lineno">  781</span>            signals -&gt; freq[index] = <a class="code hl_function" href="group__MusicNotes.html#ga3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a>(<a class="code hl_function" href="group__MusicNotes.html#ga24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>), octave);</div>
+<div class="line"><span class="lineno">  782</span>            signals -&gt; freqIndex[index] = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>,octave);</div>
 <div class="line"><span class="lineno">  783</span>            signals -&gt; current_LUT_Index[index] = 0;</div>
 <div class="line"><span class="lineno">  784</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  785</span> </div>
 <div class="line"><span class="lineno">  786</span>        <span class="keywordflow">case</span> TRIANGLE:</div>
-<div class="line"><span class="lineno">  787</span>            signals -&gt; freq[index] = <a class="code hl_function" href="music__notes_8h.html#a3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a>(<a class="code hl_function" href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>), octave);</div>
-<div class="line"><span class="lineno">  788</span>            signals -&gt; freqIndex[index] = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>,octave);</div>
+<div class="line"><span class="lineno">  787</span>            signals -&gt; freq[index] = <a class="code hl_function" href="group__MusicNotes.html#ga3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a>(<a class="code hl_function" href="group__MusicNotes.html#ga24334366425c42178a955c3c969ad9a8">Get_Keyindex</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>), octave);</div>
+<div class="line"><span class="lineno">  788</span>            signals -&gt; freqIndex[index] = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<a class="code hl_variable" href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a>,octave);</div>
 <div class="line"><span class="lineno">  789</span>            signals -&gt; current_LUT_Index[index] = 0;</div>
 <div class="line"><span class="lineno">  790</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  791</span> </div>
@@ -1265,11 +1266,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  798</span>    }</div>
 <div class="line"><span class="lineno">  799</span>    signals -&gt; max = 1;</div>
 <div class="line"><span class="lineno">  800</span>}</div>
+<div class="ttc" id="agroup__MusicNotes_html_ga24334366425c42178a955c3c969ad9a8"><div class="ttname"><a href="group__MusicNotes.html#ga24334366425c42178a955c3c969ad9a8">Get_Keyindex</a></div><div class="ttdeci">uint8_t Get_Keyindex(char key)</div><div class="ttdoc">returns the index of a note-letter depending on the keys-array</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00051">music_notes.c:51</a></div></div>
+<div class="ttc" id="agroup__MusicNotes_html_ga3fc1bdf03e12b5dee3aa887f100421bf"><div class="ttname"><a href="group__MusicNotes.html#ga3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a></div><div class="ttdeci">double Get_Note_Frequency(uint8_t index, uint8_t octave)</div><div class="ttdoc">returns the frequency of a music note listed in the</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00063">music_notes.c:63</a></div></div>
+<div class="ttc" id="agroup__MusicNotes_html_ga71407d53f2b1100f1ab93dc2681dfe48"><div class="ttname"><a href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a></div><div class="ttdeci">uint16_t Get_Note_Index(char key, uint8_t octave)</div><div class="ttdoc">returns the frequency of a music note listed in the</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00071">music_notes.c:71</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga2e5122eebde8d369cf949da93586ec2e"><div class="ttname"><a href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a></div><div class="ttdeci">const uint32_t LUT_STARTINDEX[73]</div><div class="ttdoc">contains all startindizies of the frequencies in the SIN-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00049">sinLUT.h:49</a></div></div>
 <div class="ttc" id="amusic__notes_8c_html_acad36f7a1211e9e9da68e181667d9c3f"><div class="ttname"><a href="music__notes_8c.html#acad36f7a1211e9e9da68e181667d9c3f">key</a></div><div class="ttdeci">char key</div><div class="ttdoc">music key</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00041">music_notes.c:41</a></div></div>
-<div class="ttc" id="amusic__notes_8h_html_a24334366425c42178a955c3c969ad9a8"><div class="ttname"><a href="music__notes_8h.html#a24334366425c42178a955c3c969ad9a8">Get_Keyindex</a></div><div class="ttdeci">uint8_t Get_Keyindex(char key)</div><div class="ttdoc">returns the index of a note-letter depending on the keys-array</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00051">music_notes.c:51</a></div></div>
-<div class="ttc" id="amusic__notes_8h_html_a3fc1bdf03e12b5dee3aa887f100421bf"><div class="ttname"><a href="music__notes_8h.html#a3fc1bdf03e12b5dee3aa887f100421bf">Get_Note_Frequency</a></div><div class="ttdeci">double Get_Note_Frequency(uint8_t index, uint8_t octave)</div><div class="ttdoc">returns the frequency of a music note listed in the</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00063">music_notes.c:63</a></div></div>
-<div class="ttc" id="amusic__notes_8h_html_a71407d53f2b1100f1ab93dc2681dfe48"><div class="ttname"><a href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a></div><div class="ttdeci">uint16_t Get_Note_Index(char key, uint8_t octave)</div><div class="ttdoc">returns the frequency of a music note listed in the</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00071">music_notes.c:71</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1450,11 +1451,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  864</span>    uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;</div>
 <div class="line"><span class="lineno">  865</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == HALF_BLOCK){</div>
 <div class="line"><span class="lineno">  866</span>        BLOOCKSIZE_startIndex = 0;</div>
-<div class="line"><span class="lineno">  867</span>        BLOOCKSIZE_endIndex = BLOCKSIZE/2;</div>
+<div class="line"><span class="lineno">  867</span>        BLOOCKSIZE_endIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
 <div class="line"><span class="lineno">  868</span>    }</div>
 <div class="line"><span class="lineno">  869</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == FULL_BLOCK){</div>
-<div class="line"><span class="lineno">  870</span>        BLOOCKSIZE_startIndex = BLOCKSIZE/2;</div>
-<div class="line"><span class="lineno">  871</span>        BLOOCKSIZE_endIndex  = BLOCKSIZE;</div>
+<div class="line"><span class="lineno">  870</span>        BLOOCKSIZE_startIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
+<div class="line"><span class="lineno">  871</span>        BLOOCKSIZE_endIndex  = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>;</div>
 <div class="line"><span class="lineno">  872</span>    }</div>
 <div class="line"><span class="lineno">  873</span> </div>
 <div class="line"><span class="lineno">  874</span>    <span class="comment">// Loop for signal synthesis</span></div>
@@ -1745,7 +1746,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1159</span>            <a class="code hl_function" href="group__DrumComputer.html#ga08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a>();</div>
 <div class="line"><span class="lineno"> 1160</span>            drums_filtered = drums;</div>
 <div class="line"><span class="lineno"> 1161</span>            <span class="keywordflow">if</span>(Display.Drumfilter_ONOFF)</div>
-<div class="line"><span class="lineno"> 1162</span>                <a class="code hl_function" href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(&amp;LS_DRUMS, &amp;drums_filtered);</div>
+<div class="line"><span class="lineno"> 1162</span>                <a class="code hl_function" href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(&amp;LS_DRUMS, &amp;drums_filtered);</div>
 <div class="line"><span class="lineno"> 1163</span>        }</div>
 <div class="line"><span class="lineno"> 1164</span>        <span class="keywordflow">else</span>{</div>
 <div class="line"><span class="lineno"> 1165</span>            drums = 0;</div>
@@ -1754,7 +1755,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1168</span> </div>
 <div class="line"><span class="lineno"> 1169</span>        <span class="comment">// Keyboard processing with effects</span></div>
 <div class="line"><span class="lineno"> 1170</span>        <span class="keywordflow">if</span>(Display.KeyboardFX_ONOFF == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno"> 1171</span>            <a class="code hl_function" href="effects_8h.html#a3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a>();</div>
+<div class="line"><span class="lineno"> 1171</span>            <a class="code hl_function" href="group__EffectProcessing.html#ga3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a>();</div>
 <div class="line"><span class="lineno"> 1172</span>            <span class="comment">// summing up all played keyboard notes</span></div>
 <div class="line"><span class="lineno"> 1173</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k= 0; k &lt; 5;k++)</div>
 <div class="line"><span class="lineno"> 1174</span>                calculate_vector_tmp[BLOCKSIZE_counter] += <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] * calculate_keyboard[k];</div>
@@ -1770,7 +1771,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1184</span> </div>
 <div class="line"><span class="lineno"> 1185</span>        <span class="comment">// Keyboard processing without effects</span></div>
 <div class="line"><span class="lineno"> 1186</span>        <span class="keywordflow">if</span>(Display.KeyboardFX_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno"> 1187</span>            <a class="code hl_function" href="effects_8h.html#a3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a>();</div>
+<div class="line"><span class="lineno"> 1187</span>            <a class="code hl_function" href="group__EffectProcessing.html#ga3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a>();</div>
 <div class="line"><span class="lineno"> 1188</span>            <span class="comment">// summing up all played keyboard notes</span></div>
 <div class="line"><span class="lineno"> 1189</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k= 0; k &lt; 5;k++)</div>
 <div class="line"><span class="lineno"> 1190</span>                calculate_vector_tmp[BLOCKSIZE_counter] += <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] * calculate_keyboard[k];</div>
@@ -1788,9 +1789,9 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1202</span>        *((uint32_t *)(&amp;calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * <a class="code hl_variable" href="signal__synthesis_8h.html#aa15347ac4d705e4e9db618dfa95640e7">Master_Volume</a> * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * <a class="code hl_variable" href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a>); <span class="comment">// +1.65 is the middle of 0-3V3</span></div>
 <div class="line"><span class="lineno"> 1203</span>    }<span class="comment">//End for-Loop</span></div>
 <div class="ttc" id="aeffects_8c_html_a3cf8b82d8ee857615741a7e0e04dbdf1"><div class="ttname"><a href="effects_8c.html#a3cf8b82d8ee857615741a7e0e04dbdf1">effects_process</a></div><div class="ttdeci">void effects_process(float *calculate_value)</div><div class="ttdoc">reads the effect_order[] and activates the processing functions for the effects</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00026">effects.c:26</a></div></div>
-<div class="ttc" id="aeffects_8h_html_a3f7370371217adca4b93419901dc1c1f"><div class="ttname"><a href="effects_8h.html#a3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a></div><div class="ttdeci">void keyboard_adsr_process(void)</div><div class="ttdoc">function for the keyboard adsr processing</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00053">effects.c:53</a></div></div>
-<div class="ttc" id="afilters_8h_html_ad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="filters_8h.html#ad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00337">filters.c:337</a></div></div>
 <div class="ttc" id="agroup__DrumComputer_html_ga08535ad247ef4e17b91bbba4b56833af"><div class="ttname"><a href="group__DrumComputer.html#ga08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a></div><div class="ttdeci">HAL_StatusTypeDef Drum_Computer_Process(void)</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00403">drum_computer.c:403</a></div></div>
+<div class="ttc" id="agroup__EffectProcessing_html_ga3f7370371217adca4b93419901dc1c1f"><div class="ttname"><a href="group__EffectProcessing.html#ga3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a></div><div class="ttdeci">void keyboard_adsr_process(void)</div><div class="ttdoc">function for the keyboard adsr processing</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00053">effects.c:53</a></div></div>
+<div class="ttc" id="agroup__Filter_html_gad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00337">filters.c:337</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga4f12a18a6cf6bdb4cf4b1f3a509f061e"><div class="ttname"><a href="group__SINLUT.html#ga4f12a18a6cf6bdb4cf4b1f3a509f061e">LUT</a></div><div class="ttdeci">const float LUT[6439]</div><div class="ttdoc">SIN-LUT, contains all values of 1/4-Sin's for the frequency from LUT_FMIN to LUT_FMAX</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00045">sinLUT.h:45</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga93f6110c104231e7959e446480c94834"><div class="ttname"><a href="group__SINLUT.html#ga93f6110c104231e7959e446480c94834">LUT_ENDINDEX</a></div><div class="ttdeci">const uint32_t LUT_ENDINDEX[73]</div><div class="ttdoc">contains all endindizies of the frequencies in the SIN-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00047">sinLUT.h:47</a></div></div>
 <div class="ttc" id="agroup__SingleSample_html_gab788a1e344e6956cb70a8e5e1ea4d0bd"><div class="ttname"><a href="group__SingleSample.html#gab788a1e344e6956cb70a8e5e1ea4d0bd">PlaySingleSample</a></div><div class="ttdeci">void PlaySingleSample(void)</div><div class="ttdoc">function to play the same sample each time it is triggerd, must be called inside Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00500">drum_computer.c:500</a></div></div>
@@ -1857,8 +1858,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   41</span>        <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[i] = 1;</div>
 <div class="line"><span class="lineno">   42</span>    }</div>
 <div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0; i&gt;BLOCKSIZE/2; i++)</div>
-<div class="line"><span class="lineno">   45</span>        *((uint32_t *)(&amp;<a class="code hl_variable" href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a>[i] )) = (uint32_t)((i/(BLOCKSIZE/2)) * <a class="code hl_variable" href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a>/2); <span class="comment">// TODO muss noch angepasst werden</span></div>
+<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0; i&gt;<a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2; i++)</div>
+<div class="line"><span class="lineno">   45</span>        *((uint32_t *)(&amp;<a class="code hl_variable" href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a>[i] )) = (uint32_t)((i/(<a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2)) * <a class="code hl_variable" href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a>/2); <span class="comment">// TODO muss noch angepasst werden</span></div>
 <div class="line"><span class="lineno">   46</span> </div>
 <div class="line"><span class="lineno">   47</span>    <span class="comment">// Inits and starts timer connected with DAC</span></div>
 <div class="line"><span class="lineno">   48</span>    <a class="code hl_function" href="signal__synthesis_8c.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(&amp;htim, LUT_SR);</div>
@@ -1902,7 +1903,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   67</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;3; i++) {</div>
 <div class="line"><span class="lineno">   68</span>        Display.Voices_ONOFF[i] = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   69</span>        Display.Voices_Noteindex[i] = 0;</div>
-<div class="line"><span class="lineno">   70</span>        Display.Voices_Note[i]   = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Voices_Noteindex[i] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno">   70</span>        Display.Voices_Note[i]   = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Voices_Noteindex[i] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno">   71</span>        Display.Voices_Octave[i] = 0;</div>
 <div class="line"><span class="lineno">   72</span>        Display.Voice_Note_Sources[i] = POTI;</div>
 <div class="line"><span class="lineno">   73</span>        Display.Voice_Octave_Sources[i] = POTI;</div>
@@ -1919,7 +1920,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   84</span> </div>
 <div class="line"><span class="lineno">   85</span>    <span class="keywordflow">return</span> HAL_OK;</div>
 <div class="line"><span class="lineno">   86</span>}</div>
-<div class="ttc" id="amusic__notes_8h_html_aa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00034">music_notes.h:34</a></div></div>
+<div class="ttc" id="agroup__MusicNotes_html_gaa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00041">music_notes.h:41</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -5,145 +5,146 @@
 \DoxyCodeLine{\Hypertarget{adsr_8c_source_l00001}00001 }
 \DoxyCodeLine{\Hypertarget{adsr_8c_source_l00011}00011 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{adsr_8h}{adsr.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{adsr_8c_source_l00012}00012 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00013}00013 \textcolor{comment}{// Reference: The Audio Programming Book from Boulanger, Lazzarini and Mathews}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00019}\mbox{\hyperlink{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}{00019}} \textcolor{comment}{}ADSR\_Status \mbox{\hyperlink{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}{ADSR\_Init}}(\textcolor{keywordtype}{void}) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00020}00020 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00021}00021     SetupADSR(\&\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}});}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00022}00022     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00023}00023         SetupADSR(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i]);}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00024}00024 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00025}00025     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00026}00026 \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00027}00027 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00028}00028 ADSR\_Status SetupADSR(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00029}00029 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00030}00030     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00031}00031     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00032}00032     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00033}00033     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00034}00034     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00035}00035     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00036}00036     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00037}00037 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00038}00038     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_attack = 1.00;   \textcolor{comment}{// in seconds; maximum 4.0 seconds (-\/> 4*LUT\_SR), to display the value -\/> uint16\_t}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00039}00039     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_decay = 1.00;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00040}00040     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_sustaintime = 2.00;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00041}00041     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_release = 1.00;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00042}00042 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00043}00043     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00044}00044 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00045}00045     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00046}00046 \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00047}00047 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00054}\mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{00054}} ADSR\_Status \mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\_Reset}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00055}00055 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00056}00056     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00057}00057     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00058}00058     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00059}00059     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00060}00060     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00061}00061     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00062}00062     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00063}00063 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00064}00064     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00065}00065 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00066}00066     Display.ADSR\_Attacktime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time/LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00067}00067     Display.ADSR\_Decaytime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time/LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00068}00068     Display.ADSR\_Sustaintime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time/LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00069}00069     Display.ADSR\_Sustainlevel = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00070}00070     Display.ADSR\_Releasetime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time/LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00071}00071 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00072}00072     Display.ADSR\_Sources[0] = POTI;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00073}00073     Display.ADSR\_Sources[1] = POTI;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00074}00074     Display.ADSR\_Sources[2] = POTI;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00075}00075     Display.ADSR\_Sources[3] = POTI;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00076}00076     Display.ADSR\_Sources[4] = POTI;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00077}00077 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00078}00078     strcpy(Display.value\_str\_adsr\_settings[0], Display.source\_names[Display.ADSR\_Sources[0]]);}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00079}00079     strcpy(Display.value\_str\_adsr\_settings[1], Display.source\_names[Display.ADSR\_Sources[1]]);}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00080}00080     strcpy(Display.value\_str\_adsr\_settings[2], Display.source\_names[Display.ADSR\_Sources[2]]);}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00081}00081     strcpy(Display.value\_str\_adsr\_settings[3], Display.source\_names[Display.ADSR\_Sources[3]]);}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00082}00082     strcpy(Display.value\_str\_adsr\_settings[4], Display.source\_names[Display.ADSR\_Sources[4]]);}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00083}00083 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00084}00084     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00085}00085 \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00086}00086 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00094}\mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{00094}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, \textcolor{keywordtype}{float}* calculate\_value, \textcolor{keywordtype}{bool} flag) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00095}00095 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00096}00096     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00097}00097 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00098}00098         \textcolor{keywordtype}{float} calc = 0;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00099}00099 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00100}00100         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00101}00101 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00102}00102         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00103}00103 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00104}00104             \textcolor{comment}{// attack period}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00105}00105             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00106}00106                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00107}00107 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00108}00108             \textcolor{comment}{// decay period}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00109}00109             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00110}00110                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00111}00111 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00112}00112             \textcolor{comment}{// sustain period}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00113}00113             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00114}00114                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00115}00115 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00116}00116             \textcolor{comment}{// release period}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00117}00117             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00118}00118                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00119}00119 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00120}00120             *calculate\_value = *calculate\_value * calc;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00121}00121         \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00122}00122 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00123}00123         \textcolor{comment}{// update adsr counter}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00124}00124         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00125}00125 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00126}00126         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00127}00127             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00128}00128             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00129}00129         \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00130}00130     \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00131}00131 \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00139}\mbox{\hyperlink{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}{00139}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}{OnePress\_ADSR\_Sequencer\_Process}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, \textcolor{keywordtype}{float}* calculate\_value, \textcolor{keywordtype}{bool} flag) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00140}00140 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00141}00141     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00142}00142 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00143}00143         \textcolor{keywordtype}{float} calc;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00144}00144 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00145}00145         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00146}00146 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00147}00147         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration time}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00148}00148 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00149}00149             \textcolor{comment}{// attack period}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00150}00150             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00151}00151                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00152}00152 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00153}00153             \textcolor{comment}{// decay period}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00154}00154             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00155}00155                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00156}00156 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00157}00157             \textcolor{comment}{// sustain period}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00158}00158             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00159}00159                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00160}00160 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00161}00161             \textcolor{comment}{// release period}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00162}00162             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00163}00163                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00164}00164 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00165}00165             *calculate\_value = *calculate\_value * calc;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00166}00166         \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00167}00167 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00168}00168         \textcolor{comment}{// update adsr counter}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00169}00169         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00170}00170 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00171}00171         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00172}00172 }
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00173}00173             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00174}00174             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00175}00175         \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00176}00176     \}}
-\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00177}00177 \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00014}00014 \textcolor{comment}{// Reference: The Audio Programming Book from Boulanger, Lazzarini and Mathews}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00020}\mbox{\hyperlink{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}{00020}} \textcolor{comment}{}ADSR\_Status \mbox{\hyperlink{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}{ADSR\_Init}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00022}00022     SetupADSR(\&\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}});}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00023}00023     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00024}00024         SetupADSR(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i]);}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00026}00026     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00027}00027 \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00029}00029 ADSR\_Status SetupADSR(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00031}00031     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00032}00032     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00033}00033     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00034}00034     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00035}00035     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00036}00036     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00037}00037     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00039}00039     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_attack = 1.00;   \textcolor{comment}{// in seconds; maximum 4.0 seconds (-\/> 4*LUT\_SR), to display the value -\/> uint16\_t}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00040}00040     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_decay = 1.00;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00041}00041     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_sustaintime = 2.00;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00042}00042     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_release = 1.00;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00044}00044     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00046}00046     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00047}00047 \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00055}\mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{00055}} ADSR\_Status \mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\_Reset}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00057}00057     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00058}00058     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00059}00059     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00060}00060     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00061}00061     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00062}00062     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00063}00063     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00065}00065     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00067}00067     Display.ADSR\_Attacktime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time/LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00068}00068     Display.ADSR\_Decaytime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time/LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00069}00069     Display.ADSR\_Sustaintime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time/LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00070}00070     Display.ADSR\_Sustainlevel = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00071}00071     Display.ADSR\_Releasetime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time/LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00073}00073     Display.ADSR\_Sources[0] = POTI;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00074}00074     Display.ADSR\_Sources[1] = POTI;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00075}00075     Display.ADSR\_Sources[2] = POTI;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00076}00076     Display.ADSR\_Sources[3] = POTI;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00077}00077     Display.ADSR\_Sources[4] = POTI;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00079}00079     strcpy(Display.value\_str\_adsr\_settings[0], Display.source\_names[Display.ADSR\_Sources[0]]);}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00080}00080     strcpy(Display.value\_str\_adsr\_settings[1], Display.source\_names[Display.ADSR\_Sources[1]]);}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00081}00081     strcpy(Display.value\_str\_adsr\_settings[2], Display.source\_names[Display.ADSR\_Sources[2]]);}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00082}00082     strcpy(Display.value\_str\_adsr\_settings[3], Display.source\_names[Display.ADSR\_Sources[3]]);}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00083}00083     strcpy(Display.value\_str\_adsr\_settings[4], Display.source\_names[Display.ADSR\_Sources[4]]);}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00085}00085     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00086}00086 \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00095}\mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{00095}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{OnePress\_ADSR\_Linear\_Process}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, \textcolor{keywordtype}{float}* calculate\_value, \textcolor{keywordtype}{bool} flag) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00097}00097     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00099}00099         \textcolor{keywordtype}{float} calc = 0;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00101}00101         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00103}00103         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00105}00105             \textcolor{comment}{// attack period}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00106}00106             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00107}00107                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00109}00109             \textcolor{comment}{// decay period}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00110}00110             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00111}00111                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00113}00113             \textcolor{comment}{// sustain period}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00114}00114             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00115}00115                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00117}00117             \textcolor{comment}{// release period}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00118}00118             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00119}00119                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00121}00121             *calculate\_value = *calculate\_value * calc;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00122}00122         \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00124}00124         \textcolor{comment}{// update adsr counter}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00125}00125         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00127}00127         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00128}00128             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00129}00129             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00130}00130         \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00131}00131     \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00132}00132 \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00140}\mbox{\hyperlink{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}{00140}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}{OnePress\_ADSR\_Sequencer\_Process}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structadsr}{adsr}}* \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, \textcolor{keywordtype}{float}* calculate\_value, \textcolor{keywordtype}{bool} flag) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00142}00142     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00143}00143 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00144}00144         \textcolor{keywordtype}{float} calc;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00145}00145 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00146}00146         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00147}00147 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00148}00148         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration time}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00150}00150             \textcolor{comment}{// attack period}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00151}00151             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00152}00152                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00153}00153 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00154}00154             \textcolor{comment}{// decay period}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00155}00155             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00156}00156                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00158}00158             \textcolor{comment}{// sustain period}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00159}00159             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00160}00160                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00161}00161 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00162}00162             \textcolor{comment}{// release period}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00163}00163             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00164}00164                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00166}00166             *calculate\_value = *calculate\_value * calc;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00167}00167         \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00168}00168 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00169}00169         \textcolor{comment}{// update adsr counter}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00170}00170         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00172}00172         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00173}00173 }
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00174}00174             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00175}00175             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00176}00176         \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00177}00177     \}}
+\DoxyCodeLine{\Hypertarget{adsr_8c_source_l00178}00178 \}}
 
 \end{DoxyCode}

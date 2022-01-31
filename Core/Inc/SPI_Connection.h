@@ -10,6 +10,14 @@
  */
 #ifndef INC_SPI_CONNECTION_H_
 #define INC_SPI_CONNECTION_H_
+
+/**
+ * @defgroup Gyro Groyscop and accelerometer sensor SPI connection
+ * @ingroup InputDevice
+ * @brief functions and variables to decode the Gyro/Accl information receiced via the SPI
+ * @{
+ */
+
 #include "main.h"
 
 /*********************************
@@ -57,5 +65,5 @@ uint8_t pRxData[sizeof(sensor_data_t)];
  * @brief		Functions
  *********************************/
 void spiC_Init(SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim);
-
+/** @} */ 
 #endif /* INC_SPI_CONNECTION_H_ */

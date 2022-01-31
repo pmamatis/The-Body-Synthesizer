@@ -11,6 +11,13 @@
 #ifndef INC_MUSIC_NOTES_H_
 #define INC_MUSIC_NOTES_H_
 
+/**
+ * @defgroup MusicNotes Music Notes
+ * @ingroup SoundSynth   
+ * @brief helper functions and variables to reference music notes to frequencies of the LUT
+ *  @{
+ */
+
 #include "main.h"
 /*********************************
  * @brief		Enums
@@ -54,5 +61,5 @@ uint8_t Get_Keyindex(char key);
 double Get_Note_Frequency(uint8_t index,uint8_t octave);
 uint16_t Get_Note_Index(char key,uint8_t octave);
 
-
+/** @} */
 #endif /* INC_MUSIC_NOTES_H_ */

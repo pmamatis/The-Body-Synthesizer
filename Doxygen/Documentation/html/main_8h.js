@@ -1,5 +1,7 @@
 var main_8h =
 [
+    [ "BLOCKSIZE", "main_8h.html#afcf795f5a96fd55561abe69f56224630", null ],
+    [ "SUPPORT_POINTS", "main_8h.html#a50c9eb8f7641b83e2574475c29185cbe", null ],
     [ "outputBuffer_position_enum", "main_8h.html#a034c1f80c4242da638389b532cbaef75", [
       [ "HALF_BLOCK", "main_8h.html#a034c1f80c4242da638389b532cbaef75ad56f78a40be6d8cbca50a53b2c45ee15", null ],
       [ "FULL_BLOCK", "main_8h.html#a034c1f80c4242da638389b532cbaef75a0affaa11c75b562bfb033a4f06c47e62", null ]

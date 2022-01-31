@@ -11,7 +11,14 @@
 #ifndef INC_INPUT_INTERFACES_H_
 #define INC_INPUT_INTERFACES_H_
 
+/**
+ * @defgroup InputInterface Input Interface
+ * @brief brings all variables from the display together input devices to make it processable for the signal synthesis  
+ * @{
+ */
+
 #include "main.h"
+
 
 
 /*********************************
@@ -26,7 +33,7 @@
 #define II_MINIMUM_STEPCOUNTER 440 // formula used to determine this value: cutoff = exp(((float)drum_filter_step_counter/II_FILTER_CUTTOFF_STEP_SIZE) * log_mapping_F);
 #define II_FILTER_CUTOFF_MIN 10
 
-// Processing Delays
+/** @brief Processing Delays */
 #define II_TREM_RATE_DELAY II_SR/4
 #define II_TREM_DEPTH_DELAY II_SR/4
 
@@ -47,8 +54,7 @@ int16_t drum_filter_step_counter;
 bool gyrochanged;
 
 /**
- * 0: tremolo rate
- * 1: tremolo depth
+ *@brief [0]: tremolo rate; [1]: tremolo depth
  */
 uint32_t gyro_delay_counter[2];
 
@@ -65,4 +71,5 @@ void II_decreaseNote(uint8_t ID);
 uint8_t II_Display_Voices(void);
 uint8_t II_Display_Effects(void);
 
+/** @} */
 #endif /* INC_INPUT_INTERFACES_H_ */

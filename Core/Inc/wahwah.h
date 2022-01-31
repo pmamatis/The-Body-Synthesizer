@@ -11,6 +11,13 @@
 #ifndef INC_WAHWAH_H_
 #define INC_WAHWAH_H_
 
+/**
+ * @defgroup wahwah Wahwah Effect
+ * @ingroup Effects
+ * @brief another effect TODO
+ * @{
+ */
+
 #include "main.h"
 #include <stdbool.h>
 
@@ -54,5 +61,5 @@ WahWah_Status WahWah_Init(struct WahWah_t *WahWah);
 WahWah_Status WahWah_Reset(struct WahWah_t *WahWah);
 WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float* data);
 WahWah_Status ProcessAutoWahWah(struct WahWah_t *WahWah, float* data);
-
+/** @} */
 #endif /* INC_WAHWAH_H_ */

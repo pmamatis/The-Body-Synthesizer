@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['matrix_20functions_0',['Matrix Functions',['../group__groupMatrix.html',1,'']]]
+  ['lut_27s_0',['LUT&apos;s',['../group__LUT.html',1,'']]]
 ];

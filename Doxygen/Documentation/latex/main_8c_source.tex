@@ -104,8 +104,8 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00117}00117     inputBuffer\_position = HALF\_BLOCK;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00118}00118     \textcolor{keywordflow}{if}(hadc-\/>Instance == ADC3)\{}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00119}00119 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00120}00120         \mbox{\hyperlink{emg_8h_a63f5337cb5d5feb55ddedd79bca265d9}{emg\_peak\_detection}}();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00121}00121         \mbox{\hyperlink{emg_8h_a6ad14645e09a9e49124abbb14199027f}{ecg\_heartrate}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00120}00120         \mbox{\hyperlink{group__EMG__ECG_ga63f5337cb5d5feb55ddedd79bca265d9}{emg\_peak\_detection}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00121}00121         \mbox{\hyperlink{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}{ecg\_heartrate}}();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00122}00122     \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00123}00123 \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00124}00124 \textcolor{keywordtype}{void} HAL\_ADC\_ConvCpltCallback(ADC\_HandleTypeDef* hadc) \{}
@@ -113,8 +113,8 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00126}00126     inputBuffer\_position = FULL\_BLOCK;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00127}00127     \textcolor{keywordflow}{if}(hadc-\/>Instance == ADC3)\{}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00128}00128 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00129}00129         \mbox{\hyperlink{emg_8h_a63f5337cb5d5feb55ddedd79bca265d9}{emg\_peak\_detection}}();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00130}00130         \mbox{\hyperlink{emg_8h_a6ad14645e09a9e49124abbb14199027f}{ecg\_heartrate}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00129}00129         \mbox{\hyperlink{group__EMG__ECG_ga63f5337cb5d5feb55ddedd79bca265d9}{emg\_peak\_detection}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00130}00130         \mbox{\hyperlink{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}{ecg\_heartrate}}();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00131}00131     \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00132}00132 \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00133}00133 }
@@ -209,11 +209,11 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00226}00226 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00227}00227     effects\_init();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00228}00228 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00229}00229     \textcolor{keywordflow}{if}(\mbox{\hyperlink{filters_8h_a44cc78d9063ea994317ac57c15b6eced}{Filters\_Init}}() == FILTER\_FAIL) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00229}00229     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__Filter_ga44cc78d9063ea994317ac57c15b6eced}{Filters\_Init}}() == FILTER\_FAIL) \{}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00230}00230         printf(\textcolor{stringliteral}{"{}Filters init failed\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00231}00231     \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00232}00232 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00233}00233     \textcolor{keywordflow}{if}(\mbox{\hyperlink{tremolo_8h_acb90f3df18e98cac0b0aadc519411a7a}{Tremolo\_Init}}(\&Tremolo) == TREMOLO\_FAIL) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00233}00233     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__tremolo_gacb90f3df18e98cac0b0aadc519411a7a}{Tremolo\_Init}}(\&Tremolo) == TREMOLO\_FAIL) \{}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00234}00234         printf(\textcolor{stringliteral}{"{}Tremolo init failed\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00235}00235     \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00236}00236 }
@@ -225,23 +225,23 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00242}00242         printf(\textcolor{stringliteral}{"{}ADSR init failed\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00243}00243     \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00244}00244 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00245}00245     \mbox{\hyperlink{keyboard_8h_a49b74c118843f9046a50a49296e3ce37}{keyboard\_init}}(\&hadc1, \&htim5);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00245}00245     \mbox{\hyperlink{group__keyboard_ga49b74c118843f9046a50a49296e3ce37}{keyboard\_init}}(\&hadc1, \&htim5);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00246}00246 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00247}00247     \textcolor{comment}{//Drummachine}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00248}00248     \mbox{\hyperlink{group__DrumComputer_ga98c7a5f46d897df7157cfd75e379afb3}{Drum\_Computer\_Init}}();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00249}00249 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00250}00250     \textcolor{comment}{//Gyros SPI}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00251}00251     \mbox{\hyperlink{SPI__Connection_8h_a87e70ebae58b5e371289ad557bb31b74}{spiC\_Init}}(\&hspi4, \&htim7);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00251}00251     \mbox{\hyperlink{group__Gyro_ga87e70ebae58b5e371289ad557bb31b74}{spiC\_Init}}(\&hspi4, \&htim7);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00252}00252 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00253}00253     \textcolor{comment}{//EMG init}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00254}00254     emg\_init(\&hadc3,\&htim1);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00255}00255     \mbox{\hyperlink{emg_8h_a98bf9a8015f7a7833276fbf6a72e255e}{ecg\_init}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00255}00255     \mbox{\hyperlink{group__EMG__ECG_ga98bf9a8015f7a7833276fbf6a72e255e}{ecg\_init}}();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00256}00256 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00257}00257     \textcolor{comment}{// WahWah Init}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00258}00258     \mbox{\hyperlink{wahwah_8h_afdc2b53d4cc3352bf6e51df974ce169e}{WahWah\_Init}}(\&WahWah);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00258}00258     \mbox{\hyperlink{group__wahwah_gafdc2b53d4cc3352bf6e51df974ce169e}{WahWah\_Init}}(\&WahWah);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00259}00259 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00260}00260     \textcolor{comment}{// Interface Init}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00261}00261     \mbox{\hyperlink{input__interfaces_8h_af102c42e8c8be931b33bd67401dd9424}{II\_init}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00261}00261     \mbox{\hyperlink{group__InputInterface_gaf102c42e8c8be931b33bd67401dd9424}{II\_init}}();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00262}00262 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00263}00263     \textcolor{comment}{// Display Init (should be done after the rest is initialized)}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00264}00264     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__DisplayProcess_ga11f29ac6ffffd64bb9c21e37c0b6e7ce}{Display\_Init}}(\&Display) == DISPLAY\_FAIL)}
@@ -260,10 +260,10 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00277}00277     \textcolor{comment}{// Start DAC-\/DMA}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00278}00278     printf(\textcolor{stringliteral}{"{}start DAC\(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00279}00279     \textcolor{comment}{//      HAL\_DAC\_Start\_DMA(\&hdac, DAC\_CHANNEL\_1, (uint32\_t*)calculate\_vector1 ,BLOCKSIZE, DAC\_ALIGN\_12B\_R);}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00280}00280     HAL\_DAC\_Start\_DMA(\&\mbox{\hyperlink{main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}, DAC\_CHANNEL\_2, (uint32\_t*)\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}} ,BLOCKSIZE, DAC\_ALIGN\_12B\_R);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00280}00280     HAL\_DAC\_Start\_DMA(\&\mbox{\hyperlink{main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}, DAC\_CHANNEL\_2, (uint32\_t*)\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}} ,\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}, DAC\_ALIGN\_12B\_R);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00281}00281 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00282}00282     \textcolor{comment}{// Start Timer and ADC-\/DMA for the keyboard (ADC1)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00283}00283     \mbox{\hyperlink{keyboard_8h_a86de1f5c40ab14dddcc12fbf3eafde08}{keyboard\_start\_read}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00283}00283     \mbox{\hyperlink{group__keyboard_ga86de1f5c40ab14dddcc12fbf3eafde08}{keyboard\_start\_read}}();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00284}00284 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00285}00285     \textcolor{comment}{// Start Timer and ADC-\/DMA for the joystick and the potentiometer (ADC2)}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00286}00286     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim6, 500);  \textcolor{comment}{// Timer 6 default: 2000 Hz}}
@@ -272,10 +272,10 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00289}00289     HAL\_ADC\_Start\_DMA(\&hadc2, (uint32\_t*)Display.ADC2inputs, 4);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00290}00290 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00291}00291     \textcolor{comment}{// Start Timer and ADC-\/DMA for the EMG-\/sensor (ADC3)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00292}00292     \mbox{\hyperlink{emg_8h_ad8539de6db12ec20b070f6fb97f99a73}{emg\_start\_read}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00292}00292     \mbox{\hyperlink{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}{emg\_start\_read}}();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00293}00293 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00294}00294     \textcolor{comment}{//Start Interface}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00295}00295     \mbox{\hyperlink{input__interfaces_8h_a3c55c248a4e6b89d5698af2b46e35b60}{II\_startInterface}}(\&htim3);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00295}00295     \mbox{\hyperlink{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}{II\_startInterface}}(\&htim3);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00296}00296 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00297}00297     printf(\textcolor{stringliteral}{"{}End Start Functions\(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00298}00298     \textcolor{comment}{/* START FUNCTIONS end *****************/}}
@@ -1307,9 +1307,9 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01467}01467             Display.Voices\_Noteindex[VOICES\_ID+1] = Display.last\_Voices\_Noteindex[VOICES\_ID+1] = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01468}01468             Display.Voices\_Noteindex[VOICES\_ID+2] = Display.last\_Voices\_Noteindex[VOICES\_ID+2] = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01469}01469 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01470}01470             Display.Voices\_Note[VOICES\_ID]   = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID  ] + Display.KeyNoteIndex]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01471}01471             Display.Voices\_Note[VOICES\_ID+1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID+1] + Display.KeyNoteIndex]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01472}01472             Display.Voices\_Note[VOICES\_ID+2] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID+2] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01470}01470             Display.Voices\_Note[VOICES\_ID]   = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID  ] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01471}01471             Display.Voices\_Note[VOICES\_ID+1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID+1] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01472}01472             Display.Voices\_Note[VOICES\_ID+2] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID+2] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01473}01473 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01474}01474             \textcolor{comment}{// Turn off sequencer}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01475}01475             Display.Sequencer\_ONOFF = \textcolor{keyword}{false};}
@@ -1319,13 +1319,13 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01479}01479             Display.Sequencer\_Noteindex[1] = Display.last\_Sequencer\_Noteindex[1] = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01480}01480             Display.Sequencer\_Noteindex[2] = Display.last\_Sequencer\_Noteindex[2] = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01481}01481 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01482}01482             Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[0] + Display.KeyNoteIndex]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01483}01483             Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[1] + Display.KeyNoteIndex]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01484}01484             Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[2] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01482}01482             Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[0] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01483}01483             Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[1] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01484}01484             Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[2] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01485}01485 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01486}01486             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[0], Display.Sequencer\_Octave[0]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01487}01487             freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[1], Display.Sequencer\_Octave[1]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01488}01488             freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[2], Display.Sequencer\_Octave[2]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01486}01486             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[0], Display.Sequencer\_Octave[0]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01487}01487             freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[1], Display.Sequencer\_Octave[1]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01488}01488             freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[2], Display.Sequencer\_Octave[2]);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01489}01489 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01490}01490             \textcolor{comment}{// FOR: all steps in sequencer}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01491}01491             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -1598,9 +1598,9 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01758}01758             Display.Voices\_Noteindex[VOICES\_ID+1] = Display.last\_Voices\_Noteindex[VOICES\_ID+1] = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01759}01759             Display.Voices\_Noteindex[VOICES\_ID+2] = Display.last\_Voices\_Noteindex[VOICES\_ID+2] = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01760}01760 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01761}01761             Display.Voices\_Note[VOICES\_ID]   = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID  ] + Display.KeyNoteIndex]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01762}01762             Display.Voices\_Note[VOICES\_ID+1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID+1] + Display.KeyNoteIndex]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01763}01763             Display.Voices\_Note[VOICES\_ID+2] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID+2] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01761}01761             Display.Voices\_Note[VOICES\_ID]   = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID  ] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01762}01762             Display.Voices\_Note[VOICES\_ID+1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID+1] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01763}01763             Display.Voices\_Note[VOICES\_ID+2] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[VOICES\_ID+2] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01764}01764 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01765}01765             \textcolor{comment}{// Turn off sequencer}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01766}01766             Display.Sequencer\_ONOFF = \textcolor{keyword}{false};}
@@ -1610,13 +1610,13 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01770}01770             Display.Sequencer\_Noteindex[1] = Display.last\_Sequencer\_Noteindex[1] = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01771}01771             Display.Sequencer\_Noteindex[2] = Display.last\_Sequencer\_Noteindex[2] = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01772}01772 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01773}01773             Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[0] + Display.KeyNoteIndex]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01774}01774             Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[1] + Display.KeyNoteIndex]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01775}01775             Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[2] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01773}01773             Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[0] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01774}01774             Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[1] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01775}01775             Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[2] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01776}01776 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01777}01777             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[0], Display.Sequencer\_Octave[0]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01778}01778             freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[1], Display.Sequencer\_Octave[1]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l01779}01779             freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[2], Display.Sequencer\_Octave[2]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01777}01777             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[0], Display.Sequencer\_Octave[0]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01778}01778             freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[1], Display.Sequencer\_Octave[1]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l01779}01779             freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[2], Display.Sequencer\_Octave[2]);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01780}01780 }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01781}01781             \textcolor{comment}{// FOR: all steps in sequencer}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l01782}01782             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}

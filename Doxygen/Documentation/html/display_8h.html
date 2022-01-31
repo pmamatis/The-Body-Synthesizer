@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('display_8h.html',''); initResizable();
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">display.h File Reference</div></div>
@@ -132,6 +133,20 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:a2ff24f5d476b27542cd7c6d20b7f6341"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Display_Status</b> { <b>DISPLAY_FAIL</b> = -1
+, <b>DISPLAY_OK</b> = 1
+ }</td></tr>
+<tr class="separator:a2ff24f5d476b27542cd7c6d20b7f6341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68a545a3c23609598d9bf398fc14de95"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>source_t</b> { <b>POTI</b> = 0
+, <b>GYRO_LR</b> = 1
+, <b>GYRO_FB</b> = 2
+ }</td></tr>
+<tr class="separator:a68a545a3c23609598d9bf398fc14de95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace78fc88e5aa2ca9f543dbfae902d379"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>keyandmode_t</b> { <b>FREESTYLE</b> = 0
+, <b>MAJOR</b> = 1
+, <b>MINOR</b> = 2
+ }</td></tr>
+<tr class="separator:ace78fc88e5aa2ca9f543dbfae902d379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:ga08d49f85a02740ce26c51f43e64f9a15"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__EPDLib.html#ga08d49f85a02740ce26c51f43e64f9a15">y_row_value</a> { <br />
 &#160;&#160;<b>CASE0</b> = 10
@@ -453,6 +468,69 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="display_8h_source.html#l00029">29</a> of file <a class="el" href="display_8h_source.html">display.h</a>.</p>
 
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a2ff24f5d476b27542cd7c6d20b7f6341" name="a2ff24f5d476b27542cd7c6d20b7f6341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ff24f5d476b27542cd7c6d20b7f6341">&#9670;&nbsp;</a></span>Display_Status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum Display_Status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="display_8h_source.html#l00094">94</a> of file <a class="el" href="display_8h_source.html">display.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>             {</div>
+<div class="line"><span class="lineno">   95</span>    DISPLAY_FAIL = -1,</div>
+<div class="line"><span class="lineno">   96</span>    DISPLAY_OK = 1</div>
+<div class="line"><span class="lineno">   97</span>} Display_Status;</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ace78fc88e5aa2ca9f543dbfae902d379" name="ace78fc88e5aa2ca9f543dbfae902d379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace78fc88e5aa2ca9f543dbfae902d379">&#9670;&nbsp;</a></span>keyandmode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum keyandmode_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="display_8h_source.html#l00105">105</a> of file <a class="el" href="display_8h_source.html">display.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  105</span>             {</div>
+<div class="line"><span class="lineno">  106</span>    FREESTYLE = 0,</div>
+<div class="line"><span class="lineno">  107</span>    MAJOR = 1,</div>
+<div class="line"><span class="lineno">  108</span>    MINOR = 2</div>
+<div class="line"><span class="lineno">  109</span>} keyandmode_t;</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a68a545a3c23609598d9bf398fc14de95" name="a68a545a3c23609598d9bf398fc14de95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68a545a3c23609598d9bf398fc14de95">&#9670;&nbsp;</a></span>source_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum source_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="display_8h_source.html#l00099">99</a> of file <a class="el" href="display_8h_source.html">display.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   99</span>             {</div>
+<div class="line"><span class="lineno">  100</span>    POTI = 0,</div>
+<div class="line"><span class="lineno">  101</span>    GYRO_LR = 1,</div>
+<div class="line"><span class="lineno">  102</span>    GYRO_FB = 2</div>
+<div class="line"><span class="lineno">  103</span>} source_t;</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

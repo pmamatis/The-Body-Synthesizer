@@ -11,6 +11,10 @@
 #ifndef __FATFS_SD_H
 #define __FATFS_SD_H
 
+/**
+ * @ingroup SDcard SD-Card 
+ * @{
+ */
 
 /*********************************
  * @brief		Defines
@@ -43,5 +47,5 @@ DRESULT SD_disk_write (BYTE pdrv, const BYTE* buff, DWORD sector, UINT count);
 DRESULT SD_disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
 
 #define SPI_TIMEOUT 1000
-
+/** @} */
 #endif

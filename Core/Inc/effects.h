@@ -16,12 +16,11 @@
 #define INC_EFFECTS_H_
 
 /**
- * @defgroup Effects Effects 
- * @brief
- * 
- * 
+ * @defgroup EffectProcessing Effect processing
+ * @ingroup Effects   
+ * @brief Enables and disables the effects
+ *  @{
  */
-
 
 /*********************************
  * @brief		Defines
@@ -55,5 +54,5 @@ void effects_init(void);
 void effects_add(effects_t_enum effect);
 void keyboard_adsr_process(void);
 void effects_delete(effects_t_enum effect) ;
-
+/** @} */
 #endif /* __EFFECTS_H */

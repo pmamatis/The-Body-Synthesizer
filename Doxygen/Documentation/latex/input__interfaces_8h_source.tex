@@ -6,53 +6,53 @@
 \DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef INC\_INPUT\_INTERFACES\_H\_}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00012}00012 \textcolor{preprocessor}{\#define INC\_INPUT\_INTERFACES\_H\_}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00013}00013 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00015}00015 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00016}00016 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00017}00017 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00018}00018 \textcolor{comment}{ * @brief       Defines}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00019}00019 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00020}00020 \textcolor{preprocessor}{\#define II\_MAX\_VOICES 3}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00021}00021 \textcolor{preprocessor}{\#define II\_SR 50}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00022}00022 \textcolor{preprocessor}{\#define II\_TREM\_DEPTH\_STEP\_SIZE 20}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00023}00023 \textcolor{comment}{// to ensure minimum frequency of 10 Hz -\/> especially for the drums (ratio II\_MINIMUM\_STEPCOUNTER to II\_FILTER\_CUTTOFF\_STEP\_SIZE = 440:1600)}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00024}00024 \textcolor{comment}{// increase ratio to increase sensitivity}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00025}00025 \textcolor{preprocessor}{\#define II\_FILTER\_CUTTOFF\_STEP\_SIZE 1600}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00026}00026 \textcolor{preprocessor}{\#define II\_MINIMUM\_STEPCOUNTER 440 }\textcolor{comment}{// formula used to determine this value: cutoff = exp(((float)drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * log\_mapping\_F);}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00027}00027 \textcolor{preprocessor}{\#define II\_FILTER\_CUTOFF\_MIN 10}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00028}00028 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00029}00029 \textcolor{comment}{// Processing Delays}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00030}00030 \textcolor{preprocessor}{\#define II\_TREM\_RATE\_DELAY II\_SR/4}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00031}00031 \textcolor{preprocessor}{\#define II\_TREM\_DEPTH\_DELAY II\_SR/4}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00032}00032 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00033}00033 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00034}00034 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00035}00035 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00036}00036 \textcolor{comment}{ * @brief   Variables}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00037}00037 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00038}00038 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00040}\mbox{\hyperlink{input__interfaces_8h_ad50ffb5e3431bdf97736f4dab39c252d}{00040}} \textcolor{keywordtype}{double} \mbox{\hyperlink{input__interfaces_8h_ad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}};}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00020}00020 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00024}00024 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00025}00025 \textcolor{comment}{ * @brief       Defines}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00026}00026 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00027}00027 \textcolor{preprocessor}{\#define II\_MAX\_VOICES 3}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00028}00028 \textcolor{preprocessor}{\#define II\_SR 50}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00029}00029 \textcolor{preprocessor}{\#define II\_TREM\_DEPTH\_STEP\_SIZE 20}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00030}00030 \textcolor{comment}{// to ensure minimum frequency of 10 Hz -\/> especially for the drums (ratio II\_MINIMUM\_STEPCOUNTER to II\_FILTER\_CUTTOFF\_STEP\_SIZE = 440:1600)}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00031}00031 \textcolor{comment}{// increase ratio to increase sensitivity}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00032}00032 \textcolor{preprocessor}{\#define II\_FILTER\_CUTTOFF\_STEP\_SIZE 1600}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00033}00033 \textcolor{preprocessor}{\#define II\_MINIMUM\_STEPCOUNTER 440 }\textcolor{comment}{// formula used to determine this value: cutoff = exp(((float)drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * log\_mapping\_F);}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00034}00034 \textcolor{preprocessor}{\#define II\_FILTER\_CUTOFF\_MIN 10}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00037}\mbox{\hyperlink{group__InputInterface_gac6dc998476a80037e675ac210e8fe275}{00037}} \textcolor{preprocessor}{\#define II\_TREM\_RATE\_DELAY II\_SR/4}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00038}00038 \textcolor{preprocessor}{\#define II\_TREM\_DEPTH\_DELAY II\_SR/4}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00040}00040 }
 \DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00041}00041 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00043}\mbox{\hyperlink{input__interfaces_8h_a18a2130fd54d97626562fa2719aae572}{00043}} int16\_t \mbox{\hyperlink{input__interfaces_8h_a18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[5];}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00044}00044 int16\_t drum\_filter\_step\_counter;}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00042}00042 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00043}00043 \textcolor{comment}{ * @brief   Variables}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00044}00044 \textcolor{comment}{ *********************************/}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00045}00045 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00047}\mbox{\hyperlink{input__interfaces_8h_a192acf54301f05c84432d895bfc661e6}{00047}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{input__interfaces_8h_a192acf54301f05c84432d895bfc661e6}{gyrochanged}};}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00047}\mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{00047}} \textcolor{keywordtype}{double} \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}};}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00048}00048 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00053}\mbox{\hyperlink{input__interfaces_8h_a76749a61b9d1cc989220f945bd8cbba2}{00053}} uint32\_t \mbox{\hyperlink{input__interfaces_8h_a76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[2];}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00054}00054 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00055}00055 \textcolor{keywordtype}{bool} emg\_triggerd\_flag;}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00056}00056 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00057}00057 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00058}00058 \textcolor{comment}{ * @brief   Functions}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00059}00059 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00060}00060 \textcolor{keywordtype}{void} \mbox{\hyperlink{input__interfaces_8h_af102c42e8c8be931b33bd67401dd9424}{II\_init}}();}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00061}00061 \textcolor{keywordtype}{void} \mbox{\hyperlink{input__interfaces_8h_a3c55c248a4e6b89d5698af2b46e35b60}{II\_startInterface}}(TIM\_HandleTypeDef* htim);}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00062}00062 \textcolor{keywordtype}{void} \mbox{\hyperlink{input__interfaces_8h_a2b27d1c554db52f823b2897137823819}{II\_raiseNote}}(uint8\_t ID);}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00063}00063 \textcolor{keywordtype}{void} \mbox{\hyperlink{input__interfaces_8h_afa7d9063c65151e6c6c79e94f81dd0fd}{II\_decreaseNote}}(uint8\_t ID);}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00064}00064 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00065}00065 uint8\_t II\_Display\_Voices(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00066}00066 uint8\_t \mbox{\hyperlink{input__interfaces_8h_a195e0c4273ec6831366f4ae54a1586ee}{II\_Display\_Effects}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00067}00067 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00068}00068 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_INPUT\_INTERFACES\_H\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00050}\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{00050}} int16\_t \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[5];}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00051}00051 int16\_t drum\_filter\_step\_counter;}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00054}\mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{00054}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}};}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00059}\mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{00059}} uint32\_t \mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[2];}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00061}00061 \textcolor{keywordtype}{bool} emg\_triggerd\_flag;}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00063}00063 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00064}00064 \textcolor{comment}{ * @brief   Functions}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00065}00065 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00066}00066 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__InputInterface_gaf102c42e8c8be931b33bd67401dd9424}{II\_init}}();}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00067}00067 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}{II\_startInterface}}(TIM\_HandleTypeDef* htim);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00068}00068 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__InputInterface_ga2b27d1c554db52f823b2897137823819}{II\_raiseNote}}(uint8\_t ID);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00069}00069 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__InputInterface_gafa7d9063c65151e6c6c79e94f81dd0fd}{II\_decreaseNote}}(uint8\_t ID);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00071}00071 uint8\_t II\_Display\_Voices(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00072}00072 uint8\_t \mbox{\hyperlink{group__InputInterface_ga195e0c4273ec6831366f4ae54a1586ee}{II\_Display\_Effects}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{input__interfaces_8h_source_l00075}00075 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_INPUT\_INTERFACES\_H\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

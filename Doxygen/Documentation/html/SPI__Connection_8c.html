@@ -97,9 +97,9 @@ $(document).ready(function(){initNavTree('SPI__Connection_8c.html',''); initResi
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a87e70ebae58b5e371289ad557bb31b74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SPI__Connection_8c.html#a87e70ebae58b5e371289ad557bb31b74">spiC_Init</a> (SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim)</td></tr>
-<tr class="memdesc:a87e70ebae58b5e371289ad557bb31b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">spi connection init  <a href="SPI__Connection_8c.html#a87e70ebae58b5e371289ad557bb31b74">More...</a><br /></td></tr>
-<tr class="separator:a87e70ebae58b5e371289ad557bb31b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga87e70ebae58b5e371289ad557bb31b74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Gyro.html#ga87e70ebae58b5e371289ad557bb31b74">spiC_Init</a> (SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim)</td></tr>
+<tr class="memdesc:ga87e70ebae58b5e371289ad557bb31b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">spi connection init  <a href="group__Gyro.html#ga87e70ebae58b5e371289ad557bb31b74">More...</a><br /></td></tr>
+<tr class="separator:ga87e70ebae58b5e371289ad557bb31b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >spi connetcion to another STM32 </p>
@@ -109,60 +109,7 @@ Functions</h2></td></tr>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="SPI__Connection_8c_source.html">SPI_Connection.c</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a87e70ebae58b5e371289ad557bb31b74" name="a87e70ebae58b5e371289ad557bb31b74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87e70ebae58b5e371289ad557bb31b74">&#9670;&nbsp;</a></span>spiC_Init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void spiC_Init </td>
-          <td>(</td>
-          <td class="paramtype">SPI_HandleTypeDef *&#160;</td>
-          <td class="paramname"><em>hspi</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TIM_HandleTypeDef *&#160;</td>
-          <td class="paramname"><em>htim</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>spi connection init </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hspi</td><td></td></tr>
-    <tr><td class="paramname">htim</td><td>timer which triggers the spi read command </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="SPI__Connection_8c_source.html#l00020">20</a> of file <a class="el" href="SPI__Connection_8c_source.html">SPI_Connection.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>                                                                {</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    hSensorSPI= hspi;</div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> spiinit_counter=0; spiinit_counter &lt; BUFFERSIZE;spiinit_counter++){</div>
-<div class="line"><span class="lineno">   25</span>        pTxData[spiinit_counter] = 0;</div>
-<div class="line"><span class="lineno">   26</span>        pRxData[spiinit_counter] = 0;</div>
-<div class="line"><span class="lineno">   27</span>    }</div>
-<div class="line"><span class="lineno">   28</span> </div>
-<div class="line"><span class="lineno">   29</span>    <a class="code hl_function" href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(htim,SPI_SR);</div>
-<div class="line"><span class="lineno">   30</span>    HAL_TIM_Base_Start_IT(htim);</div>
-<div class="line"><span class="lineno">   31</span>}</div>
-<div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

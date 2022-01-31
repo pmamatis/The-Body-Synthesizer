@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['wahwah_5finit_0',['WahWah_Init',['../wahwah_8h.html#afdc2b53d4cc3352bf6e51df974ce169e',1,'WahWah_Init(struct WahWah_t *WahWah):&#160;wahwah.c'],['../wahwah_8c.html#afdc2b53d4cc3352bf6e51df974ce169e',1,'WahWah_Init(struct WahWah_t *WahWah):&#160;wahwah.c']]],
-  ['wahwah_5freset_1',['WahWah_Reset',['../wahwah_8h.html#a9b91a7fae64755689936b60cf1820535',1,'WahWah_Reset(struct WahWah_t *WahWah):&#160;wahwah.c'],['../wahwah_8c.html#a9b91a7fae64755689936b60cf1820535',1,'WahWah_Reset(struct WahWah_t *WahWah):&#160;wahwah.c']]],
+  ['wahwah_5finit_0',['WahWah_Init',['../group__wahwah.html#gafdc2b53d4cc3352bf6e51df974ce169e',1,'WahWah_Init(struct WahWah_t *WahWah):&#160;wahwah.c'],['../group__wahwah.html#gafdc2b53d4cc3352bf6e51df974ce169e',1,'WahWah_Init(struct WahWah_t *WahWah):&#160;wahwah.c']]],
+  ['wahwah_5freset_1',['WahWah_Reset',['../group__wahwah.html#ga9b91a7fae64755689936b60cf1820535',1,'WahWah_Reset(struct WahWah_t *WahWah):&#160;wahwah.c'],['../group__wahwah.html#ga9b91a7fae64755689936b60cf1820535',1,'WahWah_Reset(struct WahWah_t *WahWah):&#160;wahwah.c']]],
   ['wav_5feof_2',['wav_eof',['../wav_8h.html#a2ae347cfdc40d636285968e72294eb8c',1,'wav.h']]],
   ['wav_5ferrno_3',['wav_errno',['../wav_8h.html#a689b248101c33cc0412d625f497396ba',1,'wav.h']]],
   ['wav_5ferror_4',['wav_error',['../wav_8h.html#af241642229468a37ee36ca86a06978a9',1,'wav.h']]],

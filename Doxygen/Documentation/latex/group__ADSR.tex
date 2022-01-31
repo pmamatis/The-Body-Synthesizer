@@ -90,18 +90,18 @@ ADSR\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00019}{19}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00020}{20}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00019                             \{}
-\DoxyCodeLine{00020 }
-\DoxyCodeLine{00021     SetupADSR(\&\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}});}
-\DoxyCodeLine{00022     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
-\DoxyCodeLine{00023         SetupADSR(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i]);}
-\DoxyCodeLine{00024 }
-\DoxyCodeLine{00025     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{00026 \}}
+\DoxyCodeLine{00020                             \{}
+\DoxyCodeLine{00021 }
+\DoxyCodeLine{00022     SetupADSR(\&\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}});}
+\DoxyCodeLine{00023     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
+\DoxyCodeLine{00024         SetupADSR(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i]);}
+\DoxyCodeLine{00025 }
+\DoxyCodeLine{00026     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00027 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}\label{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}} 
@@ -120,42 +120,42 @@ ADSR\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00054}{54}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00055}{55}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00054                                               \{}
-\DoxyCodeLine{00055 }
-\DoxyCodeLine{00056     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
-\DoxyCodeLine{00057     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
-\DoxyCodeLine{00058     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
-\DoxyCodeLine{00059     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{00060     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
-\DoxyCodeLine{00061     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
-\DoxyCodeLine{00062     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{00063 }
-\DoxyCodeLine{00064     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
-\DoxyCodeLine{00065 }
-\DoxyCodeLine{00066     Display.ADSR\_Attacktime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time/LUT\_SR;}
-\DoxyCodeLine{00067     Display.ADSR\_Decaytime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time/LUT\_SR;}
-\DoxyCodeLine{00068     Display.ADSR\_Sustaintime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time/LUT\_SR;}
-\DoxyCodeLine{00069     Display.ADSR\_Sustainlevel = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/LUT\_SR;}
-\DoxyCodeLine{00070     Display.ADSR\_Releasetime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time/LUT\_SR;}
-\DoxyCodeLine{00071 }
-\DoxyCodeLine{00072     Display.ADSR\_Sources[0] = POTI;}
-\DoxyCodeLine{00073     Display.ADSR\_Sources[1] = POTI;}
-\DoxyCodeLine{00074     Display.ADSR\_Sources[2] = POTI;}
-\DoxyCodeLine{00075     Display.ADSR\_Sources[3] = POTI;}
-\DoxyCodeLine{00076     Display.ADSR\_Sources[4] = POTI;}
-\DoxyCodeLine{00077 }
-\DoxyCodeLine{00078     strcpy(Display.value\_str\_adsr\_settings[0], Display.source\_names[Display.ADSR\_Sources[0]]);}
-\DoxyCodeLine{00079     strcpy(Display.value\_str\_adsr\_settings[1], Display.source\_names[Display.ADSR\_Sources[1]]);}
-\DoxyCodeLine{00080     strcpy(Display.value\_str\_adsr\_settings[2], Display.source\_names[Display.ADSR\_Sources[2]]);}
-\DoxyCodeLine{00081     strcpy(Display.value\_str\_adsr\_settings[3], Display.source\_names[Display.ADSR\_Sources[3]]);}
-\DoxyCodeLine{00082     strcpy(Display.value\_str\_adsr\_settings[4], Display.source\_names[Display.ADSR\_Sources[4]]);}
-\DoxyCodeLine{00083 }
-\DoxyCodeLine{00084     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{00085 \}}
+\DoxyCodeLine{00055                                               \{}
+\DoxyCodeLine{00056 }
+\DoxyCodeLine{00057     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
+\DoxyCodeLine{00058     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{00059     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
+\DoxyCodeLine{00060     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00061     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
+\DoxyCodeLine{00062     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
+\DoxyCodeLine{00063     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00064 }
+\DoxyCodeLine{00065     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067     Display.ADSR\_Attacktime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time/LUT\_SR;}
+\DoxyCodeLine{00068     Display.ADSR\_Decaytime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time/LUT\_SR;}
+\DoxyCodeLine{00069     Display.ADSR\_Sustaintime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time/LUT\_SR;}
+\DoxyCodeLine{00070     Display.ADSR\_Sustainlevel = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/LUT\_SR;}
+\DoxyCodeLine{00071     Display.ADSR\_Releasetime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time/LUT\_SR;}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073     Display.ADSR\_Sources[0] = POTI;}
+\DoxyCodeLine{00074     Display.ADSR\_Sources[1] = POTI;}
+\DoxyCodeLine{00075     Display.ADSR\_Sources[2] = POTI;}
+\DoxyCodeLine{00076     Display.ADSR\_Sources[3] = POTI;}
+\DoxyCodeLine{00077     Display.ADSR\_Sources[4] = POTI;}
+\DoxyCodeLine{00078 }
+\DoxyCodeLine{00079     strcpy(Display.value\_str\_adsr\_settings[0], Display.source\_names[Display.ADSR\_Sources[0]]);}
+\DoxyCodeLine{00080     strcpy(Display.value\_str\_adsr\_settings[1], Display.source\_names[Display.ADSR\_Sources[1]]);}
+\DoxyCodeLine{00081     strcpy(Display.value\_str\_adsr\_settings[2], Display.source\_names[Display.ADSR\_Sources[2]]);}
+\DoxyCodeLine{00082     strcpy(Display.value\_str\_adsr\_settings[3], Display.source\_names[Display.ADSR\_Sources[3]]);}
+\DoxyCodeLine{00083     strcpy(Display.value\_str\_adsr\_settings[4], Display.source\_names[Display.ADSR\_Sources[4]]);}
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00086 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}\label{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}} 
@@ -175,48 +175,48 @@ Definition at line \mbox{\hyperlink{adsr_8c_source_l00054}{54}} of file \mbox{\h
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00094}{94}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00095}{95}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00094                                                                                             \{}
-\DoxyCodeLine{00095 }
-\DoxyCodeLine{00096     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{00097 }
-\DoxyCodeLine{00098         \textcolor{keywordtype}{float} calc = 0;}
-\DoxyCodeLine{00099 }
-\DoxyCodeLine{00100         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
-\DoxyCodeLine{00101 }
-\DoxyCodeLine{00102         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration}}
-\DoxyCodeLine{00103 }
-\DoxyCodeLine{00104             \textcolor{comment}{// attack period}}
-\DoxyCodeLine{00105             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
-\DoxyCodeLine{00106                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
-\DoxyCodeLine{00107 }
-\DoxyCodeLine{00108             \textcolor{comment}{// decay period}}
-\DoxyCodeLine{00109             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
-\DoxyCodeLine{00110                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
-\DoxyCodeLine{00111 }
-\DoxyCodeLine{00112             \textcolor{comment}{// sustain period}}
-\DoxyCodeLine{00113             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
-\DoxyCodeLine{00114                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{00115 }
-\DoxyCodeLine{00116             \textcolor{comment}{// release period}}
-\DoxyCodeLine{00117             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
-\DoxyCodeLine{00118                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{00119 }
-\DoxyCodeLine{00120             *calculate\_value = *calculate\_value * calc;}
-\DoxyCodeLine{00121         \}}
-\DoxyCodeLine{00122 }
-\DoxyCodeLine{00123         \textcolor{comment}{// update adsr counter}}
-\DoxyCodeLine{00124         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
-\DoxyCodeLine{00125 }
-\DoxyCodeLine{00126         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
-\DoxyCodeLine{00127             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
-\DoxyCodeLine{00128             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
-\DoxyCodeLine{00129         \}}
-\DoxyCodeLine{00130     \}}
-\DoxyCodeLine{00131 \}}
+\DoxyCodeLine{00095                                                                                             \{}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00098 }
+\DoxyCodeLine{00099         \textcolor{keywordtype}{float} calc = 0;}
+\DoxyCodeLine{00100 }
+\DoxyCodeLine{00101         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
+\DoxyCodeLine{00102 }
+\DoxyCodeLine{00103         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration}}
+\DoxyCodeLine{00104 }
+\DoxyCodeLine{00105             \textcolor{comment}{// attack period}}
+\DoxyCodeLine{00106             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
+\DoxyCodeLine{00107                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
+\DoxyCodeLine{00108 }
+\DoxyCodeLine{00109             \textcolor{comment}{// decay period}}
+\DoxyCodeLine{00110             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
+\DoxyCodeLine{00111                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
+\DoxyCodeLine{00112 }
+\DoxyCodeLine{00113             \textcolor{comment}{// sustain period}}
+\DoxyCodeLine{00114             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{00115                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00116 }
+\DoxyCodeLine{00117             \textcolor{comment}{// release period}}
+\DoxyCodeLine{00118             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{00119                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00120 }
+\DoxyCodeLine{00121             *calculate\_value = *calculate\_value * calc;}
+\DoxyCodeLine{00122         \}}
+\DoxyCodeLine{00123 }
+\DoxyCodeLine{00124         \textcolor{comment}{// update adsr counter}}
+\DoxyCodeLine{00125         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
+\DoxyCodeLine{00126 }
+\DoxyCodeLine{00127         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
+\DoxyCodeLine{00128             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
+\DoxyCodeLine{00129             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{00130         \}}
+\DoxyCodeLine{00131     \}}
+\DoxyCodeLine{00132 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}\label{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}} 
@@ -236,49 +236,49 @@ TODO
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00139}{139}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00140}{140}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00139                                                                                                \{}
-\DoxyCodeLine{00140 }
-\DoxyCodeLine{00141     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{00142 }
-\DoxyCodeLine{00143         \textcolor{keywordtype}{float} calc;}
-\DoxyCodeLine{00144 }
-\DoxyCodeLine{00145         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
-\DoxyCodeLine{00146 }
-\DoxyCodeLine{00147         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration time}}
-\DoxyCodeLine{00148 }
-\DoxyCodeLine{00149             \textcolor{comment}{// attack period}}
-\DoxyCodeLine{00150             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
-\DoxyCodeLine{00151                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
-\DoxyCodeLine{00152 }
-\DoxyCodeLine{00153             \textcolor{comment}{// decay period}}
-\DoxyCodeLine{00154             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
-\DoxyCodeLine{00155                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
-\DoxyCodeLine{00156 }
-\DoxyCodeLine{00157             \textcolor{comment}{// sustain period}}
-\DoxyCodeLine{00158             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
-\DoxyCodeLine{00159                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{00160 }
-\DoxyCodeLine{00161             \textcolor{comment}{// release period}}
-\DoxyCodeLine{00162             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
-\DoxyCodeLine{00163                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
-\DoxyCodeLine{00164 }
-\DoxyCodeLine{00165             *calculate\_value = *calculate\_value * calc;}
-\DoxyCodeLine{00166         \}}
-\DoxyCodeLine{00167 }
-\DoxyCodeLine{00168         \textcolor{comment}{// update adsr counter}}
-\DoxyCodeLine{00169         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
-\DoxyCodeLine{00170 }
-\DoxyCodeLine{00171         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
-\DoxyCodeLine{00172 }
-\DoxyCodeLine{00173             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
-\DoxyCodeLine{00174             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
-\DoxyCodeLine{00175         \}}
-\DoxyCodeLine{00176     \}}
-\DoxyCodeLine{00177 \}}
+\DoxyCodeLine{00140                                                                                                \{}
+\DoxyCodeLine{00141 }
+\DoxyCodeLine{00142     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00143 }
+\DoxyCodeLine{00144         \textcolor{keywordtype}{float} calc;}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00146         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
+\DoxyCodeLine{00147 }
+\DoxyCodeLine{00148         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration time}}
+\DoxyCodeLine{00149 }
+\DoxyCodeLine{00150             \textcolor{comment}{// attack period}}
+\DoxyCodeLine{00151             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
+\DoxyCodeLine{00152                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00154             \textcolor{comment}{// decay period}}
+\DoxyCodeLine{00155             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
+\DoxyCodeLine{00156                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
+\DoxyCodeLine{00157 }
+\DoxyCodeLine{00158             \textcolor{comment}{// sustain period}}
+\DoxyCodeLine{00159             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{00160                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00161 }
+\DoxyCodeLine{00162             \textcolor{comment}{// release period}}
+\DoxyCodeLine{00163             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{00164                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00165 }
+\DoxyCodeLine{00166             *calculate\_value = *calculate\_value * calc;}
+\DoxyCodeLine{00167         \}}
+\DoxyCodeLine{00168 }
+\DoxyCodeLine{00169         \textcolor{comment}{// update adsr counter}}
+\DoxyCodeLine{00170         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
+\DoxyCodeLine{00171 }
+\DoxyCodeLine{00172         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
+\DoxyCodeLine{00173 }
+\DoxyCodeLine{00174             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
+\DoxyCodeLine{00175             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{00176         \}}
+\DoxyCodeLine{00177     \}}
+\DoxyCodeLine{00178 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}\label{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}} 
@@ -289,29 +289,29 @@ Definition at line \mbox{\hyperlink{adsr_8c_source_l00139}{139}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{adsr_8c_source_l00028}{28}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00029}{29}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00028                                              \{}
-\DoxyCodeLine{00029 }
-\DoxyCodeLine{00030     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
-\DoxyCodeLine{00031     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
-\DoxyCodeLine{00032     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
-\DoxyCodeLine{00033     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{00034     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
-\DoxyCodeLine{00035     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
-\DoxyCodeLine{00036     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
-\DoxyCodeLine{00037 }
-\DoxyCodeLine{00038     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_attack = 1.00;   \textcolor{comment}{// in seconds; maximum 4.0 seconds (-\/> 4*LUT\_SR), to display the value -\/> uint16\_t}}
-\DoxyCodeLine{00039     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_decay = 1.00;}
-\DoxyCodeLine{00040     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_sustaintime = 2.00;}
-\DoxyCodeLine{00041     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_release = 1.00;}
-\DoxyCodeLine{00042 }
-\DoxyCodeLine{00043     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
-\DoxyCodeLine{00044 }
-\DoxyCodeLine{00045     \textcolor{keywordflow}{return} ADSR\_OK;}
-\DoxyCodeLine{00046 \}}
+\DoxyCodeLine{00029                                              \{}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
+\DoxyCodeLine{00032     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{00033     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
+\DoxyCodeLine{00034     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00035     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
+\DoxyCodeLine{00036     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
+\DoxyCodeLine{00037     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_attack = 1.00;   \textcolor{comment}{// in seconds; maximum 4.0 seconds (-\/> 4*LUT\_SR), to display the value -\/> uint16\_t}}
+\DoxyCodeLine{00040     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_decay = 1.00;}
+\DoxyCodeLine{00041     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_sustaintime = 2.00;}
+\DoxyCodeLine{00042     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_release = 1.00;}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00047 \}}
 
 \end{DoxyCode}
 

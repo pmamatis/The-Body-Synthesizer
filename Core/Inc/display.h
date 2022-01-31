@@ -89,7 +89,8 @@ typedef enum {
 	STEP7 = 160,
 	STEP8 = 180
 } drumcomputer_step_coordinate;
-/** @} /*
+/** @}*/
+
 typedef enum {
 	DISPLAY_FAIL = -1,
 	DISPLAY_OK = 1

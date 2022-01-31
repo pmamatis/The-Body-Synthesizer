@@ -2,7 +2,9 @@
 /**
   ******************************************************************************
   * @file    stm32f7xx_it.h
+  * @defgroup Interrupts Interrupts
   * @brief   This file contains the headers of the interrupt handlers.
+  * 
   ******************************************************************************
   * @attention
   *
@@ -15,7 +17,8 @@
   *                        opensource.org/licenses/BSD-3-Clause
   *
  ******************************************************************************
-  */
+* @{
+*/
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -75,7 +78,7 @@ void DMA2_Stream3_IRQHandler(void);
 void DMA2_Stream4_IRQHandler(void);
 void SPI4_IRQHandler(void);
 /* USER CODE BEGIN EFP */
-
+/** @}*/
 /* USER CODE END EFP */
 
 #ifdef __cplusplus

@@ -9,6 +9,12 @@
  * 
  */
 
+/**
+ * @defgroup SDcard SD-Card 
+ * @brief SD-Card software
+ * @{
+ */
+
 #ifndef INC_SD_CARD_H_
 #define INC_SD_CARD_H_
 
@@ -57,4 +63,5 @@ void sd_card_read(char *filename, float *LUT);
 
 void sd_card_remove_file(char *filename, UART_HandleTypeDef huart);
 
+/** @} */
 #endif /* INC_SD_CARD_H_ */

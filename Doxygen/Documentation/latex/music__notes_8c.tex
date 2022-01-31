@@ -9,11 +9,11 @@ abstarction from music notes to frequencys
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-uint8\+\_\+t \mbox{\hyperlink{music__notes_8c_a24334366425c42178a955c3c969ad9a8}{Get\+\_\+\+Keyindex}} (char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}})
+uint8\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}{Get\+\_\+\+Keyindex}} (char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}})
 \begin{DoxyCompactList}\small\item\em returns the index of a note-\/letter depending on the keys-\/array \end{DoxyCompactList}\item 
-double \mbox{\hyperlink{music__notes_8c_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\+\_\+\+Note\+\_\+\+Frequency}} (uint8\+\_\+t index, uint8\+\_\+t octave)
+double \mbox{\hyperlink{group__MusicNotes_ga3fc1bdf03e12b5dee3aa887f100421bf}{Get\+\_\+\+Note\+\_\+\+Frequency}} (uint8\+\_\+t index, uint8\+\_\+t octave)
 \begin{DoxyCompactList}\small\item\em returns the frequency of a music note listed in the \end{DoxyCompactList}\item 
-uint16\+\_\+t \mbox{\hyperlink{music__notes_8c_a71407d53f2b1100f1ab93dc2681dfe48}{Get\+\_\+\+Note\+\_\+\+Index}} (char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}, uint8\+\_\+t octave)
+uint16\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\+\_\+\+Note\+\_\+\+Index}} (char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}, uint8\+\_\+t octave)
 \begin{DoxyCompactList}\small\item\em returns the frequency of a music note listed in the \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -69,88 +69,6 @@ Copyright (c) 2022
 
 Definition in file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
 
-
-
-\doxysubsection{Function Documentation}
-\mbox{\Hypertarget{music__notes_8c_a24334366425c42178a955c3c969ad9a8}\label{music__notes_8c_a24334366425c42178a955c3c969ad9a8}} 
-\index{music\_notes.c@{music\_notes.c}!Get\_Keyindex@{Get\_Keyindex}}
-\index{Get\_Keyindex@{Get\_Keyindex}!music\_notes.c@{music\_notes.c}}
-\doxysubsubsection{\texorpdfstring{Get\_Keyindex()}{Get\_Keyindex()}}
-{\footnotesize\ttfamily uint8\+\_\+t Get\+\_\+\+Keyindex (\begin{DoxyParamCaption}\item[{char}]{key }\end{DoxyParamCaption})}
-
-
-
-returns the index of a note-\/letter depending on the keys-\/array 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key} & note-\/letter e.\+g. C \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-key index 
-\end{DoxyReturn}
-
-
-Definition at line \mbox{\hyperlink{music__notes_8c_source_l00051}{51}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00051                               \{}
-\DoxyCodeLine{00052 }
-\DoxyCodeLine{00053     uint8\_t keyindex = 0;}
-\DoxyCodeLine{00054 }
-\DoxyCodeLine{00055     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 12; i++)\{}
-\DoxyCodeLine{00056         \textcolor{keywordflow}{if}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}} == \mbox{\hyperlink{music__notes_8c_aaeba6af94f85d3f8a58e358b842e96f5}{keys}}[i]) keyindex = i;}
-\DoxyCodeLine{00057     \}}
-\DoxyCodeLine{00058 \textcolor{keywordflow}{return} keyindex;}
-\DoxyCodeLine{00059 \}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{music__notes_8c_a3fc1bdf03e12b5dee3aa887f100421bf}\label{music__notes_8c_a3fc1bdf03e12b5dee3aa887f100421bf}} 
-\index{music\_notes.c@{music\_notes.c}!Get\_Note\_Frequency@{Get\_Note\_Frequency}}
-\index{Get\_Note\_Frequency@{Get\_Note\_Frequency}!music\_notes.c@{music\_notes.c}}
-\doxysubsubsection{\texorpdfstring{Get\_Note\_Frequency()}{Get\_Note\_Frequency()}}
-{\footnotesize\ttfamily double Get\+\_\+\+Note\+\_\+\+Frequency (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index,  }\item[{uint8\+\_\+t}]{octave }\end{DoxyParamCaption})}
-
-
-
-returns the frequency of a music note listed in the 
-
-
-
-Definition at line \mbox{\hyperlink{music__notes_8c_source_l00063}{63}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00063                                                        \{}
-\DoxyCodeLine{00064     \textcolor{keywordtype}{int} tmp\_octave = 12*octave; \textcolor{comment}{//DEBUG}}
-\DoxyCodeLine{00065     \textcolor{keywordtype}{double} note\_freq =\mbox{\hyperlink{group__SINLUT_ga9a9d9181987af97d8c0ee7492f2e17fc}{LUT\_FREQUENCYS}}[tmp\_octave+index];}
-\DoxyCodeLine{00066     \textcolor{keywordflow}{return} note\_freq;}
-\DoxyCodeLine{00067 \}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{music__notes_8c_a71407d53f2b1100f1ab93dc2681dfe48}\label{music__notes_8c_a71407d53f2b1100f1ab93dc2681dfe48}} 
-\index{music\_notes.c@{music\_notes.c}!Get\_Note\_Index@{Get\_Note\_Index}}
-\index{Get\_Note\_Index@{Get\_Note\_Index}!music\_notes.c@{music\_notes.c}}
-\doxysubsubsection{\texorpdfstring{Get\_Note\_Index()}{Get\_Note\_Index()}}
-{\footnotesize\ttfamily uint16\+\_\+t Get\+\_\+\+Note\+\_\+\+Index (\begin{DoxyParamCaption}\item[{char}]{key,  }\item[{uint8\+\_\+t}]{octave }\end{DoxyParamCaption})}
-
-
-
-returns the frequency of a music note listed in the 
-
-
-
-Definition at line \mbox{\hyperlink{music__notes_8c_source_l00071}{71}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00071                                                 \{}
-\DoxyCodeLine{00072     \textcolor{keywordflow}{return} 12*octave + \mbox{\hyperlink{music__notes_8c_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}});}
-\DoxyCodeLine{00073 \}}
-
-\end{DoxyCode}
 
 
 \doxysubsection{Variable Documentation}

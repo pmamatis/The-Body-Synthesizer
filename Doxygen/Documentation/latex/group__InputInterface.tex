@@ -1,0 +1,1058 @@
+\hypertarget{group__InputInterface}{}\doxysection{Input Interface}
+\label{group__InputInterface}\index{Input Interface@{Input Interface}}
+
+
+brings all variables from the display together input devices to make it processable for the signal synthesis ~\newline
+  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_gae75d85c2a0e33285b010de60ba62d5de}{II\+\_\+\+MAX\+\_\+\+VOICES}}~3
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_gab5f73ee78baaa63d35a30b4df2e19bb1}{II\+\_\+\+SR}}~50
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_gad8b8ff119b355a4f2924ac3737ee1942}{II\+\_\+\+TREM\+\_\+\+DEPTH\+\_\+\+STEP\+\_\+\+SIZE}}~20
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_ga5fa4dbf044c0d140e4b176cd254b0535}{II\+\_\+\+FILTER\+\_\+\+CUTTOFF\+\_\+\+STEP\+\_\+\+SIZE}}~1600
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_ga4b48736ece16161be4dc32baa4a2a927}{II\+\_\+\+MINIMUM\+\_\+\+STEPCOUNTER}}~440
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_ga3ec9f00b0d3b0b973871a2d0017db3bc}{II\+\_\+\+FILTER\+\_\+\+CUTOFF\+\_\+\+MIN}}~10
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_gac6dc998476a80037e675ac210e8fe275}{II\+\_\+\+TREM\+\_\+\+RATE\+\_\+\+DELAY}}~II\+\_\+\+SR/4
+\begin{DoxyCompactList}\small\item\em Processing Delays. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__InputInterface_gaf5ee1c3931290902bb339f3fef51307c}{II\+\_\+\+TREM\+\_\+\+DEPTH\+\_\+\+DELAY}}~II\+\_\+\+SR/4
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__InputInterface_gaf102c42e8c8be931b33bd67401dd9424}{II\+\_\+init}} ()
+\begin{DoxyCompactList}\small\item\em init function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}{II\+\_\+start\+Interface}} (TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em starts the interface timer Interrupt \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__InputInterface_ga2b27d1c554db52f823b2897137823819}{II\+\_\+raise\+Note}} (uint8\+\_\+t ID)
+\item 
+void \mbox{\hyperlink{group__InputInterface_gafa7d9063c65151e6c6c79e94f81dd0fd}{II\+\_\+decrease\+Note}} (uint8\+\_\+t ID)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__InputInterface_ga68aa067f04b08bf4a16352bf87cc4c3e}{II\+\_\+\+Display\+\_\+\+Voices}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__InputInterface_ga195e0c4273ec6831366f4ae54a1586ee}{II\+\_\+\+Display\+\_\+\+Effects}} (void)
+\begin{DoxyCompactList}\small\item\em parses the information from the Display-\/input to the strcuts of the effects retval\+: 0 Error 1 Success \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\+\_\+mapping\+\_\+F}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\+\_\+step\+\_\+counter}} \mbox{[}5\mbox{]}
+\item 
+int16\+\_\+t \mbox{\hyperlink{group__InputInterface_ga6d86279f4356bba7d0efcb58cd190a1a}{drum\+\_\+filter\+\_\+step\+\_\+counter}}
+\item 
+bool \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\+\_\+delay\+\_\+counter}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em \mbox{[}0\mbox{]}\+: tremolo rate; \mbox{[}1\mbox{]}\+: tremolo depth \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__InputInterface_gad625849bf556493fe3fde5a8418c5f33}{emg\+\_\+triggerd\+\_\+flag}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+brings all variables from the display together input devices to make it processable for the signal synthesis ~\newline
+ 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__InputInterface_ga3ec9f00b0d3b0b973871a2d0017db3bc}\label{group__InputInterface_ga3ec9f00b0d3b0b973871a2d0017db3bc}} 
+\index{Input Interface@{Input Interface}!II\_FILTER\_CUTOFF\_MIN@{II\_FILTER\_CUTOFF\_MIN}}
+\index{II\_FILTER\_CUTOFF\_MIN@{II\_FILTER\_CUTOFF\_MIN}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_FILTER\_CUTOFF\_MIN}{II\_FILTER\_CUTOFF\_MIN}}
+{\footnotesize\ttfamily \#define II\+\_\+\+FILTER\+\_\+\+CUTOFF\+\_\+\+MIN~10}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00034}{34}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_ga5fa4dbf044c0d140e4b176cd254b0535}\label{group__InputInterface_ga5fa4dbf044c0d140e4b176cd254b0535}} 
+\index{Input Interface@{Input Interface}!II\_FILTER\_CUTTOFF\_STEP\_SIZE@{II\_FILTER\_CUTTOFF\_STEP\_SIZE}}
+\index{II\_FILTER\_CUTTOFF\_STEP\_SIZE@{II\_FILTER\_CUTTOFF\_STEP\_SIZE}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_FILTER\_CUTTOFF\_STEP\_SIZE}{II\_FILTER\_CUTTOFF\_STEP\_SIZE}}
+{\footnotesize\ttfamily \#define II\+\_\+\+FILTER\+\_\+\+CUTTOFF\+\_\+\+STEP\+\_\+\+SIZE~1600}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00032}{32}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_gae75d85c2a0e33285b010de60ba62d5de}\label{group__InputInterface_gae75d85c2a0e33285b010de60ba62d5de}} 
+\index{Input Interface@{Input Interface}!II\_MAX\_VOICES@{II\_MAX\_VOICES}}
+\index{II\_MAX\_VOICES@{II\_MAX\_VOICES}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_MAX\_VOICES}{II\_MAX\_VOICES}}
+{\footnotesize\ttfamily \#define II\+\_\+\+MAX\+\_\+\+VOICES~3}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00027}{27}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_ga4b48736ece16161be4dc32baa4a2a927}\label{group__InputInterface_ga4b48736ece16161be4dc32baa4a2a927}} 
+\index{Input Interface@{Input Interface}!II\_MINIMUM\_STEPCOUNTER@{II\_MINIMUM\_STEPCOUNTER}}
+\index{II\_MINIMUM\_STEPCOUNTER@{II\_MINIMUM\_STEPCOUNTER}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_MINIMUM\_STEPCOUNTER}{II\_MINIMUM\_STEPCOUNTER}}
+{\footnotesize\ttfamily \#define II\+\_\+\+MINIMUM\+\_\+\+STEPCOUNTER~440}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00033}{33}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_gab5f73ee78baaa63d35a30b4df2e19bb1}\label{group__InputInterface_gab5f73ee78baaa63d35a30b4df2e19bb1}} 
+\index{Input Interface@{Input Interface}!II\_SR@{II\_SR}}
+\index{II\_SR@{II\_SR}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_SR}{II\_SR}}
+{\footnotesize\ttfamily \#define II\+\_\+\+SR~50}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00028}{28}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_gaf5ee1c3931290902bb339f3fef51307c}\label{group__InputInterface_gaf5ee1c3931290902bb339f3fef51307c}} 
+\index{Input Interface@{Input Interface}!II\_TREM\_DEPTH\_DELAY@{II\_TREM\_DEPTH\_DELAY}}
+\index{II\_TREM\_DEPTH\_DELAY@{II\_TREM\_DEPTH\_DELAY}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_TREM\_DEPTH\_DELAY}{II\_TREM\_DEPTH\_DELAY}}
+{\footnotesize\ttfamily \#define II\+\_\+\+TREM\+\_\+\+DEPTH\+\_\+\+DELAY~II\+\_\+\+SR/4}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00038}{38}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_gad8b8ff119b355a4f2924ac3737ee1942}\label{group__InputInterface_gad8b8ff119b355a4f2924ac3737ee1942}} 
+\index{Input Interface@{Input Interface}!II\_TREM\_DEPTH\_STEP\_SIZE@{II\_TREM\_DEPTH\_STEP\_SIZE}}
+\index{II\_TREM\_DEPTH\_STEP\_SIZE@{II\_TREM\_DEPTH\_STEP\_SIZE}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_TREM\_DEPTH\_STEP\_SIZE}{II\_TREM\_DEPTH\_STEP\_SIZE}}
+{\footnotesize\ttfamily \#define II\+\_\+\+TREM\+\_\+\+DEPTH\+\_\+\+STEP\+\_\+\+SIZE~20}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00029}{29}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_gac6dc998476a80037e675ac210e8fe275}\label{group__InputInterface_gac6dc998476a80037e675ac210e8fe275}} 
+\index{Input Interface@{Input Interface}!II\_TREM\_RATE\_DELAY@{II\_TREM\_RATE\_DELAY}}
+\index{II\_TREM\_RATE\_DELAY@{II\_TREM\_RATE\_DELAY}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_TREM\_RATE\_DELAY}{II\_TREM\_RATE\_DELAY}}
+{\footnotesize\ttfamily \#define II\+\_\+\+TREM\+\_\+\+RATE\+\_\+\+DELAY~II\+\_\+\+SR/4}
+
+
+
+Processing Delays. 
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00037}{37}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__InputInterface_gafa7d9063c65151e6c6c79e94f81dd0fd}\label{group__InputInterface_gafa7d9063c65151e6c6c79e94f81dd0fd}} 
+\index{Input Interface@{Input Interface}!II\_decreaseNote@{II\_decreaseNote}}
+\index{II\_decreaseNote@{II\_decreaseNote}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_decreaseNote()}{II\_decreaseNote()}}
+{\footnotesize\ttfamily void II\+\_\+decrease\+Note (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ID }\end{DoxyParamCaption})}
+
+raises the key of an existing signal, by deleting the signal and creating a new signal 
+\begin{DoxyParams}{Parameters}
+{\em ID} & signal ID \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00744}{744}} of file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00744                                 \{}
+\DoxyCodeLine{00745     uint8\_t index= \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
+\DoxyCodeLine{00746     \textcolor{keywordtype}{char} oldKey = Display.Voices\_Note[ID];}
+\DoxyCodeLine{00747     \textcolor{keywordtype}{char} newKey;}
+\DoxyCodeLine{00748     uint8\_t key\_counter = 0;}
+\DoxyCodeLine{00749     \textcolor{comment}{//gets index of old key..}}
+\DoxyCodeLine{00750     \textcolor{keywordflow}{while} (\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[key\_counter] != oldKey)\{}
+\DoxyCodeLine{00751         key\_counter++;}
+\DoxyCodeLine{00752     \}}
+\DoxyCodeLine{00753     key\_counter+= 12;}
+\DoxyCodeLine{00754 }
+\DoxyCodeLine{00755     \textcolor{comment}{//gets key of the note before}}
+\DoxyCodeLine{00756     newKey = \mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[key\_counter-\/1];}
+\DoxyCodeLine{00757 }
+\DoxyCodeLine{00758     \textcolor{keywordflow}{if} (oldKey == \textcolor{charliteral}{'C'})\{}
+\DoxyCodeLine{00759         \textcolor{comment}{//decrease octave if changing from C to H}}
+\DoxyCodeLine{00760         \textcolor{keywordflow}{if} (Display.Voices\_Octave[ID] > 0)\{}
+\DoxyCodeLine{00761             Display.Voices\_Octave[ID]-\/-\/;}
+\DoxyCodeLine{00762         \}}
+\DoxyCodeLine{00763         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (Display.Voices\_Octave[ID] == 0) \{}
+\DoxyCodeLine{00764             \textcolor{comment}{//reaches end of playable notes}}
+\DoxyCodeLine{00765             newKey = \textcolor{charliteral}{'C'};}
+\DoxyCodeLine{00766         \}}
+\DoxyCodeLine{00767     \}}
+\DoxyCodeLine{00768     Display.Voices\_Note[ID] = newKey;}
+\DoxyCodeLine{00769     \textcolor{keywordflow}{if}(index >= 0)\{}
+\DoxyCodeLine{00770         \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
+\DoxyCodeLine{00771         \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
+\DoxyCodeLine{00772     \}}
+\DoxyCodeLine{00773 }
+\DoxyCodeLine{00774 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__InputInterface_ga195e0c4273ec6831366f4ae54a1586ee}\label{group__InputInterface_ga195e0c4273ec6831366f4ae54a1586ee}} 
+\index{Input Interface@{Input Interface}!II\_Display\_Effects@{II\_Display\_Effects}}
+\index{II\_Display\_Effects@{II\_Display\_Effects}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_Display\_Effects()}{II\_Display\_Effects()}}
+{\footnotesize\ttfamily uint8\+\_\+t II\+\_\+\+Display\+\_\+\+Effects (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+parses the information from the Display-\/input to the strcuts of the effects retval\+: 0 Error 1 Success 
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00233}{233}} of file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00233                                 \{}
+\DoxyCodeLine{00234 }
+\DoxyCodeLine{00235     \textcolor{comment}{// Distortion}}
+\DoxyCodeLine{00236     \textcolor{keywordflow}{if}(Display.Distortion\_ONOFF == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00237 }
+\DoxyCodeLine{00238         \mbox{\hyperlink{group__EffectProcessing_ga4dfb093ad0f349af12ad3030a11da8d9}{effects\_add}}(DIST);}
+\DoxyCodeLine{00239 }
+\DoxyCodeLine{00240         \textcolor{keywordflow}{if}(Display.Distortion\_Type == 0)}
+\DoxyCodeLine{00241             SoftClipping.distortion\_gain = Display.Distortion\_Gain;}
+\DoxyCodeLine{00242         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Distortion\_Type == 1)}
+\DoxyCodeLine{00243             HardClipping.distortion\_gain = Display.Distortion\_Gain;}
+\DoxyCodeLine{00244 }
+\DoxyCodeLine{00245         \textcolor{keywordflow}{if}(Display.Distortion\_Sources > POTI) \{ \textcolor{comment}{// POTI = 0}}
+\DoxyCodeLine{00246 }
+\DoxyCodeLine{00247             \textcolor{keywordflow}{switch} (Display.Distortion\_Sources ) \{}
+\DoxyCodeLine{00248             \textcolor{keywordflow}{case} GYRO\_FB:}
+\DoxyCodeLine{00249 }
+\DoxyCodeLine{00250                 \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK)\{}
+\DoxyCodeLine{00251                     \textcolor{keywordflow}{if} (Display.Distortion\_Gain >= 1) \{}
+\DoxyCodeLine{00252                         Display.Distortion\_Gain -\/-\/;}
+\DoxyCodeLine{00253                     \}}
+\DoxyCodeLine{00254                     sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00255                 \}}
+\DoxyCodeLine{00256                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT)\{}
+\DoxyCodeLine{00257                     \textcolor{keywordflow}{if} (Display.Distortion\_Gain < HardClipping.distortion\_maximum\_gain) \{}
+\DoxyCodeLine{00258                         Display.Distortion\_Gain ++;}
+\DoxyCodeLine{00259                     \}}
+\DoxyCodeLine{00260                     sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00261                 \}}
+\DoxyCodeLine{00262                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT\_S)\{}
+\DoxyCodeLine{00263                     \textcolor{keywordflow}{if} (Display.Distortion\_Gain < HardClipping.distortion\_maximum\_gain) \{}
+\DoxyCodeLine{00264                         Display.Distortion\_Gain ++;}
+\DoxyCodeLine{00265                         Display.Distortion\_Gain ++;}
+\DoxyCodeLine{00266                     \}}
+\DoxyCodeLine{00267                     sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00268                 \}}
+\DoxyCodeLine{00269                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(sensorData.tilt\_detected == TILT\_BACK\_S)\{}
+\DoxyCodeLine{00270                     \textcolor{keywordflow}{if} (Display.Distortion\_Gain >= 1) \{}
+\DoxyCodeLine{00271                         Display.Distortion\_Gain -\/-\/;}
+\DoxyCodeLine{00272                         Display.Distortion\_Gain -\/-\/;}
+\DoxyCodeLine{00273                     \}}
+\DoxyCodeLine{00274                     sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00275                 \}}
+\DoxyCodeLine{00276                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00277             \textcolor{keywordflow}{case} GYRO\_LR:}
+\DoxyCodeLine{00278                 \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT)\{}
+\DoxyCodeLine{00279                     \textcolor{keywordflow}{if} (Display.Distortion\_Gain > 1) \{}
+\DoxyCodeLine{00280                         Display.Distortion\_Gain -\/-\/;}
+\DoxyCodeLine{00281                     \}}
+\DoxyCodeLine{00282                     sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00283                 \}}
+\DoxyCodeLine{00284                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT)\{}
+\DoxyCodeLine{00285                     \textcolor{keywordflow}{if} (Display.Distortion\_Gain < HardClipping.distortion\_maximum\_gain) \{}
+\DoxyCodeLine{00286                         Display.Distortion\_Gain ++;}
+\DoxyCodeLine{00287                     \}}
+\DoxyCodeLine{00288                     sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00289                 \}}
+\DoxyCodeLine{00290                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT\_S)\{}
+\DoxyCodeLine{00291                     \textcolor{keywordflow}{if} (Display.Distortion\_Gain < HardClipping.distortion\_maximum\_gain) \{}
+\DoxyCodeLine{00292                         Display.Distortion\_Gain ++;}
+\DoxyCodeLine{00293                         Display.Distortion\_Gain ++;}
+\DoxyCodeLine{00294                     \}}
+\DoxyCodeLine{00295                     sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00296                 \}}
+\DoxyCodeLine{00297                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT\_S)\{}
+\DoxyCodeLine{00298                     \textcolor{keywordflow}{if} (Display.Distortion\_Gain > 1) \{}
+\DoxyCodeLine{00299                         Display.Distortion\_Gain -\/-\/;}
+\DoxyCodeLine{00300                         Display.Distortion\_Gain -\/-\/;}
+\DoxyCodeLine{00301                     \}}
+\DoxyCodeLine{00302                     sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00303                 \}}
+\DoxyCodeLine{00304                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00305             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00306                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00307             \}}
+\DoxyCodeLine{00308         \}}
+\DoxyCodeLine{00309     \}}
+\DoxyCodeLine{00310     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (Display.Distortion\_ONOFF == \textcolor{keyword}{false})\{}
+\DoxyCodeLine{00311         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(DIST);}
+\DoxyCodeLine{00312     \}}
+\DoxyCodeLine{00313 }
+\DoxyCodeLine{00314     \textcolor{comment}{//Tremolo}}
+\DoxyCodeLine{00315     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00316 }
+\DoxyCodeLine{00317         \textcolor{keywordflow}{if}(Display.last\_Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00318             \mbox{\hyperlink{group__EffectProcessing_ga4dfb093ad0f349af12ad3030a11da8d9}{effects\_add}}(TREM);}
+\DoxyCodeLine{00319             Tremolo.lfo-\/>lfo\_quarter = 1;}
+\DoxyCodeLine{00320             Tremolo.lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00321             Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{true};}
+\DoxyCodeLine{00322         \}}
+\DoxyCodeLine{00323 }
+\DoxyCodeLine{00324         \textcolor{keywordflow}{if} (Display.Tremolo\_Sources[0] > POTI)\{ \textcolor{comment}{// POTI = 0}}
+\DoxyCodeLine{00325 }
+\DoxyCodeLine{00326             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[0] == 0 ) \{}
+\DoxyCodeLine{00327 }
+\DoxyCodeLine{00328                 \textcolor{keywordflow}{switch} (Display.Tremolo\_Sources[0]) \{   \textcolor{comment}{// TREMOLO RATE}}
+\DoxyCodeLine{00329                 \textcolor{keywordflow}{case} GYRO\_FB:}
+\DoxyCodeLine{00330 }
+\DoxyCodeLine{00331                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK)\{}
+\DoxyCodeLine{00332                         \textcolor{keywordflow}{if} (Display.Tremolo\_Rate\_Index > 0) \{}
+\DoxyCodeLine{00333                             Display.Tremolo\_Rate\_Index -\/-\/;}
+\DoxyCodeLine{00334                         \}}
+\DoxyCodeLine{00335                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00336                     \}}
+\DoxyCodeLine{00337                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK\_S)\{}
+\DoxyCodeLine{00338                         \textcolor{keywordflow}{if} (Display.Tremolo\_Rate\_Index > 0) \{}
+\DoxyCodeLine{00339                             Display.Tremolo\_Rate\_Index-\/-\/;}
+\DoxyCodeLine{00340                             printf(\textcolor{stringliteral}{"{}rateidx = \%u\(\backslash\)r\(\backslash\)n"{}}, Display.Tremolo\_Rate\_Index);}
+\DoxyCodeLine{00341                         \}}
+\DoxyCodeLine{00342                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00343                     \}}
+\DoxyCodeLine{00344                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT)\{}
+\DoxyCodeLine{00345                         \textcolor{keywordflow}{if} (Display.Tremolo\_Rate\_Index < 7) \{   \textcolor{comment}{//((sizeof(LFO\_FREQUENCYS[8])/sizeof(float))-\/1)}}
+\DoxyCodeLine{00346                             Display.Tremolo\_Rate\_Index ++;}
+\DoxyCodeLine{00347                         \}}
+\DoxyCodeLine{00348                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00349                     \}}
+\DoxyCodeLine{00350                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT\_S)\{}
+\DoxyCodeLine{00351                         \textcolor{keywordflow}{if} (Display.Tremolo\_Rate\_Index < 7) \{}
+\DoxyCodeLine{00352                             Display.Tremolo\_Rate\_Index ++;}
+\DoxyCodeLine{00353                             printf(\textcolor{stringliteral}{"{}rateidx = \%u\(\backslash\)r\(\backslash\)n"{}}, Display.Tremolo\_Rate\_Index);}
+\DoxyCodeLine{00354                         \}}
+\DoxyCodeLine{00355                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00356                     \}}
+\DoxyCodeLine{00357                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00358 }
+\DoxyCodeLine{00359                 \textcolor{keywordflow}{case} GYRO\_LR:}
+\DoxyCodeLine{00360                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT )\{}
+\DoxyCodeLine{00361                         \textcolor{keywordflow}{if} (Display.Tremolo\_Rate\_Index > 0) \{}
+\DoxyCodeLine{00362                             Display.Tremolo\_Rate\_Index -\/-\/;}
+\DoxyCodeLine{00363                         \}}
+\DoxyCodeLine{00364                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00365                     \}}
+\DoxyCodeLine{00366                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT\_S )\{}
+\DoxyCodeLine{00367                         \textcolor{keywordflow}{if} (Display.Tremolo\_Rate\_Index > 0) \{}
+\DoxyCodeLine{00368                             Display.Tremolo\_Rate\_Index -\/-\/;}
+\DoxyCodeLine{00369                             printf(\textcolor{stringliteral}{"{}rateidx = \%u\(\backslash\)r\(\backslash\)n"{}}, Display.Tremolo\_Rate\_Index);}
+\DoxyCodeLine{00370                         \}}
+\DoxyCodeLine{00371                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00372                     \}}
+\DoxyCodeLine{00373                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT)\{}
+\DoxyCodeLine{00374                         \textcolor{keywordflow}{if} (Display.Tremolo\_Rate\_Index < 7) \{}
+\DoxyCodeLine{00375                             Display.Tremolo\_Rate\_Index ++;}
+\DoxyCodeLine{00376                         \}}
+\DoxyCodeLine{00377                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00378                     \}}
+\DoxyCodeLine{00379                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT\_S)\{}
+\DoxyCodeLine{00380                         \textcolor{keywordflow}{if} (Display.Tremolo\_Rate\_Index < 7) \{}
+\DoxyCodeLine{00381                             Display.Tremolo\_Rate\_Index ++;}
+\DoxyCodeLine{00382                             printf(\textcolor{stringliteral}{"{}rateidx = \%u\(\backslash\)r\(\backslash\)n"{}}, Display.Tremolo\_Rate\_Index);}
+\DoxyCodeLine{00383                         \}}
+\DoxyCodeLine{00384                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00385                     \}}
+\DoxyCodeLine{00386                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00387                 \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00388                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00389                 \}}
+\DoxyCodeLine{00390             \}}
+\DoxyCodeLine{00391 }
+\DoxyCodeLine{00392             \mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[0]++;}
+\DoxyCodeLine{00393             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[0] >= \mbox{\hyperlink{group__InputInterface_gac6dc998476a80037e675ac210e8fe275}{II\_TREM\_RATE\_DELAY}}) \textcolor{comment}{// >= necessary, because II\_TREM\_RATE\_DELAY is a floating number}}
+\DoxyCodeLine{00394                 \mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[0] = 0;}
+\DoxyCodeLine{00395 }
+\DoxyCodeLine{00396         \}}
+\DoxyCodeLine{00397         \textcolor{keywordflow}{if} (Display.Tremolo\_Sources[1] > POTI)\{ \textcolor{comment}{// POTI = 0}}
+\DoxyCodeLine{00398 }
+\DoxyCodeLine{00399             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[0] == 0 ) \{}
+\DoxyCodeLine{00400 }
+\DoxyCodeLine{00401                 \textcolor{keywordflow}{switch} (Display.Tremolo\_Sources[1]) \{   \textcolor{comment}{// TREMOLO DEPTH}}
+\DoxyCodeLine{00402 }
+\DoxyCodeLine{00403                 \textcolor{keywordflow}{case} GYRO\_FB:}
+\DoxyCodeLine{00404                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK )\{}
+\DoxyCodeLine{00405                         \textcolor{keywordflow}{if} (Display.Tremolo\_Depth > 0) \{}
+\DoxyCodeLine{00406                             \textcolor{comment}{//reduce depth by 1/II\_TREM\_DEPTH\_STEP\_SIZE of Max value => II\_TREM\_DEPTH\_STEP\_SIZE steps}}
+\DoxyCodeLine{00407                             Display.Tremolo\_Depth = Display.Tremolo\_Depth -\/ Tremolo.tremolo\_maximum\_depth/II\_TREM\_DEPTH\_STEP\_SIZE;}
+\DoxyCodeLine{00408                         \}}
+\DoxyCodeLine{00409                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00410                     \}}
+\DoxyCodeLine{00411                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK\_S )\{}
+\DoxyCodeLine{00412                         \textcolor{keywordflow}{if} (Display.Tremolo\_Depth > 0) \{}
+\DoxyCodeLine{00413                             \textcolor{comment}{//reduce depth by 1/II\_TREM\_DEPTH\_STEP\_SIZE of Max value => II\_TREM\_DEPTH\_STEP\_SIZE steps}}
+\DoxyCodeLine{00414                             Display.Tremolo\_Depth = Display.Tremolo\_Depth + Tremolo.tremolo\_maximum\_depth/II\_TREM\_DEPTH\_STEP\_SIZE;}
+\DoxyCodeLine{00415                         \}}
+\DoxyCodeLine{00416                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00417                     \}}
+\DoxyCodeLine{00418                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT)\{}
+\DoxyCodeLine{00419                         \textcolor{keywordflow}{if} (Display.Tremolo\_Depth < Tremolo.tremolo\_maximum\_depth) \{}
+\DoxyCodeLine{00420                             \textcolor{comment}{//increase depth by 1/II\_TREM\_DEPTH\_STEP\_SIZE of Max value => II\_TREM\_DEPTH\_STEP\_SIZE steps}}
+\DoxyCodeLine{00421                             Display.Tremolo\_Depth = Display.Tremolo\_Depth + Tremolo.tremolo\_maximum\_depth/II\_TREM\_DEPTH\_STEP\_SIZE;}
+\DoxyCodeLine{00422                         \}}
+\DoxyCodeLine{00423                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00424                     \}}
+\DoxyCodeLine{00425                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT\_S)\{}
+\DoxyCodeLine{00426                         \textcolor{keywordflow}{if} (Display.Tremolo\_Depth < Tremolo.tremolo\_maximum\_depth) \{}
+\DoxyCodeLine{00427                             \textcolor{comment}{//increase depth by 1/II\_TREM\_DEPTH\_STEP\_SIZE of Max value => II\_TREM\_DEPTH\_STEP\_SIZE steps}}
+\DoxyCodeLine{00428                             Display.Tremolo\_Depth = Display.Tremolo\_Depth + Tremolo.tremolo\_maximum\_depth/II\_TREM\_DEPTH\_STEP\_SIZE;}
+\DoxyCodeLine{00429                         \}}
+\DoxyCodeLine{00430                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00431                     \}}
+\DoxyCodeLine{00432                 \textcolor{keywordflow}{case} GYRO\_LR:}
+\DoxyCodeLine{00433                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT)\{}
+\DoxyCodeLine{00434                         \textcolor{keywordflow}{if} (Display.Tremolo\_Depth > 0) \{}
+\DoxyCodeLine{00435                             Display.Tremolo\_Depth = Display.Tremolo\_Depth -\/ Tremolo.tremolo\_maximum\_depth/II\_TREM\_DEPTH\_STEP\_SIZE;}
+\DoxyCodeLine{00436                         \}}
+\DoxyCodeLine{00437                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00438                     \}}
+\DoxyCodeLine{00439                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT\_S)\{}
+\DoxyCodeLine{00440                         \textcolor{keywordflow}{if} (Display.Tremolo\_Depth > 0) \{}
+\DoxyCodeLine{00441                             \textcolor{comment}{//reduce depth by 1/II\_TREM\_DEPTH\_STEP\_SIZE of Max value => II\_TREM\_DEPTH\_STEP\_SIZE steps}}
+\DoxyCodeLine{00442                             Display.Tremolo\_Depth = Display.Tremolo\_Depth + Tremolo.tremolo\_maximum\_depth/II\_TREM\_DEPTH\_STEP\_SIZE;}
+\DoxyCodeLine{00443                         \}}
+\DoxyCodeLine{00444                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00445                     \}}
+\DoxyCodeLine{00446                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT)\{}
+\DoxyCodeLine{00447                         \textcolor{keywordflow}{if} (Display.Tremolo\_Depth < Tremolo.tremolo\_maximum\_depth) \{}
+\DoxyCodeLine{00448                             \textcolor{comment}{//increase depth by 1/II\_TREM\_DEPTH\_STEP\_SIZE of Max value => II\_TREM\_DEPTH\_STEP\_SIZE steps}}
+\DoxyCodeLine{00449                             Display.Tremolo\_Depth = Display.Tremolo\_Depth + Tremolo.tremolo\_maximum\_depth/II\_TREM\_DEPTH\_STEP\_SIZE;}
+\DoxyCodeLine{00450                         \}}
+\DoxyCodeLine{00451                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00452                     \}}
+\DoxyCodeLine{00453                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT\_S)\{}
+\DoxyCodeLine{00454                         \textcolor{keywordflow}{if} (Display.Tremolo\_Depth < Tremolo.tremolo\_maximum\_depth) \{}
+\DoxyCodeLine{00455                             \textcolor{comment}{//increase depth by 1/II\_TREM\_DEPTH\_STEP\_SIZE of Max value => II\_TREM\_DEPTH\_STEP\_SIZE steps}}
+\DoxyCodeLine{00456                             Display.Tremolo\_Depth = Display.Tremolo\_Depth + Tremolo.tremolo\_maximum\_depth/II\_TREM\_DEPTH\_STEP\_SIZE;}
+\DoxyCodeLine{00457                         \}}
+\DoxyCodeLine{00458                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00459                     \}}
+\DoxyCodeLine{00460                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00461                 \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00462                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00463                 \}}
+\DoxyCodeLine{00464             \}}
+\DoxyCodeLine{00465 }
+\DoxyCodeLine{00466             \mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[1]++;}
+\DoxyCodeLine{00467             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[1] >= II\_TREM\_DEPTH\_DELAY) \textcolor{comment}{// >= necessary, because II\_TREM\_DEPTH\_DELAY is a floating number}}
+\DoxyCodeLine{00468                 \mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[1] = 0;}
+\DoxyCodeLine{00469         \}}
+\DoxyCodeLine{00470 }
+\DoxyCodeLine{00471     \}}
+\DoxyCodeLine{00472 }
+\DoxyCodeLine{00473     \textcolor{comment}{//Filters}}
+\DoxyCodeLine{00474     \textcolor{keywordflow}{if}(Display.currentBand > 0) \{   \textcolor{comment}{// guard to make sure that array boundaries of next if clause are not exceeded [-\/1]}}
+\DoxyCodeLine{00475 }
+\DoxyCodeLine{00476         \textcolor{comment}{// create Equalizer effect when at least one filter band is on}}
+\DoxyCodeLine{00477         \textcolor{keywordflow}{if}(Display.Filter\_ONOFF[0] || Display.Filter\_ONOFF[1] || Display.Filter\_ONOFF[2] || Display.Filter\_ONOFF[3] || Display.Filter\_ONOFF[4]) \{}
+\DoxyCodeLine{00478 }
+\DoxyCodeLine{00479             \mbox{\hyperlink{group__EffectProcessing_ga4dfb093ad0f349af12ad3030a11da8d9}{effects\_add}}(EQ);}
+\DoxyCodeLine{00480 }
+\DoxyCodeLine{00481             \textcolor{keywordflow}{if}(Display.EQ\_Cutoff\_Sources[Display.currentBand-\/1] > POTI) \{   \textcolor{comment}{// POTI = 0}}
+\DoxyCodeLine{00482 }
+\DoxyCodeLine{00483                 \textcolor{keywordflow}{switch} (Display.EQ\_Cutoff\_Sources[Display.currentBand-\/1]) \{}
+\DoxyCodeLine{00484                 \textcolor{keywordflow}{case} GYRO\_FB:}
+\DoxyCodeLine{00485 }
+\DoxyCodeLine{00486                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK)\{}
+\DoxyCodeLine{00487                         \textcolor{keywordflow}{if} (Display.Filter\_Cutoff[Display.currentBand-\/1] > LUT\_FMIN ) \{}
+\DoxyCodeLine{00488                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00489                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00490                             Display.Filter\_Cutoff[Display.currentBand-\/1] =  exp(((\textcolor{keywordtype}{float})\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00491                             \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\_Reinit\_Gyro}}(Display.Filter\_Cutoff[Display.currentBand-\/1]);}
+\DoxyCodeLine{00492                         \}}
+\DoxyCodeLine{00493                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00494                     \}}
+\DoxyCodeLine{00495                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK\_S)\{}
+\DoxyCodeLine{00496                         \textcolor{keywordflow}{if} (Display.Filter\_Cutoff[Display.currentBand-\/1] > LUT\_FMIN ) \{}
+\DoxyCodeLine{00497                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00498                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00499                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00500                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00501                             Display.Filter\_Cutoff[Display.currentBand-\/1]=  exp(((\textcolor{keywordtype}{float})\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00502                             \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\_Reinit\_Gyro}}(Display.Filter\_Cutoff[Display.currentBand-\/1]);}
+\DoxyCodeLine{00503                         \}}
+\DoxyCodeLine{00504                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00505                     \}}
+\DoxyCodeLine{00506                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT)\{}
+\DoxyCodeLine{00507                         \textcolor{keywordflow}{if} (Display.Filter\_Cutoff[Display.currentBand-\/1] <  LUT\_FMAX) \{}
+\DoxyCodeLine{00508                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00509                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00510                             Display.Filter\_Cutoff[Display.currentBand-\/1]=  exp(((\textcolor{keywordtype}{float})\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00511                             \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\_Reinit\_Gyro}}(Display.Filter\_Cutoff[Display.currentBand-\/1]);}
+\DoxyCodeLine{00512                         \}}
+\DoxyCodeLine{00513                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00514                     \}}
+\DoxyCodeLine{00515                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT\_S)\{}
+\DoxyCodeLine{00516                         \textcolor{keywordflow}{if} (Display.Filter\_Cutoff[Display.currentBand-\/1] <  LUT\_FMAX) \{}
+\DoxyCodeLine{00517                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00518                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00519                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00520                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00521                             Display.Filter\_Cutoff[Display.currentBand-\/1]=  exp(((\textcolor{keywordtype}{float})\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00522                             \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\_Reinit\_Gyro}}(Display.Filter\_Cutoff[Display.currentBand-\/1]);}
+\DoxyCodeLine{00523                         \}}
+\DoxyCodeLine{00524                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00525                     \}}
+\DoxyCodeLine{00526                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00527                 \textcolor{keywordflow}{case} GYRO\_LR:}
+\DoxyCodeLine{00528 }
+\DoxyCodeLine{00529                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT )\{}
+\DoxyCodeLine{00530                         \textcolor{keywordflow}{if} (Display.Filter\_Cutoff[Display.currentBand-\/1] > (\textcolor{keywordtype}{float})(LUT\_FMAX / II\_FILTER\_CUTTOFF\_STEP\_SIZE) ) \{}
+\DoxyCodeLine{00531                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00532                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00533                             Display.Filter\_Cutoff[Display.currentBand-\/1]=  exp(((\textcolor{keywordtype}{float})\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00534                             \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\_Reinit\_Gyro}}(Display.Filter\_Cutoff[Display.currentBand-\/1]);}
+\DoxyCodeLine{00535                         \}}
+\DoxyCodeLine{00536                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00537                     \}}
+\DoxyCodeLine{00538                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT\_S )\{}
+\DoxyCodeLine{00539                         \textcolor{keywordflow}{if} (Display.Filter\_Cutoff[Display.currentBand-\/1] > (\textcolor{keywordtype}{float})(LUT\_FMAX / II\_FILTER\_CUTTOFF\_STEP\_SIZE) ) \{}
+\DoxyCodeLine{00540                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00541                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00542                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00543                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]-\/-\/;}
+\DoxyCodeLine{00544                             Display.Filter\_Cutoff[Display.currentBand-\/1]=  exp(((\textcolor{keywordtype}{float})\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00545                             \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\_Reinit\_Gyro}}(Display.Filter\_Cutoff[Display.currentBand-\/1]);}
+\DoxyCodeLine{00546                         \}}
+\DoxyCodeLine{00547                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00548                     \}}
+\DoxyCodeLine{00549 }
+\DoxyCodeLine{00550                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT)\{}
+\DoxyCodeLine{00551                         \textcolor{keywordflow}{if} (Display.Filter\_Cutoff[Display.currentBand-\/1] <  LUT\_FMAX-\/(LUT\_FMAX/ II\_FILTER\_CUTTOFF\_STEP\_SIZE)) \{}
+\DoxyCodeLine{00552                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00553                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00554                             Display.Filter\_Cutoff[Display.currentBand-\/1]=  exp(((\textcolor{keywordtype}{float})\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00555                             \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\_Reinit\_Gyro}}(Display.Filter\_Cutoff[Display.currentBand-\/1]);}
+\DoxyCodeLine{00556                         \}}
+\DoxyCodeLine{00557                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00558                     \}}
+\DoxyCodeLine{00559                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT\_S)\{}
+\DoxyCodeLine{00560                         \textcolor{keywordflow}{if} (Display.Filter\_Cutoff[Display.currentBand-\/1] <  LUT\_FMAX-\/(LUT\_FMAX/ II\_FILTER\_CUTTOFF\_STEP\_SIZE)) \{}
+\DoxyCodeLine{00561                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00562                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00563                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00564                             \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]++;}
+\DoxyCodeLine{00565                             Display.Filter\_Cutoff[Display.currentBand-\/1]=  exp(((\textcolor{keywordtype}{float})\mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[Display.currentBand-\/1]/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00566                             \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\_Reinit\_Gyro}}(Display.Filter\_Cutoff[Display.currentBand-\/1]);}
+\DoxyCodeLine{00567                         \}}
+\DoxyCodeLine{00568                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00569                     \}}
+\DoxyCodeLine{00570                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00571                 \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00572                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00573                 \}}
+\DoxyCodeLine{00574             \}}
+\DoxyCodeLine{00575         \}}
+\DoxyCodeLine{00576         \textcolor{comment}{// delete Equalizer effect when every filter band is off}}
+\DoxyCodeLine{00577         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( (Display.Filter\_ONOFF[0] \&\& Display.Filter\_ONOFF[1] \&\& Display.Filter\_ONOFF[2] \&\& Display.Filter\_ONOFF[3] \&\& Display.Filter\_ONOFF[4]) == \textcolor{keyword}{false} ) \{}
+\DoxyCodeLine{00578 }
+\DoxyCodeLine{00579             \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(EQ);}
+\DoxyCodeLine{00580         \}}
+\DoxyCodeLine{00581     \}}
+\DoxyCodeLine{00582 }
+\DoxyCodeLine{00583     \textcolor{comment}{//Drum Filter}}
+\DoxyCodeLine{00584     \textcolor{keywordflow}{if}(Display.Drumfilter\_ONOFF == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00585         \textcolor{keywordflow}{switch} (Display.Drumfilter\_Cutoff\_Source) \{}
+\DoxyCodeLine{00586         \textcolor{keywordflow}{case} GYRO\_FB:}
+\DoxyCodeLine{00587 }
+\DoxyCodeLine{00588             \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK)\{}
+\DoxyCodeLine{00589                 \textcolor{keywordflow}{if} (Display.Drumfilter\_Cutoff > II\_FILTER\_CUTOFF\_MIN) \{}
+\DoxyCodeLine{00590                     drum\_filter\_step\_counter-\/-\/;}
+\DoxyCodeLine{00591                     \textcolor{keywordflow}{if}(drum\_filter\_step\_counter < II\_MINIMUM\_STEPCOUNTER)}
+\DoxyCodeLine{00592                         drum\_filter\_step\_counter = II\_MINIMUM\_STEPCOUNTER;}
+\DoxyCodeLine{00593                     Display.Drumfilter\_Cutoff = exp(((\textcolor{keywordtype}{float})drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00594                     \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);}
+\DoxyCodeLine{00595 }
+\DoxyCodeLine{00596                     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{00597                 \}}
+\DoxyCodeLine{00598                 sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00599             \}}
+\DoxyCodeLine{00600             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK\_S)\{}
+\DoxyCodeLine{00601                 \textcolor{keywordflow}{if} (Display.Drumfilter\_Cutoff > II\_FILTER\_CUTOFF\_MIN) \{}
+\DoxyCodeLine{00602                     drum\_filter\_step\_counter-\/-\/;}
+\DoxyCodeLine{00603                     drum\_filter\_step\_counter-\/-\/;}
+\DoxyCodeLine{00604                     \textcolor{keywordflow}{if}(drum\_filter\_step\_counter < II\_MINIMUM\_STEPCOUNTER)}
+\DoxyCodeLine{00605                         drum\_filter\_step\_counter = II\_MINIMUM\_STEPCOUNTER;}
+\DoxyCodeLine{00606                     Display.Drumfilter\_Cutoff = exp(((\textcolor{keywordtype}{float})drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00607                     \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);}
+\DoxyCodeLine{00608 }
+\DoxyCodeLine{00609                     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{00610                 \}}
+\DoxyCodeLine{00611                 sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00612             \}}
+\DoxyCodeLine{00613             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT)\{}
+\DoxyCodeLine{00614                 \textcolor{keywordflow}{if} (Display.Drumfilter\_Cutoff <  LUT\_FMAX) \{}
+\DoxyCodeLine{00615                     drum\_filter\_step\_counter++;}
+\DoxyCodeLine{00616                     \textcolor{keywordflow}{if}(drum\_filter\_step\_counter > II\_FILTER\_CUTTOFF\_STEP\_SIZE)}
+\DoxyCodeLine{00617                         drum\_filter\_step\_counter = II\_FILTER\_CUTTOFF\_STEP\_SIZE;}
+\DoxyCodeLine{00618                     Display.Drumfilter\_Cutoff = exp(((\textcolor{keywordtype}{float})drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00619                     \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);}
+\DoxyCodeLine{00620 }
+\DoxyCodeLine{00621                     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{00622                 \}}
+\DoxyCodeLine{00623                 sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00624             \}}
+\DoxyCodeLine{00625             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT\_S)\{}
+\DoxyCodeLine{00626                 \textcolor{keywordflow}{if} (Display.Drumfilter\_Cutoff <  LUT\_FMAX) \{}
+\DoxyCodeLine{00627                     drum\_filter\_step\_counter++;}
+\DoxyCodeLine{00628                     drum\_filter\_step\_counter++;}
+\DoxyCodeLine{00629                     \textcolor{keywordflow}{if}(drum\_filter\_step\_counter > II\_FILTER\_CUTTOFF\_STEP\_SIZE)}
+\DoxyCodeLine{00630                         drum\_filter\_step\_counter = II\_FILTER\_CUTTOFF\_STEP\_SIZE;}
+\DoxyCodeLine{00631                     Display.Drumfilter\_Cutoff = exp(((\textcolor{keywordtype}{float})drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00632                     \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);}
+\DoxyCodeLine{00633 }
+\DoxyCodeLine{00634                     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{00635                 \}}
+\DoxyCodeLine{00636                 sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00637             \}}
+\DoxyCodeLine{00638             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00639         \textcolor{keywordflow}{case} GYRO\_LR:}
+\DoxyCodeLine{00640 }
+\DoxyCodeLine{00641             \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT)\{}
+\DoxyCodeLine{00642                 \textcolor{keywordflow}{if} (Display.Drumfilter\_Cutoff > II\_FILTER\_CUTOFF\_MIN) \{}
+\DoxyCodeLine{00643                     drum\_filter\_step\_counter-\/-\/;}
+\DoxyCodeLine{00644                     \textcolor{keywordflow}{if}(drum\_filter\_step\_counter < II\_MINIMUM\_STEPCOUNTER)}
+\DoxyCodeLine{00645                         drum\_filter\_step\_counter = II\_MINIMUM\_STEPCOUNTER;}
+\DoxyCodeLine{00646                     Display.Drumfilter\_Cutoff = exp(((\textcolor{keywordtype}{float})drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00647                     \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);}
+\DoxyCodeLine{00648 }
+\DoxyCodeLine{00649                     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{00650                 \}}
+\DoxyCodeLine{00651                 sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00652             \}}
+\DoxyCodeLine{00653             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT\_S)\{}
+\DoxyCodeLine{00654                 \textcolor{keywordflow}{if} (Display.Drumfilter\_Cutoff > II\_FILTER\_CUTOFF\_MIN) \{}
+\DoxyCodeLine{00655                     drum\_filter\_step\_counter-\/-\/;}
+\DoxyCodeLine{00656                     drum\_filter\_step\_counter-\/-\/;}
+\DoxyCodeLine{00657                     \textcolor{keywordflow}{if}(drum\_filter\_step\_counter < II\_MINIMUM\_STEPCOUNTER)}
+\DoxyCodeLine{00658                         drum\_filter\_step\_counter = II\_MINIMUM\_STEPCOUNTER;}
+\DoxyCodeLine{00659                     Display.Drumfilter\_Cutoff = exp(((\textcolor{keywordtype}{float})drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00660                     \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);}
+\DoxyCodeLine{00661 }
+\DoxyCodeLine{00662                     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{00663                 \}}
+\DoxyCodeLine{00664                 sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00665             \}}
+\DoxyCodeLine{00666             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT)\{}
+\DoxyCodeLine{00667                 \textcolor{keywordflow}{if} (Display.Drumfilter\_Cutoff <  LUT\_FMAX) \{}
+\DoxyCodeLine{00668                     drum\_filter\_step\_counter++;}
+\DoxyCodeLine{00669                     \textcolor{keywordflow}{if}(drum\_filter\_step\_counter > II\_FILTER\_CUTTOFF\_STEP\_SIZE)}
+\DoxyCodeLine{00670                         drum\_filter\_step\_counter = II\_FILTER\_CUTTOFF\_STEP\_SIZE;}
+\DoxyCodeLine{00671                     Display.Drumfilter\_Cutoff = exp(((\textcolor{keywordtype}{float})drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00672                     \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);}
+\DoxyCodeLine{00673 }
+\DoxyCodeLine{00674                     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{00675                 \}}
+\DoxyCodeLine{00676                 sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00677             \}}
+\DoxyCodeLine{00678             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT\_S)\{}
+\DoxyCodeLine{00679                 \textcolor{keywordflow}{if} (Display.Drumfilter\_Cutoff <  LUT\_FMAX) \{}
+\DoxyCodeLine{00680                     drum\_filter\_step\_counter++;}
+\DoxyCodeLine{00681                     drum\_filter\_step\_counter++;}
+\DoxyCodeLine{00682                     \textcolor{keywordflow}{if}(drum\_filter\_step\_counter > II\_FILTER\_CUTTOFF\_STEP\_SIZE)}
+\DoxyCodeLine{00683                         drum\_filter\_step\_counter = II\_FILTER\_CUTTOFF\_STEP\_SIZE;}
+\DoxyCodeLine{00684                     Display.Drumfilter\_Cutoff = exp(((\textcolor{keywordtype}{float})drum\_filter\_step\_counter/II\_FILTER\_CUTTOFF\_STEP\_SIZE) * \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}});}
+\DoxyCodeLine{00685                     \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);}
+\DoxyCodeLine{00686 }
+\DoxyCodeLine{00687                     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{00688                 \}}
+\DoxyCodeLine{00689                 sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00690             \}}
+\DoxyCodeLine{00691 }
+\DoxyCodeLine{00692         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00693             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00694         \}}
+\DoxyCodeLine{00695     \}}
+\DoxyCodeLine{00696 }
+\DoxyCodeLine{00697     \textcolor{comment}{// WahWah}}
+\DoxyCodeLine{00698     \textcolor{keywordflow}{if}(Display.WahWah\_ONOFF == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00699         \mbox{\hyperlink{group__EffectProcessing_ga4dfb093ad0f349af12ad3030a11da8d9}{effects\_add}}(WAHWAH);}
+\DoxyCodeLine{00700     \}}
+\DoxyCodeLine{00701     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00702         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(WAHWAH);}
+\DoxyCodeLine{00703     \}}
+\DoxyCodeLine{00704 }
+\DoxyCodeLine{00705     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{00706 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__InputInterface_ga68aa067f04b08bf4a16352bf87cc4c3e}\label{group__InputInterface_ga68aa067f04b08bf4a16352bf87cc4c3e}} 
+\index{Input Interface@{Input Interface}!II\_Display\_Voices@{II\_Display\_Voices}}
+\index{II\_Display\_Voices@{II\_Display\_Voices}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_Display\_Voices()}{II\_Display\_Voices()}}
+{\footnotesize\ttfamily uint8\+\_\+t II\+\_\+\+Display\+\_\+\+Voices (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00053}{53}} of file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053                                 \{}
+\DoxyCodeLine{00054 }
+\DoxyCodeLine{00055     \textcolor{keywordflow}{for}(uint8\_t ii\_i=0; ii\_i < II\_MAX\_VOICES; ii\_i++) \{}
+\DoxyCodeLine{00056 }
+\DoxyCodeLine{00057         \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[ii\_i] == \textcolor{keyword}{true} ) \{}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059             \textcolor{comment}{// signal has to be created once, because otherwise the count for-\/loop in signal synthesis function can not be entered (count > 0)}}
+\DoxyCodeLine{00060             \textcolor{keywordflow}{if}(Display.Voices\_Created[ii\_i] == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00061                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, Display.Voices\_Kind[ii\_i], Display.Voices\_Note[ii\_i], Display.Voices\_Octave[ii\_i], ii\_i);}
+\DoxyCodeLine{00062                 Display.Voices\_Created[ii\_i] = \textcolor{keyword}{true};}
+\DoxyCodeLine{00063             \}}
+\DoxyCodeLine{00064 }
+\DoxyCodeLine{00065             \textcolor{keywordflow}{switch} (Display.Voice\_Note\_Sources[ii\_i]) \{}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067             \textcolor{keywordflow}{case} GYRO\_FB:}
+\DoxyCodeLine{00068                 \textcolor{keywordflow}{if} ( \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}} > gyro\_toggleThreshold \&\& sensorData.tilt\_detected != TILT\_NONE) \{}
+\DoxyCodeLine{00069 }
+\DoxyCodeLine{00070                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK || sensorData.tilt\_detected == TILT\_BACK\_S)\{}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072                         \textcolor{comment}{// Noteindex decreased the same way for all Scale Modes (Freestyle, Major and Minor)}}
+\DoxyCodeLine{00073                         \textcolor{keywordflow}{if}(Display.Voices\_Noteindex[ii\_i] > 0)}
+\DoxyCodeLine{00074                             Display.Voices\_Noteindex[ii\_i]-\/-\/;}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076                         \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
+\DoxyCodeLine{00077                         \textcolor{keywordflow}{if}(Display.ScaleMode == FREESTYLE)}
+\DoxyCodeLine{00078                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[ii\_i]]);}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MAJOR)}
+\DoxyCodeLine{00081                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Voices\_Noteindex[ii\_i]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MINOR)}
+\DoxyCodeLine{00084                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Voices\_Noteindex[ii\_i]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00085 }
+\DoxyCodeLine{00086                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00087                     \}}
+\DoxyCodeLine{00088                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT || sensorData.tilt\_detected == TILT\_FRONT\_S)\{}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090                         \textcolor{keywordflow}{if}(Display.ScaleMode == FREESTYLE)\{}
+\DoxyCodeLine{00091                             \textcolor{keywordflow}{if}(Display.Voices\_Noteindex[ii\_i] < 12) \textcolor{comment}{// 12 keys per octave + deep C}}
+\DoxyCodeLine{00092                                 Display.Voices\_Noteindex[ii\_i]++;}
+\DoxyCodeLine{00093                             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
+\DoxyCodeLine{00094                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[ii\_i]]);}
+\DoxyCodeLine{00095                         \}}
+\DoxyCodeLine{00096                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MAJOR)\{}
+\DoxyCodeLine{00097                             \textcolor{keywordflow}{if}(Display.Voices\_Noteindex[ii\_i] < 7)  \textcolor{comment}{// 7 keys per octave + deep root}}
+\DoxyCodeLine{00098                                 Display.Voices\_Noteindex[ii\_i]++;}
+\DoxyCodeLine{00099                             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
+\DoxyCodeLine{00100                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Voices\_Noteindex[ii\_i]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00101                         \}}
+\DoxyCodeLine{00102                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MINOR)\{}
+\DoxyCodeLine{00103                             \textcolor{keywordflow}{if}(Display.Voices\_Noteindex[ii\_i] < 7)  \textcolor{comment}{// 7 keys per octave + deep root}}
+\DoxyCodeLine{00104                                 Display.Voices\_Noteindex[ii\_i]++;}
+\DoxyCodeLine{00105                             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
+\DoxyCodeLine{00106                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Voices\_Noteindex[ii\_i]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00107                         \}}
+\DoxyCodeLine{00108 }
+\DoxyCodeLine{00109 }
+\DoxyCodeLine{00110                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00111                     \}}
+\DoxyCodeLine{00112                     \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}} = 0;}
+\DoxyCodeLine{00113                 \}}
+\DoxyCodeLine{00114                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00115                     \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}}++;}
+\DoxyCodeLine{00116                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00117             \textcolor{keywordflow}{case} GYRO\_LR:}
+\DoxyCodeLine{00118 }
+\DoxyCodeLine{00119                 \textcolor{keywordflow}{if} ( \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}} > gyro\_toggleThreshold \&\& sensorData.tilt\_detected != TILT\_NONE) \{}
+\DoxyCodeLine{00120                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT || sensorData.tilt\_detected == TILT\_RIGHT\_S)\{}
+\DoxyCodeLine{00121 }
+\DoxyCodeLine{00122                         \textcolor{keywordflow}{if}(Display.ScaleMode == FREESTYLE)\{}
+\DoxyCodeLine{00123                             \textcolor{keywordflow}{if}(Display.Voices\_Noteindex[ii\_i] < 12) \textcolor{comment}{// 12 keys per octave + deep C}}
+\DoxyCodeLine{00124                                 Display.Voices\_Noteindex[ii\_i]++;}
+\DoxyCodeLine{00125                             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
+\DoxyCodeLine{00126                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[ii\_i]]);}
+\DoxyCodeLine{00127                         \}}
+\DoxyCodeLine{00128                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MAJOR)\{}
+\DoxyCodeLine{00129                             \textcolor{keywordflow}{if}(Display.Voices\_Noteindex[ii\_i] < 7)  \textcolor{comment}{// 7 keys per octave + deep root}}
+\DoxyCodeLine{00130                                 Display.Voices\_Noteindex[ii\_i]++;}
+\DoxyCodeLine{00131                             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
+\DoxyCodeLine{00132                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Voices\_Noteindex[ii\_i]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00133                         \}}
+\DoxyCodeLine{00134                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MINOR)\{}
+\DoxyCodeLine{00135                             \textcolor{keywordflow}{if}(Display.Voices\_Noteindex[ii\_i] < 7)  \textcolor{comment}{// 7 keys per octave + deep root}}
+\DoxyCodeLine{00136                                 Display.Voices\_Noteindex[ii\_i]++;}
+\DoxyCodeLine{00137                             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
+\DoxyCodeLine{00138                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Voices\_Noteindex[ii\_i]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00139                         \}}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141 }
+\DoxyCodeLine{00142                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00143                     \}}
+\DoxyCodeLine{00144                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT || sensorData.tilt\_detected == TILT\_LEFT\_S)\{}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00146                         \textcolor{comment}{// Noteindex decreased the same way for all Scale Modes (Freestyle, Major and Minor)}}
+\DoxyCodeLine{00147                         \textcolor{keywordflow}{if}(Display.Voices\_Noteindex[ii\_i] > 0)}
+\DoxyCodeLine{00148                             Display.Voices\_Noteindex[ii\_i]-\/-\/;}
+\DoxyCodeLine{00149 }
+\DoxyCodeLine{00150                         \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
+\DoxyCodeLine{00151                         \textcolor{keywordflow}{if}(Display.ScaleMode == FREESTYLE)}
+\DoxyCodeLine{00152                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[ii\_i]]);}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00154                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MAJOR)}
+\DoxyCodeLine{00155                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Voices\_Noteindex[ii\_i]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00156 }
+\DoxyCodeLine{00157                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MINOR)}
+\DoxyCodeLine{00158                             Display.Voices\_Note[ii\_i] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Voices\_Noteindex[ii\_i]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{00159 }
+\DoxyCodeLine{00160 }
+\DoxyCodeLine{00161                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00162                     \}}
+\DoxyCodeLine{00163 }
+\DoxyCodeLine{00164                     \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}} = 0;}
+\DoxyCodeLine{00165                 \}}
+\DoxyCodeLine{00166                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00167                     \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}}++;}
+\DoxyCodeLine{00168                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00169             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00170                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00171             \}}
+\DoxyCodeLine{00172 }
+\DoxyCodeLine{00173             \textcolor{keywordflow}{switch} (Display.Voice\_Octave\_Sources[ii\_i]) \{}
+\DoxyCodeLine{00174             \textcolor{keywordflow}{case} GYRO\_FB:}
+\DoxyCodeLine{00175                 \textcolor{keywordflow}{if} ( \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}} > gyro\_toggleThreshold \&\& sensorData.tilt\_detected != TILT\_NONE) \{}
+\DoxyCodeLine{00176 }
+\DoxyCodeLine{00177                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_BACK || sensorData.tilt\_detected == TILT\_BACK\_S)\{}
+\DoxyCodeLine{00178 }
+\DoxyCodeLine{00179                         \textcolor{keywordflow}{if}(Display.Voices\_Octave[ii\_i] > 0)}
+\DoxyCodeLine{00180                             Display.Voices\_Octave[ii\_i]-\/-\/;}
+\DoxyCodeLine{00181 }
+\DoxyCodeLine{00182                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00183                     \}}
+\DoxyCodeLine{00184                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_FRONT || sensorData.tilt\_detected == TILT\_FRONT\_S)\{}
+\DoxyCodeLine{00185 }
+\DoxyCodeLine{00186                         \textcolor{keywordflow}{if}(Display.Voices\_Octave[ii\_i] < 5) \textcolor{comment}{// maximum 6 octaves}}
+\DoxyCodeLine{00187                             Display.Voices\_Octave[ii\_i]++;}
+\DoxyCodeLine{00188 }
+\DoxyCodeLine{00189                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00190                     \}}
+\DoxyCodeLine{00191                     \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}} = 0;}
+\DoxyCodeLine{00192                 \}}
+\DoxyCodeLine{00193                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00194                     \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}}++;}
+\DoxyCodeLine{00195                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00196             \textcolor{keywordflow}{case} GYRO\_LR:}
+\DoxyCodeLine{00197 }
+\DoxyCodeLine{00198                 \textcolor{keywordflow}{if} ( \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}} > gyro\_toggleThreshold \&\& sensorData.tilt\_detected != TILT\_NONE) \{}
+\DoxyCodeLine{00199                     \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_RIGHT || sensorData.tilt\_detected == TILT\_RIGHT\_S)\{}
+\DoxyCodeLine{00200 }
+\DoxyCodeLine{00201                         \textcolor{keywordflow}{if}(Display.Voices\_Octave[ii\_i] < 5) \textcolor{comment}{// maximum 6 octaves}}
+\DoxyCodeLine{00202                             Display.Voices\_Octave[ii\_i]++;}
+\DoxyCodeLine{00203 }
+\DoxyCodeLine{00204                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00205                     \}}
+\DoxyCodeLine{00206                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sensorData.tilt\_detected == TILT\_LEFT || sensorData.tilt\_detected == TILT\_LEFT\_S)\{}
+\DoxyCodeLine{00207 }
+\DoxyCodeLine{00208                         \textcolor{keywordflow}{if}(Display.Voices\_Octave[ii\_i] > 0)}
+\DoxyCodeLine{00209                             Display.Voices\_Octave[ii\_i]-\/-\/;}
+\DoxyCodeLine{00210 }
+\DoxyCodeLine{00211                         sensorData.tilt\_detected = TILT\_NONE;}
+\DoxyCodeLine{00212 }
+\DoxyCodeLine{00213                     \}}
+\DoxyCodeLine{00214 }
+\DoxyCodeLine{00215                     \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}} = 0;}
+\DoxyCodeLine{00216                 \}}
+\DoxyCodeLine{00217                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00218                     \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\_toggleCounter}}++;}
+\DoxyCodeLine{00219                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00220             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00221                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00222             \}}
+\DoxyCodeLine{00223         \}}
+\DoxyCodeLine{00224     \}}
+\DoxyCodeLine{00225 }
+\DoxyCodeLine{00226     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{00227 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__InputInterface_gaf102c42e8c8be931b33bd67401dd9424}\label{group__InputInterface_gaf102c42e8c8be931b33bd67401dd9424}} 
+\index{Input Interface@{Input Interface}!II\_init@{II\_init}}
+\index{II\_init@{II\_init}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_init()}{II\_init()}}
+{\footnotesize\ttfamily void II\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+init function 
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00020}{20}} of file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020                    \{}
+\DoxyCodeLine{00021 }
+\DoxyCodeLine{00022     \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\_mapping\_F}} = log(LUT\_FMAX);}
+\DoxyCodeLine{00023 }
+\DoxyCodeLine{00024     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0;i<5 ;i++)}
+\DoxyCodeLine{00025         \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\_step\_counter}}[i] = II\_MINIMUM\_STEPCOUNTER;}
+\DoxyCodeLine{00026 }
+\DoxyCodeLine{00027     drum\_filter\_step\_counter = II\_MINIMUM\_STEPCOUNTER;}
+\DoxyCodeLine{00028 }
+\DoxyCodeLine{00029     \textcolor{comment}{// Play Single Sample}}
+\DoxyCodeLine{00030     play\_single\_sample\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00031     counter\_single\_sample = 0;}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033     \textcolor{keywordflow}{for}(uint8\_t i=0; i<(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[0])); i++)}
+\DoxyCodeLine{00034         \mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\_delay\_counter}}[i] = 0;}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036     \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{00037 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__InputInterface_ga2b27d1c554db52f823b2897137823819}\label{group__InputInterface_ga2b27d1c554db52f823b2897137823819}} 
+\index{Input Interface@{Input Interface}!II\_raiseNote@{II\_raiseNote}}
+\index{II\_raiseNote@{II\_raiseNote}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_raiseNote()}{II\_raiseNote()}}
+{\footnotesize\ttfamily void II\+\_\+raise\+Note (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ID }\end{DoxyParamCaption})}
+
+raises the key of an existing signal, by deleting the signal and creating a new signal 
+\begin{DoxyParams}{Parameters}
+{\em ID} & signal ID \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00711}{711}} of file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00711                              \{}
+\DoxyCodeLine{00712 }
+\DoxyCodeLine{00713     uint8\_t index= \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
+\DoxyCodeLine{00714     \textcolor{keywordtype}{char} oldKey = Display.Voices\_Note[ID];}
+\DoxyCodeLine{00715 }
+\DoxyCodeLine{00716     uint8\_t key\_counter = 0;}
+\DoxyCodeLine{00717     \textcolor{comment}{//gets index of old key..}}
+\DoxyCodeLine{00718     \textcolor{keywordflow}{while} (\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[key\_counter] != oldKey)\{}
+\DoxyCodeLine{00719         key\_counter++;}
+\DoxyCodeLine{00720     \}}
+\DoxyCodeLine{00721     \textcolor{comment}{//gets key of the next note}}
+\DoxyCodeLine{00722     \textcolor{keywordtype}{char} newKey = \mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[key\_counter+1];}
+\DoxyCodeLine{00723 }
+\DoxyCodeLine{00724     \textcolor{keywordflow}{if} (oldKey == \textcolor{charliteral}{'H'})\{}
+\DoxyCodeLine{00725         \textcolor{comment}{//raise octave if changing from H to C}}
+\DoxyCodeLine{00726         \textcolor{keywordflow}{if} (Display.Voices\_Octave[ID] < LUT\_OCTAVES-\/1)}
+\DoxyCodeLine{00727             Display.Voices\_Octave[ID]++;}
+\DoxyCodeLine{00728 }
+\DoxyCodeLine{00729         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (Display.Voices\_Octave[ID] == LUT\_OCTAVES-\/1) \{}
+\DoxyCodeLine{00730             \textcolor{comment}{//reaches end of playable notes}}
+\DoxyCodeLine{00731             newKey = \textcolor{charliteral}{'H'};}
+\DoxyCodeLine{00732         \}}
+\DoxyCodeLine{00733     \}}
+\DoxyCodeLine{00734     Display.Voices\_Note[ID] = newKey;}
+\DoxyCodeLine{00735     \textcolor{keywordflow}{if}(index >= 0)\{ \textcolor{comment}{// only done if ID is existing}}
+\DoxyCodeLine{00736         \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
+\DoxyCodeLine{00737         \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
+\DoxyCodeLine{00738     \}}
+\DoxyCodeLine{00739 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}\label{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}} 
+\index{Input Interface@{Input Interface}!II\_startInterface@{II\_startInterface}}
+\index{II\_startInterface@{II\_startInterface}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{II\_startInterface()}{II\_startInterface()}}
+{\footnotesize\ttfamily void II\+\_\+start\+Interface (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+
+
+starts the interface timer Interrupt 
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00040}{40}} of file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040                                                 \{}
+\DoxyCodeLine{00041 }
+\DoxyCodeLine{00042     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(htim, II\_SR);}
+\DoxyCodeLine{00043     HAL\_TIM\_Base\_Start\_IT(htim);}
+\DoxyCodeLine{00044 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__InputInterface_ga6d86279f4356bba7d0efcb58cd190a1a}\label{group__InputInterface_ga6d86279f4356bba7d0efcb58cd190a1a}} 
+\index{Input Interface@{Input Interface}!drum\_filter\_step\_counter@{drum\_filter\_step\_counter}}
+\index{drum\_filter\_step\_counter@{drum\_filter\_step\_counter}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{drum\_filter\_step\_counter}{drum\_filter\_step\_counter}}
+{\footnotesize\ttfamily int16\+\_\+t drum\+\_\+filter\+\_\+step\+\_\+counter}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00051}{51}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_gad625849bf556493fe3fde5a8418c5f33}\label{group__InputInterface_gad625849bf556493fe3fde5a8418c5f33}} 
+\index{Input Interface@{Input Interface}!emg\_triggerd\_flag@{emg\_triggerd\_flag}}
+\index{emg\_triggerd\_flag@{emg\_triggerd\_flag}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{emg\_triggerd\_flag}{emg\_triggerd\_flag}}
+{\footnotesize\ttfamily bool emg\+\_\+triggerd\+\_\+flag}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00061}{61}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}\label{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}} 
+\index{Input Interface@{Input Interface}!filter\_step\_counter@{filter\_step\_counter}}
+\index{filter\_step\_counter@{filter\_step\_counter}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{filter\_step\_counter}{filter\_step\_counter}}
+{\footnotesize\ttfamily int16\+\_\+t filter\+\_\+step\+\_\+counter\mbox{[}5\mbox{]}}
+
+actual step of the filter cuttoff 
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00050}{50}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}\label{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}} 
+\index{Input Interface@{Input Interface}!gyro\_delay\_counter@{gyro\_delay\_counter}}
+\index{gyro\_delay\_counter@{gyro\_delay\_counter}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{gyro\_delay\_counter}{gyro\_delay\_counter}}
+{\footnotesize\ttfamily uint32\+\_\+t gyro\+\_\+delay\+\_\+counter\mbox{[}2\mbox{]}}
+
+
+
+\mbox{[}0\mbox{]}\+: tremolo rate; \mbox{[}1\mbox{]}\+: tremolo depth 
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00059}{59}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}\label{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}} 
+\index{Input Interface@{Input Interface}!gyrochanged@{gyrochanged}}
+\index{gyrochanged@{gyrochanged}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{gyrochanged}{gyrochanged}}
+{\footnotesize\ttfamily bool gyrochanged}
+
+Flag to detect gyromovement in general 
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00054}{54}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+
+\mbox{\Hypertarget{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}\label{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}} 
+\index{Input Interface@{Input Interface}!log\_mapping\_F@{log\_mapping\_F}}
+\index{log\_mapping\_F@{log\_mapping\_F}!Input Interface@{Input Interface}}
+\doxysubsubsection{\texorpdfstring{log\_mapping\_F}{log\_mapping\_F}}
+{\footnotesize\ttfamily double log\+\_\+mapping\+\_\+F}
+
+value for Frequency as ln 
+
+Definition at line \mbox{\hyperlink{input__interfaces_8h_source_l00047}{47}} of file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+

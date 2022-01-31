@@ -1,0 +1,191 @@
+\hypertarget{group__tremolo}{}\doxysection{Tremolo effect}
+\label{group__tremolo}\index{Tremolo effect@{Tremolo effect}}
+
+
+another effect TODO  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTremolo__t}{Tremolo\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Tremolo\+\_\+\+Status} \{ {\bfseries TREMOLO\+\_\+\+FAIL} = -\/1
+, {\bfseries TREMOLO\+\_\+\+OK} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Tremolo\+\_\+\+Status \mbox{\hyperlink{group__tremolo_gacb90f3df18e98cac0b0aadc519411a7a}{Tremolo\+\_\+\+Init}} (struct \mbox{\hyperlink{structTremolo__t}{Tremolo\+\_\+t}} $\ast$Tremolo)
+\begin{DoxyCompactList}\small\item\em Tremolo Init function. \end{DoxyCompactList}\item 
+Tremolo\+\_\+\+Status \mbox{\hyperlink{group__tremolo_ga7ec31bc72214199a5efdbe88b3a3f8b8}{Tremolo\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em resets all tremelo parameters \end{DoxyCompactList}\item 
+Tremolo\+\_\+\+Status \mbox{\hyperlink{group__tremolo_ga922840d8712ad7bd4904f7813c8ac2f6}{Process\+Tremolo}} (struct \mbox{\hyperlink{structTremolo__t}{Tremolo\+\_\+t}} $\ast$Tremolo, float $\ast$data)
+\begin{DoxyCompactList}\small\item\em Processed current tremolo sample. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTremolo__t}{Tremolo\+\_\+t}} \mbox{\hyperlink{group__tremolo_gae94158f76b624ad889832901df017968}{Tremolo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+another effect TODO 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__tremolo_ga9e12f80ac8a22eb248687974f38034c5}\label{group__tremolo_ga9e12f80ac8a22eb248687974f38034c5}} 
+\index{Tremolo effect@{Tremolo effect}!Tremolo\_Status@{Tremolo\_Status}}
+\index{Tremolo\_Status@{Tremolo\_Status}!Tremolo effect@{Tremolo effect}}
+\doxysubsubsection{\texorpdfstring{Tremolo\_Status}{Tremolo\_Status}}
+{\footnotesize\ttfamily enum Tremolo\+\_\+\+Status}
+
+
+
+Definition at line \mbox{\hyperlink{tremolo_8h_source_l00029}{29}} of file \mbox{\hyperlink{tremolo_8h_source}{tremolo.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029              \{}
+\DoxyCodeLine{00030     TREMOLO\_FAIL = -\/1,}
+\DoxyCodeLine{00031     TREMOLO\_OK = 1}
+\DoxyCodeLine{00032 \} Tremolo\_Status;}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__tremolo_ga922840d8712ad7bd4904f7813c8ac2f6}\label{group__tremolo_ga922840d8712ad7bd4904f7813c8ac2f6}} 
+\index{Tremolo effect@{Tremolo effect}!ProcessTremolo@{ProcessTremolo}}
+\index{ProcessTremolo@{ProcessTremolo}!Tremolo effect@{Tremolo effect}}
+\doxysubsubsection{\texorpdfstring{ProcessTremolo()}{ProcessTremolo()}}
+{\footnotesize\ttfamily Tremolo\+\_\+\+Status Process\+Tremolo (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structTremolo__t}{Tremolo\+\_\+t}} $\ast$}]{Tremolo,  }\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Processed current tremolo sample. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Tremolo} & struct for tremolo information \\
+\hline
+{\em data} & current sample \\
+\hline
+{\em lfo\+\_\+value} & current lfo value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{tremolo_8c_source_l00069}{69}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069                                                                       \{}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071     \mbox{\hyperlink{signal__synthesis_8h_a381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(Tremolo-\/>lfo, TREMOLO\_LFO);}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073     \textcolor{keywordtype}{float} tremolo\_mod = (1 + Tremolo-\/>lfo-\/>lfo\_depth * Tremolo-\/>lfo-\/>lfo\_data);}
+\DoxyCodeLine{00074     *data = (tremolo\_mod * *data) / (1+Tremolo-\/>lfo-\/>lfo\_depth);}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{00077 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__tremolo_gacb90f3df18e98cac0b0aadc519411a7a}\label{group__tremolo_gacb90f3df18e98cac0b0aadc519411a7a}} 
+\index{Tremolo effect@{Tremolo effect}!Tremolo\_Init@{Tremolo\_Init}}
+\index{Tremolo\_Init@{Tremolo\_Init}!Tremolo effect@{Tremolo effect}}
+\doxysubsubsection{\texorpdfstring{Tremolo\_Init()}{Tremolo\_Init()}}
+{\footnotesize\ttfamily Tremolo\+\_\+\+Status Tremolo\+\_\+\+Init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structTremolo__t}{Tremolo\+\_\+t}} $\ast$}]{Tremolo }\end{DoxyParamCaption})}
+
+
+
+Tremolo Init function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Tremolo} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tremolo\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tremolo_8c_source_l00024}{24}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024                                                        \{}
+\DoxyCodeLine{00025 }
+\DoxyCodeLine{00026     Tremolo-\/>lfo = \&lfo\_tremolo;}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028     Tremolo-\/>lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00029     Tremolo-\/>lfo-\/>lfo\_frequency = 1;}
+\DoxyCodeLine{00030     Tremolo-\/>lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00031     Tremolo-\/>lfo-\/>lfo\_depth = 0.5;}
+\DoxyCodeLine{00032     Tremolo-\/>lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034     Tremolo-\/>tremolo\_maximum\_rate = 16;}
+\DoxyCodeLine{00035     Tremolo-\/>tremolo\_maximum\_depth = 1.00;}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{00038 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__tremolo_ga7ec31bc72214199a5efdbe88b3a3f8b8}\label{group__tremolo_ga7ec31bc72214199a5efdbe88b3a3f8b8}} 
+\index{Tremolo effect@{Tremolo effect}!Tremolo\_Reset@{Tremolo\_Reset}}
+\index{Tremolo\_Reset@{Tremolo\_Reset}!Tremolo effect@{Tremolo effect}}
+\doxysubsubsection{\texorpdfstring{Tremolo\_Reset()}{Tremolo\_Reset()}}
+{\footnotesize\ttfamily Tremolo\+\_\+\+Status Tremolo\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+resets all tremelo parameters 
+
+\begin{DoxyReturn}{Returns}
+Tremolo\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tremolo_8c_source_l00045}{45}} of file \mbox{\hyperlink{tremolo_8c_source}{tremolo.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045                                    \{}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047     Display.Tremolo\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049     Tremolo.lfo-\/>lfo\_index = 0;}
+\DoxyCodeLine{00050     Display.Tremolo\_Rate = Tremolo.lfo-\/>lfo\_frequency = 1;}
+\DoxyCodeLine{00051     Display.Tremolo\_Rate\_Index = Display.last\_Tremolo\_Rate\_Index  = 3;  \textcolor{comment}{// 1 Hz}}
+\DoxyCodeLine{00052     Tremolo.lfo-\/>lfo\_quarter = 0;}
+\DoxyCodeLine{00053     Display.Tremolo\_Depth = Tremolo.lfo-\/>lfo\_depth = 0.5;}
+\DoxyCodeLine{00054     Tremolo.lfo-\/>lfo\_done\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00055 }
+\DoxyCodeLine{00056     Display.Tremolo\_Sources[0] = POTI;}
+\DoxyCodeLine{00057     Display.Tremolo\_Sources[1] = POTI;}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059     strcpy(Display.value\_str\_tremolo[0], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{00060 }
+\DoxyCodeLine{00061     \textcolor{keywordflow}{return} TREMOLO\_OK;}
+\DoxyCodeLine{00062 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__tremolo_gae94158f76b624ad889832901df017968}\label{group__tremolo_gae94158f76b624ad889832901df017968}} 
+\index{Tremolo effect@{Tremolo effect}!Tremolo@{Tremolo}}
+\index{Tremolo@{Tremolo}!Tremolo effect@{Tremolo effect}}
+\doxysubsubsection{\texorpdfstring{Tremolo}{Tremolo}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structTremolo__t}{Tremolo\+\_\+t}} Tremolo}
+
+
+
+Definition at line \mbox{\hyperlink{tremolo_8h_source_l00052}{52}} of file \mbox{\hyperlink{tremolo_8h_source}{tremolo.\+h}}.
+

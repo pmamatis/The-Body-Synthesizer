@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pid_20motor_20control_0',['PID Motor Control',['../group__PID.html',1,'']]]
+  ['music_20notes_0',['Music Notes',['../group__MusicNotes.html',1,'']]]
 ];

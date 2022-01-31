@@ -3,54 +3,54 @@
 \mbox{\hyperlink{sd__card_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00001}00001 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00012}00012 \textcolor{preprocessor}{\#ifndef INC\_SD\_CARD\_H\_}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00013}00013 \textcolor{preprocessor}{\#define INC\_SD\_CARD\_H\_}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00014}00014 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00015}00015 \textcolor{preprocessor}{\#include "{}fatfs.h"{}}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00016}00016 \textcolor{preprocessor}{\#include "{}string.h"{}}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00017}00017 \textcolor{preprocessor}{\#include <stdio.h>}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00018}00018 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00019}00019 \textcolor{comment}{// MOSI -\/> DI}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00020}00020 \textcolor{comment}{// MISO -\/> DO}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00021}00021 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00022}00022 FATFS fs;  \textcolor{comment}{// file system}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00023}00023 FIL fil; \textcolor{comment}{// File}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00024}00024 FILINFO fno;}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00025}00025 FRESULT fresult;  \textcolor{comment}{// result}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00026}00026 \textcolor{keywordtype}{char} txtfile\_array[40000];  \textcolor{comment}{// could be also higher if necessary}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00027}00027 UINT br, bw;  \textcolor{comment}{// File read/write count}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00028}00028 DIR dj; \textcolor{comment}{// directory object}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00029}00029 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00030}00030 \textcolor{comment}{//**** capacity related}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00031}00031 FATFS *pfs;}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00032}00032 DWORD fre\_clust;}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00033}00033 uint32\_t total, free\_space;}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00034}00034 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00035}00035 \textcolor{preprocessor}{\#define BUFFER\_SIZE 1000    }\textcolor{comment}{// should be bigger for even bigger files}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00036}00036 \textcolor{keywordtype}{char} buffer[BUFFER\_SIZE];  \textcolor{comment}{// to store strings..}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00037}00037 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00038}00038 \textcolor{keywordtype}{int} bufsize (\textcolor{keywordtype}{char} *buf);}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00039}00039 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00040}00040 \textcolor{keywordtype}{void} clear\_buffer (\textcolor{keywordtype}{void});   \textcolor{comment}{// clearing buffer to show that result obtained is from the file}}
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00041}00041 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00042}00042 \textcolor{keywordtype}{void} send\_uart (\textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, UART\_HandleTypeDef huart);}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00018}00018 \textcolor{preprocessor}{\#ifndef INC\_SD\_CARD\_H\_}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00019}00019 \textcolor{preprocessor}{\#define INC\_SD\_CARD\_H\_}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00021}00021 \textcolor{preprocessor}{\#include "{}fatfs.h"{}}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00022}00022 \textcolor{preprocessor}{\#include "{}string.h"{}}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00023}00023 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00025}00025 \textcolor{comment}{// MOSI -\/> DI}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00026}00026 \textcolor{comment}{// MISO -\/> DO}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00028}00028 FATFS fs;  \textcolor{comment}{// file system}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00029}00029 FIL fil; \textcolor{comment}{// File}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00030}00030 FILINFO fno;}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00031}00031 FRESULT fresult;  \textcolor{comment}{// result}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00032}00032 \textcolor{keywordtype}{char} txtfile\_array[40000];  \textcolor{comment}{// could be also higher if necessary}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00033}00033 UINT br, bw;  \textcolor{comment}{// File read/write count}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00034}00034 DIR dj; \textcolor{comment}{// directory object}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00036}00036 \textcolor{comment}{//**** capacity related}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00037}00037 FATFS *pfs;}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00038}00038 DWORD fre\_clust;}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00039}00039 uint32\_t total, free\_space;}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00041}00041 \textcolor{preprocessor}{\#define BUFFER\_SIZE 1000    }\textcolor{comment}{// should be bigger for even bigger files}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00042}00042 \textcolor{keywordtype}{char} buffer[BUFFER\_SIZE];  \textcolor{comment}{// to store strings..}}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00044}00044 \textcolor{keywordtype}{char}* find\_text\_file (UART\_HandleTypeDef huart);}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00044}00044 \textcolor{keywordtype}{int} bufsize (\textcolor{keywordtype}{char} *buf);}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00045}00045 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00046}00046 \textcolor{keywordtype}{void} sd\_card\_mount(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00046}00046 \textcolor{keywordtype}{void} clear\_buffer (\textcolor{keywordtype}{void});   \textcolor{comment}{// clearing buffer to show that result obtained is from the file}}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00047}00047 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00048}00048 \textcolor{keywordtype}{void} sd\_card\_unmount(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00048}00048 \textcolor{keywordtype}{void} send\_uart (\textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, UART\_HandleTypeDef huart);}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00049}00049 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00050}00050 \textcolor{keywordtype}{void} sd\_card\_free\_space(UART\_HandleTypeDef huart);}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00050}00050 \textcolor{keywordtype}{char}* find\_text\_file (UART\_HandleTypeDef huart);}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00051}00051 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00052}00052 \textcolor{keywordtype}{void} sd\_card\_write\_newfile(\textcolor{keywordtype}{char} *filename, \textcolor{keywordtype}{char} *filecontent, UART\_HandleTypeDef huart);}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00052}00052 \textcolor{keywordtype}{void} sd\_card\_mount(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00053}00053 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00054}00054 \textcolor{keywordtype}{void} sd\_card\_write\_appendfile(\textcolor{keywordtype}{char} *filename, \textcolor{keywordtype}{char} *filecontent, UART\_HandleTypeDef huart);}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00054}00054 \textcolor{keywordtype}{void} sd\_card\_unmount(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00055}00055 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00056}00056 \textcolor{keywordtype}{void} sd\_card\_read(\textcolor{keywordtype}{char} *filename, \textcolor{keywordtype}{float} *\mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}});}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00056}00056 \textcolor{keywordtype}{void} sd\_card\_free\_space(UART\_HandleTypeDef huart);}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00057}00057 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00058}00058 \textcolor{keywordtype}{void} sd\_card\_remove\_file(\textcolor{keywordtype}{char} *filename, UART\_HandleTypeDef huart);}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00058}00058 \textcolor{keywordtype}{void} sd\_card\_write\_newfile(\textcolor{keywordtype}{char} *filename, \textcolor{keywordtype}{char} *filecontent, UART\_HandleTypeDef huart);}
 \DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00059}00059 }
-\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00060}00060 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_SD\_CARD\_H\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00060}00060 \textcolor{keywordtype}{void} sd\_card\_write\_appendfile(\textcolor{keywordtype}{char} *filename, \textcolor{keywordtype}{char} *filecontent, UART\_HandleTypeDef huart);}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00062}00062 \textcolor{keywordtype}{void} sd\_card\_read(\textcolor{keywordtype}{char} *filename, \textcolor{keywordtype}{float} *\mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}});}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00064}00064 \textcolor{keywordtype}{void} sd\_card\_remove\_file(\textcolor{keywordtype}{char} *filename, UART\_HandleTypeDef huart);}
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{sd__card_8h_source_l00067}00067 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_SD\_CARD\_H\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

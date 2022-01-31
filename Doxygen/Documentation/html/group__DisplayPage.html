@@ -312,21 +312,21 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4683</span>    <a class="code hl_function" href="signal__synthesis_8h.html#af4829c3aeeaf3dbcda0b5266e2834898">Voices_Reset</a>();</div>
 <div class="line"><span class="lineno"> 4684</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)</div>
 <div class="line"><span class="lineno"> 4685</span>        <a class="code hl_function" href="group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9">ADSR_Reset</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[i]);</div>
-<div class="line"><span class="lineno"> 4686</span>    <a class="code hl_function" href="filters_8h.html#ab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a>();</div>
-<div class="line"><span class="lineno"> 4687</span>    <a class="code hl_function" href="wahwah_8h.html#a9b91a7fae64755689936b60cf1820535">WahWah_Reset</a>(&amp;WahWah);</div>
+<div class="line"><span class="lineno"> 4686</span>    <a class="code hl_function" href="group__Filter.html#gab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a>();</div>
+<div class="line"><span class="lineno"> 4687</span>    <a class="code hl_function" href="group__wahwah.html#ga9b91a7fae64755689936b60cf1820535">WahWah_Reset</a>(&amp;WahWah);</div>
 <div class="line"><span class="lineno"> 4688</span>    <a class="code hl_function" href="group__Distortion.html#gac69b82a1179f795d9205a246de59a37a">Distortion_Reset</a>();</div>
-<div class="line"><span class="lineno"> 4689</span>    <a class="code hl_function" href="tremolo_8h.html#a7ec31bc72214199a5efdbe88b3a3f8b8">Tremolo_Reset</a>();</div>
+<div class="line"><span class="lineno"> 4689</span>    <a class="code hl_function" href="group__tremolo.html#ga7ec31bc72214199a5efdbe88b3a3f8b8">Tremolo_Reset</a>();</div>
 <div class="line"><span class="lineno"> 4690</span>}</div>
-<div class="ttc" id="afilters_8h_html_ab23086039f9e38c9538b24412c2e397d"><div class="ttname"><a href="filters_8h.html#ab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a></div><div class="ttdeci">Filter_Status Equalizer_Reset(void)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00265">filters.c:265</a></div></div>
 <div class="ttc" id="agroup__ADSR_html_ga742e13f70ae8c573509abfd794271f44"><div class="ttname"><a href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a></div><div class="ttdeci">struct adsr adsr_keyboard[5]</div><div class="ttdoc">ADSR storage for the keyboard.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8h_source.html#l00085">adsr.h:85</a></div></div>
-<div class="ttc" id="agroup__ADSR_html_gab059a1f2cde16bed41f0f4e0f113a5d9"><div class="ttname"><a href="group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9">ADSR_Reset</a></div><div class="ttdeci">ADSR_Status ADSR_Reset(struct adsr *envelope)</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8c_source.html#l00054">adsr.c:54</a></div></div>
+<div class="ttc" id="agroup__ADSR_html_gab059a1f2cde16bed41f0f4e0f113a5d9"><div class="ttname"><a href="group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9">ADSR_Reset</a></div><div class="ttdeci">ADSR_Status ADSR_Reset(struct adsr *envelope)</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8c_source.html#l00055">adsr.c:55</a></div></div>
 <div class="ttc" id="agroup__Distortion_html_gac69b82a1179f795d9205a246de59a37a"><div class="ttname"><a href="group__Distortion.html#gac69b82a1179f795d9205a246de59a37a">Distortion_Reset</a></div><div class="ttdeci">Distortion_Status Distortion_Reset(void)</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00033">distortion.c:33</a></div></div>
 <div class="ttc" id="agroup__DrumComputer_html_ga0945a49b026be615b8a70c8ec885ac08"><div class="ttname"><a href="group__DrumComputer.html#ga0945a49b026be615b8a70c8ec885ac08">Drum_Computer_Reset</a></div><div class="ttdeci">HAL_StatusTypeDef Drum_Computer_Reset(void)</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00198">drum_computer.c:198</a></div></div>
+<div class="ttc" id="agroup__Filter_html_gab23086039f9e38c9538b24412c2e397d"><div class="ttname"><a href="group__Filter.html#gab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a></div><div class="ttdeci">Filter_Status Equalizer_Reset(void)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00265">filters.c:265</a></div></div>
 <div class="ttc" id="agroup__Sequencer_html_gaf1fa77afa44aa624f611ecb1bcb9117e"><div class="ttname"><a href="group__Sequencer.html#gaf1fa77afa44aa624f611ecb1bcb9117e">Sequencer_Reset</a></div><div class="ttdeci">HAL_StatusTypeDef Sequencer_Reset(void)</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00261">drum_computer.c:261</a></div></div>
+<div class="ttc" id="agroup__tremolo_html_ga7ec31bc72214199a5efdbe88b3a3f8b8"><div class="ttname"><a href="group__tremolo.html#ga7ec31bc72214199a5efdbe88b3a3f8b8">Tremolo_Reset</a></div><div class="ttdeci">Tremolo_Status Tremolo_Reset(void)</div><div class="ttdoc">resets all tremelo parameters</div><div class="ttdef"><b>Definition:</b> <a href="tremolo_8c_source.html#l00045">tremolo.c:45</a></div></div>
+<div class="ttc" id="agroup__wahwah_html_ga9b91a7fae64755689936b60cf1820535"><div class="ttname"><a href="group__wahwah.html#ga9b91a7fae64755689936b60cf1820535">WahWah_Reset</a></div><div class="ttdeci">WahWah_Status WahWah_Reset(struct WahWah_t *WahWah)</div><div class="ttdoc">resets all wahwah parameters</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00055">wahwah.c:55</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_a0c06ec02b1329cdb21df9311f9bc3712"><div class="ttname"><a href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a></div><div class="ttdeci">float volume[4]</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00106">signal_synthesis.h:106</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_af4829c3aeeaf3dbcda0b5266e2834898"><div class="ttname"><a href="signal__synthesis_8h.html#af4829c3aeeaf3dbcda0b5266e2834898">Voices_Reset</a></div><div class="ttdeci">HAL_StatusTypeDef Voices_Reset(void)</div><div class="ttdoc">resets the voice parameter which can be changed in the GUI</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00058">signal_synthesis.c:58</a></div></div>
-<div class="ttc" id="atremolo_8h_html_a7ec31bc72214199a5efdbe88b3a3f8b8"><div class="ttname"><a href="tremolo_8h.html#a7ec31bc72214199a5efdbe88b3a3f8b8">Tremolo_Reset</a></div><div class="ttdeci">Tremolo_Status Tremolo_Reset(void)</div><div class="ttdoc">resets all tremelo parameters</div><div class="ttdef"><b>Definition:</b> <a href="tremolo_8c_source.html#l00045">tremolo.c:45</a></div></div>
-<div class="ttc" id="awahwah_8h_html_a9b91a7fae64755689936b60cf1820535"><div class="ttname"><a href="wahwah_8h.html#a9b91a7fae64755689936b60cf1820535">WahWah_Reset</a></div><div class="ttdeci">WahWah_Status WahWah_Reset(struct WahWah_t *WahWah)</div><div class="ttdoc">resets all wahwah parameters</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00055">wahwah.c:55</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -833,7 +833,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  818</span>            <span class="keywordflow">if</span>(Display.Drumfilter_Q &lt; 0.01) <span class="comment">// guard for Q-factor, so it is never 0</span></div>
 <div class="line"><span class="lineno">  819</span>                Display.Drumfilter_Q = 0.01;</div>
 <div class="line"><span class="lineno">  820</span> </div>
-<div class="line"><span class="lineno">  821</span>            <a class="code hl_function" href="filters_8h.html#a251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a>(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);  <span class="comment">// this function can be used here as well</span></div>
+<div class="line"><span class="lineno">  821</span>            <a class="code hl_function" href="group__Filter.html#ga251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a>(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);  <span class="comment">// this function can be used here as well</span></div>
 <div class="line"><span class="lineno">  822</span>        }</div>
 <div class="line"><span class="lineno">  823</span>        <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  824</span>    <span class="keywordflow">case</span> 5:</div>
@@ -846,7 +846,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  831</span>                <span class="keywordflow">if</span>(Display.Drumfilter_Cutoff &lt; II_FILTER_CUTOFF_MIN)</div>
 <div class="line"><span class="lineno">  832</span>                    Display.Drumfilter_Cutoff = II_FILTER_CUTOFF_MIN;</div>
 <div class="line"><span class="lineno">  833</span> </div>
-<div class="line"><span class="lineno">  834</span>                <a class="code hl_function" href="filters_8h.html#a251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a>(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);  <span class="comment">// this function can be used here as well</span></div>
+<div class="line"><span class="lineno">  834</span>                <a class="code hl_function" href="group__Filter.html#ga251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a>(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);  <span class="comment">// this function can be used here as well</span></div>
 <div class="line"><span class="lineno">  835</span>            }</div>
 <div class="line"><span class="lineno">  836</span>        }</div>
 <div class="line"><span class="lineno">  837</span>        <span class="keywordflow">break</span>;</div>
@@ -864,7 +864,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  849</span><span class="comment">             ******************************/</span></div>
 <div class="line"><span class="lineno">  850</span>            Display.Drumfilter_Gain = ((float)Display.ADC2inputs[2] / 170.625)-(4095/(2*170.625))-6;</div>
 <div class="line"><span class="lineno">  851</span> </div>
-<div class="line"><span class="lineno">  852</span>            <a class="code hl_function" href="filters_8h.html#a251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a>(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);  <span class="comment">// this function can be used here as well</span></div>
+<div class="line"><span class="lineno">  852</span>            <a class="code hl_function" href="group__Filter.html#ga251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a>(Display.Drumfilter_Cutoff, Display.Drumfilter_Q, Display.Drumfilter_Gain);  <span class="comment">// this function can be used here as well</span></div>
 <div class="line"><span class="lineno">  853</span>        }</div>
 <div class="line"><span class="lineno">  854</span>        <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  855</span>    <span class="keywordflow">case</span> 7:</div>
@@ -928,7 +928,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  913</span> </div>
 <div class="line"><span class="lineno">  914</span>    <span class="keywordflow">return</span> DISPLAY_OK;</div>
 <div class="line"><span class="lineno">  915</span>}</div>
-<div class="ttc" id="afilters_8h_html_a251962656e367a604dfd084fabcc7076"><div class="ttname"><a href="filters_8h.html#a251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a></div><div class="ttdeci">Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d, float gain_d)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00171">filters.c:171</a></div></div>
+<div class="ttc" id="agroup__Filter_html_ga251962656e367a604dfd084fabcc7076"><div class="ttname"><a href="group__Filter.html#ga251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a></div><div class="ttdeci">Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d, float gain_d)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00171">filters.c:171</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1561,7 +1561,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 3667</span>        Display.currentBand = 6;</div>
 <div class="line"><span class="lineno"> 3668</span> </div>
 <div class="line"><span class="lineno"> 3669</span>        <span class="keywordflow">if</span>(Display.Reset == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno"> 3670</span>            <a class="code hl_function" href="filters_8h.html#ab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a>();</div>
+<div class="line"><span class="lineno"> 3670</span>            <a class="code hl_function" href="group__Filter.html#gab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a>();</div>
 <div class="line"><span class="lineno"> 3671</span>            Display.Reset = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno"> 3672</span>            strcpy(Display.value_str_equalizer_overview[5], <span class="stringliteral">&quot;done&quot;</span>);</div>
 <div class="line"><span class="lineno"> 3673</span>        }</div>
@@ -1648,27 +1648,27 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 3736</span>                <span class="comment">// BAND 1: Low-Shelf filter</span></div>
 <div class="line"><span class="lineno"> 3737</span>                <span class="keywordflow">if</span>(Display.currentBand == 1) {</div>
 <div class="line"><span class="lineno"> 3738</span>                    EQ_BAND1.Q = Display.Filter_Q[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3739</span>                    <a class="code hl_function" href="filters_8h.html#a1345bd0312350f65e08e824e6413f219">SetupLowShelf</a>(&amp;EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);</div>
+<div class="line"><span class="lineno"> 3739</span>                    <a class="code hl_function" href="group__Filter.html#ga1345bd0312350f65e08e824e6413f219">SetupLowShelf</a>(&amp;EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);</div>
 <div class="line"><span class="lineno"> 3740</span>                }</div>
 <div class="line"><span class="lineno"> 3741</span>                <span class="comment">// BAND 2: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3742</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 2) {</div>
 <div class="line"><span class="lineno"> 3743</span>                    EQ_BAND2.Q = Display.Filter_Q[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3744</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);</div>
+<div class="line"><span class="lineno"> 3744</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);</div>
 <div class="line"><span class="lineno"> 3745</span>                }</div>
 <div class="line"><span class="lineno"> 3746</span>                <span class="comment">// BAND 3: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3747</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 3) {</div>
 <div class="line"><span class="lineno"> 3748</span>                    EQ_BAND3.Q = Display.Filter_Q[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3749</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);</div>
+<div class="line"><span class="lineno"> 3749</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);</div>
 <div class="line"><span class="lineno"> 3750</span>                }</div>
 <div class="line"><span class="lineno"> 3751</span>                <span class="comment">// BAND 4: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3752</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 4) {</div>
 <div class="line"><span class="lineno"> 3753</span>                    EQ_BAND4.Q = Display.Filter_Q[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3754</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);</div>
+<div class="line"><span class="lineno"> 3754</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);</div>
 <div class="line"><span class="lineno"> 3755</span>                }</div>
 <div class="line"><span class="lineno"> 3756</span>                <span class="comment">// BAND 5: High-Shelf filter</span></div>
 <div class="line"><span class="lineno"> 3757</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 5) {</div>
 <div class="line"><span class="lineno"> 3758</span>                    EQ_BAND5.Q = Display.Filter_Q[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3759</span>                    <a class="code hl_function" href="filters_8h.html#a03fcfa1037c98ff029c9fb59f6c312dc">SetupHighShelf</a>(&amp;EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);</div>
+<div class="line"><span class="lineno"> 3759</span>                    <a class="code hl_function" href="group__Filter.html#ga03fcfa1037c98ff029c9fb59f6c312dc">SetupHighShelf</a>(&amp;EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);</div>
 <div class="line"><span class="lineno"> 3760</span>                }</div>
 <div class="line"><span class="lineno"> 3761</span>                <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 3762</span>            <span class="keywordflow">case</span> 2:</div>
@@ -1680,27 +1680,27 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 3768</span>                <span class="comment">// BAND 1: Low-Shelf filter</span></div>
 <div class="line"><span class="lineno"> 3769</span>                <span class="keywordflow">if</span>(Display.currentBand == 1) {</div>
 <div class="line"><span class="lineno"> 3770</span>                    EQ_BAND1.cutoff = Display.Filter_Cutoff[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3771</span>                    <a class="code hl_function" href="filters_8h.html#a1345bd0312350f65e08e824e6413f219">SetupLowShelf</a>(&amp;EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);</div>
+<div class="line"><span class="lineno"> 3771</span>                    <a class="code hl_function" href="group__Filter.html#ga1345bd0312350f65e08e824e6413f219">SetupLowShelf</a>(&amp;EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);</div>
 <div class="line"><span class="lineno"> 3772</span>                }</div>
 <div class="line"><span class="lineno"> 3773</span>                <span class="comment">// BAND 2: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3774</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 2) {</div>
 <div class="line"><span class="lineno"> 3775</span>                    EQ_BAND2.cutoff = Display.Filter_Cutoff[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3776</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);</div>
+<div class="line"><span class="lineno"> 3776</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);</div>
 <div class="line"><span class="lineno"> 3777</span>                }</div>
 <div class="line"><span class="lineno"> 3778</span>                <span class="comment">// BAND 3: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3779</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 3) {</div>
 <div class="line"><span class="lineno"> 3780</span>                    EQ_BAND3.cutoff = Display.Filter_Cutoff[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3781</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);</div>
+<div class="line"><span class="lineno"> 3781</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);</div>
 <div class="line"><span class="lineno"> 3782</span>                }</div>
 <div class="line"><span class="lineno"> 3783</span>                <span class="comment">// BAND 4: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3784</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 4) {</div>
 <div class="line"><span class="lineno"> 3785</span>                    EQ_BAND4.cutoff = Display.Filter_Cutoff[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3786</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);</div>
+<div class="line"><span class="lineno"> 3786</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);</div>
 <div class="line"><span class="lineno"> 3787</span>                }</div>
 <div class="line"><span class="lineno"> 3788</span>                <span class="comment">// BAND 5: High-Shelf filter</span></div>
 <div class="line"><span class="lineno"> 3789</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 5) {</div>
 <div class="line"><span class="lineno"> 3790</span>                    EQ_BAND5.cutoff = Display.Filter_Cutoff[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3791</span>                    <a class="code hl_function" href="filters_8h.html#a03fcfa1037c98ff029c9fb59f6c312dc">SetupHighShelf</a>(&amp;EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);</div>
+<div class="line"><span class="lineno"> 3791</span>                    <a class="code hl_function" href="group__Filter.html#ga03fcfa1037c98ff029c9fb59f6c312dc">SetupHighShelf</a>(&amp;EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);</div>
 <div class="line"><span class="lineno"> 3792</span>                }</div>
 <div class="line"><span class="lineno"> 3793</span>                <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 3794</span>            <span class="keywordflow">case</span> 3:</div>
@@ -1717,27 +1717,27 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 3805</span>                <span class="comment">// BAND 1: Low-Shelf filter</span></div>
 <div class="line"><span class="lineno"> 3806</span>                <span class="keywordflow">if</span>(Display.currentBand == 1) {</div>
 <div class="line"><span class="lineno"> 3807</span>                    EQ_BAND1.dBGain = Display.Filter_Gain[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3808</span>                    <a class="code hl_function" href="filters_8h.html#a1345bd0312350f65e08e824e6413f219">SetupLowShelf</a>(&amp;EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);</div>
+<div class="line"><span class="lineno"> 3808</span>                    <a class="code hl_function" href="group__Filter.html#ga1345bd0312350f65e08e824e6413f219">SetupLowShelf</a>(&amp;EQ_BAND1, EQ_BAND1.cutoff, EQ_BAND1.Q, EQ_BAND1.dBGain);</div>
 <div class="line"><span class="lineno"> 3809</span>                }</div>
 <div class="line"><span class="lineno"> 3810</span>                <span class="comment">// BAND 2: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3811</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 2) {</div>
 <div class="line"><span class="lineno"> 3812</span>                    EQ_BAND2.dBGain = Display.Filter_Gain[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3813</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);</div>
+<div class="line"><span class="lineno"> 3813</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND2, EQ_BAND2.cutoff, EQ_BAND2.Q, EQ_BAND2.dBGain);</div>
 <div class="line"><span class="lineno"> 3814</span>                }</div>
 <div class="line"><span class="lineno"> 3815</span>                <span class="comment">// BAND 3: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3816</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 3) {</div>
 <div class="line"><span class="lineno"> 3817</span>                    EQ_BAND3.dBGain = Display.Filter_Gain[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3818</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);</div>
+<div class="line"><span class="lineno"> 3818</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND3, EQ_BAND3.cutoff, EQ_BAND3.Q, EQ_BAND3.dBGain);</div>
 <div class="line"><span class="lineno"> 3819</span>                }</div>
 <div class="line"><span class="lineno"> 3820</span>                <span class="comment">// BAND 4: Peaking-EQ</span></div>
 <div class="line"><span class="lineno"> 3821</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 4) {</div>
 <div class="line"><span class="lineno"> 3822</span>                    EQ_BAND4.dBGain = Display.Filter_Gain[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3823</span>                    <a class="code hl_function" href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);</div>
+<div class="line"><span class="lineno"> 3823</span>                    <a class="code hl_function" href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a>(&amp;EQ_BAND4, EQ_BAND4.cutoff, EQ_BAND4.Q, EQ_BAND4.dBGain);</div>
 <div class="line"><span class="lineno"> 3824</span>                }</div>
 <div class="line"><span class="lineno"> 3825</span>                <span class="comment">// BAND 5: High-Shelf filter</span></div>
 <div class="line"><span class="lineno"> 3826</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.currentBand == 5) {</div>
 <div class="line"><span class="lineno"> 3827</span>                    EQ_BAND5.dBGain = Display.Filter_Gain[Display.currentBand-1];</div>
-<div class="line"><span class="lineno"> 3828</span>                    <a class="code hl_function" href="filters_8h.html#a03fcfa1037c98ff029c9fb59f6c312dc">SetupHighShelf</a>(&amp;EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);</div>
+<div class="line"><span class="lineno"> 3828</span>                    <a class="code hl_function" href="group__Filter.html#ga03fcfa1037c98ff029c9fb59f6c312dc">SetupHighShelf</a>(&amp;EQ_BAND5, EQ_BAND5.cutoff, EQ_BAND5.Q, EQ_BAND5.dBGain);</div>
 <div class="line"><span class="lineno"> 3829</span>                }</div>
 <div class="line"><span class="lineno"> 3830</span>                <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 3831</span>            <span class="keywordflow">case</span> 4:</div>
@@ -1776,9 +1776,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 3864</span>        Paint_DrawStringAt(&amp;paint, Display.value_start_x_position-30, CASE6, Display.value_str_equalizer_settings[Display.currentBand-1][5], &amp;Font12, COLORED);</div>
 <div class="line"><span class="lineno"> 3865</span>    }</div>
 <div class="line"><span class="lineno"> 3866</span>}</div>
-<div class="ttc" id="afilters_8h_html_a03fcfa1037c98ff029c9fb59f6c312dc"><div class="ttname"><a href="filters_8h.html#a03fcfa1037c98ff029c9fb59f6c312dc">SetupHighShelf</a></div><div class="ttdeci">Filter_Status SetupHighShelf(struct BQFilter *HS, float cutoff, float Q, float dBGain)</div><div class="ttdoc">HighShelf Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00594">filters.c:594</a></div></div>
-<div class="ttc" id="afilters_8h_html_a1345bd0312350f65e08e824e6413f219"><div class="ttname"><a href="filters_8h.html#a1345bd0312350f65e08e824e6413f219">SetupLowShelf</a></div><div class="ttdeci">Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dBGain)</div><div class="ttdoc">LowShelf Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00563">filters.c:563</a></div></div>
-<div class="ttc" id="afilters_8h_html_ae324262d60a906226a1ddf27ba0860b9"><div class="ttname"><a href="filters_8h.html#ae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a></div><div class="ttdeci">Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float dBGain)</div><div class="ttdoc">Peaking EQ Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00530">filters.c:530</a></div></div>
+<div class="ttc" id="agroup__Filter_html_ga03fcfa1037c98ff029c9fb59f6c312dc"><div class="ttname"><a href="group__Filter.html#ga03fcfa1037c98ff029c9fb59f6c312dc">SetupHighShelf</a></div><div class="ttdeci">Filter_Status SetupHighShelf(struct BQFilter *HS, float cutoff, float Q, float dBGain)</div><div class="ttdoc">HighShelf Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00594">filters.c:594</a></div></div>
+<div class="ttc" id="agroup__Filter_html_ga1345bd0312350f65e08e824e6413f219"><div class="ttname"><a href="group__Filter.html#ga1345bd0312350f65e08e824e6413f219">SetupLowShelf</a></div><div class="ttdeci">Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dBGain)</div><div class="ttdoc">LowShelf Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00563">filters.c:563</a></div></div>
+<div class="ttc" id="agroup__Filter_html_gae324262d60a906226a1ddf27ba0860b9"><div class="ttname"><a href="group__Filter.html#gae324262d60a906226a1ddf27ba0860b9">SetupPeakingEQ</a></div><div class="ttdeci">Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float dBGain)</div><div class="ttdoc">Peaking EQ Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00530">filters.c:530</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1820,7 +1820,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4582</span> </div>
 <div class="line"><span class="lineno"> 4583</span>    <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno"> 4584</span>        <span class="comment">// Key</span></div>
-<div class="line"><span class="lineno"> 4585</span>        Display.KeyNote = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 4585</span>        Display.KeyNote = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 4586</span>        <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 4587</span>    <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno"> 4588</span>        <span class="comment">// Scale Mode</span></div>
@@ -1846,7 +1846,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4608</span>    Paint_DrawStringAt(&amp;paint, Display.value_start_x_position-35, CASE1, Display.value_str_keyandmode[0], &amp;Font12, COLORED);</div>
 <div class="line"><span class="lineno"> 4609</span>    Paint_DrawStringAt(&amp;paint, Display.value_start_x_position-35, CASE2, Display.value_str_keyandmode[1], &amp;Font12, COLORED);</div>
 <div class="line"><span class="lineno"> 4610</span>}</div>
-<div class="ttc" id="amusic__notes_8h_html_aa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00034">music_notes.h:34</a></div></div>
+<div class="ttc" id="agroup__MusicNotes_html_gaa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00041">music_notes.h:41</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1956,7 +1956,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4780</span>            Display.Sequencer_ONOFF = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno"> 4781</span>            strcpy(Display.value_str_sequencer[0], <span class="stringliteral">&quot;ON&quot;</span>);   <span class="comment">// To make sure that value is correctly displayed when switch to page</span></div>
 <div class="line"><span class="lineno"> 4782</span>            <span class="comment">// Seq. Note 1</span></div>
-<div class="line"><span class="lineno"> 4783</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;C&#39;</span>, 2);    <span class="comment">// Load notes</span></div>
+<div class="line"><span class="lineno"> 4783</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;C&#39;</span>, 2);    <span class="comment">// Load notes</span></div>
 <div class="line"><span class="lineno"> 4784</span>            Display.Sequencer_Noteindex[0] = 0; <span class="comment">// C</span></div>
 <div class="line"><span class="lineno"> 4785</span>            Display.Sequencer_Octave[0] = 2;</div>
 <div class="line"><span class="lineno"> 4786</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -1965,7 +1965,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4789</span>            sprintf(Display.value_str_sequencer[1], <span class="stringliteral">&quot;%c&quot;</span>, <span class="charliteral">&#39;C&#39;</span>);</div>
 <div class="line"><span class="lineno"> 4790</span>            sprintf(Display.value_str_sequencer[2], <span class="stringliteral">&quot;%d&quot;</span>, 2);</div>
 <div class="line"><span class="lineno"> 4791</span>            <span class="comment">// Seq. Note 2</span></div>
-<div class="line"><span class="lineno"> 4792</span>            freq_index_SN2 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;E&#39;</span>, 1);</div>
+<div class="line"><span class="lineno"> 4792</span>            freq_index_SN2 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;E&#39;</span>, 1);</div>
 <div class="line"><span class="lineno"> 4793</span>            Display.Sequencer_Noteindex[1] = 4; <span class="comment">// E</span></div>
 <div class="line"><span class="lineno"> 4794</span>            Display.Sequencer_Octave[1] = 1;</div>
 <div class="line"><span class="lineno"> 4795</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -1974,7 +1974,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4798</span>            sprintf(Display.value_str_sequencer[3], <span class="stringliteral">&quot;%c&quot;</span>, <span class="charliteral">&#39;E&#39;</span>);</div>
 <div class="line"><span class="lineno"> 4799</span>            sprintf(Display.value_str_sequencer[4], <span class="stringliteral">&quot;%d&quot;</span>, 1);</div>
 <div class="line"><span class="lineno"> 4800</span>            <span class="comment">// Seq. Note 3</span></div>
-<div class="line"><span class="lineno"> 4801</span>            freq_index_SN3 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;F&#39;</span>, 1);</div>
+<div class="line"><span class="lineno"> 4801</span>            freq_index_SN3 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;F&#39;</span>, 1);</div>
 <div class="line"><span class="lineno"> 4802</span>            Display.Sequencer_Noteindex[2] = 5; <span class="comment">// F</span></div>
 <div class="line"><span class="lineno"> 4803</span>            Display.Sequencer_Octave[2] = 1;</div>
 <div class="line"><span class="lineno"> 4804</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2142,7 +2142,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4966</span>            Display.Sequencer_ONOFF = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno"> 4967</span>            strcpy(Display.value_str_sequencer[0], <span class="stringliteral">&quot;ON&quot;</span>);   <span class="comment">// To make sure that value is correctly displayed when switch to page</span></div>
 <div class="line"><span class="lineno"> 4968</span>            <span class="comment">// Seq. Note 1</span></div>
-<div class="line"><span class="lineno"> 4969</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;E&#39;</span>, 2);    <span class="comment">// Load notes</span></div>
+<div class="line"><span class="lineno"> 4969</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;E&#39;</span>, 2);    <span class="comment">// Load notes</span></div>
 <div class="line"><span class="lineno"> 4970</span>            Display.Sequencer_Noteindex[0] = 4; <span class="comment">// E</span></div>
 <div class="line"><span class="lineno"> 4971</span>            Display.Sequencer_Octave[0] = 2;</div>
 <div class="line"><span class="lineno"> 4972</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2151,7 +2151,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4975</span>            sprintf(Display.value_str_sequencer[1], <span class="stringliteral">&quot;%c&quot;</span>, <span class="charliteral">&#39;E&#39;</span>);</div>
 <div class="line"><span class="lineno"> 4976</span>            sprintf(Display.value_str_sequencer[2], <span class="stringliteral">&quot;%d&quot;</span>, 2);</div>
 <div class="line"><span class="lineno"> 4977</span>            <span class="comment">// Seq. Note 2</span></div>
-<div class="line"><span class="lineno"> 4978</span>            freq_index_SN2 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;F&#39;</span>, 2);</div>
+<div class="line"><span class="lineno"> 4978</span>            freq_index_SN2 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;F&#39;</span>, 2);</div>
 <div class="line"><span class="lineno"> 4979</span>            Display.Sequencer_Noteindex[1] = 5; <span class="comment">// F</span></div>
 <div class="line"><span class="lineno"> 4980</span>            Display.Sequencer_Octave[1] = 2;</div>
 <div class="line"><span class="lineno"> 4981</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2160,7 +2160,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4984</span>            sprintf(Display.value_str_sequencer[3], <span class="stringliteral">&quot;%c&quot;</span>, <span class="charliteral">&#39;F&#39;</span>);</div>
 <div class="line"><span class="lineno"> 4985</span>            sprintf(Display.value_str_sequencer[4], <span class="stringliteral">&quot;%d&quot;</span>, 2);</div>
 <div class="line"><span class="lineno"> 4986</span>            <span class="comment">// Seq. Note 3</span></div>
-<div class="line"><span class="lineno"> 4987</span>            freq_index_SN3 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;C&#39;</span>, 2);</div>
+<div class="line"><span class="lineno"> 4987</span>            freq_index_SN3 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;C&#39;</span>, 2);</div>
 <div class="line"><span class="lineno"> 4988</span>            Display.Sequencer_Noteindex[2] = 0; <span class="comment">// C</span></div>
 <div class="line"><span class="lineno"> 4989</span>            Display.Sequencer_Octave[2] = 2;</div>
 <div class="line"><span class="lineno"> 4990</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2309,7 +2309,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 5133</span>            Display.Sequencer_ONOFF = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno"> 5134</span>            strcpy(Display.value_str_sequencer[0], <span class="stringliteral">&quot;ON&quot;</span>);   <span class="comment">// To make sure that value is correctly displayed when switch to page</span></div>
 <div class="line"><span class="lineno"> 5135</span>            <span class="comment">// Seq. Note 1</span></div>
-<div class="line"><span class="lineno"> 5136</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;C&#39;</span>, 2);    <span class="comment">// Load notes</span></div>
+<div class="line"><span class="lineno"> 5136</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;C&#39;</span>, 2);    <span class="comment">// Load notes</span></div>
 <div class="line"><span class="lineno"> 5137</span>            Display.Sequencer_Noteindex[0] = 0; <span class="comment">// C</span></div>
 <div class="line"><span class="lineno"> 5138</span>            Display.Sequencer_Octave[0] = 2;</div>
 <div class="line"><span class="lineno"> 5139</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2318,7 +2318,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 5142</span>            sprintf(Display.value_str_sequencer[1], <span class="stringliteral">&quot;%c&quot;</span>, <span class="charliteral">&#39;C&#39;</span>);</div>
 <div class="line"><span class="lineno"> 5143</span>            sprintf(Display.value_str_sequencer[2], <span class="stringliteral">&quot;%d&quot;</span>, 2);</div>
 <div class="line"><span class="lineno"> 5144</span>            <span class="comment">// Seq. Note 2</span></div>
-<div class="line"><span class="lineno"> 5145</span>            freq_index_SN2 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;E&#39;</span>, 1);</div>
+<div class="line"><span class="lineno"> 5145</span>            freq_index_SN2 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;E&#39;</span>, 1);</div>
 <div class="line"><span class="lineno"> 5146</span>            Display.Sequencer_Noteindex[1] = 4; <span class="comment">// E</span></div>
 <div class="line"><span class="lineno"> 5147</span>            Display.Sequencer_Octave[1] = 1;</div>
 <div class="line"><span class="lineno"> 5148</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2327,7 +2327,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 5151</span>            sprintf(Display.value_str_sequencer[3], <span class="stringliteral">&quot;%c&quot;</span>, <span class="charliteral">&#39;E&#39;</span>);</div>
 <div class="line"><span class="lineno"> 5152</span>            sprintf(Display.value_str_sequencer[4], <span class="stringliteral">&quot;%d&quot;</span>, 1);</div>
 <div class="line"><span class="lineno"> 5153</span>            <span class="comment">// Seq. Note 3</span></div>
-<div class="line"><span class="lineno"> 5154</span>            freq_index_SN3 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;G&#39;</span>, 2);</div>
+<div class="line"><span class="lineno"> 5154</span>            freq_index_SN3 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;G&#39;</span>, 2);</div>
 <div class="line"><span class="lineno"> 5155</span>            Display.Sequencer_Noteindex[2] = 7; <span class="comment">// G</span></div>
 <div class="line"><span class="lineno"> 5156</span>            Display.Sequencer_Octave[2] = 2;</div>
 <div class="line"><span class="lineno"> 5157</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2485,7 +2485,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 5309</span>            Display.Sequencer_ONOFF = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno"> 5310</span>            strcpy(Display.value_str_sequencer[0], <span class="stringliteral">&quot;ON&quot;</span>);   <span class="comment">// To make sure that value is correctly displayed when switch to page</span></div>
 <div class="line"><span class="lineno"> 5311</span>            <span class="comment">// Seq. Note 1</span></div>
-<div class="line"><span class="lineno"> 5312</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;C&#39;</span>, 0);    <span class="comment">// Load notes</span></div>
+<div class="line"><span class="lineno"> 5312</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;C&#39;</span>, 0);    <span class="comment">// Load notes</span></div>
 <div class="line"><span class="lineno"> 5313</span>            Display.Sequencer_Noteindex[0] = 0; <span class="comment">// C</span></div>
 <div class="line"><span class="lineno"> 5314</span>            Display.Sequencer_Octave[0] = 0;</div>
 <div class="line"><span class="lineno"> 5315</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2494,7 +2494,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 5318</span>            sprintf(Display.value_str_sequencer[1], <span class="stringliteral">&quot;%c&quot;</span>, <span class="charliteral">&#39;C&#39;</span>);</div>
 <div class="line"><span class="lineno"> 5319</span>            sprintf(Display.value_str_sequencer[2], <span class="stringliteral">&quot;%d&quot;</span>, 0);</div>
 <div class="line"><span class="lineno"> 5320</span>            <span class="comment">// Seq. Note 2</span></div>
-<div class="line"><span class="lineno"> 5321</span>            freq_index_SN2 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;D&#39;</span>, 0);</div>
+<div class="line"><span class="lineno"> 5321</span>            freq_index_SN2 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;D&#39;</span>, 0);</div>
 <div class="line"><span class="lineno"> 5322</span>            Display.Sequencer_Noteindex[1] = 2; <span class="comment">// E</span></div>
 <div class="line"><span class="lineno"> 5323</span>            Display.Sequencer_Octave[1] = 0;</div>
 <div class="line"><span class="lineno"> 5324</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2503,7 +2503,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 5327</span>            sprintf(Display.value_str_sequencer[3], <span class="stringliteral">&quot;%c&quot;</span>, <span class="charliteral">&#39;D&#39;</span>);</div>
 <div class="line"><span class="lineno"> 5328</span>            sprintf(Display.value_str_sequencer[4], <span class="stringliteral">&quot;%d&quot;</span>, 0);</div>
 <div class="line"><span class="lineno"> 5329</span>            <span class="comment">// Seq. Note 3</span></div>
-<div class="line"><span class="lineno"> 5330</span>            freq_index_SN3 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;E&#39;</span>, 0);</div>
+<div class="line"><span class="lineno"> 5330</span>            freq_index_SN3 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(<span class="charliteral">&#39;E&#39;</span>, 0);</div>
 <div class="line"><span class="lineno"> 5331</span>            Display.Sequencer_Noteindex[2] = 4; <span class="comment">// E</span></div>
 <div class="line"><span class="lineno"> 5332</span>            Display.Sequencer_Octave[2] = 0;</div>
 <div class="line"><span class="lineno"> 5333</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
@@ -2570,10 +2570,10 @@ Functions</h2></td></tr>
 <div class="ttc" id="agroup__DisplayPage_html_ga84ad5e4c5b1f9dca651caf624ed02d91"><div class="ttname"><a href="group__DisplayPage.html#ga84ad5e4c5b1f9dca651caf624ed02d91">Full_Reset</a></div><div class="ttdeci">void Full_Reset(void)</div><div class="ttdoc">Makes a full reset of all efffects paramter to the default values.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l04677">display.c:4677</a></div></div>
 <div class="ttc" id="agroup__DrumComputer_html_ga0065e192c774e20fd5e0ab3c342b7088"><div class="ttname"><a href="group__DrumComputer.html#ga0065e192c774e20fd5e0ab3c342b7088">BPM</a></div><div class="ttdeci">float BPM</div><div class="ttdoc">Tempo.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00039">drum_computer.h:39</a></div></div>
 <div class="ttc" id="agroup__DrumComputer_html_ga4c0fb828065d1505aa1abfdd52afc7c3"><div class="ttname"><a href="group__DrumComputer.html#ga4c0fb828065d1505aa1abfdd52afc7c3">timing_DS1</a></div><div class="ttdeci">bool timing_DS1[FourFour]</div><div class="ttdoc">Timing positions drums.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00061">drum_computer.h:61</a></div></div>
+<div class="ttc" id="agroup__MusicNotes_html_ga71407d53f2b1100f1ab93dc2681dfe48"><div class="ttname"><a href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a></div><div class="ttdeci">uint16_t Get_Note_Index(char key, uint8_t octave)</div><div class="ttdoc">returns the frequency of a music note listed in the</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00071">music_notes.c:71</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga2e5122eebde8d369cf949da93586ec2e"><div class="ttname"><a href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a></div><div class="ttdeci">const uint32_t LUT_STARTINDEX[73]</div><div class="ttdoc">contains all startindizies of the frequencies in the SIN-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00049">sinLUT.h:49</a></div></div>
 <div class="ttc" id="agroup__Sequencer_html_ga4211ba08e77d82a294762a623041e342"><div class="ttname"><a href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a></div><div class="ttdeci">uint16_t freq_index_SN1</div><div class="ttdoc">Frequency index sequencer.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00089">drum_computer.h:89</a></div></div>
 <div class="ttc" id="agroup__Sequencer_html_gabafd5c3bbb1d0bbc3e708889e904e3a7"><div class="ttname"><a href="group__Sequencer.html#gabafd5c3bbb1d0bbc3e708889e904e3a7">current_LUT_index_SN1</a></div><div class="ttdeci">uint32_t current_LUT_index_SN1[FourFour]</div><div class="ttdoc">Current LUT index sequencer.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00095">drum_computer.h:95</a></div></div>
-<div class="ttc" id="amusic__notes_8h_html_a71407d53f2b1100f1ab93dc2681dfe48"><div class="ttname"><a href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a></div><div class="ttdeci">uint16_t Get_Note_Index(char key, uint8_t octave)</div><div class="ttdoc">returns the frequency of a music note listed in the</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00071">music_notes.c:71</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2655,17 +2655,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 2208</span> </div>
 <div class="line"><span class="lineno"> 2209</span>            <span class="comment">// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note</span></div>
 <div class="line"><span class="lineno"> 2210</span>            <span class="keywordflow">if</span>(Display.ScaleMode == FREESTYLE)</div>
-<div class="line"><span class="lineno"> 2211</span>                Display.Sequencer_Note[0] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Sequencer_Noteindex[0]]);</div>
+<div class="line"><span class="lineno"> 2211</span>                Display.Sequencer_Note[0] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Sequencer_Noteindex[0]]);</div>
 <div class="line"><span class="lineno"> 2212</span> </div>
 <div class="line"><span class="lineno"> 2213</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ScaleMode == MAJOR)</div>
-<div class="line"><span class="lineno"> 2214</span>                Display.Sequencer_Note[0] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[<a class="code hl_variable" href="music__notes_8h.html#a4e77e1cf22732d27ec948ba6f3942187">major_scale</a>[(uint8_t)Display.Sequencer_Noteindex[0]] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 2214</span>                Display.Sequencer_Note[0] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[<a class="code hl_variable" href="group__MusicNotes.html#ga4e77e1cf22732d27ec948ba6f3942187">major_scale</a>[(uint8_t)Display.Sequencer_Noteindex[0]] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 2215</span> </div>
 <div class="line"><span class="lineno"> 2216</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ScaleMode == MINOR)</div>
-<div class="line"><span class="lineno"> 2217</span>                Display.Sequencer_Note[0] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[minor_scale[(uint8_t)Display.Sequencer_Noteindex[0]] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 2217</span>                Display.Sequencer_Note[0] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[minor_scale[(uint8_t)Display.Sequencer_Noteindex[0]] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 2218</span> </div>
 <div class="line"><span class="lineno"> 2219</span>            sprintf(Display.value_str_sequencer[1], <span class="stringliteral">&quot;%c&quot;</span>, Display.Sequencer_Note[0]);</div>
 <div class="line"><span class="lineno"> 2220</span> </div>
-<div class="line"><span class="lineno"> 2221</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[0], (uint8_t)Display.Sequencer_Octave[0]);</div>
+<div class="line"><span class="lineno"> 2221</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[0], (uint8_t)Display.Sequencer_Octave[0]);</div>
 <div class="line"><span class="lineno"> 2222</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
 <div class="line"><span class="lineno"> 2223</span>                <a class="code hl_variable" href="group__Sequencer.html#gabafd5c3bbb1d0bbc3e708889e904e3a7">current_LUT_index_SN1</a>[i] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[<a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a>];</div>
 <div class="line"><span class="lineno"> 2224</span>            }</div>
@@ -2680,7 +2680,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 2233</span> </div>
 <div class="line"><span class="lineno"> 2234</span>            sprintf(Display.value_str_sequencer[2], <span class="stringliteral">&quot;%d&quot;</span>, Display.Sequencer_Octave[0]);</div>
 <div class="line"><span class="lineno"> 2235</span> </div>
-<div class="line"><span class="lineno"> 2236</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[0], (uint8_t)Display.Sequencer_Octave[0]);</div>
+<div class="line"><span class="lineno"> 2236</span>            <a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a> = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[0], (uint8_t)Display.Sequencer_Octave[0]);</div>
 <div class="line"><span class="lineno"> 2237</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
 <div class="line"><span class="lineno"> 2238</span>                <a class="code hl_variable" href="group__Sequencer.html#gabafd5c3bbb1d0bbc3e708889e904e3a7">current_LUT_index_SN1</a>[i] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[<a class="code hl_variable" href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a>];</div>
 <div class="line"><span class="lineno"> 2239</span>            }</div>
@@ -2695,17 +2695,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 2248</span> </div>
 <div class="line"><span class="lineno"> 2249</span>            <span class="comment">// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note</span></div>
 <div class="line"><span class="lineno"> 2250</span>            <span class="keywordflow">if</span>(Display.ScaleMode == FREESTYLE)</div>
-<div class="line"><span class="lineno"> 2251</span>                Display.Sequencer_Note[1] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Sequencer_Noteindex[1]]);</div>
+<div class="line"><span class="lineno"> 2251</span>                Display.Sequencer_Note[1] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Sequencer_Noteindex[1]]);</div>
 <div class="line"><span class="lineno"> 2252</span> </div>
 <div class="line"><span class="lineno"> 2253</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ScaleMode == MAJOR)</div>
-<div class="line"><span class="lineno"> 2254</span>                Display.Sequencer_Note[1] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[<a class="code hl_variable" href="music__notes_8h.html#a4e77e1cf22732d27ec948ba6f3942187">major_scale</a>[(uint8_t)Display.Sequencer_Noteindex[1]] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 2254</span>                Display.Sequencer_Note[1] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[<a class="code hl_variable" href="group__MusicNotes.html#ga4e77e1cf22732d27ec948ba6f3942187">major_scale</a>[(uint8_t)Display.Sequencer_Noteindex[1]] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 2255</span> </div>
 <div class="line"><span class="lineno"> 2256</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ScaleMode == MINOR)</div>
-<div class="line"><span class="lineno"> 2257</span>                Display.Sequencer_Note[1] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[minor_scale[(uint8_t)Display.Sequencer_Noteindex[1]] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 2257</span>                Display.Sequencer_Note[1] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[minor_scale[(uint8_t)Display.Sequencer_Noteindex[1]] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 2258</span> </div>
 <div class="line"><span class="lineno"> 2259</span>            sprintf(Display.value_str_sequencer[3], <span class="stringliteral">&quot;%c&quot;</span>, Display.Sequencer_Note[1]);</div>
 <div class="line"><span class="lineno"> 2260</span> </div>
-<div class="line"><span class="lineno"> 2261</span>            freq_index_SN2 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[1], (uint8_t)Display.Sequencer_Octave[1]);</div>
+<div class="line"><span class="lineno"> 2261</span>            freq_index_SN2 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[1], (uint8_t)Display.Sequencer_Octave[1]);</div>
 <div class="line"><span class="lineno"> 2262</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
 <div class="line"><span class="lineno"> 2263</span>                current_LUT_index_SN2[i] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[freq_index_SN2];</div>
 <div class="line"><span class="lineno"> 2264</span>            }</div>
@@ -2720,7 +2720,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 2273</span> </div>
 <div class="line"><span class="lineno"> 2274</span>            sprintf(Display.value_str_sequencer[4], <span class="stringliteral">&quot;%d&quot;</span>, Display.Sequencer_Octave[1]);</div>
 <div class="line"><span class="lineno"> 2275</span> </div>
-<div class="line"><span class="lineno"> 2276</span>            freq_index_SN2 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[1], (uint8_t)Display.Sequencer_Octave[1]);</div>
+<div class="line"><span class="lineno"> 2276</span>            freq_index_SN2 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[1], (uint8_t)Display.Sequencer_Octave[1]);</div>
 <div class="line"><span class="lineno"> 2277</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
 <div class="line"><span class="lineno"> 2278</span>                current_LUT_index_SN2[i] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[freq_index_SN2];</div>
 <div class="line"><span class="lineno"> 2279</span>            }</div>
@@ -2735,17 +2735,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 2288</span> </div>
 <div class="line"><span class="lineno"> 2289</span>            <span class="comment">// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note</span></div>
 <div class="line"><span class="lineno"> 2290</span>            <span class="keywordflow">if</span>(Display.ScaleMode == FREESTYLE)</div>
-<div class="line"><span class="lineno"> 2291</span>                Display.Sequencer_Note[2] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Sequencer_Noteindex[2]]);</div>
+<div class="line"><span class="lineno"> 2291</span>                Display.Sequencer_Note[2] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Sequencer_Noteindex[2]]);</div>
 <div class="line"><span class="lineno"> 2292</span> </div>
 <div class="line"><span class="lineno"> 2293</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ScaleMode == MAJOR)</div>
-<div class="line"><span class="lineno"> 2294</span>                Display.Sequencer_Note[2] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[<a class="code hl_variable" href="music__notes_8h.html#a4e77e1cf22732d27ec948ba6f3942187">major_scale</a>[(uint8_t)Display.Sequencer_Noteindex[2]] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 2294</span>                Display.Sequencer_Note[2] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[<a class="code hl_variable" href="group__MusicNotes.html#ga4e77e1cf22732d27ec948ba6f3942187">major_scale</a>[(uint8_t)Display.Sequencer_Noteindex[2]] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 2295</span> </div>
 <div class="line"><span class="lineno"> 2296</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ScaleMode == MINOR)</div>
-<div class="line"><span class="lineno"> 2297</span>                Display.Sequencer_Note[2] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[minor_scale[(uint8_t)Display.Sequencer_Noteindex[2]] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 2297</span>                Display.Sequencer_Note[2] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[minor_scale[(uint8_t)Display.Sequencer_Noteindex[2]] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 2298</span> </div>
 <div class="line"><span class="lineno"> 2299</span>            sprintf(Display.value_str_sequencer[5], <span class="stringliteral">&quot;%c&quot;</span>, Display.Sequencer_Note[2]);</div>
 <div class="line"><span class="lineno"> 2300</span> </div>
-<div class="line"><span class="lineno"> 2301</span>            freq_index_SN3 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[2], (uint8_t)Display.Sequencer_Octave[2]);</div>
+<div class="line"><span class="lineno"> 2301</span>            freq_index_SN3 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[2], (uint8_t)Display.Sequencer_Octave[2]);</div>
 <div class="line"><span class="lineno"> 2302</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
 <div class="line"><span class="lineno"> 2303</span>                current_LUT_index_SN3[i] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[freq_index_SN3];</div>
 <div class="line"><span class="lineno"> 2304</span>            }</div>
@@ -2760,7 +2760,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 2313</span> </div>
 <div class="line"><span class="lineno"> 2314</span>            sprintf(Display.value_str_sequencer[6], <span class="stringliteral">&quot;%d&quot;</span>, Display.Sequencer_Octave[2]);</div>
 <div class="line"><span class="lineno"> 2315</span> </div>
-<div class="line"><span class="lineno"> 2316</span>            freq_index_SN3 = <a class="code hl_function" href="music__notes_8h.html#a71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[2], (uint8_t)Display.Sequencer_Octave[2]);</div>
+<div class="line"><span class="lineno"> 2316</span>            freq_index_SN3 = <a class="code hl_function" href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a>(Display.Sequencer_Note[2], (uint8_t)Display.Sequencer_Octave[2]);</div>
 <div class="line"><span class="lineno"> 2317</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_define" href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a>; i++) {</div>
 <div class="line"><span class="lineno"> 2318</span>                current_LUT_index_SN3[i] = <a class="code hl_variable" href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a>[freq_index_SN3];</div>
 <div class="line"><span class="lineno"> 2319</span>            }</div>
@@ -2803,7 +2803,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 2356</span> </div>
 <div class="line"><span class="lineno"> 2357</span>    <span class="keywordflow">return</span> DISPLAY_OK;</div>
 <div class="line"><span class="lineno"> 2358</span>}</div>
-<div class="ttc" id="amusic__notes_8h_html_a4e77e1cf22732d27ec948ba6f3942187"><div class="ttname"><a href="music__notes_8h.html#a4e77e1cf22732d27ec948ba6f3942187">major_scale</a></div><div class="ttdeci">const uint32_t major_scale[9]</div><div class="ttdoc">minor/major tone scale in semi tone steps, according to the array keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00037">music_notes.h:37</a></div></div>
+<div class="ttc" id="agroup__MusicNotes_html_ga4e77e1cf22732d27ec948ba6f3942187"><div class="ttname"><a href="group__MusicNotes.html#ga4e77e1cf22732d27ec948ba6f3942187">major_scale</a></div><div class="ttdeci">const uint32_t major_scale[9]</div><div class="ttdoc">minor/major tone scale in semi tone steps, according to the array keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00044">music_notes.h:44</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2987,7 +2987,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4306</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 4307</span>        <span class="keywordflow">case</span> 6: <span class="comment">// Tremolo Reset</span></div>
 <div class="line"><span class="lineno"> 4308</span>            <span class="keywordflow">if</span>(Display.Reset == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno"> 4309</span>                <a class="code hl_function" href="tremolo_8h.html#a7ec31bc72214199a5efdbe88b3a3f8b8">Tremolo_Reset</a>();</div>
+<div class="line"><span class="lineno"> 4309</span>                <a class="code hl_function" href="group__tremolo.html#ga7ec31bc72214199a5efdbe88b3a3f8b8">Tremolo_Reset</a>();</div>
 <div class="line"><span class="lineno"> 4310</span>                Display.Reset = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno"> 4311</span>                strcpy(Display.value_str_tremolo[5], <span class="stringliteral">&quot;done&quot;</span>);</div>
 <div class="line"><span class="lineno"> 4312</span>            }</div>
@@ -3218,13 +3218,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 3232</span>            <span class="comment">// Note</span></div>
 <div class="line"><span class="lineno"> 3233</span>            <span class="comment">// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices_Note with major/minor mapping indices of root note + desired note</span></div>
 <div class="line"><span class="lineno"> 3234</span>            <span class="keywordflow">if</span>(Display.ScaleMode == FREESTYLE)</div>
-<div class="line"><span class="lineno"> 3235</span>                Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]]);</div>
+<div class="line"><span class="lineno"> 3235</span>                Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]]);</div>
 <div class="line"><span class="lineno"> 3236</span> </div>
 <div class="line"><span class="lineno"> 3237</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ScaleMode == MAJOR)</div>
-<div class="line"><span class="lineno"> 3238</span>                Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[<a class="code hl_variable" href="music__notes_8h.html#a4e77e1cf22732d27ec948ba6f3942187">major_scale</a>[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 3238</span>                Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[<a class="code hl_variable" href="group__MusicNotes.html#ga4e77e1cf22732d27ec948ba6f3942187">major_scale</a>[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 3239</span> </div>
 <div class="line"><span class="lineno"> 3240</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Display.ScaleMode == MINOR)</div>
-<div class="line"><span class="lineno"> 3241</span>                Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(<a class="code hl_variable" href="music__notes_8h.html#aa6edf4563731abf1927b342c5ebe3e8a">keys</a>[minor_scale[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]] + Display.KeyNoteIndex]);</div>
+<div class="line"><span class="lineno"> 3241</span>                Display.Voices_Note[Display.currentVoice-1] = (uint8_t)(<a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[minor_scale[(uint8_t)Display.Voices_Noteindex[Display.currentVoice-1]] + Display.KeyNoteIndex]);</div>
 <div class="line"><span class="lineno"> 3242</span> </div>
 <div class="line"><span class="lineno"> 3243</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 3244</span>        <span class="keywordflow">case</span> 2:</div>
@@ -3446,7 +3446,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 3928</span>        Display.currentWahWah = 3;</div>
 <div class="line"><span class="lineno"> 3929</span> </div>
 <div class="line"><span class="lineno"> 3930</span>        <span class="keywordflow">if</span>(Display.Reset == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno"> 3931</span>            <a class="code hl_function" href="wahwah_8h.html#a9b91a7fae64755689936b60cf1820535">WahWah_Reset</a>(&amp;WahWah);</div>
+<div class="line"><span class="lineno"> 3931</span>            <a class="code hl_function" href="group__wahwah.html#ga9b91a7fae64755689936b60cf1820535">WahWah_Reset</a>(&amp;WahWah);</div>
 <div class="line"><span class="lineno"> 3932</span>            Display.Reset = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno"> 3933</span>            strcpy(Display.value_str_wahwah[14], <span class="stringliteral">&quot;done&quot;</span>);</div>
 <div class="line"><span class="lineno"> 3934</span>        }</div>

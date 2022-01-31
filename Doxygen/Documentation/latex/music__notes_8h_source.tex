@@ -6,46 +6,45 @@
 \DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef INC\_MUSIC\_NOTES\_H\_}}
 \DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00012}00012 \textcolor{preprocessor}{\#define INC\_MUSIC\_NOTES\_H\_}}
 \DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00013}00013 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00015}00015 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00016}00016 \textcolor{comment}{ * @brief       Enums}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00017}00017 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00018}00018 \textcolor{keyword}{enum} chord\_type\{}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00019}00019     fifth= 0,}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00020}00020     seventh,}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00021}00021     ninth,}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00022}00022 \};}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00023}00023 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00024}00024 \textcolor{keyword}{enum} sex\_type\{}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00025}00025     major=0,}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00026}00026     minor,}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00027}00027     diminished}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00028}00028 \};}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00029}00029 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00030}00030 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00031}00031 \textcolor{comment}{ * @brief       Variables}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00032}00032 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00034}\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{00034}} \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[26];}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00035}00035 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00037}\mbox{\hyperlink{music__notes_8h_a4e77e1cf22732d27ec948ba6f3942187}{00037}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{music__notes_8h_a4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[9];   \textcolor{comment}{// \{2,2,1,2,2,2,1\}; Dur}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00038}00038 \textcolor{keyword}{const} uint32\_t minor\_scale[9];  \textcolor{comment}{// \{2,1,2,2,1,2,2\}; Mol}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00039}00039 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00041}\mbox{\hyperlink{music__notes_8h_a2222edaa79f27840e9e26c4d0076bd8c}{00041}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{music__notes_8h_a2222edaa79f27840e9e26c4d0076bd8c}{major\_chords}}[9]; \textcolor{comment}{// 0: major, 1: minor, 2: diminished}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00042}00042 \textcolor{keyword}{const} uint32\_t minor\_chords[9]; \textcolor{comment}{// 0: major, 1: minor, 2: diminished}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00045}\mbox{\hyperlink{music__notes_8h_af387d96b9f2a32b87121e2eae2c5ff16}{00045}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{music__notes_8h_af387d96b9f2a32b87121e2eae2c5ff16}{chord\_5}}[3];       \textcolor{comment}{//5th-\/chord}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00046}00046 \textcolor{keyword}{const} uint32\_t chord\_7[4];      \textcolor{comment}{//7th-\/chord, Jazz}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00047}00047 \textcolor{keyword}{const} uint32\_t chord\_9[4];      \textcolor{comment}{//9th-\/chord, Math-\/Rock}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00048}00048 \textcolor{keyword}{const} uint32\_t chord\_dim[3];    \textcolor{comment}{//diminished-\/chord}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00049}00049 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00050}00050 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00051}00051 \textcolor{comment}{ * @brief       Functions}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00052}00052 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00053}00053 uint8\_t \mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\textcolor{keywordtype}{char} \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}});}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00054}00054 \textcolor{keywordtype}{double} \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(uint8\_t index,uint8\_t octave);}
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00055}00055 uint16\_t \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{keywordtype}{char} \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},uint8\_t octave);}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00021}00021 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00022}00022 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00023}00023 \textcolor{comment}{ * @brief       Enums}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00024}00024 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00025}00025 \textcolor{keyword}{enum} chord\_type\{}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00026}00026     fifth= 0,}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00027}00027     seventh,}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00028}00028     ninth,}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00029}00029 \};}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00031}00031 \textcolor{keyword}{enum} sex\_type\{}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00032}00032     major=0,}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00033}00033     minor,}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00034}00034     diminished}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00035}00035 \};}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00037}00037 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00038}00038 \textcolor{comment}{ * @brief       Variables}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00039}00039 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00041}\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{00041}} \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[26];}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00044}\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{00044}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[9];   \textcolor{comment}{// \{2,2,1,2,2,2,1\}; Dur}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00045}00045 \textcolor{keyword}{const} uint32\_t minor\_scale[9];  \textcolor{comment}{// \{2,1,2,2,1,2,2\}; Mol}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00048}\mbox{\hyperlink{group__MusicNotes_ga2222edaa79f27840e9e26c4d0076bd8c}{00048}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__MusicNotes_ga2222edaa79f27840e9e26c4d0076bd8c}{major\_chords}}[9]; \textcolor{comment}{// 0: major, 1: minor, 2: diminished}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00049}00049 \textcolor{keyword}{const} uint32\_t minor\_chords[9]; \textcolor{comment}{// 0: major, 1: minor, 2: diminished}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00052}\mbox{\hyperlink{group__MusicNotes_gaf387d96b9f2a32b87121e2eae2c5ff16}{00052}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__MusicNotes_gaf387d96b9f2a32b87121e2eae2c5ff16}{chord\_5}}[3];       \textcolor{comment}{//5th-\/chord}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00053}00053 \textcolor{keyword}{const} uint32\_t chord\_7[4];      \textcolor{comment}{//7th-\/chord, Jazz}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00054}00054 \textcolor{keyword}{const} uint32\_t chord\_9[4];      \textcolor{comment}{//9th-\/chord, Math-\/Rock}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00055}00055 \textcolor{keyword}{const} uint32\_t chord\_dim[3];    \textcolor{comment}{//diminished-\/chord}}
 \DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00056}00056 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00057}00057 }
-\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00058}00058 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_MUSIC\_NOTES\_H\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00057}00057 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00058}00058 \textcolor{comment}{ * @brief       Functions}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00059}00059 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00060}00060 uint8\_t \mbox{\hyperlink{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\textcolor{keywordtype}{char} \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}});}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00061}00061 \textcolor{keywordtype}{double} \mbox{\hyperlink{group__MusicNotes_ga3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(uint8\_t index,uint8\_t octave);}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00062}00062 uint16\_t \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{keywordtype}{char} \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},uint8\_t octave);}
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{music__notes_8h_source_l00065}00065 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_MUSIC\_NOTES\_H\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

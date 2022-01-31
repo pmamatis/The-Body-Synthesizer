@@ -5,50 +5,50 @@
 \DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00001}00001 }
 \DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef INC\_SPI\_CONNECTION\_H\_}}
 \DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00012}00012 \textcolor{preprocessor}{\#define INC\_SPI\_CONNECTION\_H\_}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00014}00014 }
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00015}00015 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00016}00016 \textcolor{comment}{ * @brief       Defines}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00017}00017 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00018}00018 \textcolor{preprocessor}{\#define BUFFERSIZE sizeof(sensor\_data\_t)}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00019}00019 \textcolor{preprocessor}{\#define SPI\_SR 50 }\textcolor{comment}{// SPI sampling rate}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00020}00020 }
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00021}00021 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00022}00022 \textcolor{comment}{ * @brief       Structs}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00023}00023 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00024}00024 }
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00029}\mbox{\hyperlink{SPI__Connection_8h_a7021b2a1eb586b74239bbfa19f42724a}{00029}} \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  \mbox{\hyperlink{SPI__Connection_8h_a7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}}\{}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00030}00030   TILT\_NONE  = 0x00,}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00031}00031   TILT\_RIGHT = 0x01,}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00032}00032   TILT\_LEFT,}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00033}00033   TILT\_FRONT,}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00034}00034   TILT\_BACK,}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00035}00035   TILT\_RIGHT\_S,}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00036}00036   TILT\_LEFT\_S,}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00037}00037   TILT\_FRONT\_S,}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00038}00038   TILT\_BACK\_S}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00039}\mbox{\hyperlink{SPI__Connection_8h_abbffa66db1c27e631e55fe54973212b2}{00039}} \} \mbox{\hyperlink{SPI__Connection_8h_a7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}};}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00040}00040 }
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00041}00041 \textcolor{preprocessor}{\#pragma pack(push, 1)}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00042}\mbox{\hyperlink{structsensor__data}{00042}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structsensor__data}{sensor\_data}}\{}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00043}00043     uint8\_t gyro\_initilized;}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00044}00044     uint8\_t tilt\_detected;}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00045}00045 \} \mbox{\hyperlink{structsensor__data}{sensor\_data\_t}};}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00046}00046 \textcolor{preprocessor}{\#pragma pack(pop)}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00047}00047 }
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00048}00048 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00049}00049 \textcolor{comment}{ * @brief       Variables}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00050}00050 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00051}00051 \mbox{\hyperlink{structsensor__data}{sensor\_data\_t}} sensorData;}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00052}00052 SPI\_HandleTypeDef* hSensorSPI;}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00053}00053 uint8\_t pTxData[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsensor__data}{sensor\_data\_t}})];}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00054}00054 uint8\_t pRxData[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsensor__data}{sensor\_data\_t}})];}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00021}00021 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00023}00023 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00024}00024 \textcolor{comment}{ * @brief       Defines}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00025}00025 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00026}00026 \textcolor{preprocessor}{\#define BUFFERSIZE sizeof(sensor\_data\_t)}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00027}00027 \textcolor{preprocessor}{\#define SPI\_SR 50 }\textcolor{comment}{// SPI sampling rate}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00029}00029 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00030}00030 \textcolor{comment}{ * @brief       Structs}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00031}00031 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00037}\mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{00037}} \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}}\{}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00038}00038   TILT\_NONE  = 0x00,}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00039}00039   TILT\_RIGHT = 0x01,}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00040}00040   TILT\_LEFT,}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00041}00041   TILT\_FRONT,}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00042}00042   TILT\_BACK,}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00043}00043   TILT\_RIGHT\_S,}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00044}00044   TILT\_LEFT\_S,}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00045}00045   TILT\_FRONT\_S,}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00046}00046   TILT\_BACK\_S}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00047}\mbox{\hyperlink{group__Gyro_gabbffa66db1c27e631e55fe54973212b2}{00047}} \} \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}};}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00049}00049 \textcolor{preprocessor}{\#pragma pack(push, 1)}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00050}\mbox{\hyperlink{structsensor__data}{00050}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structsensor__data}{sensor\_data}}\{}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00051}00051     uint8\_t gyro\_initilized;}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00052}00052     uint8\_t tilt\_detected;}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00053}00053 \} \mbox{\hyperlink{structsensor__data}{sensor\_data\_t}};}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00054}00054 \textcolor{preprocessor}{\#pragma pack(pop)}}
 \DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00055}00055 }
 \DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00056}00056 \textcolor{comment}{/*********************************}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00057}00057 \textcolor{comment}{ * @brief       Functions}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00057}00057 \textcolor{comment}{ * @brief       Variables}}
 \DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00058}00058 \textcolor{comment}{ *********************************/}}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00059}00059 \textcolor{keywordtype}{void} \mbox{\hyperlink{SPI__Connection_8h_a87e70ebae58b5e371289ad557bb31b74}{spiC\_Init}}(SPI\_HandleTypeDef *hspi, TIM\_HandleTypeDef *htim);}
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00060}00060 }
-\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00061}00061 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_SPI\_CONNECTION\_H\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00059}00059 \mbox{\hyperlink{structsensor__data}{sensor\_data\_t}} sensorData;}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00060}00060 SPI\_HandleTypeDef* hSensorSPI;}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00061}00061 uint8\_t pTxData[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsensor__data}{sensor\_data\_t}})];}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00062}00062 uint8\_t pRxData[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsensor__data}{sensor\_data\_t}})];}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00064}00064 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00065}00065 \textcolor{comment}{ * @brief       Functions}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00066}00066 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00067}00067 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__Gyro_ga87e70ebae58b5e371289ad557bb31b74}{spiC\_Init}}(SPI\_HandleTypeDef *hspi, TIM\_HandleTypeDef *htim);}
+\DoxyCodeLine{\Hypertarget{SPI__Connection_8h_source_l00069}00069 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_SPI\_CONNECTION\_H\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

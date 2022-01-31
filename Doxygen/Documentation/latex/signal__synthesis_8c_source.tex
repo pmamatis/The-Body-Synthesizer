@@ -21,8 +21,8 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00041}00041         \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00042}00042     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00044}00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>BLOCKSIZE/2; i++)}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00045}00045         *((uint32\_t *)(\&\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(BLOCKSIZE/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00044}00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2; i++)}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00045}00045         *((uint32\_t *)(\&\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00046}00046 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00047}00047     \textcolor{comment}{// Inits and starts timer connected with DAC}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00048}00048     \mbox{\hyperlink{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim, LUT\_SR);}
@@ -42,7 +42,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00067}00067     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<3; i++) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00068}00068         Display.Voices\_ONOFF[i] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00069}00069         Display.Voices\_Noteindex[i] = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00070}00070         Display.Voices\_Note[i]   = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[i] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00070}00070         Display.Voices\_Note[i]   = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[i] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00071}00071         Display.Voices\_Octave[i] = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00072}00072         Display.Voice\_Note\_Sources[i] = POTI;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00073}00073         Display.Voice\_Octave\_Sources[i] = POTI;}
@@ -131,7 +131,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00166}00166                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00167}00167                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00168}00168                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00169}00169                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00169}00169                         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00170}00170                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00171}00171                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00172}00172                 \}}
@@ -206,7 +206,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00241}00241                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00242}00242                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00243}00243                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00244}00244                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00244}00244                         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00245}00245                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00246}00246                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00247}00247                 \}}
@@ -281,7 +281,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00316}00316                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00317}00317                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00318}00318                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00319}00319                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00319}00319                         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00320}00320                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00321}00321                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00322}00322                 \}}
@@ -356,7 +356,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00391}00391                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00392}00392                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00393}00393                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00394}00394                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00394}00394                         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00395}00395                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00396}00396                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00397}00397                 \}}
@@ -431,7 +431,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00466}00466                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00467}00467                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00468}00468                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00469}00469                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00469}00469                         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00470}00470                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00471}00471                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00472}00472                 \}}
@@ -506,7 +506,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00541}00541                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00542}00542                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00543}00543                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00544}00544                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00544}00544                         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00545}00545                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00546}00546                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00547}00547                 \}}
@@ -581,7 +581,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00616}00616                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00617}00617                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00618}00618                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00619}00619                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00619}00619                         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00620}00620                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00621}00621                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00622}00622                 \}}
@@ -656,7 +656,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00691}00691                     Tremolo.lfo-\/>lfo\_depth = Display.Tremolo\_Depth; \textcolor{comment}{// tremolo depth has to be updated when the maximum amplitude is reached}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00692}00692                     \textcolor{comment}{// tremolo effect has to be deleted, when the amplitude is 1 to avoid an abrupt change in the amplitude}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00693}00693                     \textcolor{keywordflow}{if}(Display.Tremolo\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00694}00694                         \mbox{\hyperlink{effects_8h_a050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00694}00694                         \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\_delete}}(TREM);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00695}00695                         Display.last\_Tremolo\_ONOFF = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00696}00696                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00697}00697                 \}}
@@ -726,20 +726,20 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00772}00772         \textcolor{keywordflow}{switch}(kind) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00773}00773 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00774}00774         \textcolor{keywordflow}{case} SIN:}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00775}00775             signals -\/> freq[index] = \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}), octave);}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00776}00776             signals -\/> freqIndex[index] = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},octave);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00775}00775             signals -\/> freq[index] = \mbox{\hyperlink{group__MusicNotes_ga3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}), octave);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00776}00776             signals -\/> freqIndex[index] = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},octave);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00777}00777             signals -\/> current\_LUT\_Index[index] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[signals -\/> freqIndex[index]];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00778}00778             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00779}00779 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00780}00780         \textcolor{keywordflow}{case} RECT:}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00781}00781             signals -\/> freq[index] = \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}), octave);}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00782}00782             signals -\/> freqIndex[index] = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},octave);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00781}00781             signals -\/> freq[index] = \mbox{\hyperlink{group__MusicNotes_ga3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}), octave);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00782}00782             signals -\/> freqIndex[index] = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},octave);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00783}00783             signals -\/> current\_LUT\_Index[index] = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00784}00784             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00785}00785 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00786}00786         \textcolor{keywordflow}{case} TRIANGLE:}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00787}00787             signals -\/> freq[index] = \mbox{\hyperlink{music__notes_8h_a3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{music__notes_8h_a24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}), octave);}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00788}00788             signals -\/> freqIndex[index] = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},octave);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00787}00787             signals -\/> freq[index] = \mbox{\hyperlink{group__MusicNotes_ga3fc1bdf03e12b5dee3aa887f100421bf}{Get\_Note\_Frequency}}(\mbox{\hyperlink{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}), octave);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00788}00788             signals -\/> freqIndex[index] = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}},octave);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00789}00789             signals -\/> current\_LUT\_Index[index] = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00790}00790             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00791}00791 }
@@ -801,11 +801,11 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00864}00864     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00865}00865     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00866}00866         BLOOCKSIZE\_startIndex = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00867}00867         BLOOCKSIZE\_endIndex = BLOCKSIZE/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00867}00867         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00868}00868     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00869}00869     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00870}00870         BLOOCKSIZE\_startIndex = BLOCKSIZE/2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00871}00871         BLOOCKSIZE\_endIndex  = BLOCKSIZE;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00870}00870         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00871}00871         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00872}00872     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00873}00873 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00874}00874     \textcolor{comment}{// Loop for signal synthesis}}
@@ -1096,7 +1096,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01159}01159             \mbox{\hyperlink{group__DrumComputer_ga08535ad247ef4e17b91bbba4b56833af}{Drum\_Computer\_Process}}();}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01160}01160             drums\_filtered = drums;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01161}01161             \textcolor{keywordflow}{if}(Display.Drumfilter\_ONOFF)}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01162}01162                 \mbox{\hyperlink{filters_8h_ad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&LS\_DRUMS, \&drums\_filtered);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01162}01162                 \mbox{\hyperlink{group__Filter_gad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(\&LS\_DRUMS, \&drums\_filtered);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01163}01163         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01164}01164         \textcolor{keywordflow}{else}\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01165}01165             drums = 0;}
@@ -1105,7 +1105,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01168}01168 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01169}01169         \textcolor{comment}{// Keyboard processing with effects}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01170}01170         \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01171}01171             \mbox{\hyperlink{effects_8h_a3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01171}01171             \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01172}01172             \textcolor{comment}{// summing up all played keyboard notes}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01173}01173             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01174}01174                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
@@ -1121,7 +1121,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01184}01184 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01185}01185         \textcolor{comment}{// Keyboard processing without effects}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01186}01186         \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01187}01187             \mbox{\hyperlink{effects_8h_a3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01187}01187             \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01188}01188             \textcolor{comment}{// summing up all played keyboard notes}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01189}01189             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01190}01190                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
@@ -1160,11 +1160,11 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01226}01226     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01227}01227     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01228}01228         BLOOCKSIZE\_startIndex = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01229}01229         BLOOCKSIZE\_endIndex = BLOCKSIZE/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01229}01229         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01230}01230     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01231}01231     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01232}01232         BLOOCKSIZE\_startIndex = BLOCKSIZE/2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01233}01233         BLOOCKSIZE\_endIndex  = BLOCKSIZE;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01232}01232         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01233}01233         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01234}01234     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01235}01235 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01236}01236     \textcolor{comment}{//Write into DAC}}

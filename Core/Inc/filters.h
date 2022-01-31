@@ -12,7 +12,12 @@
 #define INC_FILTERS_H_
 
 #include "main.h"
-
+/**
+ * @defgroup Filter Filters
+ * @ingroup Effects   
+ * @brief provides a bunch of Filter-Types
+ *  @{
+ */
 /*********************************
  * @brief Biquad Filter struct
  * @param Q güte
@@ -80,5 +85,5 @@ Filter_Status SetupLowShelf   (struct BQFilter *LS, float cutoff, float Q, float
 Filter_Status SetupHighShelf  (struct BQFilter *HS, float cutoff, float Q, float dBGain);
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data);
 Filter_Status ProcessEQ    (float *data);
-
+/** @} */
 #endif /* INC_MUSIC_NOTES_H_ */

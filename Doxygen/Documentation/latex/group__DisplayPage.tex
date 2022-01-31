@@ -193,10 +193,10 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04677}{4677}} of file \mb
 \DoxyCodeLine{04683     \mbox{\hyperlink{signal__synthesis_8h_af4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
 \DoxyCodeLine{04684     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
 \DoxyCodeLine{04685         \mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\_Reset}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i]);}
-\DoxyCodeLine{04686     \mbox{\hyperlink{filters_8h_ab23086039f9e38c9538b24412c2e397d}{Equalizer\_Reset}}();}
-\DoxyCodeLine{04687     \mbox{\hyperlink{wahwah_8h_a9b91a7fae64755689936b60cf1820535}{WahWah\_Reset}}(\&WahWah);}
+\DoxyCodeLine{04686     \mbox{\hyperlink{group__Filter_gab23086039f9e38c9538b24412c2e397d}{Equalizer\_Reset}}();}
+\DoxyCodeLine{04687     \mbox{\hyperlink{group__wahwah_ga9b91a7fae64755689936b60cf1820535}{WahWah\_Reset}}(\&WahWah);}
 \DoxyCodeLine{04688     \mbox{\hyperlink{group__Distortion_gac69b82a1179f795d9205a246de59a37a}{Distortion\_Reset}}();}
-\DoxyCodeLine{04689     \mbox{\hyperlink{tremolo_8h_a7ec31bc72214199a5efdbe88b3a3f8b8}{Tremolo\_Reset}}();}
+\DoxyCodeLine{04689     \mbox{\hyperlink{group__tremolo_ga7ec31bc72214199a5efdbe88b3a3f8b8}{Tremolo\_Reset}}();}
 \DoxyCodeLine{04690 \}}
 
 \end{DoxyCode}
@@ -689,7 +689,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l00748}{748}} of file \mbo
 \DoxyCodeLine{00818             \textcolor{keywordflow}{if}(Display.Drumfilter\_Q < 0.01) \textcolor{comment}{// guard for Q-\/factor, so it is never 0}}
 \DoxyCodeLine{00819                 Display.Drumfilter\_Q = 0.01;}
 \DoxyCodeLine{00820 }
-\DoxyCodeLine{00821             \mbox{\hyperlink{filters_8h_a251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);   \textcolor{comment}{// this function can be used here as well}}
+\DoxyCodeLine{00821             \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);   \textcolor{comment}{// this function can be used here as well}}
 \DoxyCodeLine{00822         \}}
 \DoxyCodeLine{00823         \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00824     \textcolor{keywordflow}{case} 5:}
@@ -702,7 +702,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l00748}{748}} of file \mbo
 \DoxyCodeLine{00831                 \textcolor{keywordflow}{if}(Display.Drumfilter\_Cutoff < II\_FILTER\_CUTOFF\_MIN)}
 \DoxyCodeLine{00832                     Display.Drumfilter\_Cutoff = II\_FILTER\_CUTOFF\_MIN;}
 \DoxyCodeLine{00833 }
-\DoxyCodeLine{00834                 \mbox{\hyperlink{filters_8h_a251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);   \textcolor{comment}{// this function can be used here as well}}
+\DoxyCodeLine{00834                 \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);   \textcolor{comment}{// this function can be used here as well}}
 \DoxyCodeLine{00835             \}}
 \DoxyCodeLine{00836         \}}
 \DoxyCodeLine{00837         \textcolor{keywordflow}{break};}
@@ -720,7 +720,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l00748}{748}} of file \mbo
 \DoxyCodeLine{00849 \textcolor{comment}{             ******************************/}}
 \DoxyCodeLine{00850             Display.Drumfilter\_Gain = ((float)Display.ADC2inputs[2] / 170.625)-\/(4095/(2*170.625))-\/6;}
 \DoxyCodeLine{00851 }
-\DoxyCodeLine{00852             \mbox{\hyperlink{filters_8h_a251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);   \textcolor{comment}{// this function can be used here as well}}
+\DoxyCodeLine{00852             \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{DrumFilters\_Reinit\_Gyro}}(Display.Drumfilter\_Cutoff, Display.Drumfilter\_Q, Display.Drumfilter\_Gain);   \textcolor{comment}{// this function can be used here as well}}
 \DoxyCodeLine{00853         \}}
 \DoxyCodeLine{00854         \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00855     \textcolor{keywordflow}{case} 7:}
@@ -1397,7 +1397,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l03553}{3553}} of file \mb
 \DoxyCodeLine{03667         Display.currentBand = 6;}
 \DoxyCodeLine{03668 }
 \DoxyCodeLine{03669         \textcolor{keywordflow}{if}(Display.Reset == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{03670             \mbox{\hyperlink{filters_8h_ab23086039f9e38c9538b24412c2e397d}{Equalizer\_Reset}}();}
+\DoxyCodeLine{03670             \mbox{\hyperlink{group__Filter_gab23086039f9e38c9538b24412c2e397d}{Equalizer\_Reset}}();}
 \DoxyCodeLine{03671             Display.Reset = \textcolor{keyword}{false};}
 \DoxyCodeLine{03672             strcpy(Display.value\_str\_equalizer\_overview[5], \textcolor{stringliteral}{"{}done"{}});}
 \DoxyCodeLine{03673         \}}
@@ -1480,27 +1480,27 @@ Definition at line \mbox{\hyperlink{display_8c_source_l03700}{3700}} of file \mb
 \DoxyCodeLine{03736                 \textcolor{comment}{// BAND 1: Low-\/Shelf filter}}
 \DoxyCodeLine{03737                 \textcolor{keywordflow}{if}(Display.currentBand == 1) \{}
 \DoxyCodeLine{03738                     EQ\_BAND1.Q = Display.Filter\_Q[Display.currentBand-\/1];}
-\DoxyCodeLine{03739                     \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&EQ\_BAND1, EQ\_BAND1.cutoff, EQ\_BAND1.Q, EQ\_BAND1.dBGain);}
+\DoxyCodeLine{03739                     \mbox{\hyperlink{group__Filter_ga1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&EQ\_BAND1, EQ\_BAND1.cutoff, EQ\_BAND1.Q, EQ\_BAND1.dBGain);}
 \DoxyCodeLine{03740                 \}}
 \DoxyCodeLine{03741                 \textcolor{comment}{// BAND 2: Peaking-\/EQ}}
 \DoxyCodeLine{03742                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 2) \{}
 \DoxyCodeLine{03743                     EQ\_BAND2.Q = Display.Filter\_Q[Display.currentBand-\/1];}
-\DoxyCodeLine{03744                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND2, EQ\_BAND2.cutoff, EQ\_BAND2.Q, EQ\_BAND2.dBGain);}
+\DoxyCodeLine{03744                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND2, EQ\_BAND2.cutoff, EQ\_BAND2.Q, EQ\_BAND2.dBGain);}
 \DoxyCodeLine{03745                 \}}
 \DoxyCodeLine{03746                 \textcolor{comment}{// BAND 3: Peaking-\/EQ}}
 \DoxyCodeLine{03747                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 3) \{}
 \DoxyCodeLine{03748                     EQ\_BAND3.Q = Display.Filter\_Q[Display.currentBand-\/1];}
-\DoxyCodeLine{03749                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND3, EQ\_BAND3.cutoff, EQ\_BAND3.Q, EQ\_BAND3.dBGain);}
+\DoxyCodeLine{03749                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND3, EQ\_BAND3.cutoff, EQ\_BAND3.Q, EQ\_BAND3.dBGain);}
 \DoxyCodeLine{03750                 \}}
 \DoxyCodeLine{03751                 \textcolor{comment}{// BAND 4: Peaking-\/EQ}}
 \DoxyCodeLine{03752                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 4) \{}
 \DoxyCodeLine{03753                     EQ\_BAND4.Q = Display.Filter\_Q[Display.currentBand-\/1];}
-\DoxyCodeLine{03754                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND4, EQ\_BAND4.cutoff, EQ\_BAND4.Q, EQ\_BAND4.dBGain);}
+\DoxyCodeLine{03754                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND4, EQ\_BAND4.cutoff, EQ\_BAND4.Q, EQ\_BAND4.dBGain);}
 \DoxyCodeLine{03755                 \}}
 \DoxyCodeLine{03756                 \textcolor{comment}{// BAND 5: High-\/Shelf filter}}
 \DoxyCodeLine{03757                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 5) \{}
 \DoxyCodeLine{03758                     EQ\_BAND5.Q = Display.Filter\_Q[Display.currentBand-\/1];}
-\DoxyCodeLine{03759                     \mbox{\hyperlink{filters_8h_a03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\&EQ\_BAND5, EQ\_BAND5.cutoff, EQ\_BAND5.Q, EQ\_BAND5.dBGain);}
+\DoxyCodeLine{03759                     \mbox{\hyperlink{group__Filter_ga03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\&EQ\_BAND5, EQ\_BAND5.cutoff, EQ\_BAND5.Q, EQ\_BAND5.dBGain);}
 \DoxyCodeLine{03760                 \}}
 \DoxyCodeLine{03761                 \textcolor{keywordflow}{break};}
 \DoxyCodeLine{03762             \textcolor{keywordflow}{case} 2:}
@@ -1512,27 +1512,27 @@ Definition at line \mbox{\hyperlink{display_8c_source_l03700}{3700}} of file \mb
 \DoxyCodeLine{03768                 \textcolor{comment}{// BAND 1: Low-\/Shelf filter}}
 \DoxyCodeLine{03769                 \textcolor{keywordflow}{if}(Display.currentBand == 1) \{}
 \DoxyCodeLine{03770                     EQ\_BAND1.cutoff = Display.Filter\_Cutoff[Display.currentBand-\/1];}
-\DoxyCodeLine{03771                     \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&EQ\_BAND1, EQ\_BAND1.cutoff, EQ\_BAND1.Q, EQ\_BAND1.dBGain);}
+\DoxyCodeLine{03771                     \mbox{\hyperlink{group__Filter_ga1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&EQ\_BAND1, EQ\_BAND1.cutoff, EQ\_BAND1.Q, EQ\_BAND1.dBGain);}
 \DoxyCodeLine{03772                 \}}
 \DoxyCodeLine{03773                 \textcolor{comment}{// BAND 2: Peaking-\/EQ}}
 \DoxyCodeLine{03774                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 2) \{}
 \DoxyCodeLine{03775                     EQ\_BAND2.cutoff = Display.Filter\_Cutoff[Display.currentBand-\/1];}
-\DoxyCodeLine{03776                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND2, EQ\_BAND2.cutoff, EQ\_BAND2.Q, EQ\_BAND2.dBGain);}
+\DoxyCodeLine{03776                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND2, EQ\_BAND2.cutoff, EQ\_BAND2.Q, EQ\_BAND2.dBGain);}
 \DoxyCodeLine{03777                 \}}
 \DoxyCodeLine{03778                 \textcolor{comment}{// BAND 3: Peaking-\/EQ}}
 \DoxyCodeLine{03779                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 3) \{}
 \DoxyCodeLine{03780                     EQ\_BAND3.cutoff = Display.Filter\_Cutoff[Display.currentBand-\/1];}
-\DoxyCodeLine{03781                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND3, EQ\_BAND3.cutoff, EQ\_BAND3.Q, EQ\_BAND3.dBGain);}
+\DoxyCodeLine{03781                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND3, EQ\_BAND3.cutoff, EQ\_BAND3.Q, EQ\_BAND3.dBGain);}
 \DoxyCodeLine{03782                 \}}
 \DoxyCodeLine{03783                 \textcolor{comment}{// BAND 4: Peaking-\/EQ}}
 \DoxyCodeLine{03784                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 4) \{}
 \DoxyCodeLine{03785                     EQ\_BAND4.cutoff = Display.Filter\_Cutoff[Display.currentBand-\/1];}
-\DoxyCodeLine{03786                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND4, EQ\_BAND4.cutoff, EQ\_BAND4.Q, EQ\_BAND4.dBGain);}
+\DoxyCodeLine{03786                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND4, EQ\_BAND4.cutoff, EQ\_BAND4.Q, EQ\_BAND4.dBGain);}
 \DoxyCodeLine{03787                 \}}
 \DoxyCodeLine{03788                 \textcolor{comment}{// BAND 5: High-\/Shelf filter}}
 \DoxyCodeLine{03789                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 5) \{}
 \DoxyCodeLine{03790                     EQ\_BAND5.cutoff = Display.Filter\_Cutoff[Display.currentBand-\/1];}
-\DoxyCodeLine{03791                     \mbox{\hyperlink{filters_8h_a03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\&EQ\_BAND5, EQ\_BAND5.cutoff, EQ\_BAND5.Q, EQ\_BAND5.dBGain);}
+\DoxyCodeLine{03791                     \mbox{\hyperlink{group__Filter_ga03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\&EQ\_BAND5, EQ\_BAND5.cutoff, EQ\_BAND5.Q, EQ\_BAND5.dBGain);}
 \DoxyCodeLine{03792                 \}}
 \DoxyCodeLine{03793                 \textcolor{keywordflow}{break};}
 \DoxyCodeLine{03794             \textcolor{keywordflow}{case} 3:}
@@ -1549,27 +1549,27 @@ Definition at line \mbox{\hyperlink{display_8c_source_l03700}{3700}} of file \mb
 \DoxyCodeLine{03805                 \textcolor{comment}{// BAND 1: Low-\/Shelf filter}}
 \DoxyCodeLine{03806                 \textcolor{keywordflow}{if}(Display.currentBand == 1) \{}
 \DoxyCodeLine{03807                     EQ\_BAND1.dBGain = Display.Filter\_Gain[Display.currentBand-\/1];}
-\DoxyCodeLine{03808                     \mbox{\hyperlink{filters_8h_a1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&EQ\_BAND1, EQ\_BAND1.cutoff, EQ\_BAND1.Q, EQ\_BAND1.dBGain);}
+\DoxyCodeLine{03808                     \mbox{\hyperlink{group__Filter_ga1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\&EQ\_BAND1, EQ\_BAND1.cutoff, EQ\_BAND1.Q, EQ\_BAND1.dBGain);}
 \DoxyCodeLine{03809                 \}}
 \DoxyCodeLine{03810                 \textcolor{comment}{// BAND 2: Peaking-\/EQ}}
 \DoxyCodeLine{03811                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 2) \{}
 \DoxyCodeLine{03812                     EQ\_BAND2.dBGain = Display.Filter\_Gain[Display.currentBand-\/1];}
-\DoxyCodeLine{03813                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND2, EQ\_BAND2.cutoff, EQ\_BAND2.Q, EQ\_BAND2.dBGain);}
+\DoxyCodeLine{03813                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND2, EQ\_BAND2.cutoff, EQ\_BAND2.Q, EQ\_BAND2.dBGain);}
 \DoxyCodeLine{03814                 \}}
 \DoxyCodeLine{03815                 \textcolor{comment}{// BAND 3: Peaking-\/EQ}}
 \DoxyCodeLine{03816                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 3) \{}
 \DoxyCodeLine{03817                     EQ\_BAND3.dBGain = Display.Filter\_Gain[Display.currentBand-\/1];}
-\DoxyCodeLine{03818                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND3, EQ\_BAND3.cutoff, EQ\_BAND3.Q, EQ\_BAND3.dBGain);}
+\DoxyCodeLine{03818                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND3, EQ\_BAND3.cutoff, EQ\_BAND3.Q, EQ\_BAND3.dBGain);}
 \DoxyCodeLine{03819                 \}}
 \DoxyCodeLine{03820                 \textcolor{comment}{// BAND 4: Peaking-\/EQ}}
 \DoxyCodeLine{03821                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 4) \{}
 \DoxyCodeLine{03822                     EQ\_BAND4.dBGain = Display.Filter\_Gain[Display.currentBand-\/1];}
-\DoxyCodeLine{03823                     \mbox{\hyperlink{filters_8h_ae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND4, EQ\_BAND4.cutoff, EQ\_BAND4.Q, EQ\_BAND4.dBGain);}
+\DoxyCodeLine{03823                     \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\&EQ\_BAND4, EQ\_BAND4.cutoff, EQ\_BAND4.Q, EQ\_BAND4.dBGain);}
 \DoxyCodeLine{03824                 \}}
 \DoxyCodeLine{03825                 \textcolor{comment}{// BAND 5: High-\/Shelf filter}}
 \DoxyCodeLine{03826                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.currentBand == 5) \{}
 \DoxyCodeLine{03827                     EQ\_BAND5.dBGain = Display.Filter\_Gain[Display.currentBand-\/1];}
-\DoxyCodeLine{03828                     \mbox{\hyperlink{filters_8h_a03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\&EQ\_BAND5, EQ\_BAND5.cutoff, EQ\_BAND5.Q, EQ\_BAND5.dBGain);}
+\DoxyCodeLine{03828                     \mbox{\hyperlink{group__Filter_ga03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\&EQ\_BAND5, EQ\_BAND5.cutoff, EQ\_BAND5.Q, EQ\_BAND5.dBGain);}
 \DoxyCodeLine{03829                 \}}
 \DoxyCodeLine{03830                 \textcolor{keywordflow}{break};}
 \DoxyCodeLine{03831             \textcolor{keywordflow}{case} 4:}
@@ -1644,7 +1644,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04567}{4567}} of file \mb
 \DoxyCodeLine{04582 }
 \DoxyCodeLine{04583     \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{04584         \textcolor{comment}{// Key}}
-\DoxyCodeLine{04585         Display.KeyNote = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.KeyNoteIndex]);}
+\DoxyCodeLine{04585         Display.KeyNote = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.KeyNoteIndex]);}
 \DoxyCodeLine{04586         \textcolor{keywordflow}{break};}
 \DoxyCodeLine{04587     \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{04588         \textcolor{comment}{// Scale Mode}}
@@ -1775,7 +1775,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{04780             Display.Sequencer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{04781             strcpy(Display.value\_str\_sequencer[0], \textcolor{stringliteral}{"{}ON"{}});   \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
 \DoxyCodeLine{04782             \textcolor{comment}{// Seq. Note 1}}
-\DoxyCodeLine{04783             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'C'}, 2);    \textcolor{comment}{// Load notes}}
+\DoxyCodeLine{04783             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'C'}, 2);    \textcolor{comment}{// Load notes}}
 \DoxyCodeLine{04784             Display.Sequencer\_Noteindex[0] = 0; \textcolor{comment}{// C}}
 \DoxyCodeLine{04785             Display.Sequencer\_Octave[0] = 2;}
 \DoxyCodeLine{04786             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -1784,7 +1784,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{04789             sprintf(Display.value\_str\_sequencer[1], \textcolor{stringliteral}{"{}\%c"{}}, \textcolor{charliteral}{'C'});}
 \DoxyCodeLine{04790             sprintf(Display.value\_str\_sequencer[2], \textcolor{stringliteral}{"{}\%d"{}}, 2);}
 \DoxyCodeLine{04791             \textcolor{comment}{// Seq. Note 2}}
-\DoxyCodeLine{04792             freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'E'}, 1);}
+\DoxyCodeLine{04792             freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'E'}, 1);}
 \DoxyCodeLine{04793             Display.Sequencer\_Noteindex[1] = 4; \textcolor{comment}{// E}}
 \DoxyCodeLine{04794             Display.Sequencer\_Octave[1] = 1;}
 \DoxyCodeLine{04795             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -1793,7 +1793,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{04798             sprintf(Display.value\_str\_sequencer[3], \textcolor{stringliteral}{"{}\%c"{}}, \textcolor{charliteral}{'E'});}
 \DoxyCodeLine{04799             sprintf(Display.value\_str\_sequencer[4], \textcolor{stringliteral}{"{}\%d"{}}, 1);}
 \DoxyCodeLine{04800             \textcolor{comment}{// Seq. Note 3}}
-\DoxyCodeLine{04801             freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'F'}, 1);}
+\DoxyCodeLine{04801             freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'F'}, 1);}
 \DoxyCodeLine{04802             Display.Sequencer\_Noteindex[2] = 5; \textcolor{comment}{// F}}
 \DoxyCodeLine{04803             Display.Sequencer\_Octave[2] = 1;}
 \DoxyCodeLine{04804             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -1961,7 +1961,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{04966             Display.Sequencer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{04967             strcpy(Display.value\_str\_sequencer[0], \textcolor{stringliteral}{"{}ON"{}});   \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
 \DoxyCodeLine{04968             \textcolor{comment}{// Seq. Note 1}}
-\DoxyCodeLine{04969             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'E'}, 2);    \textcolor{comment}{// Load notes}}
+\DoxyCodeLine{04969             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'E'}, 2);    \textcolor{comment}{// Load notes}}
 \DoxyCodeLine{04970             Display.Sequencer\_Noteindex[0] = 4; \textcolor{comment}{// E}}
 \DoxyCodeLine{04971             Display.Sequencer\_Octave[0] = 2;}
 \DoxyCodeLine{04972             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -1970,7 +1970,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{04975             sprintf(Display.value\_str\_sequencer[1], \textcolor{stringliteral}{"{}\%c"{}}, \textcolor{charliteral}{'E'});}
 \DoxyCodeLine{04976             sprintf(Display.value\_str\_sequencer[2], \textcolor{stringliteral}{"{}\%d"{}}, 2);}
 \DoxyCodeLine{04977             \textcolor{comment}{// Seq. Note 2}}
-\DoxyCodeLine{04978             freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'F'}, 2);}
+\DoxyCodeLine{04978             freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'F'}, 2);}
 \DoxyCodeLine{04979             Display.Sequencer\_Noteindex[1] = 5; \textcolor{comment}{// F}}
 \DoxyCodeLine{04980             Display.Sequencer\_Octave[1] = 2;}
 \DoxyCodeLine{04981             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -1979,7 +1979,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{04984             sprintf(Display.value\_str\_sequencer[3], \textcolor{stringliteral}{"{}\%c"{}}, \textcolor{charliteral}{'F'});}
 \DoxyCodeLine{04985             sprintf(Display.value\_str\_sequencer[4], \textcolor{stringliteral}{"{}\%d"{}}, 2);}
 \DoxyCodeLine{04986             \textcolor{comment}{// Seq. Note 3}}
-\DoxyCodeLine{04987             freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'C'}, 2);}
+\DoxyCodeLine{04987             freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'C'}, 2);}
 \DoxyCodeLine{04988             Display.Sequencer\_Noteindex[2] = 0; \textcolor{comment}{// C}}
 \DoxyCodeLine{04989             Display.Sequencer\_Octave[2] = 2;}
 \DoxyCodeLine{04990             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -2128,7 +2128,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{05133             Display.Sequencer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{05134             strcpy(Display.value\_str\_sequencer[0], \textcolor{stringliteral}{"{}ON"{}});   \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
 \DoxyCodeLine{05135             \textcolor{comment}{// Seq. Note 1}}
-\DoxyCodeLine{05136             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'C'}, 2);    \textcolor{comment}{// Load notes}}
+\DoxyCodeLine{05136             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'C'}, 2);    \textcolor{comment}{// Load notes}}
 \DoxyCodeLine{05137             Display.Sequencer\_Noteindex[0] = 0; \textcolor{comment}{// C}}
 \DoxyCodeLine{05138             Display.Sequencer\_Octave[0] = 2;}
 \DoxyCodeLine{05139             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -2137,7 +2137,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{05142             sprintf(Display.value\_str\_sequencer[1], \textcolor{stringliteral}{"{}\%c"{}}, \textcolor{charliteral}{'C'});}
 \DoxyCodeLine{05143             sprintf(Display.value\_str\_sequencer[2], \textcolor{stringliteral}{"{}\%d"{}}, 2);}
 \DoxyCodeLine{05144             \textcolor{comment}{// Seq. Note 2}}
-\DoxyCodeLine{05145             freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'E'}, 1);}
+\DoxyCodeLine{05145             freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'E'}, 1);}
 \DoxyCodeLine{05146             Display.Sequencer\_Noteindex[1] = 4; \textcolor{comment}{// E}}
 \DoxyCodeLine{05147             Display.Sequencer\_Octave[1] = 1;}
 \DoxyCodeLine{05148             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -2146,7 +2146,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{05151             sprintf(Display.value\_str\_sequencer[3], \textcolor{stringliteral}{"{}\%c"{}}, \textcolor{charliteral}{'E'});}
 \DoxyCodeLine{05152             sprintf(Display.value\_str\_sequencer[4], \textcolor{stringliteral}{"{}\%d"{}}, 1);}
 \DoxyCodeLine{05153             \textcolor{comment}{// Seq. Note 3}}
-\DoxyCodeLine{05154             freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'G'}, 2);}
+\DoxyCodeLine{05154             freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'G'}, 2);}
 \DoxyCodeLine{05155             Display.Sequencer\_Noteindex[2] = 7; \textcolor{comment}{// G}}
 \DoxyCodeLine{05156             Display.Sequencer\_Octave[2] = 2;}
 \DoxyCodeLine{05157             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -2304,7 +2304,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{05309             Display.Sequencer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{05310             strcpy(Display.value\_str\_sequencer[0], \textcolor{stringliteral}{"{}ON"{}});   \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
 \DoxyCodeLine{05311             \textcolor{comment}{// Seq. Note 1}}
-\DoxyCodeLine{05312             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'C'}, 0);    \textcolor{comment}{// Load notes}}
+\DoxyCodeLine{05312             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'C'}, 0);    \textcolor{comment}{// Load notes}}
 \DoxyCodeLine{05313             Display.Sequencer\_Noteindex[0] = 0; \textcolor{comment}{// C}}
 \DoxyCodeLine{05314             Display.Sequencer\_Octave[0] = 0;}
 \DoxyCodeLine{05315             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -2313,7 +2313,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{05318             sprintf(Display.value\_str\_sequencer[1], \textcolor{stringliteral}{"{}\%c"{}}, \textcolor{charliteral}{'C'});}
 \DoxyCodeLine{05319             sprintf(Display.value\_str\_sequencer[2], \textcolor{stringliteral}{"{}\%d"{}}, 0);}
 \DoxyCodeLine{05320             \textcolor{comment}{// Seq. Note 2}}
-\DoxyCodeLine{05321             freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'D'}, 0);}
+\DoxyCodeLine{05321             freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'D'}, 0);}
 \DoxyCodeLine{05322             Display.Sequencer\_Noteindex[1] = 2; \textcolor{comment}{// E}}
 \DoxyCodeLine{05323             Display.Sequencer\_Octave[1] = 0;}
 \DoxyCodeLine{05324             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -2322,7 +2322,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04696}{4696}} of file \mb
 \DoxyCodeLine{05327             sprintf(Display.value\_str\_sequencer[3], \textcolor{stringliteral}{"{}\%c"{}}, \textcolor{charliteral}{'D'});}
 \DoxyCodeLine{05328             sprintf(Display.value\_str\_sequencer[4], \textcolor{stringliteral}{"{}\%d"{}}, 0);}
 \DoxyCodeLine{05329             \textcolor{comment}{// Seq. Note 3}}
-\DoxyCodeLine{05330             freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'E'}, 0);}
+\DoxyCodeLine{05330             freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(\textcolor{charliteral}{'E'}, 0);}
 \DoxyCodeLine{05331             Display.Sequencer\_Noteindex[2] = 4; \textcolor{comment}{// E}}
 \DoxyCodeLine{05332             Display.Sequencer\_Octave[2] = 0;}
 \DoxyCodeLine{05333             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
@@ -2465,17 +2465,17 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02153}{2153}} of file \mb
 \DoxyCodeLine{02208 }
 \DoxyCodeLine{02209             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
 \DoxyCodeLine{02210             \textcolor{keywordflow}{if}(Display.ScaleMode == FREESTYLE)}
-\DoxyCodeLine{02211                 Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[0]]);}
+\DoxyCodeLine{02211                 Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[0]]);}
 \DoxyCodeLine{02212 }
 \DoxyCodeLine{02213             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MAJOR)}
-\DoxyCodeLine{02214                 Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{music__notes_8h_a4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Sequencer\_Noteindex[0]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{02214                 Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Sequencer\_Noteindex[0]] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{02215 }
 \DoxyCodeLine{02216             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MINOR)}
-\DoxyCodeLine{02217                 Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Sequencer\_Noteindex[0]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{02217                 Display.Sequencer\_Note[0] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Sequencer\_Noteindex[0]] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{02218 }
 \DoxyCodeLine{02219             sprintf(Display.value\_str\_sequencer[1], \textcolor{stringliteral}{"{}\%c"{}}, Display.Sequencer\_Note[0]);}
 \DoxyCodeLine{02220 }
-\DoxyCodeLine{02221             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[0], (uint8\_t)Display.Sequencer\_Octave[0]);}
+\DoxyCodeLine{02221             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[0], (uint8\_t)Display.Sequencer\_Octave[0]);}
 \DoxyCodeLine{02222             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{02223                 \mbox{\hyperlink{group__Sequencer_gabafd5c3bbb1d0bbc3e708889e904e3a7}{current\_LUT\_index\_SN1}}[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[\mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}}];}
 \DoxyCodeLine{02224             \}}
@@ -2490,7 +2490,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02153}{2153}} of file \mb
 \DoxyCodeLine{02233 }
 \DoxyCodeLine{02234             sprintf(Display.value\_str\_sequencer[2], \textcolor{stringliteral}{"{}\%d"{}}, Display.Sequencer\_Octave[0]);}
 \DoxyCodeLine{02235 }
-\DoxyCodeLine{02236             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[0], (uint8\_t)Display.Sequencer\_Octave[0]);}
+\DoxyCodeLine{02236             \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[0], (uint8\_t)Display.Sequencer\_Octave[0]);}
 \DoxyCodeLine{02237             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{02238                 \mbox{\hyperlink{group__Sequencer_gabafd5c3bbb1d0bbc3e708889e904e3a7}{current\_LUT\_index\_SN1}}[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[\mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}}];}
 \DoxyCodeLine{02239             \}}
@@ -2505,17 +2505,17 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02153}{2153}} of file \mb
 \DoxyCodeLine{02248 }
 \DoxyCodeLine{02249             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
 \DoxyCodeLine{02250             \textcolor{keywordflow}{if}(Display.ScaleMode == FREESTYLE)}
-\DoxyCodeLine{02251                 Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[1]]);}
+\DoxyCodeLine{02251                 Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[1]]);}
 \DoxyCodeLine{02252 }
 \DoxyCodeLine{02253             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MAJOR)}
-\DoxyCodeLine{02254                 Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{music__notes_8h_a4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Sequencer\_Noteindex[1]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{02254                 Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Sequencer\_Noteindex[1]] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{02255 }
 \DoxyCodeLine{02256             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MINOR)}
-\DoxyCodeLine{02257                 Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Sequencer\_Noteindex[1]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{02257                 Display.Sequencer\_Note[1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Sequencer\_Noteindex[1]] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{02258 }
 \DoxyCodeLine{02259             sprintf(Display.value\_str\_sequencer[3], \textcolor{stringliteral}{"{}\%c"{}}, Display.Sequencer\_Note[1]);}
 \DoxyCodeLine{02260 }
-\DoxyCodeLine{02261             freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[1], (uint8\_t)Display.Sequencer\_Octave[1]);}
+\DoxyCodeLine{02261             freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[1], (uint8\_t)Display.Sequencer\_Octave[1]);}
 \DoxyCodeLine{02262             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{02263                 current\_LUT\_index\_SN2[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[freq\_index\_SN2];}
 \DoxyCodeLine{02264             \}}
@@ -2530,7 +2530,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02153}{2153}} of file \mb
 \DoxyCodeLine{02273 }
 \DoxyCodeLine{02274             sprintf(Display.value\_str\_sequencer[4], \textcolor{stringliteral}{"{}\%d"{}}, Display.Sequencer\_Octave[1]);}
 \DoxyCodeLine{02275 }
-\DoxyCodeLine{02276             freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[1], (uint8\_t)Display.Sequencer\_Octave[1]);}
+\DoxyCodeLine{02276             freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[1], (uint8\_t)Display.Sequencer\_Octave[1]);}
 \DoxyCodeLine{02277             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{02278                 current\_LUT\_index\_SN2[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[freq\_index\_SN2];}
 \DoxyCodeLine{02279             \}}
@@ -2545,17 +2545,17 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02153}{2153}} of file \mb
 \DoxyCodeLine{02288 }
 \DoxyCodeLine{02289             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
 \DoxyCodeLine{02290             \textcolor{keywordflow}{if}(Display.ScaleMode == FREESTYLE)}
-\DoxyCodeLine{02291                 Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[2]]);}
+\DoxyCodeLine{02291                 Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Sequencer\_Noteindex[2]]);}
 \DoxyCodeLine{02292 }
 \DoxyCodeLine{02293             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MAJOR)}
-\DoxyCodeLine{02294                 Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{music__notes_8h_a4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Sequencer\_Noteindex[2]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{02294                 Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Sequencer\_Noteindex[2]] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{02295 }
 \DoxyCodeLine{02296             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MINOR)}
-\DoxyCodeLine{02297                 Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Sequencer\_Noteindex[2]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{02297                 Display.Sequencer\_Note[2] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Sequencer\_Noteindex[2]] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{02298 }
 \DoxyCodeLine{02299             sprintf(Display.value\_str\_sequencer[5], \textcolor{stringliteral}{"{}\%c"{}}, Display.Sequencer\_Note[2]);}
 \DoxyCodeLine{02300 }
-\DoxyCodeLine{02301             freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[2], (uint8\_t)Display.Sequencer\_Octave[2]);}
+\DoxyCodeLine{02301             freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[2], (uint8\_t)Display.Sequencer\_Octave[2]);}
 \DoxyCodeLine{02302             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{02303                 current\_LUT\_index\_SN3[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[freq\_index\_SN3];}
 \DoxyCodeLine{02304             \}}
@@ -2570,7 +2570,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02153}{2153}} of file \mb
 \DoxyCodeLine{02313 }
 \DoxyCodeLine{02314             sprintf(Display.value\_str\_sequencer[6], \textcolor{stringliteral}{"{}\%d"{}}, Display.Sequencer\_Octave[2]);}
 \DoxyCodeLine{02315 }
-\DoxyCodeLine{02316             freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[2], (uint8\_t)Display.Sequencer\_Octave[2]);}
+\DoxyCodeLine{02316             freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display.Sequencer\_Note[2], (uint8\_t)Display.Sequencer\_Octave[2]);}
 \DoxyCodeLine{02317             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{02318                 current\_LUT\_index\_SN3[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[freq\_index\_SN3];}
 \DoxyCodeLine{02319             \}}
@@ -2784,7 +2784,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04255}{4255}} of file \mb
 \DoxyCodeLine{04306             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{04307         \textcolor{keywordflow}{case} 6: \textcolor{comment}{// Tremolo Reset}}
 \DoxyCodeLine{04308             \textcolor{keywordflow}{if}(Display.Reset == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{04309                 \mbox{\hyperlink{tremolo_8h_a7ec31bc72214199a5efdbe88b3a3f8b8}{Tremolo\_Reset}}();}
+\DoxyCodeLine{04309                 \mbox{\hyperlink{group__tremolo_ga7ec31bc72214199a5efdbe88b3a3f8b8}{Tremolo\_Reset}}();}
 \DoxyCodeLine{04310                 Display.Reset = \textcolor{keyword}{false};}
 \DoxyCodeLine{04311                 strcpy(Display.value\_str\_tremolo[5], \textcolor{stringliteral}{"{}done"{}});}
 \DoxyCodeLine{04312             \}}
@@ -3011,13 +3011,13 @@ Definition at line \mbox{\hyperlink{display_8c_source_l03207}{3207}} of file \mb
 \DoxyCodeLine{03232             \textcolor{comment}{// Note}}
 \DoxyCodeLine{03233             \textcolor{comment}{// Decide which mode is used (Freestyle, Major, Minor) and set respective Voices\_Note with major/minor mapping indices of root note + desired note}}
 \DoxyCodeLine{03234             \textcolor{keywordflow}{if}(Display.ScaleMode == FREESTYLE)}
-\DoxyCodeLine{03235                 Display.Voices\_Note[Display.currentVoice-\/1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[Display.currentVoice-\/1]]);}
+\DoxyCodeLine{03235                 Display.Voices\_Note[Display.currentVoice-\/1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[(uint8\_t)Display.Voices\_Noteindex[Display.currentVoice-\/1]]);}
 \DoxyCodeLine{03236 }
 \DoxyCodeLine{03237             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MAJOR)}
-\DoxyCodeLine{03238                 Display.Voices\_Note[Display.currentVoice-\/1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{music__notes_8h_a4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Voices\_Noteindex[Display.currentVoice-\/1]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{03238                 Display.Voices\_Note[Display.currentVoice-\/1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[\mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\_scale}}[(uint8\_t)Display.Voices\_Noteindex[Display.currentVoice-\/1]] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{03239 }
 \DoxyCodeLine{03240             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.ScaleMode == MINOR)}
-\DoxyCodeLine{03241                 Display.Voices\_Note[Display.currentVoice-\/1] = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Voices\_Noteindex[Display.currentVoice-\/1]] + Display.KeyNoteIndex]);}
+\DoxyCodeLine{03241                 Display.Voices\_Note[Display.currentVoice-\/1] = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[minor\_scale[(uint8\_t)Display.Voices\_Noteindex[Display.currentVoice-\/1]] + Display.KeyNoteIndex]);}
 \DoxyCodeLine{03242 }
 \DoxyCodeLine{03243             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{03244         \textcolor{keywordflow}{case} 2:}
@@ -3231,7 +3231,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l03871}{3871}} of file \mb
 \DoxyCodeLine{03928         Display.currentWahWah = 3;}
 \DoxyCodeLine{03929 }
 \DoxyCodeLine{03930         \textcolor{keywordflow}{if}(Display.Reset == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{03931             \mbox{\hyperlink{wahwah_8h_a9b91a7fae64755689936b60cf1820535}{WahWah\_Reset}}(\&WahWah);}
+\DoxyCodeLine{03931             \mbox{\hyperlink{group__wahwah_ga9b91a7fae64755689936b60cf1820535}{WahWah\_Reset}}(\&WahWah);}
 \DoxyCodeLine{03932             Display.Reset = \textcolor{keyword}{false};}
 \DoxyCodeLine{03933             strcpy(Display.value\_str\_wahwah[14], \textcolor{stringliteral}{"{}done"{}});}
 \DoxyCodeLine{03934         \}}

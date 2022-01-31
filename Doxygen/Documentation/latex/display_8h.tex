@@ -38,6 +38,22 @@ struct \mbox{\hyperlink{structdisplay__variables}{display\+\_\+variables}}
 \#define \mbox{\hyperlink{display_8h_a8fe0ebcdd887e423e0f7457e24357c29}{NUMBER\+\_\+\+OF\+\_\+\+SEQUENCERSTEPS}}~8
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Display\+\_\+\+Status} \{ {\bfseries DISPLAY\+\_\+\+FAIL} = -\/1
+, {\bfseries DISPLAY\+\_\+\+OK} = 1
+ \}
+\item 
+enum {\bfseries source\+\_\+t} \{ {\bfseries POTI} = 0
+, {\bfseries GYRO\+\_\+\+LR} = 1
+, {\bfseries GYRO\+\_\+\+FB} = 2
+ \}
+\item 
+enum {\bfseries keyandmode\+\_\+t} \{ {\bfseries FREESTYLE} = 0
+, {\bfseries MAJOR} = 1
+, {\bfseries MINOR} = 2
+ \}
+\end{DoxyCompactItemize}
 \textbf{ }\par
 \begin{DoxyCompactItemize}
 \item 
@@ -292,3 +308,62 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00027}{27}} of file \mbox
 
 Definition at line \mbox{\hyperlink{display_8h_source_l00029}{29}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{display_8h_a2ff24f5d476b27542cd7c6d20b7f6341}\label{display_8h_a2ff24f5d476b27542cd7c6d20b7f6341}} 
+\index{display.h@{display.h}!Display\_Status@{Display\_Status}}
+\index{Display\_Status@{Display\_Status}!display.h@{display.h}}
+\doxysubsubsection{\texorpdfstring{Display\_Status}{Display\_Status}}
+{\footnotesize\ttfamily enum Display\+\_\+\+Status}
+
+
+
+Definition at line \mbox{\hyperlink{display_8h_source_l00094}{94}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00094              \{}
+\DoxyCodeLine{00095     DISPLAY\_FAIL = -\/1,}
+\DoxyCodeLine{00096     DISPLAY\_OK = 1}
+\DoxyCodeLine{00097 \} Display\_Status;}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{display_8h_ace78fc88e5aa2ca9f543dbfae902d379}\label{display_8h_ace78fc88e5aa2ca9f543dbfae902d379}} 
+\index{display.h@{display.h}!keyandmode\_t@{keyandmode\_t}}
+\index{keyandmode\_t@{keyandmode\_t}!display.h@{display.h}}
+\doxysubsubsection{\texorpdfstring{keyandmode\_t}{keyandmode\_t}}
+{\footnotesize\ttfamily enum keyandmode\+\_\+t}
+
+
+
+Definition at line \mbox{\hyperlink{display_8h_source_l00105}{105}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00105              \{}
+\DoxyCodeLine{00106     FREESTYLE = 0,}
+\DoxyCodeLine{00107     MAJOR = 1,}
+\DoxyCodeLine{00108     MINOR = 2}
+\DoxyCodeLine{00109 \} keyandmode\_t;}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{display_8h_a68a545a3c23609598d9bf398fc14de95}\label{display_8h_a68a545a3c23609598d9bf398fc14de95}} 
+\index{display.h@{display.h}!source\_t@{source\_t}}
+\index{source\_t@{source\_t}!display.h@{display.h}}
+\doxysubsubsection{\texorpdfstring{source\_t}{source\_t}}
+{\footnotesize\ttfamily enum source\+\_\+t}
+
+
+
+Definition at line \mbox{\hyperlink{display_8h_source_l00099}{99}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00099              \{}
+\DoxyCodeLine{00100     POTI = 0,}
+\DoxyCodeLine{00101     GYRO\_LR = 1,}
+\DoxyCodeLine{00102     GYRO\_FB = 2}
+\DoxyCodeLine{00103 \} source\_t;}
+
+\end{DoxyCode}

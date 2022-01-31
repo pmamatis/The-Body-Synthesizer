@@ -10,6 +10,12 @@
  */
 #ifndef INC_KEYBOARD_H_
 #define INC_KEYBOARD_H_
+/**
+ * @defgroup keyboard Keyboard
+ * @ingroup InputDevice   
+ * @brief Small keyboard input device
+ *  @{
+ */
 
 #include "main.h"
 
@@ -71,4 +77,6 @@ HAL_StatusTypeDef keyboard_start_read(void);
 HAL_StatusTypeDef keyboard_stop_read(void);
 void OnePress_keyboard_process(uint32_t adc_value, struct signal_t* signals, struct display_variables* Display);
 
+
+/** @} */
 #endif /* INC_KEYBOARD_H_ */

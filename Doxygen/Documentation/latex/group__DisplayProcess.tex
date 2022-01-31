@@ -385,9 +385,9 @@ Definition at line \mbox{\hyperlink{display_8c_source_l00019}{19}} of file \mbox
 \DoxyCodeLine{00120         Display-\/>last\_Sequencer\_Noteindex[i] = 0;}
 \DoxyCodeLine{00121     \}}
 \DoxyCodeLine{00122 }
-\DoxyCodeLine{00123     \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display-\/>Sequencer\_Note[0], (uint8\_t)Display-\/>Sequencer\_Octave[0]);}
-\DoxyCodeLine{00124     freq\_index\_SN2 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display-\/>Sequencer\_Note[1], (uint8\_t)Display-\/>Sequencer\_Octave[1]);}
-\DoxyCodeLine{00125     freq\_index\_SN3 = \mbox{\hyperlink{music__notes_8h_a71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display-\/>Sequencer\_Note[2], (uint8\_t)Display-\/>Sequencer\_Octave[2]);}
+\DoxyCodeLine{00123     \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}} = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display-\/>Sequencer\_Note[0], (uint8\_t)Display-\/>Sequencer\_Octave[0]);}
+\DoxyCodeLine{00124     freq\_index\_SN2 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display-\/>Sequencer\_Note[1], (uint8\_t)Display-\/>Sequencer\_Octave[1]);}
+\DoxyCodeLine{00125     freq\_index\_SN3 = \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\_Note\_Index}}(Display-\/>Sequencer\_Note[2], (uint8\_t)Display-\/>Sequencer\_Octave[2]);}
 \DoxyCodeLine{00126     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{00127         \mbox{\hyperlink{group__Sequencer_gabafd5c3bbb1d0bbc3e708889e904e3a7}{current\_LUT\_index\_SN1}}[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[\mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\_index\_SN1}}];}
 \DoxyCodeLine{00128         current\_LUT\_index\_SN2[i] = \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[freq\_index\_SN2];}
@@ -574,7 +574,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l00019}{19}} of file \mbox
 \DoxyCodeLine{00309 }
 \DoxyCodeLine{00310     \textcolor{comment}{// Key and Mode}}
 \DoxyCodeLine{00311     Display-\/>KeyNoteIndex = 0;}
-\DoxyCodeLine{00312     Display-\/>KeyNote = (uint8\_t)(\mbox{\hyperlink{music__notes_8h_aa6edf4563731abf1927b342c5ebe3e8a}{keys}}[Display-\/>KeyNoteIndex]);}
+\DoxyCodeLine{00312     Display-\/>KeyNote = (uint8\_t)(\mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}}[Display-\/>KeyNoteIndex]);}
 \DoxyCodeLine{00313     Display-\/>ScaleMode = FREESTYLE;}
 \DoxyCodeLine{00314     sprintf(Display-\/>value\_str\_keyandmode[0], \textcolor{stringliteral}{"{}\%c"{}}, Display-\/>KeyNote);}
 \DoxyCodeLine{00315     strcpy(Display-\/>value\_str\_keyandmode[1], \textcolor{stringliteral}{"{}FREESTYLE"{}});}
