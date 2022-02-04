@@ -1141,8 +1141,8 @@ Display_Status p_Drumcomputer_Settings(void) {
 	return DISPLAY_OK;
 }
 
-/**TODO
- * @brief 
+/**
+ * @brief This function draws the current set drumcomputer pattern for each step of each sample
  * 
  * @return Display_Status 
  */
@@ -1194,10 +1194,10 @@ Display_Status DISPLAY_DrawDrumcomputerPattern(void) {
 }
 
 /**
- * @brief 
+ * @brief This function loads the expected drumkit from the sd card
  * 
- * @param Drumkit 
- * @return Display_Status 
+ * @param Drumkit: expected drumkit
+ * @return Display_Status
  */
 Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 
@@ -1249,11 +1249,11 @@ Display_Status Display_LoadDrumKits(uint8_t Drumkit) {
 }
 
 /**
- * @brief 
+ * @brief This function loads the single sample, which is e.g. triggered by the emg-sensor from the sd card
  * 
- * @param SampleNUM 
- * @param KitNUM 
- * @return Display_Status 
+ * @param SampleNUM: the number of the sample
+ * @param KitNUM: the number of the drumkit
+ * @return Display_Status
  */
 Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM) {
 
@@ -1342,14 +1342,14 @@ Display_Status Display_LoadSingleSample(uint8_t SampleNUM, uint8_t KitNUM) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function draws the sample names of the drumkit, which is currently chosen
  * 
- * @param S1 
- * @param S2 
- * @param S3 
- * @param S4 
- * @return Display_Status 
+ * @param S1: first sample of the drumkit
+ * @param S2: second sample of the drumkit
+ * @param S3: third sample of the drumkit
+ * @param S4: fourth sample of the drumkit
+ * @return Display_Status
  */
 Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char* S4) {
 
@@ -1368,10 +1368,10 @@ Display_Status Display_DrawDrumcomputerIcons(char* S1, char* S2, char* S3, char*
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function draws the frame of the drumcomputer pattern
  * 
- * @param Drumsteps 
+ * @param Drumsteps: number of expected drumsteps (here it is programmed static to 8, because the display is just big enough for this amount of steps)
  * @return Display_Status 
  */
 Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps) {
@@ -1400,8 +1400,8 @@ Display_Status DISPLAY_DrawDrumcomputerPatternFrame(uint8_t Drumsteps) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function fills the drumcomputer steps with color
  * 
  * @return Display_Status 
  */
@@ -1633,8 +1633,8 @@ Display_Status DISPLAY_SetDrumcomputerStep(void) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function unfills the drumcomputer steps with color
  * 
  * @return Display_Status 
  */
@@ -1866,8 +1866,8 @@ Display_Status DISPLAY_DeleteDrumcomputerStep(void) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function sets the current cursor position of the drumcomputer cursor
  * 
  * @return Display_Status 
  */
@@ -2005,8 +2005,8 @@ Display_Status DISPLAY_SetDrumcomputerStepCursor(void) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function deletes the current cursor position of the drumcomputer cursor
  * 
  * @return Display_Status 
  */
@@ -2395,8 +2395,8 @@ Display_Status p_Sequencer_Settings(void) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function draws the note names of the sequencer
  * 
  * @return Display_Status 
  */
@@ -2410,11 +2410,11 @@ Display_Status Display_DrawSequencerIcons(void) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function draws the pattern frame of the sequencer
  * 
- * @param Drumsteps 
- * @return Display_Status 
+ * @param Drumsteps: number of expected drumsteps (here it is programmed static to 8, because the display is just big enough for this amount of steps)
+ * @return Display_Status
  */
 Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps) {
 
@@ -2441,8 +2441,8 @@ Display_Status DISPLAY_DrawSequencerPatternFrame(uint8_t Drumsteps) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function sets the current cursor position of the sequencer cursor
  * 
  * @return Display_Status 
  */
@@ -2550,8 +2550,8 @@ Display_Status DISPLAY_SetSequencerStepCursor(void) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function draws the current set sequencer pattern for each step of each sample
  * 
  * @return Display_Status 
  */
@@ -2600,8 +2600,8 @@ Display_Status DISPLAY_DrawSequencerPattern(void) {
 }
 
 
-/** TODO
- * @brief 
+/**
+ * @brief This function fills the sequencer steps with color
  * 
  * @return Display_Status 
  */
@@ -2779,8 +2779,8 @@ Display_Status DISPLAY_SetSequencerStep(void) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function unfills the drumcomputer steps with color
  * 
  * @return Display_Status 
  */
@@ -2958,8 +2958,8 @@ Display_Status DISPLAY_DeleteSequencerStep(void) {
 	return DISPLAY_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function deletes the current cursor position of the sequencer cursor
  * 
  * @return Display_Status 
  */
@@ -4560,7 +4560,7 @@ void p_EMG(void) {
 	}
 }
 
-/** TODO
+/**
  * @brief GUI-site function, all functions with the beginning p_ represent a site of the GUI menu 
  * 
  */

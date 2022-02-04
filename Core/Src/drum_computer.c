@@ -10,10 +10,10 @@
  */
 #include "drum_computer.h"
 
-/** TODO
- * @brief 
+/**
+ * @brief initializes the variables of the sequencer ADSR
  * 
- * @param env 
+ * @param env: struct of each ADSR of each sequencer note
  * @return HAL_StatusTypeDef 
  */
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
@@ -33,8 +33,8 @@ HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 	return HAL_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function calculates the samples of the drumcomputer
  * 
  * @return HAL_StatusTypeDef 
  */
@@ -190,8 +190,8 @@ HAL_StatusTypeDef Drum_Computer_CalcSample(void) {
 	return HAL_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function resets the drumcomputer to its initial state
  * 
  * @return HAL_StatusTypeDef 
  */
@@ -253,8 +253,8 @@ HAL_StatusTypeDef Drum_Computer_Reset(void) {
 	return HAL_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function resets the sequencer to its initial state
  * 
  * @return HAL_StatusTypeDef 
  */
@@ -395,8 +395,8 @@ HAL_StatusTypeDef Drum_Computer_Init(void) {
 	return HAL_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function processes the drumcomputer as well as the sequencer
  * 
  * @return HAL_StatusTypeDef 
  */
@@ -509,11 +509,11 @@ void PlaySingleSample(void) {
 }
 
 /** TODO
- * @brief 
+ * @brief calculates the drumsample reverse, but this function is not completely finished and not in use!
  * 
  * @return HAL_StatusTypeDef 
  */
-HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse() {
+HAL_StatusTypeDef Drum_Computer_CalcSample_Reverse(void) {
 
 	for(int i = 0; i < FourFour; i++) {
 

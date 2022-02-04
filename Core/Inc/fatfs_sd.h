@@ -1,6 +1,6 @@
-/** TODO
+/**
  * @file fatfs_sd.h
- * @author ???
+ * @author https://controllerstech.com/sd-card-using-spi-in-stm32/
  * @brief sd card implementation
  * @version 0.1
  * @date 2022-01-06

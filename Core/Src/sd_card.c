@@ -1,6 +1,6 @@
-/** TODO
+/**
  * @file sd_card.c
- * @author where do we get this from?
+ * @author https://controllerstech.com/sd-card-using-spi-in-stm32/
  * @brief 
  * @version 0.1
  * @date 2022-01-06

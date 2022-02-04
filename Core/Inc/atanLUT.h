@@ -17,7 +17,7 @@
  * @{ 
  */
 
-/** @brief TODO */
+/** @brief variable for calculation of the soft clipping effect */
 const float aquidistance = 0.00244170430960811;
 /**
  * @brief atan() look up table

@@ -1,6 +1,6 @@
-/** TODO
+/**
  * @file wahwah.h
- * @author ?????
+ * @author Max Lehmer, Marc Bielen
  * @brief wahwah effect
  * @version 0.1
  * @date 2022-01-06

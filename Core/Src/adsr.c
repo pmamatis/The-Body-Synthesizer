@@ -12,10 +12,10 @@
 
 
 // Reference: The Audio Programming Book from Boulanger, Lazzarini and Mathews
-/** TODO
- * @brief 
- * 
- * @return ADSR_Status 
+
+/**@brief Init funtion for the ADSR, has to be used in order to use any other funtion of this .c
+ * @param
+ *@return ADSR_Status
  */
 ADSR_Status ADSR_Init(void) {
 
@@ -26,6 +26,11 @@ ADSR_Status ADSR_Init(void) {
 	return ADSR_OK;
 }
 
+/**@brief Setup funtion for the ADSR, which is called in the ADSR_Init function for any single keyboard note
+ *
+ * @param envelope: struct for any generated keyboard note
+ *@return ADSR_Status
+ */
 ADSR_Status SetupADSR(struct adsr* envelope) {
 
 	envelope->adsr_counter = 0;
@@ -47,10 +52,10 @@ ADSR_Status SetupADSR(struct adsr* envelope) {
 }
 
 /**
- * @brief 
- * 
- * @param envelope 
- * @return ADSR_Status 
+ * @brief Reset function for the ADSR
+ *
+ * @param envelope: struct for any generated keyboard note
+ * @return ADSR_Status
  */
 ADSR_Status ADSR_Reset(struct adsr* envelope) {
 
@@ -86,11 +91,11 @@ ADSR_Status ADSR_Reset(struct adsr* envelope) {
 }
 
 /**
- * @brief 
- * 
- * @param envelope 
- * @param calculate_value 
- * @param flag 
+ * @brief Keyboard function used to calculate the current ADSR value which is then multiplied with the keyboard sample
+ *
+ * @param envelope: struct for any generated keyboard note
+ * @param calculate_value: current sample
+ * @param flag: allows processing or does not
  */
 void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value, bool flag) {
 
@@ -130,12 +135,12 @@ void OnePress_ADSR_Linear_Process(struct adsr* envelope, float* calculate_value,
 		}
 	}
 }
-/** TODO
- * @brief 
+/**
+ * @brief Sequencer function used to calculate the current ADSR value which is then multiplied with the sample
  * 
- * @param envelope 
- * @param calculate_value 
- * @param flag 
+ * @param envelope: struct for any generated keyboard note
+ * @param calculate_value: current sample
+ * @param flag: allows processing or does not
  */
 void OnePress_ADSR_Sequencer_Process(struct adsr* envelope, float* calculate_value, bool flag) {
 

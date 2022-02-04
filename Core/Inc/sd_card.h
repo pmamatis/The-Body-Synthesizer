@@ -1,6 +1,6 @@
-/** TODO
+/**
  * @file sd_card.h
- * @author ??????
+ * @author https://controllerstech.com/sd-card-using-spi-in-stm32/
  * @brief sd card acces
  * @version 0.1
  * @date 2022-01-06

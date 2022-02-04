@@ -105,12 +105,12 @@ WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float *data){
 	return WAHWAH_OK;
 }
 
-/** TODO
+/**
  * @brief 
  * 
- * @param WahWah 
- * @param data 
- * @return WahWah_Status 
+ * @param WahWah: struct of the WahWah
+ * @param data: input sample
+ * @return WahWah_Status
  */
 WahWah_Status ProcessAutoWahWah(struct WahWah_t *WahWah, float *data){
 

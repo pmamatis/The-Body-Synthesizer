@@ -1,6 +1,6 @@
-/** TODO
+/**
  * @file drum_computer.h
- * @author Marc Bielen & max lehmer
+ * @author Marc Bielen & Max Lehmer
  * @brief Drumcomputer 
  * @version 0.1
  * @date 05.08.2021

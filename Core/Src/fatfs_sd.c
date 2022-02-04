@@ -1,7 +1,7 @@
 
-/** TODO woher kommt diese Datei? Referenz hinzufügen
+/**
  * @file fatfs_sd.c
- * @author your name (you@domain.com)
+ * @author https://controllerstech.com/sd-card-using-spi-in-stm32/
  * @brief 
  * @version 0.1
  * @date 2022-01-05

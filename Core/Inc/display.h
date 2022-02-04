@@ -1,4 +1,4 @@
-/** TODO
+/**
  * @file display.h
  * @author Marc Bielen & Max Lehmer & Paul Mamatis
  * @brief all display related stuff, also needed for processing effects
@@ -112,9 +112,10 @@ typedef enum {
  * @brief		Structs
  ***************************/
 
-/** TODO
+/**
  * @defgroup Display Display 
- * @brief functions and variables for the display are mainly for the visual monitoring but could also be part of certain processing routines, TODO EPD Libary explanation
+ * @brief functions and variables for the display are mainly for the visual monitoring but could also be part of certain processing routines,
+ * The file is based on: https://github.com/soonuse/epd-library-stm32/tree/master/1.54inch_e-paper
  * 
  * @{
  */

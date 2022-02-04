@@ -1,4 +1,4 @@
-/** TODO
+/**
  * @file distortion.h
  * @author marc bielen
  * @brief distortion effect

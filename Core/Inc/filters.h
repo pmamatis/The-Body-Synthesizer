@@ -1,7 +1,7 @@
-/** TODO
+/**
  * @file filters.h
- * @author max lehmer
- * @brief filter implentations
+ * @author Max Lehmer
+ * @brief Filter implementations
  * @version 0.1
  * @date 2022-01-06
  * 
@@ -20,10 +20,10 @@
  */
 /*********************************
  * @brief Biquad Filter struct
- * @param Q güte
- * @param cutoff cutoff frequncy
- * @param dBGain Gain in dB
- * @param a TODO
+ * @param Q: Q factor
+ * @param cutoff: cutoff frequncy
+ * @param dBGain: Gain in dB
+ * @param a,b: filter coefficients
  * @param z  
  *********************************/
 struct BQFilter {

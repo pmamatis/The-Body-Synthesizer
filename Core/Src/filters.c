@@ -160,13 +160,13 @@ Filter_Status Filters_Init(void){
 	return FILTER_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function re-calculates the filter coefficients of the drum filter
  * 
- * @param cutoff_d 
- * @param Qfactor_d 
- * @param gain_d 
- * @return Filter_Status 
+ * @param cutoff_d: cutoff frequency of the drumfilter
+ * @param Qfactor_d: Q factor of the drumfilter
+ * @param gain_d: gain of the drumfilter
+ * @return Filter_Status
  */
 Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d, float gain_d) {
 
@@ -180,10 +180,10 @@ Filter_Status DrumFilters_Reinit_Gyro(float cutoff_d, float Qfactor_d, float gai
 	return FILTER_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function re-calculates the filter coefficients of the second frequency band of the 5-band-equalizer
  * 
- * @param cutoff 
+ * @param cutoff: cutoff frequency of the second frequency band filter
  * @return Filter_Status 
  */
 Filter_Status Filters_Reinit_Gyro(float cutoff){
@@ -257,8 +257,8 @@ Filter_Status Filters_Reinit_Poti(){
 }
 
 
-/** TODO
- * @brief 
+/**
+ * @brief This function resets the equalizer parameters to its initial states
  * 
  * @return Filter_Status 
  */
@@ -327,12 +327,12 @@ Filter_Status Equalizer_Reset(void) {
 	return FILTER_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function processes the filter coefficients and so it does the actual filtering of the input sample
  * 
- * @param F 
- * @param data 
- * @return Filter_Status 
+ * @param F: struct of the filter
+ * @param data: input sample
+ * @return Filter_Status
  */
 Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 
@@ -352,10 +352,10 @@ Filter_Status ProcessFilter(struct BQFilter *F,  float *data){
 	return FILTER_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function processes all the frequency bands of the equalizer, which are set on by the user
  * 
- * @param data 
+ * @param data: input sample
  * @return Filter_Status 
  */
 Filter_Status ProcessEQ(float *data){
@@ -379,13 +379,13 @@ Filter_Status ProcessEQ(float *data){
 	return FILTER_OK;
 }
 
-/** TODO
+/**
  * @brief Lowpass Filter
  * 
- * @param LP 
- * @param cutoff 
- * @param Q 
- * @return Filter_Status 
+ * @param LP: struct of the low pass filter
+ * @param cutoff: cutoff frequency of the low pass filter
+ * @param Q: Q factor of the low pass filter
+ * @return Filter_Status
  */
 Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 
@@ -407,13 +407,13 @@ Filter_Status SetupLowpass(struct BQFilter *LP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-/** TODO
+/**
  * @brief  Highpass Filter
  * 
- * @param HP 
- * @param cutoff 
- * @param Q 
- * @return Filter_Status 
+ * @param HP: struct of the high pass filter
+ * @param cutoff: cutoff frequency of the high pass filter
+ * @param Q: Q factor of the high pass filter
+ * @return Filter_Status
  */ 
 Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 
@@ -435,13 +435,13 @@ Filter_Status SetupHighpass(struct BQFilter *HP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-/** TODO
+/**
  * @brief Constant Peak Gain Bandpass Filter
  * 
- * @param BP 
- * @param cutoff 
- * @param Q 
- * @return Filter_Status 
+ * @param LP: struct of the CPG band pass filter
+ * @param cutoff: cutoff frequency of the CPG band pass filter
+ * @param Q: Q factor of the CPG band pass filter
+ * @return Filter_Status
  */
 Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q){
 
@@ -463,14 +463,13 @@ Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q){
 }
 
 
-// 
 /** 
  * @brief Constant Skirt Gain Bandpass Filter
  * 
- * @param BP 
- * @param cutoff 
- * @param Q 
- * @return Filter_Status 
+ * @param LP: struct of the CSG band pass filter
+ * @param cutoff: cutoff frequency of the CSG band pass filter
+ * @param Q: Q factor of the CSG band pass filter
+ * @return Filter_Status
  */
 Filter_Status SetupBandpassCSG(struct BQFilter *BP, float cutoff, float Q){
 
@@ -494,10 +493,10 @@ Filter_Status SetupBandpassCSG(struct BQFilter *BP, float cutoff, float Q){
 /**
  * @brief Notch Filter
  * 
- * @param BP 
- * @param cutoff 
- * @param Q 
- * @return Filter_Status 
+ * @param LP: struct of the notch filter
+ * @param cutoff: cutoff frequency of the notch filter
+ * @param Q: Q factor of the notch filter
+ * @return Filter_Status
  */
 Filter_Status SetupNotch(struct BQFilter *BP, float cutoff, float Q){
 
@@ -518,13 +517,13 @@ Filter_Status SetupNotch(struct BQFilter *BP, float cutoff, float Q){
 	return FILTER_OK;
 }
 
-/** TODO
+/**
  * @brief Peaking EQ Filter
  * 
- * @param BP 
- * @param cutoff 
- * @param Q 
- * @param dBGain 
+ * @param BP: struct of the peaking EQ filter
+ * @param cutoff: cutoff frequency of the peaking EQ filter
+ * @param Q: Q factor of the peaking EQ filter
+ * @param dBGain: Gain of the peaking EQ filter
  * @return Filter_Status 
  */
 Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float dBGain){
@@ -553,11 +552,11 @@ Filter_Status SetupPeakingEQ(struct BQFilter *BP, float cutoff, float Q, float d
 
 /**
  * @brief LowShelf Filter 
- * 
- * @param LS 
- * @param cutoff 
- * @param Q 
- * @param dBGain 
+ *
+ * @param LS: struct of the low shelf filter
+ * @param cutoff: cutoff frequency of the low shelf filter
+ * @param Q: Q factor of the low shelf filter
+ * @param dBGain: gain of the low shelf filter
  * @return Filter_Status 
  */
 Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dBGain){
@@ -582,14 +581,14 @@ Filter_Status SetupLowShelf(struct BQFilter *LS, float cutoff, float Q, float dB
 }
 
 
-/** TODO
+/**
  * @brief HighShelf Filter 
  * 
- * @param HS 
- * @param cutoff 
- * @param Q 
- * @param dBGain 
- * @return Filter_Status 
+ * @param HS: struct of the high shelf filter
+ * @param cutoff: cutoff frequency of the high shelf filter
+ * @param Q: Q factor of the high shelf filter
+ * @param dBGain: gain of the high shelf filter
+ * @return Filter_Status
  */
 Filter_Status SetupHighShelf(struct BQFilter *HS, float cutoff, float Q, float dBGain){
 

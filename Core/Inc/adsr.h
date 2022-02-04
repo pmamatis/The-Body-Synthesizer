@@ -1,4 +1,4 @@
-/** TODO
+/**
  * @file adsr.h
  * @author Marc Bielen
  * @brief adsr effect header
@@ -30,8 +30,8 @@ typedef enum {
 /*********************************
  * @brief	Structs
  *********************************/
-/** TODO
- * @brief stores the state of the ADSR, aswell as the configuration
+/**
+ * @brief stores the state of the ADSR values for keyboardand sequencer structs as well as the configuration
  * 
  */
 struct adsr {
@@ -57,9 +57,6 @@ struct adsr {
 /*********************************
  * @brief	Variables
  *********************************/
-
-
-
 
 /**
  * @brief ADSR for the Voice notes 

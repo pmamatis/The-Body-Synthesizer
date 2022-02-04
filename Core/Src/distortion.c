@@ -25,8 +25,8 @@ Distortion_Status Distortion_Init(void) {
 	return DISTORTION_OK;
 }
 
-/** TODO
- * @brief 
+/**
+ * @brief This function resets the distortion variables to its initial state
  * 
  * @return Distortion_Status 
  */

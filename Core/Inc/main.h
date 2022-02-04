@@ -145,13 +145,6 @@ void Error_Handler(void);
 /**@brief output array size */
 #define BLOCKSIZE 480 // Latenz = 20ms @ 24kHz S
 
-//Variables TODO
-bool process_trem;
-bool process_dist;
-bool process_dist_soft;
-bool process_dist_hard;
-bool process_adsr;
-bool process_filter;
 /** @brief DAC output array*/
 
 /** DAC output array. Before the content of this array is given to the DAC, all calculations are made on this array too  */

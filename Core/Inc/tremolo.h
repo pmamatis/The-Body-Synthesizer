@@ -1,7 +1,7 @@
-/** TODO
+/**
  * @file tremolo.h
- * @author marc bielen
- * @brief tremolo effect
+ * @author Marc Bielen
+ * @brief Tremolo effect
  * @version 0.1
  * @date 2022-01-06
  * 
