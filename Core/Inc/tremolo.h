@@ -1,7 +1,7 @@
-/**
+/** TODO
  * @file tremolo.h
- * @author Marc Bielen
- * @brief Tremolo effect
+ * @author marc bielen
+ * @brief tremolo effect
  * @version 0.1
  * @date 2022-01-06
  * 
@@ -11,7 +11,7 @@
 #ifndef INC_TREMOLO_H_
 #define INC_TREMOLO_H_
 /**
- * @defgroup tremolo Tremolo effect
+ * @defgroup tremolo Tremolo Effect
  * @ingroup Effects
  * @brief another effect TODO
  * 

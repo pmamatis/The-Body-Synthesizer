@@ -10,7 +10,6 @@
  */
  
  
-  Created on: 
 
 
 #include "emg.h"
@@ -31,8 +30,8 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 	return HAL_OK;
 }
 
-/**@brief ECG init
- * @note need to be called after emg_init()
+/** @brief ECG init
+ *  @note need to be called after emg_init()
  */
 HAL_StatusTypeDef ecg_init(void){
 

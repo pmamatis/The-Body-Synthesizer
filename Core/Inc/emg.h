@@ -69,5 +69,5 @@ HAL_StatusTypeDef emg_start_read(void);
 HAL_StatusTypeDef emg_stop_read(void);
 HAL_StatusTypeDef emg_peak_detection(void);
 void ecg_heartrate(void);
-/** @}
+/** @} */
 #endif /* INC_EMG_H_ */

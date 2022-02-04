@@ -12,7 +12,7 @@
 #define INC_SPI_CONNECTION_H_
 
 /**
- * @defgroup Gyro Groyscop and accelerometer sensor SPI connection
+ * @defgroup Gyro Groyscop- and Accelerometer-Sensor SPI connection
  * @ingroup InputDevice
  * @brief functions and variables to decode the Gyro/Accl information receiced via the SPI
  * @{

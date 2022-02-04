@@ -1125,21 +1125,21 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 					}
 				}
 				break;
-			}
-
-			case NOISE:
-				if(Display.Voices_ONOFF[VOICES_ID+3] == true) {
-					addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*sizeof(int))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);
-				}
-				// delete signal if voice off
-				if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
-					DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
-					Display.Voices_Created[VOICES_ID+3] = false;
-				}
-				break;
+			
+						/*
+						case NOISE:
+							if(Display.Voices_ONOFF[VOICES_ID+3] == true) {
+								addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*sizeof(int))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);
+							}
+							// delete signal if voice off
+							if(Display.Voices_ONOFF[VOICES_ID+3]==false && Display.Voices_Created[VOICES_ID+3] == true) {
+								DeleteSignal(&signals1, IDtoIndex(VOICES_ID+3));
+								Display.Voices_Created[VOICES_ID+3] = false;
+							}
+							break; */
 			}// Switch-Case
 
-		}// Signal counter for-loop
+		}
 
 
 
@@ -1153,6 +1153,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// write voices (including noise) into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * (addValue + Noise_Generator());
 
+	}// Signal counter for-loop
 
 		// Drummachine
 		if ((volume[1] > 0) || (volume[2] > 0)){
