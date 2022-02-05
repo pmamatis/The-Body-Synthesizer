@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('filters_8h.html',''); initResizable();
 </div><!--header-->
 <div class="contents">
 
-<p>filter implentations  
+<p>Filter implementations.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br />
 </div>
@@ -118,10 +118,13 @@ Functions</h2></td></tr>
 <tr class="memitem:gadcc644218f3fbdbd5725f157286c155f"><td class="memItemLeft" align="right" valign="top">Filter_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Filter.html#gadcc644218f3fbdbd5725f157286c155f">Filters_Reinit_Poti</a> (void)</td></tr>
 <tr class="separator:gadcc644218f3fbdbd5725f157286c155f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaec8e59a44285b5c5d026199e59bedc1d"><td class="memItemLeft" align="right" valign="top">Filter_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Filter.html#gaec8e59a44285b5c5d026199e59bedc1d">Filters_Reinit_Gyro</a> (float cutoff)</td></tr>
+<tr class="memdesc:gaec8e59a44285b5c5d026199e59bedc1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function re-calculates the filter coefficients of the second frequency band of the 5-band-equalizer.  <a href="group__Filter.html#gaec8e59a44285b5c5d026199e59bedc1d">More...</a><br /></td></tr>
 <tr class="separator:gaec8e59a44285b5c5d026199e59bedc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga251962656e367a604dfd084fabcc7076"><td class="memItemLeft" align="right" valign="top">Filter_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Filter.html#ga251962656e367a604dfd084fabcc7076">DrumFilters_Reinit_Gyro</a> (float cutoff_d, float Qfactor_d, float gain_d)</td></tr>
+<tr class="memdesc:ga251962656e367a604dfd084fabcc7076"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function re-calculates the filter coefficients of the drum filter.  <a href="group__Filter.html#ga251962656e367a604dfd084fabcc7076">More...</a><br /></td></tr>
 <tr class="separator:ga251962656e367a604dfd084fabcc7076"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab23086039f9e38c9538b24412c2e397d"><td class="memItemLeft" align="right" valign="top">Filter_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Filter.html#gab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a> (void)</td></tr>
+<tr class="memdesc:gab23086039f9e38c9538b24412c2e397d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function resets the equalizer parameters to its initial states.  <a href="group__Filter.html#gab23086039f9e38c9538b24412c2e397d">More...</a><br /></td></tr>
 <tr class="separator:gab23086039f9e38c9538b24412c2e397d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1d45e64aaa786258dd8d43d5fd8e8cbe"><td class="memItemLeft" align="right" valign="top">Filter_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Filter.html#ga1d45e64aaa786258dd8d43d5fd8e8cbe">SetupLowpass</a> (struct <a class="el" href="structBQFilter.html">BQFilter</a> *LP, float cutoff, float Q)</td></tr>
 <tr class="memdesc:ga1d45e64aaa786258dd8d43d5fd8e8cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lowpass Filter.  <a href="group__Filter.html#ga1d45e64aaa786258dd8d43d5fd8e8cbe">More...</a><br /></td></tr>
@@ -148,8 +151,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga03fcfa1037c98ff029c9fb59f6c312dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">HighShelf Filter.  <a href="group__Filter.html#ga03fcfa1037c98ff029c9fb59f6c312dc">More...</a><br /></td></tr>
 <tr class="separator:ga03fcfa1037c98ff029c9fb59f6c312dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad95e18a35a0ebacf27bc67222a71e275"><td class="memItemLeft" align="right" valign="top">Filter_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a> (struct <a class="el" href="structBQFilter.html">BQFilter</a> *F, float *data)</td></tr>
+<tr class="memdesc:gad95e18a35a0ebacf27bc67222a71e275"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function processes the filter coefficients and so it does the actual filtering of the input sample.  <a href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">More...</a><br /></td></tr>
 <tr class="separator:gad95e18a35a0ebacf27bc67222a71e275"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa615f53296529b29ed116c17bf41f422"><td class="memItemLeft" align="right" valign="top">Filter_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Filter.html#gaa615f53296529b29ed116c17bf41f422">ProcessEQ</a> (float *data)</td></tr>
+<tr class="memdesc:gaa615f53296529b29ed116c17bf41f422"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function processes all the frequency bands of the equalizer, which are set on by the user.  <a href="group__Filter.html#gaa615f53296529b29ed116c17bf41f422">More...</a><br /></td></tr>
 <tr class="separator:gaa615f53296529b29ed116c17bf41f422"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -178,9 +183,8 @@ Variables</h2></td></tr>
 <tr class="separator:gaab7a3b7d13f2bf51c6d328b1ebd26954"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >filter implentations </p>
-<p >TODO</p>
-<dl class="section author"><dt>Author</dt><dd>max lehmer </dd></dl>
+<div class="textblock"><p >Filter implementations. </p>
+<dl class="section author"><dt>Author</dt><dd>Max Lehmer </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2022-01-06</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>

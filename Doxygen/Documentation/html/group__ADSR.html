@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('group__ADSR.html',''); initResizable()
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structadsr.html">adsr</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">stores the state of the ADSR, aswell as the configuration  <a href="structadsr.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">stores the state of the ADSR values for keyboardand sequencer structs as well as the configuration  <a href="structadsr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -111,14 +111,19 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gab26d8ec30eff40bfb82b160defd0af22"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#gab26d8ec30eff40bfb82b160defd0af22">ADSR_Init</a> (void)</td></tr>
+<tr class="memdesc:gab26d8ec30eff40bfb82b160defd0af22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init funtion for the ADSR, has to be used in order to use any other funtion of this .c.  <a href="group__ADSR.html#gab26d8ec30eff40bfb82b160defd0af22">More...</a><br /></td></tr>
 <tr class="separator:gab26d8ec30eff40bfb82b160defd0af22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5056dadba0e7d70cf66cb85475c599a1"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#ga5056dadba0e7d70cf66cb85475c599a1">SetupADSR</a> (struct <a class="el" href="structadsr.html">adsr</a> *<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>)</td></tr>
+<tr class="memdesc:ga5056dadba0e7d70cf66cb85475c599a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup funtion for the ADSR, which is called in the ADSR_Init function for any single keyboard note.  <a href="group__ADSR.html#ga5056dadba0e7d70cf66cb85475c599a1">More...</a><br /></td></tr>
 <tr class="separator:ga5056dadba0e7d70cf66cb85475c599a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab059a1f2cde16bed41f0f4e0f113a5d9"><td class="memItemLeft" align="right" valign="top">ADSR_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9">ADSR_Reset</a> (struct <a class="el" href="structadsr.html">adsr</a> *<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>)</td></tr>
+<tr class="memdesc:gab059a1f2cde16bed41f0f4e0f113a5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset function for the ADSR.  <a href="group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9">More...</a><br /></td></tr>
 <tr class="separator:gab059a1f2cde16bed41f0f4e0f113a5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga02c74c2f9a8094da74c4d9b905d87550"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">OnePress_ADSR_Linear_Process</a> (struct <a class="el" href="structadsr.html">adsr</a> *<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>, float *calculate_value, bool flag)</td></tr>
+<tr class="memdesc:ga02c74c2f9a8094da74c4d9b905d87550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard function used to calculate the current ADSR value which is then multiplied with the keyboard sample.  <a href="group__ADSR.html#ga02c74c2f9a8094da74c4d9b905d87550">More...</a><br /></td></tr>
 <tr class="separator:ga02c74c2f9a8094da74c4d9b905d87550"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac86ad75fa8ab7681c5ba8fdb66c4cbf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ADSR.html#gac86ad75fa8ab7681c5ba8fdb66c4cbf0">OnePress_ADSR_Sequencer_Process</a> (struct <a class="el" href="structadsr.html">adsr</a> *<a class="el" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>, float *calculate_value, bool flag)</td></tr>
+<tr class="memdesc:gac86ad75fa8ab7681c5ba8fdb66c4cbf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sequencer function used to calculate the current ADSR value which is then multiplied with the sample.  <a href="group__ADSR.html#gac86ad75fa8ab7681c5ba8fdb66c4cbf0">More...</a><br /></td></tr>
 <tr class="separator:gac86ad75fa8ab7681c5ba8fdb66c4cbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -179,19 +184,28 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >TODO </p><dl class="section return"><dt>Returns</dt><dd>ADSR_Status </dd></dl>
+
+<p>Init funtion for the ADSR, has to be used in order to use any other funtion of this .c. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>return ADSR_Status </p>
 
 <p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00020">20</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   20</span>                            {</div>
 <div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    SetupADSR(&amp;<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>);</div>
+<div class="line"><span class="lineno">   22</span>    <a class="code hl_function" href="group__ADSR.html#ga5056dadba0e7d70cf66cb85475c599a1">SetupADSR</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>);</div>
 <div class="line"><span class="lineno">   23</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)</div>
-<div class="line"><span class="lineno">   24</span>        SetupADSR(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[i]);</div>
+<div class="line"><span class="lineno">   24</span>        <a class="code hl_function" href="group__ADSR.html#ga5056dadba0e7d70cf66cb85475c599a1">SetupADSR</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[i]);</div>
 <div class="line"><span class="lineno">   25</span> </div>
 <div class="line"><span class="lineno">   26</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
 <div class="line"><span class="lineno">   27</span>}</div>
-<div class="ttc" id="agroup__ADSR_html_ga1fef3d5c4761374cfc9f8f5e9a48ddf0"><div class="ttname"><a href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a></div><div class="ttdeci">struct adsr envelope</div><div class="ttdoc">ADSR for the Voice notes.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8h_source.html#l00067">adsr.h:67</a></div></div>
-<div class="ttc" id="agroup__ADSR_html_ga742e13f70ae8c573509abfd794271f44"><div class="ttname"><a href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a></div><div class="ttdeci">struct adsr adsr_keyboard[5]</div><div class="ttdoc">ADSR storage for the keyboard.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8h_source.html#l00085">adsr.h:85</a></div></div>
+<div class="ttc" id="agroup__ADSR_html_ga1fef3d5c4761374cfc9f8f5e9a48ddf0"><div class="ttname"><a href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a></div><div class="ttdeci">struct adsr envelope</div><div class="ttdoc">ADSR for the Voice notes.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8h_source.html#l00064">adsr.h:64</a></div></div>
+<div class="ttc" id="agroup__ADSR_html_ga5056dadba0e7d70cf66cb85475c599a1"><div class="ttname"><a href="group__ADSR.html#ga5056dadba0e7d70cf66cb85475c599a1">SetupADSR</a></div><div class="ttdeci">ADSR_Status SetupADSR(struct adsr *envelope)</div><div class="ttdoc">Setup funtion for the ADSR, which is called in the ADSR_Init function for any single keyboard note.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8c_source.html#l00034">adsr.c:34</a></div></div>
+<div class="ttc" id="agroup__ADSR_html_ga742e13f70ae8c573509abfd794271f44"><div class="ttname"><a href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a></div><div class="ttdeci">struct adsr adsr_keyboard[5]</div><div class="ttdoc">ADSR storage for the keyboard.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8h_source.html#l00082">adsr.h:82</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -210,47 +224,49 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reset function for the ADSR. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">envelope</td><td></td></tr>
+    <tr><td class="paramname">envelope</td><td>struct for any generated keyboard note </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ADSR_Status </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00055">55</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   55</span>                                              {</div>
-<div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter = 0;</div>
-<div class="line"><span class="lineno">   58</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
-<div class="line"><span class="lineno">   59</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
-<div class="line"><span class="lineno">   60</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   61</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
-<div class="line"><span class="lineno">   62</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude = 0.5;</div>
-<div class="line"><span class="lineno">   63</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   64</span> </div>
-<div class="line"><span class="lineno">   65</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_done = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    Display.ADSR_Attacktime = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   68</span>    Display.ADSR_Decaytime = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   69</span>    Display.ADSR_Sustaintime = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   70</span>    Display.ADSR_Sustainlevel = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude/LUT_SR;</div>
-<div class="line"><span class="lineno">   71</span>    Display.ADSR_Releasetime = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time/LUT_SR;</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>    Display.ADSR_Sources[0] = POTI;</div>
-<div class="line"><span class="lineno">   74</span>    Display.ADSR_Sources[1] = POTI;</div>
-<div class="line"><span class="lineno">   75</span>    Display.ADSR_Sources[2] = POTI;</div>
-<div class="line"><span class="lineno">   76</span>    Display.ADSR_Sources[3] = POTI;</div>
-<div class="line"><span class="lineno">   77</span>    Display.ADSR_Sources[4] = POTI;</div>
-<div class="line"><span class="lineno">   78</span> </div>
-<div class="line"><span class="lineno">   79</span>    strcpy(Display.value_str_adsr_settings[0], Display.source_names[Display.ADSR_Sources[0]]);</div>
-<div class="line"><span class="lineno">   80</span>    strcpy(Display.value_str_adsr_settings[1], Display.source_names[Display.ADSR_Sources[1]]);</div>
-<div class="line"><span class="lineno">   81</span>    strcpy(Display.value_str_adsr_settings[2], Display.source_names[Display.ADSR_Sources[2]]);</div>
-<div class="line"><span class="lineno">   82</span>    strcpy(Display.value_str_adsr_settings[3], Display.source_names[Display.ADSR_Sources[3]]);</div>
-<div class="line"><span class="lineno">   83</span>    strcpy(Display.value_str_adsr_settings[4], Display.source_names[Display.ADSR_Sources[4]]);</div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
-<div class="line"><span class="lineno">   86</span>}</div>
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00060">60</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   60</span>                                              {</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter = 0;</div>
+<div class="line"><span class="lineno">   63</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
+<div class="line"><span class="lineno">   64</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
+<div class="line"><span class="lineno">   65</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
+<div class="line"><span class="lineno">   66</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
+<div class="line"><span class="lineno">   67</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude = 0.5;</div>
+<div class="line"><span class="lineno">   68</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
+<div class="line"><span class="lineno">   69</span> </div>
+<div class="line"><span class="lineno">   70</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_done = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>    Display.ADSR_Attacktime = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time/LUT_SR;</div>
+<div class="line"><span class="lineno">   73</span>    Display.ADSR_Decaytime = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time/LUT_SR;</div>
+<div class="line"><span class="lineno">   74</span>    Display.ADSR_Sustaintime = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time/LUT_SR;</div>
+<div class="line"><span class="lineno">   75</span>    Display.ADSR_Sustainlevel = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude/LUT_SR;</div>
+<div class="line"><span class="lineno">   76</span>    Display.ADSR_Releasetime = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time/LUT_SR;</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>    Display.ADSR_Sources[0] = POTI;</div>
+<div class="line"><span class="lineno">   79</span>    Display.ADSR_Sources[1] = POTI;</div>
+<div class="line"><span class="lineno">   80</span>    Display.ADSR_Sources[2] = POTI;</div>
+<div class="line"><span class="lineno">   81</span>    Display.ADSR_Sources[3] = POTI;</div>
+<div class="line"><span class="lineno">   82</span>    Display.ADSR_Sources[4] = POTI;</div>
+<div class="line"><span class="lineno">   83</span> </div>
+<div class="line"><span class="lineno">   84</span>    strcpy(Display.value_str_adsr_settings[0], Display.source_names[Display.ADSR_Sources[0]]);</div>
+<div class="line"><span class="lineno">   85</span>    strcpy(Display.value_str_adsr_settings[1], Display.source_names[Display.ADSR_Sources[1]]);</div>
+<div class="line"><span class="lineno">   86</span>    strcpy(Display.value_str_adsr_settings[2], Display.source_names[Display.ADSR_Sources[2]]);</div>
+<div class="line"><span class="lineno">   87</span>    strcpy(Display.value_str_adsr_settings[3], Display.source_names[Display.ADSR_Sources[3]]);</div>
+<div class="line"><span class="lineno">   88</span>    strcpy(Display.value_str_adsr_settings[4], Display.source_names[Display.ADSR_Sources[4]]);</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
+<div class="line"><span class="lineno">   91</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -285,54 +301,56 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Keyboard function used to calculate the current ADSR value which is then multiplied with the keyboard sample. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">envelope</td><td></td></tr>
-    <tr><td class="paramname">calculate_value</td><td></td></tr>
-    <tr><td class="paramname">flag</td><td></td></tr>
+    <tr><td class="paramname">envelope</td><td>struct for any generated keyboard note </td></tr>
+    <tr><td class="paramname">calculate_value</td><td>current sample </td></tr>
+    <tr><td class="paramname">flag</td><td>allows processing or does not </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00095">95</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   95</span>                                                                                            {</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">   98</span> </div>
-<div class="line"><span class="lineno">   99</span>        <span class="keywordtype">float</span> calc = 0;</div>
-<div class="line"><span class="lineno">  100</span> </div>
-<div class="line"><span class="lineno">  101</span>        <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time;</div>
-<div class="line"><span class="lineno">  102</span> </div>
-<div class="line"><span class="lineno">  103</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration</span></div>
-<div class="line"><span class="lineno">  104</span> </div>
-<div class="line"><span class="lineno">  105</span>            <span class="comment">// attack period</span></div>
-<div class="line"><span class="lineno">  106</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time)</div>
-<div class="line"><span class="lineno">  107</span>                calc = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time);</div>
-<div class="line"><span class="lineno">  108</span> </div>
-<div class="line"><span class="lineno">  109</span>            <span class="comment">// decay period</span></div>
-<div class="line"><span class="lineno">  110</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time))</div>
-<div class="line"><span class="lineno">  111</span>                calc = ((<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp)/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time) * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time) + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp;</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>            <span class="comment">// sustain period</span></div>
-<div class="line"><span class="lineno">  114</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  115</span>                calc = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  116</span> </div>
-<div class="line"><span class="lineno">  117</span>            <span class="comment">// release period</span></div>
-<div class="line"><span class="lineno">  118</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &gt;= (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  119</span>                calc = -(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time) * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter - (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time)) + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  120</span> </div>
-<div class="line"><span class="lineno">  121</span>            *calculate_value = *calculate_value * calc;</div>
-<div class="line"><span class="lineno">  122</span>        }</div>
-<div class="line"><span class="lineno">  123</span> </div>
-<div class="line"><span class="lineno">  124</span>        <span class="comment">// update adsr counter</span></div>
-<div class="line"><span class="lineno">  125</span>        <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter++;</div>
-<div class="line"><span class="lineno">  126</span> </div>
-<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &gt;= <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time) {</div>
-<div class="line"><span class="lineno">  128</span>            <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
-<div class="line"><span class="lineno">  129</span>            <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_done = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  130</span>        }</div>
-<div class="line"><span class="lineno">  131</span>    }</div>
-<div class="line"><span class="lineno">  132</span>}</div>
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00100">100</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>                                                                                            {</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
+<div class="line"><span class="lineno">  103</span> </div>
+<div class="line"><span class="lineno">  104</span>        <span class="keywordtype">float</span> calc = 0;</div>
+<div class="line"><span class="lineno">  105</span> </div>
+<div class="line"><span class="lineno">  106</span>        <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time;</div>
+<div class="line"><span class="lineno">  107</span> </div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration</span></div>
+<div class="line"><span class="lineno">  109</span> </div>
+<div class="line"><span class="lineno">  110</span>            <span class="comment">// attack period</span></div>
+<div class="line"><span class="lineno">  111</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time)</div>
+<div class="line"><span class="lineno">  112</span>                calc = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time);</div>
+<div class="line"><span class="lineno">  113</span> </div>
+<div class="line"><span class="lineno">  114</span>            <span class="comment">// decay period</span></div>
+<div class="line"><span class="lineno">  115</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time))</div>
+<div class="line"><span class="lineno">  116</span>                calc = ((<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp)/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time) * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time) + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp;</div>
+<div class="line"><span class="lineno">  117</span> </div>
+<div class="line"><span class="lineno">  118</span>            <span class="comment">// sustain period</span></div>
+<div class="line"><span class="lineno">  119</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time))</div>
+<div class="line"><span class="lineno">  120</span>                calc = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude;</div>
+<div class="line"><span class="lineno">  121</span> </div>
+<div class="line"><span class="lineno">  122</span>            <span class="comment">// release period</span></div>
+<div class="line"><span class="lineno">  123</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &gt;= (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time))</div>
+<div class="line"><span class="lineno">  124</span>                calc = -(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time) * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter - (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time)) + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude;</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>            *calculate_value = *calculate_value * calc;</div>
+<div class="line"><span class="lineno">  127</span>        }</div>
+<div class="line"><span class="lineno">  128</span> </div>
+<div class="line"><span class="lineno">  129</span>        <span class="comment">// update adsr counter</span></div>
+<div class="line"><span class="lineno">  130</span>        <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter++;</div>
+<div class="line"><span class="lineno">  131</span> </div>
+<div class="line"><span class="lineno">  132</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &gt;= <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time) {</div>
+<div class="line"><span class="lineno">  133</span>            <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
+<div class="line"><span class="lineno">  134</span>            <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_done = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  135</span>        }</div>
+<div class="line"><span class="lineno">  136</span>    }</div>
+<div class="line"><span class="lineno">  137</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -367,55 +385,57 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >TODO </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Sequencer function used to calculate the current ADSR value which is then multiplied with the sample. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">envelope</td><td></td></tr>
-    <tr><td class="paramname">calculate_value</td><td></td></tr>
-    <tr><td class="paramname">flag</td><td></td></tr>
+    <tr><td class="paramname">envelope</td><td>struct for any generated keyboard note </td></tr>
+    <tr><td class="paramname">calculate_value</td><td>current sample </td></tr>
+    <tr><td class="paramname">flag</td><td>allows processing or does not </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00140">140</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  140</span>                                                                                               {</div>
-<div class="line"><span class="lineno">  141</span> </div>
-<div class="line"><span class="lineno">  142</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">  143</span> </div>
-<div class="line"><span class="lineno">  144</span>        <span class="keywordtype">float</span> calc;</div>
-<div class="line"><span class="lineno">  145</span> </div>
-<div class="line"><span class="lineno">  146</span>        <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time;</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration time</span></div>
-<div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>            <span class="comment">// attack period</span></div>
-<div class="line"><span class="lineno">  151</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time)</div>
-<div class="line"><span class="lineno">  152</span>                calc = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time);</div>
-<div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>            <span class="comment">// decay period</span></div>
-<div class="line"><span class="lineno">  155</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time))</div>
-<div class="line"><span class="lineno">  156</span>                calc = ((<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp)/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time) * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time) + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp;</div>
-<div class="line"><span class="lineno">  157</span> </div>
-<div class="line"><span class="lineno">  158</span>            <span class="comment">// sustain period</span></div>
-<div class="line"><span class="lineno">  159</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  160</span>                calc = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>            <span class="comment">// release period</span></div>
-<div class="line"><span class="lineno">  163</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &gt;= (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time))</div>
-<div class="line"><span class="lineno">  164</span>                calc = -(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time) * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter - (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time)) + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude;</div>
-<div class="line"><span class="lineno">  165</span> </div>
-<div class="line"><span class="lineno">  166</span>            *calculate_value = *calculate_value * calc;</div>
-<div class="line"><span class="lineno">  167</span>        }</div>
-<div class="line"><span class="lineno">  168</span> </div>
-<div class="line"><span class="lineno">  169</span>        <span class="comment">// update adsr counter</span></div>
-<div class="line"><span class="lineno">  170</span>        <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter++;</div>
-<div class="line"><span class="lineno">  171</span> </div>
-<div class="line"><span class="lineno">  172</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &gt;= <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time) {</div>
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00145">145</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  145</span>                                                                                               {</div>
+<div class="line"><span class="lineno">  146</span> </div>
+<div class="line"><span class="lineno">  147</span>    <span class="keywordflow">if</span>(flag == <span class="keyword">true</span>) {</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>        <span class="keywordtype">float</span> calc;</div>
+<div class="line"><span class="lineno">  150</span> </div>
+<div class="line"><span class="lineno">  151</span>        <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time;</div>
+<div class="line"><span class="lineno">  152</span> </div>
+<div class="line"><span class="lineno">  153</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time) { <span class="comment">// if time &lt; total duration time</span></div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>            <span class="comment">// attack period</span></div>
+<div class="line"><span class="lineno">  156</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time)</div>
+<div class="line"><span class="lineno">  157</span>                calc = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time);</div>
+<div class="line"><span class="lineno">  158</span> </div>
+<div class="line"><span class="lineno">  159</span>            <span class="comment">// decay period</span></div>
+<div class="line"><span class="lineno">  160</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time))</div>
+<div class="line"><span class="lineno">  161</span>                calc = ((<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp)/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time) * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time) + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp;</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>            <span class="comment">// sustain period</span></div>
+<div class="line"><span class="lineno">  164</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &lt; (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time))</div>
+<div class="line"><span class="lineno">  165</span>                calc = <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude;</div>
+<div class="line"><span class="lineno">  166</span> </div>
+<div class="line"><span class="lineno">  167</span>            <span class="comment">// release period</span></div>
+<div class="line"><span class="lineno">  168</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &gt;= (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time))</div>
+<div class="line"><span class="lineno">  169</span>                calc = -(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude/<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time) * (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter - (<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time - <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time)) + <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude;</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>            *calculate_value = *calculate_value * calc;</div>
+<div class="line"><span class="lineno">  172</span>        }</div>
 <div class="line"><span class="lineno">  173</span> </div>
-<div class="line"><span class="lineno">  174</span>            <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
-<div class="line"><span class="lineno">  175</span>            <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_done = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  176</span>        }</div>
-<div class="line"><span class="lineno">  177</span>    }</div>
-<div class="line"><span class="lineno">  178</span>}</div>
+<div class="line"><span class="lineno">  174</span>        <span class="comment">// update adsr counter</span></div>
+<div class="line"><span class="lineno">  175</span>        <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter++;</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter &gt;= <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_duration_time) {</div>
+<div class="line"><span class="lineno">  178</span> </div>
+<div class="line"><span class="lineno">  179</span>            <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter = 0; <span class="comment">// restart</span></div>
+<div class="line"><span class="lineno">  180</span>            <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_done = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  181</span>        }</div>
+<div class="line"><span class="lineno">  182</span>    }</div>
+<div class="line"><span class="lineno">  183</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -435,26 +455,35 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00029">29</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   29</span>                                             {</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter = 0;</div>
-<div class="line"><span class="lineno">   32</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
-<div class="line"><span class="lineno">   33</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
-<div class="line"><span class="lineno">   34</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   35</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
-<div class="line"><span class="lineno">   36</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude = 0.5;</div>
-<div class="line"><span class="lineno">   37</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_maximum_attack = 1.00;   <span class="comment">// in seconds; maximum 4.0 seconds (-&gt; 4*LUT_SR), to display the value -&gt; uint16_t</span></div>
-<div class="line"><span class="lineno">   40</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_maximum_decay = 1.00;</div>
-<div class="line"><span class="lineno">   41</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_maximum_sustaintime = 2.00;</div>
-<div class="line"><span class="lineno">   42</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_maximum_release = 1.00;</div>
+<p>Setup funtion for the ADSR, which is called in the ADSR_Init function for any single keyboard note. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">envelope</td><td>struct for any generated keyboard note </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ADSR_Status </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="adsr_8c_source.html#l00034">34</a> of file <a class="el" href="adsr_8c_source.html">adsr.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>                                             {</div>
+<div class="line"><span class="lineno">   35</span> </div>
+<div class="line"><span class="lineno">   36</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_counter = 0;</div>
+<div class="line"><span class="lineno">   37</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_max_amp = 1.00;  <span class="comment">// maximum value should be 1</span></div>
+<div class="line"><span class="lineno">   38</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_attack_time = 0.1 * LUT_SR;</div>
+<div class="line"><span class="lineno">   39</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_decay_time = 0.05 * LUT_SR;</div>
+<div class="line"><span class="lineno">   40</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_time = 0.15 * LUT_SR;</div>
+<div class="line"><span class="lineno">   41</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_sustain_amplitude = 0.5;</div>
+<div class="line"><span class="lineno">   42</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_release_time = 0.05 * LUT_SR;</div>
 <div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_done = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
-<div class="line"><span class="lineno">   47</span>}</div>
+<div class="line"><span class="lineno">   44</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_maximum_attack = 1.00;   <span class="comment">// in seconds; maximum 4.0 seconds (-&gt; 4*LUT_SR), to display the value -&gt; uint16_t</span></div>
+<div class="line"><span class="lineno">   45</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_maximum_decay = 1.00;</div>
+<div class="line"><span class="lineno">   46</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_maximum_sustaintime = 2.00;</div>
+<div class="line"><span class="lineno">   47</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_maximum_release = 1.00;</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>    <a class="code hl_variable" href="group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0">envelope</a>-&gt;adsr_done = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>    <span class="keywordflow">return</span> ADSR_OK;</div>
+<div class="line"><span class="lineno">   52</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -473,7 +502,7 @@ Variables</h2></td></tr>
 
 <p>ADSR storage for the keyboard. </p>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00085">85</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00082">82</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
 
 </div>
 </div>
@@ -489,7 +518,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00075">75</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00072">72</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
 
 </div>
 </div>
@@ -505,7 +534,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00076">76</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00073">73</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
 
 </div>
 </div>
@@ -521,7 +550,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00077">77</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00074">74</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
 
 </div>
 </div>
@@ -537,7 +566,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00078">78</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00075">75</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
 
 </div>
 </div>
@@ -555,7 +584,7 @@ Variables</h2></td></tr>
 
 <p>ADSR for the Voice notes. </p>
 
-<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00067">67</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="adsr_8h_source.html#l00064">64</a> of file <a class="el" href="adsr_8h_source.html">adsr.h</a>.</p>
 
 </div>
 </div>

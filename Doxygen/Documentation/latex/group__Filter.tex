@@ -25,11 +25,11 @@ Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_ga44cc78d9063ea994317ac57c15
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_gadcc644218f3fbdbd5725f157286c155f}{Filters\+\_\+\+Reinit\+\_\+\+Poti}} (void)
 \item 
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_gaec8e59a44285b5c5d026199e59bedc1d}{Filters\+\_\+\+Reinit\+\_\+\+Gyro}} (float cutoff)
-\item 
+\begin{DoxyCompactList}\small\item\em This function re-\/calculates the filter coefficients of the second frequency band of the 5-\/band-\/equalizer. \end{DoxyCompactList}\item 
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_ga251962656e367a604dfd084fabcc7076}{Drum\+Filters\+\_\+\+Reinit\+\_\+\+Gyro}} (float cutoff\+\_\+d, float Qfactor\+\_\+d, float gain\+\_\+d)
-\item 
+\begin{DoxyCompactList}\small\item\em This function re-\/calculates the filter coefficients of the drum filter. \end{DoxyCompactList}\item 
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_gab23086039f9e38c9538b24412c2e397d}{Equalizer\+\_\+\+Reset}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function resets the equalizer parameters to its initial states. \end{DoxyCompactList}\item 
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_ga1d45e64aaa786258dd8d43d5fd8e8cbe}{Setup\+Lowpass}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$LP, float cutoff, float Q)
 \begin{DoxyCompactList}\small\item\em Lowpass Filter. \end{DoxyCompactList}\item 
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_gadf56f507b61ffa882eb78b346dec0f05}{Setup\+Highpass}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$HP, float cutoff, float Q)
@@ -47,9 +47,9 @@ Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_ga1345bd0312350f65e08e824e64
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_ga03fcfa1037c98ff029c9fb59f6c312dc}{Setup\+High\+Shelf}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$HS, float cutoff, float Q, float d\+BGain)
 \begin{DoxyCompactList}\small\item\em High\+Shelf Filter. \end{DoxyCompactList}\item 
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_gad95e18a35a0ebacf27bc67222a71e275}{Process\+Filter}} (struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$F, float $\ast$data)
-\item 
+\begin{DoxyCompactList}\small\item\em This function processes the filter coefficients and so it does the actual filtering of the input sample. \end{DoxyCompactList}\item 
 Filter\+\_\+\+Status \mbox{\hyperlink{group__Filter_gaa615f53296529b29ed116c17bf41f422}{Process\+EQ}} (float $\ast$data)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This function processes all the frequency bands of the equalizer, which are set on by the user. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -110,13 +110,17 @@ Definition at line \mbox{\hyperlink{filters_8h_source_l00065}{65}} of file \mbox
 \doxysubsubsection{\texorpdfstring{DrumFilters\_Reinit\_Gyro()}{DrumFilters\_Reinit\_Gyro()}}
 {\footnotesize\ttfamily Filter\+\_\+\+Status Drum\+Filters\+\_\+\+Reinit\+\_\+\+Gyro (\begin{DoxyParamCaption}\item[{float}]{cutoff\+\_\+d,  }\item[{float}]{Qfactor\+\_\+d,  }\item[{float}]{gain\+\_\+d }\end{DoxyParamCaption})}
 
-TODO 
+
+
+This function re-\/calculates the filter coefficients of the drum filter. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em cutoff\+\_\+d} & \\
+{\em cutoff\+\_\+d} & cutoff frequency of the drumfilter \\
 \hline
-{\em Qfactor\+\_\+d} & \\
+{\em Qfactor\+\_\+d} & Q factor of the drumfilter \\
 \hline
-{\em gain\+\_\+d} & \\
+{\em gain\+\_\+d} & gain of the drumfilter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -147,7 +151,11 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00171}{171}} of file \mbo
 \doxysubsubsection{\texorpdfstring{Equalizer\_Reset()}{Equalizer\_Reset()}}
 {\footnotesize\ttfamily Filter\+\_\+\+Status Equalizer\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function resets the equalizer parameters to its initial states. 
+
+\begin{DoxyReturn}{Returns}
 Filter\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -371,9 +379,13 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00040}{40}} of file \mbox
 \doxysubsubsection{\texorpdfstring{Filters\_Reinit\_Gyro()}{Filters\_Reinit\_Gyro()}}
 {\footnotesize\ttfamily Filter\+\_\+\+Status Filters\+\_\+\+Reinit\+\_\+\+Gyro (\begin{DoxyParamCaption}\item[{float}]{cutoff }\end{DoxyParamCaption})}
 
-TODO 
+
+
+This function re-\/calculates the filter coefficients of the second frequency band of the 5-\/band-\/equalizer. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the second frequency band filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -472,9 +484,13 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00206}{206}} of file \mbo
 \doxysubsubsection{\texorpdfstring{ProcessEQ()}{ProcessEQ()}}
 {\footnotesize\ttfamily Filter\+\_\+\+Status Process\+EQ (\begin{DoxyParamCaption}\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
 
-TODO 
+
+
+This function processes all the frequency bands of the equalizer, which are set on by the user. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em data} & \\
+{\em data} & input sample \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -514,11 +530,15 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00361}{361}} of file \mbo
 \doxysubsubsection{\texorpdfstring{ProcessFilter()}{ProcessFilter()}}
 {\footnotesize\ttfamily Filter\+\_\+\+Status Process\+Filter (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structBQFilter}{BQFilter}} $\ast$}]{F,  }\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
 
-TODO 
+
+
+This function processes the filter coefficients and so it does the actual filtering of the input sample. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em F} & \\
+{\em F} & struct of the filter \\
 \hline
-{\em data} & \\
+{\em data} & input sample \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -559,15 +579,13 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00337}{337}} of file \mbo
 
 Constant Peak Gain Bandpass Filter. 
 
-TODO
-
 
 \begin{DoxyParams}{Parameters}
-{\em BP} & \\
+{\em LP} & struct of the CPG band pass filter \\
 \hline
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the CPG band pass filter \\
 \hline
-{\em Q} & \\
+{\em Q} & Q factor of the CPG band pass filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -611,11 +629,11 @@ Constant Skirt Gain Bandpass Filter.
 
 
 \begin{DoxyParams}{Parameters}
-{\em BP} & \\
+{\em LP} & struct of the CSG band pass filter \\
 \hline
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the CSG band pass filter \\
 \hline
-{\em Q} & \\
+{\em Q} & Q factor of the CSG band pass filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -623,28 +641,28 @@ Filter\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filters_8c_source_l00475}{475}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+Definition at line \mbox{\hyperlink{filters_8c_source_l00474}{474}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00475                                                                           \{}
-\DoxyCodeLine{00476 }
-\DoxyCodeLine{00477     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{00478 }
-\DoxyCodeLine{00479     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{00480     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{00481 }
-\DoxyCodeLine{00482     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
-\DoxyCodeLine{00483 }
-\DoxyCodeLine{00484     BP-\/>b0 = Q*alpha;}
-\DoxyCodeLine{00485     BP-\/>b1 = 0;}
-\DoxyCodeLine{00486     BP-\/>b2 = -\/Q*alpha;}
-\DoxyCodeLine{00487     BP-\/>a0 = 1 + alpha;}
-\DoxyCodeLine{00488     BP-\/>a1 = -\/2 * cos;}
-\DoxyCodeLine{00489     BP-\/>a2 = 1 -\/ alpha;}
-\DoxyCodeLine{00490 }
-\DoxyCodeLine{00491     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{00492 \}}
+\DoxyCodeLine{00474                                                                           \{}
+\DoxyCodeLine{00475 }
+\DoxyCodeLine{00476     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00477 }
+\DoxyCodeLine{00478     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00479     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00480 }
+\DoxyCodeLine{00481     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00482 }
+\DoxyCodeLine{00483     BP-\/>b0 = Q*alpha;}
+\DoxyCodeLine{00484     BP-\/>b1 = 0;}
+\DoxyCodeLine{00485     BP-\/>b2 = -\/Q*alpha;}
+\DoxyCodeLine{00486     BP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{00487     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00488     BP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{00489 }
+\DoxyCodeLine{00490     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00491 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__Filter_gadf56f507b61ffa882eb78b346dec0f05}\label{group__Filter_gadf56f507b61ffa882eb78b346dec0f05}} 
@@ -657,15 +675,13 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00475}{475}} of file \mbo
 
 Highpass Filter. 
 
-TODO
-
 
 \begin{DoxyParams}{Parameters}
-{\em HP} & \\
+{\em HP} & struct of the high pass filter \\
 \hline
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the high pass filter \\
 \hline
-{\em Q} & \\
+{\em Q} & Q factor of the high pass filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -708,17 +724,15 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00418}{418}} of file \mbo
 
 High\+Shelf Filter. 
 
-TODO
-
 
 \begin{DoxyParams}{Parameters}
-{\em HS} & \\
+{\em HS} & struct of the high shelf filter \\
 \hline
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the high shelf filter \\
 \hline
-{\em Q} & \\
+{\em Q} & Q factor of the high shelf filter \\
 \hline
-{\em d\+BGain} & \\
+{\em d\+BGain} & gain of the high shelf filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -726,30 +740,30 @@ Filter\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filters_8c_source_l00594}{594}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+Definition at line \mbox{\hyperlink{filters_8c_source_l00593}{593}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00594                                                                                       \{}
-\DoxyCodeLine{00595 }
-\DoxyCodeLine{00596     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
-\DoxyCodeLine{00597     \textcolor{keywordtype}{float} A = powf(10, exp);}
-\DoxyCodeLine{00598     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{00599 }
-\DoxyCodeLine{00600     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{00601     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{00602 }
-\DoxyCodeLine{00603     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
-\DoxyCodeLine{00604 }
-\DoxyCodeLine{00605     HS-\/>b0 =      A * ((A + 1) + (A -\/ 1) * cos + beta * sin);}
-\DoxyCodeLine{00606     HS-\/>b1 = -\/2 * A * ((A -\/ 1) + (A + 1) * cos);}
-\DoxyCodeLine{00607     HS-\/>b2 =      A * ((A + 1) + (A -\/ 1) * cos -\/ beta * sin);}
-\DoxyCodeLine{00608     HS-\/>a0 =           (A + 1) -\/ (A -\/ 1) * cos + beta * sin;}
-\DoxyCodeLine{00609     HS-\/>a1 =      2 * ((A -\/ 1) -\/ (A + 1) * cos);}
-\DoxyCodeLine{00610     HS-\/>a2 =           (A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin;}
-\DoxyCodeLine{00611 }
-\DoxyCodeLine{00612     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{00613 \}}
+\DoxyCodeLine{00593                                                                                       \{}
+\DoxyCodeLine{00594 }
+\DoxyCodeLine{00595     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
+\DoxyCodeLine{00596     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{00597     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00598 }
+\DoxyCodeLine{00599     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00600     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00601 }
+\DoxyCodeLine{00602     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
+\DoxyCodeLine{00603 }
+\DoxyCodeLine{00604     HS-\/>b0 =      A * ((A + 1) + (A -\/ 1) * cos + beta * sin);}
+\DoxyCodeLine{00605     HS-\/>b1 = -\/2 * A * ((A -\/ 1) + (A + 1) * cos);}
+\DoxyCodeLine{00606     HS-\/>b2 =      A * ((A + 1) + (A -\/ 1) * cos -\/ beta * sin);}
+\DoxyCodeLine{00607     HS-\/>a0 =           (A + 1) -\/ (A -\/ 1) * cos + beta * sin;}
+\DoxyCodeLine{00608     HS-\/>a1 =      2 * ((A -\/ 1) -\/ (A + 1) * cos);}
+\DoxyCodeLine{00609     HS-\/>a2 =           (A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin;}
+\DoxyCodeLine{00610 }
+\DoxyCodeLine{00611     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00612 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__Filter_ga1d45e64aaa786258dd8d43d5fd8e8cbe}\label{group__Filter_ga1d45e64aaa786258dd8d43d5fd8e8cbe}} 
@@ -762,15 +776,13 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00594}{594}} of file \mbo
 
 Lowpass Filter. 
 
-TODO
-
 
 \begin{DoxyParams}{Parameters}
-{\em LP} & \\
+{\em LP} & struct of the low pass filter \\
 \hline
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the low pass filter \\
 \hline
-{\em Q} & \\
+{\em Q} & Q factor of the low pass filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -815,13 +827,13 @@ Low\+Shelf Filter.
 
 
 \begin{DoxyParams}{Parameters}
-{\em LS} & \\
+{\em LS} & struct of the low shelf filter \\
 \hline
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the low shelf filter \\
 \hline
-{\em Q} & \\
+{\em Q} & Q factor of the low shelf filter \\
 \hline
-{\em d\+BGain} & \\
+{\em d\+BGain} & gain of the low shelf filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -829,30 +841,30 @@ Filter\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filters_8c_source_l00563}{563}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+Definition at line \mbox{\hyperlink{filters_8c_source_l00562}{562}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00563                                                                                      \{}
-\DoxyCodeLine{00564 }
-\DoxyCodeLine{00565     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
-\DoxyCodeLine{00566     \textcolor{keywordtype}{float} A = powf(10, exp);}
-\DoxyCodeLine{00567     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{00568 }
-\DoxyCodeLine{00569     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{00570     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{00571 }
-\DoxyCodeLine{00572     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
-\DoxyCodeLine{00573 }
-\DoxyCodeLine{00574     LS-\/>b0 =     A * ((A + 1) -\/ (A -\/ 1) * cos + beta * sin);}
-\DoxyCodeLine{00575     LS-\/>b1 = 2 * A * ((A -\/ 1) -\/ (A + 1) * cos);}
-\DoxyCodeLine{00576     LS-\/>b2 =     A * ((A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin);}
-\DoxyCodeLine{00577     LS-\/>a0 =          (A + 1) + (A -\/ 1) * cos + beta * sin;}
-\DoxyCodeLine{00578     LS-\/>a1 =    -\/2 * ((A -\/ 1) + (A + 1) * cos);}
-\DoxyCodeLine{00579     LS-\/>a2 =          (A + 1) + (A -\/ 1) * cos -\/ beta * sin;}
-\DoxyCodeLine{00580 }
-\DoxyCodeLine{00581     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{00582 \}}
+\DoxyCodeLine{00562                                                                                      \{}
+\DoxyCodeLine{00563 }
+\DoxyCodeLine{00564     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
+\DoxyCodeLine{00565     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{00566     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00567 }
+\DoxyCodeLine{00568     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00569     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00570 }
+\DoxyCodeLine{00571     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
+\DoxyCodeLine{00572 }
+\DoxyCodeLine{00573     LS-\/>b0 =     A * ((A + 1) -\/ (A -\/ 1) * cos + beta * sin);}
+\DoxyCodeLine{00574     LS-\/>b1 = 2 * A * ((A -\/ 1) -\/ (A + 1) * cos);}
+\DoxyCodeLine{00575     LS-\/>b2 =     A * ((A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin);}
+\DoxyCodeLine{00576     LS-\/>a0 =          (A + 1) + (A -\/ 1) * cos + beta * sin;}
+\DoxyCodeLine{00577     LS-\/>a1 =    -\/2 * ((A -\/ 1) + (A + 1) * cos);}
+\DoxyCodeLine{00578     LS-\/>a2 =          (A + 1) + (A -\/ 1) * cos -\/ beta * sin;}
+\DoxyCodeLine{00579 }
+\DoxyCodeLine{00580     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00581 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__Filter_gacb256e7bd3b663acfe846603e95f851a}\label{group__Filter_gacb256e7bd3b663acfe846603e95f851a}} 
@@ -867,11 +879,11 @@ Notch Filter.
 
 
 \begin{DoxyParams}{Parameters}
-{\em BP} & \\
+{\em LP} & struct of the notch filter \\
 \hline
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the notch filter \\
 \hline
-{\em Q} & \\
+{\em Q} & Q factor of the notch filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -879,28 +891,28 @@ Filter\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filters_8c_source_l00502}{502}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+Definition at line \mbox{\hyperlink{filters_8c_source_l00501}{501}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00502                                                                     \{}
-\DoxyCodeLine{00503 }
-\DoxyCodeLine{00504     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{00505 }
-\DoxyCodeLine{00506     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{00507     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{00508 }
-\DoxyCodeLine{00509     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
-\DoxyCodeLine{00510 }
-\DoxyCodeLine{00511     BP-\/>b0 = 1;}
-\DoxyCodeLine{00512     BP-\/>b1 = -\/2 * cos;}
-\DoxyCodeLine{00513     BP-\/>b2 = 1;}
-\DoxyCodeLine{00514     BP-\/>a0 = 1 + alpha;}
-\DoxyCodeLine{00515     BP-\/>a1 = -\/2 * cos;}
-\DoxyCodeLine{00516     BP-\/>a2 = 1 -\/ alpha;}
-\DoxyCodeLine{00517 }
-\DoxyCodeLine{00518     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{00519 \}}
+\DoxyCodeLine{00501                                                                     \{}
+\DoxyCodeLine{00502 }
+\DoxyCodeLine{00503     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00504 }
+\DoxyCodeLine{00505     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00506     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00507 }
+\DoxyCodeLine{00508     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00509 }
+\DoxyCodeLine{00510     BP-\/>b0 = 1;}
+\DoxyCodeLine{00511     BP-\/>b1 = -\/2 * cos;}
+\DoxyCodeLine{00512     BP-\/>b2 = 1;}
+\DoxyCodeLine{00513     BP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{00514     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00515     BP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{00516 }
+\DoxyCodeLine{00517     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00518 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__Filter_gae324262d60a906226a1ddf27ba0860b9}\label{group__Filter_gae324262d60a906226a1ddf27ba0860b9}} 
@@ -913,17 +925,15 @@ Definition at line \mbox{\hyperlink{filters_8c_source_l00502}{502}} of file \mbo
 
 Peaking EQ Filter. 
 
-TODO
-
 
 \begin{DoxyParams}{Parameters}
-{\em BP} & \\
+{\em BP} & struct of the peaking EQ filter \\
 \hline
-{\em cutoff} & \\
+{\em cutoff} & cutoff frequency of the peaking EQ filter \\
 \hline
-{\em Q} & \\
+{\em Q} & Q factor of the peaking EQ filter \\
 \hline
-{\em d\+BGain} & \\
+{\em d\+BGain} & Gain of the peaking EQ filter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -931,33 +941,33 @@ Filter\+\_\+\+Status
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filters_8c_source_l00530}{530}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
+Definition at line \mbox{\hyperlink{filters_8c_source_l00529}{529}} of file \mbox{\hyperlink{filters_8c_source}{filters.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00530                                                                                       \{}
-\DoxyCodeLine{00531 }
-\DoxyCodeLine{00532     \textcolor{comment}{//for dBGain in function() head use:}}
-\DoxyCodeLine{00533     \textcolor{keywordtype}{float} exp = (dBGain) / 40.0;}
-\DoxyCodeLine{00534     \textcolor{keywordtype}{float} A = powf(10, exp);}
-\DoxyCodeLine{00535 }
-\DoxyCodeLine{00536     \textcolor{comment}{//float A = dBGain;}}
-\DoxyCodeLine{00537     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{00538 }
-\DoxyCodeLine{00539     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{00540     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{00541 }
-\DoxyCodeLine{00542     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
-\DoxyCodeLine{00543 }
-\DoxyCodeLine{00544     BP-\/>b0 = 1 + alpha * A;}
-\DoxyCodeLine{00545     BP-\/>b1 = -\/2 * cos;}
-\DoxyCodeLine{00546     BP-\/>b2 = 1 -\/ alpha * A;}
-\DoxyCodeLine{00547     BP-\/>a0 = 1 + alpha / A;}
-\DoxyCodeLine{00548     BP-\/>a1 = -\/2 * cos;}
-\DoxyCodeLine{00549     BP-\/>a2 = 1 -\/ alpha / A;}
-\DoxyCodeLine{00550     \textcolor{comment}{//  printf("{}cutoff: \%f\(\backslash\)r\(\backslash\)n Gain: \%f\(\backslash\)r\(\backslash\)n"{},cutoff,dBGain);}}
-\DoxyCodeLine{00551     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{00552 \}}
+\DoxyCodeLine{00529                                                                                       \{}
+\DoxyCodeLine{00530 }
+\DoxyCodeLine{00531     \textcolor{comment}{//for dBGain in function() head use:}}
+\DoxyCodeLine{00532     \textcolor{keywordtype}{float} exp = (dBGain) / 40.0;}
+\DoxyCodeLine{00533     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{00534 }
+\DoxyCodeLine{00535     \textcolor{comment}{//float A = dBGain;}}
+\DoxyCodeLine{00536     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{00537 }
+\DoxyCodeLine{00538     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{00539     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{00540 }
+\DoxyCodeLine{00541     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{00542 }
+\DoxyCodeLine{00543     BP-\/>b0 = 1 + alpha * A;}
+\DoxyCodeLine{00544     BP-\/>b1 = -\/2 * cos;}
+\DoxyCodeLine{00545     BP-\/>b2 = 1 -\/ alpha * A;}
+\DoxyCodeLine{00546     BP-\/>a0 = 1 + alpha / A;}
+\DoxyCodeLine{00547     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{00548     BP-\/>a2 = 1 -\/ alpha / A;}
+\DoxyCodeLine{00549     \textcolor{comment}{//  printf("{}cutoff: \%f\(\backslash\)r\(\backslash\)n Gain: \%f\(\backslash\)r\(\backslash\)n"{},cutoff,dBGain);}}
+\DoxyCodeLine{00550     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{00551 \}}
 
 \end{DoxyCode}
 

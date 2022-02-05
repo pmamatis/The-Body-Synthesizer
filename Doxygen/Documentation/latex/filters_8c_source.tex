@@ -389,110 +389,109 @@
 \DoxyCodeLine{\Hypertarget{filters_8c_source_l00463}00463 \}}
 \DoxyCodeLine{\Hypertarget{filters_8c_source_l00464}00464 }
 \DoxyCodeLine{\Hypertarget{filters_8c_source_l00465}00465 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00466}00466 \textcolor{comment}{// }}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00475}\mbox{\hyperlink{group__Filter_ga3c5c39d8c8ea89c55cc12218899dbc7c}{00475}} \textcolor{comment}{}Filter\_Status \mbox{\hyperlink{group__Filter_ga3c5c39d8c8ea89c55cc12218899dbc7c}{SetupBandpassCSG}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *BP, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q)\{}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00476}00476 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00477}00477     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00478}00478 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00479}00479     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00480}00480     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00481}00481 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00482}00482     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00483}00483 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00484}00484     BP-\/>b0 = Q*alpha;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00485}00485     BP-\/>b1 = 0;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00486}00486     BP-\/>b2 = -\/Q*alpha;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00487}00487     BP-\/>a0 = 1 + alpha;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00488}00488     BP-\/>a1 = -\/2 * cos;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00489}00489     BP-\/>a2 = 1 -\/ alpha;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00490}00490 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00491}00491     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00492}00492 \}}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00493}00493 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00502}\mbox{\hyperlink{group__Filter_gacb256e7bd3b663acfe846603e95f851a}{00502}} Filter\_Status \mbox{\hyperlink{group__Filter_gacb256e7bd3b663acfe846603e95f851a}{SetupNotch}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *BP, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q)\{}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00503}00503 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00504}00504     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00505}00505 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00506}00506     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00507}00507     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00508}00508 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00509}00509     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00510}00510 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00511}00511     BP-\/>b0 = 1;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00512}00512     BP-\/>b1 = -\/2 * cos;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00513}00513     BP-\/>b2 = 1;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00514}00514     BP-\/>a0 = 1 + alpha;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00515}00515     BP-\/>a1 = -\/2 * cos;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00516}00516     BP-\/>a2 = 1 -\/ alpha;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00517}00517 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00518}00518     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00519}00519 \}}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00520}00520 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00530}\mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{00530}} Filter\_Status \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *BP, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q, \textcolor{keywordtype}{float} dBGain)\{}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00531}00531 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00532}00532     \textcolor{comment}{//for dBGain in function() head use:}}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00533}00533     \textcolor{keywordtype}{float} exp = (dBGain) / 40.0;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00534}00534     \textcolor{keywordtype}{float} A = powf(10, exp);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00535}00535 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00536}00536     \textcolor{comment}{//float A = dBGain;}}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00537}00537     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00538}00538 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00539}00539     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00540}00540     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00541}00541 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00542}00542     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00543}00543 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00544}00544     BP-\/>b0 = 1 + alpha * A;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00545}00545     BP-\/>b1 = -\/2 * cos;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00546}00546     BP-\/>b2 = 1 -\/ alpha * A;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00547}00547     BP-\/>a0 = 1 + alpha / A;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00548}00548     BP-\/>a1 = -\/2 * cos;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00549}00549     BP-\/>a2 = 1 -\/ alpha / A;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00550}00550     \textcolor{comment}{//  printf("{}cutoff: \%f\(\backslash\)r\(\backslash\)n Gain: \%f\(\backslash\)r\(\backslash\)n"{},cutoff,dBGain);}}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00551}00551     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00552}00552 \}}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00553}00553 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00563}\mbox{\hyperlink{group__Filter_ga1345bd0312350f65e08e824e6413f219}{00563}} Filter\_Status \mbox{\hyperlink{group__Filter_ga1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *LS, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q, \textcolor{keywordtype}{float} dBGain)\{}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00564}00564 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00565}00565     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00566}00566     \textcolor{keywordtype}{float} A = powf(10, exp);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00567}00567     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00568}00568 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00569}00569     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00570}00570     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00571}00571 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00572}00572     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00573}00573 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00574}00574     LS-\/>b0 =     A * ((A + 1) -\/ (A -\/ 1) * cos + beta * sin);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00575}00575     LS-\/>b1 = 2 * A * ((A -\/ 1) -\/ (A + 1) * cos);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00576}00576     LS-\/>b2 =     A * ((A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00577}00577     LS-\/>a0 =          (A + 1) + (A -\/ 1) * cos + beta * sin;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00578}00578     LS-\/>a1 =    -\/2 * ((A -\/ 1) + (A + 1) * cos);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00579}00579     LS-\/>a2 =          (A + 1) + (A -\/ 1) * cos -\/ beta * sin;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00580}00580 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00581}00581     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00582}00582 \}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00474}\mbox{\hyperlink{group__Filter_ga3c5c39d8c8ea89c55cc12218899dbc7c}{00474}} Filter\_Status \mbox{\hyperlink{group__Filter_ga3c5c39d8c8ea89c55cc12218899dbc7c}{SetupBandpassCSG}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *BP, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q)\{}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00475}00475 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00476}00476     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00477}00477 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00478}00478     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00479}00479     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00480}00480 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00481}00481     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00482}00482 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00483}00483     BP-\/>b0 = Q*alpha;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00484}00484     BP-\/>b1 = 0;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00485}00485     BP-\/>b2 = -\/Q*alpha;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00486}00486     BP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00487}00487     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00488}00488     BP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00489}00489 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00490}00490     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00491}00491 \}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00492}00492 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00501}\mbox{\hyperlink{group__Filter_gacb256e7bd3b663acfe846603e95f851a}{00501}} Filter\_Status \mbox{\hyperlink{group__Filter_gacb256e7bd3b663acfe846603e95f851a}{SetupNotch}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *BP, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q)\{}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00502}00502 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00503}00503     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00504}00504 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00505}00505     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00506}00506     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00507}00507 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00508}00508     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00509}00509 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00510}00510     BP-\/>b0 = 1;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00511}00511     BP-\/>b1 = -\/2 * cos;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00512}00512     BP-\/>b2 = 1;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00513}00513     BP-\/>a0 = 1 + alpha;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00514}00514     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00515}00515     BP-\/>a2 = 1 -\/ alpha;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00516}00516 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00517}00517     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00518}00518 \}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00519}00519 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00529}\mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{00529}} Filter\_Status \mbox{\hyperlink{group__Filter_gae324262d60a906226a1ddf27ba0860b9}{SetupPeakingEQ}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *BP, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q, \textcolor{keywordtype}{float} dBGain)\{}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00530}00530 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00531}00531     \textcolor{comment}{//for dBGain in function() head use:}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00532}00532     \textcolor{keywordtype}{float} exp = (dBGain) / 40.0;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00533}00533     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00534}00534 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00535}00535     \textcolor{comment}{//float A = dBGain;}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00536}00536     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00537}00537 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00538}00538     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00539}00539     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00540}00540 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00541}00541     \textcolor{keywordtype}{float} alpha = sin / (2 * Q);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00542}00542 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00543}00543     BP-\/>b0 = 1 + alpha * A;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00544}00544     BP-\/>b1 = -\/2 * cos;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00545}00545     BP-\/>b2 = 1 -\/ alpha * A;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00546}00546     BP-\/>a0 = 1 + alpha / A;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00547}00547     BP-\/>a1 = -\/2 * cos;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00548}00548     BP-\/>a2 = 1 -\/ alpha / A;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00549}00549     \textcolor{comment}{//  printf("{}cutoff: \%f\(\backslash\)r\(\backslash\)n Gain: \%f\(\backslash\)r\(\backslash\)n"{},cutoff,dBGain);}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00550}00550     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00551}00551 \}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00552}00552 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00562}\mbox{\hyperlink{group__Filter_ga1345bd0312350f65e08e824e6413f219}{00562}} Filter\_Status \mbox{\hyperlink{group__Filter_ga1345bd0312350f65e08e824e6413f219}{SetupLowShelf}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *LS, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q, \textcolor{keywordtype}{float} dBGain)\{}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00563}00563 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00564}00564     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00565}00565     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00566}00566     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00567}00567 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00568}00568     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00569}00569     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00570}00570 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00571}00571     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00572}00572 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00573}00573     LS-\/>b0 =     A * ((A + 1) -\/ (A -\/ 1) * cos + beta * sin);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00574}00574     LS-\/>b1 = 2 * A * ((A -\/ 1) -\/ (A + 1) * cos);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00575}00575     LS-\/>b2 =     A * ((A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00576}00576     LS-\/>a0 =          (A + 1) + (A -\/ 1) * cos + beta * sin;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00577}00577     LS-\/>a1 =    -\/2 * ((A -\/ 1) + (A + 1) * cos);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00578}00578     LS-\/>a2 =          (A + 1) + (A -\/ 1) * cos -\/ beta * sin;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00579}00579 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00580}00580     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00581}00581 \}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00582}00582 }
 \DoxyCodeLine{\Hypertarget{filters_8c_source_l00583}00583 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00584}00584 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00594}\mbox{\hyperlink{group__Filter_ga03fcfa1037c98ff029c9fb59f6c312dc}{00594}} Filter\_Status \mbox{\hyperlink{group__Filter_ga03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *HS, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q, \textcolor{keywordtype}{float} dBGain)\{}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00595}00595 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00596}00596     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00597}00597     \textcolor{keywordtype}{float} A = powf(10, exp);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00598}00598     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00599}00599 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00600}00600     \textcolor{keywordtype}{float} sin = sinf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00601}00601     \textcolor{keywordtype}{float} cos = cosf(w);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00602}00602 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00603}00603     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00604}00604 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00605}00605     HS-\/>b0 =      A * ((A + 1) + (A -\/ 1) * cos + beta * sin);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00606}00606     HS-\/>b1 = -\/2 * A * ((A -\/ 1) + (A + 1) * cos);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00607}00607     HS-\/>b2 =      A * ((A + 1) + (A -\/ 1) * cos -\/ beta * sin);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00608}00608     HS-\/>a0 =           (A + 1) -\/ (A -\/ 1) * cos + beta * sin;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00609}00609     HS-\/>a1 =      2 * ((A -\/ 1) -\/ (A + 1) * cos);}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00610}00610     HS-\/>a2 =           (A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00611}00611 }
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00612}00612     \textcolor{keywordflow}{return} FILTER\_OK;}
-\DoxyCodeLine{\Hypertarget{filters_8c_source_l00613}00613 \}}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00593}\mbox{\hyperlink{group__Filter_ga03fcfa1037c98ff029c9fb59f6c312dc}{00593}} Filter\_Status \mbox{\hyperlink{group__Filter_ga03fcfa1037c98ff029c9fb59f6c312dc}{SetupHighShelf}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structBQFilter}{BQFilter}} *HS, \textcolor{keywordtype}{float} cutoff, \textcolor{keywordtype}{float} Q, \textcolor{keywordtype}{float} dBGain)\{}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00594}00594 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00595}00595     \textcolor{keywordtype}{float} exp = (dBGain) / 40;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00596}00596     \textcolor{keywordtype}{float} A = powf(10, exp);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00597}00597     \textcolor{keywordtype}{float} w = 2 * M\_PI * cutoff / samplerate;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00598}00598 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00599}00599     \textcolor{keywordtype}{float} sin = sinf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00600}00600     \textcolor{keywordtype}{float} cos = cosf(w);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00601}00601 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00602}00602     \textcolor{keywordtype}{float} beta  = sqrtf(A)/Q;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00603}00603 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00604}00604     HS-\/>b0 =      A * ((A + 1) + (A -\/ 1) * cos + beta * sin);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00605}00605     HS-\/>b1 = -\/2 * A * ((A -\/ 1) + (A + 1) * cos);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00606}00606     HS-\/>b2 =      A * ((A + 1) + (A -\/ 1) * cos -\/ beta * sin);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00607}00607     HS-\/>a0 =           (A + 1) -\/ (A -\/ 1) * cos + beta * sin;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00608}00608     HS-\/>a1 =      2 * ((A -\/ 1) -\/ (A + 1) * cos);}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00609}00609     HS-\/>a2 =           (A + 1) -\/ (A -\/ 1) * cos -\/ beta * sin;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00610}00610 }
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00611}00611     \textcolor{keywordflow}{return} FILTER\_OK;}
+\DoxyCodeLine{\Hypertarget{filters_8c_source_l00612}00612 \}}
 
 \end{DoxyCode}

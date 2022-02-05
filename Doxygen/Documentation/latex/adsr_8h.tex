@@ -10,7 +10,7 @@ adsr effect header
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structadsr}{adsr}}
-\begin{DoxyCompactList}\small\item\em stores the state of the ADSR, aswell as the configuration \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em stores the state of the ADSR values for keyboardand sequencer structs as well as the configuration \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -22,15 +22,15 @@ enum {\bfseries ADSR\+\_\+\+Status} \{ {\bfseries ADSR\+\_\+\+FAIL} = -\/1
 \begin{DoxyCompactItemize}
 \item 
 ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}{ADSR\+\_\+\+Init}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Init funtion for the ADSR, has to be used in order to use any other funtion of this .c. \end{DoxyCompactList}\item 
 ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}{Setup\+ADSR}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}})
-\item 
+\begin{DoxyCompactList}\small\item\em Setup funtion for the ADSR, which is called in the ADSR\+\_\+\+Init function for any single keyboard note. \end{DoxyCompactList}\item 
 ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\+\_\+\+Reset}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}})
-\item 
+\begin{DoxyCompactList}\small\item\em Reset function for the ADSR. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{One\+Press\+\_\+\+ADSR\+\_\+\+Linear\+\_\+\+Process}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, float $\ast$calculate\+\_\+value, bool flag)
-\item 
+\begin{DoxyCompactList}\small\item\em Keyboard function used to calculate the current ADSR value which is then multiplied with the keyboard sample. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}{One\+Press\+\_\+\+ADSR\+\_\+\+Sequencer\+\_\+\+Process}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, float $\ast$calculate\+\_\+value, bool flag)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sequencer function used to calculate the current ADSR value which is then multiplied with the sample. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -50,8 +50,6 @@ struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga742e13
 
 \doxysubsection{Detailed Description}
 adsr effect header 
-
-TODO
 
 \begin{DoxyAuthor}{Author}
 Marc Bielen 

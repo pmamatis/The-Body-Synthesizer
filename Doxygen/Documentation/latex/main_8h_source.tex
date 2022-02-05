@@ -129,31 +129,24 @@
 \DoxyCodeLine{\Hypertarget{main_8h_source_l00144}00144 }
 \DoxyCodeLine{\Hypertarget{main_8h_source_l00146}\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{00146}} \textcolor{preprocessor}{\#define BLOCKSIZE 480 }\textcolor{comment}{// Latenz = 20ms @ 24kHz S}}
 \DoxyCodeLine{\Hypertarget{main_8h_source_l00147}00147 }
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00148}00148 \textcolor{comment}{//Variables TODO}}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00149}00149 \textcolor{keywordtype}{bool} process\_trem;}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00150}00150 \textcolor{keywordtype}{bool} process\_dist;}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00151}00151 \textcolor{keywordtype}{bool} process\_dist\_soft;}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00152}00152 \textcolor{keywordtype}{bool} process\_dist\_hard;}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00153}00153 \textcolor{keywordtype}{bool} process\_adsr;}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00154}00154 \textcolor{keywordtype}{bool} process\_filter;}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00158}\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{00158}} \textcolor{keywordtype}{float} \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}];}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00159}00159 \textcolor{keywordtype}{float} calculate\_vector2[\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}];}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00160}00160 }
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00162}\mbox{\hyperlink{main_8h_a69314a8057e0309d967d222b7703d013}{00162}} \textcolor{keywordtype}{float} \mbox{\hyperlink{main_8h_a69314a8057e0309d967d222b7703d013}{effect\_LFO}}[\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2];}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00163}00163 }
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00165}\mbox{\hyperlink{main_8h_a034c1f80c4242da638389b532cbaef75}{00165}} \textcolor{keyword}{enum} \mbox{\hyperlink{main_8h_a034c1f80c4242da638389b532cbaef75}{outputBuffer\_position\_enum}}\{}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00166}00166     HALF\_BLOCK = 0,}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00167}00167     FULL\_BLOCK}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00168}00168 \};}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00169}00169 }
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00170}00170 \textcolor{comment}{/* USER CODE END Private defines */}}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00171}00171 }
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00172}00172 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00173}00173 \}}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00174}00174 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00175}00175 }
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00176}00176 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_MAIN\_H */}\textcolor{preprocessor}{}}
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00177}00177 }
-\DoxyCodeLine{\Hypertarget{main_8h_source_l00178}00178 \textcolor{comment}{/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00151}\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{00151}} \textcolor{keywordtype}{float} \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}];}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00152}00152 \textcolor{keywordtype}{float} calculate\_vector2[\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}];}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00153}00153 }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00155}\mbox{\hyperlink{main_8h_a69314a8057e0309d967d222b7703d013}{00155}} \textcolor{keywordtype}{float} \mbox{\hyperlink{main_8h_a69314a8057e0309d967d222b7703d013}{effect\_LFO}}[\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2];}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00158}\mbox{\hyperlink{main_8h_a034c1f80c4242da638389b532cbaef75}{00158}} \textcolor{keyword}{enum} \mbox{\hyperlink{main_8h_a034c1f80c4242da638389b532cbaef75}{outputBuffer\_position\_enum}}\{}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00159}00159     HALF\_BLOCK = 0,}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00160}00160     FULL\_BLOCK}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00161}00161 \};}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00163}00163 \textcolor{comment}{/* USER CODE END Private defines */}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00164}00164 }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00165}00165 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00166}00166 \}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00167}00167 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00168}00168 }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00169}00169 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_MAIN\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00170}00170 }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00171}00171 \textcolor{comment}{/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/}}
 
 \end{DoxyCode}

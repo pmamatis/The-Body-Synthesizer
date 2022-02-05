@@ -10,22 +10,22 @@ Drumcomputer functions.
 \begin{DoxyCompactItemize}
 \item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\+\_\+\+ADSR\+\_\+\+Init}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$env)
-\item 
+\begin{DoxyCompactList}\small\item\em initializes the variables of the sequencer ADSR \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_gab1eca379f4f1b927be94270e748a87bf}{Drum\+\_\+\+Computer\+\_\+\+Calc\+Sample}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function calculates the samples of the drumcomputer. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga0945a49b026be615b8a70c8ec885ac08}{Drum\+\_\+\+Computer\+\_\+\+Reset}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function resets the drumcomputer to its initial state. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}{Sequencer\+\_\+\+Reset}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function resets the sequencer to its initial state. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga98c7a5f46d897df7157cfd75e379afb3}{Drum\+\_\+\+Computer\+\_\+\+Init}} (void)
 \begin{DoxyCompactList}\small\item\em Init function for the drumcomputer ~\newline
  \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga08535ad247ef4e17b91bbba4b56833af}{Drum\+\_\+\+Computer\+\_\+\+Process}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function processes the drumcomputer as well as the sequencer. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{Play\+Single\+Sample}} (void)
 \begin{DoxyCompactList}\small\item\em function to play the same sample each time it is triggerd, must be called inside \mbox{\hyperlink{signal__synthesis_8h_a14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} \end{DoxyCompactList}\item 
-HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{drum__computer_8c_aa345ec69e335b62cfa0a6ef12c4d3acd}{Drum\+\_\+\+Computer\+\_\+\+Calc\+Sample\+\_\+\+Reverse}} ()
-\end{DoxyCompactItemize}
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{drum__computer_8c_aafd35ea6f9cf6be8c3cd9d92937f1da3}{Drum\+\_\+\+Computer\+\_\+\+Calc\+Sample\+\_\+\+Reverse}} (void)
+\begin{DoxyCompactList}\small\item\em calculates the drumsample reverse, but this function is not completely finished and not in use! \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -50,13 +50,19 @@ Definition in file \mbox{\hyperlink{drum__computer_8c_source}{drum\+\_\+computer
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{drum__computer_8c_aa345ec69e335b62cfa0a6ef12c4d3acd}\label{drum__computer_8c_aa345ec69e335b62cfa0a6ef12c4d3acd}} 
+\mbox{\Hypertarget{drum__computer_8c_aafd35ea6f9cf6be8c3cd9d92937f1da3}\label{drum__computer_8c_aafd35ea6f9cf6be8c3cd9d92937f1da3}} 
 \index{drum\_computer.c@{drum\_computer.c}!Drum\_Computer\_CalcSample\_Reverse@{Drum\_Computer\_CalcSample\_Reverse}}
 \index{Drum\_Computer\_CalcSample\_Reverse@{Drum\_Computer\_CalcSample\_Reverse}!drum\_computer.c@{drum\_computer.c}}
 \doxysubsubsection{\texorpdfstring{Drum\_Computer\_CalcSample\_Reverse()}{Drum\_Computer\_CalcSample\_Reverse()}}
-{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def Drum\+\_\+\+Computer\+\_\+\+Calc\+Sample\+\_\+\+Reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def Drum\+\_\+\+Computer\+\_\+\+Calc\+Sample\+\_\+\+Reverse (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+calculates the drumsample reverse, but this function is not completely finished and not in use! 
+
+TODO
+
+\begin{DoxyReturn}{Returns}
 HAL\+\_\+\+Status\+Type\+Def 
 \end{DoxyReturn}
 
@@ -65,7 +71,7 @@ Definition at line \mbox{\hyperlink{drum__computer_8c_source_l00516}{516}} of fi
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00516                                                      \{}
+\DoxyCodeLine{00516                                                          \{}
 \DoxyCodeLine{00517 }
 \DoxyCodeLine{00518     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
 \DoxyCodeLine{00519 }

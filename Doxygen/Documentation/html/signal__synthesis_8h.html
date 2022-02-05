@@ -381,44 +381,44 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>float </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="signal__synthesis_8c_source.html#l01261">1261</a> of file <a class="el" href="signal__synthesis_8c_source.html">signal_synthesis.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno"> 1261</span>                                                         {</div>
-<div class="line"><span class="lineno"> 1262</span> </div>
-<div class="line"><span class="lineno"> 1263</span>    <span class="keywordtype">float</span> rect = 0;</div>
-<div class="line"><span class="lineno"> 1264</span> </div>
-<div class="line"><span class="lineno"> 1265</span>    <span class="comment">// Current Index:   signals-&gt;current_LUT_Index[index]</span></div>
-<div class="line"><span class="lineno"> 1266</span>    <span class="comment">// Period:          LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]]</span></div>
-<div class="line"><span class="lineno"> 1267</span> </div>
-<div class="line"><span class="lineno"> 1268</span>    <span class="comment">// IF: Length of period is even (e.g. 346)</span></div>
-<div class="line"><span class="lineno"> 1269</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] % 2 == 0){</div>
-<div class="line"><span class="lineno"> 1270</span> </div>
-<div class="line"><span class="lineno"> 1271</span>        <span class="comment">// IF: Current index &lt; length of period of desired frequency (0:172 &lt; 173)</span></div>
-<div class="line"><span class="lineno"> 1272</span>        <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &lt; (<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] / 2)){</div>
-<div class="line"><span class="lineno"> 1273</span> </div>
-<div class="line"><span class="lineno"> 1274</span>            rect = 0.2;</div>
-<div class="line"><span class="lineno"> 1275</span>        }</div>
-<div class="line"><span class="lineno"> 1276</span>        <span class="comment">// IF: Current index &gt;= length of period of desired frequency (173:345 &gt;= 173)</span></div>
-<div class="line"><span class="lineno"> 1277</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &gt;= (<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] / 2)){</div>
-<div class="line"><span class="lineno"> 1278</span> </div>
-<div class="line"><span class="lineno"> 1279</span>            rect = -0.2;</div>
-<div class="line"><span class="lineno"> 1280</span>        }</div>
-<div class="line"><span class="lineno"> 1281</span>    }</div>
-<div class="line"><span class="lineno"> 1282</span>    <span class="comment">// IF: Length of period is odd (e.g. 347)</span></div>
-<div class="line"><span class="lineno"> 1283</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] % 2 == 1){</div>
-<div class="line"><span class="lineno"> 1284</span> </div>
-<div class="line"><span class="lineno"> 1285</span>        <span class="comment">// IF: Current index &lt; length of period of desired frequency (0:173 &lt; 174) due to (period-1)/2 + 1</span></div>
-<div class="line"><span class="lineno"> 1286</span>        <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &lt; (((<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] - 1) / 2) + 1)){</div>
-<div class="line"><span class="lineno"> 1287</span> </div>
-<div class="line"><span class="lineno"> 1288</span>            rect = 0.2;</div>
-<div class="line"><span class="lineno"> 1289</span>        }</div>
-<div class="line"><span class="lineno"> 1290</span>        <span class="comment">// IF: Current index &gt;= length of period of desired frequency (174:346 &gt;= 174) due to (period-1)/2 + 1</span></div>
-<div class="line"><span class="lineno"> 1291</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &gt;= (((<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] - 1) / 2) + 1)){</div>
-<div class="line"><span class="lineno"> 1292</span> </div>
-<div class="line"><span class="lineno"> 1293</span>            rect = -0.2;</div>
-<div class="line"><span class="lineno"> 1294</span>        }</div>
-<div class="line"><span class="lineno"> 1295</span>    }</div>
-<div class="line"><span class="lineno"> 1296</span>    <span class="keywordflow">return</span> rect;</div>
-<div class="line"><span class="lineno"> 1297</span>}</div>
+<p class="definition">Definition at line <a class="el" href="signal__synthesis_8c_source.html#l01249">1249</a> of file <a class="el" href="signal__synthesis_8c_source.html">signal_synthesis.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1249</span>                                                         {</div>
+<div class="line"><span class="lineno"> 1250</span> </div>
+<div class="line"><span class="lineno"> 1251</span>    <span class="keywordtype">float</span> rect = 0;</div>
+<div class="line"><span class="lineno"> 1252</span> </div>
+<div class="line"><span class="lineno"> 1253</span>    <span class="comment">// Current Index:   signals-&gt;current_LUT_Index[index]</span></div>
+<div class="line"><span class="lineno"> 1254</span>    <span class="comment">// Period:          LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]]</span></div>
+<div class="line"><span class="lineno"> 1255</span> </div>
+<div class="line"><span class="lineno"> 1256</span>    <span class="comment">// IF: Length of period is even (e.g. 346)</span></div>
+<div class="line"><span class="lineno"> 1257</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] % 2 == 0){</div>
+<div class="line"><span class="lineno"> 1258</span> </div>
+<div class="line"><span class="lineno"> 1259</span>        <span class="comment">// IF: Current index &lt; length of period of desired frequency (0:172 &lt; 173)</span></div>
+<div class="line"><span class="lineno"> 1260</span>        <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &lt; (<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] / 2)){</div>
+<div class="line"><span class="lineno"> 1261</span> </div>
+<div class="line"><span class="lineno"> 1262</span>            rect = 0.2;</div>
+<div class="line"><span class="lineno"> 1263</span>        }</div>
+<div class="line"><span class="lineno"> 1264</span>        <span class="comment">// IF: Current index &gt;= length of period of desired frequency (173:345 &gt;= 173)</span></div>
+<div class="line"><span class="lineno"> 1265</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &gt;= (<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] / 2)){</div>
+<div class="line"><span class="lineno"> 1266</span> </div>
+<div class="line"><span class="lineno"> 1267</span>            rect = -0.2;</div>
+<div class="line"><span class="lineno"> 1268</span>        }</div>
+<div class="line"><span class="lineno"> 1269</span>    }</div>
+<div class="line"><span class="lineno"> 1270</span>    <span class="comment">// IF: Length of period is odd (e.g. 347)</span></div>
+<div class="line"><span class="lineno"> 1271</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] % 2 == 1){</div>
+<div class="line"><span class="lineno"> 1272</span> </div>
+<div class="line"><span class="lineno"> 1273</span>        <span class="comment">// IF: Current index &lt; length of period of desired frequency (0:173 &lt; 174) due to (period-1)/2 + 1</span></div>
+<div class="line"><span class="lineno"> 1274</span>        <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &lt; (((<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] - 1) / 2) + 1)){</div>
+<div class="line"><span class="lineno"> 1275</span> </div>
+<div class="line"><span class="lineno"> 1276</span>            rect = 0.2;</div>
+<div class="line"><span class="lineno"> 1277</span>        }</div>
+<div class="line"><span class="lineno"> 1278</span>        <span class="comment">// IF: Current index &gt;= length of period of desired frequency (174:346 &gt;= 174) due to (period-1)/2 + 1</span></div>
+<div class="line"><span class="lineno"> 1279</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(signals-&gt;current_LUT_Index[index] &gt;= (((<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]] - 1) / 2) + 1)){</div>
+<div class="line"><span class="lineno"> 1280</span> </div>
+<div class="line"><span class="lineno"> 1281</span>            rect = -0.2;</div>
+<div class="line"><span class="lineno"> 1282</span>        }</div>
+<div class="line"><span class="lineno"> 1283</span>    }</div>
+<div class="line"><span class="lineno"> 1284</span>    <span class="keywordflow">return</span> rect;</div>
+<div class="line"><span class="lineno"> 1285</span>}</div>
 <div class="ttc" id="agroup__SINLUT_html_ga1380f2886548602aeb7849aa7ba76435"><div class="ttname"><a href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a></div><div class="ttdeci">const uint32_t LUT_SUPPORTPOINTS[73]</div><div class="ttdoc">contains the support points for each frequncy</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00051">sinLUT.h:51</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -459,31 +459,31 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>triangle value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="signal__synthesis_8c_source.html#l01306">1306</a> of file <a class="el" href="signal__synthesis_8c_source.html">signal_synthesis.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno"> 1306</span>                                                             {</div>
-<div class="line"><span class="lineno"> 1307</span> </div>
-<div class="line"><span class="lineno"> 1308</span>    <span class="keywordtype">float</span> triangle      = 0;</div>
-<div class="line"><span class="lineno"> 1309</span>    <span class="keywordtype">float</span> current_index = (float)signals-&gt;current_LUT_Index[index];</div>
-<div class="line"><span class="lineno"> 1310</span>    <span class="keywordtype">float</span> period        = (<span class="keywordtype">float</span>)<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]];</div>
-<div class="line"><span class="lineno"> 1311</span> </div>
-<div class="line"><span class="lineno"> 1312</span>    <span class="comment">/* FORMULA: 4*a/p * abs((((x - p/4) % p) + p) % p - p/2) - a</span></div>
-<div class="line"><span class="lineno"> 1313</span><span class="comment">     *</span></div>
-<div class="line"><span class="lineno"> 1314</span><span class="comment">     * a: Amplitude         &gt;&gt; 1</span></div>
-<div class="line"><span class="lineno"> 1315</span><span class="comment">     * x: Current index     &gt;&gt; signals-&gt;current_LUT_Index[index]</span></div>
-<div class="line"><span class="lineno"> 1316</span><span class="comment">     * p: Period            &gt;&gt; LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]]</span></div>
-<div class="line"><span class="lineno"> 1317</span><span class="comment">     *</span></div>
-<div class="line"><span class="lineno"> 1318</span><span class="comment">     * Source: https://en.wikipedia.org/wiki/Triangle_wave</span></div>
-<div class="line"><span class="lineno"> 1319</span><span class="comment">     *</span></div>
-<div class="line"><span class="lineno"> 1320</span><span class="comment">     */</span></div>
-<div class="line"><span class="lineno"> 1321</span> </div>
-<div class="line"><span class="lineno"> 1322</span>    triangle = fmodf(current_index - period/4, period);</div>
-<div class="line"><span class="lineno"> 1323</span>    triangle = triangle + period;</div>
-<div class="line"><span class="lineno"> 1324</span>    triangle = fmodf(triangle, period) - period/2;</div>
-<div class="line"><span class="lineno"> 1325</span>    triangle = abs(triangle);</div>
-<div class="line"><span class="lineno"> 1326</span>    triangle = (4/period) * triangle - 1;;</div>
-<div class="line"><span class="lineno"> 1327</span> </div>
-<div class="line"><span class="lineno"> 1328</span>    <span class="keywordflow">return</span> triangle;</div>
-<div class="line"><span class="lineno"> 1329</span>}</div>
+<p class="definition">Definition at line <a class="el" href="signal__synthesis_8c_source.html#l01294">1294</a> of file <a class="el" href="signal__synthesis_8c_source.html">signal_synthesis.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1294</span>                                                             {</div>
+<div class="line"><span class="lineno"> 1295</span> </div>
+<div class="line"><span class="lineno"> 1296</span>    <span class="keywordtype">float</span> triangle      = 0;</div>
+<div class="line"><span class="lineno"> 1297</span>    <span class="keywordtype">float</span> current_index = (float)signals-&gt;current_LUT_Index[index];</div>
+<div class="line"><span class="lineno"> 1298</span>    <span class="keywordtype">float</span> period        = (<span class="keywordtype">float</span>)<a class="code hl_variable" href="group__SINLUT.html#ga1380f2886548602aeb7849aa7ba76435">LUT_SUPPORTPOINTS</a>[signals-&gt;freqIndex[index]];</div>
+<div class="line"><span class="lineno"> 1299</span> </div>
+<div class="line"><span class="lineno"> 1300</span>    <span class="comment">/* FORMULA: 4*a/p * abs((((x - p/4) % p) + p) % p - p/2) - a</span></div>
+<div class="line"><span class="lineno"> 1301</span><span class="comment">     *</span></div>
+<div class="line"><span class="lineno"> 1302</span><span class="comment">     * a: Amplitude         &gt;&gt; 1</span></div>
+<div class="line"><span class="lineno"> 1303</span><span class="comment">     * x: Current index     &gt;&gt; signals-&gt;current_LUT_Index[index]</span></div>
+<div class="line"><span class="lineno"> 1304</span><span class="comment">     * p: Period            &gt;&gt; LUT_SUPPORTPOINTS[signals-&gt;freqIndex[index]]</span></div>
+<div class="line"><span class="lineno"> 1305</span><span class="comment">     *</span></div>
+<div class="line"><span class="lineno"> 1306</span><span class="comment">     * Source: https://en.wikipedia.org/wiki/Triangle_wave</span></div>
+<div class="line"><span class="lineno"> 1307</span><span class="comment">     *</span></div>
+<div class="line"><span class="lineno"> 1308</span><span class="comment">     */</span></div>
+<div class="line"><span class="lineno"> 1309</span> </div>
+<div class="line"><span class="lineno"> 1310</span>    triangle = fmodf(current_index - period/4, period);</div>
+<div class="line"><span class="lineno"> 1311</span>    triangle = triangle + period;</div>
+<div class="line"><span class="lineno"> 1312</span>    triangle = fmodf(triangle, period) - period/2;</div>
+<div class="line"><span class="lineno"> 1313</span>    triangle = abs(triangle);</div>
+<div class="line"><span class="lineno"> 1314</span>    triangle = (4/period) * triangle - 1;;</div>
+<div class="line"><span class="lineno"> 1315</span> </div>
+<div class="line"><span class="lineno"> 1316</span>    <span class="keywordflow">return</span> triangle;</div>
+<div class="line"><span class="lineno"> 1317</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -605,47 +605,47 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="signal__synthesis_8c_source.html#l01215">1215</a> of file <a class="el" href="signal__synthesis_8c_source.html">signal_synthesis.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno"> 1215</span>                   {</div>
-<div class="line"><span class="lineno"> 1216</span>    <span class="keywordtype">bool</span> retval = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno"> 1217</span>    <span class="keywordtype">float</span>* calculate_vector_tmp = <a class="code hl_variable" href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a>;</div>
-<div class="line"><span class="lineno"> 1218</span> </div>
-<div class="line"><span class="lineno"> 1219</span>    <span class="comment">// ramp Duration of 0.5 seconds</span></div>
-<div class="line"><span class="lineno"> 1220</span>    <span class="keywordtype">float</span> ramp_dur = 0.5*LUT_SR;</div>
-<div class="line"><span class="lineno"> 1221</span>    <span class="comment">// MAX Ramp Value in mV</span></div>
-<div class="line"><span class="lineno"> 1222</span>    uint32_t maxRamp = (uint32_t)(1650 * <a class="code hl_define" href="signal__synthesis_8h.html#a9403bb31e6a5748c0bfc57f7523ef483">DAC_MAXVALUE_TO_AMPLITUDE_RATIO</a> );</div>
+<p class="definition">Definition at line <a class="el" href="signal__synthesis_8c_source.html#l01203">1203</a> of file <a class="el" href="signal__synthesis_8c_source.html">signal_synthesis.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1203</span>                   {</div>
+<div class="line"><span class="lineno"> 1204</span>    <span class="keywordtype">bool</span> retval = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno"> 1205</span>    <span class="keywordtype">float</span>* calculate_vector_tmp = <a class="code hl_variable" href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a>;</div>
+<div class="line"><span class="lineno"> 1206</span> </div>
+<div class="line"><span class="lineno"> 1207</span>    <span class="comment">// ramp Duration of 0.5 seconds</span></div>
+<div class="line"><span class="lineno"> 1208</span>    <span class="keywordtype">float</span> ramp_dur = 0.5*LUT_SR;</div>
+<div class="line"><span class="lineno"> 1209</span>    <span class="comment">// MAX Ramp Value in mV</span></div>
+<div class="line"><span class="lineno"> 1210</span>    uint32_t maxRamp = (uint32_t)(1650 * <a class="code hl_define" href="signal__synthesis_8h.html#a9403bb31e6a5748c0bfc57f7523ef483">DAC_MAXVALUE_TO_AMPLITUDE_RATIO</a> );</div>
+<div class="line"><span class="lineno"> 1211</span> </div>
+<div class="line"><span class="lineno"> 1212</span>    <span class="comment">// Write into DAC-Buffer</span></div>
+<div class="line"><span class="lineno"> 1213</span>    <span class="comment">// decide if first half of BLOCKSIZE or second half</span></div>
+<div class="line"><span class="lineno"> 1214</span>    uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;</div>
+<div class="line"><span class="lineno"> 1215</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == HALF_BLOCK){</div>
+<div class="line"><span class="lineno"> 1216</span>        BLOOCKSIZE_startIndex = 0;</div>
+<div class="line"><span class="lineno"> 1217</span>        BLOOCKSIZE_endIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
+<div class="line"><span class="lineno"> 1218</span>    }</div>
+<div class="line"><span class="lineno"> 1219</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == FULL_BLOCK){</div>
+<div class="line"><span class="lineno"> 1220</span>        BLOOCKSIZE_startIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
+<div class="line"><span class="lineno"> 1221</span>        BLOOCKSIZE_endIndex  = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>;</div>
+<div class="line"><span class="lineno"> 1222</span>    }</div>
 <div class="line"><span class="lineno"> 1223</span> </div>
-<div class="line"><span class="lineno"> 1224</span>    <span class="comment">// Write into DAC-Buffer</span></div>
-<div class="line"><span class="lineno"> 1225</span>    <span class="comment">// decide if first half of BLOCKSIZE or second half</span></div>
-<div class="line"><span class="lineno"> 1226</span>    uint16_t BLOOCKSIZE_startIndex = 0, BLOOCKSIZE_endIndex = 0;</div>
-<div class="line"><span class="lineno"> 1227</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == HALF_BLOCK){</div>
-<div class="line"><span class="lineno"> 1228</span>        BLOOCKSIZE_startIndex = 0;</div>
-<div class="line"><span class="lineno"> 1229</span>        BLOOCKSIZE_endIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
-<div class="line"><span class="lineno"> 1230</span>    }</div>
-<div class="line"><span class="lineno"> 1231</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> == FULL_BLOCK){</div>
-<div class="line"><span class="lineno"> 1232</span>        BLOOCKSIZE_startIndex = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>/2;</div>
-<div class="line"><span class="lineno"> 1233</span>        BLOOCKSIZE_endIndex  = <a class="code hl_define" href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a>;</div>
+<div class="line"><span class="lineno"> 1224</span>    <span class="comment">//Write into DAC</span></div>
+<div class="line"><span class="lineno"> 1225</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter &lt; BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {</div>
+<div class="line"><span class="lineno"> 1226</span> </div>
+<div class="line"><span class="lineno"> 1227</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a> &lt; ramp_dur){</div>
+<div class="line"><span class="lineno"> 1228</span>            *((uint32_t *)(&amp;calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((float)((<a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a>/ramp_dur) * maxRamp));</div>
+<div class="line"><span class="lineno"> 1229</span>            <a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a>++;</div>
+<div class="line"><span class="lineno"> 1230</span>        }</div>
+<div class="line"><span class="lineno"> 1231</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a> &gt;= ramp_dur){</div>
+<div class="line"><span class="lineno"> 1232</span>            *((uint32_t *)(&amp;calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(maxRamp);</div>
+<div class="line"><span class="lineno"> 1233</span>        }</div>
 <div class="line"><span class="lineno"> 1234</span>    }</div>
-<div class="line"><span class="lineno"> 1235</span> </div>
-<div class="line"><span class="lineno"> 1236</span>    <span class="comment">//Write into DAC</span></div>
-<div class="line"><span class="lineno"> 1237</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> BLOCKSIZE_counter = BLOOCKSIZE_startIndex; BLOCKSIZE_counter &lt; BLOOCKSIZE_endIndex; BLOCKSIZE_counter++) {</div>
-<div class="line"><span class="lineno"> 1238</span> </div>
-<div class="line"><span class="lineno"> 1239</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a> &lt; ramp_dur){</div>
-<div class="line"><span class="lineno"> 1240</span>            *((uint32_t *)(&amp;calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((float)((<a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a>/ramp_dur) * maxRamp));</div>
-<div class="line"><span class="lineno"> 1241</span>            <a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a>++;</div>
-<div class="line"><span class="lineno"> 1242</span>        }</div>
-<div class="line"><span class="lineno"> 1243</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a> &gt;= ramp_dur){</div>
-<div class="line"><span class="lineno"> 1244</span>            *((uint32_t *)(&amp;calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)(maxRamp);</div>
-<div class="line"><span class="lineno"> 1245</span>        }</div>
-<div class="line"><span class="lineno"> 1246</span>    }</div>
-<div class="line"><span class="lineno"> 1247</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a> &gt;= ramp_dur)</div>
-<div class="line"><span class="lineno"> 1248</span>        retval = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno"> 1249</span> </div>
-<div class="line"><span class="lineno"> 1250</span>    <span class="keywordflow">return</span> retval;</div>
-<div class="line"><span class="lineno"> 1251</span>}</div>
-<div class="ttc" id="amain_8h_html_a25be00c869033fae5b8206c20aeb3861"><div class="ttname"><a href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a></div><div class="ttdeci">float calculate_vector1[BLOCKSIZE]</div><div class="ttdoc">DAC output array.</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00158">main.h:158</a></div></div>
+<div class="line"><span class="lineno"> 1235</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a> &gt;= ramp_dur)</div>
+<div class="line"><span class="lineno"> 1236</span>        retval = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno"> 1237</span> </div>
+<div class="line"><span class="lineno"> 1238</span>    <span class="keywordflow">return</span> retval;</div>
+<div class="line"><span class="lineno"> 1239</span>}</div>
+<div class="ttc" id="amain_8h_html_a25be00c869033fae5b8206c20aeb3861"><div class="ttname"><a href="main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a></div><div class="ttdeci">float calculate_vector1[BLOCKSIZE]</div><div class="ttdoc">DAC output array.</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00151">main.h:151</a></div></div>
 <div class="ttc" id="amain_8h_html_afcf795f5a96fd55561abe69f56224630"><div class="ttname"><a href="main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a></div><div class="ttdeci">#define BLOCKSIZE</div><div class="ttdoc">output array size</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00146">main.h:146</a></div></div>
-<div class="ttc" id="asignal__synthesis_8c_html_a406aefd47c82521bb2c5a14ef93c85d2"><div class="ttname"><a href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a></div><div class="ttdeci">float ramp_counter</div><div class="ttdoc">wirtes a starting ramp into the DAC-Buffer to avoid speaker damage</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01213">signal_synthesis.c:1213</a></div></div>
+<div class="ttc" id="asignal__synthesis_8c_html_a406aefd47c82521bb2c5a14ef93c85d2"><div class="ttname"><a href="signal__synthesis_8c.html#a406aefd47c82521bb2c5a14ef93c85d2">ramp_counter</a></div><div class="ttdeci">float ramp_counter</div><div class="ttdoc">wirtes a starting ramp into the DAC-Buffer to avoid speaker damage</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01201">signal_synthesis.c:1201</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_a5b4caaf313594423ca462cb11a33eca9"><div class="ttname"><a href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a></div><div class="ttdeci">uint8_t outputBuffer_position</div><div class="ttdoc">Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00113">signal_synthesis.h:113</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_a9403bb31e6a5748c0bfc57f7523ef483"><div class="ttname"><a href="signal__synthesis_8h.html#a9403bb31e6a5748c0bfc57f7523ef483">DAC_MAXVALUE_TO_AMPLITUDE_RATIO</a></div><div class="ttdeci">#define DAC_MAXVALUE_TO_AMPLITUDE_RATIO</div><div class="ttdoc">4096/3300</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00032">signal_synthesis.h:32</a></div></div>
 </div><!-- fragment -->
@@ -1425,17 +1425,17 @@ Variables</h2></td></tr>
 <p>random number generator </p>
 <dl class="section return"><dt>Returns</dt><dd>float </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="signal__synthesis_8c_source.html#l01336">1336</a> of file <a class="el" href="signal__synthesis_8c_source.html">signal_synthesis.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno"> 1336</span>                            {</div>
-<div class="line"><span class="lineno"> 1337</span> </div>
-<div class="line"><span class="lineno"> 1338</span>    <span class="keywordtype">float</span> NoiseValue = 0;</div>
-<div class="line"><span class="lineno"> 1339</span>    <span class="keywordtype">float</span> Noise_Gain = 0.5;</div>
-<div class="line"><span class="lineno"> 1340</span> </div>
-<div class="line"><span class="lineno"> 1341</span>    <span class="keywordflow">if</span>(Display.Noise_ONOFF == <span class="keyword">true</span>)</div>
-<div class="line"><span class="lineno"> 1342</span>        NoiseValue = (Noise_Gain*Display.Noise_Volume*(float)rand()/ (powf(2, 8*<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>))) )-(Noise_Gain*Display.Noise_Volume*0.25); <span class="comment">// Noise Gain = 8</span></div>
-<div class="line"><span class="lineno"> 1343</span> </div>
-<div class="line"><span class="lineno"> 1344</span>    <span class="keywordflow">return</span> NoiseValue;</div>
-<div class="line"><span class="lineno"> 1345</span>}</div>
+<p class="definition">Definition at line <a class="el" href="signal__synthesis_8c_source.html#l01324">1324</a> of file <a class="el" href="signal__synthesis_8c_source.html">signal_synthesis.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1324</span>                            {</div>
+<div class="line"><span class="lineno"> 1325</span> </div>
+<div class="line"><span class="lineno"> 1326</span>    <span class="keywordtype">float</span> NoiseValue = 0;</div>
+<div class="line"><span class="lineno"> 1327</span>    <span class="keywordtype">float</span> Noise_Gain = 0.5;</div>
+<div class="line"><span class="lineno"> 1328</span> </div>
+<div class="line"><span class="lineno"> 1329</span>    <span class="keywordflow">if</span>(Display.Noise_ONOFF == <span class="keyword">true</span>)</div>
+<div class="line"><span class="lineno"> 1330</span>        NoiseValue = (Noise_Gain*Display.Noise_Volume*(float)rand()/ (powf(2, 8*<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>))) )-(Noise_Gain*Display.Noise_Volume*0.25); <span class="comment">// Noise Gain = 8</span></div>
+<div class="line"><span class="lineno"> 1331</span> </div>
+<div class="line"><span class="lineno"> 1332</span>    <span class="keywordflow">return</span> NoiseValue;</div>
+<div class="line"><span class="lineno"> 1333</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1844,94 +1844,85 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1125</span>                    }</div>
 <div class="line"><span class="lineno"> 1126</span>                }</div>
 <div class="line"><span class="lineno"> 1127</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno"> 1128</span>            }</div>
-<div class="line"><span class="lineno"> 1129</span> </div>
-<div class="line"><span class="lineno"> 1130</span>            <span class="keywordflow">case</span> NOISE:</div>
-<div class="line"><span class="lineno"> 1131</span>                <span class="keywordflow">if</span>(Display.Voices_ONOFF[VOICES_ID+3] == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno"> 1132</span>                    addValue += (10*Display.Voices_Volume[VOICES_ID+3]*(float)rand()/ (powf(2, 8*<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>))) )-(10*Display.Voices_Volume[VOICES_ID+3]*0.25);</div>
-<div class="line"><span class="lineno"> 1133</span>                }</div>
-<div class="line"><span class="lineno"> 1134</span>                <span class="comment">// delete signal if voice off</span></div>
-<div class="line"><span class="lineno"> 1135</span>                <span class="keywordflow">if</span>(Display.Voices_ONOFF[VOICES_ID+3]==<span class="keyword">false</span> &amp;&amp; Display.Voices_Created[VOICES_ID+3] == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno"> 1136</span>                    <a class="code hl_function" href="signal__synthesis_8c.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(&amp;signals1, <a class="code hl_function" href="signal__synthesis_8c.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(VOICES_ID+3));</div>
-<div class="line"><span class="lineno"> 1137</span>                    Display.Voices_Created[VOICES_ID+3] = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno"> 1138</span>                }</div>
-<div class="line"><span class="lineno"> 1139</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno"> 1140</span>            }<span class="comment">// Switch-Case</span></div>
-<div class="line"><span class="lineno"> 1141</span> </div>
-<div class="line"><span class="lineno"> 1142</span>        }<span class="comment">// Signal counter for-loop</span></div>
-<div class="line"><span class="lineno"> 1143</span> </div>
+<div class="line"><span class="lineno"> 1128</span> </div>
+<div class="line"><span class="lineno"> 1129</span>        }</div>
+<div class="line"><span class="lineno"> 1130</span> </div>
+<div class="line"><span class="lineno"> 1131</span> </div>
+<div class="line"><span class="lineno"> 1132</span> </div>
+<div class="line"><span class="lineno"> 1133</span>        <span class="comment">// NORM: Volume by signal count</span></div>
+<div class="line"><span class="lineno"> 1134</span>        <span class="keywordflow">if</span>(signals-&gt;count - active_keyboard_notes == 0) {}  <span class="comment">// division by zero for addValue possible -&gt; fuckup!</span></div>
+<div class="line"><span class="lineno"> 1135</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno"> 1136</span>            addValue = addValue / (signals-&gt;count - active_keyboard_notes);</div>
+<div class="line"><span class="lineno"> 1137</span> </div>
+<div class="line"><span class="lineno"> 1138</span>    </div>
+<div class="line"><span class="lineno"> 1139</span> </div>
+<div class="line"><span class="lineno"> 1140</span>        <span class="comment">// write voices (including noise) into calculate vector</span></div>
+<div class="line"><span class="lineno"> 1141</span>        calculate_vector_tmp[BLOCKSIZE_counter] = <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] * (addValue + <a class="code hl_function" href="signal__synthesis_8c.html#a2f9745c8cd2b522e949b4c58cfccce56">Noise_Generator</a>());</div>
+<div class="line"><span class="lineno"> 1142</span> </div>
+<div class="line"><span class="lineno"> 1143</span>    }<span class="comment">// Signal counter for-loop</span></div>
 <div class="line"><span class="lineno"> 1144</span> </div>
-<div class="line"><span class="lineno"> 1145</span> </div>
-<div class="line"><span class="lineno"> 1146</span>        <span class="comment">// NORM: Volume by signal count</span></div>
-<div class="line"><span class="lineno"> 1147</span>        <span class="keywordflow">if</span>(signals-&gt;count - active_keyboard_notes == 0) {}  <span class="comment">// division by zero for addValue possible -&gt; fuckup!</span></div>
-<div class="line"><span class="lineno"> 1148</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno"> 1149</span>            addValue = addValue / (signals-&gt;count - active_keyboard_notes);</div>
-<div class="line"><span class="lineno"> 1150</span> </div>
-<div class="line"><span class="lineno"> 1151</span>    </div>
-<div class="line"><span class="lineno"> 1152</span> </div>
-<div class="line"><span class="lineno"> 1153</span>        <span class="comment">// write voices (including noise) into calculate vector</span></div>
-<div class="line"><span class="lineno"> 1154</span>        calculate_vector_tmp[BLOCKSIZE_counter] = <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] * (addValue + <a class="code hl_function" href="signal__synthesis_8c.html#a2f9745c8cd2b522e949b4c58cfccce56">Noise_Generator</a>());</div>
-<div class="line"><span class="lineno"> 1155</span> </div>
+<div class="line"><span class="lineno"> 1145</span>        <span class="comment">// Drummachine</span></div>
+<div class="line"><span class="lineno"> 1146</span>        <span class="keywordflow">if</span> ((<a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] &gt; 0) || (<a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] &gt; 0)){</div>
+<div class="line"><span class="lineno"> 1147</span>            <a class="code hl_function" href="group__DrumComputer.html#ga08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a>();</div>
+<div class="line"><span class="lineno"> 1148</span>            drums_filtered = drums;</div>
+<div class="line"><span class="lineno"> 1149</span>            <span class="keywordflow">if</span>(Display.Drumfilter_ONOFF)</div>
+<div class="line"><span class="lineno"> 1150</span>                <a class="code hl_function" href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(&amp;LS_DRUMS, &amp;drums_filtered);</div>
+<div class="line"><span class="lineno"> 1151</span>        }</div>
+<div class="line"><span class="lineno"> 1152</span>        <span class="keywordflow">else</span>{</div>
+<div class="line"><span class="lineno"> 1153</span>            drums = 0;</div>
+<div class="line"><span class="lineno"> 1154</span>            sequencer = 0;</div>
+<div class="line"><span class="lineno"> 1155</span>        }</div>
 <div class="line"><span class="lineno"> 1156</span> </div>
-<div class="line"><span class="lineno"> 1157</span>        <span class="comment">// Drummachine</span></div>
-<div class="line"><span class="lineno"> 1158</span>        <span class="keywordflow">if</span> ((<a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] &gt; 0) || (<a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] &gt; 0)){</div>
-<div class="line"><span class="lineno"> 1159</span>            <a class="code hl_function" href="group__DrumComputer.html#ga08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a>();</div>
-<div class="line"><span class="lineno"> 1160</span>            drums_filtered = drums;</div>
-<div class="line"><span class="lineno"> 1161</span>            <span class="keywordflow">if</span>(Display.Drumfilter_ONOFF)</div>
-<div class="line"><span class="lineno"> 1162</span>                <a class="code hl_function" href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(&amp;LS_DRUMS, &amp;drums_filtered);</div>
+<div class="line"><span class="lineno"> 1157</span>        <span class="comment">// Keyboard processing with effects</span></div>
+<div class="line"><span class="lineno"> 1158</span>        <span class="keywordflow">if</span>(Display.KeyboardFX_ONOFF == <span class="keyword">true</span>) {</div>
+<div class="line"><span class="lineno"> 1159</span>            <a class="code hl_function" href="group__EffectProcessing.html#ga3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a>();</div>
+<div class="line"><span class="lineno"> 1160</span>            <span class="comment">// summing up all played keyboard notes</span></div>
+<div class="line"><span class="lineno"> 1161</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k= 0; k &lt; 5;k++)</div>
+<div class="line"><span class="lineno"> 1162</span>                calculate_vector_tmp[BLOCKSIZE_counter] += <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] * calculate_keyboard[k];</div>
 <div class="line"><span class="lineno"> 1163</span>        }</div>
-<div class="line"><span class="lineno"> 1164</span>        <span class="keywordflow">else</span>{</div>
-<div class="line"><span class="lineno"> 1165</span>            drums = 0;</div>
-<div class="line"><span class="lineno"> 1166</span>            sequencer = 0;</div>
-<div class="line"><span class="lineno"> 1167</span>        }</div>
-<div class="line"><span class="lineno"> 1168</span> </div>
-<div class="line"><span class="lineno"> 1169</span>        <span class="comment">// Keyboard processing with effects</span></div>
-<div class="line"><span class="lineno"> 1170</span>        <span class="keywordflow">if</span>(Display.KeyboardFX_ONOFF == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno"> 1171</span>            <a class="code hl_function" href="group__EffectProcessing.html#ga3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a>();</div>
-<div class="line"><span class="lineno"> 1172</span>            <span class="comment">// summing up all played keyboard notes</span></div>
-<div class="line"><span class="lineno"> 1173</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k= 0; k &lt; 5;k++)</div>
-<div class="line"><span class="lineno"> 1174</span>                calculate_vector_tmp[BLOCKSIZE_counter] += <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] * calculate_keyboard[k];</div>
-<div class="line"><span class="lineno"> 1175</span>        }</div>
-<div class="line"><span class="lineno"> 1176</span> </div>
-<div class="line"><span class="lineno"> 1177</span>        <span class="comment">// Play single sample</span></div>
-<div class="line"><span class="lineno"> 1178</span>        <span class="keywordflow">if</span>(play_single_sample_flag) {</div>
-<div class="line"><span class="lineno"> 1179</span>            <a class="code hl_function" href="group__SingleSample.html#gab788a1e344e6956cb70a8e5e1ea4d0bd">PlaySingleSample</a>();</div>
-<div class="line"><span class="lineno"> 1180</span>            calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;</div>
-<div class="line"><span class="lineno"> 1181</span>        }</div>
-<div class="line"><span class="lineno"> 1182</span> </div>
-<div class="line"><span class="lineno"> 1183</span>        <a class="code hl_function" href="effects_8c.html#a3cf8b82d8ee857615741a7e0e04dbdf1">effects_process</a>(&amp;calculate_vector_tmp[BLOCKSIZE_counter]);</div>
+<div class="line"><span class="lineno"> 1164</span> </div>
+<div class="line"><span class="lineno"> 1165</span>        <span class="comment">// Play single sample</span></div>
+<div class="line"><span class="lineno"> 1166</span>        <span class="keywordflow">if</span>(play_single_sample_flag) {</div>
+<div class="line"><span class="lineno"> 1167</span>            <a class="code hl_function" href="group__SingleSample.html#gab788a1e344e6956cb70a8e5e1ea4d0bd">PlaySingleSample</a>();</div>
+<div class="line"><span class="lineno"> 1168</span>            calculate_vector_tmp[BLOCKSIZE_counter] += single_sample;</div>
+<div class="line"><span class="lineno"> 1169</span>        }</div>
+<div class="line"><span class="lineno"> 1170</span> </div>
+<div class="line"><span class="lineno"> 1171</span>        <a class="code hl_function" href="effects_8c.html#a3cf8b82d8ee857615741a7e0e04dbdf1">effects_process</a>(&amp;calculate_vector_tmp[BLOCKSIZE_counter]);</div>
+<div class="line"><span class="lineno"> 1172</span> </div>
+<div class="line"><span class="lineno"> 1173</span>        <span class="comment">// Keyboard processing without effects</span></div>
+<div class="line"><span class="lineno"> 1174</span>        <span class="keywordflow">if</span>(Display.KeyboardFX_ONOFF == <span class="keyword">false</span>) {</div>
+<div class="line"><span class="lineno"> 1175</span>            <a class="code hl_function" href="group__EffectProcessing.html#ga3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a>();</div>
+<div class="line"><span class="lineno"> 1176</span>            <span class="comment">// summing up all played keyboard notes</span></div>
+<div class="line"><span class="lineno"> 1177</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k= 0; k &lt; 5;k++)</div>
+<div class="line"><span class="lineno"> 1178</span>                calculate_vector_tmp[BLOCKSIZE_counter] += <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] * calculate_keyboard[k];</div>
+<div class="line"><span class="lineno"> 1179</span>        }</div>
+<div class="line"><span class="lineno"> 1180</span> </div>
+<div class="line"><span class="lineno"> 1181</span> </div>
+<div class="line"><span class="lineno"> 1182</span>        <span class="comment">// Add all values</span></div>
+<div class="line"><span class="lineno"> 1183</span>        calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] * drums_filtered + <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] * sequencer;</div>
 <div class="line"><span class="lineno"> 1184</span> </div>
-<div class="line"><span class="lineno"> 1185</span>        <span class="comment">// Keyboard processing without effects</span></div>
-<div class="line"><span class="lineno"> 1186</span>        <span class="keywordflow">if</span>(Display.KeyboardFX_ONOFF == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno"> 1187</span>            <a class="code hl_function" href="group__EffectProcessing.html#ga3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a>();</div>
-<div class="line"><span class="lineno"> 1188</span>            <span class="comment">// summing up all played keyboard notes</span></div>
-<div class="line"><span class="lineno"> 1189</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k= 0; k &lt; 5;k++)</div>
-<div class="line"><span class="lineno"> 1190</span>                calculate_vector_tmp[BLOCKSIZE_counter] += <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] * calculate_keyboard[k];</div>
-<div class="line"><span class="lineno"> 1191</span>        }</div>
+<div class="line"><span class="lineno"> 1185</span>        <span class="comment">// to make sure that the output is 0 when a new drumkit is loaded into the drum computer</span></div>
+<div class="line"><span class="lineno"> 1186</span>        <span class="keywordflow">if</span>(Display.LoadDrumkit == <span class="keyword">true</span>)</div>
+<div class="line"><span class="lineno"> 1187</span>            calculate_vector_tmp[BLOCKSIZE_counter] = 0;</div>
+<div class="line"><span class="lineno"> 1188</span> </div>
+<div class="line"><span class="lineno"> 1189</span>        <span class="comment">// Convert float to uint32 in order to make it readable for the DAC</span></div>
+<div class="line"><span class="lineno"> 1190</span>        *((uint32_t *)(&amp;calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * <a class="code hl_variable" href="signal__synthesis_8h.html#aa15347ac4d705e4e9db618dfa95640e7">Master_Volume</a> * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * <a class="code hl_variable" href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a>); <span class="comment">// +1.65 is the middle of 0-3V3</span></div>
+<div class="line"><span class="lineno"> 1191</span>    }<span class="comment">//End for-Loop</span></div>
 <div class="line"><span class="lineno"> 1192</span> </div>
 <div class="line"><span class="lineno"> 1193</span> </div>
-<div class="line"><span class="lineno"> 1194</span>        <span class="comment">// Add all values</span></div>
-<div class="line"><span class="lineno"> 1195</span>        calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] * drums_filtered + <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] * sequencer;</div>
-<div class="line"><span class="lineno"> 1196</span> </div>
-<div class="line"><span class="lineno"> 1197</span>        <span class="comment">// to make sure that the output is 0 when a new drumkit is loaded into the drum computer</span></div>
-<div class="line"><span class="lineno"> 1198</span>        <span class="keywordflow">if</span>(Display.LoadDrumkit == <span class="keyword">true</span>)</div>
-<div class="line"><span class="lineno"> 1199</span>            calculate_vector_tmp[BLOCKSIZE_counter] = 0;</div>
-<div class="line"><span class="lineno"> 1200</span> </div>
-<div class="line"><span class="lineno"> 1201</span>        <span class="comment">// Convert float to uint32 in order to make it readable for the DAC</span></div>
-<div class="line"><span class="lineno"> 1202</span>        *((uint32_t *)(&amp;calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * <a class="code hl_variable" href="signal__synthesis_8h.html#aa15347ac4d705e4e9db618dfa95640e7">Master_Volume</a> * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * <a class="code hl_variable" href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a>); <span class="comment">// +1.65 is the middle of 0-3V3</span></div>
-<div class="line"><span class="lineno"> 1203</span>    }<span class="comment">//End for-Loop</span></div>
+<div class="line"><span class="lineno"> 1194</span>}</div>
 <div class="ttc" id="aeffects_8c_html_a3cf8b82d8ee857615741a7e0e04dbdf1"><div class="ttname"><a href="effects_8c.html#a3cf8b82d8ee857615741a7e0e04dbdf1">effects_process</a></div><div class="ttdeci">void effects_process(float *calculate_value)</div><div class="ttdoc">reads the effect_order[] and activates the processing functions for the effects</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00026">effects.c:26</a></div></div>
-<div class="ttc" id="agroup__DrumComputer_html_ga08535ad247ef4e17b91bbba4b56833af"><div class="ttname"><a href="group__DrumComputer.html#ga08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a></div><div class="ttdeci">HAL_StatusTypeDef Drum_Computer_Process(void)</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00403">drum_computer.c:403</a></div></div>
+<div class="ttc" id="agroup__DrumComputer_html_ga08535ad247ef4e17b91bbba4b56833af"><div class="ttname"><a href="group__DrumComputer.html#ga08535ad247ef4e17b91bbba4b56833af">Drum_Computer_Process</a></div><div class="ttdeci">HAL_StatusTypeDef Drum_Computer_Process(void)</div><div class="ttdoc">This function processes the drumcomputer as well as the sequencer.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00403">drum_computer.c:403</a></div></div>
 <div class="ttc" id="agroup__EffectProcessing_html_ga3f7370371217adca4b93419901dc1c1f"><div class="ttname"><a href="group__EffectProcessing.html#ga3f7370371217adca4b93419901dc1c1f">keyboard_adsr_process</a></div><div class="ttdeci">void keyboard_adsr_process(void)</div><div class="ttdoc">function for the keyboard adsr processing</div><div class="ttdef"><b>Definition:</b> <a href="effects_8c_source.html#l00053">effects.c:53</a></div></div>
-<div class="ttc" id="agroup__Filter_html_gad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00337">filters.c:337</a></div></div>
+<div class="ttc" id="agroup__Filter_html_gad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdoc">This function processes the filter coefficients and so it does the actual filtering of the input samp...</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00337">filters.c:337</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga4f12a18a6cf6bdb4cf4b1f3a509f061e"><div class="ttname"><a href="group__SINLUT.html#ga4f12a18a6cf6bdb4cf4b1f3a509f061e">LUT</a></div><div class="ttdeci">const float LUT[6439]</div><div class="ttdoc">SIN-LUT, contains all values of 1/4-Sin's for the frequency from LUT_FMIN to LUT_FMAX</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00045">sinLUT.h:45</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga93f6110c104231e7959e446480c94834"><div class="ttname"><a href="group__SINLUT.html#ga93f6110c104231e7959e446480c94834">LUT_ENDINDEX</a></div><div class="ttdeci">const uint32_t LUT_ENDINDEX[73]</div><div class="ttdoc">contains all endindizies of the frequencies in the SIN-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00047">sinLUT.h:47</a></div></div>
 <div class="ttc" id="agroup__SingleSample_html_gab788a1e344e6956cb70a8e5e1ea4d0bd"><div class="ttname"><a href="group__SingleSample.html#gab788a1e344e6956cb70a8e5e1ea4d0bd">PlaySingleSample</a></div><div class="ttdeci">void PlaySingleSample(void)</div><div class="ttdoc">function to play the same sample each time it is triggerd, must be called inside Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00500">drum_computer.c:500</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_a100668ad3cefb7abc0f65f866ea508ba"><div class="ttname"><a href="signal__synthesis_8c.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a></div><div class="ttdeci">int16_t IDtoIndex(int16_t id)</div><div class="ttdoc">converts an signal ID into its Index</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00830">signal_synthesis.c:830</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_a15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="signal__synthesis_8c.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00764">signal_synthesis.c:764</a></div></div>
-<div class="ttc" id="asignal__synthesis_8c_html_a2b8c4b7d554c97fbb68f2226c8202acd"><div class="ttname"><a href="signal__synthesis_8c.html#a2b8c4b7d554c97fbb68f2226c8202acd">CalcRectSample</a></div><div class="ttdeci">float CalcRectSample(struct signal_t *signals, int index)</div><div class="ttdoc">Rectangle wave based on struct signals.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01261">signal_synthesis.c:1261</a></div></div>
-<div class="ttc" id="asignal__synthesis_8c_html_a2f9745c8cd2b522e949b4c58cfccce56"><div class="ttname"><a href="signal__synthesis_8c.html#a2f9745c8cd2b522e949b4c58cfccce56">Noise_Generator</a></div><div class="ttdeci">float Noise_Generator(void)</div><div class="ttdoc">random number generator</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01336">signal_synthesis.c:1336</a></div></div>
-<div class="ttc" id="asignal__synthesis_8c_html_abeac1ddb99c3d1374df2dc163a756072"><div class="ttname"><a href="signal__synthesis_8c.html#abeac1ddb99c3d1374df2dc163a756072">CalcTriangleSample</a></div><div class="ttdeci">float CalcTriangleSample(struct signal_t *signals, int index)</div><div class="ttdoc">Triangle wave samples based on struct signals.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01306">signal_synthesis.c:1306</a></div></div>
+<div class="ttc" id="asignal__synthesis_8c_html_a2b8c4b7d554c97fbb68f2226c8202acd"><div class="ttname"><a href="signal__synthesis_8c.html#a2b8c4b7d554c97fbb68f2226c8202acd">CalcRectSample</a></div><div class="ttdeci">float CalcRectSample(struct signal_t *signals, int index)</div><div class="ttdoc">Rectangle wave based on struct signals.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01249">signal_synthesis.c:1249</a></div></div>
+<div class="ttc" id="asignal__synthesis_8c_html_a2f9745c8cd2b522e949b4c58cfccce56"><div class="ttname"><a href="signal__synthesis_8c.html#a2f9745c8cd2b522e949b4c58cfccce56">Noise_Generator</a></div><div class="ttdeci">float Noise_Generator(void)</div><div class="ttdoc">random number generator</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01324">signal_synthesis.c:1324</a></div></div>
+<div class="ttc" id="asignal__synthesis_8c_html_abeac1ddb99c3d1374df2dc163a756072"><div class="ttname"><a href="signal__synthesis_8c.html#abeac1ddb99c3d1374df2dc163a756072">CalcTriangleSample</a></div><div class="ttdeci">float CalcTriangleSample(struct signal_t *signals, int index)</div><div class="ttdoc">Triangle wave samples based on struct signals.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l01294">signal_synthesis.c:1294</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_ac19aecb2f04b87bf170233b3236093ae"><div class="ttname"><a href="signal__synthesis_8c.html#ac19aecb2f04b87bf170233b3236093ae">maxValueDAC</a></div><div class="ttdeci">double maxValueDAC</div><div class="ttdoc">maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal_sythesis....</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00023">signal_synthesis.c:23</a></div></div>
 <div class="ttc" id="asignal__synthesis_8c_html_aff4b96bd9a6fb74a10215a54f141d06d"><div class="ttname"><a href="signal__synthesis_8c.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a></div><div class="ttdeci">void DeleteSignal(struct signal_t *signals, int16_t signal_index)</div><div class="ttdoc">deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal t...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00807">signal_synthesis.c:807</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_a0c06ec02b1329cdb21df9311f9bc3712"><div class="ttname"><a href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a></div><div class="ttdeci">float volume[4]</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00106">signal_synthesis.h:106</a></div></div>

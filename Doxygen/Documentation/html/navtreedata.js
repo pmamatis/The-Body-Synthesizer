@@ -48,7 +48,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "SPI__Connection_8c.html",
-"group__MusicNotes.html#ga2222edaa79f27840e9e26c4d0076bd8c"
+"group__LUT.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

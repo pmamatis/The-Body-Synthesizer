@@ -2,7 +2,7 @@
 \label{group__Display}\index{Display@{Display}}
 
 
-functions and variables for the display are mainly for the visual monitoring but could also be part of certain processing routines, TODO EPD Libary explanation  
+functions and variables for the display are mainly for the visual monitoring but could also be part of certain processing routines, The file is based on\+: \href{https://github.com/soonuse/epd-library-stm32/tree/master/1.54inch_e-paper}{\texttt{ https\+://github.\+com/soonuse/epd-\/library-\/stm32/tree/master/1.\+54inch\+\_\+e-\/paper}}  
 
 
 \doxysubsection*{Modules}
@@ -23,35 +23,35 @@ struct \mbox{\hyperlink{structdisplay__variables}{display\+\_\+variables}}
 \begin{DoxyCompactItemize}
 \item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga6f1e5fd55fe52c0da6ed8691a043c7e3}{Display\+\_\+\+Draw\+Drumcomputer\+Icons}} (char $\ast$S1, char $\ast$S2, char $\ast$S3, char $\ast$S4)
-\item 
+\begin{DoxyCompactList}\small\item\em This function draws the sample names of the drumkit, which is currently chosen. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gafeebe386ce2f442752742b054674b40d}{Display\+\_\+\+Load\+Drum\+Kits}} (uint8\+\_\+t Drumkit)
-\item 
+\begin{DoxyCompactList}\small\item\em This function loads the expected drumkit from the sd card. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gaeee4736127d8842a23ce57021443c5af}{DISPLAY\+\_\+\+Draw\+Drumcomputer\+Pattern\+Frame}} (uint8\+\_\+t Drumsteps)
-\item 
+\begin{DoxyCompactList}\small\item\em This function draws the frame of the drumcomputer pattern. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga2900e59099c5f0d46df7571a3e9b7352}{DISPLAY\+\_\+\+Draw\+Drumcomputer\+Pattern}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function draws the current set drumcomputer pattern for each step of each sample. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gacc64d5980c2033bd470353f22af60a7a}{DISPLAY\+\_\+\+Set\+Drumcomputer\+Step}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function fills the drumcomputer steps with color. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga7759568f4bd60f3d77a2a0e463b77b03}{DISPLAY\+\_\+\+Delete\+Drumcomputer\+Step}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function unfills the drumcomputer steps with color. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\+\_\+\+Set\+Drumcomputer\+Step\+Cursor}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function sets the current cursor position of the drumcomputer cursor. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\+\_\+\+Delete\+Drumcomputer\+Step\+Cursor}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function deletes the current cursor position of the drumcomputer cursor. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gaf6dae7f8bd4125cda81cd0a03749adf2}{Display\+\_\+\+Draw\+Sequencer\+Icons}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function draws the note names of the sequencer. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga3270139a5529761a3c6cc482e8a83367}{DISPLAY\+\_\+\+Draw\+Sequencer\+Pattern\+Frame}} (uint8\+\_\+t Drumsteps)
-\item 
+\begin{DoxyCompactList}\small\item\em This function draws the pattern frame of the sequencer. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga2f33d0a9945e16984c8e31dc9b145c01}{DISPLAY\+\_\+\+Draw\+Sequencer\+Pattern}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function draws the current set sequencer pattern for each step of each sample. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga9d7e433c8b0a75b8ffdfa1ffe817c2f1}{DISPLAY\+\_\+\+Set\+Sequencer\+Step}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function fills the sequencer steps with color. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga6b780fda00ecfb80ed28ba3a62937b11}{DISPLAY\+\_\+\+Delete\+Sequencer\+Step}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function unfills the drumcomputer steps with color. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gacb106feb27895b4c32f2cd8770842848}{DISPLAY\+\_\+\+Set\+Sequencer\+Step\+Cursor}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function sets the current cursor position of the sequencer cursor. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gab4a4b9b1639809ba234afec57b86facb}{DISPLAY\+\_\+\+Delete\+Sequencer\+Step\+Cursor}} (void)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This function deletes the current cursor position of the sequencer cursor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -348,9 +348,9 @@ struct \mbox{\hyperlink{structdisplay__variables}{display\+\_\+variables}} \mbox
 
 
 \doxysubsection{Detailed Description}
-functions and variables for the display are mainly for the visual monitoring but could also be part of certain processing routines, TODO EPD Libary explanation 
+functions and variables for the display are mainly for the visual monitoring but could also be part of certain processing routines, The file is based on\+: \href{https://github.com/soonuse/epd-library-stm32/tree/master/1.54inch_e-paper}{\texttt{ https\+://github.\+com/soonuse/epd-\/library-\/stm32/tree/master/1.\+54inch\+\_\+e-\/paper}} 
 
-TODO 
+
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{group__Display_ga7759568f4bd60f3d77a2a0e463b77b03}\label{group__Display_ga7759568f4bd60f3d77a2a0e463b77b03}} 
@@ -359,7 +359,11 @@ TODO
 \doxysubsubsection{\texorpdfstring{DISPLAY\_DeleteDrumcomputerStep()}{DISPLAY\_DeleteDrumcomputerStep()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Delete\+Drumcomputer\+Step (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function unfills the drumcomputer steps with color. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -603,7 +607,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l01641}{1641}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_DeleteDrumcomputerStepCursor()}{DISPLAY\_DeleteDrumcomputerStepCursor()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Delete\+Drumcomputer\+Step\+Cursor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function deletes the current cursor position of the drumcomputer cursor. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -753,7 +761,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02013}{2013}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_DeleteSequencerStep()}{DISPLAY\_DeleteSequencerStep()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Delete\+Sequencer\+Step (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function unfills the drumcomputer steps with color. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -943,7 +955,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02787}{2787}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_DeleteSequencerStepCursor()}{DISPLAY\_DeleteSequencerStepCursor()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Delete\+Sequencer\+Step\+Cursor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function deletes the current cursor position of the sequencer cursor. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -1063,15 +1079,19 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02966}{2966}} of file \mb
 \doxysubsubsection{\texorpdfstring{Display\_DrawDrumcomputerIcons()}{Display\_DrawDrumcomputerIcons()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status Display\+\_\+\+Draw\+Drumcomputer\+Icons (\begin{DoxyParamCaption}\item[{char $\ast$}]{S1,  }\item[{char $\ast$}]{S2,  }\item[{char $\ast$}]{S3,  }\item[{char $\ast$}]{S4 }\end{DoxyParamCaption})}
 
-TODO 
+
+
+This function draws the sample names of the drumkit, which is currently chosen. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em S1} & \\
+{\em S1} & first sample of the drumkit \\
 \hline
-{\em S2} & \\
+{\em S2} & second sample of the drumkit \\
 \hline
-{\em S3} & \\
+{\em S3} & third sample of the drumkit \\
 \hline
-{\em S4} & \\
+{\em S4} & fourth sample of the drumkit \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1107,7 +1127,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l01354}{1354}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_DrawDrumcomputerPattern()}{DISPLAY\_DrawDrumcomputerPattern()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Draw\+Drumcomputer\+Pattern (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function draws the current set drumcomputer pattern for each step of each sample. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -1170,9 +1194,13 @@ Definition at line \mbox{\hyperlink{display_8c_source_l01149}{1149}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_DrawDrumcomputerPatternFrame()}{DISPLAY\_DrawDrumcomputerPatternFrame()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Draw\+Drumcomputer\+Pattern\+Frame (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Drumsteps }\end{DoxyParamCaption})}
 
-TODO 
+
+
+This function draws the frame of the drumcomputer pattern. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em Drumsteps} & \\
+{\em Drumsteps} & number of expected drumsteps (here it is programmed static to 8, because the display is just big enough for this amount of steps) \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1217,7 +1245,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l01377}{1377}} of file \mb
 \doxysubsubsection{\texorpdfstring{Display\_DrawSequencerIcons()}{Display\_DrawSequencerIcons()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status Display\+\_\+\+Draw\+Sequencer\+Icons (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function draws the note names of the sequencer. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -1243,7 +1275,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02403}{2403}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_DrawSequencerPattern()}{DISPLAY\_DrawSequencerPattern()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Draw\+Sequencer\+Pattern (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function draws the current set sequencer pattern for each step of each sample. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -1303,9 +1339,13 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02558}{2558}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_DrawSequencerPatternFrame()}{DISPLAY\_DrawSequencerPatternFrame()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Draw\+Sequencer\+Pattern\+Frame (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Drumsteps }\end{DoxyParamCaption})}
 
-TODO 
+
+
+This function draws the pattern frame of the sequencer. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em Drumsteps} & \\
+{\em Drumsteps} & number of expected drumsteps (here it is programmed static to 8, because the display is just big enough for this amount of steps) \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1350,8 +1390,12 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02419}{2419}} of file \mb
 {\footnotesize\ttfamily Display\+\_\+\+Status Display\+\_\+\+Load\+Drum\+Kits (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Drumkit }\end{DoxyParamCaption})}
 
 
+
+This function loads the expected drumkit from the sd card. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em Drumkit} & \\
+{\em Drumkit} & expected drumkit \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1419,7 +1463,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l01202}{1202}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_SetDrumcomputerStep()}{DISPLAY\_SetDrumcomputerStep()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Set\+Drumcomputer\+Step (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function fills the drumcomputer steps with color. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -1663,7 +1711,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l01408}{1408}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_SetDrumcomputerStepCursor()}{DISPLAY\_SetDrumcomputerStepCursor()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Set\+Drumcomputer\+Step\+Cursor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function sets the current cursor position of the drumcomputer cursor. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -1813,7 +1865,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l01874}{1874}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_SetSequencerStep()}{DISPLAY\_SetSequencerStep()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Set\+Sequencer\+Step (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function fills the sequencer steps with color. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -2003,7 +2059,11 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02608}{2608}} of file \mb
 \doxysubsubsection{\texorpdfstring{DISPLAY\_SetSequencerStepCursor()}{DISPLAY\_SetSequencerStepCursor()}}
 {\footnotesize\ttfamily Display\+\_\+\+Status DISPLAY\+\_\+\+Set\+Sequencer\+Step\+Cursor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function sets the current cursor position of the sequencer cursor. 
+
+\begin{DoxyReturn}{Returns}
 Display\+\_\+\+Status 
 \end{DoxyReturn}
 
@@ -2128,7 +2188,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l02449}{2449}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00192}{192}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00193}{193}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gacf2454e730513716dff63f0732c79c29}\label{group__Display_gacf2454e730513716dff63f0732c79c29}} 
 \index{Display@{Display}!ADC2inputs@{ADC2inputs}}
@@ -2138,7 +2198,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00192}{192}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00193}{193}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00194}{194}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaec27843b59c553dd41296175ab482407}\label{group__Display_gaec27843b59c553dd41296175ab482407}} 
 \index{Display@{Display}!ADC\_FullRange@{ADC\_FullRange}}
@@ -2148,7 +2208,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00193}{193}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00199}{199}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00200}{200}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaa00991c2d8cf7d2afe284c9c9745e8e3}\label{group__Display_gaa00991c2d8cf7d2afe284c9c9745e8e3}} 
 \index{Display@{Display}!ADSR\_Attacktime@{ADSR\_Attacktime}}
@@ -2158,7 +2218,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00199}{199}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00151}{151}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00152}{152}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga545bb576aeb03f47b2edaebe42e546d8}\label{group__Display_ga545bb576aeb03f47b2edaebe42e546d8}} 
 \index{Display@{Display}!ADSR\_Decaytime@{ADSR\_Decaytime}}
@@ -2168,7 +2228,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00151}{151}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00152}{152}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00153}{153}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga87d6f7382c2dafdf6a7f8ccd9c185aaa}\label{group__Display_ga87d6f7382c2dafdf6a7f8ccd9c185aaa}} 
 \index{Display@{Display}!ADSR\_Releasetime@{ADSR\_Releasetime}}
@@ -2178,7 +2238,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00152}{152}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00155}{155}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00156}{156}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad4cbb2701ef73e02c5177230d1f98b8b}\label{group__Display_gad4cbb2701ef73e02c5177230d1f98b8b}} 
 \index{Display@{Display}!ADSR\_Sources@{ADSR\_Sources}}
@@ -2188,7 +2248,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00155}{155}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00235}{235}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00236}{236}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga7e90e33478b448c7acf1ecdd50f7d604}\label{group__Display_ga7e90e33478b448c7acf1ecdd50f7d604}} 
 \index{Display@{Display}!ADSR\_Sustainlevel@{ADSR\_Sustainlevel}}
@@ -2198,7 +2258,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00235}{235}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00154}{154}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00155}{155}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gafca53f5d85da8d6a7ec401696183f952}\label{group__Display_gafca53f5d85da8d6a7ec401696183f952}} 
 \index{Display@{Display}!ADSR\_Sustaintime@{ADSR\_Sustaintime}}
@@ -2208,7 +2268,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00154}{154}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00153}{153}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00154}{154}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaafd6dbaafb43204bbe46961ac07f3424}\label{group__Display_gaafd6dbaafb43204bbe46961ac07f3424}} 
 \index{Display@{Display}!arrow\_end\_x\_position@{arrow\_end\_x\_position}}
@@ -2218,7 +2278,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00153}{153}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00207}{207}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00208}{208}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga3ddaa2250192bd1853c2411eeee19031}\label{group__Display_ga3ddaa2250192bd1853c2411eeee19031}} 
 \index{Display@{Display}!arrow\_flag@{arrow\_flag}}
@@ -2228,7 +2288,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00207}{207}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00205}{205}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00206}{206}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaa81c58f308ac725ab8e172c6e03fa9a2}\label{group__Display_gaa81c58f308ac725ab8e172c6e03fa9a2}} 
 \index{Display@{Display}!arrow\_start\_x\_position@{arrow\_start\_x\_position}}
@@ -2238,7 +2298,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00205}{205}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00206}{206}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00207}{207}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga4e285bee09a1dd10a627b966e3c21084}\label{group__Display_ga4e285bee09a1dd10a627b966e3c21084}} 
 \index{Display@{Display}!BACK@{BACK}}
@@ -2248,7 +2308,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00206}{206}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00229}{229}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00230}{230}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaf8fd3080d7fa7a2a1321a765e056e180}\label{group__Display_gaf8fd3080d7fa7a2a1321a765e056e180}} 
 \index{Display@{Display}!BACK\_Debounce\_State@{BACK\_Debounce\_State}}
@@ -2258,7 +2318,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00229}{229}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00227}{227}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00228}{228}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga6d3452a5fb7648656ed37265284f694b}\label{group__Display_ga6d3452a5fb7648656ed37265284f694b}} 
 \index{Display@{Display}!button\_pressed\_flag@{button\_pressed\_flag}}
@@ -2268,7 +2328,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00227}{227}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00230}{230}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00231}{231}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gadba66576d36bec3b4db43d800ea2fc59}\label{group__Display_gadba66576d36bec3b4db43d800ea2fc59}} 
 \index{Display@{Display}!currentADSR@{currentADSR}}
@@ -2278,7 +2338,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00230}{230}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00156}{156}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00157}{157}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga173cfe22f2466e3e38e4330b73a17e05}\label{group__Display_ga173cfe22f2466e3e38e4330b73a17e05}} 
 \index{Display@{Display}!currentBand@{currentBand}}
@@ -2288,7 +2348,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00156}{156}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00179}{179}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00180}{180}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad1af349dda8f6d69ad695c8957a24483}\label{group__Display_gad1af349dda8f6d69ad695c8957a24483}} 
 \index{Display@{Display}!currentDistortion@{currentDistortion}}
@@ -2298,7 +2358,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00179}{179}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00163}{163}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00164}{164}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaee4294b622a038343938e7bac64c1cd0}\label{group__Display_gaee4294b622a038343938e7bac64c1cd0}} 
 \index{Display@{Display}!currentDrumcomputer@{currentDrumcomputer}}
@@ -2308,7 +2368,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00163}{163}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00270}{270}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga4bfca49137d8ddd659b172acf7283c3f}\label{group__Display_ga4bfca49137d8ddd659b172acf7283c3f}} 
 \index{Display@{Display}!CurrentDrumstep@{CurrentDrumstep}}
@@ -2318,7 +2378,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00270}{270}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00265}{265}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00266}{266}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaba8b164b764a0cf09864742f2b4ef44d}\label{group__Display_gaba8b164b764a0cf09864742f2b4ef44d}} 
 \index{Display@{Display}!CurrentNoteRow@{CurrentNoteRow}}
@@ -2328,7 +2388,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00265}{265}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00278}{278}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00279}{279}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga42889b35f147c83ba43c226daa663daf}\label{group__Display_ga42889b35f147c83ba43c226daa663daf}} 
 \index{Display@{Display}!CurrentSampleRow@{CurrentSampleRow}}
@@ -2338,7 +2398,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00278}{278}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00264}{264}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00265}{265}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga2cbbd750c9b58c166f62c97912e9c18c}\label{group__Display_ga2cbbd750c9b58c166f62c97912e9c18c}} 
 \index{Display@{Display}!currentSequencer@{currentSequencer}}
@@ -2348,7 +2408,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00264}{264}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00286}{286}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00287}{287}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad1e5845fa08abc3cfbbe391a73901b21}\label{group__Display_gad1e5845fa08abc3cfbbe391a73901b21}} 
 \index{Display@{Display}!CurrentSequencestep@{CurrentSequencestep}}
@@ -2358,7 +2418,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00286}{286}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00279}{279}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00280}{280}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga843b00f30598363dec70d17238e24f43}\label{group__Display_ga843b00f30598363dec70d17238e24f43}} 
 \index{Display@{Display}!currentTremolo@{currentTremolo}}
@@ -2368,7 +2428,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00279}{279}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00170}{170}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00171}{171}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga38df3b92cb3202cddcdc59e1a2de523a}\label{group__Display_ga38df3b92cb3202cddcdc59e1a2de523a}} 
 \index{Display@{Display}!currentVoice@{currentVoice}}
@@ -2378,7 +2438,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00170}{170}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00141}{141}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00142}{142}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaeb35cf1924ebfdf4ce31ef419641a2ec}\label{group__Display_gaeb35cf1924ebfdf4ce31ef419641a2ec}} 
 \index{Display@{Display}!currentWahWah@{currentWahWah}}
@@ -2388,7 +2448,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00141}{141}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00187}{187}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00188}{188}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga2e8bba6bac7eb77e4763555a4956cfe1}\label{group__Display_ga2e8bba6bac7eb77e4763555a4956cfe1}} 
 \index{Display@{Display}!Display@{Display}}
@@ -2398,7 +2458,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00187}{187}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00322}{322}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00323}{323}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga64a4a02cec3a4ced395e8fc8cdbacd3f}\label{group__Display_ga64a4a02cec3a4ced395e8fc8cdbacd3f}} 
 \index{Display@{Display}!Distortion\_Gain@{Distortion\_Gain}}
@@ -2408,7 +2468,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00322}{322}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00162}{162}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00163}{163}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga9fd68b4ceeea122df1d0c14a9b7bbc03}\label{group__Display_ga9fd68b4ceeea122df1d0c14a9b7bbc03}} 
 \index{Display@{Display}!Distortion\_ONOFF@{Distortion\_ONOFF}}
@@ -2418,7 +2478,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00162}{162}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00160}{160}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00161}{161}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga19922028cea582ec0f52b4259c226b13}\label{group__Display_ga19922028cea582ec0f52b4259c226b13}} 
 \index{Display@{Display}!Distortion\_Sources@{Distortion\_Sources}}
@@ -2428,7 +2488,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00160}{160}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00240}{240}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00241}{241}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gab44eb23d9f4fc7237e78287ee1070872}\label{group__Display_gab44eb23d9f4fc7237e78287ee1070872}} 
 \index{Display@{Display}!Distortion\_Type@{Distortion\_Type}}
@@ -2438,7 +2498,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00240}{240}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00161}{161}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00162}{162}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga10a8e1fb097953205a49d463a5a7b950}\label{group__Display_ga10a8e1fb097953205a49d463a5a7b950}} 
 \index{Display@{Display}!Drumcomputer\_BPMbyECG\_ONOFF@{Drumcomputer\_BPMbyECG\_ONOFF}}
@@ -2448,7 +2508,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00161}{161}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00276}{276}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00277}{277}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gadf2075fb6fbb7767d6fee4bc04c84ca6}\label{group__Display_gadf2075fb6fbb7767d6fee4bc04c84ca6}} 
 \index{Display@{Display}!Drumcomputer\_ONOFF@{Drumcomputer\_ONOFF}}
@@ -2458,7 +2518,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00276}{276}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00268}{268}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00269}{269}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga9d80f8fcc5c1d1ff7bf8f552f909b116}\label{group__Display_ga9d80f8fcc5c1d1ff7bf8f552f909b116}} 
 \index{Display@{Display}!Drumfilter\_Cutoff@{Drumfilter\_Cutoff}}
@@ -2468,7 +2528,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00268}{268}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00273}{273}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00274}{274}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad2c009a1d5837fe0a7478c102b4d1f6c}\label{group__Display_gad2c009a1d5837fe0a7478c102b4d1f6c}} 
 \index{Display@{Display}!Drumfilter\_Cutoff\_Source@{Drumfilter\_Cutoff\_Source}}
@@ -2478,7 +2538,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00273}{273}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00242}{242}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00243}{243}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga585447da2d10072d86fc967aec7677ba}\label{group__Display_ga585447da2d10072d86fc967aec7677ba}} 
 \index{Display@{Display}!Drumfilter\_Gain@{Drumfilter\_Gain}}
@@ -2488,7 +2548,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00242}{242}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00275}{275}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00276}{276}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad893aac49180c9269bc9bcdfd4ca3656}\label{group__Display_gad893aac49180c9269bc9bcdfd4ca3656}} 
 \index{Display@{Display}!Drumfilter\_ONOFF@{Drumfilter\_ONOFF}}
@@ -2498,7 +2558,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00275}{275}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00310}{310}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00311}{311}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga83bd2095b7ed3fd646f6abe5e1d13e26}\label{group__Display_ga83bd2095b7ed3fd646f6abe5e1d13e26}} 
 \index{Display@{Display}!Drumfilter\_Q@{Drumfilter\_Q}}
@@ -2508,7 +2568,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00310}{310}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00274}{274}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00275}{275}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga347dff348df5bf80fd30f06ef2de9a4c}\label{group__Display_ga347dff348df5bf80fd30f06ef2de9a4c}} 
 \index{Display@{Display}!DrumMatrix@{DrumMatrix}}
@@ -2518,7 +2578,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00274}{274}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00266}{266}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00267}{267}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga6a7dcdbaee81292e62c6b1406b0d6c4a}\label{group__Display_ga6a7dcdbaee81292e62c6b1406b0d6c4a}} 
 \index{Display@{Display}!ECG\_detectionThreshold@{ECG\_detectionThreshold}}
@@ -2528,7 +2588,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00266}{266}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00296}{296}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00297}{297}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaaffde1aa42d2f5bae1a43c1e5bd79c4a}\label{group__Display_gaaffde1aa42d2f5bae1a43c1e5bd79c4a}} 
 \index{Display@{Display}!ECG\_toggleThreshold@{ECG\_toggleThreshold}}
@@ -2538,7 +2598,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00296}{296}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00297}{297}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00298}{298}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga3531c2c37725bba4e999060c4bdc9a10}\label{group__Display_ga3531c2c37725bba4e999060c4bdc9a10}} 
 \index{Display@{Display}!EditDrums@{EditDrums}}
@@ -2548,7 +2608,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00297}{297}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00269}{269}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00270}{270}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga3565f794a6245a33b4416ce6ac38d881}\label{group__Display_ga3565f794a6245a33b4416ce6ac38d881}} 
 \index{Display@{Display}!EditSteps@{EditSteps}}
@@ -2558,7 +2618,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00269}{269}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00285}{285}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00286}{286}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga811945cc994cbb55c8d06e3e6103ba6d}\label{group__Display_ga811945cc994cbb55c8d06e3e6103ba6d}} 
 \index{Display@{Display}!EMG\_detectionThreshold@{EMG\_detectionThreshold}}
@@ -2568,7 +2628,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00285}{285}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00294}{294}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00295}{295}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga93f920ac4b69977cdefabfc186b2c3a8}\label{group__Display_ga93f920ac4b69977cdefabfc186b2c3a8}} 
 \index{Display@{Display}!EMG\_toggleThreshold@{EMG\_toggleThreshold}}
@@ -2578,7 +2638,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00294}{294}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00295}{295}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00296}{296}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga8d529b20ecb508d82200bcb105bf4923}\label{group__Display_ga8d529b20ecb508d82200bcb105bf4923}} 
 \index{Display@{Display}!ENTER@{ENTER}}
@@ -2588,7 +2648,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00295}{295}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00228}{228}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00229}{229}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gab86c493a455229da7820233a1c7bc839}\label{group__Display_gab86c493a455229da7820233a1c7bc839}} 
 \index{Display@{Display}!ENTER\_Debounce\_State@{ENTER\_Debounce\_State}}
@@ -2598,7 +2658,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00228}{228}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00226}{226}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00227}{227}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad6a341bd926ebe958318d75c8b01341a}\label{group__Display_gad6a341bd926ebe958318d75c8b01341a}} 
 \index{Display@{Display}!EQ\_Cutoff\_Sources@{EQ\_Cutoff\_Sources}}
@@ -2608,7 +2668,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00226}{226}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00237}{237}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00238}{238}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaa7444ecf44f60d19ae92e89e2555baea}\label{group__Display_gaa7444ecf44f60d19ae92e89e2555baea}} 
 \index{Display@{Display}!EQ\_Gain\_Sources@{EQ\_Gain\_Sources}}
@@ -2618,7 +2678,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00237}{237}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00238}{238}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00239}{239}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga7d0b5d5224e1735709433af92e76519e}\label{group__Display_ga7d0b5d5224e1735709433af92e76519e}} 
 \index{Display@{Display}!EQ\_Q\_factor\_Sources@{EQ\_Q\_factor\_Sources}}
@@ -2628,7 +2688,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00238}{238}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00236}{236}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00237}{237}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga1f0603ab606603b3367e793ca529ee29}\label{group__Display_ga1f0603ab606603b3367e793ca529ee29}} 
 \index{Display@{Display}!Filter\_Cutoff@{Filter\_Cutoff}}
@@ -2638,7 +2698,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00236}{236}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00176}{176}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00177}{177}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gacd5b3e68d7106d8514be30452ed3d8a1}\label{group__Display_gacd5b3e68d7106d8514be30452ed3d8a1}} 
 \index{Display@{Display}!Filter\_Gain@{Filter\_Gain}}
@@ -2648,7 +2708,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00176}{176}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00178}{178}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00179}{179}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga1b13f9cd44c57bf3735feaec3d57882b}\label{group__Display_ga1b13f9cd44c57bf3735feaec3d57882b}} 
 \index{Display@{Display}!Filter\_ONOFF@{Filter\_ONOFF}}
@@ -2658,7 +2718,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00178}{178}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00175}{175}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00176}{176}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga6e86a093f01faab0ff50a97278e6593a}\label{group__Display_ga6e86a093f01faab0ff50a97278e6593a}} 
 \index{Display@{Display}!Filter\_Q@{Filter\_Q}}
@@ -2668,7 +2728,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00175}{175}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00177}{177}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00178}{178}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga187db8dd26d625df1599829be553fa4c}\label{group__Display_ga187db8dd26d625df1599829be553fa4c}} 
 \index{Display@{Display}!GyroResetPreset@{GyroResetPreset}}
@@ -2678,7 +2738,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00177}{177}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00313}{313}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00314}{314}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga8ab1f57f123e3931d9517b99ef33a475}\label{group__Display_ga8ab1f57f123e3931d9517b99ef33a475}} 
 \index{Display@{Display}!JoystickMiddle@{JoystickMiddle}}
@@ -2688,7 +2748,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00313}{313}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00196}{196}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00197}{197}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga040946f11f54cfc4fa4267245f1b1b20}\label{group__Display_ga040946f11f54cfc4fa4267245f1b1b20}} 
 \index{Display@{Display}!JoystickParameterPosition@{JoystickParameterPosition}}
@@ -2698,7 +2758,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00196}{196}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00202}{202}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00203}{203}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gab7f34bb70150b7e5982c54fac118f2f9}\label{group__Display_gab7f34bb70150b7e5982c54fac118f2f9}} 
 \index{Display@{Display}!Keyboard\_Octave@{Keyboard\_Octave}}
@@ -2708,7 +2768,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00202}{202}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00131}{131}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00132}{132}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gae14b098a33d8c81f292fb86b173fba5d}\label{group__Display_gae14b098a33d8c81f292fb86b173fba5d}} 
 \index{Display@{Display}!KeyboardFX\_ONOFF@{KeyboardFX\_ONOFF}}
@@ -2718,7 +2778,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00131}{131}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00157}{157}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00158}{158}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga700ea6efd77cbe7df0acf0efd82c0fe7}\label{group__Display_ga700ea6efd77cbe7df0acf0efd82c0fe7}} 
 \index{Display@{Display}!KeyNote@{KeyNote}}
@@ -2728,7 +2788,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00157}{157}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00300}{300}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00301}{301}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga4e61ccb877929b3a6e8cf52160411dde}\label{group__Display_ga4e61ccb877929b3a6e8cf52160411dde}} 
 \index{Display@{Display}!KeyNoteIndex@{KeyNoteIndex}}
@@ -2738,7 +2798,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00300}{300}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00301}{301}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00302}{302}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaf48dbc132e243286ff86e34a30d929f0}\label{group__Display_gaf48dbc132e243286ff86e34a30d929f0}} 
 \index{Display@{Display}!last\_Poti@{last\_Poti}}
@@ -2748,7 +2808,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00301}{301}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00219}{219}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00220}{220}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaa235ce63d28ad58bfb45c2ada31f5ca3}\label{group__Display_gaa235ce63d28ad58bfb45c2ada31f5ca3}} 
 \index{Display@{Display}!last\_Sequencer\_Noteindex@{last\_Sequencer\_Noteindex}}
@@ -2758,7 +2818,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00219}{219}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00288}{288}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00289}{289}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaaaa0330701df0c367d74fd7e968a6d99}\label{group__Display_gaaaa0330701df0c367d74fd7e968a6d99}} 
 \index{Display@{Display}!last\_Sequencer\_Octave@{last\_Sequencer\_Octave}}
@@ -2768,7 +2828,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00288}{288}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00283}{283}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00284}{284}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaca2b072c8fc751b1a37ca48c412018e4}\label{group__Display_gaca2b072c8fc751b1a37ca48c412018e4}} 
 \index{Display@{Display}!last\_Tremolo\_ONOFF@{last\_Tremolo\_ONOFF}}
@@ -2778,7 +2838,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00283}{283}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00167}{167}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00168}{168}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga5fddef089d52227724ccdd72bab365b9}\label{group__Display_ga5fddef089d52227724ccdd72bab365b9}} 
 \index{Display@{Display}!last\_Tremolo\_Rate\_Index@{last\_Tremolo\_Rate\_Index}}
@@ -2788,7 +2848,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00167}{167}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00172}{172}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00173}{173}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad9af6fa26cc62898fd49a41a56b37cd0}\label{group__Display_gad9af6fa26cc62898fd49a41a56b37cd0}} 
 \index{Display@{Display}!last\_Voices\_Note@{last\_Voices\_Note}}
@@ -2798,7 +2858,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00172}{172}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00137}{137}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00138}{138}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga0ec12c6ec86484924b1db9659b4686e5}\label{group__Display_ga0ec12c6ec86484924b1db9659b4686e5}} 
 \index{Display@{Display}!last\_Voices\_Noteindex@{last\_Voices\_Noteindex}}
@@ -2808,7 +2868,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00137}{137}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00143}{143}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00144}{144}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga636974f6ac5f78e6f8b2637ac2b578d4}\label{group__Display_ga636974f6ac5f78e6f8b2637ac2b578d4}} 
 \index{Display@{Display}!last\_Voices\_Octave@{last\_Voices\_Octave}}
@@ -2818,7 +2878,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00143}{143}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00139}{139}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00140}{140}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga43cf406429d413b3344787f0cd6d2f57}\label{group__Display_ga43cf406429d413b3344787f0cd6d2f57}} 
 \index{Display@{Display}!last\_WahWah\_LFOfreq\_Index@{last\_WahWah\_LFOfreq\_Index}}
@@ -2828,7 +2888,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00139}{139}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00189}{189}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00190}{190}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga7cf75aa7fc1ce43fed4699e863131750}\label{group__Display_ga7cf75aa7fc1ce43fed4699e863131750}} 
 \index{Display@{Display}!LoadDrumkit@{LoadDrumkit}}
@@ -2838,7 +2898,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00189}{189}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00272}{272}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00273}{273}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaa35d69d1eef6464ad5668ff088961059}\label{group__Display_gaa35d69d1eef6464ad5668ff088961059}} 
 \index{Display@{Display}!LowerLimit@{LowerLimit}}
@@ -2848,7 +2908,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00272}{272}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00197}{197}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00198}{198}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gade735c9e52ca586e4ae90213b1030ffe}\label{group__Display_gade735c9e52ca586e4ae90213b1030ffe}} 
 \index{Display@{Display}!max\_parameter@{max\_parameter}}
@@ -2858,7 +2918,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00197}{197}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00216}{216}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00217}{217}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga0bc4ca9ee58f52dd45fd77c741f45387}\label{group__Display_ga0bc4ca9ee58f52dd45fd77c741f45387}} 
 \index{Display@{Display}!Noise\_ONOFF@{Noise\_ONOFF}}
@@ -2868,7 +2928,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00216}{216}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00147}{147}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00148}{148}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga151b21bec892d202c9406fbc992e4fc8}\label{group__Display_ga151b21bec892d202c9406fbc992e4fc8}} 
 \index{Display@{Display}!Noise\_Volume@{Noise\_Volume}}
@@ -2878,7 +2938,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00147}{147}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00148}{148}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00149}{149}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaca0bd11065c9a86d7804b3e6dd2e49cf}\label{group__Display_gaca0bd11065c9a86d7804b3e6dd2e49cf}} 
 \index{Display@{Display}!page\_max@{page\_max}}
@@ -2888,7 +2948,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00148}{148}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00214}{214}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00215}{215}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaa8735778e7350fe50296630e8dd4f6fd}\label{group__Display_gaa8735778e7350fe50296630e8dd4f6fd}} 
 \index{Display@{Display}!page\_min@{page\_min}}
@@ -2898,7 +2958,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00214}{214}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00215}{215}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00216}{216}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga707ddfa331540cc317057b4adf13b80a}\label{group__Display_ga707ddfa331540cc317057b4adf13b80a}} 
 \index{Display@{Display}!pagePosition@{pagePosition}}
@@ -2908,7 +2968,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00215}{215}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00213}{213}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00214}{214}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga76c3428f76e24494c40e3a5df55fdba9}\label{group__Display_ga76c3428f76e24494c40e3a5df55fdba9}} 
 \index{Display@{Display}!PlaySingleSample\_ONOFF@{PlaySingleSample\_ONOFF}}
@@ -2918,7 +2978,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00213}{213}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00305}{305}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00306}{306}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gacbef83726df8a544d408891123e4d852}\label{group__Display_gacbef83726df8a544d408891123e4d852}} 
 \index{Display@{Display}!poti\_moved@{poti\_moved}}
@@ -2928,7 +2988,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00305}{305}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00221}{221}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00222}{222}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga1634057bc78e9cd43e00c5e06a047133}\label{group__Display_ga1634057bc78e9cd43e00c5e06a047133}} 
 \index{Display@{Display}!Poti\_Threshold@{Poti\_Threshold}}
@@ -2938,7 +2998,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00221}{221}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00220}{220}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00221}{221}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga2376888314f5a1d0cedb78c1756e8b2f}\label{group__Display_ga2376888314f5a1d0cedb78c1756e8b2f}} 
 \index{Display@{Display}!PotiMean@{PotiMean}}
@@ -2948,7 +3008,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00220}{220}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00223}{223}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00224}{224}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga6a7a0497d72770181a25afa617d429a5}\label{group__Display_ga6a7a0497d72770181a25afa617d429a5}} 
 \index{Display@{Display}!PotiMean\_counter@{PotiMean\_counter}}
@@ -2958,7 +3018,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00223}{223}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00224}{224}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00225}{225}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gac943d41c336ab28c78b37b53390702bf}\label{group__Display_gac943d41c336ab28c78b37b53390702bf}} 
 \index{Display@{Display}!PotiMean\_tmp@{PotiMean\_tmp}}
@@ -2968,7 +3028,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00224}{224}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00222}{222}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00223}{223}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga46df8fc80719e4194d1a22d3a1670d2d}\label{group__Display_ga46df8fc80719e4194d1a22d3a1670d2d}} 
 \index{Display@{Display}!Reset@{Reset}}
@@ -2978,7 +3038,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00222}{222}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00316}{316}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00317}{317}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaaddb60ba4fb230fc195bbb5a9c2538f1}\label{group__Display_gaaddb60ba4fb230fc195bbb5a9c2538f1}} 
 \index{Display@{Display}!row\_start\_x\_position@{row\_start\_x\_position}}
@@ -2988,7 +3048,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00316}{316}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00210}{210}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00211}{211}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga8660518f0e20c229f4b92e99f39012f7}\label{group__Display_ga8660518f0e20c229f4b92e99f39012f7}} 
 \index{Display@{Display}!sample1@{sample1}}
@@ -2998,7 +3058,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00210}{210}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00272}{272}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga95993a1410c3adfb25d942372c195a41}\label{group__Display_ga95993a1410c3adfb25d942372c195a41}} 
 \index{Display@{Display}!sample2@{sample2}}
@@ -3008,7 +3068,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00272}{272}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaf5e33f1fb42767a99642a0e1e86c59cd}\label{group__Display_gaf5e33f1fb42767a99642a0e1e86c59cd}} 
 \index{Display@{Display}!sample3@{sample3}}
@@ -3018,7 +3078,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00272}{272}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga0973df2c9499514ff1c3a9d76a73398d}\label{group__Display_ga0973df2c9499514ff1c3a9d76a73398d}} 
 \index{Display@{Display}!sample4@{sample4}}
@@ -3028,7 +3088,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00272}{272}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga5faef2fe84ee2bbf8c832853d6d3b66b}\label{group__Display_ga5faef2fe84ee2bbf8c832853d6d3b66b}} 
 \index{Display@{Display}!ScaleMode@{ScaleMode}}
@@ -3038,7 +3098,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00271}{271}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00302}{302}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00303}{303}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaa922343aa931b5187658c6747bc384e8}\label{group__Display_gaa922343aa931b5187658c6747bc384e8}} 
 \index{Display@{Display}!Sequencer\_Note@{Sequencer\_Note}}
@@ -3048,7 +3108,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00302}{302}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00281}{281}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00282}{282}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga7d5fa81deade46054ba3ffde00368170}\label{group__Display_ga7d5fa81deade46054ba3ffde00368170}} 
 \index{Display@{Display}!Sequencer\_Noteindex@{Sequencer\_Noteindex}}
@@ -3058,7 +3118,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00281}{281}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00287}{287}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00288}{288}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad8f1b954205bc06229c403e2c9eb877c}\label{group__Display_gad8f1b954205bc06229c403e2c9eb877c}} 
 \index{Display@{Display}!Sequencer\_Octave@{Sequencer\_Octave}}
@@ -3068,7 +3128,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00287}{287}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00282}{282}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00283}{283}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga7afaac1634c66a1e09937d1c5c1ad3c9}\label{group__Display_ga7afaac1634c66a1e09937d1c5c1ad3c9}} 
 \index{Display@{Display}!Sequencer\_ONOFF@{Sequencer\_ONOFF}}
@@ -3078,7 +3138,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00282}{282}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00280}{280}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00281}{281}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad128c514243acd8e7e333ebbd867329b}\label{group__Display_gad128c514243acd8e7e333ebbd867329b}} 
 \index{Display@{Display}!SequencerMatrix@{SequencerMatrix}}
@@ -3088,7 +3148,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00280}{280}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00284}{284}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00285}{285}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga748ce493d21a52a0522b2c2353cd5175}\label{group__Display_ga748ce493d21a52a0522b2c2353cd5175}} 
 \index{Display@{Display}!SetPreset@{SetPreset}}
@@ -3098,7 +3158,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00284}{284}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00319}{319}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00320}{320}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga211b041ad6e95d51ed63ec365b3e52ad}\label{group__Display_ga211b041ad6e95d51ed63ec365b3e52ad}} 
 \index{Display@{Display}!SingleSample@{SingleSample}}
@@ -3108,7 +3168,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00319}{319}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00307}{307}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00308}{308}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaafb85aaaab1b21ab7694570f1274accf}\label{group__Display_gaafb85aaaab1b21ab7694570f1274accf}} 
 \index{Display@{Display}!SingleSampleKit@{SingleSampleKit}}
@@ -3118,7 +3178,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00307}{307}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00306}{306}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00307}{307}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga3af721393d34a1e46a5505f97b3d1532}\label{group__Display_ga3af721393d34a1e46a5505f97b3d1532}} 
 \index{Display@{Display}!source\_names@{source\_names}}
@@ -3128,7 +3188,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00306}{306}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00128}{128}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00129}{129}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga689f328b9a3d449f906c464a79824ff6}\label{group__Display_ga689f328b9a3d449f906c464a79824ff6}} 
 \index{Display@{Display}!Tremolo\_Depth@{Tremolo\_Depth}}
@@ -3138,7 +3198,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00128}{128}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00169}{169}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00170}{170}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gac92c964eb4fe11c216114f5a77cede1d}\label{group__Display_gac92c964eb4fe11c216114f5a77cede1d}} 
 \index{Display@{Display}!Tremolo\_ONOFF@{Tremolo\_ONOFF}}
@@ -3148,7 +3208,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00169}{169}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00166}{166}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00167}{167}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gafcb4058252e43be74c729528e56c85c7}\label{group__Display_gafcb4058252e43be74c729528e56c85c7}} 
 \index{Display@{Display}!Tremolo\_Rate@{Tremolo\_Rate}}
@@ -3158,7 +3218,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00166}{166}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00168}{168}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00169}{169}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga1dba52e321446218a639f7841f53c4d6}\label{group__Display_ga1dba52e321446218a639f7841f53c4d6}} 
 \index{Display@{Display}!Tremolo\_Rate\_Index@{Tremolo\_Rate\_Index}}
@@ -3168,7 +3228,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00168}{168}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00171}{171}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00172}{172}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gac8a42a3eed5ab2f60a96bfea132e9538}\label{group__Display_gac8a42a3eed5ab2f60a96bfea132e9538}} 
 \index{Display@{Display}!Tremolo\_Sources@{Tremolo\_Sources}}
@@ -3178,7 +3238,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00171}{171}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00241}{241}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00242}{242}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad28e17025ef2b41b95eb3ed71f00b03f}\label{group__Display_gad28e17025ef2b41b95eb3ed71f00b03f}} 
 \index{Display@{Display}!UpdateDisplay@{UpdateDisplay}}
@@ -3188,7 +3248,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00241}{241}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00267}{267}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00268}{268}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gae451ad25a9002deace4aeb5a300f7c32}\label{group__Display_gae451ad25a9002deace4aeb5a300f7c32}} 
 \index{Display@{Display}!UpperLimit@{UpperLimit}}
@@ -3198,7 +3258,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00267}{267}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00198}{198}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00199}{199}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaea20d785a90c484a2f9d13e30112b4db}\label{group__Display_gaea20d785a90c484a2f9d13e30112b4db}} 
 \index{Display@{Display}!value\_end\_x\_position@{value\_end\_x\_position}}
@@ -3208,7 +3268,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00198}{198}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00209}{209}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00210}{210}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gafabac047afdf7ee0068930bd7abfc928}\label{group__Display_gafabac047afdf7ee0068930bd7abfc928}} 
 \index{Display@{Display}!value\_start\_x\_position@{value\_start\_x\_position}}
@@ -3218,7 +3278,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00209}{209}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00208}{208}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00209}{209}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gae18500d728c25d5162f2f7e87ebb1b2a}\label{group__Display_gae18500d728c25d5162f2f7e87ebb1b2a}} 
 \index{Display@{Display}!value\_str\_adsr\_overview@{value\_str\_adsr\_overview}}
@@ -3228,7 +3288,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00208}{208}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00247}{247}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00248}{248}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga130a1b48ef48a789f77a126642412675}\label{group__Display_ga130a1b48ef48a789f77a126642412675}} 
 \index{Display@{Display}!value\_str\_adsr\_settings@{value\_str\_adsr\_settings}}
@@ -3238,7 +3298,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00247}{247}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00248}{248}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00249}{249}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gac21ba9d2ce14b0b385f0b131045f5257}\label{group__Display_gac21ba9d2ce14b0b385f0b131045f5257}} 
 \index{Display@{Display}!value\_str\_distortion@{value\_str\_distortion}}
@@ -3248,7 +3308,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00248}{248}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00252}{252}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00253}{253}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga7dc370f663e2df1abd341c306c36f7ea}\label{group__Display_ga7dc370f663e2df1abd341c306c36f7ea}} 
 \index{Display@{Display}!value\_str\_drumcomputer@{value\_str\_drumcomputer}}
@@ -3258,7 +3318,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00252}{252}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00257}{257}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00258}{258}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaf9f3ca1213eeaac8ecceb4ba8baaae41}\label{group__Display_gaf9f3ca1213eeaac8ecceb4ba8baaae41}} 
 \index{Display@{Display}!value\_str\_ecg@{value\_str\_ecg}}
@@ -3268,7 +3328,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00257}{257}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00260}{260}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00261}{261}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga201efd42f98c4c5b31589099ae1f8ec0}\label{group__Display_ga201efd42f98c4c5b31589099ae1f8ec0}} 
 \index{Display@{Display}!value\_str\_emg@{value\_str\_emg}}
@@ -3278,7 +3338,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00260}{260}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00259}{259}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00260}{260}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gac79c8500ff18b337c2f6ae3b0e31cce1}\label{group__Display_gac79c8500ff18b337c2f6ae3b0e31cce1}} 
 \index{Display@{Display}!value\_str\_equalizer\_overview@{value\_str\_equalizer\_overview}}
@@ -3288,7 +3348,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00259}{259}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00249}{249}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00250}{250}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaccd607c272539c38866f8bcfcc752a97}\label{group__Display_gaccd607c272539c38866f8bcfcc752a97}} 
 \index{Display@{Display}!value\_str\_equalizer\_settings@{value\_str\_equalizer\_settings}}
@@ -3298,7 +3358,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00249}{249}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00250}{250}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00251}{251}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga7452f1bab9e04cbec9317304b61b5fc0}\label{group__Display_ga7452f1bab9e04cbec9317304b61b5fc0}} 
 \index{Display@{Display}!value\_str\_keyandmode@{value\_str\_keyandmode}}
@@ -3308,7 +3368,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00250}{250}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00261}{261}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00262}{262}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaac73087416611fa68a68d08a4bd864cc}\label{group__Display_gaac73087416611fa68a68d08a4bd864cc}} 
 \index{Display@{Display}!value\_str\_keyboardmode@{value\_str\_keyboardmode}}
@@ -3318,7 +3378,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00261}{261}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00256}{256}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00257}{257}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad2ccfd64aba5d3b501a4d42d135225c0}\label{group__Display_gad2ccfd64aba5d3b501a4d42d135225c0}} 
 \index{Display@{Display}!value\_str\_presets@{value\_str\_presets}}
@@ -3328,7 +3388,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00256}{256}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00255}{255}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00256}{256}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga16b3e073b096ea72196c9265ab8e297d}\label{group__Display_ga16b3e073b096ea72196c9265ab8e297d}} 
 \index{Display@{Display}!value\_str\_sequencer@{value\_str\_sequencer}}
@@ -3338,7 +3398,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00255}{255}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00258}{258}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00259}{259}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad2961132646159496db60828b05ee31e}\label{group__Display_gad2961132646159496db60828b05ee31e}} 
 \index{Display@{Display}!value\_str\_tremolo@{value\_str\_tremolo}}
@@ -3348,7 +3408,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00258}{258}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00253}{253}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00254}{254}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gad6445fb63206bae8f9bdf0857171e1e4}\label{group__Display_gad6445fb63206bae8f9bdf0857171e1e4}} 
 \index{Display@{Display}!value\_str\_voices\_overview@{value\_str\_voices\_overview}}
@@ -3358,7 +3418,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00253}{253}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00245}{245}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00246}{246}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gac06c448e30deb2f754833ae5b04503e0}\label{group__Display_gac06c448e30deb2f754833ae5b04503e0}} 
 \index{Display@{Display}!value\_str\_voices\_settings@{value\_str\_voices\_settings}}
@@ -3368,7 +3428,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00245}{245}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00246}{246}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00247}{247}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga88b9e96063c7181430d38b4d70024ce4}\label{group__Display_ga88b9e96063c7181430d38b4d70024ce4}} 
 \index{Display@{Display}!value\_str\_volume@{value\_str\_volume}}
@@ -3378,7 +3438,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00246}{246}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00254}{254}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00255}{255}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga6d6e7fe1e759453a639038709826282b}\label{group__Display_ga6d6e7fe1e759453a639038709826282b}} 
 \index{Display@{Display}!value\_str\_wahwah@{value\_str\_wahwah}}
@@ -3388,7 +3448,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00254}{254}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00251}{251}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00252}{252}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga534eb9bcac2bd75548a8a6868939daf8}\label{group__Display_ga534eb9bcac2bd75548a8a6868939daf8}} 
 \index{Display@{Display}!Voice\_Note\_Sources@{Voice\_Note\_Sources}}
@@ -3398,7 +3458,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00251}{251}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00233}{233}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00234}{234}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gabfb8e15b6caec4bffb8eb0e5c838925e}\label{group__Display_gabfb8e15b6caec4bffb8eb0e5c838925e}} 
 \index{Display@{Display}!Voice\_Octave\_Sources@{Voice\_Octave\_Sources}}
@@ -3408,7 +3468,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00233}{233}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00234}{234}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00235}{235}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga4a340add0009670aa11b8cdd866b0e8b}\label{group__Display_ga4a340add0009670aa11b8cdd866b0e8b}} 
 \index{Display@{Display}!Voices\_Created@{Voices\_Created}}
@@ -3418,7 +3478,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00234}{234}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00140}{140}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00141}{141}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga2530926051d45c9d256a1a9bbf10d52e}\label{group__Display_ga2530926051d45c9d256a1a9bbf10d52e}} 
 \index{Display@{Display}!Voices\_Kind@{Voices\_Kind}}
@@ -3428,7 +3488,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00140}{140}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00144}{144}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00145}{145}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gada26d72f50f66591ca21a4ede0196e32}\label{group__Display_gada26d72f50f66591ca21a4ede0196e32}} 
 \index{Display@{Display}!Voices\_Note@{Voices\_Note}}
@@ -3438,7 +3498,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00144}{144}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00136}{136}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00137}{137}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga75b1f78eb51610407958e5dab832eb22}\label{group__Display_ga75b1f78eb51610407958e5dab832eb22}} 
 \index{Display@{Display}!Voices\_Noteindex@{Voices\_Noteindex}}
@@ -3448,7 +3508,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00136}{136}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00142}{142}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00143}{143}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga5a25faac8a39535d419e9f9bfbe7e5eb}\label{group__Display_ga5a25faac8a39535d419e9f9bfbe7e5eb}} 
 \index{Display@{Display}!Voices\_Octave@{Voices\_Octave}}
@@ -3458,7 +3518,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00142}{142}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00138}{138}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00139}{139}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga4ea0af12e54f40feebad719662ebca5c}\label{group__Display_ga4ea0af12e54f40feebad719662ebca5c}} 
 \index{Display@{Display}!Voices\_ONOFF@{Voices\_ONOFF}}
@@ -3468,7 +3528,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00138}{138}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00135}{135}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00136}{136}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gae4136fc2afc0d44f7084f9ff9d7367b7}\label{group__Display_gae4136fc2afc0d44f7084f9ff9d7367b7}} 
 \index{Display@{Display}!VRx@{VRx}}
@@ -3478,7 +3538,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00135}{135}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00200}{200}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00201}{201}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gadec3d55b70c119b87efbcd52d63660a8}\label{group__Display_gadec3d55b70c119b87efbcd52d63660a8}} 
 \index{Display@{Display}!VRy@{VRy}}
@@ -3488,7 +3548,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00200}{200}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00201}{201}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00202}{202}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga23bbff3939c987916f47482f165757bc}\label{group__Display_ga23bbff3939c987916f47482f165757bc}} 
 \index{Display@{Display}!WahWah\_LFOfreq@{WahWah\_LFOfreq}}
@@ -3498,7 +3558,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00201}{201}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00183}{183}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00184}{184}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gab180e628d725f477f57c225c14b7bda2}\label{group__Display_gab180e628d725f477f57c225c14b7bda2}} 
 \index{Display@{Display}!WahWah\_LFOfreq\_Index@{WahWah\_LFOfreq\_Index}}
@@ -3508,7 +3568,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00183}{183}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00188}{188}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00189}{189}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga08851eebc3e27a6840ecfa29bf2cc80d}\label{group__Display_ga08851eebc3e27a6840ecfa29bf2cc80d}} 
 \index{Display@{Display}!WahWah\_MidFreq@{WahWah\_MidFreq}}
@@ -3518,7 +3578,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00188}{188}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00185}{185}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00186}{186}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga57c5c9189cd514b4c630936b7de0def9}\label{group__Display_ga57c5c9189cd514b4c630936b7de0def9}} 
 \index{Display@{Display}!WahWah\_Mode@{WahWah\_Mode}}
@@ -3528,7 +3588,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00185}{185}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00291}{291}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00292}{292}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaf9c06ef59fd4f820fde7b0ebcae6414d}\label{group__Display_gaf9c06ef59fd4f820fde7b0ebcae6414d}} 
 \index{Display@{Display}!WahWah\_ONOFF@{WahWah\_ONOFF}}
@@ -3538,7 +3598,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00291}{291}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00182}{182}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00183}{183}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_ga256a235aed086fa86bd8fe3fde41b47e}\label{group__Display_ga256a235aed086fa86bd8fe3fde41b47e}} 
 \index{Display@{Display}!WahWah\_Q@{WahWah\_Q}}
@@ -3548,7 +3608,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00182}{182}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00186}{186}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00187}{187}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gaf666ce5f08620b7720495bd78c6fe13c}\label{group__Display_gaf666ce5f08620b7720495bd78c6fe13c}} 
 \index{Display@{Display}!WahWah\_Range@{WahWah\_Range}}
@@ -3558,7 +3618,7 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00186}{186}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00184}{184}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00185}{185}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 
 \mbox{\Hypertarget{group__Display_gab319e9dae86febb785a7bf880b4631a3}\label{group__Display_gab319e9dae86febb785a7bf880b4631a3}} 
 \index{Display@{Display}!WahWah\_Sources@{WahWah\_Sources}}
@@ -3568,5 +3628,5 @@ Definition at line \mbox{\hyperlink{display_8h_source_l00184}{184}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{display_8h_source_l00239}{239}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
+Definition at line \mbox{\hyperlink{display_8h_source_l00240}{240}} of file \mbox{\hyperlink{display_8h_source}{display.\+h}}.
 

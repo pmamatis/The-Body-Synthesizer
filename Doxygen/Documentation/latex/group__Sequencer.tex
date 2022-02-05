@@ -9,9 +9,9 @@
 \begin{DoxyCompactItemize}
 \item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}{Sequencer\+\_\+\+Reset}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em This function resets the sequencer to its initial state. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\+\_\+\+ADSR\+\_\+\+Init}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$env)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em initializes the variables of the sequencer ADSR \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,9 +43,13 @@ uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_gaa9cc0ac2c5813c64e55e66d728074d
 \doxysubsubsection{\texorpdfstring{Sequencer\_ADSR\_Init()}{Sequencer\_ADSR\_Init()}}
 {\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def Sequencer\+\_\+\+ADSR\+\_\+\+Init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$}]{env }\end{DoxyParamCaption})}
 
-TODO 
+
+
+initializes the variables of the sequencer ADSR 
+
+
 \begin{DoxyParams}{Parameters}
-{\em env} & \\
+{\em env} & struct of each ADSR of each sequencer note \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -81,7 +85,11 @@ Definition at line \mbox{\hyperlink{drum__computer_8c_source_l00019}{19}} of fil
 \doxysubsubsection{\texorpdfstring{Sequencer\_Reset()}{Sequencer\_Reset()}}
 {\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def Sequencer\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-TODO \begin{DoxyReturn}{Returns}
+
+
+This function resets the sequencer to its initial state. 
+
+\begin{DoxyReturn}{Returns}
 HAL\+\_\+\+Status\+Type\+Def 
 \end{DoxyReturn}
 

@@ -160,18 +160,6 @@ void \mbox{\hyperlink{main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Ha
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-bool \mbox{\hyperlink{main_8h_a8d1dea1ac632b4de184dc89ffeae0d6e}{process\+\_\+trem}}
-\item 
-bool \mbox{\hyperlink{main_8h_a88e23f653b56a7cff7cfca3c784afccc}{process\+\_\+dist}}
-\item 
-bool \mbox{\hyperlink{main_8h_a67ad01af80132d0315ef5e8dc67f491c}{process\+\_\+dist\+\_\+soft}}
-\item 
-bool \mbox{\hyperlink{main_8h_a8a98a88c04c3d463983e1adb2afc0a2f}{process\+\_\+dist\+\_\+hard}}
-\item 
-bool \mbox{\hyperlink{main_8h_a9b97de57fe0687326fe102aa7e56ec9f}{process\+\_\+adsr}}
-\item 
-bool \mbox{\hyperlink{main_8h_ad49aebdd66fd025ba9ba9de3306caf1a}{process\+\_\+filter}}
-\item 
 float \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\+\_\+vector1}} \mbox{[}\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}\mbox{]}
 \begin{DoxyCompactList}\small\item\em DAC output array. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{main_8h_a627887a9c76b96322bab7fab5acbbfdc}{calculate\+\_\+vector2}} \mbox{[}\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}\mbox{]}
@@ -808,14 +796,14 @@ enum for DMA Output buffer position
 
 
 
-Definition at line \mbox{\hyperlink{main_8h_source_l00165}{165}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
+Definition at line \mbox{\hyperlink{main_8h_source_l00158}{158}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00165                                \{}
-\DoxyCodeLine{00166     HALF\_BLOCK = 0,}
-\DoxyCodeLine{00167     FULL\_BLOCK}
-\DoxyCodeLine{00168 \};}
+\DoxyCodeLine{00158                                \{}
+\DoxyCodeLine{00159     HALF\_BLOCK = 0,}
+\DoxyCodeLine{00160     FULL\_BLOCK}
+\DoxyCodeLine{00161 \};}
 
 \end{DoxyCode}
 
@@ -866,7 +854,7 @@ DAC output array.
 DAC output array. Before the content of this array is given to the DAC, all calculations are made on this array too ~\newline
  
 
-Definition at line \mbox{\hyperlink{main_8h_source_l00158}{158}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
+Definition at line \mbox{\hyperlink{main_8h_source_l00151}{151}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
 
 \mbox{\Hypertarget{main_8h_a627887a9c76b96322bab7fab5acbbfdc}\label{main_8h_a627887a9c76b96322bab7fab5acbbfdc}} 
 \index{main.h@{main.h}!calculate\_vector2@{calculate\_vector2}}
@@ -876,7 +864,7 @@ Definition at line \mbox{\hyperlink{main_8h_source_l00158}{158}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{main_8h_source_l00159}{159}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
+Definition at line \mbox{\hyperlink{main_8h_source_l00152}{152}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
 
 \mbox{\Hypertarget{main_8h_a69314a8057e0309d967d222b7703d013}\label{main_8h_a69314a8057e0309d967d222b7703d013}} 
 \index{main.h@{main.h}!effect\_LFO@{effect\_LFO}}
@@ -886,65 +874,5 @@ Definition at line \mbox{\hyperlink{main_8h_source_l00159}{159}} of file \mbox{\
 
 Array for the LFO(low frequency oscillator) 
 
-Definition at line \mbox{\hyperlink{main_8h_source_l00162}{162}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
-
-\mbox{\Hypertarget{main_8h_a9b97de57fe0687326fe102aa7e56ec9f}\label{main_8h_a9b97de57fe0687326fe102aa7e56ec9f}} 
-\index{main.h@{main.h}!process\_adsr@{process\_adsr}}
-\index{process\_adsr@{process\_adsr}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{process\_adsr}{process\_adsr}}
-{\footnotesize\ttfamily bool process\+\_\+adsr}
-
-
-
-Definition at line \mbox{\hyperlink{main_8h_source_l00153}{153}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
-
-\mbox{\Hypertarget{main_8h_a88e23f653b56a7cff7cfca3c784afccc}\label{main_8h_a88e23f653b56a7cff7cfca3c784afccc}} 
-\index{main.h@{main.h}!process\_dist@{process\_dist}}
-\index{process\_dist@{process\_dist}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{process\_dist}{process\_dist}}
-{\footnotesize\ttfamily bool process\+\_\+dist}
-
-
-
-Definition at line \mbox{\hyperlink{main_8h_source_l00150}{150}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
-
-\mbox{\Hypertarget{main_8h_a8a98a88c04c3d463983e1adb2afc0a2f}\label{main_8h_a8a98a88c04c3d463983e1adb2afc0a2f}} 
-\index{main.h@{main.h}!process\_dist\_hard@{process\_dist\_hard}}
-\index{process\_dist\_hard@{process\_dist\_hard}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{process\_dist\_hard}{process\_dist\_hard}}
-{\footnotesize\ttfamily bool process\+\_\+dist\+\_\+hard}
-
-
-
-Definition at line \mbox{\hyperlink{main_8h_source_l00152}{152}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
-
-\mbox{\Hypertarget{main_8h_a67ad01af80132d0315ef5e8dc67f491c}\label{main_8h_a67ad01af80132d0315ef5e8dc67f491c}} 
-\index{main.h@{main.h}!process\_dist\_soft@{process\_dist\_soft}}
-\index{process\_dist\_soft@{process\_dist\_soft}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{process\_dist\_soft}{process\_dist\_soft}}
-{\footnotesize\ttfamily bool process\+\_\+dist\+\_\+soft}
-
-
-
-Definition at line \mbox{\hyperlink{main_8h_source_l00151}{151}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
-
-\mbox{\Hypertarget{main_8h_ad49aebdd66fd025ba9ba9de3306caf1a}\label{main_8h_ad49aebdd66fd025ba9ba9de3306caf1a}} 
-\index{main.h@{main.h}!process\_filter@{process\_filter}}
-\index{process\_filter@{process\_filter}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{process\_filter}{process\_filter}}
-{\footnotesize\ttfamily bool process\+\_\+filter}
-
-
-
-Definition at line \mbox{\hyperlink{main_8h_source_l00154}{154}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
-
-\mbox{\Hypertarget{main_8h_a8d1dea1ac632b4de184dc89ffeae0d6e}\label{main_8h_a8d1dea1ac632b4de184dc89ffeae0d6e}} 
-\index{main.h@{main.h}!process\_trem@{process\_trem}}
-\index{process\_trem@{process\_trem}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{process\_trem}{process\_trem}}
-{\footnotesize\ttfamily bool process\+\_\+trem}
-
-
-
-Definition at line \mbox{\hyperlink{main_8h_source_l00149}{149}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
+Definition at line \mbox{\hyperlink{main_8h_source_l00155}{155}} of file \mbox{\hyperlink{main_8h_source}{main.\+h}}.
 

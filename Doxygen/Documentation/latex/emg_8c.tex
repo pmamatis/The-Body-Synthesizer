@@ -9,6 +9,8 @@ emg/ecg processing
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_gaa7d92b6a1983e52614915f8e2cfb3140}{emg\+\_\+init}} (ADC\+\_\+\+Handle\+Type\+Def $\ast$hadc, TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em EMG Init. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_ga98bf9a8015f7a7833276fbf6a72e255e}{ecg\+\_\+init}} (void)
 \begin{DoxyCompactList}\small\item\em ECG init. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}{emg\+\_\+start\+\_\+read}} (void)
@@ -19,31 +21,6 @@ HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_ga63f5337cb5d5feb5
 \begin{DoxyCompactList}\small\item\em detects an EMG peak and sets flags for further processing \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}{ecg\+\_\+heartrate}} (void)
 \begin{DoxyCompactList}\small\item\em detect heartrate and change the Drumcoputer BPM in realtime \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-Created \mbox{\hyperlink{emg_8c_a11bf60e5f1afeb16f1eee028c6c99d90}{on}}
-\item 
-Created TIM\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{emg_8c_ab7b0427c78c8284a7d3cf08f345ce09d}{htim}}
-\item 
-\mbox{\hyperlink{emg_8c_a7a2bcc2a2751bb0a3df474df27e7b2b6}{EMG\+\_\+\+TIM}} = htim
-\item 
-\mbox{\hyperlink{emg_8c_a14c1b6c0009f4d13e8009a5feb890d47}{emg\+\_\+detection\+Threshold}} = 2500
-\item 
-\mbox{\hyperlink{emg_8c_a6160b2ca77b309ac5121578747df7ebd}{emg\+\_\+peak}} = 0
-\item 
-\mbox{\hyperlink{emg_8c_ac1eacd66ffa3f83178d29566e56897d9}{emg\+\_\+toggle\+Threshold}} = 50
-\item 
-\mbox{\hyperlink{emg_8c_ae841ad34eb714c953f56994c83d1edb3}{emg\+\_\+toggle\+Counter}} = emg\+\_\+toggle\+Threshold
-\item 
-\mbox{\hyperlink{emg_8c_ab09fded3c224aa3af934217d594e7e2d}{emg\+\_\+toggled}} = 0
-\item 
-\mbox{\hyperlink{emg_8c_abcb925fb06e444144e71b2ffa4c72230}{emg\+\_\+max\+Detection\+Threshold}} = 2850
-\item 
-\mbox{\hyperlink{emg_8c_ac06fa3fee562224bf2ebae3a378c0d18}{emg\+\_\+max\+Toggle\+Threshold}} = EMG\+\_\+\+SR/5
-\item 
-return \mbox{\hyperlink{emg_8c_a05dcbf41f5c5e42a592e9ad9e351391e}{HAL\+\_\+\+OK}}
-\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -64,124 +41,4 @@ Copyright (c) 2022
 
 
 Definition in file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-
-
-\doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{emg_8c_a14c1b6c0009f4d13e8009a5feb890d47}\label{emg_8c_a14c1b6c0009f4d13e8009a5feb890d47}} 
-\index{emg.c@{emg.c}!emg\_detectionThreshold@{emg\_detectionThreshold}}
-\index{emg\_detectionThreshold@{emg\_detectionThreshold}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{emg\_detectionThreshold}{emg\_detectionThreshold}}
-{\footnotesize\ttfamily emg\+\_\+detection\+Threshold = 2500}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00023}{23}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_abcb925fb06e444144e71b2ffa4c72230}\label{emg_8c_abcb925fb06e444144e71b2ffa4c72230}} 
-\index{emg.c@{emg.c}!emg\_maxDetectionThreshold@{emg\_maxDetectionThreshold}}
-\index{emg\_maxDetectionThreshold@{emg\_maxDetectionThreshold}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{emg\_maxDetectionThreshold}{emg\_maxDetectionThreshold}}
-{\footnotesize\ttfamily emg\+\_\+max\+Detection\+Threshold = 2850}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00028}{28}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_ac06fa3fee562224bf2ebae3a378c0d18}\label{emg_8c_ac06fa3fee562224bf2ebae3a378c0d18}} 
-\index{emg.c@{emg.c}!emg\_maxToggleThreshold@{emg\_maxToggleThreshold}}
-\index{emg\_maxToggleThreshold@{emg\_maxToggleThreshold}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{emg\_maxToggleThreshold}{emg\_maxToggleThreshold}}
-{\footnotesize\ttfamily emg\+\_\+max\+Toggle\+Threshold = EMG\+\_\+\+SR/5}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00029}{29}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_a6160b2ca77b309ac5121578747df7ebd}\label{emg_8c_a6160b2ca77b309ac5121578747df7ebd}} 
-\index{emg.c@{emg.c}!emg\_peak@{emg\_peak}}
-\index{emg\_peak@{emg\_peak}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{emg\_peak}{emg\_peak}}
-{\footnotesize\ttfamily emg\+\_\+peak = 0}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00024}{24}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_a7a2bcc2a2751bb0a3df474df27e7b2b6}\label{emg_8c_a7a2bcc2a2751bb0a3df474df27e7b2b6}} 
-\index{emg.c@{emg.c}!EMG\_TIM@{EMG\_TIM}}
-\index{EMG\_TIM@{EMG\_TIM}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{EMG\_TIM}{EMG\_TIM}}
-{\footnotesize\ttfamily EMG\+\_\+\+TIM = htim}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00022}{22}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_ae841ad34eb714c953f56994c83d1edb3}\label{emg_8c_ae841ad34eb714c953f56994c83d1edb3}} 
-\index{emg.c@{emg.c}!emg\_toggleCounter@{emg\_toggleCounter}}
-\index{emg\_toggleCounter@{emg\_toggleCounter}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{emg\_toggleCounter}{emg\_toggleCounter}}
-{\footnotesize\ttfamily emg\+\_\+toggle\+Counter = emg\+\_\+toggle\+Threshold}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00026}{26}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_ab09fded3c224aa3af934217d594e7e2d}\label{emg_8c_ab09fded3c224aa3af934217d594e7e2d}} 
-\index{emg.c@{emg.c}!emg\_toggled@{emg\_toggled}}
-\index{emg\_toggled@{emg\_toggled}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{emg\_toggled}{emg\_toggled}}
-{\footnotesize\ttfamily emg\+\_\+toggled = 0}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00027}{27}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_ac1eacd66ffa3f83178d29566e56897d9}\label{emg_8c_ac1eacd66ffa3f83178d29566e56897d9}} 
-\index{emg.c@{emg.c}!emg\_toggleThreshold@{emg\_toggleThreshold}}
-\index{emg\_toggleThreshold@{emg\_toggleThreshold}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{emg\_toggleThreshold}{emg\_toggleThreshold}}
-{\footnotesize\ttfamily emg\+\_\+toggle\+Threshold = 50}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00025}{25}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_a05dcbf41f5c5e42a592e9ad9e351391e}\label{emg_8c_a05dcbf41f5c5e42a592e9ad9e351391e}} 
-\index{emg.c@{emg.c}!HAL\_OK@{HAL\_OK}}
-\index{HAL\_OK@{HAL\_OK}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{HAL\_OK}{HAL\_OK}}
-{\footnotesize\ttfamily return HAL\+\_\+\+OK}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00031}{31}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_ab7b0427c78c8284a7d3cf08f345ce09d}\label{emg_8c_ab7b0427c78c8284a7d3cf08f345ce09d}} 
-\index{emg.c@{emg.c}!htim@{htim}}
-\index{htim@{htim}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{htim}{htim}}
-{\footnotesize\ttfamily Created TIM\+\_\+\+Handle\+Type\+Def$\ast$ htim}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{}
-\DoxyCodeLine{    EMG\_ADC = hadc}
-
-\end{DoxyCode}
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00019}{19}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
-
-\mbox{\Hypertarget{emg_8c_a11bf60e5f1afeb16f1eee028c6c99d90}\label{emg_8c_a11bf60e5f1afeb16f1eee028c6c99d90}} 
-\index{emg.c@{emg.c}!on@{on}}
-\index{on@{on}!emg.c@{emg.c}}
-\doxysubsubsection{\texorpdfstring{on}{on}}
-{\footnotesize\ttfamily Created on}
-
-
-
-Definition at line \mbox{\hyperlink{emg_8c_source_l00013}{13}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
 

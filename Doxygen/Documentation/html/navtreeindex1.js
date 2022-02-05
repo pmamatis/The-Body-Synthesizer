@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"group__LUT.html":[1,2],
+"group__MusicNotes.html":[1,1,3],
 "group__MusicNotes.html#ga2222edaa79f27840e9e26c4d0076bd8c":[1,1,3,5],
 "group__MusicNotes.html#ga24334366425c42178a955c3c969ad9a8":[1,1,3,0],
 "group__MusicNotes.html#ga3fc1bdf03e12b5dee3aa887f100421bf":[1,1,3,1],
@@ -80,8 +82,8 @@ var NAVTREEINDEX1 =
 "group__wahwah.html#ga9b91a7fae64755689936b60cf1820535":[1,0,5,4],
 "group__wahwah.html#gafdc2b53d4cc3352bf6e51df974ce169e":[1,0,5,3],
 "group__wavlut.html":[1,2,2],
-"index.html":[],
 "index.html":[0],
+"index.html":[],
 "input__interfaces_8c.html":[3,0,0,1,8],
 "input__interfaces_8c.html#a6d6f063b2586502895f157d0c13455f1":[3,0,0,1,8,5],
 "input__interfaces_8c_source.html":[3,0,0,1,8],

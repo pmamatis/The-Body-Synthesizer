@@ -35,7 +35,7 @@ void \mbox{\hyperlink{group__DisplayPage_gae9490b1e7da6a8a226cf5065174d5ae3}{p\+
 void \mbox{\hyperlink{group__DisplayPage_ga3123aab8377a46e24d0b13a17c68aa19}{p\+\_\+\+Key\+And\+Mode}} (void)
 \begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
 Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayPage_gadf582a2e8ef7f900542820189b94f22d}{Display\+\_\+\+Load\+Single\+Sample}} (uint8\+\_\+t Sample\+NUM, uint8\+\_\+t Kit\+NUM)
-\item 
+\begin{DoxyCompactList}\small\item\em This function loads the single sample, which is e.\+g. triggered by the emg-\/sensor from the sd card. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__DisplayPage_gaa562906df4ccbd2259ec2436685c418f}{p\+\_\+\+Volume}} (void)
 \begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\+\_\+\+Reset}} (void)
@@ -65,10 +65,14 @@ Functions containing the display pages.
 {\footnotesize\ttfamily Display\+\_\+\+Status Display\+\_\+\+Load\+Single\+Sample (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Sample\+NUM,  }\item[{uint8\+\_\+t}]{Kit\+NUM }\end{DoxyParamCaption})}
 
 
+
+This function loads the single sample, which is e.\+g. triggered by the emg-\/sensor from the sd card. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em Sample\+NUM} & \\
+{\em Sample\+NUM} & the number of the sample \\
 \hline
-{\em Kit\+NUM} & \\
+{\em Kit\+NUM} & the number of the drumkit \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1620,7 +1624,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l03700}{3700}} of file \mb
 
 GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. 
 
-TODO 
+
 
 Definition at line \mbox{\hyperlink{display_8c_source_l04567}{4567}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
 
