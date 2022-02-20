@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.5.2">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -7963,7 +7963,10 @@ Source: AVX .. aphvc.pdf</description>
 <sheets>
 <sheet>
 <plain>
-<text x="-55.88" y="7.62" size="1.778" layer="97">Alle Rs 2k2 (ca 0.136mA) oder 220 (ca. 1.36mA)</text>
+<text x="-55.88" y="-2.54" size="1.778" layer="97">Alle Rs 2k2 (ca. 125 µA)
+
+# Gesamt R: 26k4
+# Voltage-Steps: 275 mV</text>
 </plain>
 <instances>
 <instance part="R2" gate="G$1" x="-66.04" y="20.32" smashed="yes" rot="R180">
@@ -8131,6 +8134,10 @@ Source: AVX .. aphvc.pdf</description>
 </schematic>
 </drawing>
 <compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
 <note version="8.2" severity="warning">
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)

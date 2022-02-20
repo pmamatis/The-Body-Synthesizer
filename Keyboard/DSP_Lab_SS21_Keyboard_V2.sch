@@ -7965,10 +7965,10 @@ Source: AVX .. aphvc.pdf</description>
 <sheets>
 <sheet>
 <plain>
-<text x="-55.88" y="0" size="1.778" layer="97">Alle Rs 2k2 (ca 0.125mA)
+<text x="-55.88" y="0" size="1.778" layer="97">Alle Rs 2k2 (ca. 115 µA)
 
-# Gesamt R: 26k4
-# Voltage-Steps: 275mV</text>
+# Gesamt R: 28k6
+# Voltage-Steps: 254 mV</text>
 </plain>
 <instances>
 <instance part="R2" gate="G$1" x="-66.04" y="20.32" smashed="yes" rot="R180">
