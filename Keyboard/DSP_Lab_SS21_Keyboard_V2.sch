@@ -7965,7 +7965,7 @@ Source: AVX .. aphvc.pdf</description>
 <sheets>
 <sheet>
 <plain>
-<text x="-55.88" y="0" size="1.778" layer="97">Alle Rs 2k2 (ca 0.125mA) oder 220 (ca. 1.25mA)
+<text x="-55.88" y="0" size="1.778" layer="97">Alle Rs 2k2 (ca 0.125mA)
 
 # Gesamt R: 26k4
 # Voltage-Steps: 275mV</text>
