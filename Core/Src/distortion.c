@@ -128,8 +128,9 @@ Distortion_Status ProcessSoftClippingDistortion(float* data) {
 
 	SoftClipping.atan_parameter = (SoftClipping.distortion_gain * calc) + 10;	// SoftClipping.distortion_maximum_gain = 10
 	SoftClipping.distortion_index = round(SoftClipping.atan_parameter/aquidistance);
-	calc = 0.5*atan_LUT_y[SoftClipping.distortion_index];	// scale down the amplitude
+	calc = 0.5*atan_LUT_y[SoftClipping.distortion_index];
 
+	// scale down the amplitude
 	if(0.0 <= SoftClipping.distortion_gain && SoftClipping.distortion_gain <= 1.0)
 		calc = calc * (1.f/SoftClipping.atan_softclipping_distortion_max[0]);
 
