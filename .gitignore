@@ -2,6 +2,7 @@
 Drivers/*
 MDK-ARM/*
 EWARM/*
+.vscode/*
 # CrossWorks project files
 !*/*.hzp
 !*/*.hzs

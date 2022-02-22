@@ -1,2 +1,0 @@
-Poti, EMG_AC1, EMG_DC1, EMG_AC2, EMG_DC2, GyroX, GyroY, GyroZ
-(8 Stück)
