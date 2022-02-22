@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['effect_20processing_0',['Effect processing',['../group__EffectProcessing.html',1,'']]],
-  ['effects_1',['Effects',['../group__Effects.html',1,'']]],
-  ['emg_20and_20ecg_20sensor_20processing_2',['EMG and ECG sensor processing',['../group__EMG__ECG.html',1,'']]],
-  ['epd_2dlibary_20variables_3',['EPD-Libary variables',['../group__EPDLib.html',1,'']]]
+  ['display_0',['Display',['../group__Display.html',1,'']]],
+  ['display_20pages_1',['Display Pages',['../group__DisplayPage.html',1,'']]],
+  ['display_20processing_20and_20navigation_20funtions_2',['Display processing and navigation funtions',['../group__DisplayProcess.html',1,'']]],
+  ['distortion_20effect_3',['Distortion Effect',['../group__Distortion.html',1,'']]],
+  ['drum_20computer_4',['Drum Computer',['../group__DrumComputer.html',1,'']]]
 ];

@@ -3,7 +3,7 @@ var searchData=
   ['ecg_5fheartrate_0',['ecg_heartrate',['../group__EMG__ECG.html#ga6ad14645e09a9e49124abbb14199027f',1,'ecg_heartrate(void):&#160;emg.c'],['../group__EMG__ECG.html#ga6ad14645e09a9e49124abbb14199027f',1,'ecg_heartrate(void):&#160;emg.c']]],
   ['ecg_5finit_1',['ecg_init',['../group__EMG__ECG.html#ga98bf9a8015f7a7833276fbf6a72e255e',1,'ecg_init(void):&#160;emg.c'],['../group__EMG__ECG.html#ga98bf9a8015f7a7833276fbf6a72e255e',1,'ecg_init(void):&#160;emg.c']]],
   ['effect_20processing_2',['Effect processing',['../group__EffectProcessing.html',1,'']]],
-  ['effect_5flfo_3',['effect_LFO',['../main_8h.html#a69314a8057e0309d967d222b7703d013',1,'main.h']]],
+  ['effect_5flfo_3',['effect_LFO',['../Core_2Inc_2main_8h.html#a69314a8057e0309d967d222b7703d013',1,'main.h']]],
   ['effect_5forder_4',['effect_order',['../group__EffectProcessing.html#ga356f7e77328d3524cc7c5592b2237823',1,'effects.h']]],
   ['effects_5',['Effects',['../group__Effects.html',1,'']]],
   ['effects_2ec_6',['effects.c',['../effects_8c.html',1,'']]],
@@ -23,7 +23,7 @@ var searchData=
   ['envelope_20',['envelope',['../group__ADSR.html#ga1fef3d5c4761374cfc9f8f5e9a48ddf0',1,'adsr.h']]],
   ['epd_2dlibary_20variables_21',['EPD-Libary variables',['../group__EPDLib.html',1,'']]],
   ['equalizer_5freset_22',['Equalizer_Reset',['../group__Filter.html#gab23086039f9e38c9538b24412c2e397d',1,'Equalizer_Reset(void):&#160;filters.c'],['../group__Filter.html#gab23086039f9e38c9538b24412c2e397d',1,'Equalizer_Reset(void):&#160;filters.c']]],
-  ['error_5fhandler_23',['Error_Handler',['../main_8h.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c'],['../main_8c.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c']]],
+  ['error_5fhandler_23',['Error_Handler',['../Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c'],['../Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c'],['../Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c'],['../Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c']]],
   ['external_5fclock_5fvalue_24',['EXTERNAL_CLOCK_VALUE',['../group__STM32__conf.html#ga8c47c935e91e70569098b41718558648',1,'stm32f7xx_hal_conf.h']]],
   ['exti15_5f10_5firqhandler_25',['EXTI15_10_IRQHandler',['../group__Interrupts.html#ga738473a5b43f6c92b80ce1d3d6f77ed9',1,'EXTI15_10_IRQHandler(void):&#160;stm32f7xx_it.c'],['../group__Interrupts.html#ga738473a5b43f6c92b80ce1d3d6f77ed9',1,'EXTI15_10_IRQHandler(void):&#160;stm32f7xx_it.c']]],
   ['exti9_5f5_5firqhandler_26',['EXTI9_5_IRQHandler',['../group__Interrupts.html#ga7b2096b8b2643286dc3a7e5110e5ae85',1,'EXTI9_5_IRQHandler(void):&#160;stm32f7xx_it.c'],['../group__Interrupts.html#ga7b2096b8b2643286dc3a7e5110e5ae85',1,'EXTI9_5_IRQHandler(void):&#160;stm32f7xx_it.c']]]

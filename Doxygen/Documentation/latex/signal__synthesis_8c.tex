@@ -87,43 +87,43 @@ float
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01341}{1341}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01344}{1344}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{01341                            \{}
-\DoxyCodeLine{01342 }
-\DoxyCodeLine{01343     \textcolor{keywordtype}{float} temp1;}
-\DoxyCodeLine{01344     \textcolor{keywordtype}{float} temp2;}
-\DoxyCodeLine{01345     \textcolor{keywordtype}{float} result;}
-\DoxyCodeLine{01346     \textcolor{keywordtype}{int} p;}
-\DoxyCodeLine{01347 }
-\DoxyCodeLine{01348     p = 1;}
-\DoxyCodeLine{01349 }
-\DoxyCodeLine{01350     \textcolor{keywordflow}{while}( p > 0 )}
-\DoxyCodeLine{01351     \{}
-\DoxyCodeLine{01352         temp2 = ( rand() / ( (float)RAND\_MAX ) ); \textcolor{comment}{/*  rand() function generates an }}
-\DoxyCodeLine{01353 \textcolor{comment}{                                                       integer between 0 and  RAND\_MAX, }}
-\DoxyCodeLine{01354 \textcolor{comment}{                                                       which is defined in stdlib.h. }}
-\DoxyCodeLine{01355 \textcolor{comment}{         */}}
-\DoxyCodeLine{01356 }
-\DoxyCodeLine{01357         \textcolor{keywordflow}{if} ( temp2 == 0 )}
-\DoxyCodeLine{01358         \{\textcolor{comment}{// temp2 is >= (RAND\_MAX / 2)}}
-\DoxyCodeLine{01359             p = 1;}
-\DoxyCodeLine{01360         \}\textcolor{comment}{// end if}}
-\DoxyCodeLine{01361         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{01362         \{\textcolor{comment}{// temp2 is < (RAND\_MAX / 2)}}
-\DoxyCodeLine{01363             p = -\/1;}
-\DoxyCodeLine{01364         \}\textcolor{comment}{// end else}}
-\DoxyCodeLine{01365 }
-\DoxyCodeLine{01366     \}\textcolor{comment}{// end while()}}
-\DoxyCodeLine{01367 }
-\DoxyCodeLine{01368     temp1 = cos( ( 2.0 * (\textcolor{keywordtype}{float})PI ) * rand() / ( (\textcolor{keywordtype}{float})RAND\_MAX ) );}
-\DoxyCodeLine{01369     result = sqrt( -\/2.0 * log( temp2 ) ) * temp1;}
+\DoxyCodeLine{01344                            \{}
+\DoxyCodeLine{01345 }
+\DoxyCodeLine{01346     \textcolor{keywordtype}{float} temp1;}
+\DoxyCodeLine{01347     \textcolor{keywordtype}{float} temp2;}
+\DoxyCodeLine{01348     \textcolor{keywordtype}{float} result;}
+\DoxyCodeLine{01349     \textcolor{keywordtype}{int} p;}
+\DoxyCodeLine{01350 }
+\DoxyCodeLine{01351     p = 1;}
+\DoxyCodeLine{01352 }
+\DoxyCodeLine{01353     \textcolor{keywordflow}{while}( p > 0 )}
+\DoxyCodeLine{01354     \{}
+\DoxyCodeLine{01355         temp2 = ( rand() / ( (float)RAND\_MAX ) ); \textcolor{comment}{/*  rand() function generates an }}
+\DoxyCodeLine{01356 \textcolor{comment}{                                                       integer between 0 and  RAND\_MAX, }}
+\DoxyCodeLine{01357 \textcolor{comment}{                                                       which is defined in stdlib.h. }}
+\DoxyCodeLine{01358 \textcolor{comment}{         */}}
+\DoxyCodeLine{01359 }
+\DoxyCodeLine{01360         \textcolor{keywordflow}{if} ( temp2 == 0 )}
+\DoxyCodeLine{01361         \{\textcolor{comment}{// temp2 is >= (RAND\_MAX / 2)}}
+\DoxyCodeLine{01362             p = 1;}
+\DoxyCodeLine{01363         \}\textcolor{comment}{// end if}}
+\DoxyCodeLine{01364         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01365         \{\textcolor{comment}{// temp2 is < (RAND\_MAX / 2)}}
+\DoxyCodeLine{01366             p = -\/1;}
+\DoxyCodeLine{01367         \}\textcolor{comment}{// end else}}
+\DoxyCodeLine{01368 }
+\DoxyCodeLine{01369     \}\textcolor{comment}{// end while()}}
 \DoxyCodeLine{01370 }
-\DoxyCodeLine{01371     \textcolor{keywordflow}{return} result;  \textcolor{comment}{// return the generated random sample to the caller}}
-\DoxyCodeLine{01372 }
-\DoxyCodeLine{01373 \}\textcolor{comment}{// end AWGN\_generator()}}
+\DoxyCodeLine{01371     temp1 = cos( ( 2.0 * (\textcolor{keywordtype}{float})PI ) * rand() / ( (\textcolor{keywordtype}{float})RAND\_MAX ) );}
+\DoxyCodeLine{01372     result = sqrt( -\/2.0 * log( temp2 ) ) * temp1;}
+\DoxyCodeLine{01373 }
+\DoxyCodeLine{01374     \textcolor{keywordflow}{return} result;  \textcolor{comment}{// return the generated random sample to the caller}}
+\DoxyCodeLine{01375 }
+\DoxyCodeLine{01376 \}\textcolor{comment}{// end AWGN\_generator()}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}\label{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}} 
@@ -148,47 +148,47 @@ float
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01249}{1249}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01252}{1252}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{01249                                                          \{}
-\DoxyCodeLine{01250 }
-\DoxyCodeLine{01251     \textcolor{keywordtype}{float} rect = 0;}
-\DoxyCodeLine{01252 }
-\DoxyCodeLine{01253     \textcolor{comment}{// Current Index:   signals-\/>current\_LUT\_Index[index]}}
-\DoxyCodeLine{01254     \textcolor{comment}{// Period:          LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]]}}
+\DoxyCodeLine{01252                                                          \{}
+\DoxyCodeLine{01253 }
+\DoxyCodeLine{01254     \textcolor{keywordtype}{float} rect = 0;}
 \DoxyCodeLine{01255 }
-\DoxyCodeLine{01256     \textcolor{comment}{// IF: Length of period is even (e.g. 346)}}
-\DoxyCodeLine{01257     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 0)\{}
+\DoxyCodeLine{01256     \textcolor{comment}{// Current Index:   signals-\/>current\_LUT\_Index[index]}}
+\DoxyCodeLine{01257     \textcolor{comment}{// Period:          LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]]}}
 \DoxyCodeLine{01258 }
-\DoxyCodeLine{01259         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:172 < 173)}}
-\DoxyCodeLine{01260         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{01259     \textcolor{comment}{// IF: Length of period is even (e.g. 346)}}
+\DoxyCodeLine{01260     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 0)\{}
 \DoxyCodeLine{01261 }
-\DoxyCodeLine{01262             rect = 0.2;}
-\DoxyCodeLine{01263         \}}
-\DoxyCodeLine{01264         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (173:345 >= 173)}}
-\DoxyCodeLine{01265         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
-\DoxyCodeLine{01266 }
-\DoxyCodeLine{01267             rect = -\/0.2;}
-\DoxyCodeLine{01268         \}}
-\DoxyCodeLine{01269     \}}
-\DoxyCodeLine{01270     \textcolor{comment}{// IF: Length of period is odd (e.g. 347)}}
-\DoxyCodeLine{01271     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 1)\{}
-\DoxyCodeLine{01272 }
-\DoxyCodeLine{01273         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:173 < 174) due to (period-\/1)/2 + 1}}
-\DoxyCodeLine{01274         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{01262         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:172 < 173)}}
+\DoxyCodeLine{01263         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{01264 }
+\DoxyCodeLine{01265             rect = 0.2;}
+\DoxyCodeLine{01266         \}}
+\DoxyCodeLine{01267         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (173:345 >= 173)}}
+\DoxyCodeLine{01268         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{01269 }
+\DoxyCodeLine{01270             rect = -\/0.2;}
+\DoxyCodeLine{01271         \}}
+\DoxyCodeLine{01272     \}}
+\DoxyCodeLine{01273     \textcolor{comment}{// IF: Length of period is odd (e.g. 347)}}
+\DoxyCodeLine{01274     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 1)\{}
 \DoxyCodeLine{01275 }
-\DoxyCodeLine{01276             rect = 0.2;}
-\DoxyCodeLine{01277         \}}
-\DoxyCodeLine{01278         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (174:346 >= 174) due to (period-\/1)/2 + 1}}
-\DoxyCodeLine{01279         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
-\DoxyCodeLine{01280 }
-\DoxyCodeLine{01281             rect = -\/0.2;}
-\DoxyCodeLine{01282         \}}
-\DoxyCodeLine{01283     \}}
-\DoxyCodeLine{01284     \textcolor{keywordflow}{return} rect;}
-\DoxyCodeLine{01285 \}}
+\DoxyCodeLine{01276         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:173 < 174) due to (period-\/1)/2 + 1}}
+\DoxyCodeLine{01277         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{01278 }
+\DoxyCodeLine{01279             rect = 0.2;}
+\DoxyCodeLine{01280         \}}
+\DoxyCodeLine{01281         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (174:346 >= 174) due to (period-\/1)/2 + 1}}
+\DoxyCodeLine{01282         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{01283 }
+\DoxyCodeLine{01284             rect = -\/0.2;}
+\DoxyCodeLine{01285         \}}
+\DoxyCodeLine{01286     \}}
+\DoxyCodeLine{01287     \textcolor{keywordflow}{return} rect;}
+\DoxyCodeLine{01288 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}\label{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}} 
@@ -213,34 +213,34 @@ triangle value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01294}{1294}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01297}{1297}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{01294                                                              \{}
-\DoxyCodeLine{01295 }
-\DoxyCodeLine{01296     \textcolor{keywordtype}{float} triangle      = 0;}
-\DoxyCodeLine{01297     \textcolor{keywordtype}{float} current\_index = (float)signals-\/>current\_LUT\_Index[index];}
-\DoxyCodeLine{01298     \textcolor{keywordtype}{float} period        = (\textcolor{keywordtype}{float})\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]];}
-\DoxyCodeLine{01299 }
-\DoxyCodeLine{01300     \textcolor{comment}{/* FORMULA: 4*a/p * abs((((x -\/ p/4) \% p) + p) \% p -\/ p/2) -\/ a }}
-\DoxyCodeLine{01301 \textcolor{comment}{     *}}
-\DoxyCodeLine{01302 \textcolor{comment}{     * a: Amplitude         >> 1 }}
-\DoxyCodeLine{01303 \textcolor{comment}{     * x: Current index     >> signals-\/>current\_LUT\_Index[index] }}
-\DoxyCodeLine{01304 \textcolor{comment}{     * p: Period            >> LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] }}
-\DoxyCodeLine{01305 \textcolor{comment}{     *}}
-\DoxyCodeLine{01306 \textcolor{comment}{     * Source: https://en.wikipedia.org/wiki/Triangle\_wave }}
-\DoxyCodeLine{01307 \textcolor{comment}{     *}}
-\DoxyCodeLine{01308 \textcolor{comment}{     */}}
-\DoxyCodeLine{01309 }
-\DoxyCodeLine{01310     triangle = fmodf(current\_index -\/ period/4, period);}
-\DoxyCodeLine{01311     triangle = triangle + period;}
-\DoxyCodeLine{01312     triangle = fmodf(triangle, period) -\/ period/2;}
-\DoxyCodeLine{01313     triangle = abs(triangle);}
-\DoxyCodeLine{01314     triangle = (4/period) * triangle -\/ 1;;}
-\DoxyCodeLine{01315 }
-\DoxyCodeLine{01316     \textcolor{keywordflow}{return} triangle;}
-\DoxyCodeLine{01317 \}}
+\DoxyCodeLine{01297                                                              \{}
+\DoxyCodeLine{01298 }
+\DoxyCodeLine{01299     \textcolor{keywordtype}{float} triangle      = 0;}
+\DoxyCodeLine{01300     \textcolor{keywordtype}{float} current\_index = (float)signals-\/>current\_LUT\_Index[index];}
+\DoxyCodeLine{01301     \textcolor{keywordtype}{float} period        = (\textcolor{keywordtype}{float})\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]];}
+\DoxyCodeLine{01302 }
+\DoxyCodeLine{01303     \textcolor{comment}{/* FORMULA: 4*a/p * abs((((x -\/ p/4) \% p) + p) \% p -\/ p/2) -\/ a }}
+\DoxyCodeLine{01304 \textcolor{comment}{     *}}
+\DoxyCodeLine{01305 \textcolor{comment}{     * a: Amplitude         >> 1 }}
+\DoxyCodeLine{01306 \textcolor{comment}{     * x: Current index     >> signals-\/>current\_LUT\_Index[index] }}
+\DoxyCodeLine{01307 \textcolor{comment}{     * p: Period            >> LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]] }}
+\DoxyCodeLine{01308 \textcolor{comment}{     *}}
+\DoxyCodeLine{01309 \textcolor{comment}{     * Source: https://en.wikipedia.org/wiki/Triangle\_wave }}
+\DoxyCodeLine{01310 \textcolor{comment}{     *}}
+\DoxyCodeLine{01311 \textcolor{comment}{     */}}
+\DoxyCodeLine{01312 }
+\DoxyCodeLine{01313     triangle = fmodf(current\_index -\/ period/4, period);}
+\DoxyCodeLine{01314     triangle = triangle + period;}
+\DoxyCodeLine{01315     triangle = fmodf(triangle, period) -\/ period/2;}
+\DoxyCodeLine{01316     triangle = abs(triangle);}
+\DoxyCodeLine{01317     triangle = (4/period) * triangle -\/ 1;;}
+\DoxyCodeLine{01318 }
+\DoxyCodeLine{01319     \textcolor{keywordflow}{return} triangle;}
+\DoxyCodeLine{01320 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}\label{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}} 
@@ -335,47 +335,47 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00830}{830}} of
 
 
 
-Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01203}{1203}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01206}{1206}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{01203                    \{}
-\DoxyCodeLine{01204     \textcolor{keywordtype}{bool} retval = \textcolor{keyword}{false};}
-\DoxyCodeLine{01205     \textcolor{keywordtype}{float}* calculate\_vector\_tmp = \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
-\DoxyCodeLine{01206 }
-\DoxyCodeLine{01207     \textcolor{comment}{// ramp Duration of 0.5 seconds}}
-\DoxyCodeLine{01208     \textcolor{keywordtype}{float} ramp\_dur = 0.5*LUT\_SR;}
-\DoxyCodeLine{01209     \textcolor{comment}{// MAX Ramp Value in mV}}
-\DoxyCodeLine{01210     uint32\_t maxRamp = (uint32\_t)(1650 * \mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} );}
-\DoxyCodeLine{01211 }
-\DoxyCodeLine{01212     \textcolor{comment}{// Write into DAC-\/Buffer}}
-\DoxyCodeLine{01213     \textcolor{comment}{// decide if first half of BLOCKSIZE or second half}}
-\DoxyCodeLine{01214     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
-\DoxyCodeLine{01215     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
-\DoxyCodeLine{01216         BLOOCKSIZE\_startIndex = 0;}
-\DoxyCodeLine{01217         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
-\DoxyCodeLine{01218     \}}
-\DoxyCodeLine{01219     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
-\DoxyCodeLine{01220         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
-\DoxyCodeLine{01221         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
-\DoxyCodeLine{01222     \}}
-\DoxyCodeLine{01223 }
-\DoxyCodeLine{01224     \textcolor{comment}{//Write into DAC}}
-\DoxyCodeLine{01225     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} BLOCKSIZE\_counter = BLOOCKSIZE\_startIndex; BLOCKSIZE\_counter < BLOOCKSIZE\_endIndex; BLOCKSIZE\_counter++) \{}
+\DoxyCodeLine{01206                    \{}
+\DoxyCodeLine{01207     \textcolor{keywordtype}{bool} retval = \textcolor{keyword}{false};}
+\DoxyCodeLine{01208     \textcolor{keywordtype}{float}* calculate\_vector\_tmp = \mbox{\hyperlink{Core_2Inc_2main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
+\DoxyCodeLine{01209 }
+\DoxyCodeLine{01210     \textcolor{comment}{// ramp Duration of 0.5 seconds}}
+\DoxyCodeLine{01211     \textcolor{keywordtype}{float} ramp\_dur = 0.5*LUT\_SR;}
+\DoxyCodeLine{01212     \textcolor{comment}{// MAX Ramp Value in mV}}
+\DoxyCodeLine{01213     uint32\_t maxRamp = (uint32\_t)(1650 * \mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} );}
+\DoxyCodeLine{01214 }
+\DoxyCodeLine{01215     \textcolor{comment}{// Write into DAC-\/Buffer}}
+\DoxyCodeLine{01216     \textcolor{comment}{// decide if first half of BLOCKSIZE or second half}}
+\DoxyCodeLine{01217     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
+\DoxyCodeLine{01218     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
+\DoxyCodeLine{01219         BLOOCKSIZE\_startIndex = 0;}
+\DoxyCodeLine{01220         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{01221     \}}
+\DoxyCodeLine{01222     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
+\DoxyCodeLine{01223         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{01224         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
+\DoxyCodeLine{01225     \}}
 \DoxyCodeLine{01226 }
-\DoxyCodeLine{01227         \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} < ramp\_dur)\{}
-\DoxyCodeLine{01228             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((float)((\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}/ramp\_dur) * maxRamp));}
-\DoxyCodeLine{01229             \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}++;}
-\DoxyCodeLine{01230         \}}
-\DoxyCodeLine{01231         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)\{}
-\DoxyCodeLine{01232             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)(maxRamp);}
+\DoxyCodeLine{01227     \textcolor{comment}{//Write into DAC}}
+\DoxyCodeLine{01228     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} BLOCKSIZE\_counter = BLOOCKSIZE\_startIndex; BLOCKSIZE\_counter < BLOOCKSIZE\_endIndex; BLOCKSIZE\_counter++) \{}
+\DoxyCodeLine{01229 }
+\DoxyCodeLine{01230         \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} < ramp\_dur)\{}
+\DoxyCodeLine{01231             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((float)((\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}/ramp\_dur) * maxRamp));}
+\DoxyCodeLine{01232             \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}++;}
 \DoxyCodeLine{01233         \}}
-\DoxyCodeLine{01234     \}}
-\DoxyCodeLine{01235     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)}
-\DoxyCodeLine{01236         retval = \textcolor{keyword}{true};}
-\DoxyCodeLine{01237 }
-\DoxyCodeLine{01238     \textcolor{keywordflow}{return} retval;}
-\DoxyCodeLine{01239 \}}
+\DoxyCodeLine{01234         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)\{}
+\DoxyCodeLine{01235             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)(maxRamp);}
+\DoxyCodeLine{01236         \}}
+\DoxyCodeLine{01237     \}}
+\DoxyCodeLine{01238     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)}
+\DoxyCodeLine{01239         retval = \textcolor{keyword}{true};}
+\DoxyCodeLine{01240 }
+\DoxyCodeLine{01241     \textcolor{keywordflow}{return} retval;}
+\DoxyCodeLine{01242 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{signal__synthesis_8c_a381bb27bca64ed7f5df822a3db09707a}\label{signal__synthesis_8c_a381bb27bca64ed7f5df822a3db09707a}} 
@@ -1099,20 +1099,20 @@ float
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01324}{1324}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01327}{1327}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{01324                             \{}
-\DoxyCodeLine{01325 }
-\DoxyCodeLine{01326     \textcolor{keywordtype}{float} NoiseValue = 0;}
-\DoxyCodeLine{01327     \textcolor{keywordtype}{float} Noise\_Gain = 0.5;}
+\DoxyCodeLine{01327                             \{}
 \DoxyCodeLine{01328 }
-\DoxyCodeLine{01329     \textcolor{keywordflow}{if}(Display.Noise\_ONOFF == \textcolor{keyword}{true})}
-\DoxyCodeLine{01330         NoiseValue = (Noise\_Gain*Display.Noise\_Volume*(float)rand()/ (powf(2, 8*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}))) )-\/(Noise\_Gain*Display.Noise\_Volume*0.25); \textcolor{comment}{// Noise Gain = 8}}
+\DoxyCodeLine{01329     \textcolor{keywordtype}{float} NoiseValue = 0;}
+\DoxyCodeLine{01330     \textcolor{keywordtype}{float} Noise\_Gain = 0.5;}
 \DoxyCodeLine{01331 }
-\DoxyCodeLine{01332     \textcolor{keywordflow}{return} NoiseValue;}
-\DoxyCodeLine{01333 \}}
+\DoxyCodeLine{01332     \textcolor{keywordflow}{if}(Display.Noise\_ONOFF == \textcolor{keyword}{true})}
+\DoxyCodeLine{01333         NoiseValue = (Noise\_Gain*Display.Noise\_Volume*(float)rand()/ (powf(2, 8*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}))) )-\/(Noise\_Gain*Display.Noise\_Volume*0.25); \textcolor{comment}{// Noise Gain = 8}}
+\DoxyCodeLine{01334 }
+\DoxyCodeLine{01335     \textcolor{keywordflow}{return} NoiseValue;}
+\DoxyCodeLine{01336 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}\label{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}} 
@@ -1226,7 +1226,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{00854     \textcolor{keywordtype}{float}* calculate\_vector\_tmp = 0; \textcolor{comment}{// working array}}
 \DoxyCodeLine{00855 }
 \DoxyCodeLine{00856     \textcolor{keywordflow}{if}(output\_Channel == 1) \{}
-\DoxyCodeLine{00857         calculate\_vector\_tmp = \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
+\DoxyCodeLine{00857         calculate\_vector\_tmp = \mbox{\hyperlink{Core_2Inc_2main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
 \DoxyCodeLine{00858     \}}
 \DoxyCodeLine{00859     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(output\_Channel == 2) \{}
 \DoxyCodeLine{00860         calculate\_vector\_tmp = calculate\_vector2;}
@@ -1236,11 +1236,11 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{00864     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
 \DoxyCodeLine{00865     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
 \DoxyCodeLine{00866         BLOOCKSIZE\_startIndex = 0;}
-\DoxyCodeLine{00867         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{00867         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
 \DoxyCodeLine{00868     \}}
 \DoxyCodeLine{00869     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
-\DoxyCodeLine{00870         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
-\DoxyCodeLine{00871         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
+\DoxyCodeLine{00870         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{00871         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
 \DoxyCodeLine{00872     \}}
 \DoxyCodeLine{00873 }
 \DoxyCodeLine{00874     \textcolor{comment}{// Loop for signal synthesis}}
@@ -1262,7 +1262,7 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{00890             \textcolor{keywordflow}{case} SIN:}
 \DoxyCodeLine{00891                 \textcolor{comment}{// adds all SIN values from the signals to addValue}}
 \DoxyCodeLine{00892                 addValue = addValue + \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}[signals -\/> current\_LUT\_Index[j]];}
-\DoxyCodeLine{00893                 }
+\DoxyCodeLine{00893 }
 \DoxyCodeLine{00894                 \textcolor{comment}{// get index for the next sin value}}
 \DoxyCodeLine{00895                 signals-\/>current\_LUT\_Index[j]++;}
 \DoxyCodeLine{00896 }
@@ -1498,21 +1498,21 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{01126                 \}}
 \DoxyCodeLine{01127                 \textcolor{keywordflow}{break};}
 \DoxyCodeLine{01128 }
-\DoxyCodeLine{01129         \}}
+\DoxyCodeLine{01129             \}\textcolor{comment}{//end witch Case}}
 \DoxyCodeLine{01130 }
-\DoxyCodeLine{01131 }
+\DoxyCodeLine{01131         \}\textcolor{comment}{//End SIgnal for-\/Loop}}
 \DoxyCodeLine{01132 }
 \DoxyCodeLine{01133         \textcolor{comment}{// NORM: Volume by signal count}}
 \DoxyCodeLine{01134         \textcolor{keywordflow}{if}(signals-\/>count -\/ active\_keyboard\_notes == 0) \{\}  \textcolor{comment}{// division by zero for addValue possible -\/> fuckup!}}
 \DoxyCodeLine{01135         \textcolor{keywordflow}{else}}
 \DoxyCodeLine{01136             addValue = addValue / (signals-\/>count -\/ active\_keyboard\_notes);}
 \DoxyCodeLine{01137 }
-\DoxyCodeLine{01138     }
+\DoxyCodeLine{01138 }
 \DoxyCodeLine{01139 }
 \DoxyCodeLine{01140         \textcolor{comment}{// write voices (including noise) into calculate vector}}
 \DoxyCodeLine{01141         calculate\_vector\_tmp[BLOCKSIZE\_counter] = \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] * (addValue + \mbox{\hyperlink{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}());}
 \DoxyCodeLine{01142 }
-\DoxyCodeLine{01143     \}\textcolor{comment}{// Signal counter for-\/loop}}
+\DoxyCodeLine{01143 }
 \DoxyCodeLine{01144 }
 \DoxyCodeLine{01145         \textcolor{comment}{// Drummachine}}
 \DoxyCodeLine{01146         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] > 0) || (\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] > 0))\{}
@@ -1533,37 +1533,40 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00847}{847}} of
 \DoxyCodeLine{01161             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
 \DoxyCodeLine{01162                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
 \DoxyCodeLine{01163         \}}
-\DoxyCodeLine{01164 }
-\DoxyCodeLine{01165         \textcolor{comment}{// Play single sample}}
-\DoxyCodeLine{01166         \textcolor{keywordflow}{if}(play\_single\_sample\_flag) \{}
-\DoxyCodeLine{01167             \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{PlaySingleSample}}();}
-\DoxyCodeLine{01168             calculate\_vector\_tmp[BLOCKSIZE\_counter] += single\_sample;}
-\DoxyCodeLine{01169         \}}
-\DoxyCodeLine{01170 }
-\DoxyCodeLine{01171         \mbox{\hyperlink{effects_8c_a3cf8b82d8ee857615741a7e0e04dbdf1}{effects\_process}}(\&calculate\_vector\_tmp[BLOCKSIZE\_counter]);}
+\DoxyCodeLine{01164         \textcolor{comment}{// Keyboard processing without effects}}
+\DoxyCodeLine{01165         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{01166             \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
+\DoxyCodeLine{01167             \textcolor{comment}{// summing up all played keyboard notes}}
+\DoxyCodeLine{01168             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
+\DoxyCodeLine{01169                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
+\DoxyCodeLine{01170         \}}
+\DoxyCodeLine{01171 }
 \DoxyCodeLine{01172 }
-\DoxyCodeLine{01173         \textcolor{comment}{// Keyboard processing without effects}}
-\DoxyCodeLine{01174         \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{01175             \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
-\DoxyCodeLine{01176             \textcolor{comment}{// summing up all played keyboard notes}}
-\DoxyCodeLine{01177             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
-\DoxyCodeLine{01178                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
-\DoxyCodeLine{01179         \}}
-\DoxyCodeLine{01180 }
+\DoxyCodeLine{01173 }
+\DoxyCodeLine{01174         \textcolor{comment}{// Play single sample}}
+\DoxyCodeLine{01175         \textcolor{keywordflow}{if}(play\_single\_sample\_flag) \{}
+\DoxyCodeLine{01176             \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{PlaySingleSample}}();}
+\DoxyCodeLine{01177             calculate\_vector\_tmp[BLOCKSIZE\_counter] += single\_sample;}
+\DoxyCodeLine{01178         \}}
+\DoxyCodeLine{01179 }
+\DoxyCodeLine{01180         \mbox{\hyperlink{effects_8c_a3cf8b82d8ee857615741a7e0e04dbdf1}{effects\_process}}(\&calculate\_vector\_tmp[BLOCKSIZE\_counter]);}
 \DoxyCodeLine{01181 }
-\DoxyCodeLine{01182         \textcolor{comment}{// Add all values}}
-\DoxyCodeLine{01183         calculate\_vector\_tmp[BLOCKSIZE\_counter] = calculate\_vector\_tmp[BLOCKSIZE\_counter] + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] * drums\_filtered + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] * sequencer;}
-\DoxyCodeLine{01184 }
-\DoxyCodeLine{01185         \textcolor{comment}{// to make sure that the output is 0 when a new drumkit is loaded into the drum computer}}
-\DoxyCodeLine{01186         \textcolor{keywordflow}{if}(Display.LoadDrumkit == \textcolor{keyword}{true})}
-\DoxyCodeLine{01187             calculate\_vector\_tmp[BLOCKSIZE\_counter] = 0;}
-\DoxyCodeLine{01188 }
-\DoxyCodeLine{01189         \textcolor{comment}{// Convert float to uint32 in order to make it readable for the DAC}}
-\DoxyCodeLine{01190         *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((0.5 * \mbox{\hyperlink{signal__synthesis_8h_aa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} * calculate\_vector\_tmp[BLOCKSIZE\_counter]+1.65) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}); \textcolor{comment}{// +1.65 is the middle of 0-\/3V3}}
-\DoxyCodeLine{01191     \}\textcolor{comment}{//End for-\/Loop}}
-\DoxyCodeLine{01192 }
-\DoxyCodeLine{01193 }
-\DoxyCodeLine{01194 \}}
+\DoxyCodeLine{01182     }
+\DoxyCodeLine{01183 }
+\DoxyCodeLine{01184         \textcolor{comment}{// Add all values}}
+\DoxyCodeLine{01185         calculate\_vector\_tmp[BLOCKSIZE\_counter] = calculate\_vector\_tmp[BLOCKSIZE\_counter] + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] * drums\_filtered + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] * sequencer;}
+\DoxyCodeLine{01186 }
+\DoxyCodeLine{01187         \textcolor{comment}{// to make sure that the output is 0 when a new drumkit is loaded into the drum computer}}
+\DoxyCodeLine{01188         \textcolor{keywordflow}{if}(Display.LoadDrumkit == \textcolor{keyword}{true})}
+\DoxyCodeLine{01189             calculate\_vector\_tmp[BLOCKSIZE\_counter] = 0;}
+\DoxyCodeLine{01190 }
+\DoxyCodeLine{01191         \textcolor{comment}{// Convert float to uint32 in order to make it readable for the DAC}}
+\DoxyCodeLine{01192         *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((0.5 * \mbox{\hyperlink{signal__synthesis_8h_aa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} * calculate\_vector\_tmp[BLOCKSIZE\_counter]+1.65) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}); \textcolor{comment}{// +1.65 is the middle of 0-\/3V3}}
+\DoxyCodeLine{01193     \}\textcolor{comment}{//End for-\/Loop}}
+\DoxyCodeLine{01194 }
+\DoxyCodeLine{01195 }
+\DoxyCodeLine{01196 }
+\DoxyCodeLine{01197 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{signal__synthesis_8c_a9eda288feb5c689a0f90742249fe6da0}\label{signal__synthesis_8c_a9eda288feb5c689a0f90742249fe6da0}} 
@@ -1606,8 +1609,8 @@ Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00030}{30}} of 
 \DoxyCodeLine{00041         \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
 \DoxyCodeLine{00042     \}}
 \DoxyCodeLine{00043 }
-\DoxyCodeLine{00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2; i++)}
-\DoxyCodeLine{00045         *((uint32\_t *)(\&\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
+\DoxyCodeLine{00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2; i++)}
+\DoxyCodeLine{00045         *((uint32\_t *)(\&\mbox{\hyperlink{Core_2Inc_2main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
 \DoxyCodeLine{00046 }
 \DoxyCodeLine{00047     \textcolor{comment}{// Inits and starts timer connected with DAC}}
 \DoxyCodeLine{00048     \mbox{\hyperlink{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim, LUT\_SR);}
@@ -1700,5 +1703,5 @@ wirtes a starting ramp into the DAC-\/\+Buffer to avoid speaker damage
 \end{DoxyRetVals}
 
 
-Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01201}{1201}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01204}{1204}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
 

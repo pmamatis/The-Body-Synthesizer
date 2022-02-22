@@ -40,6 +40,17 @@ enum \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+
 , {\bfseries TILT\+\_\+\+FRONT\+\_\+S}
 , \newline
 {\bfseries TILT\+\_\+\+BACK\+\_\+S}
+, {\bfseries TILT\+\_\+\+NONE} = 0x00
+, {\bfseries TILT\+\_\+\+RIGHT} = 0x01
+, {\bfseries TILT\+\_\+\+LEFT}
+, \newline
+{\bfseries TILT\+\_\+\+FRONT}
+, {\bfseries TILT\+\_\+\+BACK}
+, {\bfseries TILT\+\_\+\+RIGHT\+\_\+S}
+, {\bfseries TILT\+\_\+\+LEFT\+\_\+S}
+, \newline
+{\bfseries TILT\+\_\+\+FRONT\+\_\+S}
+, {\bfseries TILT\+\_\+\+BACK\+\_\+S}
  \}
 \begin{DoxyCompactList}\small\item\em tilt directions Flags, from MPU6050 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
@@ -74,7 +85,7 @@ functions and variables to decode the Gyro/\+Accl information receiced via the S
 
 
 
-Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00026}{26}} of file \mbox{\hyperlink{SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
+Definition at line \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source_l00026}{26}} of file \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
 
 \mbox{\Hypertarget{group__Gyro_gac2725a893e2f98de37d81e119fa56799}\label{group__Gyro_gac2725a893e2f98de37d81e119fa56799}} 
 \index{Groyscop-\/ and Accelerometer-\/Sensor SPI connection@{Groyscop-\/ and Accelerometer-\/Sensor SPI connection}!SPI\_SR@{SPI\_SR}}
@@ -84,7 +95,7 @@ Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00026}{26}} of fi
 
 
 
-Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00027}{27}} of file \mbox{\hyperlink{SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
+Definition at line \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source_l00027}{27}} of file \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
 
 
 
@@ -114,7 +125,7 @@ tilt directions Flags, from MPU6050
 
 
 
-Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00037}{37}} of file \mbox{\hyperlink{SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
+Definition at line \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source_l00037}{37}} of file \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
 
 
 \begin{DoxyCode}{0}
@@ -182,7 +193,7 @@ Definition at line \mbox{\hyperlink{SPI__Connection_8c_source_l00020}{20}} of fi
 
 
 
-Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00060}{60}} of file \mbox{\hyperlink{SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
+Definition at line \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source_l00060}{60}} of file \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
 
 \mbox{\Hypertarget{group__Gyro_ga24c4d0c5778082a8a31db78c6f93f556}\label{group__Gyro_ga24c4d0c5778082a8a31db78c6f93f556}} 
 \index{Groyscop-\/ and Accelerometer-\/Sensor SPI connection@{Groyscop-\/ and Accelerometer-\/Sensor SPI connection}!pRxData@{pRxData}}
@@ -192,7 +203,7 @@ Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00060}{60}} of fi
 
 
 
-Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00062}{62}} of file \mbox{\hyperlink{SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
+Definition at line \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source_l00062}{62}} of file \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
 
 \mbox{\Hypertarget{group__Gyro_ga3547d2a0ba10b89bfe237edc93e2cdcc}\label{group__Gyro_ga3547d2a0ba10b89bfe237edc93e2cdcc}} 
 \index{Groyscop-\/ and Accelerometer-\/Sensor SPI connection@{Groyscop-\/ and Accelerometer-\/Sensor SPI connection}!pTxData@{pTxData}}
@@ -202,7 +213,7 @@ Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00062}{62}} of fi
 
 
 
-Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00061}{61}} of file \mbox{\hyperlink{SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
+Definition at line \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source_l00061}{61}} of file \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
 
 \mbox{\Hypertarget{group__Gyro_gae792ad17eb6392b523c02b7afa2290bf}\label{group__Gyro_gae792ad17eb6392b523c02b7afa2290bf}} 
 \index{Groyscop-\/ and Accelerometer-\/Sensor SPI connection@{Groyscop-\/ and Accelerometer-\/Sensor SPI connection}!sensorData@{sensorData}}
@@ -212,5 +223,5 @@ Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00061}{61}} of fi
 
 
 
-Definition at line \mbox{\hyperlink{SPI__Connection_8h_source_l00059}{59}} of file \mbox{\hyperlink{SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
+Definition at line \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source_l00059}{59}} of file \mbox{\hyperlink{Core_2Inc_2SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
 

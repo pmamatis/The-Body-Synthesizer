@@ -1,0 +1,273 @@
+\hypertarget{all__sines__LUT_8m_source}{}\doxysection{all\+\_\+sines\+\_\+\+LUT.\+m}
+\label{all__sines__LUT_8m_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Matlab/all\_sines\_LUT.m@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Matlab/all\_sines\_LUT.m}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00002}00002 \% @ingroup Matlab }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00004}00004 clear }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00005}00005 \%\% global parameters }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00006}00006 a  = 2\string^(1/12);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00007}00007 f0 = 65.40639;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00008}00008 SR = 24000; \%sample rate}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00009}00009 dt = 1/SR;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00011}00011 \%\% normal \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00013}00013 \%semitones steps related to f0}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00015}00015 \%n = -\/24;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00016}00016 \%n = -\/12;   \% C-\/1 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00017}00017 \%n = 0;   \% C0}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00018}00018 \%n= 12; \% C1}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00020}00020 oct\_LUT = 6;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00021}00021 \mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}} = 12;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00023}00023 n=[0:12:oct\_LUT*keys];}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00025}00025 \%LUT\_start\_octave = log(fn/f0)/log(a);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00026}00026 \% \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}} scale parameter}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00029}00029 \%calculations}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00032}00032 \%freqquency}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00033}00033 \textcolor{keywordflow}{for} i = n(1):n(end)}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00035}00035     fn(i+1,1) = f0 * a\string^i;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00036}00036     }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00037}00037 end}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00039}00039 Y = cell(length(fn),1); }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00040}00040 start\_ind = zeros(length(fn),1);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00041}00041 end\_ind   = zeros(length(fn),1);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00043}00043 start\_ind(1,1) = 0;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00044}00044 end\_ind  (1,1) = round(SR / fn(1))-\/1;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00046}00046 \textcolor{keywordflow}{for} i = 1 : length(fn)}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00047}00047     }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00048}00048     BS(i,1) = round((SR / fn(i)));}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00049}00049     }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00050}00050     t = 0:dt:BS(i)*dt-\/dt; \%-\/dt}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00051}00051     }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00052}00052     Y\{i\} = sin(2*pi*fn(i)*t);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00053}00053     figure(2);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00054}00054     ylim([-\/1.5 1.5]);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00055}00055     plot(t,Y\{i\});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00056}00056     hold on;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00057}00057     grid on;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00058}00058     \%y = sin(2*pi*freq(i)*t);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00060}00060     \textcolor{keywordflow}{if} i > 1}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00061}00061    }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00062}00062         start\_ind(i,1) = start\_ind(i-\/1,1) + BS(i-\/1,1);}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00063}00063         end\_ind  (i,1) = start\_ind(i  ,1) + BS(i,  1) -\/ 1;  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00064}00064     end}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00065}00065 end}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00066}00066   LUT\_Array = [];}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00067}00067 length\_Y = 0;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00068}00068 \textcolor{keywordflow}{for} i =1 : length(Y)}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00069}00069     length\_Y = length\_Y + length(Y\{i\});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00070}00070     LUT\_Array = [LUT\_Array,Y\{i\}];  \%result vector \textcolor{keywordflow}{for} \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00071}00071 end}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00073}00073 FandBS = [fn, BS, start\_ind, end\_ind];}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00077}00077 \%\% \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}} calculation (kann auf viertel Periode reduziert werden)}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00078}00078 \%parameter}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00079}00079 \%LFO\_ind=[1,13,20,25,32,37,41,44,46,49,61,73,80,85]\textcolor{stringliteral}{'; \%ausgewählte frequenzen}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00080}00080 \textcolor{stringliteral}{anzahlFrequenzen = 8;}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00081}00081 \textcolor{stringliteral}{startFrequenz = 0.125;}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00082}00082 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00083}00083 \textcolor{stringliteral}{\%variables init}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00084}00084 \textcolor{stringliteral}{LFO\_Array = [];}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00085}00085 \textcolor{stringliteral}{fn\_LFO = (anzahlFrequenzen);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00086}00086 \textcolor{stringliteral}{start\_ind\_LFO = zeros(length(fn\_LFO),1);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00087}00087 \textcolor{stringliteral}{end\_ind\_LFO   = zeros(length(fn\_LFO),1);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00088}00088 \textcolor{stringliteral}{Y = cell(length(fn\_LFO),1);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00089}00089 \textcolor{stringliteral}{BS\_LFO =  zeros(length(fn\_LFO),1);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00090}00090 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00091}00091 \textcolor{stringliteral}{\%calculation}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00092}00092 \textcolor{stringliteral}{indexOffset = log2(startFrequenz);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00093}00093 \textcolor{stringliteral}{\% loop start index depends on smalles frequency of desire (0.125 = 2\string^-\/3)}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00094}00094 \textcolor{stringliteral}{for i = 0:anzahlFrequenzen-\/1}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00095}00095 \textcolor{stringliteral}{    fn\_LFO(i+1,1) = 2\string^(i+indexOffset);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00096}00096 \textcolor{stringliteral}{end}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00097}00097 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00098}00098 \textcolor{stringliteral}{\%index an der stelle 1}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00099}00099 \textcolor{stringliteral}{start\_ind\_LFO(1,1) = 0;}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00100}00100 \textcolor{stringliteral}{end\_ind\_LFO  (1,1) = round(SR / fn\_LFO(1))/4-\/1;}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00101}00101 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00102}00102 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00103}00103 \textcolor{stringliteral}{for i = 1 : length(fn\_LFO)}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00104}00104 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00105}00105 \textcolor{stringliteral}{    BS\_LFO(i,1) = round(SR / fn\_LFO(i))/4;}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00106}00106 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00107}00107 \textcolor{stringliteral}{    t = 0:dt:(BS\_LFO(i))*dt-\/dt;}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00108}00108 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00109}00109 \textcolor{stringliteral}{    Y\{i\} = sin(2*pi*fn\_LFO(i)*t);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00110}00110 \textcolor{stringliteral}{    \%y = sin(2*pi*freq(i)*t);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00111}00111 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00112}00112 \textcolor{stringliteral}{    if i > 1}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00113}00113 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00114}00114 \textcolor{stringliteral}{        start\_ind\_LFO(i,1) = start\_ind\_LFO(i-\/1,1) + BS\_LFO(i-\/1,1);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00115}00115 \textcolor{stringliteral}{        end\_ind\_LFO  (i,1) = start\_ind\_LFO(i  ,1) + BS\_LFO(i,  1) -\/ 1;}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00116}00116 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00117}00117 \textcolor{stringliteral}{    end}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00118}00118 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00119}00119 \textcolor{stringliteral}{    \%plot}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00120}00120 \textcolor{stringliteral}{    figure(1)}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00121}00121 \textcolor{stringliteral}{    plot(t,Y\{i\});}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00122}00122 \textcolor{stringliteral}{    hold on;}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00123}00123 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00124}00124 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00125}00125 \textcolor{stringliteral}{end}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00126}00126 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00127}00127 \textcolor{stringliteral}{for i =1 : length(Y)}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00128}00128 \textcolor{stringliteral}{    length\_Y = length\_Y + length(Y\{i\});}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00129}00129 \textcolor{stringliteral}{    LFO\_Array = [LFO\_Array,Y\{i\}]; \%result vector for LFO}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00130}00130 \textcolor{stringliteral}{end}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00131}00131 \textcolor{stringliteral}{FandBS\_LFO = [fn\_LFO, BS\_LFO, start\_ind\_LFO, end\_ind\_LFO];}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00132}00132 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00133}00133 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00134}00134 \textcolor{stringliteral}{\%\% exponential LUT}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00135}00135 \textcolor{stringliteral}{Fmax = FandBS(length(FandBS),1);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00136}00136 \textcolor{stringliteral}{FmaxToLog = log(Fmax);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00137}00137 \textcolor{stringliteral}{x = linspace(0,1,1000);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00138}00138 \textcolor{stringliteral}{LUT\_EXP = exp(x*FmaxToLog)}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00139}00139 \textcolor{stringliteral}{\% plot(LUT\_EXP);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00140}00140 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00141}00141 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00142}00142 \textcolor{stringliteral}{\%\% C-\/File generator parameters}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00143}00143 \textcolor{stringliteral}{precision = 5; \%precision of Nachkommastelle}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00144}00144 \textcolor{stringliteral}{precision\_LFO = 5; \%precision of Nachkommastelle}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00145}00145 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00146}00146 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00147}00147 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00148}00148 \textcolor{stringliteral}{\%\% C-\/file}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00149}00149 \textcolor{stringliteral}{dlmwrite('}sinLUT.c\textcolor{charliteral}{','}\#include \textcolor{stringliteral}{"{}sinLUT.h"{}}\textcolor{charliteral}{','}delimiter\textcolor{charliteral}{','}\textcolor{stringliteral}{', '}precision\textcolor{stringliteral}{', precision);   }}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00150}00150 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00151}00151 \textcolor{stringliteral}{\%LUT}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00152}00152 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00153}00153 \textcolor{stringliteral}{\%LUT Array}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00154}00154 \textcolor{stringliteral}{dlmwrite('}sinLUT.c\textcolor{charliteral}{','}\textcolor{keyword}{const} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}[] \_\_attribute\_\_ ((section(\textcolor{stringliteral}{"{}.rodata"{}}))) = \{\textcolor{charliteral}{','}delimiter\textcolor{charliteral}{','}\textcolor{stringliteral}{', '}precision\textcolor{stringliteral}{', precision,'}-\/append'); }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00155}00155 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},LUT\_Array,\textcolor{stringliteral}{'delimiter'},\textcolor{charliteral}{','}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00156}00156 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'\};'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00158}00158 \%write frequency array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00159}00159 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'const float LUT\_FREQUENCYS[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'})   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00160}00160 dlmwrite('sinLUT.c',FandBS(:,1)','delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00161}00161 dlmwrite('sinLUT.c','\};','delimiter','', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00163}00163 \%write Blocksize array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00164}00164 dlmwrite('sinLUT.c','const uint32\_t \mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{\textcolor{charliteral}{','}delimiter\textcolor{charliteral}{','}\textcolor{stringliteral}{', '}precision\textcolor{stringliteral}{', precision,'}-\/append')   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00165}00165 dlmwrite('sinLUT.c',FandBS(:,2)','delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00166}00166 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'\};'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00168}00168 \%write start index array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00169}00169 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'const uint32\_t LUT\_STARTINDEX[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'})   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00170}00170 dlmwrite('sinLUT.c',FandBS(:,3)','delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00171}00171 dlmwrite('sinLUT.c','\};','delimiter','', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00172}00172 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00173}00173 \%write Blocksize array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00174}00174 dlmwrite('sinLUT.c','const uint32\_t \mbox{\hyperlink{group__SINLUT_ga93f6110c104231e7959e446480c94834}{LUT\_ENDINDEX}}[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{\textcolor{charliteral}{','}delimiter\textcolor{charliteral}{','}\textcolor{stringliteral}{', '}precision\textcolor{stringliteral}{', precision,'}-\/append')   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00175}00175 dlmwrite('sinLUT.c',FandBS(:,4)','delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00176}00176 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'\};'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00177}00177 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00178}00178 \%\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00179}00179 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00180}00180 \%\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}} Array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00181}00181 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'const float LFO[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00182}00182 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},LFO\_Array,\textcolor{stringliteral}{'delimiter'},\textcolor{charliteral}{','}, \textcolor{stringliteral}{'precision'}, precision\_LFO,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00183}00183 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'\};'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00184}00184 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00185}00185 \%write frequency array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00186}00186 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'const float LFO\_FREQUENCYS[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'})   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00187}00187 dlmwrite('sinLUT.c',FandBS\_LFO(:,1)','delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00188}00188 dlmwrite('sinLUT.c','\};','delimiter','', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00189}00189 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00190}00190 \%write Blocksize array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00191}00191 dlmwrite('sinLUT.c','const uint32\_t \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{\textcolor{charliteral}{','}delimiter\textcolor{charliteral}{','}\textcolor{stringliteral}{', '}precision\textcolor{stringliteral}{', precision,'}-\/append')   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00192}00192 dlmwrite('sinLUT.c',FandBS\_LFO(:,2)','delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00193}00193 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'\};'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00195}00195 \%write start index array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00196}00196 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'const uint32\_t LFO\_STARTINDEX[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'})   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00197}00197 dlmwrite('sinLUT.c',FandBS\_LFO(:,3)','delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00198}00198 dlmwrite('sinLUT.c','\};','delimiter','', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00200}00200 \%write Blocksize array}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00201}00201 dlmwrite('sinLUT.c','const uint32\_t \mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{\textcolor{charliteral}{','}delimiter\textcolor{charliteral}{','}\textcolor{stringliteral}{', '}precision\textcolor{stringliteral}{', precision,'}-\/append')   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00202}00202 dlmwrite('sinLUT.c',FandBS\_LFO(:,4)','delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00203}00203 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'\};'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00205}00205 \%EXP}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00206}00206 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00207}00207 \%write LUT\_EXP}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00208}00208 dlmwrite(\textcolor{stringliteral}{'sinLUT.c'},\textcolor{stringliteral}{'const float LUT\_EXP[] \_\_attribute\_\_ ((section("{}.rodata"{}))) = \{'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'})   }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00209}00209 dlmwrite('sinLUT.c',LUT\_EXP,'delimiter',',', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00210}00210 dlmwrite('sinLUT.c','\};','delimiter','', 'precision', precision,'-\/append');  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00211}00211 \%\% H-\/file}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00212}00212 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00214}00214 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00215}00215 \%include Guard}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00216}00216 dlmwrite('sinLUT.h','\textcolor{preprocessor}{\#ifndef INC\_SINLUT\_H\_','delimiter','', 'precision', precision);}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00217}00217 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{stringliteral}{'\#define INC\_SINLUT\_H\_'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'}) }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00218}00218 dlmwrite('sinLUT.h','\textcolor{comment}{//includes ','delimiter','', 'precision', precision,'-\/append');}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00219}00219 dlmwrite('sinLUT.h','\textcolor{preprocessor}{\#include "{}main.h"{}}','delimiter','', 'precision', precision,'-\/append') ;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00220}00220 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00221}00221 \%Space}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00222}00222 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{charliteral}{' '},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00223}00223 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{charliteral}{' '},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00224}00224 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00225}00225 \%defines}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00226}00226 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{stringliteral}{'//defines '},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00227}00227 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00228}00228 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'\#define LUT\_SR '},num2str(SR)],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00229}00229 \% \%\mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}} defines}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00230}00230 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'\#define LUT\_START\_OCTAVE '},num2str(FandBS(length(FandBS),1))],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00231}00231 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00232}00232 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'\#define LUT\_FMAX '},num2str(FandBS(length(FandBS),1))],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00233}00233 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'\#define LUT\_FMIN '},num2str(FandBS(1,1))],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00234}00234 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'\#define LUT\_OCTAVES '},num2str(oct\_LUT)],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00235}00235 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00236}00236 \%\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}} defines}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00237}00237 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{stringliteral}{'//defines '},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00238}00238 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'\#define LFO\_FMAX '},num2str(FandBS\_LFO(length(FandBS\_LFO),1))],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00239}00239 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'\#define LFO\_FMIN '},num2str(FandBS\_LFO(1,1))],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00240}00240 \%dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'\#define LFO\_OCTAVES '},num2str(oct\_LFO)],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00241}00241 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00242}00242 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00243}00243 \%Space}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00244}00244 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{charliteral}{' '},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00245}00245 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{charliteral}{' '},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00246}00246 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00247}00247 \%variables}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00248}00248 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00249}00249 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{stringliteral}{'//variables'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00250}00250 \%\mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00251}00251 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const float  LUT['},num2str(length(LUT\_Array)),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00252}00252 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const uint32\_t LUT\_ENDINDEX['}, num2str(length(FandBS(:,4))),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'}) ;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00253}00253 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const uint32\_t LUT\_STARTINDEX['},num2str(length(FandBS(:,3))),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00254}00254 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const uint32\_t LUT\_SUPPORTPOINTS['},num2str(length(FandBS(:,2))),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'}); }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00255}00255 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const float LUT\_FREQUENCYS['},num2str(length(FandBS(:,1))),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'}); }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00256}00256 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00257}00257 \%\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00258}00258 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const float LFO['},num2str(length(LFO\_Array)),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00259}00259 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const uint32\_t LFO\_ENDINDEX['},num2str(length(FandBS\_LFO(:,4))),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'}) ;}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00260}00260 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const uint32\_t LFO\_STARTINDEX['},num2str(length(FandBS\_LFO(:,3))),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});  }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00261}00261 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const uint32\_t LFO\_SUPPORTPOINTS['},num2str(length(FandBS\_LFO(:,2))),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'}); }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00262}00262 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const float LFO\_FREQUENCYS['},num2str(length(FandBS\_LFO(:,1))),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'}); }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00263}00263 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00264}00264 \%EXP}
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00265}00265 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},[\textcolor{stringliteral}{'const float LUT\_EXP['},num2str(length(LUT\_EXP)),\textcolor{stringliteral}{'];'}],\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'}); }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{all__sines__LUT_8m_source_l00267}00267 dlmwrite(\textcolor{stringliteral}{'sinLUT.h'},\textcolor{stringliteral}{'\#endif'},\textcolor{stringliteral}{'delimiter'},\textcolor{stringliteral}{''}, \textcolor{stringliteral}{'precision'}, precision,\textcolor{stringliteral}{'-\/append'});}
+
+\end{DoxyCode}

@@ -90,11 +90,11 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">/* USER CODE END Header */</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">/* Includes ------------------------------------------------------------------*/</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="main_8h.html">main.h</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">/* USER CODE BEGIN Includes */</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">/* USER CODE END Includes */</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">extern</span> DMA_HandleTypeDef <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">extern</span> DMA_HandleTypeDef <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">extern</span> DMA_HandleTypeDef hdma_adc2;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
@@ -141,7 +141,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">/* USER CODE BEGIN 0 */</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">/* USER CODE END 0 */</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keywordtype">void</span> HAL_MspInit(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32f4xx__hal__msp_8c.html#ae4fb8e66865c87d0ebab74a726a6891f">HAL_MspInit</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="comment">/* USER CODE BEGIN MspInit 0 */</span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
@@ -176,22 +176,22 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">/* ADC1 DMA Init */</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">/* ADC1 Init */</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Instance = DMA2_Stream0;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.Channel = DMA_CHANNEL_0;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.Direction = DMA_PERIPH_TO_MEMORY;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.PeriphInc = DMA_PINC_DISABLE;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.MemInc = DMA_MINC_ENABLE;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.Mode = DMA_NORMAL;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.Priority = DMA_PRIORITY_VERY_HIGH;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.FIFOMode = DMA_FIFOMODE_DISABLE;</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">if</span> (HAL_DMA_Init(&amp;<a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>) != HAL_OK)</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Instance = DMA2_Stream0;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.Channel = DMA_CHANNEL_0;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.Direction = DMA_PERIPH_TO_MEMORY;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.PeriphInc = DMA_PINC_DISABLE;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.MemInc = DMA_MINC_ENABLE;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.Mode = DMA_NORMAL;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.Priority = DMA_PRIORITY_VERY_HIGH;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>.Init.FIFOMode = DMA_FIFOMODE_DISABLE;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">if</span> (HAL_DMA_Init(&amp;<a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>) != HAL_OK)</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <a class="code hl_function" href="main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <a class="code hl_function" href="Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    __HAL_LINKDMA(hadc,DMA_Handle,<a class="code hl_variable" href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    __HAL_LINKDMA(hadc,DMA_Handle,<a class="code hl_variable" href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a>);</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">/* ADC1 interrupt Init */</span></div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    HAL_NVIC_SetPriority(ADC_IRQn, 0, 0);</div>
@@ -240,7 +240,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    hdma_adc2.Init.FIFOMode = DMA_FIFOMODE_DISABLE;</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordflow">if</span> (HAL_DMA_Init(&amp;hdma_adc2) != HAL_OK)</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    {</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      <a class="code hl_function" href="main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      <a class="code hl_function" href="Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    __HAL_LINKDMA(hadc,DMA_Handle,hdma_adc2);</div>
@@ -280,7 +280,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    hdma_adc3.Init.FIFOMode = DMA_FIFOMODE_DISABLE;</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordflow">if</span> (HAL_DMA_Init(&amp;hdma_adc3) != HAL_OK)</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    {</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      <a class="code hl_function" href="main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      <a class="code hl_function" href="Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    }</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    __HAL_LINKDMA(hadc,DMA_Handle,hdma_adc3);</div>
@@ -370,10 +370,10 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>}</div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="keywordtype">void</span> HAL_DAC_MspInit(DAC_HandleTypeDef* <a class="code hl_variable" href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>)</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="keywordtype">void</span> HAL_DAC_MspInit(DAC_HandleTypeDef* <a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>)</div>
 <div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>{</div>
 <div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>  GPIO_InitTypeDef GPIO_InitStruct = {0};</div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>-&gt;Instance==DAC)</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>-&gt;Instance==DAC)</div>
 <div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>  {</div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>  <span class="comment">/* USER CODE BEGIN DAC_MspInit 0 */</span></div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
@@ -401,10 +401,10 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    hdma_dac1.Init.FIFOMode = DMA_FIFOMODE_DISABLE;</div>
 <div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <span class="keywordflow">if</span> (HAL_DMA_Init(&amp;hdma_dac1) != HAL_OK)</div>
 <div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    {</div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>      <a class="code hl_function" href="main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>      <a class="code hl_function" href="Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    }</div>
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    __HAL_LINKDMA(<a class="code hl_variable" href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>,DMA_Handle1,hdma_dac1);</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    __HAL_LINKDMA(<a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>,DMA_Handle1,hdma_dac1);</div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    <span class="comment">/* DAC2 Init */</span></div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    hdma_dac2.Instance = DMA1_Stream6;</div>
@@ -419,10 +419,10 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    hdma_dac2.Init.FIFOMode = DMA_FIFOMODE_DISABLE;</div>
 <div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    <span class="keywordflow">if</span> (HAL_DMA_Init(&amp;hdma_dac2) != HAL_OK)</div>
 <div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    {</div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>      <a class="code hl_function" href="main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>      <a class="code hl_function" href="Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
 <div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>    }</div>
 <div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    __HAL_LINKDMA(<a class="code hl_variable" href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>,DMA_Handle2,hdma_dac2);</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    __HAL_LINKDMA(<a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>,DMA_Handle2,hdma_dac2);</div>
 <div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
 <div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>  <span class="comment">/* USER CODE BEGIN DAC_MspInit 1 */</span></div>
 <div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
@@ -431,9 +431,9 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
 <div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>}</div>
 <div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span> </div>
-<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="keywordtype">void</span> HAL_DAC_MspDeInit(DAC_HandleTypeDef* <a class="code hl_variable" href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>)</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="keywordtype">void</span> HAL_DAC_MspDeInit(DAC_HandleTypeDef* <a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>)</div>
 <div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>{</div>
-<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>-&gt;Instance==DAC)</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>-&gt;Instance==DAC)</div>
 <div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>  {</div>
 <div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>  <span class="comment">/* USER CODE BEGIN DAC_MspDeInit 0 */</span></div>
 <div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
@@ -444,8 +444,8 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_4|GPIO_PIN_5);</div>
 <div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> </div>
 <div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>    <span class="comment">/* DAC DMA DeInit */</span></div>
-<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>    HAL_DMA_DeInit(<a class="code hl_variable" href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>-&gt;DMA_Handle1);</div>
-<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    HAL_DMA_DeInit(<a class="code hl_variable" href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>-&gt;DMA_Handle2);</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>    HAL_DMA_DeInit(<a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>-&gt;DMA_Handle1);</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    HAL_DMA_DeInit(<a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>-&gt;DMA_Handle2);</div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>  <span class="comment">/* USER CODE BEGIN DAC_MspDeInit 1 */</span></div>
 <div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> </div>
 <div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>  <span class="comment">/* USER CODE END DAC_MspDeInit 1 */</span></div>
@@ -453,7 +453,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span> </div>
 <div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>}</div>
 <div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span> </div>
-<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span><span class="keywordtype">void</span> HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32f4xx__hal__msp_8c.html#abe01a202c27b23fc150aa66af3130073">HAL_I2C_MspInit</a>(I2C_HandleTypeDef* hi2c)</div>
 <div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>{</div>
 <div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>  GPIO_InitTypeDef GPIO_InitStruct = {0};</div>
 <div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>  <span class="keywordflow">if</span>(hi2c-&gt;Instance==I2C2)</div>
@@ -479,7 +479,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span> </div>
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>}</div>
 <div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
-<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span><span class="keywordtype">void</span> HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32f4xx__hal__msp_8c.html#a2ec8d9b09854c732e2feed549278f048">HAL_I2C_MspDeInit</a>(I2C_HandleTypeDef* hi2c)</div>
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>{</div>
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>  <span class="keywordflow">if</span>(hi2c-&gt;Instance==I2C2)</div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>  {</div>
@@ -500,7 +500,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span> </div>
 <div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>}</div>
 <div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span> </div>
-<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span><span class="keywordtype">void</span> HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32f4xx__hal__msp_8c.html#a17f583be14b22caffa6c4e56dcd035ef">HAL_SPI_MspInit</a>(SPI_HandleTypeDef* hspi)</div>
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>{</div>
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>  GPIO_InitTypeDef GPIO_InitStruct = {0};</div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>  <span class="keywordflow">if</span>(hspi-&gt;Instance==SPI1)</div>
@@ -581,7 +581,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>    hdma_spi4_rx.Init.FIFOMode = DMA_FIFOMODE_DISABLE;</div>
 <div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>    <span class="keywordflow">if</span> (HAL_DMA_Init(&amp;hdma_spi4_rx) != HAL_OK)</div>
 <div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>    {</div>
-<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>      <a class="code hl_function" href="main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>      <a class="code hl_function" href="Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
 <div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>    }</div>
 <div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span> </div>
 <div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>    __HAL_LINKDMA(hspi,hdmarx,hdma_spi4_rx);</div>
@@ -599,7 +599,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>    hdma_spi4_tx.Init.FIFOMode = DMA_FIFOMODE_DISABLE;</div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>    <span class="keywordflow">if</span> (HAL_DMA_Init(&amp;hdma_spi4_tx) != HAL_OK)</div>
 <div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>    {</div>
-<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>      <a class="code hl_function" href="main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>      <a class="code hl_function" href="Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
 <div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>    }</div>
 <div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span> </div>
 <div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>    __HAL_LINKDMA(hspi,hdmatx,hdma_spi4_tx);</div>
@@ -614,7 +614,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> </div>
 <div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>}</div>
 <div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span> </div>
-<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span><span class="keywordtype">void</span> HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32f4xx__hal__msp_8c.html#abadc4d4974af1afd943e8d13589068e1">HAL_SPI_MspDeInit</a>(SPI_HandleTypeDef* hspi)</div>
 <div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>{</div>
 <div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>  <span class="keywordflow">if</span>(hspi-&gt;Instance==SPI1)</div>
 <div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>  {</div>
@@ -897,7 +897,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span> </div>
 <div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>}</div>
 <div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span> </div>
-<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span><span class="keywordtype">void</span> HAL_UART_MspInit(UART_HandleTypeDef* huart)</div>
+<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32f4xx__hal__msp_8c.html#a0e553b32211877322f949b14801bbfa7">HAL_UART_MspInit</a>(UART_HandleTypeDef* huart)</div>
 <div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span>{</div>
 <div class="line"><a id="l00989" name="l00989"></a><span class="lineno">  989</span>  GPIO_InitTypeDef GPIO_InitStruct = {0};</div>
 <div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span>  <span class="keywordflow">if</span>(huart-&gt;Instance==USART3)</div>
@@ -923,7 +923,7 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l01014" name="l01014"></a><span class="lineno"> 1014</span> </div>
 <div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span>}</div>
 <div class="line"><a id="l01016" name="l01016"></a><span class="lineno"> 1016</span> </div>
-<div class="line"><a id="l01023" name="l01023"></a><span class="lineno"> 1023</span><span class="keywordtype">void</span> HAL_UART_MspDeInit(UART_HandleTypeDef* huart)</div>
+<div class="line"><a id="l01023" name="l01023"></a><span class="lineno"> 1023</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32f4xx__hal__msp_8c.html#a718f39804e3b910d738a0e1e46151188">HAL_UART_MspDeInit</a>(UART_HandleTypeDef* huart)</div>
 <div class="line"><a id="l01024" name="l01024"></a><span class="lineno"> 1024</span>{</div>
 <div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span>  <span class="keywordflow">if</span>(huart-&gt;Instance==USART3)</div>
 <div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span>  {</div>
@@ -947,10 +947,16 @@ $(document).ready(function(){initNavTree('stm32f7xx__hal__msp_8c_source.html',''
 <div class="line"><a id="l01048" name="l01048"></a><span class="lineno"> 1048</span><span class="comment">/* USER CODE END 1 */</span></div>
 <div class="line"><a id="l01049" name="l01049"></a><span class="lineno"> 1049</span> </div>
 <div class="line"><a id="l01050" name="l01050"></a><span class="lineno"> 1050</span><span class="comment">/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/</span></div>
-<div class="ttc" id="amain_8c_html_a1c126854bb1813d31ab4776b21dcc51f"><div class="ttname"><a href="main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a></div><div class="ttdeci">DMA_HandleTypeDef hdma_adc1</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00055">main.c:55</a></div></div>
-<div class="ttc" id="amain_8c_html_a40a0d1383beda58531dfda6218720e45"><div class="ttname"><a href="main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a></div><div class="ttdeci">DAC_HandleTypeDef hdac</div><div class="ttdoc">Extern variables.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00059">main.c:59</a></div></div>
-<div class="ttc" id="amain_8h_html"><div class="ttname"><a href="main_8h.html">main.h</a></div><div class="ttdoc">: Header for main.c file. This file contains the common defines of the application.</div></div>
-<div class="ttc" id="amain_8h_html_a1730ffe1e560465665eb47d9264826f9"><div class="ttname"><a href="main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a></div><div class="ttdeci">void Error_Handler(void)</div><div class="ttdoc">This function is executed in case of error occurrence.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l01928">main.c:1928</a></div></div>
+<div class="ttc" id="aCore_2Inc_2main_8h_html_a1730ffe1e560465665eb47d9264826f9"><div class="ttname"><a href="Core_2Inc_2main_8h.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a></div><div class="ttdeci">void Error_Handler(void)</div><div class="ttdoc">This function is executed in case of error occurrence.</div><div class="ttdef"><b>Definition:</b> <a href="Core_2Src_2main_8c_source.html#l01928">main.c:1928</a></div></div>
+<div class="ttc" id="aCore_2Src_2main_8c_html_a1c126854bb1813d31ab4776b21dcc51f"><div class="ttname"><a href="Core_2Src_2main_8c.html#a1c126854bb1813d31ab4776b21dcc51f">hdma_adc1</a></div><div class="ttdeci">DMA_HandleTypeDef hdma_adc1</div><div class="ttdef"><b>Definition:</b> <a href="Core_2Src_2main_8c_source.html#l00055">main.c:55</a></div></div>
+<div class="ttc" id="aCore_2Src_2main_8c_html_a40a0d1383beda58531dfda6218720e45"><div class="ttname"><a href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a></div><div class="ttdeci">DAC_HandleTypeDef hdac</div><div class="ttdoc">Extern variables.</div><div class="ttdef"><b>Definition:</b> <a href="Core_2Src_2main_8c_source.html#l00059">main.c:59</a></div></div>
+<div class="ttc" id="astm32f4xx__hal__msp_8c_html_a0e553b32211877322f949b14801bbfa7"><div class="ttname"><a href="stm32f4xx__hal__msp_8c.html#a0e553b32211877322f949b14801bbfa7">HAL_UART_MspInit</a></div><div class="ttdeci">void HAL_UART_MspInit(UART_HandleTypeDef *huart)</div><div class="ttdoc">UART MSP Initialization This function configures the hardware resources used in this example.</div><div class="ttdef"><b>Definition:</b> <a href="stm32f4xx__hal__msp_8c_source.html#l00265">stm32f4xx_hal_msp.c:265</a></div></div>
+<div class="ttc" id="astm32f4xx__hal__msp_8c_html_a17f583be14b22caffa6c4e56dcd035ef"><div class="ttname"><a href="stm32f4xx__hal__msp_8c.html#a17f583be14b22caffa6c4e56dcd035ef">HAL_SPI_MspInit</a></div><div class="ttdeci">void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)</div><div class="ttdoc">SPI MSP Initialization This function configures the hardware resources used in this example.</div><div class="ttdef"><b>Definition:</b> <a href="stm32f4xx__hal__msp_8c_source.html#l00158">stm32f4xx_hal_msp.c:158</a></div></div>
+<div class="ttc" id="astm32f4xx__hal__msp_8c_html_a2ec8d9b09854c732e2feed549278f048"><div class="ttname"><a href="stm32f4xx__hal__msp_8c.html#a2ec8d9b09854c732e2feed549278f048">HAL_I2C_MspDeInit</a></div><div class="ttdeci">void HAL_I2C_MspDeInit(I2C_HandleTypeDef *hi2c)</div><div class="ttdoc">I2C MSP De-Initialization This function freeze the hardware resources used in this example.</div><div class="ttdef"><b>Definition:</b> <a href="stm32f4xx__hal__msp_8c_source.html#l00127">stm32f4xx_hal_msp.c:127</a></div></div>
+<div class="ttc" id="astm32f4xx__hal__msp_8c_html_a718f39804e3b910d738a0e1e46151188"><div class="ttname"><a href="stm32f4xx__hal__msp_8c.html#a718f39804e3b910d738a0e1e46151188">HAL_UART_MspDeInit</a></div><div class="ttdeci">void HAL_UART_MspDeInit(UART_HandleTypeDef *huart)</div><div class="ttdoc">UART MSP De-Initialization This function freeze the hardware resources used in this example.</div><div class="ttdef"><b>Definition:</b> <a href="stm32f4xx__hal__msp_8c_source.html#l00301">stm32f4xx_hal_msp.c:301</a></div></div>
+<div class="ttc" id="astm32f4xx__hal__msp_8c_html_abadc4d4974af1afd943e8d13589068e1"><div class="ttname"><a href="stm32f4xx__hal__msp_8c.html#abadc4d4974af1afd943e8d13589068e1">HAL_SPI_MspDeInit</a></div><div class="ttdeci">void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi)</div><div class="ttdoc">SPI MSP De-Initialization This function freeze the hardware resources used in this example.</div><div class="ttdef"><b>Definition:</b> <a href="stm32f4xx__hal__msp_8c_source.html#l00232">stm32f4xx_hal_msp.c:232</a></div></div>
+<div class="ttc" id="astm32f4xx__hal__msp_8c_html_abe01a202c27b23fc150aa66af3130073"><div class="ttname"><a href="stm32f4xx__hal__msp_8c.html#abe01a202c27b23fc150aa66af3130073">HAL_I2C_MspInit</a></div><div class="ttdeci">void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c)</div><div class="ttdoc">I2C MSP Initialization This function configures the hardware resources used in this example.</div><div class="ttdef"><b>Definition:</b> <a href="stm32f4xx__hal__msp_8c_source.html#l00091">stm32f4xx_hal_msp.c:91</a></div></div>
+<div class="ttc" id="astm32f4xx__hal__msp_8c_html_ae4fb8e66865c87d0ebab74a726a6891f"><div class="ttname"><a href="stm32f4xx__hal__msp_8c.html#ae4fb8e66865c87d0ebab74a726a6891f">HAL_MspInit</a></div><div class="ttdeci">void HAL_MspInit(void)</div><div class="ttdef"><b>Definition:</b> <a href="stm32f4xx__hal__msp_8c_source.html#l00067">stm32f4xx_hal_msp.c:67</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

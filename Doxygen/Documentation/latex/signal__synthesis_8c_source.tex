@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00021}00021 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00023}\mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{00023}} \textcolor{keywordtype}{double} \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00024}00024 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00030}\mbox{\hyperlink{signal__synthesis_8h_a9eda288feb5c689a0f90742249fe6da0}{00030}} HAL\_StatusTypeDef \mbox{\hyperlink{signal__synthesis_8c_a9eda288feb5c689a0f90742249fe6da0}{Signal\_Synthesis\_Init}}(TIM\_HandleTypeDef htim, DAC\_HandleTypeDef \mbox{\hyperlink{main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00030}\mbox{\hyperlink{signal__synthesis_8h_a9eda288feb5c689a0f90742249fe6da0}{00030}} HAL\_StatusTypeDef \mbox{\hyperlink{signal__synthesis_8c_a9eda288feb5c689a0f90742249fe6da0}{Signal\_Synthesis\_Init}}(TIM\_HandleTypeDef htim, DAC\_HandleTypeDef \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00031}00031 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00032}00032     \textcolor{comment}{// Sets the maximal digital value which the DAC converts into analog voltage}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00033}00033     \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}} = (double)\mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} * (\textcolor{keywordtype}{double})\mbox{\hyperlink{signal__synthesis_8h_ae2d3a48fb01bbc0fe795724379434d05}{AMPLITUDE}};}
@@ -21,8 +21,8 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00041}00041         \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00042}00042     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00044}00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2; i++)}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00045}00045         *((uint32\_t *)(\&\mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(\mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00044}00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2; i++)}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00045}00045         *((uint32\_t *)(\&\mbox{\hyperlink{Core_2Inc_2main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00046}00046 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00047}00047     \textcolor{comment}{// Inits and starts timer connected with DAC}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00048}00048     \mbox{\hyperlink{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim, LUT\_SR);}
@@ -791,7 +791,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00854}00854     \textcolor{keywordtype}{float}* calculate\_vector\_tmp = 0; \textcolor{comment}{// working array}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00855}00855 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00856}00856     \textcolor{keywordflow}{if}(output\_Channel == 1) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00857}00857         calculate\_vector\_tmp = \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00857}00857         calculate\_vector\_tmp = \mbox{\hyperlink{Core_2Inc_2main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00858}00858     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00859}00859     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(output\_Channel == 2) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00860}00860         calculate\_vector\_tmp = calculate\_vector2;}
@@ -801,11 +801,11 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00864}00864     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00865}00865     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00866}00866         BLOOCKSIZE\_startIndex = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00867}00867         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00867}00867         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00868}00868     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00869}00869     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00870}00870         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00871}00871         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00870}00870         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00871}00871         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00872}00872     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00873}00873 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00874}00874     \textcolor{comment}{// Loop for signal synthesis}}
@@ -827,7 +827,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00890}00890             \textcolor{keywordflow}{case} SIN:}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00891}00891                 \textcolor{comment}{// adds all SIN values from the signals to addValue}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00892}00892                 addValue = addValue + \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}[signals -\/> current\_LUT\_Index[j]];}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00893}00893                 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00893}00893 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00894}00894                 \textcolor{comment}{// get index for the next sin value}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00895}00895                 signals-\/>current\_LUT\_Index[j]++;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00896}00896 }
@@ -1063,21 +1063,21 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01126}01126                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01127}01127                 \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01128}01128 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01129}01129         \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01129}01129             \}\textcolor{comment}{//end witch Case}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01130}01130 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01131}01131 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01131}01131         \}\textcolor{comment}{//End SIgnal for-\/Loop}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01132}01132 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01133}01133         \textcolor{comment}{// NORM: Volume by signal count}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01134}01134         \textcolor{keywordflow}{if}(signals-\/>count -\/ active\_keyboard\_notes == 0) \{\}  \textcolor{comment}{// division by zero for addValue possible -\/> fuckup!}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01135}01135         \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01136}01136             addValue = addValue / (signals-\/>count -\/ active\_keyboard\_notes);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01137}01137 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01138}01138     }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01138}01138 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01139}01139 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01140}01140         \textcolor{comment}{// write voices (including noise) into calculate vector}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01141}01141         calculate\_vector\_tmp[BLOCKSIZE\_counter] = \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] * (addValue + \mbox{\hyperlink{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}());}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01142}01142 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01143}01143     \}\textcolor{comment}{// Signal counter for-\/loop}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01143}01143 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01144}01144 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01145}01145         \textcolor{comment}{// Drummachine}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01146}01146         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] > 0) || (\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] > 0))\{}
@@ -1098,188 +1098,191 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01161}01161             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01162}01162                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01163}01163         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01164}01164 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01165}01165         \textcolor{comment}{// Play single sample}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01166}01166         \textcolor{keywordflow}{if}(play\_single\_sample\_flag) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01167}01167             \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{PlaySingleSample}}();}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01168}01168             calculate\_vector\_tmp[BLOCKSIZE\_counter] += single\_sample;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01169}01169         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01170}01170 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01171}01171         \mbox{\hyperlink{effects_8c_a3cf8b82d8ee857615741a7e0e04dbdf1}{effects\_process}}(\&calculate\_vector\_tmp[BLOCKSIZE\_counter]);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01164}01164         \textcolor{comment}{// Keyboard processing without effects}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01165}01165         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01166}01166             \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01167}01167             \textcolor{comment}{// summing up all played keyboard notes}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01168}01168             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01169}01169                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01170}01170         \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01171}01171 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01172}01172 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01173}01173         \textcolor{comment}{// Keyboard processing without effects}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01174}01174         \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01175}01175             \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01176}01176             \textcolor{comment}{// summing up all played keyboard notes}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01177}01177             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01178}01178                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01179}01179         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01180}01180 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01173}01173 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01174}01174         \textcolor{comment}{// Play single sample}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01175}01175         \textcolor{keywordflow}{if}(play\_single\_sample\_flag) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01176}01176             \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{PlaySingleSample}}();}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01177}01177             calculate\_vector\_tmp[BLOCKSIZE\_counter] += single\_sample;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01178}01178         \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01179}01179 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01180}01180         \mbox{\hyperlink{effects_8c_a3cf8b82d8ee857615741a7e0e04dbdf1}{effects\_process}}(\&calculate\_vector\_tmp[BLOCKSIZE\_counter]);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01181}01181 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01182}01182         \textcolor{comment}{// Add all values}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01183}01183         calculate\_vector\_tmp[BLOCKSIZE\_counter] = calculate\_vector\_tmp[BLOCKSIZE\_counter] + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] * drums\_filtered + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] * sequencer;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01184}01184 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01185}01185         \textcolor{comment}{// to make sure that the output is 0 when a new drumkit is loaded into the drum computer}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01186}01186         \textcolor{keywordflow}{if}(Display.LoadDrumkit == \textcolor{keyword}{true})}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01187}01187             calculate\_vector\_tmp[BLOCKSIZE\_counter] = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01188}01188 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01189}01189         \textcolor{comment}{// Convert float to uint32 in order to make it readable for the DAC}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01190}01190         *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((0.5 * \mbox{\hyperlink{signal__synthesis_8h_aa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} * calculate\_vector\_tmp[BLOCKSIZE\_counter]+1.65) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}); \textcolor{comment}{// +1.65 is the middle of 0-\/3V3}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01191}01191     \}\textcolor{comment}{//End for-\/Loop}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01192}01192 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01193}01193 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01194}01194 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01182}01182     }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01183}01183 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01184}01184         \textcolor{comment}{// Add all values}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01185}01185         calculate\_vector\_tmp[BLOCKSIZE\_counter] = calculate\_vector\_tmp[BLOCKSIZE\_counter] + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] * drums\_filtered + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] * sequencer;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01186}01186 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01187}01187         \textcolor{comment}{// to make sure that the output is 0 when a new drumkit is loaded into the drum computer}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01188}01188         \textcolor{keywordflow}{if}(Display.LoadDrumkit == \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01189}01189             calculate\_vector\_tmp[BLOCKSIZE\_counter] = 0;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01190}01190 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01191}01191         \textcolor{comment}{// Convert float to uint32 in order to make it readable for the DAC}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01192}01192         *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((0.5 * \mbox{\hyperlink{signal__synthesis_8h_aa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} * calculate\_vector\_tmp[BLOCKSIZE\_counter]+1.65) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}); \textcolor{comment}{// +1.65 is the middle of 0-\/3V3}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01193}01193     \}\textcolor{comment}{//End for-\/Loop}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01194}01194 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01195}01195 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01196}01196 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01197}01197 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01201}\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{01201}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01202}01202 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01203}01203 \textcolor{keywordtype}{bool} initRamp(\textcolor{keywordtype}{void})\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01204}01204     \textcolor{keywordtype}{bool} retval = \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01205}01205     \textcolor{keywordtype}{float}* calculate\_vector\_tmp = \mbox{\hyperlink{main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01206}01206 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01207}01207     \textcolor{comment}{// ramp Duration of 0.5 seconds}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01208}01208     \textcolor{keywordtype}{float} ramp\_dur = 0.5*LUT\_SR;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01209}01209     \textcolor{comment}{// MAX Ramp Value in mV}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01210}01210     uint32\_t maxRamp = (uint32\_t)(1650 * \mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} );}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01211}01211 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01212}01212     \textcolor{comment}{// Write into DAC-\/Buffer}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01213}01213     \textcolor{comment}{// decide if first half of BLOCKSIZE or second half}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01214}01214     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01215}01215     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01216}01216         BLOOCKSIZE\_startIndex = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01217}01217         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01218}01218     \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01219}01219     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01220}01220         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01221}01221         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01222}01222     \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01223}01223 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01224}01224     \textcolor{comment}{//Write into DAC}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01225}01225     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} BLOCKSIZE\_counter = BLOOCKSIZE\_startIndex; BLOCKSIZE\_counter < BLOOCKSIZE\_endIndex; BLOCKSIZE\_counter++) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01197}01197 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01198}01198 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01199}01199 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01200}01200 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01204}\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{01204}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} = 0;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01205}01205 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01206}01206 \textcolor{keywordtype}{bool} initRamp(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01207}01207     \textcolor{keywordtype}{bool} retval = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01208}01208     \textcolor{keywordtype}{float}* calculate\_vector\_tmp = \mbox{\hyperlink{Core_2Inc_2main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}};}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01209}01209 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01210}01210     \textcolor{comment}{// ramp Duration of 0.5 seconds}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01211}01211     \textcolor{keywordtype}{float} ramp\_dur = 0.5*LUT\_SR;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01212}01212     \textcolor{comment}{// MAX Ramp Value in mV}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01213}01213     uint32\_t maxRamp = (uint32\_t)(1650 * \mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} );}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01214}01214 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01215}01215     \textcolor{comment}{// Write into DAC-\/Buffer}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01216}01216     \textcolor{comment}{// decide if first half of BLOCKSIZE or second half}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01217}01217     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01218}01218     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01219}01219         BLOOCKSIZE\_startIndex = 0;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01220}01220         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01221}01221     \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01222}01222     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01223}01223         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01224}01224         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01225}01225     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01226}01226 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01227}01227         \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} < ramp\_dur)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01228}01228             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((float)((\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}/ramp\_dur) * maxRamp));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01229}01229             \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}++;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01230}01230         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01231}01231         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01232}01232             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)(maxRamp);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01227}01227     \textcolor{comment}{//Write into DAC}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01228}01228     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} BLOCKSIZE\_counter = BLOOCKSIZE\_startIndex; BLOCKSIZE\_counter < BLOOCKSIZE\_endIndex; BLOCKSIZE\_counter++) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01229}01229 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01230}01230         \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} < ramp\_dur)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01231}01231             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((float)((\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}/ramp\_dur) * maxRamp));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01232}01232             \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}}++;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01233}01233         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01234}01234     \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01235}01235     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01236}01236         retval = \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01237}01237 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01238}01238     \textcolor{keywordflow}{return} retval;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01239}01239 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01234}01234         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01235}01235             *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)(maxRamp);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01236}01236         \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01237}01237     \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01238}01238     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\_counter}} >= ramp\_dur)}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01239}01239         retval = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01240}01240 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01241}01241 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01249}\mbox{\hyperlink{signal__synthesis_8h_a2b8c4b7d554c97fbb68f2226c8202acd}{01249}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keywordtype}{int} index)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01250}01250 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01251}01251     \textcolor{keywordtype}{float} rect = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01252}01252 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01253}01253     \textcolor{comment}{// Current Index:   signals-\/>current\_LUT\_Index[index]}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01254}01254     \textcolor{comment}{// Period:          LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]]}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01241}01241     \textcolor{keywordflow}{return} retval;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01242}01242 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01243}01243 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01244}01244 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01252}\mbox{\hyperlink{signal__synthesis_8h_a2b8c4b7d554c97fbb68f2226c8202acd}{01252}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keywordtype}{int} index)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01253}01253 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01254}01254     \textcolor{keywordtype}{float} rect = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01255}01255 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01256}01256     \textcolor{comment}{// IF: Length of period is even (e.g. 346)}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01257}01257     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 0)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01256}01256     \textcolor{comment}{// Current Index:   signals-\/>current\_LUT\_Index[index]}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01257}01257     \textcolor{comment}{// Period:          LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]]}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01258}01258 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01259}01259         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:172 < 173)}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01260}01260         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01259}01259     \textcolor{comment}{// IF: Length of period is even (e.g. 346)}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01260}01260     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 0)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01261}01261 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01262}01262             rect = 0.2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01263}01263         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01264}01264         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (173:345 >= 173)}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01265}01265         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01266}01266 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01267}01267             rect = -\/0.2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01268}01268         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01269}01269     \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01270}01270     \textcolor{comment}{// IF: Length of period is odd (e.g. 347)}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01271}01271     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 1)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01272}01272 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01273}01273         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:173 < 174) due to (period-\/1)/2 + 1}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01274}01274         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01262}01262         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:172 < 173)}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01263}01263         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01264}01264 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01265}01265             rect = 0.2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01266}01266         \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01267}01267         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (173:345 >= 173)}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01268}01268         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] / 2))\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01269}01269 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01270}01270             rect = -\/0.2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01271}01271         \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01272}01272     \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01273}01273     \textcolor{comment}{// IF: Length of period is odd (e.g. 347)}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01274}01274     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] \% 2 == 1)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01275}01275 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01276}01276             rect = 0.2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01277}01277         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01278}01278         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (174:346 >= 174) due to (period-\/1)/2 + 1}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01279}01279         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01280}01280 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01281}01281             rect = -\/0.2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01282}01282         \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01283}01283     \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01284}01284     \textcolor{keywordflow}{return} rect;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01285}01285 \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01286}01286 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01294}\mbox{\hyperlink{signal__synthesis_8h_abeac1ddb99c3d1374df2dc163a756072}{01294}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keywordtype}{int} index)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01295}01295 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01296}01296     \textcolor{keywordtype}{float} triangle      = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01297}01297     \textcolor{keywordtype}{float} current\_index = (float)signals-\/>current\_LUT\_Index[index];}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01298}01298     \textcolor{keywordtype}{float} period        = (\textcolor{keywordtype}{float})\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]];}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01299}01299 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01300}01300     \textcolor{comment}{/* FORMULA: 4*a/p * abs((((x -\/ p/4) \% p) + p) \% p -\/ p/2) -\/ a}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01301}01301 \textcolor{comment}{     *}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01302}01302 \textcolor{comment}{     * a: Amplitude         >> 1}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01303}01303 \textcolor{comment}{     * x: Current index     >> signals-\/>current\_LUT\_Index[index]}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01304}01304 \textcolor{comment}{     * p: Period            >> LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]]}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01305}01305 \textcolor{comment}{     *}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01306}01306 \textcolor{comment}{     * Source: https://en.wikipedia.org/wiki/Triangle\_wave}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01307}01307 \textcolor{comment}{     *}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01308}01308 \textcolor{comment}{     */}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01309}01309 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01310}01310     triangle = fmodf(current\_index -\/ period/4, period);}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01311}01311     triangle = triangle + period;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01312}01312     triangle = fmodf(triangle, period) -\/ period/2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01313}01313     triangle = abs(triangle);}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01314}01314     triangle = (4/period) * triangle -\/ 1;;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01315}01315 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01316}01316     \textcolor{keywordflow}{return} triangle;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01317}01317 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01276}01276         \textcolor{comment}{// IF: Current index < length of period of desired frequency (0:173 < 174) due to (period-\/1)/2 + 1}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01277}01277         \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] < (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01278}01278 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01279}01279             rect = 0.2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01280}01280         \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01281}01281         \textcolor{comment}{// IF: Current index >= length of period of desired frequency (174:346 >= 174) due to (period-\/1)/2 + 1}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01282}01282         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>current\_LUT\_Index[index] >= (((\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]] -\/ 1) / 2) + 1))\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01283}01283 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01284}01284             rect = -\/0.2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01285}01285         \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01286}01286     \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01287}01287     \textcolor{keywordflow}{return} rect;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01288}01288 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01289}01289 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01297}\mbox{\hyperlink{signal__synthesis_8h_abeac1ddb99c3d1374df2dc163a756072}{01297}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keywordtype}{int} index)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01298}01298 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01299}01299     \textcolor{keywordtype}{float} triangle      = 0;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01300}01300     \textcolor{keywordtype}{float} current\_index = (float)signals-\/>current\_LUT\_Index[index];}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01301}01301     \textcolor{keywordtype}{float} period        = (\textcolor{keywordtype}{float})\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[signals-\/>freqIndex[index]];}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01302}01302 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01303}01303     \textcolor{comment}{/* FORMULA: 4*a/p * abs((((x -\/ p/4) \% p) + p) \% p -\/ p/2) -\/ a}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01304}01304 \textcolor{comment}{     *}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01305}01305 \textcolor{comment}{     * a: Amplitude         >> 1}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01306}01306 \textcolor{comment}{     * x: Current index     >> signals-\/>current\_LUT\_Index[index]}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01307}01307 \textcolor{comment}{     * p: Period            >> LUT\_SUPPORTPOINTS[signals-\/>freqIndex[index]]}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01308}01308 \textcolor{comment}{     *}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01309}01309 \textcolor{comment}{     * Source: https://en.wikipedia.org/wiki/Triangle\_wave}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01310}01310 \textcolor{comment}{     *}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01311}01311 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01312}01312 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01313}01313     triangle = fmodf(current\_index -\/ period/4, period);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01314}01314     triangle = triangle + period;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01315}01315     triangle = fmodf(triangle, period) -\/ period/2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01316}01316     triangle = abs(triangle);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01317}01317     triangle = (4/period) * triangle -\/ 1;;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01318}01318 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01324}\mbox{\hyperlink{signal__synthesis_8h_a2f9745c8cd2b522e949b4c58cfccce56}{01324}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}(\textcolor{keywordtype}{void}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01325}01325 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01326}01326     \textcolor{keywordtype}{float} NoiseValue = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01327}01327     \textcolor{keywordtype}{float} Noise\_Gain = 0.5;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01319}01319     \textcolor{keywordflow}{return} triangle;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01320}01320 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01321}01321 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01327}\mbox{\hyperlink{signal__synthesis_8h_a2f9745c8cd2b522e949b4c58cfccce56}{01327}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}(\textcolor{keywordtype}{void}) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01328}01328 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01329}01329     \textcolor{keywordflow}{if}(Display.Noise\_ONOFF == \textcolor{keyword}{true})}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01330}01330         NoiseValue = (Noise\_Gain*Display.Noise\_Volume*(float)rand()/ (powf(2, 8*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}))) )-\/(Noise\_Gain*Display.Noise\_Volume*0.25); \textcolor{comment}{// Noise Gain = 8}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01329}01329     \textcolor{keywordtype}{float} NoiseValue = 0;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01330}01330     \textcolor{keywordtype}{float} Noise\_Gain = 0.5;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01331}01331 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01332}01332     \textcolor{keywordflow}{return} NoiseValue;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01333}01333 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01332}01332     \textcolor{keywordflow}{if}(Display.Noise\_ONOFF == \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01333}01333         NoiseValue = (Noise\_Gain*Display.Noise\_Volume*(float)rand()/ (powf(2, 8*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}))) )-\/(Noise\_Gain*Display.Noise\_Volume*0.25); \textcolor{comment}{// Noise Gain = 8}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01334}01334 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01335}01335 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01341}\mbox{\hyperlink{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}{01341}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}{AWGN\_generator}}(\textcolor{keywordtype}{void}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01342}01342 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01343}01343     \textcolor{keywordtype}{float} temp1;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01344}01344     \textcolor{keywordtype}{float} temp2;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01345}01345     \textcolor{keywordtype}{float} result;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01346}01346     \textcolor{keywordtype}{int} p;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01347}01347 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01348}01348     p = 1;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01349}01349 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01350}01350     \textcolor{keywordflow}{while}( p > 0 )}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01351}01351     \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01352}01352         temp2 = ( rand() / ( (float)RAND\_MAX ) ); \textcolor{comment}{/*  rand() function generates an}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01353}01353 \textcolor{comment}{                                                       integer between 0 and  RAND\_MAX,}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01354}01354 \textcolor{comment}{                                                       which is defined in stdlib.h.}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01355}01355 \textcolor{comment}{         */}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01356}01356 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01357}01357         \textcolor{keywordflow}{if} ( temp2 == 0 )}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01358}01358         \{\textcolor{comment}{// temp2 is >= (RAND\_MAX / 2)}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01359}01359             p = 1;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01360}01360         \}\textcolor{comment}{// end if}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01361}01361         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01362}01362         \{\textcolor{comment}{// temp2 is < (RAND\_MAX / 2)}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01363}01363             p = -\/1;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01364}01364         \}\textcolor{comment}{// end else}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01365}01365 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01366}01366     \}\textcolor{comment}{// end while()}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01367}01367 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01368}01368     temp1 = cos( ( 2.0 * (\textcolor{keywordtype}{float})PI ) * rand() / ( (\textcolor{keywordtype}{float})RAND\_MAX ) );}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01369}01369     result = sqrt( -\/2.0 * log( temp2 ) ) * temp1;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01335}01335     \textcolor{keywordflow}{return} NoiseValue;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01336}01336 \}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01337}01337 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01338}01338 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01344}\mbox{\hyperlink{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}{01344}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}{AWGN\_generator}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01345}01345 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01346}01346     \textcolor{keywordtype}{float} temp1;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01347}01347     \textcolor{keywordtype}{float} temp2;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01348}01348     \textcolor{keywordtype}{float} result;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01349}01349     \textcolor{keywordtype}{int} p;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01350}01350 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01351}01351     p = 1;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01352}01352 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01353}01353     \textcolor{keywordflow}{while}( p > 0 )}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01354}01354     \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01355}01355         temp2 = ( rand() / ( (float)RAND\_MAX ) ); \textcolor{comment}{/*  rand() function generates an}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01356}01356 \textcolor{comment}{                                                       integer between 0 and  RAND\_MAX,}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01357}01357 \textcolor{comment}{                                                       which is defined in stdlib.h.}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01358}01358 \textcolor{comment}{         */}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01359}01359 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01360}01360         \textcolor{keywordflow}{if} ( temp2 == 0 )}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01361}01361         \{\textcolor{comment}{// temp2 is >= (RAND\_MAX / 2)}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01362}01362             p = 1;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01363}01363         \}\textcolor{comment}{// end if}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01364}01364         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01365}01365         \{\textcolor{comment}{// temp2 is < (RAND\_MAX / 2)}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01366}01366             p = -\/1;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01367}01367         \}\textcolor{comment}{// end else}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01368}01368 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01369}01369     \}\textcolor{comment}{// end while()}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01370}01370 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01371}01371     \textcolor{keywordflow}{return} result;  \textcolor{comment}{// return the generated random sample to the caller}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01372}01372 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01373}01373 \}\textcolor{comment}{// end AWGN\_generator()}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01371}01371     temp1 = cos( ( 2.0 * (\textcolor{keywordtype}{float})PI ) * rand() / ( (\textcolor{keywordtype}{float})RAND\_MAX ) );}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01372}01372     result = sqrt( -\/2.0 * log( temp2 ) ) * temp1;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01373}01373 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01374}01374     \textcolor{keywordflow}{return} result;  \textcolor{comment}{// return the generated random sample to the caller}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01375}01375 }
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01376}01376 \}\textcolor{comment}{// end AWGN\_generator()}}
 
 \end{DoxyCode}

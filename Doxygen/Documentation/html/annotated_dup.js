@@ -5,6 +5,7 @@ var annotated_dup =
     [ "display_variables", "structdisplay__variables.html", null ],
     [ "effects_distortion", "structeffects__distortion.html", null ],
     [ "effects_lfo_t", "structeffects__lfo__t.html", null ],
+    [ "MPU6050_Data", "structMPU6050__Data.html", null ],
     [ "sensor_data", "structsensor__data.html", null ],
     [ "signal_t", "structsignal__t.html", null ],
     [ "Tremolo_t", "structTremolo__t.html", null ],

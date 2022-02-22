@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['input_20devices_0',['Input Devices',['../group__InputDevice.html',1,'']]],
-  ['input_20interface_1',['Input Interface',['../group__InputInterface.html',1,'']]],
-  ['interrupts_2',['Interrupts',['../group__Interrupts.html',1,'']]]
+  ['groyscop_2d_20and_20accelerometer_2dsensor_20spi_20connection_0',['Groyscop- and Accelerometer-Sensor SPI connection',['../group__Gyro.html',1,'']]]
 ];

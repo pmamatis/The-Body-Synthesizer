@@ -890,7 +890,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			case SIN:
 				// adds all SIN values from the signals to addValue
 				addValue = addValue + LUT[signals -> current_LUT_Index[j]];
-				
+
 				// get index for the next sin value
 				signals->current_LUT_Index[j]++;
 
@@ -1126,21 +1126,21 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 				}
 				break;
 
-		}
+			}//end witch Case
 
-
+		}//End SIgnal for-Loop
 
 		// NORM: Volume by signal count
 		if(signals->count - active_keyboard_notes == 0) {}	// division by zero for addValue possible -> fuckup!
 		else
 			addValue = addValue / (signals->count - active_keyboard_notes);
 
-	
+
 
 		// write voices (including noise) into calculate vector
 		calculate_vector_tmp[BLOCKSIZE_counter] = volume[0] * (addValue + Noise_Generator());
 
-	}// Signal counter for-loop
+
 
 		// Drummachine
 		if ((volume[1] > 0) || (volume[2] > 0)){
@@ -1161,6 +1161,15 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 			for (int k= 0; k < 5;k++)
 				calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
 		}
+		// Keyboard processing without effects
+		else if(Display.KeyboardFX_ONOFF == false) {
+			keyboard_adsr_process();
+			// summing up all played keyboard notes
+			for (int k= 0; k < 5;k++)
+				calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
+		}
+
+
 
 		// Play single sample
 		if(play_single_sample_flag) {
@@ -1170,14 +1179,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 
 		effects_process(&calculate_vector_tmp[BLOCKSIZE_counter]);
 
-		// Keyboard processing without effects
-		if(Display.KeyboardFX_ONOFF == false) {
-			keyboard_adsr_process();
-			// summing up all played keyboard notes
-			for (int k= 0; k < 5;k++)
-				calculate_vector_tmp[BLOCKSIZE_counter] += volume[3] * calculate_keyboard[k];
-		}
-
+	
 
 		// Add all values
 		calculate_vector_tmp[BLOCKSIZE_counter] = calculate_vector_tmp[BLOCKSIZE_counter] + volume[1] * drums_filtered + volume[2] * sequencer;
@@ -1189,6 +1191,7 @@ void Signal_Synthesis(struct signal_t* signals,uint8_t output_Channel){
 		// Convert float to uint32 in order to make it readable for the DAC
 		*((uint32_t *)(&calculate_vector_tmp[BLOCKSIZE_counter] )) = (uint32_t)((0.5 * Master_Volume * calculate_vector_tmp[BLOCKSIZE_counter]+1.65) * maxValueDAC); // +1.65 is the middle of 0-3V3
 	}//End for-Loop
+
 
 
 }

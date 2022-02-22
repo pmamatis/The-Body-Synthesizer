@@ -1,4 +1,4 @@
-/** TODO
+/** 
  * @file tremolo.h
  * @author marc bielen
  * @brief tremolo effect

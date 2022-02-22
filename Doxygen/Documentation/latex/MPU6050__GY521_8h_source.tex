@@ -1,0 +1,367 @@
+\hypertarget{MPU6050__GY521_8h_source}{}\doxysection{MPU6050\+\_\+\+GY521.\+h}
+\label{MPU6050__GY521_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Inc/MPU6050\_GY521.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Inc/MPU6050\_GY521.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00002}00002 \textcolor{comment}{ * MPU6050\_GY521.h}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00004}00004 \textcolor{comment}{ *  Created on: Okt 10, 2020}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00005}00005 \textcolor{comment}{ *      Author: Christian}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00006}00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00008}00008 \textcolor{preprocessor}{\#ifndef INC\_MPU6050\_GY521\_H\_}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00009}00009 \textcolor{preprocessor}{\#define INC\_MPU6050\_GY521\_H\_}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00011}00011 \textcolor{comment}{//\#include "{}stm32l4xx\_hal.h"{}}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00012}00012 \textcolor{comment}{//\#include "{}MedianFilter.h"{}}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00013}00013 \textcolor{preprocessor}{\#include "{}stdlib.h"{}}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00014}00014 \textcolor{preprocessor}{\#include "{}math.h"{}}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00015}00015 \textcolor{comment}{//\#import <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00016}00016 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00017}00017 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00027}00027 \textcolor{preprocessor}{\#define MPU6050\_ADDR 0xD0}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00029}00029 \textcolor{comment}{/* Define I2C Register Addresses */}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00031}00031 \textcolor{preprocessor}{\#define MPU6050\_SMPLRT\_DIV\_REG  0x19}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00032}00032 \textcolor{preprocessor}{\#define MPU6050\_GYRO\_CONFIG\_REG 0x1B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00033}00033 \textcolor{preprocessor}{\#define MPU6050\_ACCL\_CONFIG\_REG 0x1C}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00034}00034 \textcolor{preprocessor}{\#define MPU6050\_ACCL\_XOUT\_H\_REG 0x3B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00035}00035 \textcolor{preprocessor}{\#define MPU6050\_TEMP\_OUT\_H\_REG  0x41}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00036}00036 \textcolor{preprocessor}{\#define MPU6050\_GYRO\_XOUT\_H\_REG 0x43}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00037}00037 \textcolor{preprocessor}{\#define MPU6050\_PWR\_MGMT\_1\_REG  0x6B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00038}00038 \textcolor{preprocessor}{\#define MPU6050\_WHO\_AM\_I\_REG    0x75}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00039}00039 \textcolor{preprocessor}{\#define MPU6050\_INT\_STATUS\_REG  0x3A}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00040}00040 \textcolor{preprocessor}{\#define MPU6050\_USR\_CRTL\_REG    0x6A}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00041}00041 \textcolor{preprocessor}{\#define MPU6050\_FIFO\_EN\_REG     0x23}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00042}00042 \textcolor{preprocessor}{\#define MPU6050\_FIFO\_DATA\_REG   0x74}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00043}00043 \textcolor{preprocessor}{\#define MPU6050\_FIFO\_COUNT\_L\_REG 0x73}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00044}00044 \textcolor{preprocessor}{\#define MPU6050\_FIFO\_COUNT\_H\_REG 0x72}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00046}00046 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00047}00047 \textcolor{comment}{//  Registers addresses}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00048}00048 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00049}00049 \textcolor{preprocessor}{\#define MPU6050\_RA\_SELF\_TEST\_X      0x0D}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00050}00050 \textcolor{preprocessor}{\#define MPU6050\_RA\_SELF\_TEST\_Y      0x0E}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00051}00051 \textcolor{preprocessor}{\#define MPU6050\_RA\_SELF\_TEST\_Z      0x0F}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00052}00052 \textcolor{preprocessor}{\#define MPU6050\_RA\_SELF\_TEST\_A      0x10}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00053}00053 \textcolor{preprocessor}{\#define MPU6050\_RA\_SMPLRT\_DIV       0x19}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00054}00054 \textcolor{preprocessor}{\#define MPU6050\_RA\_CONFIG           0x1A}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00055}00055 \textcolor{preprocessor}{\#define MPU6050\_RA\_GYRO\_CONFIG      0x1B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00056}00056 \textcolor{preprocessor}{\#define MPU6050\_RA\_ACCEL\_CONFIG     0x1C}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00057}00057 \textcolor{comment}{// Not in documentation}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00058}00058 \textcolor{preprocessor}{\#define MPU6050\_RA\_FF\_THR           0x1D}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00059}00059 \textcolor{preprocessor}{\#define MPU6050\_RA\_FF\_DUR           0x1E}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00060}00060 \textcolor{preprocessor}{\#define MPU6050\_RA\_MOT\_THR          0x1F}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00061}00061 \textcolor{preprocessor}{\#define MPU6050\_RA\_MOT\_DUR          0x20}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00062}00062 \textcolor{preprocessor}{\#define MPU6050\_RA\_ZRMOT\_THR        0x21}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00063}00063 \textcolor{preprocessor}{\#define MPU6050\_RA\_ZRMOT\_DUR        0x22}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00064}00064 \textcolor{comment}{// Not in documentation end}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00065}00065 \textcolor{preprocessor}{\#define MPU6050\_RA\_FIFO\_EN          0x23}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00066}00066 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_MST\_CTRL     0x24}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00067}00067 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV0\_ADDR    0x25}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00068}00068 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV0\_REG     0x26}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00069}00069 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV0\_CTRL    0x27}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00070}00070 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV1\_ADDR    0x28}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00071}00071 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV1\_REG     0x29}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00072}00072 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV1\_CTRL    0x2A}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00073}00073 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV2\_ADDR    0x2B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00074}00074 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV2\_REG     0x2C}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00075}00075 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV2\_CTRL    0x2D}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00076}00076 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV3\_ADDR    0x2E}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00077}00077 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV3\_REG     0x2F}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00078}00078 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV3\_CTRL    0x30}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00079}00079 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV4\_ADDR    0x31}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00080}00080 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV4\_REG     0x32}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00081}00081 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV4\_DO      0x33}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00082}00082 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV4\_CTRL    0x34}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00083}00083 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV4\_DI      0x35}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00084}00084 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_MST\_STATUS   0x36}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00085}00085 \textcolor{preprocessor}{\#define MPU6050\_RA\_INT\_PIN\_CFG      0x37}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00086}00086 \textcolor{preprocessor}{\#define MPU6050\_RA\_INT\_ENABLE       0x38}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00087}00087 \textcolor{comment}{// Not in documentation}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00088}00088 \textcolor{preprocessor}{\#define MPU6050\_RA\_DMP\_INT\_STATUS   0x39}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00089}00089 \textcolor{comment}{// Not in documentation end}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00090}00090 \textcolor{preprocessor}{\#define MPU6050\_RA\_INT\_STATUS       0x3A}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00091}00091 \textcolor{preprocessor}{\#define MPU6050\_RA\_ACCEL\_XOUT\_H     0x3B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00092}00092 \textcolor{preprocessor}{\#define MPU6050\_RA\_ACCEL\_XOUT\_L     0x3C}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00093}00093 \textcolor{preprocessor}{\#define MPU6050\_RA\_ACCEL\_YOUT\_H     0x3D}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00094}00094 \textcolor{preprocessor}{\#define MPU6050\_RA\_ACCEL\_YOUT\_L     0x3E}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00095}00095 \textcolor{preprocessor}{\#define MPU6050\_RA\_ACCEL\_ZOUT\_H     0x3F}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00096}00096 \textcolor{preprocessor}{\#define MPU6050\_RA\_ACCEL\_ZOUT\_L     0x40}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00097}00097 \textcolor{preprocessor}{\#define MPU6050\_RA\_TEMP\_OUT\_H       0x41}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00098}00098 \textcolor{preprocessor}{\#define MPU6050\_RA\_TEMP\_OUT\_L       0x42}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00099}00099 \textcolor{preprocessor}{\#define MPU6050\_RA\_GYRO\_XOUT\_H      0x43}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00100}00100 \textcolor{preprocessor}{\#define MPU6050\_RA\_GYRO\_XOUT\_L      0x44}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00101}00101 \textcolor{preprocessor}{\#define MPU6050\_RA\_GYRO\_YOUT\_H      0x45}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00102}00102 \textcolor{preprocessor}{\#define MPU6050\_RA\_GYRO\_YOUT\_L      0x46}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00103}00103 \textcolor{preprocessor}{\#define MPU6050\_RA\_GYRO\_ZOUT\_H      0x47}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00104}00104 \textcolor{preprocessor}{\#define MPU6050\_RA\_GYRO\_ZOUT\_L      0x48}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00105}00105 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_00 0x49}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00106}00106 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_01 0x4A}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00107}00107 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_02 0x4B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00108}00108 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_03 0x4C}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00109}00109 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_04 0x4D}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00110}00110 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_05 0x4E}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00111}00111 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_06 0x4F}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00112}00112 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_07 0x50}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00113}00113 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_08 0x51}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00114}00114 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_09 0x52}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00115}00115 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_10 0x53}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00116}00116 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_11 0x54}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00117}00117 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_12 0x55}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00118}00118 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_13 0x56}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00119}00119 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_14 0x57}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00120}00120 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_15 0x58}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00121}00121 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_16 0x59}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00122}00122 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_17 0x5A}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00123}00123 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_18 0x5B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00124}00124 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_19 0x5C}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00125}00125 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_20 0x5D}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00126}00126 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_21 0x5E}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00127}00127 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_22 0x5F}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00128}00128 \textcolor{preprocessor}{\#define MPU6050\_RA\_EXT\_SENS\_DATA\_23 0x60}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00129}00129 \textcolor{comment}{// Not in documentation}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00130}00130 \textcolor{preprocessor}{\#define MPU6050\_RA\_MOT\_DETECT\_STATUS    0x61}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00131}00131 \textcolor{comment}{// Not in documentation end}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00132}00132 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV0\_DO      0x63}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00133}00133 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV1\_DO      0x64}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00134}00134 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV2\_DO      0x65}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00135}00135 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_SLV3\_DO      0x66}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00136}00136 \textcolor{preprocessor}{\#define MPU6050\_RA\_I2C\_MST\_DELAY\_CTRL   0x67}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00137}00137 \textcolor{preprocessor}{\#define MPU6050\_RA\_SIGNAL\_PATH\_RESET    0x68}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00138}00138 \textcolor{comment}{// Not in documentation}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00139}00139 \textcolor{preprocessor}{\#define MPU6050\_RA\_MOT\_DETECT\_CTRL      0x69}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00140}00140 \textcolor{comment}{// Not in documentation end}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00141}00141 \textcolor{preprocessor}{\#define MPU6050\_RA\_USER\_CTRL        0x6A}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00142}00142 \textcolor{preprocessor}{\#define MPU6050\_RA\_PWR\_MGMT\_1       0x6B}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00143}00143 \textcolor{preprocessor}{\#define MPU6050\_RA\_PWR\_MGMT\_2       0x6C}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00144}00144 \textcolor{preprocessor}{\#define MPU6050\_RA\_FIFO\_COUNTH      0x72}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00145}00145 \textcolor{preprocessor}{\#define MPU6050\_RA\_FIFO\_COUNTL      0x73}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00146}00146 \textcolor{preprocessor}{\#define MPU6050\_RA\_FIFO\_R\_W         0x74}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00147}00147 \textcolor{preprocessor}{\#define MPU6050\_RA\_WHO\_AM\_I         0x75}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00149}00149 \textcolor{comment}{/* Device ID Check (WHO\_AM\_I\_REG default value) */}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00150}00150 \textcolor{preprocessor}{\#define MPU6050\_I\_AM    0x68}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00151}00151 \textcolor{comment}{/* Gyro sensitivities in degrees/s */}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00152}00152 \textcolor{preprocessor}{\#define MPU6050\_GYRO\_SENS\_250       ((float)1 / ((float) 131))}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00153}00153 \textcolor{preprocessor}{\#define MPU6050\_GYRO\_SENS\_500       ((float)1 / ((float) 65.5))}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00154}00154 \textcolor{preprocessor}{\#define MPU6050\_GYRO\_SENS\_1000      ((float)1 / ((float) 32.8))}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00155}00155 \textcolor{preprocessor}{\#define MPU6050\_GYRO\_SENS\_2000      ((float)1 / ((float) 16.4))}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00156}00156 \textcolor{comment}{/* Accel sensitivities in g/s */}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00157}00157 \textcolor{preprocessor}{\#define MPU6050\_ACCL\_SENS\_2         ((float)1 / ((float) 16384.0))}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00158}00158 \textcolor{preprocessor}{\#define MPU6050\_ACCL\_SENS\_4         ((float)1 / ((float) 8192.0))}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00159}00159 \textcolor{preprocessor}{\#define MPU6050\_ACCL\_SENS\_8         ((float)1 / ((float) 4096.0))}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00160}00160 \textcolor{preprocessor}{\#define MPU6050\_ACCL\_SENS\_16        ((float)1 / ((float) 2048.0))}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00161}00161 \textcolor{comment}{/* @brief Define MPU Output variables */}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00163}00163 \textcolor{comment}{// Define possible Sample rates}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00164}00164 \textcolor{preprocessor}{\#define MPU6050\_SampleRate\_8KHz       0x00   }}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00165}00165 \textcolor{preprocessor}{\#define MPU6050\_SampleRate\_4KHz       0x01   }}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00166}00166 \textcolor{preprocessor}{\#define MPU6050\_SampleRate\_2KHz       0x03   }}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00167}00167 \textcolor{preprocessor}{\#define MPU6050\_SampleRate\_1KHz       0x07   }}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00168}00168 \textcolor{preprocessor}{\#define MPU6050\_SampleRate\_500Hz      0x0F  }}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00169}00169 \textcolor{preprocessor}{\#define MPU6050\_SampleRate\_250Hz      0x1F  }}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00170}00170 \textcolor{preprocessor}{\#define MPU6050\_SampleRate\_125Hz      0x3F  }}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00171}00171 \textcolor{preprocessor}{\#define MPU6050\_SampleRate\_100Hz      0x4F  }}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00172}00172 \textcolor{comment}{// Define for filtering of accelerometerdata}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00173}00173 \textcolor{preprocessor}{\#define NUM\_ELEMENTS 11}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00175}00175 \textcolor{comment}{// define for amount of FIFO entries}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00176}00176 \textcolor{preprocessor}{\#define MPU6050\_FIFO\_AMT 1024}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00177}00177 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00178}\mbox{\hyperlink{structMPU6050__Data}{00178}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00179}00179     int16\_t Gyro\_X;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00180}00180     int16\_t Gyro\_Y;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00181}00181     int16\_t Gyro\_Z;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00182}00182     int16\_t Gx\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00183}00183     int16\_t Gy\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00184}00184     int16\_t Gz\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00185}00185     int16\_t Gx\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00186}00186     int16\_t Gy\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00187}00187     int16\_t Gz\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00188}00188     int32\_t Gyro\_time;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00189}00189     \textcolor{keywordtype}{float}   Gyro\_mult;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00190}00190     \textcolor{keywordtype}{float} Gx\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00191}00191     \textcolor{keywordtype}{float} Gy\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00192}00192     \textcolor{keywordtype}{float} Gz\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00193}00193 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00194}00194     int16\_t Accl\_X;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00195}00195     int16\_t Accl\_Y;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00196}00196     int16\_t Accl\_Z;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00197}00197     int16\_t Accl\_X\_filt;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00198}00198     int16\_t Accl\_Y\_filt;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00199}00199     int16\_t Accl\_Z\_filt;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00200}00200     int16\_t Ax\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00201}00201     int16\_t Ay\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00202}00202     int16\_t Az\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00203}00203     int16\_t Ax\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00204}00204     int16\_t Ay\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00205}00205     int16\_t Az\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00206}00206     \textcolor{keywordtype}{float}   Accl\_mult;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00207}00207     \textcolor{keywordtype}{float} Ax\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00208}00208     \textcolor{keywordtype}{float} Ay\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00209}00209 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00210}00210     \textcolor{keywordtype}{float} X\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00211}00211     \textcolor{keywordtype}{float} Y\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00212}00212     \textcolor{keywordtype}{float} Z\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00214}00214 \}\mbox{\hyperlink{structMPU6050__Data}{MPU6050\_Data}};}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00215}00215 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00216}00216 \textcolor{keyword}{typedef} \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00217}00217     MPU6050\_Status\_OK= 0x00,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00218}00218     MPU6050\_Read\_OK,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00219}00219     MPU6050\_Status\_Error,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00220}00220     MPU6050\_Read\_Error,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00221}00221     MPU6050\_Status\_Notconnected,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00222}00222     MPU6050\_Status\_Invalid}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00223}00223 \}MPU6050\_STATUS;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00224}00224 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00225}00225 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00226}00226 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00227}00227 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00232}00232 \textcolor{comment}{// Set Accl\_Res to 0, 1, 2, 3 for following resolution:}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00233}00233 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00234}00234     MPU6050\_ACCL\_2G = 0x00,     \textcolor{comment}{// 0 ±2g  16384 LSB/g}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00235}00235     MPU6050\_ACCL\_4G,            \textcolor{comment}{// 1 ±4g   8192 LSB/g}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00236}00236     MPU6050\_ACCL\_8G,            \textcolor{comment}{// 2 ±8g   4096 LSB/g}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00237}00237     MPU6050\_ACCL\_16G            \textcolor{comment}{// 3 ±16g  2048 LSB/g}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00238}00238 \} MPU6050\_ACCL\_RES;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00239}00239 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00240}00240 \textcolor{comment}{// Set Gyro\_Res to 0, 1, 2, 3 for following resolution:}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00241}00241 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} MPU6050\_GYRO\_RES\_ENUM\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00242}00242     MPU6050\_GYRO\_250deg = 0x00,     \textcolor{comment}{// 0 ±  250 °/s 131   LSB/°/s}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00243}00243     MPU6050\_GYRO\_500deg,            \textcolor{comment}{// 1 ±  500 °/s  65.5 LSB/°/s}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00244}00244     MPU6050\_GYRO\_1000deg,           \textcolor{comment}{// 2 ± 1000 °/s  32.8 LSB/°/s}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00245}00245     MPU6050\_GYRO\_2000deg            \textcolor{comment}{// 3 ± 2000 °/s  16.4 LSB/°/s}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00246}00246 \} MPU6050\_GYRO\_RES;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00247}00247 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00248}00248 \textcolor{comment}{// User Controll  enum}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00249}00249 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} MPU6050\_USR\_CRTL\_ENUM\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00250}00250     MPU6050\_USR\_CRTL\_SIG\_COND\_RESET = 0x01,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00251}00251     MPU6050\_USR\_CRTL\_I2C\_MST\_RESET  = 0x02,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00252}00252     MPU6050\_USR\_CRTL\_FIFO\_RESET     = 0x04,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00253}00253     MPU6050\_USR\_CRTL\_I2C\_TO\_SPI     = 0x10,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00254}00254     MPU6050\_USR\_CRTL\_I2C\_MST\_E      = 0x20,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00255}00255     MPU6050\_USR\_CRTL\_FIFO\_EN        = 0x40}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00256}00256 \} MPU6050\_USR\_CRTL;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00257}00257 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00258}00258 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00259}00259 \textcolor{comment}{// Interrupt enable enum}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00260}00260 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} MPU6050\_INT\_EN\_ENUM\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00261}00261     MPU6050\_INT\_EN\_DATA\_RDY = 0x01,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00262}00262     MPU6050\_INT\_EN\_I2C\_INT = 0x08,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00263}00263     MPU6050\_INT\_EN\_FIFO\_OVERFLOW = 0x10}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00264}00264 \} MPU6050\_INT\_EN;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00265}00265 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00266}00266 \textcolor{comment}{// Interrupt status enum}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00267}00267 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} MPU6050\_INT\_STATUS\_ENUM\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00268}00268     MPU6050\_INT\_DATA\_RDY = 0x01,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00269}00269     MPU6050\_INT\_I2C\_INT = 0x08,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00270}00270     MPU6050\_INT\_FIFO\_OVERFLOW = 0x10}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00271}00271 \} MPU6050\_INT\_STATUS;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00272}00272 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00273}00273 \textcolor{comment}{// FIFO\_ENABLE enum}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00274}00274 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} MPU6050\_FIFO\_EN\_ENUM\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00275}00275     MPU6050\_FIFO\_EN\_SLV0  = 0x01,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00276}00276     MPU6050\_FIFO\_EN\_SLV1  = 0x02,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00277}00277     MPU6050\_FIFO\_EN\_SLV2  = 0x04,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00278}00278     MPU6050\_FIFO\_EN\_ACCEL = 0x08,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00279}00279     MPU6050\_FIFO\_EN\_ZG    = 0x10,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00280}00280     MPU6050\_FIFO\_EN\_YG    = 0x20,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00281}00281     MPU6050\_FIFO\_EN\_XG    = 0x40,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00282}00282     MPU6050\_FIFO\_EN\_TEMP  = 0x80}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00283}00283 \} MPU6050\_FIFO\_EN;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00284}00284 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00285}00285 \textcolor{comment}{// Tilt direction enumeration}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00286}00286 \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}}\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00287}00287 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00288}00288     TILT\_NONE  = 0x00,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00289}00289     TILT\_RIGHT = 0x01,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00290}00290     TILT\_LEFT,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00291}00291     TILT\_FRONT,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00292}00292     TILT\_BACK,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00293}00293     TILT\_RIGHT\_S, \textcolor{comment}{//Fast}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00294}00294     TILT\_LEFT\_S,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00295}00295     TILT\_FRONT\_S,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00296}00296     TILT\_BACK\_S}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00297}00297 \}\mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}};}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00298}00298 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00299}00299 \textcolor{comment}{//Movement direction enum}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00300}00300 \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  Movement\_direction\_t\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00301}00301 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00302}00302     MOVEMENT\_NONE  = 0x00,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00303}00303     MOVEMENT\_HIGH = 0x01,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00304}00304     MOVEMENT\_DOWN,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00305}00305     MOVEMENT\_RIGHT,}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00306}00306     MOVEMENT\_LEFT}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00307}00307 \}Movement\_direction\_t;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00308}00308 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00309}00309 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00310}00310 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00316}00316 \textcolor{comment}{// Data Struct}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00317}00317 \mbox{\hyperlink{structMPU6050__Data}{MPU6050\_Data}}* Sensor\_Data;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00318}00318 \textcolor{comment}{// I2C handler}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00319}00319 I2C\_HandleTypeDef* MPU6050\_hi2c;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00320}00320 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00321}00321 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00322}00322 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00327}00327 \textcolor{preprocessor}{\#define RAWBLOCKSIZE 6}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00328}00328 \textcolor{preprocessor}{\#define BLOCKSIZE 100}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00329}00329 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00330}00330 \textcolor{comment}{//Movement Threshholds}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00331}00331 \textcolor{preprocessor}{\#define THRESHOLD\_X 2000}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00332}00332 \textcolor{preprocessor}{\#define THRESHOLD\_Y 5000}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00333}00333 \textcolor{preprocessor}{\#define THRESHOLD\_Z 6000 }\textcolor{comment}{//Offset + gravitation}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00334}00334 \textcolor{preprocessor}{\#define PAUSE  1000}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00335}00335 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00336}00336 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00337}00337 uint8\_t Buffer\_RawData[RAWBLOCKSIZE];}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00338}00338 int16\_t Buffer\_ProcessedData\_x[\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}];}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00339}00339 int16\_t Buffer\_ProcessedData\_y[\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}];}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00340}00340 int16\_t Buffer\_ProcessedData\_z[\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}];}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00341}00341 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00342}00342 int16\_t debug\_x;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00343}00343 int16\_t debug\_y;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00344}00344 int16\_t debug\_z;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00345}00345 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00346}00346 int32\_t MeanValue\_x;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00347}00347 int32\_t MeanValue\_y;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00348}00348 int32\_t MeanValue\_z;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00349}00349 int32\_t BreakCounter;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00350}00350 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00351}00351 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00352}00352 \textcolor{keywordtype}{bool} MoveDetected;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00353}00353 \textcolor{keywordtype}{bool} MovementUP;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00354}00354 \textcolor{keywordtype}{bool} MovementDOWN;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00355}00355 \textcolor{keywordtype}{bool} MovementLEFT;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00356}00356 \textcolor{keywordtype}{bool} MovementRIGHT;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00357}00357 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00358}00358 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00359}00359 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00360}00360 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00361}00361 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00365}00365 MPU6050\_STATUS MPU6050\_init(I2C\_HandleTypeDef* \_\_hi2c, \mbox{\hyperlink{structMPU6050__Data}{MPU6050\_Data}}* DataStruct, MPU6050\_ACCL\_RES accl\_resolution, MPU6050\_GYRO\_RES gyro\_resolution, uint8\_t samplerate);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00366}00366 MPU6050\_STATUS MPU6050\_Read\_Accl();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00367}00367 MPU6050\_STATUS MPU6050\_Read\_Gyro();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00368}00368 MPU6050\_STATUS MPU6050\_Read\_Sensor();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00369}00369 MPU6050\_STATUS MPU6050\_Calibrate();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00370}00370 MPU6050\_STATUS MPU6050\_Calculate\_Mean( );}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00371}00371 Movement\_direction\_t MPU6050\_Detect\_Movement();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00372}00372 \textcolor{keywordtype}{void} getGyroRoll();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00373}00373 \textcolor{keywordtype}{void} getAcclRoll();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00374}00374 uint8\_t MPU6050\_GetIntReg(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00375}00375 \textcolor{keywordtype}{void} MPU6050\_GetFiFoData(uint8\_t buffer[1024]);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00376}00376 uint16\_t MPU6050\_Read\_FIFOcount(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00377}00377 \textcolor{keywordtype}{void} MPU6050\_Display\_FIFO();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00378}00378 \textcolor{keywordtype}{void} MPU6050\_FIFO\_RESET();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00379}00379 uint8\_t MPU6050\_GetDMPIntReg(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00380}00380 \textcolor{keywordtype}{void} MPU6050\_Display\_Data();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00381}00381 \textcolor{keywordtype}{float} getAbsMax(\textcolor{keywordtype}{float} a, \textcolor{keywordtype}{float} b , \textcolor{keywordtype}{float} c);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00382}00382 uint8\_t MPU6050\_detectTilt();}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8h_source_l00383}00383 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_MPU6050\_GY521\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

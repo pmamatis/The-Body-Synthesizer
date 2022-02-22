@@ -1,0 +1,430 @@
+\hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Sensor\+\_\+\+Code/\+Body-\/\+Synthezier\+\_\+\+Sensors/\+Core/\+Src/main.c File Reference}
+\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Src/main.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Src/main.c}}
+
+
+\+: Main program body  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_abc513dd972081ae765b6949a62872eb7}{\+\_\+\+\_\+io\+\_\+putchar}} (int ch)
+\begin{DoxyCompactList}\small\item\em modifies the printf to output the strings to UART, so it can be receiced on a external terminal for debugging \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_aa025a12d45f60c7d0eae249e61f0c7f9}{\+\_\+write}} (int file, char $\ast$ptr, int len)
+\item 
+void \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+I2\+C\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}}
+\item 
+SPI\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a9c6222bae4d0328dd843ae099623b40b}{hspi1}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_ad70fe79aa3139fc9184d8ffb5dfba323}{hdma\+\_\+spi1\+\_\+rx}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_ac8cdcfbb7adfcccc5717da58e1e10ae4}{hdma\+\_\+spi1\+\_\+tx}}
+\item 
+UART\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_aa9479c261d65eecedd3d9582f7f0f89c}{huart2}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Main program body 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2021 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 
+
+Definition in file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_abc513dd972081ae765b6949a62872eb7}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_abc513dd972081ae765b6949a62872eb7}} 
+\index{main.c@{main.c}!\_\_io\_putchar@{\_\_io\_putchar}}
+\index{\_\_io\_putchar@{\_\_io\_putchar}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{\_\_io\_putchar()}{\_\_io\_putchar()}}
+{\footnotesize\ttfamily int \+\_\+\+\_\+io\+\_\+putchar (\begin{DoxyParamCaption}\item[{int}]{ch }\end{DoxyParamCaption})}
+
+
+
+modifies the printf to output the strings to UART, so it can be receiced on a external terminal for debugging 
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00469}{469}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00470 \{}
+\DoxyCodeLine{00471     uint8\_t c[1];}
+\DoxyCodeLine{00472     c[0] = ch \& 0x00FF;}
+\DoxyCodeLine{00473     HAL\_UART\_Transmit(\&huart2, \&*c, 1, 10);}
+\DoxyCodeLine{00474     \textcolor{keywordflow}{return} ch;}
+\DoxyCodeLine{00475 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_aa025a12d45f60c7d0eae249e61f0c7f9}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_aa025a12d45f60c7d0eae249e61f0c7f9}} 
+\index{main.c@{main.c}!\_write@{\_write}}
+\index{\_write@{\_write}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{\_write()}{\_write()}}
+{\footnotesize\ttfamily int \+\_\+write (\begin{DoxyParamCaption}\item[{int}]{file,  }\item[{char $\ast$}]{ptr,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00477}{477}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00478 \{}
+\DoxyCodeLine{00479     \textcolor{keywordtype}{int} DataIdx;}
+\DoxyCodeLine{00480     \textcolor{keywordflow}{for}(DataIdx= 0; DataIdx< len; DataIdx++)}
+\DoxyCodeLine{00481     \{}
+\DoxyCodeLine{00482         \mbox{\hyperlink{Core_2Src_2main_8c_abc513dd972081ae765b6949a62872eb7}{\_\_io\_putchar}}(*ptr++);}
+\DoxyCodeLine{00483     \}}
+\DoxyCodeLine{00484     \textcolor{keywordflow}{return} len;}
+\DoxyCodeLine{00485 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a1730ffe1e560465665eb47d9264826f9}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a1730ffe1e560465665eb47d9264826f9}} 
+\index{main.c@{main.c}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00493}{493}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00494 \{}
+\DoxyCodeLine{00495   \textcolor{comment}{/* USER CODE BEGIN Error\_Handler\_Debug */}}
+\DoxyCodeLine{00496     \textcolor{comment}{/* User can add his own implementation to report the HAL error return state */}}
+\DoxyCodeLine{00497     \_\_disable\_irq();}
+\DoxyCodeLine{00498     \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00499     \{}
+\DoxyCodeLine{00500     \}}
+\DoxyCodeLine{00501   \textcolor{comment}{/* USER CODE END Error\_Handler\_Debug */}}
+\DoxyCodeLine{00502 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00075}{75}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00076 \{}
+\DoxyCodeLine{00077   \textcolor{comment}{/* USER CODE BEGIN 1 */}}
+\DoxyCodeLine{00078 }
+\DoxyCodeLine{00079   \textcolor{comment}{/* USER CODE END 1 */}}
+\DoxyCodeLine{00080 }
+\DoxyCodeLine{00081   \textcolor{comment}{/* MCU Configuration-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083   \textcolor{comment}{/* Reset of all peripherals, Initializes the Flash interface and the Systick. */}}
+\DoxyCodeLine{00084   HAL\_Init();}
+\DoxyCodeLine{00085 }
+\DoxyCodeLine{00086   \textcolor{comment}{/* USER CODE BEGIN Init */}}
+\DoxyCodeLine{00087 }
+\DoxyCodeLine{00088   \textcolor{comment}{/* USER CODE END Init */}}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090   \textcolor{comment}{/* Configure the system clock */}}
+\DoxyCodeLine{00091   \mbox{\hyperlink{Core_2Src_2main_8c_a70af21c671abfcc773614a9a4f63d920}{SystemClock\_Config}}();}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093   \textcolor{comment}{/* USER CODE BEGIN SysInit */}}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095   \textcolor{comment}{/* USER CODE END SysInit */}}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097   \textcolor{comment}{/* Initialize all configured peripherals */}}
+\DoxyCodeLine{00098   MX\_GPIO\_Init();}
+\DoxyCodeLine{00099   MX\_DMA\_Init();}
+\DoxyCodeLine{00100   MX\_SPI1\_Init();}
+\DoxyCodeLine{00101   MX\_USART2\_UART\_Init();}
+\DoxyCodeLine{00102   MX\_I2C1\_Init();}
+\DoxyCodeLine{00103   \textcolor{comment}{/* USER CODE BEGIN 2 */}}
+\DoxyCodeLine{00104     printf(\textcolor{stringliteral}{"{}***Bodysythesizer Sensor Board***\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00105     uint8\_t initError\_counter = 0;}
+\DoxyCodeLine{00106     \textcolor{keywordtype}{bool} led\_off = \textcolor{keyword}{true};}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108     \textcolor{comment}{//Calibrated LED switc ON}}
+\DoxyCodeLine{00109     HAL\_GPIO\_WritePin(LED\_CALIBRATED\_GPIO\_Port, LED\_CALIBRATED\_Pin,SET );}
+\DoxyCodeLine{00110 }
+\DoxyCodeLine{00111 }
+\DoxyCodeLine{00112     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i =0;i<BUFFERSIZE;i++)\{}
+\DoxyCodeLine{00113         pTxData[i] = 0;}
+\DoxyCodeLine{00114         pRxData[i] = 0;}
+\DoxyCodeLine{00115     \}}
+\DoxyCodeLine{00116     \textcolor{comment}{//Power up Gyro}}
+\DoxyCodeLine{00117     HAL\_GPIO\_WritePin(MPU6050\_Power\_GPIO\_Port, MPU6050\_Power\_Pin,SET );}
+\DoxyCodeLine{00118     HAL\_Delay(10);}
+\DoxyCodeLine{00119 }
+\DoxyCodeLine{00120     \textcolor{comment}{//Gyros Init}}
+\DoxyCodeLine{00121     \mbox{\hyperlink{structMPU6050__Data}{MPU6050\_Data}} gyro\_data;}
+\DoxyCodeLine{00122     \textcolor{comment}{//   MPU6050\_STATUS gyro\_status;}}
+\DoxyCodeLine{00123     \textcolor{keywordflow}{while}((initError\_counter < 5) \&\& MPU6050\_init(\&hi2c1, \&gyro\_data, MPU6050\_ACCL\_8G, MPU6050\_GYRO\_2000deg, MPU6050\_SampleRate\_2KHz != MPU6050\_Status\_OK))\{}
+\DoxyCodeLine{00124         initError\_counter++;}
+\DoxyCodeLine{00125         printf(\textcolor{stringliteral}{"{}MPU6050 Init Error\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00126         \textcolor{keywordflow}{if} (initError\_counter == 3)\{}
+\DoxyCodeLine{00127             printf(\textcolor{stringliteral}{"{}restart MPU6050\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00128             HAL\_GPIO\_WritePin(MPU6050\_Power\_GPIO\_Port, MPU6050\_Power\_Pin,RESET );}
+\DoxyCodeLine{00129             HAL\_Delay(10);}
+\DoxyCodeLine{00130             HAL\_GPIO\_WritePin(MPU6050\_Power\_GPIO\_Port, MPU6050\_Power\_Pin,SET );}
+\DoxyCodeLine{00131             HAL\_Delay(10);}
+\DoxyCodeLine{00132         \}}
+\DoxyCodeLine{00133     \}}
+\DoxyCodeLine{00134     \textcolor{keywordflow}{if} (initError\_counter < 5)\{}
+\DoxyCodeLine{00135         printf(\textcolor{stringliteral}{"{}MPU6050 Init complete\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00136         \textcolor{keywordflow}{if} ( MPU6050\_Calibrate(\&gyro\_data) == MPU6050\_Read\_OK)\{}
+\DoxyCodeLine{00137             printf(\textcolor{stringliteral}{"{}MPU6050 calibrated\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00138             SyncBuffer.gyro\_initilized =\textcolor{keyword}{true};}
+\DoxyCodeLine{00139             HAL\_GPIO\_WritePin(LED\_CALIBRATED\_GPIO\_Port, LED\_CALIBRATED\_Pin,RESET );}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141         \}}
+\DoxyCodeLine{00142         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00143             printf(\textcolor{stringliteral}{"{}MPU6050 calibration failed\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00144             SyncBuffer.gyro\_initilized = \textcolor{keyword}{false};}
+\DoxyCodeLine{00145         \}}
+\DoxyCodeLine{00146     \}}
+\DoxyCodeLine{00147     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00148         SyncBuffer.gyro\_initilized = \textcolor{keyword}{false};}
+\DoxyCodeLine{00149     \}}
+\DoxyCodeLine{00150 }
+\DoxyCodeLine{00151 }
+\DoxyCodeLine{00152 }
+\DoxyCodeLine{00153   \textcolor{comment}{/* USER CODE END 2 */}}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155   \textcolor{comment}{/* Infinite loop */}}
+\DoxyCodeLine{00156   \textcolor{comment}{/* USER CODE BEGIN WHILE */}}
+\DoxyCodeLine{00157 }
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159     HAL\_SPI\_TransmitReceive\_DMA(\&hspi1, pTxData, pRxData, BUFFERSIZE);}
+\DoxyCodeLine{00160     \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00161     \{}
+\DoxyCodeLine{00162         \textcolor{comment}{// Get Movement detection and write into Sync buffer}}
+\DoxyCodeLine{00163         \textcolor{keywordflow}{if}(SyncBuffer.gyro\_initilized == \textcolor{keyword}{true})\{}
+\DoxyCodeLine{00164             \textcolor{comment}{//          MPU6050\_Display\_Data();}}
+\DoxyCodeLine{00165             MPU6050\_Read\_Sensor();}
+\DoxyCodeLine{00166             SyncBuffer.tilt\_detected  = MPU6050\_detectTilt();}
+\DoxyCodeLine{00167 \textcolor{comment}{//          SyncBuffer.Movement\_detected  = MPU6050\_Detect\_Movement();}}
+\DoxyCodeLine{00168 \textcolor{comment}{//          SyncBuffer.Movement\_detected  =1;}}
+\DoxyCodeLine{00169 \textcolor{comment}{//          if (SyncBuffer.Movement\_detected!=0)}}
+\DoxyCodeLine{00170 \textcolor{comment}{//              printf("{}\%i\(\backslash\)r\(\backslash\)n"{}, SyncBuffer.Movement\_detected);}}
+\DoxyCodeLine{00171 }
+\DoxyCodeLine{00172 }
+\DoxyCodeLine{00173         \}}
+\DoxyCodeLine{00174 }
+\DoxyCodeLine{00175 }
+\DoxyCodeLine{00176         \_\_disable\_irq();}
+\DoxyCodeLine{00177         memcpy((\textcolor{keywordtype}{void}*)pTxData,(\textcolor{keywordtype}{void}*)\&SyncBuffer, BUFFERSIZE);}
+\DoxyCodeLine{00178         \_\_enable\_irq();}
+\DoxyCodeLine{00179 \textcolor{comment}{//      if (pTxData[5]!=0)}}
+\DoxyCodeLine{00180 \textcolor{comment}{//          printf("{}MOVE\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00181 }
+\DoxyCodeLine{00182         \textcolor{comment}{//switch LED}}
+\DoxyCodeLine{00183         \textcolor{keywordflow}{switch} (SyncBuffer.tilt\_detected) \{}
+\DoxyCodeLine{00184         \textcolor{keywordflow}{case} TILT\_RIGHT:}
+\DoxyCodeLine{00185             HAL\_GPIO\_WritePin(LED\_TILT\_RIGHT\_GPIO\_Port, LED\_TILT\_RIGHT\_Pin,SET );}
+\DoxyCodeLine{00186             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00187             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00188         \textcolor{keywordflow}{case} TILT\_RIGHT\_S:}
+\DoxyCodeLine{00189             HAL\_GPIO\_WritePin(LED\_TILT\_RIGHT\_GPIO\_Port, LED\_TILT\_RIGHT\_Pin,SET );}
+\DoxyCodeLine{00190             HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_RIGHT\_GPIO\_Port, LED\_STRONG\_TILT\_RIGHT\_Pin,SET );}
+\DoxyCodeLine{00191             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00192             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00193         \textcolor{keywordflow}{case} TILT\_LEFT:}
+\DoxyCodeLine{00194             HAL\_GPIO\_WritePin(LED\_TILT\_LEFT\_GPIO\_Port, LED\_TILT\_LEFT\_Pin,SET );}
+\DoxyCodeLine{00195             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00196             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00197         \textcolor{keywordflow}{case} TILT\_LEFT\_S:}
+\DoxyCodeLine{00198             HAL\_GPIO\_WritePin(LED\_TILT\_LEFT\_GPIO\_Port, LED\_TILT\_LEFT\_Pin,SET );}
+\DoxyCodeLine{00199             HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_LEFT\_GPIO\_Port, LED\_STRONG\_TILT\_LEFT\_Pin,SET );}
+\DoxyCodeLine{00200             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00201             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00202         \textcolor{keywordflow}{case} TILT\_FRONT:}
+\DoxyCodeLine{00203             HAL\_GPIO\_WritePin(LED\_TILT\_FRONT\_GPIO\_Port, LED\_TILT\_FRONT\_Pin,SET );}
+\DoxyCodeLine{00204             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00205             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00206         \textcolor{keywordflow}{case} TILT\_FRONT\_S:}
+\DoxyCodeLine{00207             HAL\_GPIO\_WritePin(LED\_TILT\_FRONT\_GPIO\_Port, LED\_TILT\_FRONT\_Pin,SET );}
+\DoxyCodeLine{00208             HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_FRONT\_GPIO\_Port, LED\_STRONG\_TILT\_FRONT\_Pin,SET );}
+\DoxyCodeLine{00209             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00210             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00211         \textcolor{keywordflow}{case} TILT\_BACK:}
+\DoxyCodeLine{00212             HAL\_GPIO\_WritePin(LED\_TILT\_BACK\_GPIO\_Port, LED\_TILT\_BACK\_Pin,SET );}
+\DoxyCodeLine{00213             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00214             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00215         \textcolor{keywordflow}{case} TILT\_BACK\_S:}
+\DoxyCodeLine{00216             HAL\_GPIO\_WritePin(LED\_TILT\_BACK\_GPIO\_Port, LED\_TILT\_BACK\_Pin,SET );}
+\DoxyCodeLine{00217             HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_BACK\_GPIO\_Port, LED\_STRONG\_TILT\_BACK\_Pin,SET );}
+\DoxyCodeLine{00218             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00219             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00220         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00221             \textcolor{keywordflow}{if} (!led\_off) \{}
+\DoxyCodeLine{00222                 HAL\_GPIO\_WritePin(LED\_TILT\_LEFT\_GPIO\_Port, LED\_TILT\_LEFT\_Pin,RESET );}
+\DoxyCodeLine{00223                 HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_LEFT\_GPIO\_Port, LED\_STRONG\_TILT\_LEFT\_Pin,RESET );}
+\DoxyCodeLine{00224                 HAL\_GPIO\_WritePin(LED\_TILT\_FRONT\_GPIO\_Port, LED\_TILT\_FRONT\_Pin,RESET );}
+\DoxyCodeLine{00225                 HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_FRONT\_GPIO\_Port, LED\_STRONG\_TILT\_FRONT\_Pin,RESET );}
+\DoxyCodeLine{00226                 HAL\_GPIO\_WritePin(LED\_TILT\_BACK\_GPIO\_Port, LED\_TILT\_BACK\_Pin,RESET );}
+\DoxyCodeLine{00227                 HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_BACK\_GPIO\_Port, LED\_STRONG\_TILT\_BACK\_Pin,RESET );}
+\DoxyCodeLine{00228                 HAL\_GPIO\_WritePin(LED\_TILT\_RIGHT\_GPIO\_Port, LED\_TILT\_RIGHT\_Pin,RESET );}
+\DoxyCodeLine{00229                 HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_RIGHT\_GPIO\_Port, LED\_STRONG\_TILT\_RIGHT\_Pin,RESET );}
+\DoxyCodeLine{00230                 led\_off = \textcolor{keyword}{true};}
+\DoxyCodeLine{00231             \}}
+\DoxyCodeLine{00232 }
+\DoxyCodeLine{00233             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00234         \}}
+\DoxyCodeLine{00235         \textcolor{comment}{//  HAL\_Delay(10);}}
+\DoxyCodeLine{00236     \textcolor{comment}{/* USER CODE END WHILE */}}
+\DoxyCodeLine{00237 }
+\DoxyCodeLine{00238     \textcolor{comment}{/* USER CODE BEGIN 3 */}}
+\DoxyCodeLine{00239     \}}
+\DoxyCodeLine{00240   \textcolor{comment}{/* USER CODE END 3 */}}
+\DoxyCodeLine{00241 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a70af21c671abfcc773614a9a4f63d920}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a70af21c671abfcc773614a9a4f63d920}} 
+\index{main.c@{main.c}!SystemClock\_Config@{SystemClock\_Config}}
+\index{SystemClock\_Config@{SystemClock\_Config}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SystemClock\_Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Configure the main internal regulator output voltage
+
+Initializes the RCC Oscillators according to the specified parameters in the RCC\+\_\+\+Osc\+Init\+Type\+Def structure.
+
+Initializes the CPU, AHB and APB buses clocks
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00247}{247}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00248 \{}
+\DoxyCodeLine{00249   RCC\_OscInitTypeDef RCC\_OscInitStruct = \{0\};}
+\DoxyCodeLine{00250   RCC\_ClkInitTypeDef RCC\_ClkInitStruct = \{0\};}
+\DoxyCodeLine{00251 }
+\DoxyCodeLine{00254   \_\_HAL\_RCC\_PWR\_CLK\_ENABLE();}
+\DoxyCodeLine{00255   \_\_HAL\_PWR\_VOLTAGESCALING\_CONFIG(PWR\_REGULATOR\_VOLTAGE\_SCALE3);}
+\DoxyCodeLine{00259   RCC\_OscInitStruct.OscillatorType = RCC\_OSCILLATORTYPE\_HSI;}
+\DoxyCodeLine{00260   RCC\_OscInitStruct.HSIState = RCC\_HSI\_ON;}
+\DoxyCodeLine{00261   RCC\_OscInitStruct.HSICalibrationValue = RCC\_HSICALIBRATION\_DEFAULT;}
+\DoxyCodeLine{00262   RCC\_OscInitStruct.PLL.PLLState = RCC\_PLL\_ON;}
+\DoxyCodeLine{00263   RCC\_OscInitStruct.PLL.PLLSource = RCC\_PLLSOURCE\_HSI;}
+\DoxyCodeLine{00264   RCC\_OscInitStruct.PLL.PLLM = 16;}
+\DoxyCodeLine{00265   RCC\_OscInitStruct.PLL.PLLN = 336;}
+\DoxyCodeLine{00266   RCC\_OscInitStruct.PLL.PLLP = RCC\_PLLP\_DIV4;}
+\DoxyCodeLine{00267   RCC\_OscInitStruct.PLL.PLLQ = 2;}
+\DoxyCodeLine{00268   RCC\_OscInitStruct.PLL.PLLR = 2;}
+\DoxyCodeLine{00269   \textcolor{keywordflow}{if} (HAL\_RCC\_OscConfig(\&RCC\_OscInitStruct) != HAL\_OK)}
+\DoxyCodeLine{00270   \{}
+\DoxyCodeLine{00271     \mbox{\hyperlink{Core_2Src_2main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();}
+\DoxyCodeLine{00272   \}}
+\DoxyCodeLine{00275   RCC\_ClkInitStruct.ClockType = RCC\_CLOCKTYPE\_HCLK|RCC\_CLOCKTYPE\_SYSCLK}
+\DoxyCodeLine{00276                               |RCC\_CLOCKTYPE\_PCLK1|RCC\_CLOCKTYPE\_PCLK2;}
+\DoxyCodeLine{00277   RCC\_ClkInitStruct.SYSCLKSource = RCC\_SYSCLKSOURCE\_PLLCLK;}
+\DoxyCodeLine{00278   RCC\_ClkInitStruct.AHBCLKDivider = RCC\_SYSCLK\_DIV1;}
+\DoxyCodeLine{00279   RCC\_ClkInitStruct.APB1CLKDivider = RCC\_HCLK\_DIV2;}
+\DoxyCodeLine{00280   RCC\_ClkInitStruct.APB2CLKDivider = RCC\_HCLK\_DIV1;}
+\DoxyCodeLine{00281 }
+\DoxyCodeLine{00282   \textcolor{keywordflow}{if} (HAL\_RCC\_ClockConfig(\&RCC\_ClkInitStruct, FLASH\_LATENCY\_2) != HAL\_OK)}
+\DoxyCodeLine{00283   \{}
+\DoxyCodeLine{00284     \mbox{\hyperlink{Core_2Src_2main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();}
+\DoxyCodeLine{00285   \}}
+\DoxyCodeLine{00286 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_ad70fe79aa3139fc9184d8ffb5dfba323}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_ad70fe79aa3139fc9184d8ffb5dfba323}} 
+\index{main.c@{main.c}!hdma\_spi1\_rx@{hdma\_spi1\_rx}}
+\index{hdma\_spi1\_rx@{hdma\_spi1\_rx}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_spi1\_rx}{hdma\_spi1\_rx}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+spi1\+\_\+rx}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00046}{46}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_ac8cdcfbb7adfcccc5717da58e1e10ae4}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_ac8cdcfbb7adfcccc5717da58e1e10ae4}} 
+\index{main.c@{main.c}!hdma\_spi1\_tx@{hdma\_spi1\_tx}}
+\index{hdma\_spi1\_tx@{hdma\_spi1\_tx}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_spi1\_tx}{hdma\_spi1\_tx}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+spi1\+\_\+tx}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00047}{47}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}} 
+\index{main.c@{main.c}!hi2c1@{hi2c1}}
+\index{hi2c1@{hi2c1}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{hi2c1}{hi2c1}}
+{\footnotesize\ttfamily I2\+C\+\_\+\+Handle\+Type\+Def hi2c1}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00043}{43}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a9c6222bae4d0328dd843ae099623b40b}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_a9c6222bae4d0328dd843ae099623b40b}} 
+\index{main.c@{main.c}!hspi1@{hspi1}}
+\index{hspi1@{hspi1}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{hspi1}{hspi1}}
+{\footnotesize\ttfamily SPI\+\_\+\+Handle\+Type\+Def hspi1}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00045}{45}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_aa9479c261d65eecedd3d9582f7f0f89c}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_aa9479c261d65eecedd3d9582f7f0f89c}} 
+\index{main.c@{main.c}!huart2@{huart2}}
+\index{huart2@{huart2}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{huart2}{huart2}}
+{\footnotesize\ttfamily UART\+\_\+\+Handle\+Type\+Def huart2}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00049}{49}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+

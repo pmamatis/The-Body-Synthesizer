@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('SPI__Connection_8c_source.html',''); i
 </div><!--header-->
 <div class="contents">
 <a href="SPI__Connection_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="SPI__Connection_8h.html">SPI_Connection.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;SPI_Connection.h&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="group__Gyro.html#ga87e70ebae58b5e371289ad557bb31b74">   20</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__Gyro.html#ga87e70ebae58b5e371289ad557bb31b74">spiC_Init</a>(SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim){</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
@@ -101,7 +101,6 @@ $(document).ready(function(){initNavTree('SPI__Connection_8c_source.html',''); i
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_function" href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(htim,SPI_SR);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    HAL_TIM_Base_Start_IT(htim);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
-<div class="ttc" id="aSPI__Connection_8h_html"><div class="ttname"><a href="SPI__Connection_8h.html">SPI_Connection.h</a></div><div class="ttdoc">spi connection to other STM, where the MPU6050 is processed</div></div>
 <div class="ttc" id="agroup__Gyro_html_ga87e70ebae58b5e371289ad557bb31b74"><div class="ttname"><a href="group__Gyro.html#ga87e70ebae58b5e371289ad557bb31b74">spiC_Init</a></div><div class="ttdeci">void spiC_Init(SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim)</div><div class="ttdoc">spi connection init</div><div class="ttdef"><b>Definition:</b> <a href="SPI__Connection_8c_source.html#l00020">SPI_Connection.c:20</a></div></div>
 <div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
