@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /** @brief this function initiliazes the display struct variables
  * @param Display: display struct
  * @return returns display status flag
