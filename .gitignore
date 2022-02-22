@@ -43,7 +43,6 @@ RemoteSystemsTempFiles/*
 
 # Misc
 *.map
-
 *.png
 
 # Eclipse CDT project files
