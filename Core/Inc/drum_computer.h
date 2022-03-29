@@ -1,6 +1,6 @@
 /**
  * @file drum_computer.h
- * @author Marc Bielen & Max Lehmer
+ * @author Max Lehmer & Marc Bielen
  * @brief Drumcomputer 
  * @version 0.1
  * @date 05.08.2021
@@ -14,7 +14,7 @@
 #define INC_DRUM_COMPUTER_H_
 
 /** 
- * @defgroup DrumComputer Drum Computer 
+ * @defgroup DrumComputer Drumcomputer
  * @ingroup SoundSynth
  * @{
  */
@@ -136,7 +136,7 @@ HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env);
 
 /** 
  * @defgroup SingleSample Play Single Sample
- * @brief play a singles sample triggerd by the EMG
+ * @brief play a singles sample triggered by the EMG / ECG
  * @ingroup SoundSynth
  * @{
  * */

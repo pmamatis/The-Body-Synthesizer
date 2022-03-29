@@ -11,9 +11,9 @@
 #include "drum_computer.h"
 
 /**
- * @brief initializes the variables of the sequencer ADSR
+ * @brief Initializes the variables of the sequencer ADSR
  * 
- * @param env: struct of each ADSR of each sequencer note
+ * @param env: Struct of each ADSR of each sequencer note
  * @return HAL_StatusTypeDef 
  */
 HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
@@ -34,7 +34,7 @@ HAL_StatusTypeDef Sequencer_ADSR_Init(struct adsr* env){
 }
 
 /**
- * @brief This function calculates the samples of the drumcomputer
+ * @brief This function calculates actual samples of the drumcomputer depending on via display set timings
  * 
  * @return HAL_StatusTypeDef 
  */
@@ -396,7 +396,7 @@ HAL_StatusTypeDef Drum_Computer_Init(void) {
 }
 
 /**
- * @brief This function processes the drumcomputer as well as the sequencer
+ * @brief Process-function of drumcomputer as well as sequencer
  * 
  * @return HAL_StatusTypeDef 
  */
@@ -494,7 +494,7 @@ HAL_StatusTypeDef Drum_Computer_Process(void) {
 }
 
 /** 
- * @brief function to play the same sample each time it is triggerd, must be called inside Signal_Synthesis() 
+ * @brief Function to play a chosen sample each time it is triggerd by EMG / ECG, must be called inside Signal_Synthesis()
  * 
  */
 void PlaySingleSample(void) {
@@ -509,7 +509,7 @@ void PlaySingleSample(void) {
 }
 
 /** TODO
- * @brief calculates the drumsample reverse, but this function is not completely finished and not in use!
+ * @brief Plays actual drumsamples in reverse mode (not completely finished yet and therefore not in use)
  * 
  * @return HAL_StatusTypeDef 
  */

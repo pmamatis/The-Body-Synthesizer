@@ -1,7 +1,7 @@
 /**
  * @file emg.c
- * @author Paul Mamatis
- * @brief emg/ecg processing
+ * @author Paul Mamatis & Max Lehmer
+ * @brief EMG / ECG processing
  * @version 0.1
  * @date May 23, 2021
  * 
@@ -9,8 +9,6 @@
  * 
  */
  
- 
-
 
 #include "emg.h"
 
@@ -31,7 +29,7 @@ HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim){
 }
 
 /** @brief ECG init
- *  @note need to be called after emg_init()
+ *  @note needs to be called after emg_init()
  */
 HAL_StatusTypeDef ecg_init(void){
 
@@ -50,7 +48,7 @@ HAL_StatusTypeDef ecg_init(void){
 
 	return HAL_OK;
 }
-/** @brief start all necessary peripherals for the EMG/ECG */
+/** @brief Start all necessary peripherals for the EMG / ECG */
 HAL_StatusTypeDef emg_start_read(void){
 
 	SetTimerSettings(EMG_TIM, EMG_SR);
@@ -59,18 +57,18 @@ HAL_StatusTypeDef emg_start_read(void){
 	return HAL_ADC_Start_DMA(EMG_ADC, emg_buffer, EMG_READ_LENGTH);
 }
 
-/** @brief Only stops the ADC reading of the connected EMG/ECG board */
+/** @brief Stops the ADC reading of the connected EMG / ECG board */
 HAL_StatusTypeDef emg_stop_read(void){
 	return HAL_ADC_Stop_DMA(EMG_ADC);
 }
 
-/** @brief detects an EMG peak and sets flags for further processing
- *  @note needs to be called in an ADC interrupt*/
+/** @brief Detects an EMG peak and sets flags for further processing
+ *  @note Needs to be called in an ADC interrupt*/
 HAL_StatusTypeDef emg_peak_detection(void){
 
 	uint16_t ADC_BLOCKSIZE_startIndex=0, ADC_BLOCKSIZE_endIndex=0;
 
-	//decide which buffer half
+	// decide which buffer half
 	if(inputBuffer_position == HALF_BLOCK) {
 		ADC_BLOCKSIZE_startIndex = 0;
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH/2;
@@ -80,7 +78,7 @@ HAL_StatusTypeDef emg_peak_detection(void){
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH;
 	}
 
-	//peak detection
+	// Peak detection with certain threshold in amplitude (detectionThreshold) and time (toggleThreshold), so called debouncing
 	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
 		if(emg_buffer[i] > emg_detectionThreshold && emg_toggleCounter > emg_toggleThreshold){
 			emg_peak = 1;
@@ -96,7 +94,7 @@ HAL_StatusTypeDef emg_peak_detection(void){
 		emg_toggleCounter++;
 	}
 
-	//sample playing controlled by EMG
+	// Sample playing controlled by EMG
 	if(Display.PlaySingleSample_ONOFF == true && emg_peak == 1) {
 
 		play_single_sample_flag = true;
@@ -106,12 +104,12 @@ HAL_StatusTypeDef emg_peak_detection(void){
 	return HAL_OK;
 }
 
-/** @brief detect heartrate and change the Drumcoputer BPM in realtime*/
+/** @brief Detect heartrate and change the Drumcomputers BPM accordingly in realtime*/
 void ecg_heartrate(void){
 
 	uint16_t ADC_BLOCKSIZE_startIndex=0, ADC_BLOCKSIZE_endIndex=0;
 
-	//detect buffer half
+	// detect buffer half
 	if(inputBuffer_position == HALF_BLOCK) {
 		ADC_BLOCKSIZE_startIndex = 0;
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH/2;
@@ -121,7 +119,7 @@ void ecg_heartrate(void){
 		ADC_BLOCKSIZE_endIndex = EMG_READ_LENGTH;
 	}
 
-	//detect ECG peak
+	// Peak detection with certain threshold in amplitude (detectionThreshold) and time (toggleThreshold), so called debouncing
 	for(int i = ADC_BLOCKSIZE_startIndex; i < ADC_BLOCKSIZE_endIndex; i+=2){
 		if(emg_buffer[i] > ecg_detectionThreshold && ecg_toggleCounter > ecg_toggleThreshold){
 			ecg_peaks += 1;
@@ -135,25 +133,25 @@ void ecg_heartrate(void){
 			ecg_toggled = 1;
 
 		}
-		//delay to avoid false peaks rigth after another peak
+		// Delay to avoid false peaks rigth after another peak
 		if(ecg_toggleCounter > ecg_toggleThreshold && ecg_toggled == 1){
 			ecg_toggled = 0;
 		}
 
-		//calculate heartrate when finishing a measurement Interval
+		// Calculate heartrate when finishing a measurement interval
 		if (ecg_intCount == ecg_measInt){
 			heartrate = ((float)(60/(EMG_MI))*ecg_peaks)/2;
 			ecg_peaks = 0;
 			ecg_intCount = 0;
 
-			//direct transfer of the heartrate to Drumcomputer
+			// Direct transfer of the heartrate to Drumcomputer
 			if(Display.Drumcomputer_BPMbyECG_ONOFF == true) {
 
 				BPM = heartrate;
 			}
 		}
 
-		//update drumcoputer-page and reset values drumcoputer when bpm changed, to avoid "plop"-noise
+		// Update drumcoputer-page and reset values of drumcoputer when bpm changed, to avoid "plop"-noise
 		if(abs(last_BPM-BPM) > 3) {
 
 			for(int i=0; i<FourFour; i++) {

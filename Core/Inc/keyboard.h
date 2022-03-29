@@ -22,7 +22,7 @@
 /*********************************
  * @brief		Defines
  *********************************/
-#define KEYBOARD_SR 500 // in Hz
+#define KEYBOARD_SR 500 	// in Hz
 #define KEYBOARD_VOICE_ID 4	// as big as NUMBER_OF_VOICES+1
 #define VOICES_ID 0
 

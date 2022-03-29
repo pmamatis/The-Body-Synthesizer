@@ -13,18 +13,18 @@
 
 #include "main.h"
 /**
- * @defgroup Filter Filters
+ * @defgroup Filters Filters
  * @ingroup Effects   
- * @brief provides a bunch of Filter-Types
+ * @brief provides a bunch of Filter-Types according to the Audio EQ Cookbook
  *  @{
  */
 /*********************************
  * @brief Biquad Filter struct
  * @param Q: Q factor
- * @param cutoff: cutoff frequncy
+ * @param cutoff: cutoff frequncy in Hz
  * @param dBGain: Gain in dB
  * @param a,b: filter coefficients
- * @param z  
+ * @param z: bins for the processing of difference equation (Direct Form I)
  *********************************/
 struct BQFilter {
 

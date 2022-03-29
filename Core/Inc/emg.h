@@ -1,7 +1,7 @@
 /**
  * @file emg.h
- * @author paul mamatis
- * @brief emg and ecg 
+ * @author Paul Mamatis & Max Lehmer
+ * @brief EMG and ECG
  * @version 0.1
  * @date 2022-01-06
  * 

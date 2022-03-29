@@ -18,7 +18,6 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include BSP/subdir.mk
--include subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -67,8 +66,8 @@ all: main-build
 main-build: Body-Synthesizer_STM32_F746ZG.elf secondary-outputs
 
 # Tool invocations
-Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) C:\Users\Marc\ Bielen\Documents\Studium\Master\ TU\ Berlin\6.\ Semester\body-synthesizer-stm32-f746zg\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Marc Bielen\Documents\Studium\Master TU Berlin\6. Semester\body-synthesizer-stm32-f746zg\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Body-Synthesizer_STM32_F746ZG.elf: $(OBJS) $(USER_OBJS) C:\Users\Max\Documents\GIT\body-synthesizer-stm32-f746zg\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Body-Synthesizer_STM32_F746ZG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Max\Documents\GIT\body-synthesizer-stm32-f746zg\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Body-Synthesizer_STM32_F746ZG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -89,7 +88,7 @@ Body-Synthesizer_STM32_F746ZG.bin: $(EXECUTABLES) makefile objects.list $(OPTION
 
 # Other Targets
 clean:
-	-$(RM) $(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) Body-Synthesizer_STM32_F746ZG.elf
+	-$(RM) Body-Synthesizer_STM32_F746ZG.bin Body-Synthesizer_STM32_F746ZG.elf Body-Synthesizer_STM32_F746ZG.list default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
@@ -101,6 +100,6 @@ fail-specified-linker-script-missing:
 warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
-.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
+.PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
 
 -include ../makefile.targets

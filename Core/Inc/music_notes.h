@@ -14,7 +14,8 @@
 /**
  * @defgroup MusicNotes Music Notes
  * @ingroup SoundSynth   
- * @brief helper functions and variables to reference music notes to frequencies of the LUT
+ * @brief helper functions and variables to reference music notes to frequencies of the LUT,
+ * @brief major / minor scales to the voices playing notes, chord types and their shapes
  *  @{
  */
 

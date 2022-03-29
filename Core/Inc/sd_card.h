@@ -1,7 +1,7 @@
 /**
  * @file sd_card.h
  * @author https://controllerstech.com/sd-card-using-spi-in-stm32/
- * @brief sd card acces
+ * @brief SD-Card Access
  * @version 0.1
  * @date 2022-01-06
  * 
@@ -11,7 +11,7 @@
 
 /**
  * @defgroup SDcard SD-Card 
- * @brief SD-Card software
+ * @brief SD-Card Software
  * @{
  */
 
@@ -25,13 +25,13 @@
 // MOSI -> DI
 // MISO -> DO
 
-FATFS fs;  // file system
-FIL fil; // File
+FATFS fs;  					// file system
+FIL fil;					// File
 FILINFO fno;
-FRESULT fresult;  // result
+FRESULT fresult; 			// result
 char txtfile_array[40000];	// could be also higher if necessary
-UINT br, bw;  // File read/write count
-DIR dj;	// directory object
+UINT br, bw;  				// File read/write count
+DIR dj;						// directory object
 
 //**** capacity related
 FATFS *pfs;
@@ -39,7 +39,7 @@ DWORD fre_clust;
 uint32_t total, free_space;
 
 #define BUFFER_SIZE 1000	// should be bigger for even bigger files
-char buffer[BUFFER_SIZE];  // to store strings..
+char buffer[BUFFER_SIZE];   // to store strings..
 
 int bufsize (char *buf);
 
