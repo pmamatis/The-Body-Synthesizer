@@ -44,7 +44,7 @@ PROJECT_NUMBER         = 1
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers"
+PROJECT_BRIEF          = "Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers"
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55

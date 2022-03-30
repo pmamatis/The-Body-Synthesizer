@@ -1,6 +1,6 @@
 # Introduction
-welcome to our lovly project: THE BODY-SYNTHEZIER
-This is an educational project and for non-commercial use
+Welcome to our lovely project: THE BODY-SYNTHESIZER.
+This is an educational project and for non-commercial use only.
 
 @defgroup Matlab Matlab Code
 
