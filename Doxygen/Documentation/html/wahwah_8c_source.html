@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('wahwah_8c_source.html',''); initResiza
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    WahWah-&gt;reinit_counter = 0;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    WahWah-&gt;bandpass-&gt;Q = 1;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_function" href="group__Filter.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_function" href="group__Filters.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('wahwah_8c_source.html',''); initResiza
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    strcpy(Display.value_str_wahwah[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_function" href="group__Filter.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_function" href="group__Filters.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
@@ -156,13 +156,13 @@ $(document).ready(function(){initNavTree('wahwah_8c_source.html',''); initResiza
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// RESET: Filter after 100 samples (with SR = 24k Hz &gt;&gt; 240 times a second)</span></div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">if</span>(WahWah-&gt;reinit_counter == 100){</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_function" href="group__Filter.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_function" href="group__Filters.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq, WahWah-&gt;bandpass-&gt;Q);</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        WahWah-&gt;reinit_counter = 0;</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    WahWah-&gt;reinit_counter++;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <a class="code hl_function" href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(WahWah-&gt;bandpass, data);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <a class="code hl_function" href="group__Filters.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(WahWah-&gt;bandpass, data);</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
@@ -182,18 +182,18 @@ $(document).ready(function(){initNavTree('wahwah_8c_source.html',''); initResiza
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// RESET: Filter after 100 samples (with SR = 24k Hz &gt;&gt; 240 times a second)</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">if</span>(WahWah-&gt;reinit_counter == 100){</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <a class="code hl_function" href="group__Filter.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq_mod, WahWah-&gt;bandpass-&gt;Q);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <a class="code hl_function" href="group__Filters.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a>(WahWah-&gt;bandpass, WahWah-&gt;mid_freq_mod, WahWah-&gt;bandpass-&gt;Q);</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        WahWah-&gt;reinit_counter = 0;</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    }</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    WahWah-&gt;reinit_counter++;</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_function" href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(WahWah-&gt;bandpass, data);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_function" href="group__Filters.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a>(WahWah-&gt;bandpass, data);</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">return</span> WAHWAH_OK;</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>}</div>
-<div class="ttc" id="agroup__Filter_html_ga30d8b183489ac4208a5fe11ba3a5dd40"><div class="ttname"><a href="group__Filter.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a></div><div class="ttdeci">Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q)</div><div class="ttdoc">Constant Peak Gain Bandpass Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00446">filters.c:446</a></div></div>
-<div class="ttc" id="agroup__Filter_html_gad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="group__Filter.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdoc">This function processes the filter coefficients and so it does the actual filtering of the input samp...</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00337">filters.c:337</a></div></div>
+<div class="ttc" id="agroup__Filters_html_ga30d8b183489ac4208a5fe11ba3a5dd40"><div class="ttname"><a href="group__Filters.html#ga30d8b183489ac4208a5fe11ba3a5dd40">SetupBandpassCPG</a></div><div class="ttdeci">Filter_Status SetupBandpassCPG(struct BQFilter *BP, float cutoff, float Q)</div><div class="ttdoc">Constant Peak Gain Bandpass Filter.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00446">filters.c:446</a></div></div>
+<div class="ttc" id="agroup__Filters_html_gad95e18a35a0ebacf27bc67222a71e275"><div class="ttname"><a href="group__Filters.html#gad95e18a35a0ebacf27bc67222a71e275">ProcessFilter</a></div><div class="ttdeci">Filter_Status ProcessFilter(struct BQFilter *F, float *data)</div><div class="ttdoc">This function processes the filter coefficients and so it does the actual filtering of the input samp...</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00337">filters.c:337</a></div></div>
 <div class="ttc" id="agroup__wahwah_html_ga2fa3b9f5777f0876da0b828ee333673a"><div class="ttname"><a href="group__wahwah.html#ga2fa3b9f5777f0876da0b828ee333673a">ProcessWahWah</a></div><div class="ttdeci">WahWah_Status ProcessWahWah(struct WahWah_t *WahWah, float *data)</div><div class="ttdoc">Processed current tremolo sample.</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00088">wahwah.c:88</a></div></div>
 <div class="ttc" id="agroup__wahwah_html_ga85d3b2ed1cf4a3aef7b32c97b2e64237"><div class="ttname"><a href="group__wahwah.html#ga85d3b2ed1cf4a3aef7b32c97b2e64237">ProcessAutoWahWah</a></div><div class="ttdeci">WahWah_Status ProcessAutoWahWah(struct WahWah_t *WahWah, float *data)</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00115">wahwah.c:115</a></div></div>
 <div class="ttc" id="agroup__wahwah_html_ga9b91a7fae64755689936b60cf1820535"><div class="ttname"><a href="group__wahwah.html#ga9b91a7fae64755689936b60cf1820535">WahWah_Reset</a></div><div class="ttdeci">WahWah_Status WahWah_Reset(struct WahWah_t *WahWah)</div><div class="ttdoc">resets all wahwah parameters</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00055">wahwah.c:55</a></div></div>

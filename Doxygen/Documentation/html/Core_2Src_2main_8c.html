@@ -295,10 +295,10 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="Core_2Src_2main_8c_source.html#l01928">1928</a> of file <a class="el" href="Core_2Src_2main_8c_source.html">main.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno"> 1929</span>{</div>
-<div class="line"><span class="lineno"> 1930</span>    <span class="comment">/* USER CODE BEGIN Error_Handler_Debug */</span></div>
+<div class="line"><span class="lineno"> 1930</span>  <span class="comment">/* USER CODE BEGIN Error_Handler_Debug */</span></div>
 <div class="line"><span class="lineno"> 1931</span>    <span class="comment">/* User can add his own implementation to report the HAL error return state */</span></div>
 <div class="line"><span class="lineno"> 1932</span> </div>
-<div class="line"><span class="lineno"> 1933</span>    <span class="comment">/* USER CODE END Error_Handler_Debug */</span></div>
+<div class="line"><span class="lineno"> 1933</span>  <span class="comment">/* USER CODE END Error_Handler_Debug */</span></div>
 <div class="line"><span class="lineno"> 1934</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -329,8 +329,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  130</span>        <a class="code hl_function" href="group__EMG__ECG.html#ga6ad14645e09a9e49124abbb14199027f">ecg_heartrate</a>();</div>
 <div class="line"><span class="lineno">  131</span>    }</div>
 <div class="line"><span class="lineno">  132</span>}</div>
-<div class="ttc" id="agroup__EMG__ECG_html_ga63f5337cb5d5feb55ddedd79bca265d9"><div class="ttname"><a href="group__EMG__ECG.html#ga63f5337cb5d5feb55ddedd79bca265d9">emg_peak_detection</a></div><div class="ttdeci">HAL_StatusTypeDef emg_peak_detection(void)</div><div class="ttdoc">detects an EMG peak and sets flags for further processing</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00069">emg.c:69</a></div></div>
-<div class="ttc" id="agroup__EMG__ECG_html_ga6ad14645e09a9e49124abbb14199027f"><div class="ttname"><a href="group__EMG__ECG.html#ga6ad14645e09a9e49124abbb14199027f">ecg_heartrate</a></div><div class="ttdeci">void ecg_heartrate(void)</div><div class="ttdoc">detect heartrate and change the Drumcoputer BPM in realtime</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00110">emg.c:110</a></div></div>
+<div class="ttc" id="agroup__EMG__ECG_html_ga63f5337cb5d5feb55ddedd79bca265d9"><div class="ttname"><a href="group__EMG__ECG.html#ga63f5337cb5d5feb55ddedd79bca265d9">emg_peak_detection</a></div><div class="ttdeci">HAL_StatusTypeDef emg_peak_detection(void)</div><div class="ttdoc">Detects an EMG peak and sets flags for further processing.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00067">emg.c:67</a></div></div>
+<div class="ttc" id="agroup__EMG__ECG_html_ga6ad14645e09a9e49124abbb14199027f"><div class="ttname"><a href="group__EMG__ECG.html#ga6ad14645e09a9e49124abbb14199027f">ecg_heartrate</a></div><div class="ttdeci">void ecg_heartrate(void)</div><div class="ttdoc">Detect heartrate and change the Drumcomputers BPM accordingly in realtime.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00108">emg.c:108</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -976,13 +976,13 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1890</span>        __NOP();</div>
 <div class="line"><span class="lineno"> 1891</span>    }</div>
 <div class="line"><span class="lineno"> 1892</span>}</div>
-<div class="ttc" id="agroup__Display_html_ga6b780fda00ecfb80ed28ba3a62937b11"><div class="ttname"><a href="group__Display.html#ga6b780fda00ecfb80ed28ba3a62937b11">DISPLAY_DeleteSequencerStep</a></div><div class="ttdeci">Display_Status DISPLAY_DeleteSequencerStep(void)</div><div class="ttdoc">This function unfills the drumcomputer steps with color.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02787">display.c:2787</a></div></div>
-<div class="ttc" id="agroup__Display_html_ga7759568f4bd60f3d77a2a0e463b77b03"><div class="ttname"><a href="group__Display.html#ga7759568f4bd60f3d77a2a0e463b77b03">DISPLAY_DeleteDrumcomputerStep</a></div><div class="ttdeci">Display_Status DISPLAY_DeleteDrumcomputerStep(void)</div><div class="ttdoc">This function unfills the drumcomputer steps with color.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l01641">display.c:1641</a></div></div>
-<div class="ttc" id="agroup__Display_html_ga9d7e433c8b0a75b8ffdfa1ffe817c2f1"><div class="ttname"><a href="group__Display.html#ga9d7e433c8b0a75b8ffdfa1ffe817c2f1">DISPLAY_SetSequencerStep</a></div><div class="ttdeci">Display_Status DISPLAY_SetSequencerStep(void)</div><div class="ttdoc">This function fills the sequencer steps with color.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02608">display.c:2608</a></div></div>
-<div class="ttc" id="agroup__Display_html_gacc64d5980c2033bd470353f22af60a7a"><div class="ttname"><a href="group__Display.html#gacc64d5980c2033bd470353f22af60a7a">DISPLAY_SetDrumcomputerStep</a></div><div class="ttdeci">Display_Status DISPLAY_SetDrumcomputerStep(void)</div><div class="ttdoc">This function fills the drumcomputer steps with color.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l01408">display.c:1408</a></div></div>
+<div class="ttc" id="agroup__Display_html_ga6b780fda00ecfb80ed28ba3a62937b11"><div class="ttname"><a href="group__Display.html#ga6b780fda00ecfb80ed28ba3a62937b11">DISPLAY_DeleteSequencerStep</a></div><div class="ttdeci">Display_Status DISPLAY_DeleteSequencerStep(void)</div><div class="ttdoc">This function unfills the drumcomputer steps with color.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02788">display.c:2788</a></div></div>
+<div class="ttc" id="agroup__Display_html_ga7759568f4bd60f3d77a2a0e463b77b03"><div class="ttname"><a href="group__Display.html#ga7759568f4bd60f3d77a2a0e463b77b03">DISPLAY_DeleteDrumcomputerStep</a></div><div class="ttdeci">Display_Status DISPLAY_DeleteDrumcomputerStep(void)</div><div class="ttdoc">This function unfills the drumcomputer steps with color.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l01642">display.c:1642</a></div></div>
+<div class="ttc" id="agroup__Display_html_ga9d7e433c8b0a75b8ffdfa1ffe817c2f1"><div class="ttname"><a href="group__Display.html#ga9d7e433c8b0a75b8ffdfa1ffe817c2f1">DISPLAY_SetSequencerStep</a></div><div class="ttdeci">Display_Status DISPLAY_SetSequencerStep(void)</div><div class="ttdoc">This function fills the sequencer steps with color.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l02609">display.c:2609</a></div></div>
+<div class="ttc" id="agroup__Display_html_gacc64d5980c2033bd470353f22af60a7a"><div class="ttname"><a href="group__Display.html#gacc64d5980c2033bd470353f22af60a7a">DISPLAY_SetDrumcomputerStep</a></div><div class="ttdeci">Display_Status DISPLAY_SetDrumcomputerStep(void)</div><div class="ttdoc">This function fills the drumcomputer steps with color.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l01409">display.c:1409</a></div></div>
 <div class="ttc" id="agroup__DrumComputer_html_ga267b06d60a7514d898b5cac91b4380ec"><div class="ttname"><a href="group__DrumComputer.html#ga267b06d60a7514d898b5cac91b4380ec">FourFour</a></div><div class="ttdeci">#define FourFour</div><div class="ttdoc">Common Sample Length &amp; Time Signature.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00030">drum_computer.h:30</a></div></div>
 <div class="ttc" id="agroup__MusicNotes_html_ga71407d53f2b1100f1ab93dc2681dfe48"><div class="ttname"><a href="group__MusicNotes.html#ga71407d53f2b1100f1ab93dc2681dfe48">Get_Note_Index</a></div><div class="ttdeci">uint16_t Get_Note_Index(char key, uint8_t octave)</div><div class="ttdoc">returns the frequency of a music note listed in the</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8c_source.html#l00071">music_notes.c:71</a></div></div>
-<div class="ttc" id="agroup__MusicNotes_html_gaa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00041">music_notes.h:41</a></div></div>
+<div class="ttc" id="agroup__MusicNotes_html_gaa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00042">music_notes.h:42</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga2e5122eebde8d369cf949da93586ec2e"><div class="ttname"><a href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a></div><div class="ttdeci">const uint32_t LUT_STARTINDEX[73]</div><div class="ttdoc">contains all startindizies of the frequencies in the SIN-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00049">sinLUT.h:49</a></div></div>
 <div class="ttc" id="agroup__Sequencer_html_ga4211ba08e77d82a294762a623041e342"><div class="ttname"><a href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a></div><div class="ttdeci">uint16_t freq_index_SN1</div><div class="ttdoc">Frequency index sequencer.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00089">drum_computer.h:89</a></div></div>
 <div class="ttc" id="agroup__Sequencer_html_gabafd5c3bbb1d0bbc3e708889e904e3a7"><div class="ttname"><a href="group__Sequencer.html#gabafd5c3bbb1d0bbc3e708889e904e3a7">current_LUT_index_SN1</a></div><div class="ttdeci">uint32_t current_LUT_index_SN1[FourFour]</div><div class="ttdoc">Current LUT index sequencer.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00095">drum_computer.h:95</a></div></div>
@@ -1067,51 +1067,51 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="Core_2Src_2main_8c_source.html#l00169">169</a> of file <a class="el" href="Core_2Src_2main_8c_source.html">main.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  170</span>{</div>
-<div class="line"><span class="lineno">  171</span>    <span class="comment">/* USER CODE BEGIN 1 */</span></div>
+<div class="line"><span class="lineno">  171</span>  <span class="comment">/* USER CODE BEGIN 1 */</span></div>
 <div class="line"><span class="lineno">  172</span> </div>
 <div class="line"><span class="lineno">  173</span> </div>
-<div class="line"><span class="lineno">  174</span>    <span class="comment">/* USER CODE END 1 */</span></div>
+<div class="line"><span class="lineno">  174</span>  <span class="comment">/* USER CODE END 1 */</span></div>
 <div class="line"><span class="lineno">  175</span> </div>
-<div class="line"><span class="lineno">  176</span>    <span class="comment">/* MCU Configuration--------------------------------------------------------*/</span></div>
+<div class="line"><span class="lineno">  176</span>  <span class="comment">/* MCU Configuration--------------------------------------------------------*/</span></div>
 <div class="line"><span class="lineno">  177</span> </div>
-<div class="line"><span class="lineno">  178</span>    <span class="comment">/* Reset of all peripherals, Initializes the Flash interface and the Systick. */</span></div>
-<div class="line"><span class="lineno">  179</span>    HAL_Init();</div>
+<div class="line"><span class="lineno">  178</span>  <span class="comment">/* Reset of all peripherals, Initializes the Flash interface and the Systick. */</span></div>
+<div class="line"><span class="lineno">  179</span>  HAL_Init();</div>
 <div class="line"><span class="lineno">  180</span> </div>
-<div class="line"><span class="lineno">  181</span>    <span class="comment">/* USER CODE BEGIN Init */</span></div>
+<div class="line"><span class="lineno">  181</span>  <span class="comment">/* USER CODE BEGIN Init */</span></div>
 <div class="line"><span class="lineno">  182</span> </div>
-<div class="line"><span class="lineno">  183</span>    <span class="comment">/* USER CODE END Init */</span></div>
+<div class="line"><span class="lineno">  183</span>  <span class="comment">/* USER CODE END Init */</span></div>
 <div class="line"><span class="lineno">  184</span> </div>
-<div class="line"><span class="lineno">  185</span>    <span class="comment">/* Configure the system clock */</span></div>
-<div class="line"><span class="lineno">  186</span>    <a class="code hl_function" href="Core_2Src_2main_8c.html#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a>();</div>
+<div class="line"><span class="lineno">  185</span>  <span class="comment">/* Configure the system clock */</span></div>
+<div class="line"><span class="lineno">  186</span>  <a class="code hl_function" href="Core_2Src_2main_8c.html#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a>();</div>
 <div class="line"><span class="lineno">  187</span> </div>
-<div class="line"><span class="lineno">  188</span>    <span class="comment">/* USER CODE BEGIN SysInit */</span></div>
+<div class="line"><span class="lineno">  188</span>  <span class="comment">/* USER CODE BEGIN SysInit */</span></div>
 <div class="line"><span class="lineno">  189</span> </div>
 <div class="line"><span class="lineno">  190</span>    MX_DMA_Init();</div>
 <div class="line"><span class="lineno">  191</span> </div>
-<div class="line"><span class="lineno">  192</span>    <span class="comment">/* USER CODE END SysInit */</span></div>
+<div class="line"><span class="lineno">  192</span>  <span class="comment">/* USER CODE END SysInit */</span></div>
 <div class="line"><span class="lineno">  193</span> </div>
-<div class="line"><span class="lineno">  194</span>    <span class="comment">/* Initialize all configured peripherals */</span></div>
-<div class="line"><span class="lineno">  195</span>    MX_GPIO_Init();</div>
-<div class="line"><span class="lineno">  196</span>    MX_TIM8_Init();</div>
-<div class="line"><span class="lineno">  197</span>    MX_DMA_Init();</div>
-<div class="line"><span class="lineno">  198</span>    MX_DAC_Init();</div>
-<div class="line"><span class="lineno">  199</span>    MX_TIM6_Init();</div>
-<div class="line"><span class="lineno">  200</span>    MX_USART3_UART_Init();</div>
-<div class="line"><span class="lineno">  201</span>    MX_ADC2_Init();</div>
-<div class="line"><span class="lineno">  202</span>    MX_SPI1_Init();</div>
-<div class="line"><span class="lineno">  203</span>    MX_SPI3_Init();</div>
-<div class="line"><span class="lineno">  204</span>    MX_TIM2_Init();</div>
-<div class="line"><span class="lineno">  205</span>    MX_TIM4_Init();</div>
-<div class="line"><span class="lineno">  206</span>    MX_FATFS_Init();</div>
-<div class="line"><span class="lineno">  207</span>    MX_TIM1_Init();</div>
-<div class="line"><span class="lineno">  208</span>    MX_ADC1_Init();</div>
-<div class="line"><span class="lineno">  209</span>    MX_TIM5_Init();</div>
-<div class="line"><span class="lineno">  210</span>    MX_ADC3_Init();</div>
-<div class="line"><span class="lineno">  211</span>    MX_I2C2_Init();</div>
-<div class="line"><span class="lineno">  212</span>    MX_SPI4_Init();</div>
-<div class="line"><span class="lineno">  213</span>    MX_TIM7_Init();</div>
-<div class="line"><span class="lineno">  214</span>    MX_TIM3_Init();</div>
-<div class="line"><span class="lineno">  215</span>    <span class="comment">/* USER CODE BEGIN 2 */</span></div>
+<div class="line"><span class="lineno">  194</span>  <span class="comment">/* Initialize all configured peripherals */</span></div>
+<div class="line"><span class="lineno">  195</span>  MX_GPIO_Init();</div>
+<div class="line"><span class="lineno">  196</span>  MX_TIM8_Init();</div>
+<div class="line"><span class="lineno">  197</span>  MX_DMA_Init();</div>
+<div class="line"><span class="lineno">  198</span>  MX_DAC_Init();</div>
+<div class="line"><span class="lineno">  199</span>  MX_TIM6_Init();</div>
+<div class="line"><span class="lineno">  200</span>  MX_USART3_UART_Init();</div>
+<div class="line"><span class="lineno">  201</span>  MX_ADC2_Init();</div>
+<div class="line"><span class="lineno">  202</span>  MX_SPI1_Init();</div>
+<div class="line"><span class="lineno">  203</span>  MX_SPI3_Init();</div>
+<div class="line"><span class="lineno">  204</span>  MX_TIM2_Init();</div>
+<div class="line"><span class="lineno">  205</span>  MX_TIM4_Init();</div>
+<div class="line"><span class="lineno">  206</span>  MX_FATFS_Init();</div>
+<div class="line"><span class="lineno">  207</span>  MX_TIM1_Init();</div>
+<div class="line"><span class="lineno">  208</span>  MX_ADC1_Init();</div>
+<div class="line"><span class="lineno">  209</span>  MX_TIM5_Init();</div>
+<div class="line"><span class="lineno">  210</span>  MX_ADC3_Init();</div>
+<div class="line"><span class="lineno">  211</span>  MX_I2C2_Init();</div>
+<div class="line"><span class="lineno">  212</span>  MX_SPI4_Init();</div>
+<div class="line"><span class="lineno">  213</span>  MX_TIM7_Init();</div>
+<div class="line"><span class="lineno">  214</span>  MX_TIM3_Init();</div>
+<div class="line"><span class="lineno">  215</span>  <span class="comment">/* USER CODE BEGIN 2 */</span></div>
 <div class="line"><span class="lineno">  216</span> </div>
 <div class="line"><span class="lineno">  217</span> </div>
 <div class="line"><span class="lineno">  218</span>    printf(<span class="stringliteral">&quot;***Bodysynthesizer Paul*** \r\n&quot;</span>);</div>
@@ -1125,7 +1125,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  226</span> </div>
 <div class="line"><span class="lineno">  227</span>    effects_init();</div>
 <div class="line"><span class="lineno">  228</span> </div>
-<div class="line"><span class="lineno">  229</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="group__Filter.html#ga44cc78d9063ea994317ac57c15b6eced">Filters_Init</a>() == FILTER_FAIL) {</div>
+<div class="line"><span class="lineno">  229</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="group__Filters.html#ga44cc78d9063ea994317ac57c15b6eced">Filters_Init</a>() == FILTER_FAIL) {</div>
 <div class="line"><span class="lineno">  230</span>        printf(<span class="stringliteral">&quot;Filters init failed\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  231</span>    }</div>
 <div class="line"><span class="lineno">  232</span> </div>
@@ -1197,37 +1197,37 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  298</span>    <span class="comment">/* START FUNCTIONS end *****************/</span></div>
 <div class="line"><span class="lineno">  299</span> </div>
 <div class="line"><span class="lineno">  300</span> </div>
-<div class="line"><span class="lineno">  301</span>    <span class="comment">/* USER CODE END 2 */</span></div>
+<div class="line"><span class="lineno">  301</span>  <span class="comment">/* USER CODE END 2 */</span></div>
 <div class="line"><span class="lineno">  302</span> </div>
-<div class="line"><span class="lineno">  303</span>    <span class="comment">/* Infinite loop */</span></div>
-<div class="line"><span class="lineno">  304</span>    <span class="comment">/* USER CODE BEGIN WHILE */</span></div>
+<div class="line"><span class="lineno">  303</span>  <span class="comment">/* Infinite loop */</span></div>
+<div class="line"><span class="lineno">  304</span>  <span class="comment">/* USER CODE BEGIN WHILE */</span></div>
 <div class="line"><span class="lineno">  305</span> </div>
 <div class="line"><span class="lineno">  306</span>    <span class="keywordflow">while</span>(1) {</div>
 <div class="line"><span class="lineno">  307</span> </div>
-<div class="line"><span class="lineno">  308</span>        <span class="comment">/* USER CODE END WHILE */</span></div>
+<div class="line"><span class="lineno">  308</span>    <span class="comment">/* USER CODE END WHILE */</span></div>
 <div class="line"><span class="lineno">  309</span> </div>
-<div class="line"><span class="lineno">  310</span>        <span class="comment">/* USER CODE BEGIN 3 */</span></div>
+<div class="line"><span class="lineno">  310</span>    <span class="comment">/* USER CODE BEGIN 3 */</span></div>
 <div class="line"><span class="lineno">  311</span> </div>
 <div class="line"><span class="lineno">  312</span>        <span class="comment">/* USER CODE END WHILE */</span></div>
 <div class="line"><span class="lineno">  313</span>    }</div>
 <div class="line"><span class="lineno">  314</span> </div>
 <div class="line"><span class="lineno">  315</span> </div>
 <div class="line"><span class="lineno">  316</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  317</span>    <span class="comment">/* USER CODE END 3 */</span></div>
+<div class="line"><span class="lineno">  317</span>  <span class="comment">/* USER CODE END 3 */</span></div>
 <div class="line"><span class="lineno">  318</span>}</div>
 <div class="ttc" id="aCore_2Inc_2main_8h_html_a25be00c869033fae5b8206c20aeb3861"><div class="ttname"><a href="Core_2Inc_2main_8h.html#a25be00c869033fae5b8206c20aeb3861">calculate_vector1</a></div><div class="ttdeci">float calculate_vector1[BLOCKSIZE]</div><div class="ttdoc">DAC output array.</div><div class="ttdef"><b>Definition:</b> <a href="Core_2Inc_2main_8h_source.html#l00151">main.h:151</a></div></div>
 <div class="ttc" id="aCore_2Inc_2main_8h_html_afcf795f5a96fd55561abe69f56224630"><div class="ttname"><a href="Core_2Inc_2main_8h.html#afcf795f5a96fd55561abe69f56224630">BLOCKSIZE</a></div><div class="ttdeci">#define BLOCKSIZE</div><div class="ttdoc">output array size</div><div class="ttdef"><b>Definition:</b> <a href="Core_2Inc_2main_8h_source.html#l00146">main.h:146</a></div></div>
 <div class="ttc" id="aCore_2Src_2main_8c_html_a40a0d1383beda58531dfda6218720e45"><div class="ttname"><a href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a></div><div class="ttdeci">DAC_HandleTypeDef hdac</div><div class="ttdoc">Extern variables.</div><div class="ttdef"><b>Definition:</b> <a href="Core_2Src_2main_8c_source.html#l00059">main.c:59</a></div></div>
 <div class="ttc" id="aCore_2Src_2main_8c_html_a70af21c671abfcc773614a9a4f63d920"><div class="ttname"><a href="Core_2Src_2main_8c.html#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a></div><div class="ttdeci">void SystemClock_Config(void)</div><div class="ttdoc">System Clock Configuration.</div><div class="ttdef"><b>Definition:</b> <a href="Core_2Src_2main_8c_source.html#l00324">main.c:324</a></div></div>
 <div class="ttc" id="agroup__ADSR_html_gab26d8ec30eff40bfb82b160defd0af22"><div class="ttname"><a href="group__ADSR.html#gab26d8ec30eff40bfb82b160defd0af22">ADSR_Init</a></div><div class="ttdeci">ADSR_Status ADSR_Init(void)</div><div class="ttdoc">Init funtion for the ADSR, has to be used in order to use any other funtion of this ....</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8c_source.html#l00020">adsr.c:20</a></div></div>
-<div class="ttc" id="agroup__DisplayProcess_html_ga11f29ac6ffffd64bb9c21e37c0b6e7ce"><div class="ttname"><a href="group__DisplayProcess.html#ga11f29ac6ffffd64bb9c21e37c0b6e7ce">Display_Init</a></div><div class="ttdeci">Display_Status Display_Init(struct display_variables *Display)</div><div class="ttdoc">this function initiliazes the display struct variables</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00019">display.c:19</a></div></div>
-<div class="ttc" id="agroup__DisplayProcess_html_gad30227eebb2921ea58a7bc2c82cb33ab"><div class="ttname"><a href="group__DisplayProcess.html#gad30227eebb2921ea58a7bc2c82cb33ab">Display_Start</a></div><div class="ttdeci">Display_Status Display_Start(EPD *epd, Paint *paint, unsigned char *frame_buffer)</div><div class="ttdoc">this function starts the display</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00326">display.c:326</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_ga11f29ac6ffffd64bb9c21e37c0b6e7ce"><div class="ttname"><a href="group__DisplayProcess.html#ga11f29ac6ffffd64bb9c21e37c0b6e7ce">Display_Init</a></div><div class="ttdeci">Display_Status Display_Init(struct display_variables *Display)</div><div class="ttdoc">this function initiliazes the display struct variables</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00020">display.c:20</a></div></div>
+<div class="ttc" id="agroup__DisplayProcess_html_gad30227eebb2921ea58a7bc2c82cb33ab"><div class="ttname"><a href="group__DisplayProcess.html#gad30227eebb2921ea58a7bc2c82cb33ab">Display_Start</a></div><div class="ttdeci">Display_Status Display_Start(EPD *epd, Paint *paint, unsigned char *frame_buffer)</div><div class="ttdoc">this function starts the display</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00327">display.c:327</a></div></div>
 <div class="ttc" id="agroup__Distortion_html_ga54ad82c4a3ecbc0c2784ae81c92eb22e"><div class="ttname"><a href="group__Distortion.html#ga54ad82c4a3ecbc0c2784ae81c92eb22e">Distortion_Init</a></div><div class="ttdeci">Distortion_Status Distortion_Init(void)</div><div class="ttdoc">Distortion init functions.</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00020">distortion.c:20</a></div></div>
 <div class="ttc" id="agroup__DrumComputer_html_ga98c7a5f46d897df7157cfd75e379afb3"><div class="ttname"><a href="group__DrumComputer.html#ga98c7a5f46d897df7157cfd75e379afb3">Drum_Computer_Init</a></div><div class="ttdeci">HAL_StatusTypeDef Drum_Computer_Init(void)</div><div class="ttdoc">Init function for the drumcomputer</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00312">drum_computer.c:312</a></div></div>
-<div class="ttc" id="agroup__EMG__ECG_html_ga98bf9a8015f7a7833276fbf6a72e255e"><div class="ttname"><a href="group__EMG__ECG.html#ga98bf9a8015f7a7833276fbf6a72e255e">ecg_init</a></div><div class="ttdeci">HAL_StatusTypeDef ecg_init(void)</div><div class="ttdoc">ECG init.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00036">emg.c:36</a></div></div>
-<div class="ttc" id="agroup__EMG__ECG_html_gaa7d92b6a1983e52614915f8e2cfb3140"><div class="ttname"><a href="group__EMG__ECG.html#gaa7d92b6a1983e52614915f8e2cfb3140">emg_init</a></div><div class="ttdeci">HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim)</div><div class="ttdoc">EMG Init.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00018">emg.c:18</a></div></div>
-<div class="ttc" id="agroup__EMG__ECG_html_gad8539de6db12ec20b070f6fb97f99a73"><div class="ttname"><a href="group__EMG__ECG.html#gad8539de6db12ec20b070f6fb97f99a73">emg_start_read</a></div><div class="ttdeci">HAL_StatusTypeDef emg_start_read(void)</div><div class="ttdoc">start all necessary peripherals for the EMG/ECG</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00054">emg.c:54</a></div></div>
-<div class="ttc" id="agroup__Filter_html_ga44cc78d9063ea994317ac57c15b6eced"><div class="ttname"><a href="group__Filter.html#ga44cc78d9063ea994317ac57c15b6eced">Filters_Init</a></div><div class="ttdeci">Filter_Status Filters_Init(void)</div><div class="ttdoc">Filter Init function.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00040">filters.c:40</a></div></div>
+<div class="ttc" id="agroup__EMG__ECG_html_ga98bf9a8015f7a7833276fbf6a72e255e"><div class="ttname"><a href="group__EMG__ECG.html#ga98bf9a8015f7a7833276fbf6a72e255e">ecg_init</a></div><div class="ttdeci">HAL_StatusTypeDef ecg_init(void)</div><div class="ttdoc">ECG init.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00034">emg.c:34</a></div></div>
+<div class="ttc" id="agroup__EMG__ECG_html_gaa7d92b6a1983e52614915f8e2cfb3140"><div class="ttname"><a href="group__EMG__ECG.html#gaa7d92b6a1983e52614915f8e2cfb3140">emg_init</a></div><div class="ttdeci">HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim)</div><div class="ttdoc">EMG Init.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00016">emg.c:16</a></div></div>
+<div class="ttc" id="agroup__EMG__ECG_html_gad8539de6db12ec20b070f6fb97f99a73"><div class="ttname"><a href="group__EMG__ECG.html#gad8539de6db12ec20b070f6fb97f99a73">emg_start_read</a></div><div class="ttdeci">HAL_StatusTypeDef emg_start_read(void)</div><div class="ttdoc">Start all necessary peripherals for the EMG / ECG.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00052">emg.c:52</a></div></div>
+<div class="ttc" id="agroup__Filters_html_ga44cc78d9063ea994317ac57c15b6eced"><div class="ttname"><a href="group__Filters.html#ga44cc78d9063ea994317ac57c15b6eced">Filters_Init</a></div><div class="ttdeci">Filter_Status Filters_Init(void)</div><div class="ttdoc">Filter Init function.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00040">filters.c:40</a></div></div>
 <div class="ttc" id="agroup__Gyro_html_ga87e70ebae58b5e371289ad557bb31b74"><div class="ttname"><a href="group__Gyro.html#ga87e70ebae58b5e371289ad557bb31b74">spiC_Init</a></div><div class="ttdeci">void spiC_Init(SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim)</div><div class="ttdoc">spi connection init</div><div class="ttdef"><b>Definition:</b> <a href="SPI__Connection_8c_source.html#l00020">SPI_Connection.c:20</a></div></div>
 <div class="ttc" id="agroup__InputInterface_html_ga3c55c248a4e6b89d5698af2b46e35b60"><div class="ttname"><a href="group__InputInterface.html#ga3c55c248a4e6b89d5698af2b46e35b60">II_startInterface</a></div><div class="ttdeci">void II_startInterface(TIM_HandleTypeDef *htim)</div><div class="ttdoc">starts the interface timer Interrupt</div><div class="ttdef"><b>Definition:</b> <a href="input__interfaces_8c_source.html#l00040">input_interfaces.c:40</a></div></div>
 <div class="ttc" id="agroup__InputInterface_html_gaf102c42e8c8be931b33bd67401dd9424"><div class="ttname"><a href="group__InputInterface.html#gaf102c42e8c8be931b33bd67401dd9424">II_init</a></div><div class="ttdeci">void II_init()</div><div class="ttdoc">init function</div><div class="ttdef"><b>Definition:</b> <a href="input__interfaces_8c_source.html#l00020">input_interfaces.c:20</a></div></div>
@@ -1270,46 +1270,46 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="Core_2Src_2main_8c_source.html#l00324">324</a> of file <a class="el" href="Core_2Src_2main_8c_source.html">main.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  325</span>{</div>
-<div class="line"><span class="lineno">  326</span>    RCC_OscInitTypeDef RCC_OscInitStruct = {0};</div>
-<div class="line"><span class="lineno">  327</span>    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};</div>
-<div class="line"><span class="lineno">  328</span>    RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};</div>
+<div class="line"><span class="lineno">  326</span>  RCC_OscInitTypeDef RCC_OscInitStruct = {0};</div>
+<div class="line"><span class="lineno">  327</span>  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};</div>
+<div class="line"><span class="lineno">  328</span>  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};</div>
 <div class="line"><span class="lineno">  329</span> </div>
-<div class="line"><span class="lineno">  332</span>    __HAL_RCC_PWR_CLK_ENABLE();</div>
-<div class="line"><span class="lineno">  333</span>    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);</div>
-<div class="line"><span class="lineno">  337</span>    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;</div>
-<div class="line"><span class="lineno">  338</span>    RCC_OscInitStruct.HSEState = RCC_HSE_ON;</div>
-<div class="line"><span class="lineno">  339</span>    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;</div>
-<div class="line"><span class="lineno">  340</span>    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;</div>
-<div class="line"><span class="lineno">  341</span>    RCC_OscInitStruct.PLL.PLLM = 4;</div>
-<div class="line"><span class="lineno">  342</span>    RCC_OscInitStruct.PLL.PLLN = 216;</div>
-<div class="line"><span class="lineno">  343</span>    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;</div>
-<div class="line"><span class="lineno">  344</span>    RCC_OscInitStruct.PLL.PLLQ = 2;</div>
-<div class="line"><span class="lineno">  345</span>    <span class="keywordflow">if</span> (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)</div>
-<div class="line"><span class="lineno">  346</span>    {</div>
-<div class="line"><span class="lineno">  347</span>        <a class="code hl_function" href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
-<div class="line"><span class="lineno">  348</span>    }</div>
-<div class="line"><span class="lineno">  351</span>    <span class="keywordflow">if</span> (HAL_PWREx_EnableOverDrive() != HAL_OK)</div>
-<div class="line"><span class="lineno">  352</span>    {</div>
-<div class="line"><span class="lineno">  353</span>        <a class="code hl_function" href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
-<div class="line"><span class="lineno">  354</span>    }</div>
-<div class="line"><span class="lineno">  357</span>    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK</div>
-<div class="line"><span class="lineno">  358</span>            |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;</div>
-<div class="line"><span class="lineno">  359</span>    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;</div>
-<div class="line"><span class="lineno">  360</span>    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;</div>
-<div class="line"><span class="lineno">  361</span>    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;</div>
-<div class="line"><span class="lineno">  362</span>    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;</div>
+<div class="line"><span class="lineno">  332</span>  __HAL_RCC_PWR_CLK_ENABLE();</div>
+<div class="line"><span class="lineno">  333</span>  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);</div>
+<div class="line"><span class="lineno">  337</span>  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;</div>
+<div class="line"><span class="lineno">  338</span>  RCC_OscInitStruct.HSEState = RCC_HSE_ON;</div>
+<div class="line"><span class="lineno">  339</span>  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;</div>
+<div class="line"><span class="lineno">  340</span>  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;</div>
+<div class="line"><span class="lineno">  341</span>  RCC_OscInitStruct.PLL.PLLM = 4;</div>
+<div class="line"><span class="lineno">  342</span>  RCC_OscInitStruct.PLL.PLLN = 216;</div>
+<div class="line"><span class="lineno">  343</span>  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;</div>
+<div class="line"><span class="lineno">  344</span>  RCC_OscInitStruct.PLL.PLLQ = 2;</div>
+<div class="line"><span class="lineno">  345</span>  <span class="keywordflow">if</span> (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)</div>
+<div class="line"><span class="lineno">  346</span>  {</div>
+<div class="line"><span class="lineno">  347</span>    <a class="code hl_function" href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><span class="lineno">  348</span>  }</div>
+<div class="line"><span class="lineno">  351</span>  <span class="keywordflow">if</span> (HAL_PWREx_EnableOverDrive() != HAL_OK)</div>
+<div class="line"><span class="lineno">  352</span>  {</div>
+<div class="line"><span class="lineno">  353</span>    <a class="code hl_function" href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><span class="lineno">  354</span>  }</div>
+<div class="line"><span class="lineno">  357</span>  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK</div>
+<div class="line"><span class="lineno">  358</span>                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;</div>
+<div class="line"><span class="lineno">  359</span>  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;</div>
+<div class="line"><span class="lineno">  360</span>  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;</div>
+<div class="line"><span class="lineno">  361</span>  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;</div>
+<div class="line"><span class="lineno">  362</span>  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;</div>
 <div class="line"><span class="lineno">  363</span> </div>
-<div class="line"><span class="lineno">  364</span>    <span class="keywordflow">if</span> (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)</div>
-<div class="line"><span class="lineno">  365</span>    {</div>
-<div class="line"><span class="lineno">  366</span>        <a class="code hl_function" href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
-<div class="line"><span class="lineno">  367</span>    }</div>
-<div class="line"><span class="lineno">  368</span>    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART3|RCC_PERIPHCLK_I2C2;</div>
-<div class="line"><span class="lineno">  369</span>    PeriphClkInitStruct.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;</div>
-<div class="line"><span class="lineno">  370</span>    PeriphClkInitStruct.I2c2ClockSelection = RCC_I2C2CLKSOURCE_PCLK1;</div>
-<div class="line"><span class="lineno">  371</span>    <span class="keywordflow">if</span> (HAL_RCCEx_PeriphCLKConfig(&amp;PeriphClkInitStruct) != HAL_OK)</div>
-<div class="line"><span class="lineno">  372</span>    {</div>
-<div class="line"><span class="lineno">  373</span>        <a class="code hl_function" href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
-<div class="line"><span class="lineno">  374</span>    }</div>
+<div class="line"><span class="lineno">  364</span>  <span class="keywordflow">if</span> (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)</div>
+<div class="line"><span class="lineno">  365</span>  {</div>
+<div class="line"><span class="lineno">  366</span>    <a class="code hl_function" href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><span class="lineno">  367</span>  }</div>
+<div class="line"><span class="lineno">  368</span>  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART3|RCC_PERIPHCLK_I2C2;</div>
+<div class="line"><span class="lineno">  369</span>  PeriphClkInitStruct.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;</div>
+<div class="line"><span class="lineno">  370</span>  PeriphClkInitStruct.I2c2ClockSelection = RCC_I2C2CLKSOURCE_PCLK1;</div>
+<div class="line"><span class="lineno">  371</span>  <span class="keywordflow">if</span> (HAL_RCCEx_PeriphCLKConfig(&amp;PeriphClkInitStruct) != HAL_OK)</div>
+<div class="line"><span class="lineno">  372</span>  {</div>
+<div class="line"><span class="lineno">  373</span>    <a class="code hl_function" href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><span class="lineno">  374</span>  }</div>
 <div class="line"><span class="lineno">  375</span>}</div>
 <div class="ttc" id="aCore_2Src_2main_8c_html_a1730ffe1e560465665eb47d9264826f9"><div class="ttname"><a href="Core_2Src_2main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a></div><div class="ttdeci">void Error_Handler(void)</div><div class="ttdoc">This function is executed in case of error occurrence.</div><div class="ttdef"><b>Definition:</b> <a href="Core_2Src_2main_8c_source.html#l01928">main.c:1928</a></div></div>
 </div><!-- fragment -->

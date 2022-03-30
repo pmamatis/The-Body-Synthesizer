@@ -24,15 +24,15 @@ HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga98c7a5f46d89
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga0945a49b026be615b8a70c8ec885ac08}{Drum\+\_\+\+Computer\+\_\+\+Reset}} (void)
 \begin{DoxyCompactList}\small\item\em This function resets the drumcomputer to its initial state. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga08535ad247ef4e17b91bbba4b56833af}{Drum\+\_\+\+Computer\+\_\+\+Process}} (void)
-\begin{DoxyCompactList}\small\item\em This function processes the drumcomputer as well as the sequencer. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Process-\/function of drumcomputer as well as sequencer. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_gab1eca379f4f1b927be94270e748a87bf}{Drum\+\_\+\+Computer\+\_\+\+Calc\+Sample}} (void)
-\begin{DoxyCompactList}\small\item\em This function calculates the samples of the drumcomputer. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This function calculates actual samples of the drumcomputer depending on via display set timings. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}{Sequencer\+\_\+\+Reset}} (void)
 \begin{DoxyCompactList}\small\item\em This function resets the sequencer to its initial state. \end{DoxyCompactList}\item 
 HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\+\_\+\+ADSR\+\_\+\+Init}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$env)
-\begin{DoxyCompactList}\small\item\em initializes the variables of the sequencer ADSR \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Initializes the variables of the sequencer ADSR. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{Play\+Single\+Sample}} (void)
-\begin{DoxyCompactList}\small\item\em function to play the same sample each time it is triggerd, must be called inside \mbox{\hyperlink{signal__synthesis_8h_a14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Function to play a chosen sample each time it is triggerd by EMG / ECG, must be called inside \mbox{\hyperlink{signal__synthesis_8h_a14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -142,7 +142,7 @@ bool \mbox{\hyperlink{group__SingleSample_ga304666972f058f6ed2f1acd6816f70ac}{pl
 Drumcomputer. 
 
 \begin{DoxyAuthor}{Author}
-Marc Bielen \& Max Lehmer 
+Max Lehmer \& Marc Bielen 
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
 0.\+1 

@@ -208,43 +208,44 @@ Definition at line \mbox{\hyperlink{distortion_8c_source_l00121}{121}} of file \
 \DoxyCodeLine{00127     \textcolor{comment}{// Use known Arcustangens values, which have been estimated (LUT-\/style)}}
 \DoxyCodeLine{00128 }
 \DoxyCodeLine{00129     SoftClipping.atan\_parameter = (SoftClipping.distortion\_gain * calc) + 10;   \textcolor{comment}{// SoftClipping.distortion\_maximum\_gain = 10}}
-\DoxyCodeLine{00130     SoftClipping.distortion\_index = round(SoftClipping.atan\_parameter/\mbox{\hyperlink{group__atanLUT_ga638ce07da32913582447f1e26b745c37}{aquidistance}});}
-\DoxyCodeLine{00131     calc = 0.5*\mbox{\hyperlink{group__atanLUT_ga44717ae85351202c8833c3880a6ef9e8}{atan\_LUT\_y}}[SoftClipping.distortion\_index]; \textcolor{comment}{// scale down the amplitude}}
+\DoxyCodeLine{00130     SoftClipping.distortion\_index = round(SoftClipping.atan\_parameter/\mbox{\hyperlink{group__atanLUT_ga5b267ef41aab26158640ba93071f0b97}{aquidistance}});}
+\DoxyCodeLine{00131     calc = 0.5*\mbox{\hyperlink{group__atanLUT_ga44717ae85351202c8833c3880a6ef9e8}{atan\_LUT\_y}}[SoftClipping.distortion\_index];}
 \DoxyCodeLine{00132 }
-\DoxyCodeLine{00133     \textcolor{keywordflow}{if}(0.0 <= SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 1.0)}
-\DoxyCodeLine{00134         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[0]);}
-\DoxyCodeLine{00135 }
-\DoxyCodeLine{00136     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(1.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 2.0)}
-\DoxyCodeLine{00137         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[1]);}
-\DoxyCodeLine{00138 }
-\DoxyCodeLine{00139     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(2.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 3.0)}
-\DoxyCodeLine{00140         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[2]);}
-\DoxyCodeLine{00141 }
-\DoxyCodeLine{00142     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(3.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 4.0)}
-\DoxyCodeLine{00143         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[3]);}
-\DoxyCodeLine{00144 }
-\DoxyCodeLine{00145     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(4.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 5.0)}
-\DoxyCodeLine{00146         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[4]);}
-\DoxyCodeLine{00147 }
-\DoxyCodeLine{00148     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(5.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 6.0)}
-\DoxyCodeLine{00149         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[5]);}
-\DoxyCodeLine{00150 }
-\DoxyCodeLine{00151     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(6.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 7.0)}
-\DoxyCodeLine{00152         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[6]);}
-\DoxyCodeLine{00153 }
-\DoxyCodeLine{00154     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(7.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 8.0)}
-\DoxyCodeLine{00155         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[7]);}
-\DoxyCodeLine{00156 }
-\DoxyCodeLine{00157     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(8.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 9.0)}
-\DoxyCodeLine{00158         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[8]);}
-\DoxyCodeLine{00159 }
-\DoxyCodeLine{00160     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(SoftClipping.distortion\_gain > 9.0)}
-\DoxyCodeLine{00161         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[9]);}
-\DoxyCodeLine{00162 }
-\DoxyCodeLine{00163     *data = calc;}
-\DoxyCodeLine{00164 }
-\DoxyCodeLine{00165     \textcolor{keywordflow}{return} DISTORTION\_OK;}
-\DoxyCodeLine{00166 \}}
+\DoxyCodeLine{00133     \textcolor{comment}{// scale down the amplitude}}
+\DoxyCodeLine{00134     \textcolor{keywordflow}{if}(0.0 <= SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 1.0)}
+\DoxyCodeLine{00135         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[0]);}
+\DoxyCodeLine{00136 }
+\DoxyCodeLine{00137     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(1.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 2.0)}
+\DoxyCodeLine{00138         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[1]);}
+\DoxyCodeLine{00139 }
+\DoxyCodeLine{00140     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(2.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 3.0)}
+\DoxyCodeLine{00141         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[2]);}
+\DoxyCodeLine{00142 }
+\DoxyCodeLine{00143     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(3.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 4.0)}
+\DoxyCodeLine{00144         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[3]);}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00146     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(4.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 5.0)}
+\DoxyCodeLine{00147         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[4]);}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(5.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 6.0)}
+\DoxyCodeLine{00150         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[5]);}
+\DoxyCodeLine{00151 }
+\DoxyCodeLine{00152     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(6.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 7.0)}
+\DoxyCodeLine{00153         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[6]);}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(7.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 8.0)}
+\DoxyCodeLine{00156         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[7]);}
+\DoxyCodeLine{00157 }
+\DoxyCodeLine{00158     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(8.0 < SoftClipping.distortion\_gain \&\& SoftClipping.distortion\_gain <= 9.0)}
+\DoxyCodeLine{00159         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[8]);}
+\DoxyCodeLine{00160 }
+\DoxyCodeLine{00161     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(SoftClipping.distortion\_gain > 9.0)}
+\DoxyCodeLine{00162         calc = calc * (1.f/SoftClipping.atan\_softclipping\_distortion\_max[9]);}
+\DoxyCodeLine{00163 }
+\DoxyCodeLine{00164     *data = calc;}
+\DoxyCodeLine{00165 }
+\DoxyCodeLine{00166     \textcolor{keywordflow}{return} DISTORTION\_OK;}
+\DoxyCodeLine{00167 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{group__Distortion_ga2a6725ec967773f5ddfbc3fc21d67049}\label{group__Distortion_ga2a6725ec967773f5ddfbc3fc21d67049}} 

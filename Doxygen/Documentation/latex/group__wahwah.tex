@@ -99,13 +99,13 @@ Definition at line \mbox{\hyperlink{wahwah_8c_source_l00115}{115}} of file \mbox
 \DoxyCodeLine{00127     \textcolor{comment}{// RESET: Filter after 100 samples (with SR = 24k Hz >> 240 times a second)}}
 \DoxyCodeLine{00128     \textcolor{keywordflow}{if}(WahWah-\/>reinit\_counter == 100)\{}
 \DoxyCodeLine{00129 }
-\DoxyCodeLine{00130         \mbox{\hyperlink{group__Filter_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq\_mod, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{00130         \mbox{\hyperlink{group__Filters_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq\_mod, WahWah-\/>bandpass-\/>Q);}
 \DoxyCodeLine{00131         WahWah-\/>reinit\_counter = 0;}
 \DoxyCodeLine{00132     \}}
 \DoxyCodeLine{00133 }
 \DoxyCodeLine{00134     WahWah-\/>reinit\_counter++;}
 \DoxyCodeLine{00135 }
-\DoxyCodeLine{00136     \mbox{\hyperlink{group__Filter_gad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(WahWah-\/>bandpass, data);}
+\DoxyCodeLine{00136     \mbox{\hyperlink{group__Filters_gad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(WahWah-\/>bandpass, data);}
 \DoxyCodeLine{00137 }
 \DoxyCodeLine{00138     \textcolor{keywordflow}{return} WAHWAH\_OK;}
 \DoxyCodeLine{00139 \}}
@@ -145,13 +145,13 @@ Definition at line \mbox{\hyperlink{wahwah_8c_source_l00088}{88}} of file \mbox{
 \DoxyCodeLine{00094     \textcolor{comment}{// RESET: Filter after 100 samples (with SR = 24k Hz >> 240 times a second)}}
 \DoxyCodeLine{00095     \textcolor{keywordflow}{if}(WahWah-\/>reinit\_counter == 100)\{}
 \DoxyCodeLine{00096 }
-\DoxyCodeLine{00097         \mbox{\hyperlink{group__Filter_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{00097         \mbox{\hyperlink{group__Filters_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
 \DoxyCodeLine{00098         WahWah-\/>reinit\_counter = 0;}
 \DoxyCodeLine{00099     \}}
 \DoxyCodeLine{00100 }
 \DoxyCodeLine{00101     WahWah-\/>reinit\_counter++;}
 \DoxyCodeLine{00102 }
-\DoxyCodeLine{00103     \mbox{\hyperlink{group__Filter_gad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(WahWah-\/>bandpass, data);}
+\DoxyCodeLine{00103     \mbox{\hyperlink{group__Filters_gad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(WahWah-\/>bandpass, data);}
 \DoxyCodeLine{00104 }
 \DoxyCodeLine{00105     \textcolor{keywordflow}{return} WAHWAH\_OK;}
 \DoxyCodeLine{00106 \}}
@@ -201,7 +201,7 @@ Definition at line \mbox{\hyperlink{wahwah_8c_source_l00024}{24}} of file \mbox{
 \DoxyCodeLine{00041     WahWah-\/>reinit\_counter = 0;}
 \DoxyCodeLine{00042     WahWah-\/>bandpass-\/>Q = 1;}
 \DoxyCodeLine{00043 }
-\DoxyCodeLine{00044     \mbox{\hyperlink{group__Filter_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{00044     \mbox{\hyperlink{group__Filters_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
 \DoxyCodeLine{00045 }
 \DoxyCodeLine{00046     \textcolor{keywordflow}{return} WAHWAH\_OK;}
 \DoxyCodeLine{00047 \}}
@@ -254,7 +254,7 @@ Definition at line \mbox{\hyperlink{wahwah_8c_source_l00055}{55}} of file \mbox{
 \DoxyCodeLine{00075 }
 \DoxyCodeLine{00076     strcpy(Display.value\_str\_wahwah[0], \textcolor{stringliteral}{"{}OFF"{}});}
 \DoxyCodeLine{00077 }
-\DoxyCodeLine{00078     \mbox{\hyperlink{group__Filter_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{00078     \mbox{\hyperlink{group__Filters_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
 \DoxyCodeLine{00079 }
 \DoxyCodeLine{00080     \textcolor{keywordflow}{return} WAHWAH\_OK;}
 \DoxyCodeLine{00081 \}}
