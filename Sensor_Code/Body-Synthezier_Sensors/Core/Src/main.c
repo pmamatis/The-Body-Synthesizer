@@ -161,23 +161,14 @@ int main(void)
 	{
 		// Get Movement detection and write into Sync buffer
 		if(SyncBuffer.gyro_initilized == true){
-			//			MPU6050_Display_Data();
 			MPU6050_Read_Sensor();
 			SyncBuffer.tilt_detected  = MPU6050_detectTilt();
-//			SyncBuffer.Movement_detected  = MPU6050_Detect_Movement();
-//			SyncBuffer.Movement_detected  =1;
-//			if (SyncBuffer.Movement_detected!=0)
-//				printf("%i\r\n", SyncBuffer.Movement_detected);
-
-
 		}
 
 
 		__disable_irq();
 		memcpy((void*)pTxData,(void*)&SyncBuffer, BUFFERSIZE);
 		__enable_irq();
-//		if (pTxData[5]!=0)
-//			printf("MOVE\r\n");
 
 		//switch LED
 		switch (SyncBuffer.tilt_detected) {

@@ -1,9 +1,27 @@
-
+/**
+ * @file MPU6050_GY521.c
+ * @author  Paul Mamatis
+ * @brief software driver for MPU6050 in combination with a STM32 
+ * @version 0.1
+ * @date  Okt 10, 2020
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 
 #include "MPU6050_GY521.h"
 
 
-
+/**
+ * @brief Init for the MPU6050
+ * 
+ * @param __hi2c i2c handler 
+ * @param Sensor_Data_pointer struct to save the data
+ * @param accl_resolution 
+ * @param gyro_resolution 
+ * @param samplerate 
+ * @return MPU6050_STATUS 
+ */
 MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* Sensor_Data_pointer, MPU6050_ACCL_RES accl_resolution, MPU6050_GYRO_RES gyro_resolution, uint8_t samplerate){
 
 	uint8_t Data=0x00;
@@ -123,7 +141,11 @@ MPU6050_STATUS MPU6050_init(I2C_HandleTypeDef* __hi2c, MPU6050_Data* Sensor_Data
 
 
 
-
+/**
+ * @brief reeads only accl data
+ * 
+ * @return MPU6050_STATUS 
+ */
 MPU6050_STATUS MPU6050_Read_Accl(){
 
 	uint8_t Rec_Data[6];
@@ -141,7 +163,11 @@ MPU6050_STATUS MPU6050_Read_Accl(){
 	return MPU6050_Read_OK;
 }
 
-
+/**
+ * @brief reads only gyro data
+ * 
+ * @return MPU6050_STATUS 
+ */
 MPU6050_STATUS MPU6050_Read_Gyro(){
 
 	uint8_t Rec_Data[6];
@@ -164,6 +190,11 @@ MPU6050_STATUS MPU6050_Read_Gyro(){
 	return MPU6050_Read_OK;
 }
 
+/**
+ * @brief Reads raw data from accl and gyro  
+ * 
+ * @return MPU6050_STATUS 
+ */
 MPU6050_STATUS MPU6050_Read_Sensor(){
 
 	uint8_t Rec_Data[14];
@@ -188,7 +219,12 @@ MPU6050_STATUS MPU6050_Read_Sensor(){
 	return MPU6050_Read_OK;
 }
 
-
+/**
+ * @brief Gets the mean value of the gyro and accl over n_measurements
+ * @note this function is in first order a helper function for the calibration process
+ * 
+ * @return MPU6050_STATUS 
+ */
 MPU6050_STATUS MPU6050_Calculate_Mean(){
 	// Temp memory to sum up values for mean calculation
 	// Gyroscope
@@ -199,14 +235,13 @@ MPU6050_STATUS MPU6050_Calculate_Mean(){
 	int32_t Ax_mean_tempbuffer	=	0;
 	int32_t Ay_mean_tempbuffer	=	0;
 	int32_t Az_mean_tempbuffer	=	0;
+
 	// First measurements have to be skipped
 	int n_skipping		=	100;
 	int n_measurements 	=	500;
-	//	int n_skipping		=	10;
-	//	int n_measurements 	=	100;
 	for (int i=n_skipping; i < n_measurements + n_skipping; i++){
-		// Read Data
-
+		
+	// Read Data
 		// from Gyroscope
 		if (MPU6050_Read_Sensor(Sensor_Data) != MPU6050_Read_OK){
 			return MPU6050_Status_Error;
@@ -218,6 +253,7 @@ MPU6050_STATUS MPU6050_Calculate_Mean(){
 		if (MPU6050_Read_Accl(Sensor_Data) != MPU6050_Read_OK){
 			return MPU6050_Status_Error;
 		}
+
 		int16_t Ax = Sensor_Data	->	Accl_X;
 		int16_t Ay = Sensor_Data	->	Accl_Y;
 		int16_t Az = Sensor_Data	->	Accl_Z;
@@ -244,7 +280,11 @@ MPU6050_STATUS MPU6050_Calculate_Mean(){
 
 	return MPU6050_Read_OK;
 }
-
+/**
+ * @brief Calibrates the MPU6050 and sets the offsets, which needed to be subtracted from the Rawdata to get valid information
+ * 
+ * @return MPU6050_STATUS 
+ */
 MPU6050_STATUS MPU6050_Calibrate(){
 
 	// gravitational constant depending on accelerometer resolution
@@ -293,10 +333,10 @@ MPU6050_STATUS MPU6050_Calibrate(){
 	return MPU6050_Read_OK;
 }
 
-void getAcclFilt(){
-
-}
-
+/**
+ * @brief Get the Roll with gyro-data
+ * @note MPU6050_Read_Sensor or MPU6050_Read_Gyro must be called before
+ */
 void getGyroRoll(){
 
 	// time of measurement for integration
@@ -319,7 +359,10 @@ void getGyroRoll(){
 	if (Sensor_Data -> Gy_deg <=-180) Sensor_Data -> Gz_deg = Sensor_Data -> Gz_deg + 360;
 }
 
-
+/**
+ * @brief Get the roll with accl-data  
+ * @note MPU6050_Read_Sensor or MPU6050_Read_Accl must be called before 
+ */
 void getAcclRoll(){
 
 	//Parameter for stability in Regions where X and Z or Y and Z are near zero
@@ -335,18 +378,17 @@ void getAcclRoll(){
 	if (Z>0)	sign = 1;
 	else 		sign = -1;
 
-	//77transform radians to degree
+	//transform radians to degree
 	float RAD_TO_DEG = 180/M_PI;
 
 	// Get Roll
-	// RAW Gyrodata: Gyro_X; transformation to Deg/s: Gyro_mult; time since last measurement: Gyro_time; cycletime per second: cycletime
 	Sensor_Data -> Ax_deg = atan2( Y ,   sign * sqrt(Z*Z+ mu*X*X)) * RAD_TO_DEG;
 	Sensor_Data -> Ay_deg = atan2(-X, sqrt(Y*Y + Z*Z)) * RAD_TO_DEG;
 
 }
 
 
-/* 3D-Rotation around x-,y- and z-Axis
+/* @brief 3D-Rotation around x-,y- and z-Axis
  *
  */
 void getAngleRoll(){
@@ -357,13 +399,18 @@ void getAngleRoll(){
 
 	float X = Sensor_Data -> X_deg;
 	float Y = Sensor_Data -> Y_deg;
-
+	//komplementär FIlter
 	Sensor_Data -> X_deg =  0.98 * (X + Sensor_Data -> Gx_deg) + (0.02 * (Sensor_Data -> Ax_deg));
-	Sensor_Data -> Y_deg =  0.98 * (Y + Sensor_Data -> Gy_deg) + (0.02 * (Sensor_Data -> Ay_deg));
+	Sensor_Data -> Y_deg =  0.98 * (Y + Sensor_Data -> Gy_deg) + (0.02 * (Sensor_Data -> Ay_deg)); 
+	float X = Sensor_Data -> X_deg;
+	float Y = Sensor_Data -> Y_deg;-> Gy_deg) + (0.02 * (Sensor_Data -> Ay_deg));
 	Sensor_Data -> Z_deg = Sensor_Data -> Z_deg + Sensor_Data -> Gz_deg;
 }
 
-
+/**
+ * @brief Displays all Gyro and Accl Axis
+ * 
+ */
 void MPU6050_Display_Data(){
 	//	uint8_t buffer[1024];
 	MPU6050_Read_Sensor(Sensor_Data);
@@ -377,78 +424,6 @@ void MPU6050_Display_Data(){
 	//	printf("Gx: %i		**Gy: %i		**Gz: %i\r\n",Sensor_Data->Gyro_X ,Sensor_Data->Gyro_Y ,Sensor_Data->Gyro_Z);
 	//	printf("Ax: %i		**Ay: %i		**Az: %i\r\n", Sensor_Data->Accl_X,Sensor_Data->Accl_Y, Sensor_Data->Accl_Z);
 }
-
-
-
-
-
-
-// REGION ELOM PART
-
-//
-//int16_t HighMovement, LowMovement;
-//int16_t Threshold = 1000;
-//int16_t Az_mean;
-//Acc_z_mean = MPU6050_Calculate_Mean(Sensor_Data->Accl_Z);
-
-Movement_direction_t MPU6050_Detect_Movement(){
-
-	// break, to not detect the backwards movement after a certain move direction
-	if(MoveDetected) {
-
-		BreakCounter++;
-
-		if(BreakCounter == PAUSE) {
-
-			BreakCounter = 0;
-			MoveDetected = false;
-		}
-	}
-
-	//movement detection
-	else if(!MoveDetected) {
-
-			if (abs(Sensor_Data->Accl_Z)> THRESHOLD_Z && abs(Sensor_Data->Accl_X) <1000){
-				if(Sensor_Data->Accl_Z > THRESHOLD_Z){
-
-					MoveDetected = true;
-//					printf("UP:  x= %i, z = %i\r\n", Sensor_Data->Accl_X, Sensor_Data->Accl_Z);
-					return MOVEMENT_HIGH;
-				}
-				else if(Sensor_Data->Accl_Z < -THRESHOLD_Z){
-
-					MoveDetected = true;
-//					printf("DOWN: x= %i, z = %i\r\n", Sensor_Data->Accl_X, Sensor_Data->Accl_Z);
-					return MOVEMENT_DOWN;
-				}
-			}
-			else if (abs(Sensor_Data->Accl_Z)< 1000 && abs(Sensor_Data->Accl_X) > +THRESHOLD_X){
-				if(Sensor_Data->Accl_X < -THRESHOLD_X ){
-
-					MoveDetected = true;
-//					printf("LEFT: x= %i, z = %i\r\n", Sensor_Data->Accl_X, Sensor_Data->Accl_Z);
-					return MOVEMENT_LEFT;
-
-				}
-				else if(Sensor_Data->Accl_X > THRESHOLD_X){
-
-					MoveDetected = true;
-//					printf("RIGHT: x=%i, z= %i\r\n", Sensor_Data->Accl_X, Sensor_Data->Accl_Z);
-					return MOVEMENT_RIGHT;
-				}
-			}
-
-
-		}
-	return MOVEMENT_NONE;
-	}
-
-
-
-
-
-// END REGION ELOMS PART
-
 
 
 
@@ -515,25 +490,12 @@ void MPU6050_Display_Data_DMP(){
 
 }
 
-//float getAbsMax(float a, float b , float c){
-//	float tmp1,tmp2,tmp3;
-//	a_abs = abs(a);
-//	b_abs = abs(b);
-//	c_abs = abs(c);
-//	if(a_abs < b_abs){
-//		if(b_abs < c_abs){
-//			return c;
-//		}
-//		else return b;
-//	}
-//
-//	else if(a_abs < c_abs){
-//			return c;
-//		}
-//
-//	else return a;
-//}
 
+/**
+ * @brief detects the tilt of the Sensor in relation to the calibrated starting stance
+ * 
+ * @return tilt_direction_t 
+ */
 tilt_direction_t MPU6050_detectTilt(){
 	//tilt Thresholds, right, left , front
 	int16_t tilt_TH_X_r,tilt_TH_X_l,  tilt_TH_Y, tilt_TH_Y_f,tilt_TH_Y_b, tilt_TH_Z;
@@ -609,21 +571,6 @@ tilt_direction_t MPU6050_detectTilt(){
 	}
 	return TILT_NONE;
 }
-//Get maximum
-//	if(maxArray[i] <= maxArray[1]){
-//		i = 1;
-//	}
-//	if(maxArray[i] <= maxArray[2]){
-//		i = 2;
-//	}
-//	if(degArray[i] < 0){
-//		return -(i+1);
-//	}
-//	else return i+1;
-//	float Max = getAbsMax();
 
-//uint8_t MPU6050_detectUp(){
-//
-//}
 
 
