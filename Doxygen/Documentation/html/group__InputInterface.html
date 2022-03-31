@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">The Body-Synthesizer<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers</div>
+   <div id="projectbrief">Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers</div>
   </td>
  </tr>
  </tbody>
@@ -308,7 +308,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="input__interfaces_8c_source.html#l00744">744</a> of file <a class="el" href="input__interfaces_8c_source.html">input_interfaces.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  744</span>                                {</div>
-<div class="line"><span class="lineno">  745</span>    uint8_t index= <a class="code hl_function" href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(ID);</div>
+<div class="line"><span class="lineno">  745</span>    uint8_t index= <a class="code hl_function" href="group__SSynth.html#ga100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(ID);</div>
 <div class="line"><span class="lineno">  746</span>    <span class="keywordtype">char</span> oldKey = Display.Voices_Note[ID];</div>
 <div class="line"><span class="lineno">  747</span>    <span class="keywordtype">char</span> newKey;</div>
 <div class="line"><span class="lineno">  748</span>    uint8_t key_counter = 0;</div>
@@ -333,15 +333,15 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  767</span>    }</div>
 <div class="line"><span class="lineno">  768</span>    Display.Voices_Note[ID] = newKey;</div>
 <div class="line"><span class="lineno">  769</span>    <span class="keywordflow">if</span>(index &gt;= 0){</div>
-<div class="line"><span class="lineno">  770</span>        <a class="code hl_function" href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(&amp;signals1, index);</div>
-<div class="line"><span class="lineno">  771</span>        <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(&amp;signals1, SIN, newKey, Display.Voices_Octave[ID],ID);</div>
+<div class="line"><span class="lineno">  770</span>        <a class="code hl_function" href="group__SSynth.html#gaff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(&amp;signals1, index);</div>
+<div class="line"><span class="lineno">  771</span>        <a class="code hl_function" href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(&amp;signals1, SIN, newKey, Display.Voices_Octave[ID],ID);</div>
 <div class="line"><span class="lineno">  772</span>    }</div>
 <div class="line"><span class="lineno">  773</span> </div>
 <div class="line"><span class="lineno">  774</span>}</div>
 <div class="ttc" id="agroup__MusicNotes_html_gaa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00042">music_notes.h:42</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a100668ad3cefb7abc0f65f866ea508ba"><div class="ttname"><a href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a></div><div class="ttdeci">int16_t IDtoIndex(int16_t id)</div><div class="ttdoc">converts an signal ID into its Index</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00830">signal_synthesis.c:830</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00764">signal_synthesis.c:764</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_aff4b96bd9a6fb74a10215a54f141d06d"><div class="ttname"><a href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a></div><div class="ttdeci">void DeleteSignal(struct signal_t *signals, int16_t signal_index)</div><div class="ttdoc">deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal t...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00807">signal_synthesis.c:807</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga100668ad3cefb7abc0f65f866ea508ba"><div class="ttname"><a href="group__SSynth.html#ga100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a></div><div class="ttdeci">int16_t IDtoIndex(int16_t id)</div><div class="ttdoc">converts an signal ID into its Index</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00830">signal_synthesis.c:830</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00764">signal_synthesis.c:764</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_gaff4b96bd9a6fb74a10215a54f141d06d"><div class="ttname"><a href="group__SSynth.html#gaff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a></div><div class="ttdeci">void DeleteSignal(struct signal_t *signals, int16_t signal_index)</div><div class="ttdoc">deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal t...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00807">signal_synthesis.c:807</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -875,7 +875,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   58</span> </div>
 <div class="line"><span class="lineno">   59</span>            <span class="comment">// signal has to be created once, because otherwise the count for-loop in signal synthesis function can not be entered (count &gt; 0)</span></div>
 <div class="line"><span class="lineno">   60</span>            <span class="keywordflow">if</span>(Display.Voices_Created[ii_i] == <span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">   61</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(&amp;signals1, Display.Voices_Kind[ii_i], Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i], ii_i);</div>
+<div class="line"><span class="lineno">   61</span>                <a class="code hl_function" href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(&amp;signals1, Display.Voices_Kind[ii_i], Display.Voices_Note[ii_i], Display.Voices_Octave[ii_i], ii_i);</div>
 <div class="line"><span class="lineno">   62</span>                Display.Voices_Created[ii_i] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   63</span>            }</div>
 <div class="line"><span class="lineno">   64</span> </div>
@@ -1111,7 +1111,7 @@ Variables</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="input__interfaces_8c_source.html#l00711">711</a> of file <a class="el" href="input__interfaces_8c_source.html">input_interfaces.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  711</span>                             {</div>
 <div class="line"><span class="lineno">  712</span> </div>
-<div class="line"><span class="lineno">  713</span>    uint8_t index= <a class="code hl_function" href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(ID);</div>
+<div class="line"><span class="lineno">  713</span>    uint8_t index= <a class="code hl_function" href="group__SSynth.html#ga100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(ID);</div>
 <div class="line"><span class="lineno">  714</span>    <span class="keywordtype">char</span> oldKey = Display.Voices_Note[ID];</div>
 <div class="line"><span class="lineno">  715</span> </div>
 <div class="line"><span class="lineno">  716</span>    uint8_t key_counter = 0;</div>
@@ -1134,8 +1134,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  733</span>    }</div>
 <div class="line"><span class="lineno">  734</span>    Display.Voices_Note[ID] = newKey;</div>
 <div class="line"><span class="lineno">  735</span>    <span class="keywordflow">if</span>(index &gt;= 0){ <span class="comment">// only done if ID is existing</span></div>
-<div class="line"><span class="lineno">  736</span>        <a class="code hl_function" href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(&amp;signals1, index);</div>
-<div class="line"><span class="lineno">  737</span>        <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(&amp;signals1, SIN, newKey, Display.Voices_Octave[ID],ID);</div>
+<div class="line"><span class="lineno">  736</span>        <a class="code hl_function" href="group__SSynth.html#gaff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(&amp;signals1, index);</div>
+<div class="line"><span class="lineno">  737</span>        <a class="code hl_function" href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(&amp;signals1, SIN, newKey, Display.Voices_Octave[ID],ID);</div>
 <div class="line"><span class="lineno">  738</span>    }</div>
 <div class="line"><span class="lineno">  739</span>}</div>
 </div><!-- fragment -->
@@ -1162,10 +1162,10 @@ Variables</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="input__interfaces_8c_source.html#l00040">40</a> of file <a class="el" href="input__interfaces_8c_source.html">input_interfaces.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   40</span>                                                {</div>
 <div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>    <a class="code hl_function" href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(htim, II_SR);</div>
+<div class="line"><span class="lineno">   42</span>    <a class="code hl_function" href="group__SSynth.html#gadc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(htim, II_SR);</div>
 <div class="line"><span class="lineno">   43</span>    HAL_TIM_Base_Start_IT(htim);</div>
 <div class="line"><span class="lineno">   44</span>}</div>
-<div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_gadc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="group__SSynth.html#gadc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

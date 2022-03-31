@@ -243,10 +243,10 @@ Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00150}{150}} of f
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00150                                                             \{}
 \DoxyCodeLine{00151 }
-\DoxyCodeLine{00152     \mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = FULL\_BLOCK;}
+\DoxyCodeLine{00152     \mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = FULL\_BLOCK;}
 \DoxyCodeLine{00153 }
 \DoxyCodeLine{00154     \textcolor{keywordflow}{if} (Init\_complete)\{}
-\DoxyCodeLine{00155         \mbox{\hyperlink{signal__synthesis_8h_a14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\&signals1, 1);}
+\DoxyCodeLine{00155         \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\&signals1, 1);}
 \DoxyCodeLine{00156     \}}
 \DoxyCodeLine{00157     \textcolor{keywordflow}{else}}
 \DoxyCodeLine{00158         Init\_complete = initRamp();}
@@ -267,10 +267,10 @@ Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00139}{139}} of f
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00139                                                                 \{}
 \DoxyCodeLine{00140 }
-\DoxyCodeLine{00141     \mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = HALF\_BLOCK;}
+\DoxyCodeLine{00141     \mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = HALF\_BLOCK;}
 \DoxyCodeLine{00142 }
 \DoxyCodeLine{00143     \textcolor{keywordflow}{if} (Init\_complete)\{}
-\DoxyCodeLine{00144         \mbox{\hyperlink{signal__synthesis_8h_a14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\&signals1, 1);}
+\DoxyCodeLine{00144         \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\&signals1, 1);}
 \DoxyCodeLine{00145     \}}
 \DoxyCodeLine{00146     \textcolor{keywordflow}{else}}
 \DoxyCodeLine{00147         Init\_complete = initRamp();}
@@ -948,7 +948,7 @@ Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00169}{169}} of f
 \DoxyCodeLine{00220     \textcolor{comment}{/* INIT FUNCTIONS begin*********************/}}
 \DoxyCodeLine{00221 }
 \DoxyCodeLine{00222     printf(\textcolor{stringliteral}{"{}Begin Init\(\backslash\)r\(\backslash\)n"{}});}
-\DoxyCodeLine{00223     \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a9eda288feb5c689a0f90742249fe6da0}{Signal\_Synthesis\_Init}}(htim8, \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}) != HAL\_OK) \{}
+\DoxyCodeLine{00223     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SSynth_ga9eda288feb5c689a0f90742249fe6da0}{Signal\_Synthesis\_Init}}(htim8, \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}) != HAL\_OK) \{}
 \DoxyCodeLine{00224         printf(\textcolor{stringliteral}{"{}Signal Synthesis init failed\(\backslash\)n"{}});}
 \DoxyCodeLine{00225     \}}
 \DoxyCodeLine{00226 }
@@ -1011,7 +1011,7 @@ Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00169}{169}} of f
 \DoxyCodeLine{00283     \mbox{\hyperlink{group__keyboard_ga86de1f5c40ab14dddcc12fbf3eafde08}{keyboard\_start\_read}}();}
 \DoxyCodeLine{00284 }
 \DoxyCodeLine{00285     \textcolor{comment}{// Start Timer and ADC-\/DMA for the joystick and the potentiometer (ADC2)}}
-\DoxyCodeLine{00286     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim6, 500);  \textcolor{comment}{// Timer 6 default: 2000 Hz}}
+\DoxyCodeLine{00286     \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim6, 500);  \textcolor{comment}{// Timer 6 default: 2000 Hz}}
 \DoxyCodeLine{00287     printf(\textcolor{stringliteral}{"{}start Button ADC\(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{00288     HAL\_TIM\_Base\_Start(\&htim6);}
 \DoxyCodeLine{00289     HAL\_ADC\_Start\_DMA(\&hadc2, (uint32\_t*)Display.ADC2inputs, 4);}

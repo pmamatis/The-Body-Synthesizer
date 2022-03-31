@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">The Body-Synthesizer<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers</div>
+   <div id="projectbrief">Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers</div>
   </td>
  </tr>
  </tbody>
@@ -86,37 +86,29 @@ $(document).ready(function(){initNavTree('Sensor__Code_2Body-Synthezier__Sensors
   <div class="headertitle"><div class="title">SPI_Connection.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * SPI_Connection.h</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *  Created on: Jul 24, 2021</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *      Author: paul</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef INC_SPI_CONNECTION_H_</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define INC_SPI_CONNECTION_H_</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h.html">main.h</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#pragma pack(push, 1)</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsensor__data.html">sensor_data</a>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> uint8_t    dump_zeroes_start[3];</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> uint8_t gyro_initilized;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> uint8_t tilt_detected;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// uint8_t Movement_detected;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> uint8_t    dump_zeroes_end[3];</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}<a class="code hl_struct" href="structsensor__data.html">sensor_data_t</a>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#pragma pack(pop)</span></div>
+<a href="Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2SPI__Connection_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef INC_SPI_CONNECTION_H_</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define INC_SPI_CONNECTION_H_</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define BUFFERSIZE sizeof(sensor_data_t)</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif </span><span class="comment">/* INC_SPI_CONNECTION_H_ */</span><span class="preprocessor"></span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h.html">main.h</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#pragma pack(push, 1)</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsensor__data.html">sensor_data</a>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> uint8_t    dump_zeroes_start[3];</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> uint8_t gyro_initilized;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> uint8_t tilt_detected;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// uint8_t Movement_detected;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> uint8_t    dump_zeroes_end[3];</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}<a class="code hl_struct" href="structsensor__data.html">sensor_data_t</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#pragma pack(pop)</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define BUFFERSIZE sizeof(sensor_data_t)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif </span><span class="comment">/* INC_SPI_CONNECTION_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="ttc" id="aSensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_html"><div class="ttname"><a href="Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h.html">main.h</a></div><div class="ttdoc">: Header for main.c file. This file contains the common defines of the application.</div></div>
 <div class="ttc" id="astructsensor__data_html"><div class="ttname"><a href="structsensor__data.html">sensor_data</a></div><div class="ttdef"><b>Definition:</b> <a href="Core_2Inc_2SPI__Connection_8h_source.html#l00050">SPI_Connection.h:50</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -124,7 +116,7 @@ $(document).ready(function(){initNavTree('Sensor__Code_2Body-Synthezier__Sensors
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_3b7061cfae27535312e070b6c554b6fd.html">Sensor_Code</a></li><li class="navelem"><a class="el" href="dir_512c14c91bc04b8b0bf9a15f73014c98.html">Body-Synthezier_Sensors</a></li><li class="navelem"><a class="el" href="dir_24e77c184121db63b6cb530ab62a7929.html">Core</a></li><li class="navelem"><a class="el" href="dir_11c47b606c201e01924c758f3bba30b3.html">Inc</a></li><li class="navelem"><b>SPI_Connection.h</b></li>
+    <li class="navelem"><a class="el" href="dir_3b7061cfae27535312e070b6c554b6fd.html">Sensor_Code</a></li><li class="navelem"><a class="el" href="dir_512c14c91bc04b8b0bf9a15f73014c98.html">Body-Synthezier_Sensors</a></li><li class="navelem"><a class="el" href="dir_24e77c184121db63b6cb530ab62a7929.html">Core</a></li><li class="navelem"><a class="el" href="dir_11c47b606c201e01924c758f3bba30b3.html">Inc</a></li><li class="navelem"><a class="el" href="Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2SPI__Connection_8h.html">SPI_Connection.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>

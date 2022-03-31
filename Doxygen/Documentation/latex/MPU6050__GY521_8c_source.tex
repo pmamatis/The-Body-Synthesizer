@@ -6,11 +6,11 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00012}00012 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{MPU6050__GY521_8h}{MPU6050\_GY521.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00013}00013 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00014}00014 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00025}\mbox{\hyperlink{MPU6050__GY521_8c_a1a93e7a7a1d489ec9ce063a30d1a5df5}{00025}} \mbox{\hyperlink{MPU6050__GY521_8h_a93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{MPU6050__GY521_8c_a1a93e7a7a1d489ec9ce063a30d1a5df5}{MPU6050\_init}}(I2C\_HandleTypeDef* \_\_hi2c, \mbox{\hyperlink{structMPU6050__Data}{MPU6050\_Data}}* Sensor\_Data\_pointer, \mbox{\hyperlink{MPU6050__GY521_8h_a18ad019342a4d49779b497db4882529d}{MPU6050\_ACCL\_RES}} accl\_resolution, \mbox{\hyperlink{MPU6050__GY521_8h_aca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\_GYRO\_RES}} gyro\_resolution, uint8\_t samplerate)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00025}\mbox{\hyperlink{group__MPU6050_ga4b1f2e602c95802e5c65168964da2eb5}{00025}} \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{group__MPU6050_ga4b1f2e602c95802e5c65168964da2eb5}{MPU6050\_init}}(I2C\_HandleTypeDef* \_\_hi2c, \mbox{\hyperlink{structMPU6050__Data}{MPU6050\_Data}}* Sensor\_Data\_pointer, \mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\_ACCL\_RES}} accl\_resolution, \mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\_GYRO\_RES}} gyro\_resolution, uint8\_t samplerate)\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00026}00026 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00027}00027     uint8\_t Data=0x00;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00028}00028     MPU6050\_hi2c = \_\_hi2c;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00029}00029     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} = Sensor\_Data\_pointer;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00029}00029     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} = Sensor\_Data\_pointer;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00030}00030     printf(\textcolor{stringliteral}{"{}MPU6050 init begin\(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00031}00031     \textcolor{comment}{//Check if device is ready: Let LED blink 3 times if yes}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00032}00032     \textcolor{keywordflow}{if}((HAL\_I2C\_IsDeviceReady(MPU6050\_hi2c, MPU6050\_ADDR, 2, 20)) != HAL\_OK)\{}
@@ -24,7 +24,7 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00040}00040     \textcolor{comment}{//check WHO\_AM\_I: If answer is I\_AM toggle LED}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00041}00041     HAL\_I2C\_Mem\_Read(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_WHO\_AM\_I\_REG, 1, \&Data, 1, 1000);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00042}00042 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00043}00043     \textcolor{keywordflow}{if} ((Data =! \mbox{\hyperlink{MPU6050__GY521_8h_a1de390da371b9193740d43bf523b9791}{MPU6050\_I\_AM}})) \textcolor{comment}{// if-\/statement is 1 if MPU is present}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00043}00043     \textcolor{keywordflow}{if} ((Data =! \mbox{\hyperlink{group__MPU6050_ga1de390da371b9193740d43bf523b9791}{MPU6050\_I\_AM}})) \textcolor{comment}{// if-\/statement is 1 if MPU is present}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00044}00044     \{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00045}00045         \textcolor{keywordflow}{return} MPU6050\_Status\_Invalid;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00046}00046     \}}
@@ -47,16 +47,16 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00063}00063     \textcolor{comment}{//for normalization of Gyroscope range}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00064}00064     \textcolor{keywordflow}{switch} (gyro\_resolution)\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00065}00065     \textcolor{keywordflow}{case} MPU6050\_GYRO\_250deg:}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00066}00066         \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = \mbox{\hyperlink{MPU6050__GY521_8h_a0c37fc112539bcdbe9faa322935b02d7}{MPU6050\_GYRO\_SENS\_250}};}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00066}00066         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = \mbox{\hyperlink{group__MPU6050_ga0c37fc112539bcdbe9faa322935b02d7}{MPU6050\_GYRO\_SENS\_250}};}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00067}00067         \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00068}00068     \textcolor{keywordflow}{case} MPU6050\_GYRO\_500deg:}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00069}00069         \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_500;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00069}00069         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_500;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00070}00070         \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00071}00071     \textcolor{keywordflow}{case} MPU6050\_GYRO\_1000deg:}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00072}00072         \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_1000;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00072}00072         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_1000;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00073}00073         \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00074}00074     \textcolor{keywordflow}{case} MPU6050\_GYRO\_2000deg:}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00075}00075         \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_2000;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00075}00075         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_2000;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00076}00076         \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00077}00077     \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00078}00078 }
@@ -69,35 +69,35 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00085}00085 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00086}00086     \textcolor{keywordflow}{switch}(accl\_resolution)\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00087}00087     \textcolor{keywordflow}{case} MPU6050\_ACCL\_2G:}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00088}00088         \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = \mbox{\hyperlink{MPU6050__GY521_8h_a1c92b8af476c3704f73583d654dd3b5e}{MPU6050\_ACCL\_SENS\_2}};}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00088}00088         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = \mbox{\hyperlink{group__MPU6050_ga1c92b8af476c3704f73583d654dd3b5e}{MPU6050\_ACCL\_SENS\_2}};}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00089}00089         \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00090}00090     \textcolor{keywordflow}{case} \mbox{\hyperlink{MPU6050__GY521_8h_a18ad019342a4d49779b497db4882529da6390f128316eec4b36b7ea3b6d59f581}{MPU6050\_ACCL\_4G}}:}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00091}00091         \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_4;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00090}00090     \textcolor{keywordflow}{case} \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529da6390f128316eec4b36b7ea3b6d59f581}{MPU6050\_ACCL\_4G}}:}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00091}00091         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_4;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00092}00092         \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00093}00093     \textcolor{keywordflow}{case} \mbox{\hyperlink{MPU6050__GY521_8h_a18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}{MPU6050\_ACCL\_8G}}:}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00094}00094         \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_8;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00093}00093     \textcolor{keywordflow}{case} \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}{MPU6050\_ACCL\_8G}}:}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00094}00094         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_8;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00095}00095         \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00096}00096     \textcolor{keywordflow}{case} \mbox{\hyperlink{MPU6050__GY521_8h_a18ad019342a4d49779b497db4882529daa44ddb1fd0aa9d8783c29f2fbf45fda8}{MPU6050\_ACCL\_16G}}:}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00097}00097         \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_16;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00096}00096     \textcolor{keywordflow}{case} \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529daa44ddb1fd0aa9d8783c29f2fbf45fda8}{MPU6050\_ACCL\_16G}}:}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00097}00097         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_16;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00098}00098         \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00099}00099     \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00100}00100 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00101}00101 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00102}00102     \textcolor{comment}{// Config Sample Rate: Sample Rate=8/(1+Data)}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00103}00103     Data=samplerate;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00104}00104     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR, \mbox{\hyperlink{MPU6050__GY521_8h_a8264ea96144f5fa98bd1a22ceb590315}{MPU6050\_SMPLRT\_DIV\_REG}}, 1, \&Data, 1, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00104}00104     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR, \mbox{\hyperlink{group__MPU6050_ga8264ea96144f5fa98bd1a22ceb590315}{MPU6050\_SMPLRT\_DIV\_REG}}, 1, \&Data, 1, 1000) != HAL\_OK)\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00105}00105         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00106}00106     \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00107}00107 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00108}00108     \textcolor{comment}{//Set Gyroscope offset to zero}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00109}00109     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset = 0;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00110}00110     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset = 0;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00111}00111     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset = 0;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00109}00109     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset = 0;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00110}00110     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset = 0;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00111}00111     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset = 0;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00112}00112 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00113}00113     \textcolor{comment}{//Set Accelerometer offset to zero}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00114}00114     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset = 0;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00115}00115     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset = 0;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00116}00116     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset = 0;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00114}00114     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset = 0;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00115}00115     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset = 0;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00116}00116     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset = 0;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00117}00117 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00118}00118     \textcolor{comment}{//  //Set User Controll, Enable FIFO}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00119}00119     Data = MPU6050\_USR\_CRTL\_FIFO\_EN;}
@@ -125,7 +125,7 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00141}00141 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00142}00142 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00143}00143 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00149}\mbox{\hyperlink{MPU6050__GY521_8c_a54ed50404498f4682d81ad8cb74a7150}{00149}} \mbox{\hyperlink{MPU6050__GY521_8h_a93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{MPU6050__GY521_8c_a54ed50404498f4682d81ad8cb74a7150}{MPU6050\_Read\_Accl}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00149}\mbox{\hyperlink{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}{00149}} \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}{MPU6050\_Read\_Accl}}()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00150}00150 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00151}00151     uint8\_t Rec\_Data[6];}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00152}00152 }
@@ -135,14 +135,14 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00156}00156     \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00157}00157 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00158}00158     \textcolor{comment}{// Data for all axis comes as 6Byte array, in the following it is filled into one 16-\/bit array for each axis}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00159}00159     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00160}00160     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00161}00161     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00159}00159     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00160}00160     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00161}00161     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00162}00162 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00163}00163     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00164}00164 \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00165}00165 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00171}\mbox{\hyperlink{MPU6050__GY521_8c_ac16021f5f2c6dbf509ed77ddfc6d943d}{00171}} \mbox{\hyperlink{MPU6050__GY521_8h_a93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{MPU6050__GY521_8c_ac16021f5f2c6dbf509ed77ddfc6d943d}{MPU6050\_Read\_Gyro}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00171}\mbox{\hyperlink{group__MPU6050_gac16021f5f2c6dbf509ed77ddfc6d943d}{00171}} \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{group__MPU6050_gac16021f5f2c6dbf509ed77ddfc6d943d}{MPU6050\_Read\_Gyro}}()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00172}00172 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00173}00173     uint8\_t Rec\_Data[6];}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00174}00174 }
@@ -152,19 +152,19 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00178}00178     \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00179}00179 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00180}00180     \textcolor{comment}{// Get time of new Measurement and safe time of last measurement}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00181}00181     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_time   =   DWT-\/>CYCCNT;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00181}00181     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_time   =   DWT-\/>CYCCNT;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00182}00182     DWT-\/>CYCCNT             =   0;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00183}00183 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00184}00184     \textcolor{comment}{// Data for all axis comes as 6Byte array, in the following it is filled into one 16-\/bit array for each axis}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00185}00185     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1])-\/\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00186}00186     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3])-\/\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00187}00187     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5])-\/\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00185}00185     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1])-\/\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00186}00186     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3])-\/\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00187}00187     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5])-\/\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00188}00188 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00189}00189 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00190}00190     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00191}00191 \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00192}00192 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00198}\mbox{\hyperlink{MPU6050__GY521_8c_a109418b6b13fd4ddff993014f625994f}{00198}} \mbox{\hyperlink{MPU6050__GY521_8h_a93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{MPU6050__GY521_8c_a109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00198}\mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{00198}} \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00199}00199 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00200}00200     uint8\_t Rec\_Data[14];}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00201}00201 }
@@ -174,21 +174,21 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00205}00205         printf(\textcolor{stringliteral}{"{}READ ERROR\(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00206}00206     \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00207}00207     \textcolor{comment}{// Get time of new Measurement and safe time of last measurement}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00208}00208     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_time   =   DWT-\/>CYCCNT;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00208}00208     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_time   =   DWT-\/>CYCCNT;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00209}00209     DWT-\/>CYCCNT             =   0;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00210}00210     \textcolor{comment}{// Data for all axis comes as 6Byte array, in the following it is filled into one 16-\/bit array for each axis}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00211}00211     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00212}00212     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00213}00213     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00211}00211     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00212}00212     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00213}00213     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00214}00214     \textcolor{comment}{// Data for all axis comes as 6Byte array, in the following it is filled into one 16-\/bit array for each axis}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00215}00215     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X = (int16\_t)(Rec\_Data[8]<<8 | Rec\_Data[9]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00216}00216     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y = (int16\_t)(Rec\_Data[10]<<8 | Rec\_Data[11]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00217}00217     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z = (int16\_t)(Rec\_Data[12]<<8 | Rec\_Data[13]) -\/ \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00215}00215     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X = (int16\_t)(Rec\_Data[8]<<8 | Rec\_Data[9]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00216}00216     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y = (int16\_t)(Rec\_Data[10]<<8 | Rec\_Data[11]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00217}00217     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z = (int16\_t)(Rec\_Data[12]<<8 | Rec\_Data[13]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00218}00218 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00219}00219     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00220}00220 \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00221}00221 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00228}\mbox{\hyperlink{MPU6050__GY521_8c_a9bffe1265ebfe68fd00af734443b6f4f}{00228}} \mbox{\hyperlink{MPU6050__GY521_8h_a93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{MPU6050__GY521_8c_a9bffe1265ebfe68fd00af734443b6f4f}{MPU6050\_Calculate\_Mean}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00228}\mbox{\hyperlink{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}{00228}} \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}{MPU6050\_Calculate\_Mean}}()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00229}00229     \textcolor{comment}{// Temp memory to sum up values for mean calculation}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00230}00230     \textcolor{comment}{// Gyroscope}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00231}00231     int32\_t Gx\_mean\_tempbuffer  =   0;}
@@ -206,20 +206,20 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00243}00243         }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00244}00244     \textcolor{comment}{// Read Data}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00245}00245         \textcolor{comment}{// from Gyroscope}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00246}00246         \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8c_a109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}) != MPU6050\_Read\_OK)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00246}00246         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}) != MPU6050\_Read\_OK)\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00247}00247             \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00248}00248         \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00249}00249         int16\_t Gx = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_X;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00250}00250         int16\_t Gy = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_Y;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00251}00251         int16\_t Gz = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_Z;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00249}00249         int16\_t Gx = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_X;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00250}00250         int16\_t Gy = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_Y;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00251}00251         int16\_t Gz = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_Z;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00252}00252         \textcolor{comment}{// from Accelerometer}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00253}00253         \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8c_a54ed50404498f4682d81ad8cb74a7150}{MPU6050\_Read\_Accl}}(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}) != MPU6050\_Read\_OK)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00253}00253         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}{MPU6050\_Read\_Accl}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}) != MPU6050\_Read\_OK)\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00254}00254             \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00255}00255         \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00256}00256 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00257}00257         int16\_t Ax = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_X;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00258}00258         int16\_t Ay = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_Y;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00259}00259         int16\_t Az = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_Z;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00257}00257         int16\_t Ax = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_X;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00258}00258         int16\_t Ay = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_Y;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00259}00259         int16\_t Az = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_Z;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00260}00260         \textcolor{comment}{// sum it up}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00261}00261         Gx\_mean\_tempbuffer  +=  Gx;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00262}00262         Gy\_mean\_tempbuffer  +=  Gy;}
@@ -233,95 +233,95 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00270}00270 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00271}00271     \textcolor{comment}{//Save offset to Sensor\_Data}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00272}00272     \textcolor{comment}{//Gyroscope offset}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00273}00273     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_mean=Gx\_mean\_tempbuffer/n\_measurements;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00274}00274     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_mean=Gy\_mean\_tempbuffer/n\_measurements;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00275}00275     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_mean=Gz\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00273}00273     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_mean=Gx\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00274}00274     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_mean=Gy\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00275}00275     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_mean=Gz\_mean\_tempbuffer/n\_measurements;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00276}00276     \textcolor{comment}{//Accelerometer offset}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00277}00277     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_mean=Ax\_mean\_tempbuffer/n\_measurements;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00278}00278     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_mean=Ay\_mean\_tempbuffer/n\_measurements;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00279}00279     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_mean=Az\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00277}00277     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_mean=Ax\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00278}00278     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_mean=Ay\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00279}00279     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_mean=Az\_mean\_tempbuffer/n\_measurements;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00280}00280 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00281}00281     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00282}00282 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00288}\mbox{\hyperlink{MPU6050__GY521_8c_ac5545cc463f9c6b45b18aab7acc33d83}{00288}} \mbox{\hyperlink{MPU6050__GY521_8h_a93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{MPU6050__GY521_8c_ac5545cc463f9c6b45b18aab7acc33d83}{MPU6050\_Calibrate}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00288}\mbox{\hyperlink{group__MPU6050_gac5545cc463f9c6b45b18aab7acc33d83}{00288}} \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}} \mbox{\hyperlink{group__MPU6050_gac5545cc463f9c6b45b18aab7acc33d83}{MPU6050\_Calibrate}}()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00289}00289 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00290}00290     \textcolor{comment}{// gravitational constant depending on accelerometer resolution}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00291}00291     int16\_t gravitation = (int16\_t)((\textcolor{keywordtype}{float})1 / \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_mult);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00291}00291     int16\_t gravitation = (int16\_t)((\textcolor{keywordtype}{float})1 / \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_mult);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00292}00292     \textcolor{comment}{// allowed deviation from mean for raw data from sensors}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00293}00293     int8\_t  gyro\_tolerance  = 1;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00294}00294     int8\_t  accl\_tolerance  = 5;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00295}00295 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00296}00296     \textcolor{comment}{// Set offset Initially (offset is subtracted from future measurements)}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00297}00297     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset     =   \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00298}00298     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset     =   \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00299}00299     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset     =   \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00300}00300     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset     =   \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00301}00301     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset     =   \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00302}00302     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset     =   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) + gravitation;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00297}00297     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00298}00298     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00299}00299     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00300}00300     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00301}00301     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00302}00302     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset     =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) + gravitation;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00303}00303 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00304}00304     \textcolor{comment}{// Indicator for correct calibration of all axis}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00305}00305     \textcolor{keywordtype}{int} calibrated = 0;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00306}00306     \textcolor{keywordflow}{while}(calibrated <= 6)\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00307}00307         printf(\textcolor{stringliteral}{"{}\%i\(\backslash\)n\(\backslash\)r"{}},calibrated );}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00308}00308         \textcolor{comment}{// Calculate means of sensors}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00309}00309         \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8c_a9bffe1265ebfe68fd00af734443b6f4f}{MPU6050\_Calculate\_Mean}}(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}})!= MPU6050\_Read\_OK)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00309}00309         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}{MPU6050\_Calculate\_Mean}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}})!= MPU6050\_Read\_OK)\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00310}00310             \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00311}00311         \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00312}00312         \textcolor{comment}{// Validate or Update Calibration}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00313}00313         \textcolor{comment}{// Gyroscope X Y Z}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00314}00314         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean)<gyro\_tolerance) calibrated++;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00315}00315         \textcolor{keywordflow}{else} \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset        =   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset)   +   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00314}00314         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean)<gyro\_tolerance) calibrated++;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00315}00315         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00316}00316 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00317}00317         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean)<gyro\_tolerance) calibrated++;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00318}00318         \textcolor{keywordflow}{else} \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset        =   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset)   +   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00317}00317         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean)<gyro\_tolerance) calibrated++;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00318}00318         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00319}00319 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00320}00320         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean)<gyro\_tolerance) calibrated++;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00321}00321         \textcolor{keywordflow}{else} \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset        =   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset)   +   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00320}00320         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean)<gyro\_tolerance) calibrated++;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00321}00321         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00322}00322         \textcolor{comment}{// Accelerometer X Y Z}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00323}00323         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean)<accl\_tolerance) calibrated++;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00324}00324         \textcolor{keywordflow}{else} \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset        =   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset)   +   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00323}00323         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean)<accl\_tolerance) calibrated++;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00324}00324         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00325}00325 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00326}00326         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean)<accl\_tolerance) calibrated++;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00327}00327         \textcolor{keywordflow}{else} \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset        =   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset)   +   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00326}00326         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean)<accl\_tolerance) calibrated++;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00327}00327         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00328}00328 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00329}00329         \textcolor{keywordflow}{if} ((abs((\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) -\/ gravitation)) <accl\_tolerance) calibrated++;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00330}00330         \textcolor{keywordflow}{else} \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset        =   (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset)   +   ((\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) -\/ gravitation);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00329}00329         \textcolor{keywordflow}{if} ((abs((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) -\/ gravitation)) <accl\_tolerance) calibrated++;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00330}00330         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset)   +   ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) -\/ gravitation);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00331}00331 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00332}00332     \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00333}00333     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00334}00334 \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00335}00335 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00340}\mbox{\hyperlink{MPU6050__GY521_8c_ad5e70844772059924d57cc53655aa1f2}{00340}} \textcolor{keywordtype}{void} \mbox{\hyperlink{MPU6050__GY521_8c_ad5e70844772059924d57cc53655aa1f2}{getGyroRoll}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00340}\mbox{\hyperlink{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}{00340}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}{getGyroRoll}}()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00341}00341 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00342}00342     \textcolor{comment}{// time of measurement for integration}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00343}00343     \textcolor{keywordtype}{float} cycletime = 80000000;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00344}00344 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00345}00345     \textcolor{comment}{// Get Roll}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00346}00346     \textcolor{comment}{// RAW Gyrodata: Gyro\_X; transformation to Deg/s: Gyro\_mult; time since last measurement: Gyro\_time; cycletime per second: cycletime}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00347}00347     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg =  (float)( ((\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_X) * \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00348}00348     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg =  (float)( ((\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_Y) * \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00349}00349     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg =  (float)( ((\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_Z) * \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00347}00347     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg =  (float)( ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_X) * \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00348}00348     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg =  (float)( ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_Y) * \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00349}00349     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg =  (float)( ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_Z) * \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00350}00350 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00351}00351     \textcolor{comment}{// Take into account that +-\/360 degrees is the same as 0 degrees}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00352}00352     \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg >=180) \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg -\/ 360;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00353}00353     \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg <=-\/180) \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg + 360;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00352}00352     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg >=180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg -\/ 360;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00353}00353     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg <=-\/180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg + 360;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00354}00354 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00355}00355     \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg >=180) \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg -\/ 360;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00356}00356     \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg <=-\/180) \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg + 360;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00355}00355     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg >=180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg -\/ 360;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00356}00356     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg <=-\/180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg + 360;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00357}00357 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00358}00358     \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg >=180) \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg -\/ 360;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00359}00359     \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg <=-\/180) \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg + 360;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00358}00358     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg >=180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg -\/ 360;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00359}00359     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg <=-\/180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg + 360;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00360}00360 \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00361}00361 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00366}\mbox{\hyperlink{MPU6050__GY521_8c_a923f606dca8c70b4e43e0191f01cd79b}{00366}} \textcolor{keywordtype}{void} \mbox{\hyperlink{MPU6050__GY521_8c_a923f606dca8c70b4e43e0191f01cd79b}{getAcclRoll}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00366}\mbox{\hyperlink{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}{00366}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}{getAcclRoll}}()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00367}00367 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00368}00368     \textcolor{comment}{//Parameter for stability in Regions where X and Z or Y and Z are near zero}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00369}00369     int16\_t mu = 0.01;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00370}00370 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00371}00371 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00372}00372     int16\_t X = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_X;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00373}00373     int16\_t Y = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_Y;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00374}00374     int16\_t Z = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_Z;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00372}00372     int16\_t X = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_X;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00373}00373     int16\_t Y = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_Y;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00374}00374     int16\_t Z = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_Z;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00375}00375 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00376}00376     \textcolor{comment}{// parameter for correct orientation}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00377}00377     int16\_t     sign;}
@@ -332,8 +332,8 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00382}00382     \textcolor{keywordtype}{float} RAD\_TO\_DEG = 180/M\_PI;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00383}00383 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00384}00384     \textcolor{comment}{// Get Roll}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00385}00385     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_deg = atan2( Y ,   sign * sqrt(Z*Z+ mu*X*X)) * RAD\_TO\_DEG;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00386}00386     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg = atan2(-\/X, sqrt(Y*Y + Z*Z)) * RAD\_TO\_DEG;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00385}00385     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_deg = atan2( Y ,   sign * sqrt(Z*Z+ mu*X*X)) * RAD\_TO\_DEG;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00386}00386     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg = atan2(-\/X, sqrt(Y*Y + Z*Z)) * RAD\_TO\_DEG;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00387}00387 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00388}00388 \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00389}00389 }
@@ -344,171 +344,109 @@
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00394}00394 \textcolor{keywordtype}{void} getAngleRoll()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00395}00395 }
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00396}00396 \textcolor{comment}{//  MPU6050\_Read\_Sensor(Sensor\_Data);}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00397}00397     \mbox{\hyperlink{MPU6050__GY521_8c_a923f606dca8c70b4e43e0191f01cd79b}{getAcclRoll}}(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00398}00398     \mbox{\hyperlink{MPU6050__GY521_8c_ad5e70844772059924d57cc53655aa1f2}{getGyroRoll}}(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00397}00397     \mbox{\hyperlink{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}{getAcclRoll}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00398}00398     \mbox{\hyperlink{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}{getGyroRoll}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00399}00399 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00400}00400     \textcolor{keywordtype}{float} X = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00401}00401     \textcolor{keywordtype}{float} Y = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00400}00400     \textcolor{keywordtype}{float} X = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00401}00401     \textcolor{keywordtype}{float} Y = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00402}00402     \textcolor{comment}{//komplementär FIlter}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00403}00403     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg =  0.98 * (X + \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg) + (0.02 * (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_deg));}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00404}00404     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg =  0.98 * (Y + \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg) + (0.02 * (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg)); }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00405}00405     \textcolor{keywordtype}{float} X = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00406}00406     \textcolor{keywordtype}{float} Y = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg;-\/> Gy\_deg) + (0.02 * (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg));}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00407}00407     \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Z\_deg = \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Z\_deg + \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00403}00403     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg =  0.98 * (X + \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg) + (0.02 * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_deg));}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00404}00404     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg =  0.98 * (Y + \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg) + (0.02 * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg)); }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00405}00405     \textcolor{keywordtype}{float} X = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00406}00406     \textcolor{keywordtype}{float} Y = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg;-\/> Gy\_deg) + (0.02 * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg));}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00407}00407     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Z\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Z\_deg + \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg;}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00408}00408 \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00409}00409 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00414}\mbox{\hyperlink{MPU6050__GY521_8c_ad5723da18ebbc9a3730c81df47503f5a}{00414}} \textcolor{keywordtype}{void} \mbox{\hyperlink{MPU6050__GY521_8c_ad5723da18ebbc9a3730c81df47503f5a}{MPU6050\_Display\_Data}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00414}\mbox{\hyperlink{group__MPU6050_gad5723da18ebbc9a3730c81df47503f5a}{00414}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__MPU6050_gad5723da18ebbc9a3730c81df47503f5a}{MPU6050\_Display\_Data}}()\{}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00415}00415     \textcolor{comment}{//  uint8\_t buffer[1024];}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00416}00416     \mbox{\hyperlink{MPU6050__GY521_8c_a109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00417}00417     printf(\textcolor{stringliteral}{"{}Gx: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X);\textcolor{comment}{//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00418}00418     printf(\textcolor{stringliteral}{"{}Gy: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00419}00419     printf(\textcolor{stringliteral}{"{}Gz: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00420}00420     printf(\textcolor{stringliteral}{"{}Ax: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00421}00421     printf(\textcolor{stringliteral}{"{}Ay: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00422}00422     printf(\textcolor{stringliteral}{"{}Az: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00416}00416     \mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00417}00417     printf(\textcolor{stringliteral}{"{}Gx: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X);\textcolor{comment}{//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00418}00418     printf(\textcolor{stringliteral}{"{}Gy: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00419}00419     printf(\textcolor{stringliteral}{"{}Gz: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00420}00420     printf(\textcolor{stringliteral}{"{}Ax: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00421}00421     printf(\textcolor{stringliteral}{"{}Ay: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00422}00422     printf(\textcolor{stringliteral}{"{}Az: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z);}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00423}00423 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00424}00424     \textcolor{comment}{//  printf("{}Gx: \%i      **Gy: \%i        **Gz: \%i\(\backslash\)r\(\backslash\)n"{},Sensor\_Data-\/>Gyro\_X ,Sensor\_Data-\/>Gyro\_Y ,Sensor\_Data-\/>Gyro\_Z);}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00425}00425     \textcolor{comment}{//  printf("{}Ax: \%i      **Ay: \%i        **Az: \%i\(\backslash\)r\(\backslash\)n"{}, Sensor\_Data-\/>Accl\_X,Sensor\_Data-\/>Accl\_Y, Sensor\_Data-\/>Accl\_Z);}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00426}00426 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00427}00427 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00428}00428 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00429}00429 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00430}00430 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00433}\mbox{\hyperlink{MPU6050__GY521_8c_aaee8c045744fa4931cc694f7ef43d034}{00433}} uint8\_t \mbox{\hyperlink{MPU6050__GY521_8c_aaee8c045744fa4931cc694f7ef43d034}{MPU6050\_GetIntReg}}(\textcolor{keywordtype}{void})\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00434}00434     uint8\_t retval = 0;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00435}00435     HAL\_I2C\_Mem\_Read(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_INT\_STATUS\_REG, 1, \&retval, 1,100);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00436}00436     \textcolor{keywordflow}{return} retval;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00437}00437 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00438}00438 uint8\_t MPU6050\_GetDMPIntReg(\textcolor{keywordtype}{void})\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00439}00439     uint8\_t retval = 0;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00440}00440     HAL\_I2C\_Mem\_Read(MPU6050\_hi2c, MPU6050\_ADDR,MPU6050\_RA\_DMP\_INT\_STATUS ,  1, \&retval, 1,100);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00441}00441     \textcolor{keywordflow}{return} retval;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00442}00442 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00443}00443 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00444}00444 uint16\_t MPU6050\_Read\_FIFOcount(\textcolor{keywordtype}{void})\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00445}00445 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00446}00446     uint8\_t retval[2];}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00447}00447     HAL\_I2C\_Mem\_Read (MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_FIFO\_COUNT\_H\_REG, 1, \&retval[1],1, 1000) ;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00448}00448     HAL\_I2C\_Mem\_Read (MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_FIFO\_COUNT\_L\_REG, 1, \&retval[0],1, 1000) ;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00449}00449     printf(\textcolor{stringliteral}{"{}\%i,\(\backslash\)r\(\backslash\)n"{}},retval[0]);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00450}00450     printf(\textcolor{stringliteral}{"{}\%i,\(\backslash\)r\(\backslash\)n"{}},retval[1]);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00451}00451     \textcolor{keywordflow}{return} (retval[0]<<8) + retval[1];}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00452}00452 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00453}00453 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00454}00454 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00455}00455 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00459}\mbox{\hyperlink{MPU6050__GY521_8c_a8885c86e21d11e448d1545147b357a6c}{00459}} \textcolor{keywordtype}{void} \mbox{\hyperlink{MPU6050__GY521_8c_a8885c86e21d11e448d1545147b357a6c}{MPU6050\_GetFiFoData}}(uint8\_t buffer[1024])\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00460}00460     \textcolor{keywordflow}{if} ((\mbox{\hyperlink{MPU6050__GY521_8c_aaee8c045744fa4931cc694f7ef43d034}{MPU6050\_GetIntReg}}() \& 0x01) == MPU6050\_INT\_DATA\_RDY)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00461}00461         uint16\_t count =  MPU6050\_Read\_FIFOcount();}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00462}00462         \textcolor{comment}{// for (int fifo\_counter  = 0; fifo\_counter < count; fifo\_counter++)\{}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00463}00463         HAL\_I2C\_Mem\_Read(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_FIFO\_DATA\_REG, 1024, buffer, 1,100);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00464}00464         \textcolor{comment}{// \}}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00465}00465     \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00466}00466 \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00424}00424 \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00425}00425 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00426}00426 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00432}\mbox{\hyperlink{group__MPU6050_ga54401f79994f9addfe2f908f8a565e22}{00432}} \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}} \mbox{\hyperlink{group__MPU6050_ga54401f79994f9addfe2f908f8a565e22}{MPU6050\_detectTilt}}()\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00433}00433     \textcolor{comment}{//tilt Thresholds, right, left , front}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00434}00434     int16\_t tilt\_TH\_X\_r,tilt\_TH\_X\_l,  tilt\_TH\_Y, tilt\_TH\_Y\_f,tilt\_TH\_Y\_b, tilt\_TH\_Z;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00435}00435     int16\_t tilt\_TH\_X\_r\_s, tilt\_TH\_X\_l\_s,  tilt\_TH\_Y\_f\_s, tilt\_TH\_Y\_b\_s;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00436}00436     \textcolor{comment}{//slow tilt}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00437}00437     tilt\_TH\_X\_r = -\/1500;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00438}00438     tilt\_TH\_X\_l = 1500;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00439}00439     tilt\_TH\_Y   = 1500;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00440}00440     tilt\_TH\_Y\_f = -\/1500;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00441}00441     tilt\_TH\_Y\_b = 1500;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00442}00442     tilt\_TH\_Z   = 3800;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00443}00443     \textcolor{keywordtype}{float} angle\_TH = 25.0;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00444}00444     \textcolor{comment}{//strong tilt}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00445}00445     tilt\_TH\_X\_r\_s = -\/2500;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00446}00446     tilt\_TH\_X\_l\_s = 2500;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00447}00447     tilt\_TH\_Y\_f\_s = -\/3000;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00448}00448     tilt\_TH\_Y\_b\_s = 3000;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00449}00449 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00450}00450     getAngleRoll(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00451}00451     \textcolor{keywordtype}{float} alpha = sqrtf(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>X\_deg*\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>X\_deg + \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Y\_deg* \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Y\_deg);}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00452}00452     \textcolor{comment}{//detect tilt in any diretion}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00453}00453     \textcolor{keywordflow}{if} ((alpha > angle\_TH) \&\&  (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z) < tilt\_TH\_Z))\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00454}00454         \textcolor{comment}{//speciify direction}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00455}00455         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y) < tilt\_TH\_Y)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00456}00456             \textcolor{comment}{//tilt rigth when Accl\_X is negative}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00457}00457             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X < tilt\_TH\_X\_r)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00458}00458                 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00459}00459                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X < tilt\_TH\_X\_r\_s)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00460}00460                     \textcolor{comment}{//printf("{}tilt strong right \(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00461}00461                     \textcolor{keywordflow}{return} TILT\_RIGHT\_S;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00462}00462                 \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00463}00463                 \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00464}00464                     \textcolor{comment}{//printf("{}tilt right \(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00465}00465                     \textcolor{keywordflow}{return} TILT\_RIGHT;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00466}00466                 \}}
 \DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00467}00467 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00468}00468 \textcolor{keywordtype}{void} MPU6050\_FIFO\_RESET()\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00469}00469     uint8\_t buffer;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00470}00470     HAL\_I2C\_Mem\_Read(MPU6050\_hi2c,MPU6050\_ADDR, MPU6050\_USR\_CRTL\_REG, 1,\&buffer , 1,100);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00471}00471     printf(\textcolor{stringliteral}{"{}\%i\(\backslash\)r\(\backslash\)n"{}}, buffer);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00472}00472     buffer = MPU6050\_USR\_CRTL\_FIFO\_EN | MPU6050\_USR\_CRTL\_FIFO\_RESET;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00473}00473 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00474}00474     HAL\_I2C\_Mem\_Write(MPU6050\_hi2c,MPU6050\_ADDR, MPU6050\_USR\_CRTL\_REG, 1,\&buffer,1,100);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00475}00475     HAL\_I2C\_Mem\_Read(MPU6050\_hi2c,MPU6050\_ADDR, MPU6050\_USR\_CRTL\_REG, 1,\&buffer , 1,100);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00476}00476     printf(\textcolor{stringliteral}{"{}\%i\(\backslash\)r\(\backslash\)n"{}}, buffer);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00477}00477 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00478}00478 \textcolor{keywordtype}{void} MPU6050\_Display\_Data\_DMP()\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00479}00479     uint8\_t buffer[1024];}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00480}00480     \mbox{\hyperlink{MPU6050__GY521_8c_a8885c86e21d11e448d1545147b357a6c}{MPU6050\_GetFiFoData}}(buffer);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00481}00481     \textcolor{comment}{//  printf("{}w: \%i\(\backslash\)r\(\backslash\)n"{}, buffer[0]);//+(buffer[1]<<8)+(buffer[2]<<16)+(buffer[3]<<24));}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00482}00482     \textcolor{comment}{//  printf("{}Gx: \%i\(\backslash\)r\(\backslash\)n"{}, buffer[4]);//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00483}00483     \textcolor{comment}{//  printf("{}Gy: \%i\(\backslash\)r\(\backslash\)n"{}, buffer[8]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00484}00484     \textcolor{comment}{//  printf("{}Gz: \%i\(\backslash\)r\(\backslash\)n"{}, buffer[12]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00485}00485     \textcolor{comment}{//  printf("{}Ax: \%i\(\backslash\)r\(\backslash\)n"{}, buffer[4]);//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00486}00486     \textcolor{comment}{//  printf("{}Ay: \%i\(\backslash\)r\(\backslash\)n"{}, buffer[8]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00487}00487     \textcolor{comment}{//  printf("{}Az: \%i\(\backslash\)r\(\backslash\)n"{}, buffer[12]);//+(buffer[9]<<8)+(buffer[10]<<16)+(buffer[12]<<24));}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00488}00488     printf(\textcolor{stringliteral}{"{}Gx: \%i ** Gy: \%i ** Gz: \%i\(\backslash\)r\(\backslash\)n"{}},buffer[4] ,buffer[8], buffer[12]);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00489}00489     printf(\textcolor{stringliteral}{"{}Az: \%i ** Ay: \%i ** Az: \%i\(\backslash\)r\(\backslash\)n"{}}, buffer[4],buffer[8],buffer[12]);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00490}00490 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00491}00491 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00492}00492 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00493}00493 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00499}\mbox{\hyperlink{MPU6050__GY521_8c_a20b3a71ff67ac6e34b54c3959891107b}{00499}} \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}} \mbox{\hyperlink{MPU6050__GY521_8c_a20b3a71ff67ac6e34b54c3959891107b}{MPU6050\_detectTilt}}()\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00500}00500     \textcolor{comment}{//tilt Thresholds, right, left , front}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00501}00501     int16\_t tilt\_TH\_X\_r,tilt\_TH\_X\_l,  tilt\_TH\_Y, tilt\_TH\_Y\_f,tilt\_TH\_Y\_b, tilt\_TH\_Z;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00502}00502     int16\_t tilt\_TH\_X\_r\_s, tilt\_TH\_X\_l\_s,  tilt\_TH\_Y\_f\_s, tilt\_TH\_Y\_b\_s;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00503}00503     \textcolor{comment}{//slow tilt}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00504}00504     tilt\_TH\_X\_r = -\/1500;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00505}00505     tilt\_TH\_X\_l = 1500;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00506}00506     tilt\_TH\_Y   = 1500;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00507}00507     tilt\_TH\_Y\_f = -\/1500;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00508}00508     tilt\_TH\_Y\_b = 1500;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00509}00509     tilt\_TH\_Z   = 3800;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00510}00510     \textcolor{keywordtype}{float} angle\_TH = 25.0;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00511}00511     \textcolor{comment}{//strong tilt}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00512}00512     tilt\_TH\_X\_r\_s = -\/2500;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00513}00513     tilt\_TH\_X\_l\_s = 2500;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00514}00514     tilt\_TH\_Y\_f\_s = -\/3000;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00515}00515     tilt\_TH\_Y\_b\_s = 3000;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00516}00516 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00517}00517     getAngleRoll(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00518}00518     \textcolor{keywordtype}{float} alpha = sqrtf(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>X\_deg*\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>X\_deg + \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Y\_deg* \mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Y\_deg);}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00519}00519     \textcolor{comment}{//detect tilt in any diretion}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00520}00520     \textcolor{keywordflow}{if} ((alpha > angle\_TH) \&\&  (abs(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z) < tilt\_TH\_Z))\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00521}00521         \textcolor{comment}{//speciify direction}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00522}00522         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y) < tilt\_TH\_Y)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00523}00523             \textcolor{comment}{//tilt rigth when Accl\_X is negative}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00524}00524             \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X < tilt\_TH\_X\_r)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00525}00525                 \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00526}00526                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X < tilt\_TH\_X\_r\_s)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00527}00527                     \textcolor{comment}{//printf("{}tilt strong right \(\backslash\)r\(\backslash\)n"{});}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00528}00528                     \textcolor{keywordflow}{return} TILT\_RIGHT\_S;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00529}00529                 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00530}00530                 \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00531}00531                     \textcolor{comment}{//printf("{}tilt right \(\backslash\)r\(\backslash\)n"{});}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00532}00532                     \textcolor{keywordflow}{return} TILT\_RIGHT;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00533}00533                 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00534}00534 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00535}00535             \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00536}00536             \textcolor{comment}{//tilt left when Accl\_X is positiv}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00537}00537             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X > tilt\_TH\_X\_l) \&\& abs(\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y))\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00538}00538 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00539}00539                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X > tilt\_TH\_X\_l\_s)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00540}00540                                         \textcolor{comment}{//printf("{}tilt strong left\(\backslash\)r\(\backslash\)n"{});}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00541}00541                     \textcolor{keywordflow}{return} TILT\_LEFT\_S;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00542}00542                 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00543}00543                 \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00544}00544                                         \textcolor{comment}{//printf("{}tilt left\(\backslash\)r\(\backslash\)n"{});}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00545}00545                     \textcolor{keywordflow}{return} TILT\_LEFT;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00546}00546                 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00547}00547             \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00548}00548         \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00549}00549         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y < tilt\_TH\_Y\_f)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00550}00550             \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y < tilt\_TH\_Y\_f\_s)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00551}00551                                 \textcolor{comment}{//printf("{}tilt strong front\(\backslash\)r\(\backslash\)n"{});}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00552}00552                 \textcolor{keywordflow}{return} TILT\_FRONT\_S;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00553}00553             \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00554}00554             \textcolor{keywordflow}{else}\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00555}00555                                 \textcolor{comment}{//printf("{}tilt front\(\backslash\)r\(\backslash\)n"{});}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00556}00556                 \textcolor{keywordflow}{return} TILT\_FRONT;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00557}00557             \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00558}00558 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00559}00559         \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00560}00560         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y > tilt\_TH\_Y\_b)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00561}00561             \textcolor{keywordflow}{if} (\mbox{\hyperlink{MPU6050__GY521_8h_abdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y > tilt\_TH\_Y\_b\_s)\{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00562}00562                                 \textcolor{comment}{//printf("{}tilt strong back\(\backslash\)r\(\backslash\)n"{});}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00563}00563                 \textcolor{keywordflow}{return} TILT\_BACK\_S;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00564}00564             \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00565}00565             \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00566}00566                                 \textcolor{comment}{//printf("{}tilt back\(\backslash\)r\(\backslash\)n"{});}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00567}00567                 \textcolor{keywordflow}{return} TILT\_BACK;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00568}00568             \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00569}00569 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00570}00570         \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00571}00571     \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00572}00572     \textcolor{keywordflow}{return} TILT\_NONE;}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00573}00573 \}}
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00574}00574 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00575}00575 }
-\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00576}00576 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00468}00468             \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00469}00469             \textcolor{comment}{//tilt left when Accl\_X is positiv}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00470}00470             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X > tilt\_TH\_X\_l) \&\& abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y))\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00471}00471 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00472}00472                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X > tilt\_TH\_X\_l\_s)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00473}00473                                         \textcolor{comment}{//printf("{}tilt strong left\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00474}00474                     \textcolor{keywordflow}{return} TILT\_LEFT\_S;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00475}00475                 \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00476}00476                 \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00477}00477                                         \textcolor{comment}{//printf("{}tilt left\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00478}00478                     \textcolor{keywordflow}{return} TILT\_LEFT;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00479}00479                 \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00480}00480             \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00481}00481         \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00482}00482         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y < tilt\_TH\_Y\_f)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00483}00483             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y < tilt\_TH\_Y\_f\_s)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00484}00484                                 \textcolor{comment}{//printf("{}tilt strong front\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00485}00485                 \textcolor{keywordflow}{return} TILT\_FRONT\_S;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00486}00486             \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00487}00487             \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00488}00488                                 \textcolor{comment}{//printf("{}tilt front\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00489}00489                 \textcolor{keywordflow}{return} TILT\_FRONT;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00490}00490             \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00491}00491 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00492}00492         \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00493}00493         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y > tilt\_TH\_Y\_b)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00494}00494             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y > tilt\_TH\_Y\_b\_s)\{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00495}00495                                 \textcolor{comment}{//printf("{}tilt strong back\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00496}00496                 \textcolor{keywordflow}{return} TILT\_BACK\_S;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00497}00497             \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00498}00498             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00499}00499                                 \textcolor{comment}{//printf("{}tilt back\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00500}00500                 \textcolor{keywordflow}{return} TILT\_BACK;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00501}00501             \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00502}00502 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00503}00503         \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00504}00504     \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00505}00505     \textcolor{keywordflow}{return} TILT\_NONE;}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00506}00506 \}}
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00507}00507 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00508}00508 }
+\DoxyCodeLine{\Hypertarget{MPU6050__GY521_8c_source_l00509}00509 }
 
 \end{DoxyCode}

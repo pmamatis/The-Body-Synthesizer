@@ -8,7 +8,7 @@ var searchData=
   ['adsr_5finit_5',['ADSR_Init',['../group__ADSR.html#gab26d8ec30eff40bfb82b160defd0af22',1,'ADSR_Init(void):&#160;adsr.c'],['../group__ADSR.html#gab26d8ec30eff40bfb82b160defd0af22',1,'ADSR_Init(void):&#160;adsr.c']]],
   ['adsr_5fkeyboard_6',['adsr_keyboard',['../group__ADSR.html#ga742e13f70ae8c573509abfd794271f44',1,'adsr.h']]],
   ['adsr_5freset_7',['ADSR_Reset',['../group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9',1,'ADSR_Reset(struct adsr *envelope):&#160;adsr.c'],['../group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9',1,'ADSR_Reset(struct adsr *envelope):&#160;adsr.c']]],
-  ['amplitude_8',['AMPLITUDE',['../signal__synthesis_8h.html#ae2d3a48fb01bbc0fe795724379434d05',1,'signal_synthesis.h']]],
+  ['amplitude_8',['AMPLITUDE',['../group__SSynth.html#gae2d3a48fb01bbc0fe795724379434d05',1,'signal_synthesis.h']]],
   ['aquidistance_9',['aquidistance',['../group__atanLUT.html#ga5b267ef41aab26158640ba93071f0b97',1,'aquidistance():&#160;atanLUT.h'],['../group__Distortion.html#ga638ce07da32913582447f1e26b745c37',1,'aquidistance():&#160;atanLUT.h'],['../group__Distortion.html#ga638ce07da32913582447f1e26b745c37',1,'aquidistance():&#160;Distortion_LUT.m']]],
   ['atan_28_29_20lut_10',['atan() LUT',['../group__atanLUT.html',1,'']]],
   ['atan_5flut_5fy_11',['atan_LUT_y',['../group__atanLUT.html#ga44717ae85351202c8833c3880a6ef9e8',1,'atan_LUT_y():&#160;atanLUT.h'],['../group__Distortion.html#gab6549ea7290a59876018cb53511f134d',1,'atan_LUT_y():&#160;atanLUT.h']]],

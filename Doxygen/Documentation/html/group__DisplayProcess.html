@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">The Body-Synthesizer<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers</div>
+   <div id="projectbrief">Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers</div>
   </td>
  </tr>
  </tbody>
@@ -526,10 +526,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  151</span> </div>
 <div class="line"><span class="lineno">  152</span>    Display-&gt;SetPreset = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>    sprintf(Display-&gt;value_str_volume[0], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0]);   <span class="comment">// Volumes</span></div>
-<div class="line"><span class="lineno">  155</span>    sprintf(Display-&gt;value_str_volume[1], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1]);</div>
-<div class="line"><span class="lineno">  156</span>    sprintf(Display-&gt;value_str_volume[2], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2]);</div>
-<div class="line"><span class="lineno">  157</span>    sprintf(Display-&gt;value_str_volume[3], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3]);</div>
+<div class="line"><span class="lineno">  154</span>    sprintf(Display-&gt;value_str_volume[0], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0]);   <span class="comment">// Volumes</span></div>
+<div class="line"><span class="lineno">  155</span>    sprintf(Display-&gt;value_str_volume[1], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1]);</div>
+<div class="line"><span class="lineno">  156</span>    sprintf(Display-&gt;value_str_volume[2], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2]);</div>
+<div class="line"><span class="lineno">  157</span>    sprintf(Display-&gt;value_str_volume[3], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3]);</div>
 <div class="line"><span class="lineno">  158</span> </div>
 <div class="line"><span class="lineno">  159</span>    Display-&gt;Drumfilter_Gain = LS_DRUMS.dBGain; <span class="comment">// Drumcomputer</span></div>
 <div class="line"><span class="lineno">  160</span>    strcpy(Display-&gt;value_str_drumcomputer[0], <span class="stringliteral">&quot;OFF&quot;</span>);</div>
@@ -699,9 +699,9 @@ Functions</h2></td></tr>
 <div class="ttc" id="agroup__MusicNotes_html_gaa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00042">music_notes.h:42</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_ga2e5122eebde8d369cf949da93586ec2e"><div class="ttname"><a href="group__SINLUT.html#ga2e5122eebde8d369cf949da93586ec2e">LUT_STARTINDEX</a></div><div class="ttdeci">const uint32_t LUT_STARTINDEX[73]</div><div class="ttdoc">contains all startindizies of the frequencies in the SIN-LUT</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00049">sinLUT.h:49</a></div></div>
 <div class="ttc" id="agroup__SINLUT_html_gaa9c9ea0c186709ce908f4a8ad5e0975d"><div class="ttname"><a href="group__SINLUT.html#gaa9c9ea0c186709ce908f4a8ad5e0975d">LFO_FREQUENCYS</a></div><div class="ttdeci">const float LFO_FREQUENCYS[8]</div><div class="ttdoc">gives the the LFO-frquency value</div><div class="ttdef"><b>Definition:</b> <a href="sinLUT_8h_source.html#l00064">sinLUT.h:64</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga0c06ec02b1329cdb21df9311f9bc3712"><div class="ttname"><a href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a></div><div class="ttdeci">float volume[4]</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00117">signal_synthesis.h:117</a></div></div>
 <div class="ttc" id="agroup__Sequencer_html_ga4211ba08e77d82a294762a623041e342"><div class="ttname"><a href="group__Sequencer.html#ga4211ba08e77d82a294762a623041e342">freq_index_SN1</a></div><div class="ttdeci">uint16_t freq_index_SN1</div><div class="ttdoc">Frequency index sequencer.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00089">drum_computer.h:89</a></div></div>
 <div class="ttc" id="agroup__Sequencer_html_gabafd5c3bbb1d0bbc3e708889e904e3a7"><div class="ttname"><a href="group__Sequencer.html#gabafd5c3bbb1d0bbc3e708889e904e3a7">current_LUT_index_SN1</a></div><div class="ttdeci">uint32_t current_LUT_index_SN1[FourFour]</div><div class="ttdoc">Current LUT index sequencer.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8h_source.html#l00095">drum_computer.h:95</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a0c06ec02b1329cdb21df9311f9bc3712"><div class="ttname"><a href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a></div><div class="ttdeci">float volume[4]</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00106">signal_synthesis.h:106</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

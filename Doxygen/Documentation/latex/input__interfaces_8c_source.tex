@@ -27,7 +27,7 @@
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00038}00038 }
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00040}\mbox{\hyperlink{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}{00040}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}{II\_startInterface}}(TIM\_HandleTypeDef* htim) \{}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00041}00041 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00042}00042     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(htim, II\_SR);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00042}00042     \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(htim, II\_SR);}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00043}00043     HAL\_TIM\_Base\_Start\_IT(htim);}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00044}00044 \}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00045}00045 }
@@ -42,7 +42,7 @@
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00058}00058 }
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00059}00059             \textcolor{comment}{// signal has to be created once, because otherwise the count for-\/loop in signal synthesis function can not be entered (count > 0)}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00060}00060             \textcolor{keywordflow}{if}(Display.Voices\_Created[ii\_i] == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00061}00061                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, Display.Voices\_Kind[ii\_i], Display.Voices\_Note[ii\_i], Display.Voices\_Octave[ii\_i], ii\_i);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00061}00061                 \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, Display.Voices\_Kind[ii\_i], Display.Voices\_Note[ii\_i], Display.Voices\_Octave[ii\_i], ii\_i);}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00062}00062                 Display.Voices\_Created[ii\_i] = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00063}00063             \}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00064}00064 }
@@ -687,7 +687,7 @@
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00707}00707 }
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00711}\mbox{\hyperlink{group__InputInterface_ga2b27d1c554db52f823b2897137823819}{00711}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__InputInterface_ga2b27d1c554db52f823b2897137823819}{II\_raiseNote}}(uint8\_t ID)\{}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00712}00712 }
-\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00713}00713     uint8\_t index= \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00713}00713     uint8\_t index= \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00714}00714     \textcolor{keywordtype}{char} oldKey = Display.Voices\_Note[ID];}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00715}00715 }
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00716}00716     uint8\_t key\_counter = 0;}
@@ -710,13 +710,13 @@
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00733}00733     \}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00734}00734     Display.Voices\_Note[ID] = newKey;}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00735}00735     \textcolor{keywordflow}{if}(index >= 0)\{ \textcolor{comment}{// only done if ID is existing}}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00736}00736         \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00737}00737         \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00736}00736         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00737}00737         \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00738}00738     \}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00739}00739 \}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00740}00740 }
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00744}\mbox{\hyperlink{group__InputInterface_gafa7d9063c65151e6c6c79e94f81dd0fd}{00744}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__InputInterface_gafa7d9063c65151e6c6c79e94f81dd0fd}{II\_decreaseNote}}(uint8\_t ID)\{}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00745}00745     uint8\_t index= \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00745}00745     uint8\_t index= \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00746}00746     \textcolor{keywordtype}{char} oldKey = Display.Voices\_Note[ID];}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00747}00747     \textcolor{keywordtype}{char} newKey;}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00748}00748     uint8\_t key\_counter = 0;}
@@ -741,8 +741,8 @@
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00767}00767     \}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00768}00768     Display.Voices\_Note[ID] = newKey;}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00769}00769     \textcolor{keywordflow}{if}(index >= 0)\{}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00770}00770         \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
-\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00771}00771         \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00770}00770         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
+\DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00771}00771         \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00772}00772     \}}
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00773}00773 }
 \DoxyCodeLine{\Hypertarget{input__interfaces_8c_source_l00774}00774 \}}

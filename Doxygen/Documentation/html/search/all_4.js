@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['dac_5fmax_0',['DAC_MAX',['../signal__synthesis_8h.html#a80825df7d911faa99554cbe165590474',1,'signal_synthesis.h']]],
-  ['dac_5fmaxvalue_5fto_5famplitude_5fratio_1',['DAC_MAXVALUE_TO_AMPLITUDE_RATIO',['../signal__synthesis_8h.html#a9403bb31e6a5748c0bfc57f7523ef483',1,'signal_synthesis.h']]],
+  ['dac_5fmax_0',['DAC_MAX',['../group__SSynth.html#ga80825df7d911faa99554cbe165590474',1,'signal_synthesis.h']]],
+  ['dac_5fmaxvalue_5fto_5famplitude_5fratio_1',['DAC_MAXVALUE_TO_AMPLITUDE_RATIO',['../group__SSynth.html#ga9403bb31e6a5748c0bfc57f7523ef483',1,'signal_synthesis.h']]],
   ['debugmon_5fhandler_2',['DebugMon_Handler',['../group__Interrupts.html#gadbdfb05858cc36fc520974df37ec3cb0',1,'DebugMon_Handler(void):&#160;stm32f7xx_it.c'],['../group__Interrupts.html#gadbdfb05858cc36fc520974df37ec3cb0',1,'DebugMon_Handler(void):&#160;stm32f7xx_it.c'],['../group__Interrupts.html#gadbdfb05858cc36fc520974df37ec3cb0',1,'DebugMon_Handler(void):&#160;stm32f4xx_it.c'],['../group__Interrupts.html#gadbdfb05858cc36fc520974df37ec3cb0',1,'DebugMon_Handler(void):&#160;stm32f7xx_it.c']]],
-  ['deletesignal_3',['DeleteSignal',['../signal__synthesis_8c.html#aff4b96bd9a6fb74a10215a54f141d06d',1,'DeleteSignal(struct signal_t *signals, int16_t signal_index):&#160;signal_synthesis.c'],['../signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d',1,'DeleteSignal(struct signal_t *signals, int16_t signal_index):&#160;signal_synthesis.c']]],
+  ['deletesignal_3',['DeleteSignal',['../group__SSynth.html#gaff4b96bd9a6fb74a10215a54f141d06d',1,'DeleteSignal(struct signal_t *signals, int16_t signal_index):&#160;signal_synthesis.c'],['../group__SSynth.html#gaff4b96bd9a6fb74a10215a54f141d06d',1,'DeleteSignal(struct signal_t *signals, int16_t signal_index):&#160;signal_synthesis.c']]],
   ['display_4',['Display',['../group__Display.html',1,'']]],
   ['display_20pages_5',['Display Pages',['../group__DisplayPage.html',1,'']]],
   ['display_20processing_20and_20navigation_20funtions_6',['Display processing and navigation funtions',['../group__DisplayProcess.html',1,'']]],

@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">The Body-Synthesizer<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers</div>
+   <div id="projectbrief">Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers</div>
   </td>
  </tr>
  </tbody>
@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('emg_8c_source.html',''); initResizable
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__EMG__ECG.html#gad8539de6db12ec20b070f6fb97f99a73">   52</a></span>HAL_StatusTypeDef <a class="code hl_function" href="group__EMG__ECG.html#gad8539de6db12ec20b070f6fb97f99a73">emg_start_read</a>(<span class="keywordtype">void</span>){</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_function" href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(EMG_TIM, EMG_SR);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_function" href="group__SSynth.html#gadc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(EMG_TIM, EMG_SR);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    HAL_TIM_Base_Start(EMG_TIM);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    printf(<span class="stringliteral">&quot;start emg\r\n&quot;</span>);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">return</span> HAL_ADC_Start_DMA(EMG_ADC, emg_buffer, EMG_READ_LENGTH);</div>
@@ -273,7 +273,7 @@ $(document).ready(function(){initNavTree('emg_8c_source.html',''); initResizable
 <div class="ttc" id="agroup__EMG__ECG_html_ga98bf9a8015f7a7833276fbf6a72e255e"><div class="ttname"><a href="group__EMG__ECG.html#ga98bf9a8015f7a7833276fbf6a72e255e">ecg_init</a></div><div class="ttdeci">HAL_StatusTypeDef ecg_init(void)</div><div class="ttdoc">ECG init.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00034">emg.c:34</a></div></div>
 <div class="ttc" id="agroup__EMG__ECG_html_gaa7d92b6a1983e52614915f8e2cfb3140"><div class="ttname"><a href="group__EMG__ECG.html#gaa7d92b6a1983e52614915f8e2cfb3140">emg_init</a></div><div class="ttdeci">HAL_StatusTypeDef emg_init(ADC_HandleTypeDef *hadc, TIM_HandleTypeDef *htim)</div><div class="ttdoc">EMG Init.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00016">emg.c:16</a></div></div>
 <div class="ttc" id="agroup__EMG__ECG_html_gad8539de6db12ec20b070f6fb97f99a73"><div class="ttname"><a href="group__EMG__ECG.html#gad8539de6db12ec20b070f6fb97f99a73">emg_start_read</a></div><div class="ttdeci">HAL_StatusTypeDef emg_start_read(void)</div><div class="ttdoc">Start all necessary peripherals for the EMG / ECG.</div><div class="ttdef"><b>Definition:</b> <a href="emg_8c_source.html#l00052">emg.c:52</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_gadc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="group__SSynth.html#gadc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

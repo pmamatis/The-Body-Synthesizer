@@ -7,30 +7,30 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00021}00021 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00023}\mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{00023}} \textcolor{keywordtype}{double} \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00024}00024 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00030}\mbox{\hyperlink{signal__synthesis_8h_a9eda288feb5c689a0f90742249fe6da0}{00030}} HAL\_StatusTypeDef \mbox{\hyperlink{signal__synthesis_8c_a9eda288feb5c689a0f90742249fe6da0}{Signal\_Synthesis\_Init}}(TIM\_HandleTypeDef htim, DAC\_HandleTypeDef \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00030}\mbox{\hyperlink{group__SSynth_ga9eda288feb5c689a0f90742249fe6da0}{00030}} HAL\_StatusTypeDef \mbox{\hyperlink{group__SSynth_ga9eda288feb5c689a0f90742249fe6da0}{Signal\_Synthesis\_Init}}(TIM\_HandleTypeDef htim, DAC\_HandleTypeDef \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00031}00031 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00032}00032     \textcolor{comment}{// Sets the maximal digital value which the DAC converts into analog voltage}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00033}00033     \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}} = (double)\mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} * (\textcolor{keywordtype}{double})\mbox{\hyperlink{signal__synthesis_8h_ae2d3a48fb01bbc0fe795724379434d05}{AMPLITUDE}};}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00034}00034     \mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = HALF\_BLOCK;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00033}00033     \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}} = (double)\mbox{\hyperlink{group__SSynth_ga9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} * (\textcolor{keywordtype}{double})\mbox{\hyperlink{group__SSynth_gae2d3a48fb01bbc0fe795724379434d05}{AMPLITUDE}};}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00034}00034     \mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = HALF\_BLOCK;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00035}00035     signals1.count = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00036}00036     signals1.max = 1;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00037}00037 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00038}00038     \textcolor{comment}{// Set Volumes for Master\_Volume, Voices, Drumcomputer, Sequencer and Keyboard}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00039}00039     \mbox{\hyperlink{signal__synthesis_8h_aa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} = 1.0;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00039}00039     \mbox{\hyperlink{group__SSynth_gaa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} = 1.0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00040}00040     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<4; i++) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00041}00041         \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00041}00041         \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00042}00042     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00043}00043 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00044}00044     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i>\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2; i++)}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00045}00045         *((uint32\_t *)(\&\mbox{\hyperlink{Core_2Inc_2main_8h_a25be00c869033fae5b8206c20aeb3861}{calculate\_vector1}}[i] )) = (uint32\_t)((i/(\mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2)) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}/2); \textcolor{comment}{// TODO muss noch angepasst werden}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00046}00046 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00047}00047     \textcolor{comment}{// Inits and starts timer connected with DAC}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00048}00048     \mbox{\hyperlink{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim, LUT\_SR);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00048}00048     \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim, LUT\_SR);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00049}00049 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00050}00050     \textcolor{keywordflow}{return} HAL\_TIM\_Base\_Start(\&htim);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00051}00051 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00052}00052 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00058}\mbox{\hyperlink{signal__synthesis_8h_af4829c3aeeaf3dbcda0b5266e2834898}{00058}} HAL\_StatusTypeDef \mbox{\hyperlink{signal__synthesis_8c_af4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00058}\mbox{\hyperlink{group__SSynth_gaf4829c3aeeaf3dbcda0b5266e2834898}{00058}} HAL\_StatusTypeDef \mbox{\hyperlink{group__SSynth_gaf4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}(\textcolor{keywordtype}{void}) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00059}00059 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00060}00060     \textcolor{comment}{// Clear screen content of voices overview}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00061}00061     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position, CASE2, Display.value\_end\_x\_position, CASE2+VALUE\_ROW\_LENGTH , UNCOLORED);}
@@ -61,7 +61,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00086}00086 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00087}00087 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00088}00088 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00093}\mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{00093}} \textcolor{keywordtype}{void} \mbox{\hyperlink{signal__synthesis_8c_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(TIM\_HandleTypeDef* htim, uint32\_t SR) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00093}\mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{00093}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(TIM\_HandleTypeDef* htim, uint32\_t SR) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00094}00094 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00095}00095     \textcolor{comment}{// Clock Sources of all 14 timers: 1 = APB1, 2 = APB2}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00096}00096     uint8\_t APBTimerCases[] = \{2,1,1,1,1,1,1,2,2,2,2,1,1,1\};}
@@ -109,7 +109,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00138}00138     \_\_HAL\_TIM\_SET\_PRESCALER(htim, prescaler-\/1);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00139}00139 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00140}00140 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00147}\mbox{\hyperlink{signal__synthesis_8h_a381bb27bca64ed7f5df822a3db09707a}{00147}} \textcolor{keywordtype}{void} \mbox{\hyperlink{signal__synthesis_8c_a381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structeffects__lfo__t}{effects\_lfo\_t}}* lfo, uint8\_t lfo\_effect) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00147}\mbox{\hyperlink{group__SSynth_ga381bb27bca64ed7f5df822a3db09707a}{00147}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__SSynth_ga381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structeffects__lfo__t}{effects\_lfo\_t}}* lfo, uint8\_t lfo\_effect) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00148}00148 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00149}00149     lfo-\/>lfo\_data = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00150}00150 }
@@ -715,9 +715,9 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00750}00750     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00751}00751 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00752}00752 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00764}\mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{00764}} \textcolor{keywordtype}{void} \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, uint8\_t kind, uint8\_t \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}, uint8\_t octave, uint8\_t ID)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00764}\mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{00764}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, uint8\_t kind, uint8\_t \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}, uint8\_t octave, uint8\_t ID)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00765}00765 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00766}00766     \textcolor{keywordflow}{if} (signals -\/> count <= \mbox{\hyperlink{signal__synthesis_8h_a74bf0cbaccfba1bf548d482148183a12}{MAX\_SIGNAL\_KOMBINATION}})\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00766}00766     \textcolor{keywordflow}{if} (signals -\/> count <= \mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\_SIGNAL\_KOMBINATION}})\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00767}00767         signals -\/> count += 1;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00768}00768         uint8\_t index = (signals-\/> count)-\/1;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00769}00769         signals -\/> ID[index]= ID;}
@@ -753,7 +753,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00799}00799     signals -\/> max = 1;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00800}00800 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00801}00801 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00807}\mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{00807}} \textcolor{keywordtype}{void} \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals,int16\_t signal\_index) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00807}\mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{00807}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals,int16\_t signal\_index) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00808}00808 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00809}00809     \textcolor{keywordflow}{if} (signals-\/>count > 0 \&\& signal\_index > -\/1)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00810}00810         \textcolor{comment}{//shift signals too left}}
@@ -771,9 +771,9 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00822}00822         printf(\textcolor{stringliteral}{"{}delete ERROR\(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00823}00823     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00824}00824 \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00830}\mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{00830}} int16\_t \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(int16\_t \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00830}\mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{00830}} int16\_t \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(int16\_t \textcolor{keywordtype}{id}) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00831}00831 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00832}00832     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i < \mbox{\hyperlink{signal__synthesis_8h_a74bf0cbaccfba1bf548d482148183a12}{MAX\_SIGNAL\_KOMBINATION}};i++)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00832}00832     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i < \mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\_SIGNAL\_KOMBINATION}};i++)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00833}00833         \textcolor{keywordflow}{if} (signals1.ID[i] == \textcolor{keywordtype}{id})\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00834}00834             \textcolor{keywordflow}{return} i;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00835}00835         \}}
@@ -781,7 +781,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00837}00837     \textcolor{keywordflow}{return} -\/1;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00838}00838 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00839}00839 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00847}\mbox{\hyperlink{signal__synthesis_8h_a14e563872b7cc3bae6f534d36f016911}{00847}} \textcolor{keywordtype}{void} \mbox{\hyperlink{signal__synthesis_8c_a14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals,uint8\_t output\_Channel)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00847}\mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{00847}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals,uint8\_t output\_Channel)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00848}00848 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00849}00849     \textcolor{comment}{//Variables}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00850}00850     \textcolor{keywordtype}{float} addValue=0;}
@@ -799,11 +799,11 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00862}00862 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00863}00863     \textcolor{comment}{// decide if first half of BLOCKSIZE or second half}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00864}00864     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00865}00865     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00865}00865     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00866}00866         BLOOCKSIZE\_startIndex = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00867}00867         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00868}00868     \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00869}00869     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00869}00869     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00870}00870         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00871}00871         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00872}00872     \}}
@@ -840,53 +840,53 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00903}00903                     \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00904}00904 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00905}00905                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID] != Display.Voices\_Note[VOICES\_ID]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00906}00906                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00907}00907                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00906}00906                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00907}00907                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00908}00908                             Display.last\_Voices\_Note[VOICES\_ID] = Display.Voices\_Note[VOICES\_ID];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00909}00909                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00910}00910                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID] != Display.Voices\_Octave[VOICES\_ID]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00911}00911                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00912}00912                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00911}00911                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00912}00912                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00913}00913                             Display.last\_Voices\_Octave[VOICES\_ID] = Display.Voices\_Octave[VOICES\_ID];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00914}00914                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00915}00915                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00916}00916                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+1) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00917}00917 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00918}00918                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+1] != Display.Voices\_Note[VOICES\_ID+1]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00919}00919                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00920}00920                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00919}00919                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00920}00920                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00921}00921                             Display.last\_Voices\_Note[VOICES\_ID+1] = Display.Voices\_Note[VOICES\_ID+1];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00922}00922                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00923}00923                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+1] != Display.Voices\_Octave[VOICES\_ID+1]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00924}00924                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00925}00925                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00924}00924                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00925}00925                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00926}00926                             Display.last\_Voices\_Octave[VOICES\_ID+1] = Display.Voices\_Octave[VOICES\_ID+1];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00927}00927                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00928}00928                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00929}00929                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+2) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00930}00930 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00931}00931                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+2] != Display.Voices\_Note[VOICES\_ID+2]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00932}00932                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00933}00933                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00932}00932                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00933}00933                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00934}00934                             Display.last\_Voices\_Note[VOICES\_ID+2] = Display.Voices\_Note[VOICES\_ID+2];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00935}00935                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00936}00936                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+2] != Display.Voices\_Octave[VOICES\_ID+2]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00937}00937                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00938}00938                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00937}00937                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00938}00938                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00939}00939                             Display.last\_Voices\_Octave[VOICES\_ID+2] = Display.Voices\_Octave[VOICES\_ID+2];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00940}00940                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00941}00941                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00942}00942                     \textcolor{comment}{// delete signal if voice off}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00943}00943                     \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00944}00944                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00944}00944                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00945}00945                         Display.Voices\_Created[VOICES\_ID] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00946}00946                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00947}00947                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+1]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+1] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00948}00948                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00948}00948                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00949}00949                         Display.Voices\_Created[VOICES\_ID+1] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00950}00950                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00951}00951                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+2]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+2] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00952}00952                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00952}00952                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00953}00953                         Display.Voices\_Created[VOICES\_ID+2] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00954}00954                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00955}00955                 \}}
@@ -895,23 +895,23 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00958}00958             \textcolor{keywordflow}{case} RECT:}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00959}00959                 \textcolor{comment}{// keyboard signals}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00960}00960                 \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00961}00961                     calculate\_keyboard[0] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00961}00961                     calculate\_keyboard[0] = \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00962}00962                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00963}00963                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+1)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00964}00964                     calculate\_keyboard[1] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00964}00964                     calculate\_keyboard[1] = \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00965}00965                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00966}00966                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+2)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00967}00967                     calculate\_keyboard[2] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00967}00967                     calculate\_keyboard[2] = \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00968}00968                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00969}00969                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+3)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00970}00970                     calculate\_keyboard[3] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00970}00970                     calculate\_keyboard[3] = \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00971}00971                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00972}00972                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+4)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00973}00973                     calculate\_keyboard[4] = \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00973}00973                     calculate\_keyboard[4] = \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00974}00974                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00975}00975                 \textcolor{keywordflow}{else}\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00976}00976                     \textcolor{comment}{// adds all RECT values from the signals to addValue}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00977}00977                     addValue = addValue + \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00977}00977                     addValue = addValue + \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00978}00978                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00979}00979 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00980}00980                 \textcolor{comment}{// get index for the next rect value}}
@@ -926,53 +926,53 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00989}00989                     \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00990}00990 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00991}00991                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID] != Display.Voices\_Note[VOICES\_ID]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00992}00992                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00993}00993                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00992}00992                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00993}00993                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00994}00994                             Display.last\_Voices\_Note[VOICES\_ID] = Display.Voices\_Note[VOICES\_ID];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00995}00995                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00996}00996                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID] != Display.Voices\_Octave[VOICES\_ID]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00997}00997                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00998}00998                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00997}00997                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00998}00998                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l00999}00999                             Display.last\_Voices\_Octave[VOICES\_ID] = Display.Voices\_Octave[VOICES\_ID];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01000}01000                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01001}01001                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01002}01002                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+1) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01003}01003 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01004}01004                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+1] != Display.Voices\_Note[VOICES\_ID+1]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01005}01005                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01006}01006                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01005}01005                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01006}01006                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01007}01007                             Display.last\_Voices\_Note[VOICES\_ID+1] = Display.Voices\_Note[VOICES\_ID+1];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01008}01008                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01009}01009                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+1] != Display.Voices\_Octave[VOICES\_ID+1]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01010}01010                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01011}01011                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01010}01010                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01011}01011                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01012}01012                             Display.last\_Voices\_Octave[VOICES\_ID+1] = Display.Voices\_Octave[VOICES\_ID+1];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01013}01013                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01014}01014                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01015}01015                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+2) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01016}01016 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01017}01017                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+2] != Display.Voices\_Note[VOICES\_ID+2]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01018}01018                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01019}01019                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01018}01018                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01019}01019                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01020}01020                             Display.last\_Voices\_Note[VOICES\_ID+2] = Display.Voices\_Note[VOICES\_ID+2];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01021}01021                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01022}01022                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+2] != Display.Voices\_Octave[VOICES\_ID+2]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01023}01023                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01024}01024                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01023}01023                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01024}01024                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, RECT, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01025}01025                             Display.last\_Voices\_Octave[VOICES\_ID+2] = Display.Voices\_Octave[VOICES\_ID+2];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01026}01026                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01027}01027                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01028}01028                     \textcolor{comment}{// delete signal if voice off}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01029}01029                     \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01030}01030                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01030}01030                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01031}01031                         Display.Voices\_Created[VOICES\_ID] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01032}01032                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01033}01033                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+1]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+1] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01034}01034                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01034}01034                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01035}01035                         Display.Voices\_Created[VOICES\_ID+1] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01036}01036                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01037}01037                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+2]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+2] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01038}01038                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01038}01038                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01039}01039                         Display.Voices\_Created[VOICES\_ID+2] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01040}01040                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01041}01041                 \}}
@@ -981,23 +981,23 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01044}01044             \textcolor{keywordflow}{case} TRIANGLE:}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01045}01045                 \textcolor{comment}{// keyboard signals}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01046}01046                 \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01047}01047                     calculate\_keyboard[0] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01047}01047                     calculate\_keyboard[0] = \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01048}01048                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01049}01049                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+1)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01050}01050                     calculate\_keyboard[1] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01050}01050                     calculate\_keyboard[1] = \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01051}01051                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01052}01052                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+2)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01053}01053                     calculate\_keyboard[2] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01053}01053                     calculate\_keyboard[2] = \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01054}01054                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01055}01055                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+3)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01056}01056                     calculate\_keyboard[3] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01056}01056                     calculate\_keyboard[3] = \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01057}01057                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01058}01058                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == KEYBOARD\_VOICE\_ID+4)\{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01059}01059                     calculate\_keyboard[4] = \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01059}01059                     calculate\_keyboard[4] = \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01060}01060                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01061}01061                 \textcolor{keywordflow}{else}\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01062}01062                     \textcolor{comment}{// adds all TRIANGLE values from the signals to addValue}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01063}01063                     addValue = addValue + \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01063}01063                     addValue = addValue + \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(signals, j);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01064}01064                 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01065}01065                 \textcolor{comment}{// get index for the next triangle value}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01066}01066                 signals-\/>current\_LUT\_Index[j]++;}
@@ -1011,53 +1011,53 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01074}01074                     \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01075}01075 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01076}01076                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID] != Display.Voices\_Note[VOICES\_ID]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01077}01077                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01078}01078                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01077}01077                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01078}01078                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01079}01079                             Display.last\_Voices\_Note[VOICES\_ID] = Display.Voices\_Note[VOICES\_ID];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01080}01080                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01081}01081                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID] != Display.Voices\_Octave[VOICES\_ID]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01082}01082                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01083}01083                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01082}01082                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01083}01083                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID], Display.Voices\_Octave[VOICES\_ID],VOICES\_ID);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01084}01084                             Display.last\_Voices\_Octave[VOICES\_ID] = Display.Voices\_Octave[VOICES\_ID];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01085}01085                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01086}01086                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01087}01087                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+1) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01088}01088 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01089}01089                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+1] != Display.Voices\_Note[VOICES\_ID+1]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01090}01090                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01091}01091                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01090}01090                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01091}01091                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01092}01092                             Display.last\_Voices\_Note[VOICES\_ID+1] = Display.Voices\_Note[VOICES\_ID+1];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01093}01093                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01094}01094                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+1] != Display.Voices\_Octave[VOICES\_ID+1]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01095}01095                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01096}01096                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01095}01095                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01096}01096                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+1], Display.Voices\_Octave[VOICES\_ID+1],VOICES\_ID+1);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01097}01097                             Display.last\_Voices\_Octave[VOICES\_ID+1] = Display.Voices\_Octave[VOICES\_ID+1];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01098}01098                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01099}01099                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01100}01100                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(signals-\/>ID[j] == VOICES\_ID+2) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01101}01101 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01102}01102                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Note[VOICES\_ID+2] != Display.Voices\_Note[VOICES\_ID+2]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01103}01103                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01104}01104                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01103}01103                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01104}01104                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01105}01105                             Display.last\_Voices\_Note[VOICES\_ID+2] = Display.Voices\_Note[VOICES\_ID+2];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01106}01106                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01107}01107                         \textcolor{keywordflow}{if}(Display.last\_Voices\_Octave[VOICES\_ID+2] != Display.Voices\_Octave[VOICES\_ID+2]) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01108}01108                             \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01109}01109                             \mbox{\hyperlink{signal__synthesis_8c_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01108}01108                             \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01109}01109                             \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, TRIANGLE, Display.Voices\_Note[VOICES\_ID+2], Display.Voices\_Octave[VOICES\_ID+2],VOICES\_ID+2);}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01110}01110                             Display.last\_Voices\_Octave[VOICES\_ID+2] = Display.Voices\_Octave[VOICES\_ID+2];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01111}01111                         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01112}01112                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01113}01113                     \textcolor{comment}{// delete signal if voice off}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01114}01114                     \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01115}01115                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01115}01115                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01116}01116                         Display.Voices\_Created[VOICES\_ID] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01117}01117                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01118}01118                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+1]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+1] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01119}01119                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01119}01119                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+1));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01120}01120                         Display.Voices\_Created[VOICES\_ID+1] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01121}01121                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01122}01122                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Voices\_ONOFF[VOICES\_ID+2]==\textcolor{keyword}{false} \&\& Display.Voices\_Created[VOICES\_ID+2] == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01123}01123                         \mbox{\hyperlink{signal__synthesis_8c_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{signal__synthesis_8c_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01123}01123                         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(VOICES\_ID+2));}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01124}01124                         Display.Voices\_Created[VOICES\_ID+2] = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01125}01125                     \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01126}01126                 \}}
@@ -1075,12 +1075,12 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01138}01138 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01139}01139 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01140}01140         \textcolor{comment}{// write voices (including noise) into calculate vector}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01141}01141         calculate\_vector\_tmp[BLOCKSIZE\_counter] = \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] * (addValue + \mbox{\hyperlink{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}());}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01141}01141         calculate\_vector\_tmp[BLOCKSIZE\_counter] = \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] * (addValue + \mbox{\hyperlink{group__SSynth_ga2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}());}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01142}01142 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01143}01143 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01144}01144 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01145}01145         \textcolor{comment}{// Drummachine}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01146}01146         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] > 0) || (\mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] > 0))\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01146}01146         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] > 0) || (\mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] > 0))\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01147}01147             \mbox{\hyperlink{group__DrumComputer_ga08535ad247ef4e17b91bbba4b56833af}{Drum\_Computer\_Process}}();}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01148}01148             drums\_filtered = drums;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01149}01149             \textcolor{keywordflow}{if}(Display.Drumfilter\_ONOFF)}
@@ -1096,14 +1096,14 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01159}01159             \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01160}01160             \textcolor{comment}{// summing up all played keyboard notes}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01161}01161             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01162}01162                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01162}01162                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01163}01163         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01164}01164         \textcolor{comment}{// Keyboard processing without effects}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01165}01165         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.KeyboardFX\_ONOFF == \textcolor{keyword}{false}) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01166}01166             \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\_adsr\_process}}();}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01167}01167             \textcolor{comment}{// summing up all played keyboard notes}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01168}01168             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < 5;k++)}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01169}01169                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01169}01169                 calculate\_vector\_tmp[BLOCKSIZE\_counter] += \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] * calculate\_keyboard[k];}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01170}01170         \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01171}01171 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01172}01172 }
@@ -1119,14 +1119,14 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01182}01182     }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01183}01183 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01184}01184         \textcolor{comment}{// Add all values}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01185}01185         calculate\_vector\_tmp[BLOCKSIZE\_counter] = calculate\_vector\_tmp[BLOCKSIZE\_counter] + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] * drums\_filtered + \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] * sequencer;}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01185}01185         calculate\_vector\_tmp[BLOCKSIZE\_counter] = calculate\_vector\_tmp[BLOCKSIZE\_counter] + \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] * drums\_filtered + \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] * sequencer;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01186}01186 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01187}01187         \textcolor{comment}{// to make sure that the output is 0 when a new drumkit is loaded into the drum computer}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01188}01188         \textcolor{keywordflow}{if}(Display.LoadDrumkit == \textcolor{keyword}{true})}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01189}01189             calculate\_vector\_tmp[BLOCKSIZE\_counter] = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01190}01190 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01191}01191         \textcolor{comment}{// Convert float to uint32 in order to make it readable for the DAC}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01192}01192         *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((0.5 * \mbox{\hyperlink{signal__synthesis_8h_aa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} * calculate\_vector\_tmp[BLOCKSIZE\_counter]+1.65) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}); \textcolor{comment}{// +1.65 is the middle of 0-\/3V3}}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01192}01192         *((uint32\_t *)(\&calculate\_vector\_tmp[BLOCKSIZE\_counter] )) = (uint32\_t)((0.5 * \mbox{\hyperlink{group__SSynth_gaa15347ac4d705e4e9db618dfa95640e7}{Master\_Volume}} * calculate\_vector\_tmp[BLOCKSIZE\_counter]+1.65) * \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{maxValueDAC}}); \textcolor{comment}{// +1.65 is the middle of 0-\/3V3}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01193}01193     \}\textcolor{comment}{//End for-\/Loop}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01194}01194 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01195}01195 }
@@ -1144,16 +1144,16 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01210}01210     \textcolor{comment}{// ramp Duration of 0.5 seconds}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01211}01211     \textcolor{keywordtype}{float} ramp\_dur = 0.5*LUT\_SR;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01212}01212     \textcolor{comment}{// MAX Ramp Value in mV}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01213}01213     uint32\_t maxRamp = (uint32\_t)(1650 * \mbox{\hyperlink{signal__synthesis_8h_a9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} );}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01213}01213     uint32\_t maxRamp = (uint32\_t)(1650 * \mbox{\hyperlink{group__SSynth_ga9403bb31e6a5748c0bfc57f7523ef483}{DAC\_MAXVALUE\_TO\_AMPLITUDE\_RATIO}} );}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01214}01214 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01215}01215     \textcolor{comment}{// Write into DAC-\/Buffer}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01216}01216     \textcolor{comment}{// decide if first half of BLOCKSIZE or second half}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01217}01217     uint16\_t BLOOCKSIZE\_startIndex = 0, BLOOCKSIZE\_endIndex = 0;}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01218}01218     \textcolor{keywordflow}{if} (\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01218}01218     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == HALF\_BLOCK)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01219}01219         BLOOCKSIZE\_startIndex = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01220}01220         BLOOCKSIZE\_endIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01221}01221     \}}
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01222}01222     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01222}01222     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} == FULL\_BLOCK)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01223}01223         BLOOCKSIZE\_startIndex = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}}/2;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01224}01224         BLOOCKSIZE\_endIndex  = \mbox{\hyperlink{Core_2Inc_2main_8h_afcf795f5a96fd55561abe69f56224630}{BLOCKSIZE}};}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01225}01225     \}}
@@ -1176,7 +1176,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01242}01242 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01243}01243 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01244}01244 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01252}\mbox{\hyperlink{signal__synthesis_8h_a2b8c4b7d554c97fbb68f2226c8202acd}{01252}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_a2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keywordtype}{int} index)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01252}\mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{01252}} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{CalcRectSample}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keywordtype}{int} index)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01253}01253 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01254}01254     \textcolor{keywordtype}{float} rect = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01255}01255 }
@@ -1214,7 +1214,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01287}01287     \textcolor{keywordflow}{return} rect;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01288}01288 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01289}01289 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01297}\mbox{\hyperlink{signal__synthesis_8h_abeac1ddb99c3d1374df2dc163a756072}{01297}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_abeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keywordtype}{int} index)\{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01297}\mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{01297}} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{CalcTriangleSample}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structsignal__t}{signal\_t}}* signals, \textcolor{keywordtype}{int} index)\{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01298}01298 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01299}01299     \textcolor{keywordtype}{float} triangle      = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01300}01300     \textcolor{keywordtype}{float} current\_index = (float)signals-\/>current\_LUT\_Index[index];}
@@ -1239,7 +1239,7 @@
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01319}01319     \textcolor{keywordflow}{return} triangle;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01320}01320 \}}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01321}01321 }
-\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01327}\mbox{\hyperlink{signal__synthesis_8h_a2f9745c8cd2b522e949b4c58cfccce56}{01327}} \textcolor{keywordtype}{float} \mbox{\hyperlink{signal__synthesis_8c_a2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01327}\mbox{\hyperlink{group__SSynth_ga2f9745c8cd2b522e949b4c58cfccce56}{01327}} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__SSynth_ga2f9745c8cd2b522e949b4c58cfccce56}{Noise\_Generator}}(\textcolor{keywordtype}{void}) \{}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01328}01328 }
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01329}01329     \textcolor{keywordtype}{float} NoiseValue = 0;}
 \DoxyCodeLine{\Hypertarget{signal__synthesis_8c_source_l01330}01330     \textcolor{keywordtype}{float} Noise\_Gain = 0.5;}

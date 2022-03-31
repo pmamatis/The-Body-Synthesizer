@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">The Body-Synthesizer<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers</div>
+   <div id="projectbrief">Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers</div>
   </td>
  </tr>
  </tbody>
@@ -108,7 +108,7 @@ Macros</h2></td></tr>
 <tr class="separator:gaaa8ce6d66acf69ac599527ea3c51a7bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabcc22bbe2fc19ba537b8b0f24595ffa1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#gabcc22bbe2fc19ba537b8b0f24595ffa1">MAX_SIMULTANEOUS_KEYBOARD_NOTES</a>&#160;&#160;&#160;5</td></tr>
 <tr class="separator:gabcc22bbe2fc19ba537b8b0f24595ffa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga223f58b0e6ba7585a26967062d8c6e17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga223f58b0e6ba7585a26967062d8c6e17">KEYBOARD_SP</a>&#160;&#160;&#160;<a class="el" href="signal__synthesis_8h.html#a74bf0cbaccfba1bf548d482148183a12">MAX_SIGNAL_KOMBINATION</a></td></tr>
+<tr class="memitem:ga223f58b0e6ba7585a26967062d8c6e17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga223f58b0e6ba7585a26967062d8c6e17">KEYBOARD_SP</a>&#160;&#160;&#160;<a class="el" href="group__SSynth.html#ga74bf0cbaccfba1bf548d482148183a12">MAX_SIGNAL_KOMBINATION</a></td></tr>
 <tr class="separator:ga223f58b0e6ba7585a26967062d8c6e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -155,7 +155,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define KEYBOARD_SP&#160;&#160;&#160;<a class="el" href="signal__synthesis_8h.html#a74bf0cbaccfba1bf548d482148183a12">MAX_SIGNAL_KOMBINATION</a></td>
+          <td class="memname">#define KEYBOARD_SP&#160;&#160;&#160;<a class="el" href="group__SSynth.html#ga74bf0cbaccfba1bf548d482148183a12">MAX_SIGNAL_KOMBINATION</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -301,7 +301,7 @@ Variables</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">   20</span>                                                                                  {</div>
 <div class="line"><span class="lineno">   21</span>    KEYBOARD_ADC = ADC_Handler;</div>
 <div class="line"><span class="lineno">   22</span>    <a class="code hl_variable" href="group__keyboard.html#ga7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a> = TIM_Handler;</div>
-<div class="line"><span class="lineno">   23</span>    <a class="code hl_function" href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(TIM_Handler, KEYBOARD_SR);</div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_function" href="group__SSynth.html#gadc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(TIM_Handler, KEYBOARD_SR);</div>
 <div class="line"><span class="lineno">   24</span>    keyboard_pressed_counter = 0;</div>
 <div class="line"><span class="lineno">   25</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++) {</div>
 <div class="line"><span class="lineno">   26</span>        played_keyboard_note[i] = <span class="keyword">false</span>;</div>
@@ -309,8 +309,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   28</span>    }</div>
 <div class="line"><span class="lineno">   29</span>    active_keyboard_notes = 0;</div>
 <div class="line"><span class="lineno">   30</span>}</div>
+<div class="ttc" id="agroup__SSynth_html_gadc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="group__SSynth.html#gadc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 <div class="ttc" id="agroup__keyboard_html_ga7786cb1b74bd2aa2a9b97f1372a3e308"><div class="ttname"><a href="group__keyboard.html#ga7786cb1b74bd2aa2a9b97f1372a3e308">KEYBOARD_TIM</a></div><div class="ttdeci">TIM_HandleTypeDef * KEYBOARD_TIM</div><div class="ttdef"><b>Definition:</b> <a href="keyboard_8h_source.html#l00063">keyboard.h:63</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -424,27 +424,27 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   66</span>        <span class="keywordflow">if</span>(adc_value &gt; keyboard_note_adcval[i] &amp;&amp; adc_value &lt; keyboard_note_adcval[i+1]) {</div>
 <div class="line"><span class="lineno">   67</span> </div>
 <div class="line"><span class="lineno">   68</span>            <span class="keywordflow">if</span>(!played_keyboard_note[0] &amp;&amp; activate_processing[0]){</div>
-<div class="line"><span class="lineno">   69</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID);</div>
+<div class="line"><span class="lineno">   69</span>                <a class="code hl_function" href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID);</div>
 <div class="line"><span class="lineno">   70</span>                played_keyboard_note[0] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   71</span>                active_keyboard_notes++;</div>
 <div class="line"><span class="lineno">   72</span>            }</div>
 <div class="line"><span class="lineno">   73</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[1] &amp;&amp; activate_processing[1]){</div>
-<div class="line"><span class="lineno">   74</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+1);</div>
+<div class="line"><span class="lineno">   74</span>                <a class="code hl_function" href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+1);</div>
 <div class="line"><span class="lineno">   75</span>                played_keyboard_note[1] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   76</span>                active_keyboard_notes++;</div>
 <div class="line"><span class="lineno">   77</span>            }</div>
 <div class="line"><span class="lineno">   78</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[2] &amp;&amp; activate_processing[2]){</div>
-<div class="line"><span class="lineno">   79</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+2);</div>
+<div class="line"><span class="lineno">   79</span>                <a class="code hl_function" href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+2);</div>
 <div class="line"><span class="lineno">   80</span>                played_keyboard_note[2] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   81</span>                active_keyboard_notes++;</div>
 <div class="line"><span class="lineno">   82</span>            }</div>
 <div class="line"><span class="lineno">   83</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[3] &amp;&amp; activate_processing[3]){</div>
-<div class="line"><span class="lineno">   84</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+3);</div>
+<div class="line"><span class="lineno">   84</span>                <a class="code hl_function" href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+3);</div>
 <div class="line"><span class="lineno">   85</span>                played_keyboard_note[3] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   86</span>                active_keyboard_notes++;</div>
 <div class="line"><span class="lineno">   87</span>            }</div>
 <div class="line"><span class="lineno">   88</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!played_keyboard_note[4] &amp;&amp; activate_processing[4]){</div>
-<div class="line"><span class="lineno">   89</span>                <a class="code hl_function" href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+4);</div>
+<div class="line"><span class="lineno">   89</span>                <a class="code hl_function" href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a>(signals, RECT, <a class="code hl_variable" href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a>[i], Display-&gt;Keyboard_Octave, KEYBOARD_VOICE_ID+4);</div>
 <div class="line"><span class="lineno">   90</span>                played_keyboard_note[4] = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   91</span>                active_keyboard_notes++;</div>
 <div class="line"><span class="lineno">   92</span>            }</div>
@@ -455,9 +455,9 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   97</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++){</div>
 <div class="line"><span class="lineno">   98</span> </div>
 <div class="line"><span class="lineno">   99</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[i].adsr_done){</div>
-<div class="line"><span class="lineno">  100</span>            <span class="keywordtype">int</span> index = <a class="code hl_function" href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(KEYBOARD_VOICE_ID+i);</div>
+<div class="line"><span class="lineno">  100</span>            <span class="keywordtype">int</span> index = <a class="code hl_function" href="group__SSynth.html#ga100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a>(KEYBOARD_VOICE_ID+i);</div>
 <div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>            <a class="code hl_function" href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(signals,index);</div>
+<div class="line"><span class="lineno">  102</span>            <a class="code hl_function" href="group__SSynth.html#gaff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a>(signals,index);</div>
 <div class="line"><span class="lineno">  103</span>            <a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[i].adsr_done = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  104</span> </div>
 <div class="line"><span class="lineno">  105</span>            played_keyboard_note[i] = <span class="keyword">false</span>;</div>
@@ -470,9 +470,9 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  112</span>}</div>
 <div class="ttc" id="agroup__ADSR_html_ga742e13f70ae8c573509abfd794271f44"><div class="ttname"><a href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a></div><div class="ttdeci">struct adsr adsr_keyboard[5]</div><div class="ttdoc">ADSR storage for the keyboard.</div><div class="ttdef"><b>Definition:</b> <a href="adsr_8h_source.html#l00082">adsr.h:82</a></div></div>
 <div class="ttc" id="agroup__MusicNotes_html_gaa6edf4563731abf1927b342c5ebe3e8a"><div class="ttname"><a href="group__MusicNotes.html#gaa6edf4563731abf1927b342c5ebe3e8a">keys</a></div><div class="ttdeci">const char keys[26]</div><div class="ttdoc">lookuptable for respective note keys</div><div class="ttdef"><b>Definition:</b> <a href="music__notes_8h_source.html#l00042">music_notes.h:42</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a100668ad3cefb7abc0f65f866ea508ba"><div class="ttname"><a href="signal__synthesis_8h.html#a100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a></div><div class="ttdeci">int16_t IDtoIndex(int16_t id)</div><div class="ttdoc">converts an signal ID into its Index</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00830">signal_synthesis.c:830</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="signal__synthesis_8h.html#a15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00764">signal_synthesis.c:764</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_aff4b96bd9a6fb74a10215a54f141d06d"><div class="ttname"><a href="signal__synthesis_8h.html#aff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a></div><div class="ttdeci">void DeleteSignal(struct signal_t *signals, int16_t signal_index)</div><div class="ttdoc">deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal t...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00807">signal_synthesis.c:807</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga100668ad3cefb7abc0f65f866ea508ba"><div class="ttname"><a href="group__SSynth.html#ga100668ad3cefb7abc0f65f866ea508ba">IDtoIndex</a></div><div class="ttdeci">int16_t IDtoIndex(int16_t id)</div><div class="ttdoc">converts an signal ID into its Index</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00830">signal_synthesis.c:830</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga15e519685bb7a5374c0ea7e3b9980952"><div class="ttname"><a href="group__SSynth.html#ga15e519685bb7a5374c0ea7e3b9980952">NewSignal</a></div><div class="ttdeci">void NewSignal(struct signal_t *signals, uint8_t kind, uint8_t key, uint8_t octave, uint8_t ID)</div><div class="ttdoc">generates a signal which is processed in the Signal_Synthesis()</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00764">signal_synthesis.c:764</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_gaff4b96bd9a6fb74a10215a54f141d06d"><div class="ttname"><a href="group__SSynth.html#gaff4b96bd9a6fb74a10215a54f141d06d">DeleteSignal</a></div><div class="ttdeci">void DeleteSignal(struct signal_t *signals, int16_t signal_index)</div><div class="ttdoc">deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal t...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00807">signal_synthesis.c:807</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

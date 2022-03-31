@@ -1,8 +1,21 @@
-/*
- * SPI_Connection.h
- *
- *  Created on: Jul 24, 2021
- *      Author: paul
+/**
+ * @file SPI_Connection.h
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date Jul 24, 2021
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
+
+
+/**
+ * @defgroup SPI SPI-Connection  
+ * @ingroup SensorSTM
+ * @brief SPI-Connection on the STMF4 side
+ * @{
  */
 
 #ifndef INC_SPI_CONNECTION_H_
@@ -23,7 +36,10 @@ typedef struct sensor_data{
 
 #define BUFFERSIZE sizeof(sensor_data_t)
 
-
+/**
+ * @} 
+ * 
+ */
 
 #endif /* INC_SPI_CONNECTION_H_ */
 

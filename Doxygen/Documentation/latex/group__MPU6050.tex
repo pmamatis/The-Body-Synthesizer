@@ -1,0 +1,2672 @@
+\hypertarget{group__MPU6050}{}\doxysection{MPU6050 Software driver}
+\label{group__MPU6050}\index{MPU6050 Software driver@{MPU6050 Software driver}}
+
+
+Software driver for the MPU6050 Sensor.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}}
+\begin{DoxyCompactList}\small\item\em struct with all neccesarry variables stored \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gad4d6255d8f7e5dc770e773b787977508}{MPU6050\+\_\+\+ADDR}}~0x\+D0
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga8264ea96144f5fa98bd1a22ceb590315}{MPU6050\+\_\+\+SMPLRT\+\_\+\+DIV\+\_\+\+REG}}~0x19
+\begin{DoxyCompactList}\small\item\em Define I2C Register Addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga6659bbde3b9ef9d139758a467fcb3ec1}{MPU6050\+\_\+\+GYRO\+\_\+\+CONFIG\+\_\+\+REG}}~0x1B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7b1907a4242a05f4688ee4c769ef5e00}{MPU6050\+\_\+\+ACCL\+\_\+\+CONFIG\+\_\+\+REG}}~0x1C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac878ea91759d1eb591386dd2d33a86fd}{MPU6050\+\_\+\+ACCL\+\_\+\+XOUT\+\_\+\+H\+\_\+\+REG}}~0x3B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac0a6cab209fbf707e4b0c5426e89e458}{MPU6050\+\_\+\+TEMP\+\_\+\+OUT\+\_\+\+H\+\_\+\+REG}}~0x41
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaeae6c0fbc47aa2c613342fce2cc45372}{MPU6050\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+\+H\+\_\+\+REG}}~0x43
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac8e6174d5a02ed531329494959e57304}{MPU6050\+\_\+\+PWR\+\_\+\+MGMT\+\_\+1\+\_\+\+REG}}~0x6B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7292e8b450174614ce5bd411ec98ac56}{MPU6050\+\_\+\+WHO\+\_\+\+AM\+\_\+\+I\+\_\+\+REG}}~0x75
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaa505712a4ec1870948dd09b46aa8b3d6}{MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+REG}}~0x3A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga6217f217d0dfff172a1a7c759927bbdd}{MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+REG}}~0x6A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae65281028f8572c529b27349d79d249e}{MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+REG}}~0x23
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafb7bbf3592347c1cd226612e0eeabfb9}{MPU6050\+\_\+\+FIFO\+\_\+\+DATA\+\_\+\+REG}}~0x74
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga67ab543b2fbb1b6432acfeeeb9be6974}{MPU6050\+\_\+\+FIFO\+\_\+\+COUNT\+\_\+\+L\+\_\+\+REG}}~0x73
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga02346b7de5fb6043ecc60f994b1038bd}{MPU6050\+\_\+\+FIFO\+\_\+\+COUNT\+\_\+\+H\+\_\+\+REG}}~0x72
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7ec394e32416951b6882ebe6ae924965}{MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+X}}~0x0D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafaeebb6ab18231c171fed704574987e7}{MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+Y}}~0x0E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga87df5ed3b1736da250e8127810adf44d}{MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+Z}}~0x0F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1c9edfc09303193559373d5768d301e1}{MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+A}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga12d24140bc78ba2db5a2e11ab32abeda}{MPU6050\+\_\+\+RA\+\_\+\+SMPLRT\+\_\+\+DIV}}~0x19
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga51c78b27e0368d91c94209dbeca4df90}{MPU6050\+\_\+\+RA\+\_\+\+CONFIG}}~0x1A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga004871ad77398075d79e9111989007dc}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+CONFIG}}~0x1B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga48b7d7b24a70b247e373bc5965a5dcc7}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+CONFIG}}~0x1C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga391a4a95c33895c6926b9459cea5f3cd}{MPU6050\+\_\+\+RA\+\_\+\+FF\+\_\+\+THR}}~0x1D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaaf242278f1dd87556bdeeab589b01fd7}{MPU6050\+\_\+\+RA\+\_\+\+FF\+\_\+\+DUR}}~0x1E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga444c7d6d710bcc30f1ad98f703f9921e}{MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+THR}}~0x1F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga25ce9fe346237d22b62881257458fdf4}{MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DUR}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga866eb43544165dc8c777d82bab9860e6}{MPU6050\+\_\+\+RA\+\_\+\+ZRMOT\+\_\+\+THR}}~0x21
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga57ad8b9e0c77ec27d41b60405ab57e1c}{MPU6050\+\_\+\+RA\+\_\+\+ZRMOT\+\_\+\+DUR}}~0x22
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1166fe50f4792f3266e15dc3273e375d}{MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+EN}}~0x23
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae4804708dd5f21dbca1ff1815b883504}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+CTRL}}~0x24
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga423463fce914683217f05e3ca686364c}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+ADDR}}~0x25
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae9fc1bc0eb0c568846328de91127ca80}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+REG}}~0x26
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga70ce4d71982a1e3fb2be9b71f40da786}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+CTRL}}~0x27
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae33062d5e05f28a5aa6831b7f1d88104}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+ADDR}}~0x28
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga49790a56674e4dfe184ec067295e26ec}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+REG}}~0x29
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gad2ea53ab83e95289ef6d78cccb73b307}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+CTRL}}~0x2A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab9bd1737877e24c981423c9b63f64d3a}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+ADDR}}~0x2B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga9ed25cb09399d6700cd0255b17ad7a47}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+REG}}~0x2C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga85020a23b62a5ea0c88137038f65767e}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+CTRL}}~0x2D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga2a495eb60b391ed7a157e494dd7d3e69}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+ADDR}}~0x2E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaab183c416882e55c7fdda4b24160dd1a}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+REG}}~0x2F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga0f9ead95fc8c60f9218162a69c83163a}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+CTRL}}~0x30
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga3a3a4854870a5f354e50fbc4eae196c0}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+ADDR}}~0x31
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga5b2f24136f2f68b5d42652d16208d9d0}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+REG}}~0x32
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga433e4202ff24b4d90e695d5154a6f9eb}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+DO}}~0x33
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga2b6fbfceb145ba1c8b19f51475fd7a5d}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+CTRL}}~0x34
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga80d3591c47d0482c0adcf176e1994a65}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+DI}}~0x35
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga5ef54580f436c198fb84d01288fbef49}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+STATUS}}~0x36
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga82344e1daef2bac2e0d938319528be6c}{MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+PIN\+\_\+\+CFG}}~0x37
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1de9d9557aa7420c746721999df4a377}{MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+ENABLE}}~0x38
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga917ac5ff97cc7e9ecee733d20a95825e}{MPU6050\+\_\+\+RA\+\_\+\+DMP\+\_\+\+INT\+\_\+\+STATUS}}~0x39
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga8337320c5ccc92def830e968d2e19d75}{MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+STATUS}}~0x3A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga9f08bfd13152053c226e5efb57e1c209}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+XOUT\+\_\+H}}~0x3B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7a077cc96fed2f0502592983d9d9115e}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+XOUT\+\_\+L}}~0x3C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaccc9b8669e7b799c8630e8a84cd24692}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+YOUT\+\_\+H}}~0x3D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga44bc0473921fbf0a6cdfc39ed4b26b15}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+YOUT\+\_\+L}}~0x3E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga2244ed0bf9c94ab5cde2bba541bfa22f}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+ZOUT\+\_\+H}}~0x3F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gad6a2299d2c4e78faa704c70a80a6c7c8}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+ZOUT\+\_\+L}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaa4318f7e67df92b06d81356b38048a6d}{MPU6050\+\_\+\+RA\+\_\+\+TEMP\+\_\+\+OUT\+\_\+H}}~0x41
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga08528cb9d7fd1c3c128f0762cbd0ffdd}{MPU6050\+\_\+\+RA\+\_\+\+TEMP\+\_\+\+OUT\+\_\+L}}~0x42
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gabf19d88e8e460df1c49750393ee4b72c}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+H}}~0x43
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga84accb945e8d1388d38fe76482cdd144}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+L}}~0x44
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga97729ffd27bd81b9af5b42a598f91736}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+YOUT\+\_\+H}}~0x45
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaa6ac5e36155a22dcd345148720272a75}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+YOUT\+\_\+L}}~0x46
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac134c8894ef3aa4715e796f7a3a56383}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+ZOUT\+\_\+H}}~0x47
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga4af03513e690fb8cdff5d2fef4669704}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+ZOUT\+\_\+L}}~0x48
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafbb19101a107f71744f2146e0f09d926}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+00}}~0x49
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga8588292fe63c60797fa35d2fa45304ff}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+01}}~0x4A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab64e78a35138012905b39bce57bc11ad}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+02}}~0x4B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga04d33c89ef205d71c6a58375583a3e9a}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+03}}~0x4C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac2ab46a498dad6b08c1eba13141334e9}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+04}}~0x4D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga59ae9c4cc5e49ca9c2e84964bd4650f8}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+05}}~0x4E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga8826886b08af627d90cf6177d47a92c5}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+06}}~0x4F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaf6833167ba0616ecbae4d097c07a876d}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+07}}~0x50
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga13873cda21ce269f6fe226eab1d4b30b}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+08}}~0x51
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac573e571fcad258f86dde91664e5f342}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+09}}~0x52
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gacd1f7243b983e30e089287848f8cc55e}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+10}}~0x53
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga0e0182cc41903f0a093744ecd235387a}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+11}}~0x54
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga298602aead44e886734ad2a23409346b}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+12}}~0x55
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga760d027a571620eb804b107179a1f482}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+13}}~0x56
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga29f438db1edcda54a42257599122d864}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+14}}~0x57
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab5a88f4d418f8fe9872c533ab007c431}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+15}}~0x58
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac5d3afd3508121f30613edceb4e48297}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+16}}~0x59
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaa1a6f7f2b079583c5478f7126f7ca3d6}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+17}}~0x5A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaefda60825aa631ed7837cf33a134e3f7}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+18}}~0x5B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab89c01f38370289d7e9f323871014370}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+19}}~0x5C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga572fd6cdf79333a5fd6e88021cde475f}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+20}}~0x5D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab62ffbd26174f1ec37088a3217fdb14e}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+21}}~0x5E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac52873fef1bb2a0c1e00b7ba77a5c10e}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+22}}~0x5F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7256bd65a372fcc4f420e1796c1b579a}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+23}}~0x60
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga5b725ca4941b1a73f8e4df3d7164d514}{MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DETECT\+\_\+\+STATUS}}~0x61
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga53ca9562881303b665299907726fb753}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+DO}}~0x63
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga62e9f2471f54176625236775d82b66ca}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+DO}}~0x64
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1f192825e93dd8bdfbe8cefdb30786ac}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+DO}}~0x65
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1fbafdd8c59383fa4eeae50b103adda7}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+DO}}~0x66
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga95960b2c82d00341b6174272e2fb3e07}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+DELAY\+\_\+\+CTRL}}~0x67
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaccbe0fc25de063494eac9fda35ed1ca5}{MPU6050\+\_\+\+RA\+\_\+\+SIGNAL\+\_\+\+PATH\+\_\+\+RESET}}~0x68
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae83e3eb48f0803227db54291fdf0ea80}{MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DETECT\+\_\+\+CTRL}}~0x69
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gacd4c638a6f677a42ecb9a3d7612d087a}{MPU6050\+\_\+\+RA\+\_\+\+USER\+\_\+\+CTRL}}~0x6A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac6c83146165a2307ac7155d4fa566df4}{MPU6050\+\_\+\+RA\+\_\+\+PWR\+\_\+\+MGMT\+\_\+1}}~0x6B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaace6ce286da4d5f8c8f5ba6f80688e13}{MPU6050\+\_\+\+RA\+\_\+\+PWR\+\_\+\+MGMT\+\_\+2}}~0x6C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaaff95ccbc06a8f3336850a35cd8df488}{MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+COUNTH}}~0x72
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga9bc0458ce42b66e81a8831dd2c07dc0a}{MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+COUNTL}}~0x73
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga4fd3a14925375c3112b830d6d1dd1fe9}{MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+R\+\_\+W}}~0x74
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga83d60aa4c37e954266ecd17ae02ec174}{MPU6050\+\_\+\+RA\+\_\+\+WHO\+\_\+\+AM\+\_\+I}}~0x75
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1de390da371b9193740d43bf523b9791}{MPU6050\+\_\+\+I\+\_\+\+AM}}~0x68
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga0c37fc112539bcdbe9faa322935b02d7}{MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+250}}~((float)1 / ((float)131))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga6ff225c6496521a87d4be6b4bdb9793a}{MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+500}}~((float)1 / ((float)65.\+5))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga2d961248a2df52bea565360c831a35df}{MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+1000}}~((float)1 / ((float)32.\+8))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga0ab0b77e3a746aba5fe0c2184fd3e061}{MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+2000}}~((float)1 / ((float)16.\+4))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1c92b8af476c3704f73583d654dd3b5e}{MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+2}}~((float)1 / ((float)16384.\+0))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaf0f8787e032a83adcd5c0e24741d51de}{MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+4}}~((float)1 / ((float)8192.\+0))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga953204c40b96072126d8e292b566d0d3}{MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+8}}~((float)1 / ((float)4096.\+0))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gacf9e15ae39e955dedacced252769d859}{MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+16}}~((float)1 / ((float)2048.\+0))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga447dbe0ecc028604ca317a727d03bc50}{MPU6050\+\_\+\+Sample\+Rate\+\_\+8\+KHz}}~0x00
+\begin{DoxyCompactList}\small\item\em Define MPU Output variables. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga42ea4e1341c54b7b67fbdcb9a273e635}{MPU6050\+\_\+\+Sample\+Rate\+\_\+4\+KHz}}~0x01
+\begin{DoxyCompactList}\small\item\em Sample rate set to 4 k\+Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga37b7afe75a69aae8e56376b98a1e2200}{MPU6050\+\_\+\+Sample\+Rate\+\_\+2\+KHz}}~0x03
+\begin{DoxyCompactList}\small\item\em Sample rate set to 2 k\+Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafbf8ed3b017c604791d12c6a385cf8b2}{MPU6050\+\_\+\+Sample\+Rate\+\_\+1\+KHz}}~0x07
+\begin{DoxyCompactList}\small\item\em Sample rate set to 1 k\+Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafa8363fd9bfca445fb347c706c3c6ffe}{MPU6050\+\_\+\+Sample\+Rate\+\_\+500\+Hz}}~0x0F
+\begin{DoxyCompactList}\small\item\em Sample rate set to 500 Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga17e1d882dd01ce93828e61e4a0982c21}{MPU6050\+\_\+\+Sample\+Rate\+\_\+250\+Hz}}~0x1F
+\begin{DoxyCompactList}\small\item\em Sample rate set to 250 Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga72f711ed1e87a6e6e92ad3b5ae84490c}{MPU6050\+\_\+\+Sample\+Rate\+\_\+125\+Hz}}~0x3F
+\begin{DoxyCompactList}\small\item\em Sample rate set to 125 Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga9d115a76f662c1b6e003221872790eef}{MPU6050\+\_\+\+Sample\+Rate\+\_\+100\+Hz}}~0x4F
+\begin{DoxyCompactList}\small\item\em Sample rate set to 100 Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_ga76e87fbc014d4fc942e9b178df3e3e80}{MPU6050\+\_\+\+GYRO\+\_\+\+RES\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\+\_\+\+GYRO\+\_\+\+RES}}
+\begin{DoxyCompactList}\small\item\em Set Gyro\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_gace83f566436760ec0b731f9178929bd3}{MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_ga6187941789d211b1e6c0a28a366cc9a8}{MPU6050\+\_\+\+USR\+\_\+\+CRTL}}
+\begin{DoxyCompactList}\small\item\em User Controll enum. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_gadc48e7a9bf258853096098d9ac57c2fc}{MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_ga7e2e849a6030a6c9f4f24e98f0e217ae}{MPU6050\+\_\+\+INT\+\_\+\+EN}}
+\begin{DoxyCompactList}\small\item\em Interrupt enable enum. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_ga71492368fefe6bd98c5b8c16749b7b41}{MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gac963b232728d0f265ce7a1e7c20e4962}{MPU6050\+\_\+\+INT\+\_\+\+STATUS}}
+\begin{DoxyCompactList}\small\item\em Interrupt status enum. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_ga6ac6979a76e1698e8841587195d7e1f6}{MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gae31f9c4723ec996f661a33df70e643cd}{MPU6050\+\_\+\+FIFO\+\_\+\+EN}}
+\begin{DoxyCompactList}\small\item\em FIFO\+\_\+\+ENABLE enum. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}} \mbox{\hyperlink{group__MPU6050_gabbffa66db1c27e631e55fe54973212b2}{tilt\+\_\+direction\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Tilt direction enumeration. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}} \mbox{\hyperlink{group__MPU6050_ga6587e82fb974d296e235b3a9743617b7}{Movement\+\_\+direction\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \{ \newline
+{\bfseries MPU6050\+\_\+\+Status\+\_\+\+OK} = 0x00
+, {\bfseries MPU6050\+\_\+\+Read\+\_\+\+OK}
+, {\bfseries MPU6050\+\_\+\+Status\+\_\+\+Error}
+, {\bfseries MPU6050\+\_\+\+Read\+\_\+\+Error}
+, \newline
+{\bfseries MPU6050\+\_\+\+Status\+\_\+\+Notconnected}
+, {\bfseries MPU6050\+\_\+\+Status\+\_\+\+Invalid}
+ \}
+\begin{DoxyCompactList}\small\item\em MPU6050 return values. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\+\_\+\+ACCL\+\_\+\+RES}} \{ {\bfseries MPU6050\+\_\+\+ACCL\+\_\+2G} = 0x00
+, \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529da6390f128316eec4b36b7ea3b6d59f581}{MPU6050\+\_\+\+ACCL\+\_\+4G}}
+, \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}{MPU6050\+\_\+\+ACCL\+\_\+8G}}
+, \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529daa44ddb1fd0aa9d8783c29f2fbf45fda8}{MPU6050\+\_\+\+ACCL\+\_\+16G}}
+ \}
+\begin{DoxyCompactList}\small\item\em Set Accl\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga76e87fbc014d4fc942e9b178df3e3e80}{MPU6050\+\_\+\+GYRO\+\_\+\+RES\+\_\+\+ENUM}} \{ {\bfseries MPU6050\+\_\+\+GYRO\+\_\+250deg} = 0x00
+, {\bfseries MPU6050\+\_\+\+GYRO\+\_\+500deg}
+, {\bfseries MPU6050\+\_\+\+GYRO\+\_\+1000deg}
+, {\bfseries MPU6050\+\_\+\+GYRO\+\_\+2000deg}
+ \}
+\begin{DoxyCompactList}\small\item\em Set Gyro\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_gace83f566436760ec0b731f9178929bd3}{MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+ENUM}} \{ \newline
+{\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+SIG\+\_\+\+COND\+\_\+\+RESET} = 0x01
+, {\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+RESET} = 0x02
+, {\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+FIFO\+\_\+\+RESET} = 0x04
+, {\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+I2\+C\+\_\+\+TO\+\_\+\+SPI} = 0x10
+, \newline
+{\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+I2\+C\+\_\+\+MST\+\_\+E} = 0x20
+, {\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+FIFO\+\_\+\+EN} = 0x40
+ \}
+\begin{DoxyCompactList}\small\item\em User Controll enum. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_gadc48e7a9bf258853096098d9ac57c2fc}{MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+ENUM}} \{ {\bfseries MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+DATA\+\_\+\+RDY} = 0x01
+, {\bfseries MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+I2\+C\+\_\+\+INT} = 0x08
+, {\bfseries MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+FIFO\+\_\+\+OVERFLOW} = 0x10
+ \}
+\begin{DoxyCompactList}\small\item\em Interrupt enable enum. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga71492368fefe6bd98c5b8c16749b7b41}{MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+ENUM}} \{ {\bfseries MPU6050\+\_\+\+INT\+\_\+\+DATA\+\_\+\+RDY} = 0x01
+, {\bfseries MPU6050\+\_\+\+INT\+\_\+\+I2\+C\+\_\+\+INT} = 0x08
+, {\bfseries MPU6050\+\_\+\+INT\+\_\+\+FIFO\+\_\+\+OVERFLOW} = 0x10
+ \}
+\begin{DoxyCompactList}\small\item\em Interrupt status enum. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga6ac6979a76e1698e8841587195d7e1f6}{MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ENUM}} \{ \newline
+{\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+SLV0} = 0x01
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+SLV1} = 0x02
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+SLV2} = 0x04
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ACCEL} = 0x08
+, \newline
+{\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ZG} = 0x10
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+YG} = 0x20
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+XG} = 0x40
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+TEMP} = 0x80
+ \}
+\begin{DoxyCompactList}\small\item\em FIFO\+\_\+\+ENABLE enum. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}} \{ \newline
+{\bfseries TILT\+\_\+\+NONE} = 0x00
+, {\bfseries TILT\+\_\+\+RIGHT} = 0x01
+, {\bfseries TILT\+\_\+\+LEFT}
+, {\bfseries TILT\+\_\+\+FRONT}
+, \newline
+{\bfseries TILT\+\_\+\+BACK}
+, {\bfseries TILT\+\_\+\+RIGHT\+\_\+S}
+, {\bfseries TILT\+\_\+\+LEFT\+\_\+S}
+, {\bfseries TILT\+\_\+\+FRONT\+\_\+S}
+, \newline
+{\bfseries TILT\+\_\+\+BACK\+\_\+S}
+, {\bfseries TILT\+\_\+\+NONE} = 0x00
+, {\bfseries TILT\+\_\+\+RIGHT} = 0x01
+, {\bfseries TILT\+\_\+\+LEFT}
+, \newline
+{\bfseries TILT\+\_\+\+FRONT}
+, {\bfseries TILT\+\_\+\+BACK}
+, {\bfseries TILT\+\_\+\+RIGHT\+\_\+S}
+, {\bfseries TILT\+\_\+\+LEFT\+\_\+S}
+, \newline
+{\bfseries TILT\+\_\+\+FRONT\+\_\+S}
+, {\bfseries TILT\+\_\+\+BACK\+\_\+S}
+ \}
+\begin{DoxyCompactList}\small\item\em Tilt direction enumeration. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}} \{ \newline
+{\bfseries MOVEMENT\+\_\+\+NONE} = 0x00
+, {\bfseries MOVEMENT\+\_\+\+HIGH} = 0x01
+, {\bfseries MOVEMENT\+\_\+\+DOWN}
+, {\bfseries MOVEMENT\+\_\+\+RIGHT}
+, \newline
+{\bfseries MOVEMENT\+\_\+\+LEFT}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga4b1f2e602c95802e5c65168964da2eb5}{MPU6050\+\_\+init}} (I2\+C\+\_\+\+Handle\+Type\+Def $\ast$\+\_\+\+\_\+hi2c, \mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}} $\ast$Data\+Struct, \mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\+\_\+\+ACCL\+\_\+\+RES}} accl\+\_\+resolution, \mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\+\_\+\+GYRO\+\_\+\+RES}} gyro\+\_\+resolution, uint8\+\_\+t samplerate)
+\begin{DoxyCompactList}\small\item\em Init for the MPU6050. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}{MPU6050\+\_\+\+Read\+\_\+\+Accl}} ()
+\begin{DoxyCompactList}\small\item\em reeads only accl data \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_gac16021f5f2c6dbf509ed77ddfc6d943d}{MPU6050\+\_\+\+Read\+\_\+\+Gyro}} ()
+\begin{DoxyCompactList}\small\item\em reads only gyro data \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\+\_\+\+Read\+\_\+\+Sensor}} ()
+\begin{DoxyCompactList}\small\item\em Reads raw data from accl and gyro ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_gac5545cc463f9c6b45b18aab7acc33d83}{MPU6050\+\_\+\+Calibrate}} ()
+\begin{DoxyCompactList}\small\item\em Calibrates the MPU6050 and sets the offsets, which needed to be subtracted from the Rawdata to get valid information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}{MPU6050\+\_\+\+Calculate\+\_\+\+Mean}} ()
+\begin{DoxyCompactList}\small\item\em Gets the mean value of the gyro and accl over n\+\_\+measurements. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__MPU6050_gab5affef68d617687b469a5086844df14}\label{group__MPU6050_gab5affef68d617687b469a5086844df14}} 
+\mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}} {\bfseries MPU6050\+\_\+\+Detect\+\_\+\+Movement} ()
+\item 
+void \mbox{\hyperlink{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}{get\+Gyro\+Roll}} ()
+\begin{DoxyCompactList}\small\item\em Get the Roll with gyro-\/data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}{get\+Accl\+Roll}} ()
+\begin{DoxyCompactList}\small\item\em Get the roll with accl-\/data ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__MPU6050_gaaee8c045744fa4931cc694f7ef43d034}\label{group__MPU6050_gaaee8c045744fa4931cc694f7ef43d034}} 
+uint8\+\_\+t {\bfseries MPU6050\+\_\+\+Get\+Int\+Reg} (void)
+\item 
+\mbox{\Hypertarget{group__MPU6050_ga8885c86e21d11e448d1545147b357a6c}\label{group__MPU6050_ga8885c86e21d11e448d1545147b357a6c}} 
+void {\bfseries MPU6050\+\_\+\+Get\+Fi\+Fo\+Data} (uint8\+\_\+t buffer\mbox{[}1024\mbox{]})
+\item 
+\mbox{\Hypertarget{group__MPU6050_gad201e8f55c11cb39a7077fe1d5b32f70}\label{group__MPU6050_gad201e8f55c11cb39a7077fe1d5b32f70}} 
+uint16\+\_\+t {\bfseries MPU6050\+\_\+\+Read\+\_\+\+FIFOcount} (void)
+\item 
+\mbox{\Hypertarget{group__MPU6050_gad5a52f1de09a9704cf563b2ec95bcd90}\label{group__MPU6050_gad5a52f1de09a9704cf563b2ec95bcd90}} 
+void {\bfseries MPU6050\+\_\+\+Display\+\_\+\+FIFO} ()
+\item 
+\mbox{\Hypertarget{group__MPU6050_ga6298e3fba6912f640f4fdc1fa11fd982}\label{group__MPU6050_ga6298e3fba6912f640f4fdc1fa11fd982}} 
+void {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+RESET} ()
+\item 
+\mbox{\Hypertarget{group__MPU6050_ga02824d958116be29bdab36becfb8c7f6}\label{group__MPU6050_ga02824d958116be29bdab36becfb8c7f6}} 
+uint8\+\_\+t {\bfseries MPU6050\+\_\+\+Get\+DMPInt\+Reg} (void)
+\item 
+void \mbox{\hyperlink{group__MPU6050_gad5723da18ebbc9a3730c81df47503f5a}{MPU6050\+\_\+\+Display\+\_\+\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Displays all Gyro and Accl Axis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__MPU6050_ga40f58a9deec53a2b3fb995011d525976}\label{group__MPU6050_ga40f58a9deec53a2b3fb995011d525976}} 
+float {\bfseries get\+Abs\+Max} (float a, float b, float c)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__MPU6050_ga54401f79994f9addfe2f908f8a565e22}{MPU6050\+\_\+detect\+Tilt}} ()
+\begin{DoxyCompactList}\small\item\em detects the tilt of the Sensor in relation to the calibrated starting stance \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}} $\ast$ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\+\_\+\+Data}}
+\item 
+I2\+C\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__MPU6050_gabda0fafb0baae0726041fade79289441}{MPU6050\+\_\+hi2c}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Software driver for the MPU6050 Sensor. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__MPU6050_ga7b1907a4242a05f4688ee4c769ef5e00}\label{group__MPU6050_ga7b1907a4242a05f4688ee4c769ef5e00}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_CONFIG\_REG@{MPU6050\_ACCL\_CONFIG\_REG}}
+\index{MPU6050\_ACCL\_CONFIG\_REG@{MPU6050\_ACCL\_CONFIG\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ACCL\_CONFIG\_REG}{MPU6050\_ACCL\_CONFIG\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+ACCL\+\_\+\+CONFIG\+\_\+\+REG~0x1C}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00034}{34}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gacf9e15ae39e955dedacced252769d859}\label{group__MPU6050_gacf9e15ae39e955dedacced252769d859}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_SENS\_16@{MPU6050\_ACCL\_SENS\_16}}
+\index{MPU6050\_ACCL\_SENS\_16@{MPU6050\_ACCL\_SENS\_16}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ACCL\_SENS\_16}{MPU6050\_ACCL\_SENS\_16}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+16~((float)1 / ((float)2048.\+0))}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00158}{158}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga1c92b8af476c3704f73583d654dd3b5e}\label{group__MPU6050_ga1c92b8af476c3704f73583d654dd3b5e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_SENS\_2@{MPU6050\_ACCL\_SENS\_2}}
+\index{MPU6050\_ACCL\_SENS\_2@{MPU6050\_ACCL\_SENS\_2}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ACCL\_SENS\_2}{MPU6050\_ACCL\_SENS\_2}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+2~((float)1 / ((float)16384.\+0))}
+
+Accel sensitivities in g/s 
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00155}{155}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaf0f8787e032a83adcd5c0e24741d51de}\label{group__MPU6050_gaf0f8787e032a83adcd5c0e24741d51de}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_SENS\_4@{MPU6050\_ACCL\_SENS\_4}}
+\index{MPU6050\_ACCL\_SENS\_4@{MPU6050\_ACCL\_SENS\_4}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ACCL\_SENS\_4}{MPU6050\_ACCL\_SENS\_4}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+4~((float)1 / ((float)8192.\+0))}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00156}{156}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga953204c40b96072126d8e292b566d0d3}\label{group__MPU6050_ga953204c40b96072126d8e292b566d0d3}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_SENS\_8@{MPU6050\_ACCL\_SENS\_8}}
+\index{MPU6050\_ACCL\_SENS\_8@{MPU6050\_ACCL\_SENS\_8}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ACCL\_SENS\_8}{MPU6050\_ACCL\_SENS\_8}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+8~((float)1 / ((float)4096.\+0))}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00157}{157}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac878ea91759d1eb591386dd2d33a86fd}\label{group__MPU6050_gac878ea91759d1eb591386dd2d33a86fd}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_XOUT\_H\_REG@{MPU6050\_ACCL\_XOUT\_H\_REG}}
+\index{MPU6050\_ACCL\_XOUT\_H\_REG@{MPU6050\_ACCL\_XOUT\_H\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ACCL\_XOUT\_H\_REG}{MPU6050\_ACCL\_XOUT\_H\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+ACCL\+\_\+\+XOUT\+\_\+\+H\+\_\+\+REG~0x3B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00035}{35}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gad4d6255d8f7e5dc770e773b787977508}\label{group__MPU6050_gad4d6255d8f7e5dc770e773b787977508}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ADDR@{MPU6050\_ADDR}}
+\index{MPU6050\_ADDR@{MPU6050\_ADDR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ADDR}{MPU6050\_ADDR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+ADDR~0x\+D0}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00028}{28}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga02346b7de5fb6043ecc60f994b1038bd}\label{group__MPU6050_ga02346b7de5fb6043ecc60f994b1038bd}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_FIFO\_COUNT\_H\_REG@{MPU6050\_FIFO\_COUNT\_H\_REG}}
+\index{MPU6050\_FIFO\_COUNT\_H\_REG@{MPU6050\_FIFO\_COUNT\_H\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_FIFO\_COUNT\_H\_REG}{MPU6050\_FIFO\_COUNT\_H\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+FIFO\+\_\+\+COUNT\+\_\+\+H\+\_\+\+REG~0x72}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00045}{45}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga67ab543b2fbb1b6432acfeeeb9be6974}\label{group__MPU6050_ga67ab543b2fbb1b6432acfeeeb9be6974}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_FIFO\_COUNT\_L\_REG@{MPU6050\_FIFO\_COUNT\_L\_REG}}
+\index{MPU6050\_FIFO\_COUNT\_L\_REG@{MPU6050\_FIFO\_COUNT\_L\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_FIFO\_COUNT\_L\_REG}{MPU6050\_FIFO\_COUNT\_L\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+FIFO\+\_\+\+COUNT\+\_\+\+L\+\_\+\+REG~0x73}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00044}{44}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gafb7bbf3592347c1cd226612e0eeabfb9}\label{group__MPU6050_gafb7bbf3592347c1cd226612e0eeabfb9}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_FIFO\_DATA\_REG@{MPU6050\_FIFO\_DATA\_REG}}
+\index{MPU6050\_FIFO\_DATA\_REG@{MPU6050\_FIFO\_DATA\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_FIFO\_DATA\_REG}{MPU6050\_FIFO\_DATA\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+FIFO\+\_\+\+DATA\+\_\+\+REG~0x74}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00043}{43}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gae65281028f8572c529b27349d79d249e}\label{group__MPU6050_gae65281028f8572c529b27349d79d249e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_FIFO\_EN\_REG@{MPU6050\_FIFO\_EN\_REG}}
+\index{MPU6050\_FIFO\_EN\_REG@{MPU6050\_FIFO\_EN\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_FIFO\_EN\_REG}{MPU6050\_FIFO\_EN\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+REG~0x23}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00042}{42}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga6659bbde3b9ef9d139758a467fcb3ec1}\label{group__MPU6050_ga6659bbde3b9ef9d139758a467fcb3ec1}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_GYRO\_CONFIG\_REG@{MPU6050\_GYRO\_CONFIG\_REG}}
+\index{MPU6050\_GYRO\_CONFIG\_REG@{MPU6050\_GYRO\_CONFIG\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_GYRO\_CONFIG\_REG}{MPU6050\_GYRO\_CONFIG\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+GYRO\+\_\+\+CONFIG\+\_\+\+REG~0x1B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00033}{33}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga2d961248a2df52bea565360c831a35df}\label{group__MPU6050_ga2d961248a2df52bea565360c831a35df}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_GYRO\_SENS\_1000@{MPU6050\_GYRO\_SENS\_1000}}
+\index{MPU6050\_GYRO\_SENS\_1000@{MPU6050\_GYRO\_SENS\_1000}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_GYRO\_SENS\_1000}{MPU6050\_GYRO\_SENS\_1000}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+1000~((float)1 / ((float)32.\+8))}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00152}{152}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga0ab0b77e3a746aba5fe0c2184fd3e061}\label{group__MPU6050_ga0ab0b77e3a746aba5fe0c2184fd3e061}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_GYRO\_SENS\_2000@{MPU6050\_GYRO\_SENS\_2000}}
+\index{MPU6050\_GYRO\_SENS\_2000@{MPU6050\_GYRO\_SENS\_2000}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_GYRO\_SENS\_2000}{MPU6050\_GYRO\_SENS\_2000}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+2000~((float)1 / ((float)16.\+4))}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00153}{153}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga0c37fc112539bcdbe9faa322935b02d7}\label{group__MPU6050_ga0c37fc112539bcdbe9faa322935b02d7}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_GYRO\_SENS\_250@{MPU6050\_GYRO\_SENS\_250}}
+\index{MPU6050\_GYRO\_SENS\_250@{MPU6050\_GYRO\_SENS\_250}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_GYRO\_SENS\_250}{MPU6050\_GYRO\_SENS\_250}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+250~((float)1 / ((float)131))}
+
+Gyro sensitivities in degrees/s 
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00150}{150}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga6ff225c6496521a87d4be6b4bdb9793a}\label{group__MPU6050_ga6ff225c6496521a87d4be6b4bdb9793a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_GYRO\_SENS\_500@{MPU6050\_GYRO\_SENS\_500}}
+\index{MPU6050\_GYRO\_SENS\_500@{MPU6050\_GYRO\_SENS\_500}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_GYRO\_SENS\_500}{MPU6050\_GYRO\_SENS\_500}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+500~((float)1 / ((float)65.\+5))}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00151}{151}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaeae6c0fbc47aa2c613342fce2cc45372}\label{group__MPU6050_gaeae6c0fbc47aa2c613342fce2cc45372}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_GYRO\_XOUT\_H\_REG@{MPU6050\_GYRO\_XOUT\_H\_REG}}
+\index{MPU6050\_GYRO\_XOUT\_H\_REG@{MPU6050\_GYRO\_XOUT\_H\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_GYRO\_XOUT\_H\_REG}{MPU6050\_GYRO\_XOUT\_H\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+\+H\+\_\+\+REG~0x43}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00037}{37}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga1de390da371b9193740d43bf523b9791}\label{group__MPU6050_ga1de390da371b9193740d43bf523b9791}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_I\_AM@{MPU6050\_I\_AM}}
+\index{MPU6050\_I\_AM@{MPU6050\_I\_AM}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_I\_AM}{MPU6050\_I\_AM}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+I\+\_\+\+AM~0x68}
+
+Device ID Check (WHO\+\_\+\+AM\+\_\+\+I\+\_\+\+REG default value) 
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00148}{148}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaa505712a4ec1870948dd09b46aa8b3d6}\label{group__MPU6050_gaa505712a4ec1870948dd09b46aa8b3d6}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_INT\_STATUS\_REG@{MPU6050\_INT\_STATUS\_REG}}
+\index{MPU6050\_INT\_STATUS\_REG@{MPU6050\_INT\_STATUS\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_INT\_STATUS\_REG}{MPU6050\_INT\_STATUS\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+REG~0x3A}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00040}{40}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac8e6174d5a02ed531329494959e57304}\label{group__MPU6050_gac8e6174d5a02ed531329494959e57304}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_PWR\_MGMT\_1\_REG@{MPU6050\_PWR\_MGMT\_1\_REG}}
+\index{MPU6050\_PWR\_MGMT\_1\_REG@{MPU6050\_PWR\_MGMT\_1\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_PWR\_MGMT\_1\_REG}{MPU6050\_PWR\_MGMT\_1\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+PWR\+\_\+\+MGMT\+\_\+1\+\_\+\+REG~0x6B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00038}{38}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga48b7d7b24a70b247e373bc5965a5dcc7}\label{group__MPU6050_ga48b7d7b24a70b247e373bc5965a5dcc7}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ACCEL\_CONFIG@{MPU6050\_RA\_ACCEL\_CONFIG}}
+\index{MPU6050\_RA\_ACCEL\_CONFIG@{MPU6050\_RA\_ACCEL\_CONFIG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ACCEL\_CONFIG}{MPU6050\_RA\_ACCEL\_CONFIG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+CONFIG~0x1C}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00054}{54}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga9f08bfd13152053c226e5efb57e1c209}\label{group__MPU6050_ga9f08bfd13152053c226e5efb57e1c209}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ACCEL\_XOUT\_H@{MPU6050\_RA\_ACCEL\_XOUT\_H}}
+\index{MPU6050\_RA\_ACCEL\_XOUT\_H@{MPU6050\_RA\_ACCEL\_XOUT\_H}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ACCEL\_XOUT\_H}{MPU6050\_RA\_ACCEL\_XOUT\_H}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+XOUT\+\_\+H~0x3B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00089}{89}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga7a077cc96fed2f0502592983d9d9115e}\label{group__MPU6050_ga7a077cc96fed2f0502592983d9d9115e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ACCEL\_XOUT\_L@{MPU6050\_RA\_ACCEL\_XOUT\_L}}
+\index{MPU6050\_RA\_ACCEL\_XOUT\_L@{MPU6050\_RA\_ACCEL\_XOUT\_L}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ACCEL\_XOUT\_L}{MPU6050\_RA\_ACCEL\_XOUT\_L}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+XOUT\+\_\+L~0x3C}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00090}{90}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaccc9b8669e7b799c8630e8a84cd24692}\label{group__MPU6050_gaccc9b8669e7b799c8630e8a84cd24692}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ACCEL\_YOUT\_H@{MPU6050\_RA\_ACCEL\_YOUT\_H}}
+\index{MPU6050\_RA\_ACCEL\_YOUT\_H@{MPU6050\_RA\_ACCEL\_YOUT\_H}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ACCEL\_YOUT\_H}{MPU6050\_RA\_ACCEL\_YOUT\_H}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+YOUT\+\_\+H~0x3D}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00091}{91}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga44bc0473921fbf0a6cdfc39ed4b26b15}\label{group__MPU6050_ga44bc0473921fbf0a6cdfc39ed4b26b15}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ACCEL\_YOUT\_L@{MPU6050\_RA\_ACCEL\_YOUT\_L}}
+\index{MPU6050\_RA\_ACCEL\_YOUT\_L@{MPU6050\_RA\_ACCEL\_YOUT\_L}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ACCEL\_YOUT\_L}{MPU6050\_RA\_ACCEL\_YOUT\_L}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+YOUT\+\_\+L~0x3E}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00092}{92}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga2244ed0bf9c94ab5cde2bba541bfa22f}\label{group__MPU6050_ga2244ed0bf9c94ab5cde2bba541bfa22f}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ACCEL\_ZOUT\_H@{MPU6050\_RA\_ACCEL\_ZOUT\_H}}
+\index{MPU6050\_RA\_ACCEL\_ZOUT\_H@{MPU6050\_RA\_ACCEL\_ZOUT\_H}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ACCEL\_ZOUT\_H}{MPU6050\_RA\_ACCEL\_ZOUT\_H}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+ZOUT\+\_\+H~0x3F}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00093}{93}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gad6a2299d2c4e78faa704c70a80a6c7c8}\label{group__MPU6050_gad6a2299d2c4e78faa704c70a80a6c7c8}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ACCEL\_ZOUT\_L@{MPU6050\_RA\_ACCEL\_ZOUT\_L}}
+\index{MPU6050\_RA\_ACCEL\_ZOUT\_L@{MPU6050\_RA\_ACCEL\_ZOUT\_L}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ACCEL\_ZOUT\_L}{MPU6050\_RA\_ACCEL\_ZOUT\_L}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+ZOUT\+\_\+L~0x40}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00094}{94}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga51c78b27e0368d91c94209dbeca4df90}\label{group__MPU6050_ga51c78b27e0368d91c94209dbeca4df90}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_CONFIG@{MPU6050\_RA\_CONFIG}}
+\index{MPU6050\_RA\_CONFIG@{MPU6050\_RA\_CONFIG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_CONFIG}{MPU6050\_RA\_CONFIG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+CONFIG~0x1A}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00052}{52}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga917ac5ff97cc7e9ecee733d20a95825e}\label{group__MPU6050_ga917ac5ff97cc7e9ecee733d20a95825e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_DMP\_INT\_STATUS@{MPU6050\_RA\_DMP\_INT\_STATUS}}
+\index{MPU6050\_RA\_DMP\_INT\_STATUS@{MPU6050\_RA\_DMP\_INT\_STATUS}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_DMP\_INT\_STATUS}{MPU6050\_RA\_DMP\_INT\_STATUS}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+DMP\+\_\+\+INT\+\_\+\+STATUS~0x39}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00086}{86}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gafbb19101a107f71744f2146e0f09d926}\label{group__MPU6050_gafbb19101a107f71744f2146e0f09d926}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_00@{MPU6050\_RA\_EXT\_SENS\_DATA\_00}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_00@{MPU6050\_RA\_EXT\_SENS\_DATA\_00}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_00}{MPU6050\_RA\_EXT\_SENS\_DATA\_00}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+00~0x49}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00103}{103}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga8588292fe63c60797fa35d2fa45304ff}\label{group__MPU6050_ga8588292fe63c60797fa35d2fa45304ff}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_01@{MPU6050\_RA\_EXT\_SENS\_DATA\_01}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_01@{MPU6050\_RA\_EXT\_SENS\_DATA\_01}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_01}{MPU6050\_RA\_EXT\_SENS\_DATA\_01}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+01~0x4A}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00104}{104}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gab64e78a35138012905b39bce57bc11ad}\label{group__MPU6050_gab64e78a35138012905b39bce57bc11ad}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_02@{MPU6050\_RA\_EXT\_SENS\_DATA\_02}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_02@{MPU6050\_RA\_EXT\_SENS\_DATA\_02}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_02}{MPU6050\_RA\_EXT\_SENS\_DATA\_02}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+02~0x4B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00105}{105}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga04d33c89ef205d71c6a58375583a3e9a}\label{group__MPU6050_ga04d33c89ef205d71c6a58375583a3e9a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_03@{MPU6050\_RA\_EXT\_SENS\_DATA\_03}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_03@{MPU6050\_RA\_EXT\_SENS\_DATA\_03}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_03}{MPU6050\_RA\_EXT\_SENS\_DATA\_03}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+03~0x4C}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00106}{106}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac2ab46a498dad6b08c1eba13141334e9}\label{group__MPU6050_gac2ab46a498dad6b08c1eba13141334e9}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_04@{MPU6050\_RA\_EXT\_SENS\_DATA\_04}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_04@{MPU6050\_RA\_EXT\_SENS\_DATA\_04}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_04}{MPU6050\_RA\_EXT\_SENS\_DATA\_04}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+04~0x4D}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00107}{107}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga59ae9c4cc5e49ca9c2e84964bd4650f8}\label{group__MPU6050_ga59ae9c4cc5e49ca9c2e84964bd4650f8}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_05@{MPU6050\_RA\_EXT\_SENS\_DATA\_05}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_05@{MPU6050\_RA\_EXT\_SENS\_DATA\_05}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_05}{MPU6050\_RA\_EXT\_SENS\_DATA\_05}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+05~0x4E}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00108}{108}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga8826886b08af627d90cf6177d47a92c5}\label{group__MPU6050_ga8826886b08af627d90cf6177d47a92c5}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_06@{MPU6050\_RA\_EXT\_SENS\_DATA\_06}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_06@{MPU6050\_RA\_EXT\_SENS\_DATA\_06}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_06}{MPU6050\_RA\_EXT\_SENS\_DATA\_06}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+06~0x4F}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00109}{109}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaf6833167ba0616ecbae4d097c07a876d}\label{group__MPU6050_gaf6833167ba0616ecbae4d097c07a876d}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_07@{MPU6050\_RA\_EXT\_SENS\_DATA\_07}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_07@{MPU6050\_RA\_EXT\_SENS\_DATA\_07}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_07}{MPU6050\_RA\_EXT\_SENS\_DATA\_07}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+07~0x50}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00110}{110}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga13873cda21ce269f6fe226eab1d4b30b}\label{group__MPU6050_ga13873cda21ce269f6fe226eab1d4b30b}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_08@{MPU6050\_RA\_EXT\_SENS\_DATA\_08}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_08@{MPU6050\_RA\_EXT\_SENS\_DATA\_08}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_08}{MPU6050\_RA\_EXT\_SENS\_DATA\_08}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+08~0x51}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00111}{111}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac573e571fcad258f86dde91664e5f342}\label{group__MPU6050_gac573e571fcad258f86dde91664e5f342}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_09@{MPU6050\_RA\_EXT\_SENS\_DATA\_09}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_09@{MPU6050\_RA\_EXT\_SENS\_DATA\_09}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_09}{MPU6050\_RA\_EXT\_SENS\_DATA\_09}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+09~0x52}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00112}{112}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gacd1f7243b983e30e089287848f8cc55e}\label{group__MPU6050_gacd1f7243b983e30e089287848f8cc55e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_10@{MPU6050\_RA\_EXT\_SENS\_DATA\_10}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_10@{MPU6050\_RA\_EXT\_SENS\_DATA\_10}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_10}{MPU6050\_RA\_EXT\_SENS\_DATA\_10}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+10~0x53}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00113}{113}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga0e0182cc41903f0a093744ecd235387a}\label{group__MPU6050_ga0e0182cc41903f0a093744ecd235387a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_11@{MPU6050\_RA\_EXT\_SENS\_DATA\_11}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_11@{MPU6050\_RA\_EXT\_SENS\_DATA\_11}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_11}{MPU6050\_RA\_EXT\_SENS\_DATA\_11}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+11~0x54}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00114}{114}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga298602aead44e886734ad2a23409346b}\label{group__MPU6050_ga298602aead44e886734ad2a23409346b}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_12@{MPU6050\_RA\_EXT\_SENS\_DATA\_12}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_12@{MPU6050\_RA\_EXT\_SENS\_DATA\_12}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_12}{MPU6050\_RA\_EXT\_SENS\_DATA\_12}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+12~0x55}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00115}{115}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga760d027a571620eb804b107179a1f482}\label{group__MPU6050_ga760d027a571620eb804b107179a1f482}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_13@{MPU6050\_RA\_EXT\_SENS\_DATA\_13}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_13@{MPU6050\_RA\_EXT\_SENS\_DATA\_13}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_13}{MPU6050\_RA\_EXT\_SENS\_DATA\_13}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+13~0x56}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00116}{116}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga29f438db1edcda54a42257599122d864}\label{group__MPU6050_ga29f438db1edcda54a42257599122d864}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_14@{MPU6050\_RA\_EXT\_SENS\_DATA\_14}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_14@{MPU6050\_RA\_EXT\_SENS\_DATA\_14}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_14}{MPU6050\_RA\_EXT\_SENS\_DATA\_14}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+14~0x57}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00117}{117}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gab5a88f4d418f8fe9872c533ab007c431}\label{group__MPU6050_gab5a88f4d418f8fe9872c533ab007c431}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_15@{MPU6050\_RA\_EXT\_SENS\_DATA\_15}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_15@{MPU6050\_RA\_EXT\_SENS\_DATA\_15}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_15}{MPU6050\_RA\_EXT\_SENS\_DATA\_15}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+15~0x58}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00118}{118}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac5d3afd3508121f30613edceb4e48297}\label{group__MPU6050_gac5d3afd3508121f30613edceb4e48297}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_16@{MPU6050\_RA\_EXT\_SENS\_DATA\_16}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_16@{MPU6050\_RA\_EXT\_SENS\_DATA\_16}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_16}{MPU6050\_RA\_EXT\_SENS\_DATA\_16}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+16~0x59}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00119}{119}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaa1a6f7f2b079583c5478f7126f7ca3d6}\label{group__MPU6050_gaa1a6f7f2b079583c5478f7126f7ca3d6}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_17@{MPU6050\_RA\_EXT\_SENS\_DATA\_17}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_17@{MPU6050\_RA\_EXT\_SENS\_DATA\_17}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_17}{MPU6050\_RA\_EXT\_SENS\_DATA\_17}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+17~0x5A}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00120}{120}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaefda60825aa631ed7837cf33a134e3f7}\label{group__MPU6050_gaefda60825aa631ed7837cf33a134e3f7}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_18@{MPU6050\_RA\_EXT\_SENS\_DATA\_18}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_18@{MPU6050\_RA\_EXT\_SENS\_DATA\_18}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_18}{MPU6050\_RA\_EXT\_SENS\_DATA\_18}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+18~0x5B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00121}{121}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gab89c01f38370289d7e9f323871014370}\label{group__MPU6050_gab89c01f38370289d7e9f323871014370}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_19@{MPU6050\_RA\_EXT\_SENS\_DATA\_19}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_19@{MPU6050\_RA\_EXT\_SENS\_DATA\_19}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_19}{MPU6050\_RA\_EXT\_SENS\_DATA\_19}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+19~0x5C}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00122}{122}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga572fd6cdf79333a5fd6e88021cde475f}\label{group__MPU6050_ga572fd6cdf79333a5fd6e88021cde475f}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_20@{MPU6050\_RA\_EXT\_SENS\_DATA\_20}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_20@{MPU6050\_RA\_EXT\_SENS\_DATA\_20}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_20}{MPU6050\_RA\_EXT\_SENS\_DATA\_20}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+20~0x5D}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00123}{123}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gab62ffbd26174f1ec37088a3217fdb14e}\label{group__MPU6050_gab62ffbd26174f1ec37088a3217fdb14e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_21@{MPU6050\_RA\_EXT\_SENS\_DATA\_21}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_21@{MPU6050\_RA\_EXT\_SENS\_DATA\_21}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_21}{MPU6050\_RA\_EXT\_SENS\_DATA\_21}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+21~0x5E}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00124}{124}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac52873fef1bb2a0c1e00b7ba77a5c10e}\label{group__MPU6050_gac52873fef1bb2a0c1e00b7ba77a5c10e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_22@{MPU6050\_RA\_EXT\_SENS\_DATA\_22}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_22@{MPU6050\_RA\_EXT\_SENS\_DATA\_22}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_22}{MPU6050\_RA\_EXT\_SENS\_DATA\_22}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+22~0x5F}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00125}{125}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga7256bd65a372fcc4f420e1796c1b579a}\label{group__MPU6050_ga7256bd65a372fcc4f420e1796c1b579a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_EXT\_SENS\_DATA\_23@{MPU6050\_RA\_EXT\_SENS\_DATA\_23}}
+\index{MPU6050\_RA\_EXT\_SENS\_DATA\_23@{MPU6050\_RA\_EXT\_SENS\_DATA\_23}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_EXT\_SENS\_DATA\_23}{MPU6050\_RA\_EXT\_SENS\_DATA\_23}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+23~0x60}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00126}{126}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaaf242278f1dd87556bdeeab589b01fd7}\label{group__MPU6050_gaaf242278f1dd87556bdeeab589b01fd7}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_FF\_DUR@{MPU6050\_RA\_FF\_DUR}}
+\index{MPU6050\_RA\_FF\_DUR@{MPU6050\_RA\_FF\_DUR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_FF\_DUR}{MPU6050\_RA\_FF\_DUR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+FF\+\_\+\+DUR~0x1E}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00057}{57}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga391a4a95c33895c6926b9459cea5f3cd}\label{group__MPU6050_ga391a4a95c33895c6926b9459cea5f3cd}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_FF\_THR@{MPU6050\_RA\_FF\_THR}}
+\index{MPU6050\_RA\_FF\_THR@{MPU6050\_RA\_FF\_THR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_FF\_THR}{MPU6050\_RA\_FF\_THR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+FF\+\_\+\+THR~0x1D}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00056}{56}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaaff95ccbc06a8f3336850a35cd8df488}\label{group__MPU6050_gaaff95ccbc06a8f3336850a35cd8df488}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_FIFO\_COUNTH@{MPU6050\_RA\_FIFO\_COUNTH}}
+\index{MPU6050\_RA\_FIFO\_COUNTH@{MPU6050\_RA\_FIFO\_COUNTH}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_FIFO\_COUNTH}{MPU6050\_RA\_FIFO\_COUNTH}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+COUNTH~0x72}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00142}{142}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga9bc0458ce42b66e81a8831dd2c07dc0a}\label{group__MPU6050_ga9bc0458ce42b66e81a8831dd2c07dc0a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_FIFO\_COUNTL@{MPU6050\_RA\_FIFO\_COUNTL}}
+\index{MPU6050\_RA\_FIFO\_COUNTL@{MPU6050\_RA\_FIFO\_COUNTL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_FIFO\_COUNTL}{MPU6050\_RA\_FIFO\_COUNTL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+COUNTL~0x73}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00143}{143}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga1166fe50f4792f3266e15dc3273e375d}\label{group__MPU6050_ga1166fe50f4792f3266e15dc3273e375d}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_FIFO\_EN@{MPU6050\_RA\_FIFO\_EN}}
+\index{MPU6050\_RA\_FIFO\_EN@{MPU6050\_RA\_FIFO\_EN}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_FIFO\_EN}{MPU6050\_RA\_FIFO\_EN}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+EN~0x23}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00063}{63}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga4fd3a14925375c3112b830d6d1dd1fe9}\label{group__MPU6050_ga4fd3a14925375c3112b830d6d1dd1fe9}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_FIFO\_R\_W@{MPU6050\_RA\_FIFO\_R\_W}}
+\index{MPU6050\_RA\_FIFO\_R\_W@{MPU6050\_RA\_FIFO\_R\_W}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_FIFO\_R\_W}{MPU6050\_RA\_FIFO\_R\_W}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+R\+\_\+W~0x74}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00144}{144}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga004871ad77398075d79e9111989007dc}\label{group__MPU6050_ga004871ad77398075d79e9111989007dc}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_GYRO\_CONFIG@{MPU6050\_RA\_GYRO\_CONFIG}}
+\index{MPU6050\_RA\_GYRO\_CONFIG@{MPU6050\_RA\_GYRO\_CONFIG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_GYRO\_CONFIG}{MPU6050\_RA\_GYRO\_CONFIG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+CONFIG~0x1B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00053}{53}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gabf19d88e8e460df1c49750393ee4b72c}\label{group__MPU6050_gabf19d88e8e460df1c49750393ee4b72c}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_GYRO\_XOUT\_H@{MPU6050\_RA\_GYRO\_XOUT\_H}}
+\index{MPU6050\_RA\_GYRO\_XOUT\_H@{MPU6050\_RA\_GYRO\_XOUT\_H}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_GYRO\_XOUT\_H}{MPU6050\_RA\_GYRO\_XOUT\_H}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+H~0x43}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00097}{97}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga84accb945e8d1388d38fe76482cdd144}\label{group__MPU6050_ga84accb945e8d1388d38fe76482cdd144}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_GYRO\_XOUT\_L@{MPU6050\_RA\_GYRO\_XOUT\_L}}
+\index{MPU6050\_RA\_GYRO\_XOUT\_L@{MPU6050\_RA\_GYRO\_XOUT\_L}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_GYRO\_XOUT\_L}{MPU6050\_RA\_GYRO\_XOUT\_L}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+L~0x44}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00098}{98}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga97729ffd27bd81b9af5b42a598f91736}\label{group__MPU6050_ga97729ffd27bd81b9af5b42a598f91736}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_GYRO\_YOUT\_H@{MPU6050\_RA\_GYRO\_YOUT\_H}}
+\index{MPU6050\_RA\_GYRO\_YOUT\_H@{MPU6050\_RA\_GYRO\_YOUT\_H}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_GYRO\_YOUT\_H}{MPU6050\_RA\_GYRO\_YOUT\_H}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+YOUT\+\_\+H~0x45}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00099}{99}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaa6ac5e36155a22dcd345148720272a75}\label{group__MPU6050_gaa6ac5e36155a22dcd345148720272a75}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_GYRO\_YOUT\_L@{MPU6050\_RA\_GYRO\_YOUT\_L}}
+\index{MPU6050\_RA\_GYRO\_YOUT\_L@{MPU6050\_RA\_GYRO\_YOUT\_L}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_GYRO\_YOUT\_L}{MPU6050\_RA\_GYRO\_YOUT\_L}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+YOUT\+\_\+L~0x46}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00100}{100}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac134c8894ef3aa4715e796f7a3a56383}\label{group__MPU6050_gac134c8894ef3aa4715e796f7a3a56383}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_GYRO\_ZOUT\_H@{MPU6050\_RA\_GYRO\_ZOUT\_H}}
+\index{MPU6050\_RA\_GYRO\_ZOUT\_H@{MPU6050\_RA\_GYRO\_ZOUT\_H}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_GYRO\_ZOUT\_H}{MPU6050\_RA\_GYRO\_ZOUT\_H}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+ZOUT\+\_\+H~0x47}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00101}{101}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga4af03513e690fb8cdff5d2fef4669704}\label{group__MPU6050_ga4af03513e690fb8cdff5d2fef4669704}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_GYRO\_ZOUT\_L@{MPU6050\_RA\_GYRO\_ZOUT\_L}}
+\index{MPU6050\_RA\_GYRO\_ZOUT\_L@{MPU6050\_RA\_GYRO\_ZOUT\_L}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_GYRO\_ZOUT\_L}{MPU6050\_RA\_GYRO\_ZOUT\_L}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+ZOUT\+\_\+L~0x48}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00102}{102}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gae4804708dd5f21dbca1ff1815b883504}\label{group__MPU6050_gae4804708dd5f21dbca1ff1815b883504}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_MST\_CTRL@{MPU6050\_RA\_I2C\_MST\_CTRL}}
+\index{MPU6050\_RA\_I2C\_MST\_CTRL@{MPU6050\_RA\_I2C\_MST\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_MST\_CTRL}{MPU6050\_RA\_I2C\_MST\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+CTRL~0x24}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00064}{64}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga95960b2c82d00341b6174272e2fb3e07}\label{group__MPU6050_ga95960b2c82d00341b6174272e2fb3e07}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_MST\_DELAY\_CTRL@{MPU6050\_RA\_I2C\_MST\_DELAY\_CTRL}}
+\index{MPU6050\_RA\_I2C\_MST\_DELAY\_CTRL@{MPU6050\_RA\_I2C\_MST\_DELAY\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_MST\_DELAY\_CTRL}{MPU6050\_RA\_I2C\_MST\_DELAY\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+DELAY\+\_\+\+CTRL~0x67}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00134}{134}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga5ef54580f436c198fb84d01288fbef49}\label{group__MPU6050_ga5ef54580f436c198fb84d01288fbef49}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_MST\_STATUS@{MPU6050\_RA\_I2C\_MST\_STATUS}}
+\index{MPU6050\_RA\_I2C\_MST\_STATUS@{MPU6050\_RA\_I2C\_MST\_STATUS}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_MST\_STATUS}{MPU6050\_RA\_I2C\_MST\_STATUS}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+STATUS~0x36}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00082}{82}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga423463fce914683217f05e3ca686364c}\label{group__MPU6050_ga423463fce914683217f05e3ca686364c}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV0\_ADDR@{MPU6050\_RA\_I2C\_SLV0\_ADDR}}
+\index{MPU6050\_RA\_I2C\_SLV0\_ADDR@{MPU6050\_RA\_I2C\_SLV0\_ADDR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV0\_ADDR}{MPU6050\_RA\_I2C\_SLV0\_ADDR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+ADDR~0x25}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00065}{65}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga70ce4d71982a1e3fb2be9b71f40da786}\label{group__MPU6050_ga70ce4d71982a1e3fb2be9b71f40da786}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV0\_CTRL@{MPU6050\_RA\_I2C\_SLV0\_CTRL}}
+\index{MPU6050\_RA\_I2C\_SLV0\_CTRL@{MPU6050\_RA\_I2C\_SLV0\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV0\_CTRL}{MPU6050\_RA\_I2C\_SLV0\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+CTRL~0x27}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00067}{67}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga53ca9562881303b665299907726fb753}\label{group__MPU6050_ga53ca9562881303b665299907726fb753}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV0\_DO@{MPU6050\_RA\_I2C\_SLV0\_DO}}
+\index{MPU6050\_RA\_I2C\_SLV0\_DO@{MPU6050\_RA\_I2C\_SLV0\_DO}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV0\_DO}{MPU6050\_RA\_I2C\_SLV0\_DO}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+DO~0x63}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00130}{130}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gae9fc1bc0eb0c568846328de91127ca80}\label{group__MPU6050_gae9fc1bc0eb0c568846328de91127ca80}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV0\_REG@{MPU6050\_RA\_I2C\_SLV0\_REG}}
+\index{MPU6050\_RA\_I2C\_SLV0\_REG@{MPU6050\_RA\_I2C\_SLV0\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV0\_REG}{MPU6050\_RA\_I2C\_SLV0\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+REG~0x26}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00066}{66}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gae33062d5e05f28a5aa6831b7f1d88104}\label{group__MPU6050_gae33062d5e05f28a5aa6831b7f1d88104}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV1\_ADDR@{MPU6050\_RA\_I2C\_SLV1\_ADDR}}
+\index{MPU6050\_RA\_I2C\_SLV1\_ADDR@{MPU6050\_RA\_I2C\_SLV1\_ADDR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV1\_ADDR}{MPU6050\_RA\_I2C\_SLV1\_ADDR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+ADDR~0x28}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00068}{68}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gad2ea53ab83e95289ef6d78cccb73b307}\label{group__MPU6050_gad2ea53ab83e95289ef6d78cccb73b307}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV1\_CTRL@{MPU6050\_RA\_I2C\_SLV1\_CTRL}}
+\index{MPU6050\_RA\_I2C\_SLV1\_CTRL@{MPU6050\_RA\_I2C\_SLV1\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV1\_CTRL}{MPU6050\_RA\_I2C\_SLV1\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+CTRL~0x2A}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00070}{70}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga62e9f2471f54176625236775d82b66ca}\label{group__MPU6050_ga62e9f2471f54176625236775d82b66ca}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV1\_DO@{MPU6050\_RA\_I2C\_SLV1\_DO}}
+\index{MPU6050\_RA\_I2C\_SLV1\_DO@{MPU6050\_RA\_I2C\_SLV1\_DO}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV1\_DO}{MPU6050\_RA\_I2C\_SLV1\_DO}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+DO~0x64}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00131}{131}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga49790a56674e4dfe184ec067295e26ec}\label{group__MPU6050_ga49790a56674e4dfe184ec067295e26ec}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV1\_REG@{MPU6050\_RA\_I2C\_SLV1\_REG}}
+\index{MPU6050\_RA\_I2C\_SLV1\_REG@{MPU6050\_RA\_I2C\_SLV1\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV1\_REG}{MPU6050\_RA\_I2C\_SLV1\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+REG~0x29}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00069}{69}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gab9bd1737877e24c981423c9b63f64d3a}\label{group__MPU6050_gab9bd1737877e24c981423c9b63f64d3a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV2\_ADDR@{MPU6050\_RA\_I2C\_SLV2\_ADDR}}
+\index{MPU6050\_RA\_I2C\_SLV2\_ADDR@{MPU6050\_RA\_I2C\_SLV2\_ADDR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV2\_ADDR}{MPU6050\_RA\_I2C\_SLV2\_ADDR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+ADDR~0x2B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00071}{71}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga85020a23b62a5ea0c88137038f65767e}\label{group__MPU6050_ga85020a23b62a5ea0c88137038f65767e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV2\_CTRL@{MPU6050\_RA\_I2C\_SLV2\_CTRL}}
+\index{MPU6050\_RA\_I2C\_SLV2\_CTRL@{MPU6050\_RA\_I2C\_SLV2\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV2\_CTRL}{MPU6050\_RA\_I2C\_SLV2\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+CTRL~0x2D}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00073}{73}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga1f192825e93dd8bdfbe8cefdb30786ac}\label{group__MPU6050_ga1f192825e93dd8bdfbe8cefdb30786ac}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV2\_DO@{MPU6050\_RA\_I2C\_SLV2\_DO}}
+\index{MPU6050\_RA\_I2C\_SLV2\_DO@{MPU6050\_RA\_I2C\_SLV2\_DO}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV2\_DO}{MPU6050\_RA\_I2C\_SLV2\_DO}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+DO~0x65}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00132}{132}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga9ed25cb09399d6700cd0255b17ad7a47}\label{group__MPU6050_ga9ed25cb09399d6700cd0255b17ad7a47}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV2\_REG@{MPU6050\_RA\_I2C\_SLV2\_REG}}
+\index{MPU6050\_RA\_I2C\_SLV2\_REG@{MPU6050\_RA\_I2C\_SLV2\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV2\_REG}{MPU6050\_RA\_I2C\_SLV2\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+REG~0x2C}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00072}{72}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga2a495eb60b391ed7a157e494dd7d3e69}\label{group__MPU6050_ga2a495eb60b391ed7a157e494dd7d3e69}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV3\_ADDR@{MPU6050\_RA\_I2C\_SLV3\_ADDR}}
+\index{MPU6050\_RA\_I2C\_SLV3\_ADDR@{MPU6050\_RA\_I2C\_SLV3\_ADDR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV3\_ADDR}{MPU6050\_RA\_I2C\_SLV3\_ADDR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+ADDR~0x2E}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00074}{74}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga0f9ead95fc8c60f9218162a69c83163a}\label{group__MPU6050_ga0f9ead95fc8c60f9218162a69c83163a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV3\_CTRL@{MPU6050\_RA\_I2C\_SLV3\_CTRL}}
+\index{MPU6050\_RA\_I2C\_SLV3\_CTRL@{MPU6050\_RA\_I2C\_SLV3\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV3\_CTRL}{MPU6050\_RA\_I2C\_SLV3\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+CTRL~0x30}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00076}{76}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga1fbafdd8c59383fa4eeae50b103adda7}\label{group__MPU6050_ga1fbafdd8c59383fa4eeae50b103adda7}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV3\_DO@{MPU6050\_RA\_I2C\_SLV3\_DO}}
+\index{MPU6050\_RA\_I2C\_SLV3\_DO@{MPU6050\_RA\_I2C\_SLV3\_DO}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV3\_DO}{MPU6050\_RA\_I2C\_SLV3\_DO}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+DO~0x66}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00133}{133}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaab183c416882e55c7fdda4b24160dd1a}\label{group__MPU6050_gaab183c416882e55c7fdda4b24160dd1a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV3\_REG@{MPU6050\_RA\_I2C\_SLV3\_REG}}
+\index{MPU6050\_RA\_I2C\_SLV3\_REG@{MPU6050\_RA\_I2C\_SLV3\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV3\_REG}{MPU6050\_RA\_I2C\_SLV3\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+REG~0x2F}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00075}{75}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga3a3a4854870a5f354e50fbc4eae196c0}\label{group__MPU6050_ga3a3a4854870a5f354e50fbc4eae196c0}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV4\_ADDR@{MPU6050\_RA\_I2C\_SLV4\_ADDR}}
+\index{MPU6050\_RA\_I2C\_SLV4\_ADDR@{MPU6050\_RA\_I2C\_SLV4\_ADDR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV4\_ADDR}{MPU6050\_RA\_I2C\_SLV4\_ADDR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+ADDR~0x31}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00077}{77}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga2b6fbfceb145ba1c8b19f51475fd7a5d}\label{group__MPU6050_ga2b6fbfceb145ba1c8b19f51475fd7a5d}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV4\_CTRL@{MPU6050\_RA\_I2C\_SLV4\_CTRL}}
+\index{MPU6050\_RA\_I2C\_SLV4\_CTRL@{MPU6050\_RA\_I2C\_SLV4\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV4\_CTRL}{MPU6050\_RA\_I2C\_SLV4\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+CTRL~0x34}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00080}{80}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga80d3591c47d0482c0adcf176e1994a65}\label{group__MPU6050_ga80d3591c47d0482c0adcf176e1994a65}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV4\_DI@{MPU6050\_RA\_I2C\_SLV4\_DI}}
+\index{MPU6050\_RA\_I2C\_SLV4\_DI@{MPU6050\_RA\_I2C\_SLV4\_DI}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV4\_DI}{MPU6050\_RA\_I2C\_SLV4\_DI}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+DI~0x35}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00081}{81}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga433e4202ff24b4d90e695d5154a6f9eb}\label{group__MPU6050_ga433e4202ff24b4d90e695d5154a6f9eb}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV4\_DO@{MPU6050\_RA\_I2C\_SLV4\_DO}}
+\index{MPU6050\_RA\_I2C\_SLV4\_DO@{MPU6050\_RA\_I2C\_SLV4\_DO}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV4\_DO}{MPU6050\_RA\_I2C\_SLV4\_DO}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+DO~0x33}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00079}{79}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga5b2f24136f2f68b5d42652d16208d9d0}\label{group__MPU6050_ga5b2f24136f2f68b5d42652d16208d9d0}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_I2C\_SLV4\_REG@{MPU6050\_RA\_I2C\_SLV4\_REG}}
+\index{MPU6050\_RA\_I2C\_SLV4\_REG@{MPU6050\_RA\_I2C\_SLV4\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_I2C\_SLV4\_REG}{MPU6050\_RA\_I2C\_SLV4\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+REG~0x32}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00078}{78}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga1de9d9557aa7420c746721999df4a377}\label{group__MPU6050_ga1de9d9557aa7420c746721999df4a377}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_INT\_ENABLE@{MPU6050\_RA\_INT\_ENABLE}}
+\index{MPU6050\_RA\_INT\_ENABLE@{MPU6050\_RA\_INT\_ENABLE}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_INT\_ENABLE}{MPU6050\_RA\_INT\_ENABLE}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+ENABLE~0x38}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00084}{84}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga82344e1daef2bac2e0d938319528be6c}\label{group__MPU6050_ga82344e1daef2bac2e0d938319528be6c}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_INT\_PIN\_CFG@{MPU6050\_RA\_INT\_PIN\_CFG}}
+\index{MPU6050\_RA\_INT\_PIN\_CFG@{MPU6050\_RA\_INT\_PIN\_CFG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_INT\_PIN\_CFG}{MPU6050\_RA\_INT\_PIN\_CFG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+PIN\+\_\+\+CFG~0x37}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00083}{83}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga8337320c5ccc92def830e968d2e19d75}\label{group__MPU6050_ga8337320c5ccc92def830e968d2e19d75}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_INT\_STATUS@{MPU6050\_RA\_INT\_STATUS}}
+\index{MPU6050\_RA\_INT\_STATUS@{MPU6050\_RA\_INT\_STATUS}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_INT\_STATUS}{MPU6050\_RA\_INT\_STATUS}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+STATUS~0x3A}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00088}{88}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gae83e3eb48f0803227db54291fdf0ea80}\label{group__MPU6050_gae83e3eb48f0803227db54291fdf0ea80}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_MOT\_DETECT\_CTRL@{MPU6050\_RA\_MOT\_DETECT\_CTRL}}
+\index{MPU6050\_RA\_MOT\_DETECT\_CTRL@{MPU6050\_RA\_MOT\_DETECT\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_MOT\_DETECT\_CTRL}{MPU6050\_RA\_MOT\_DETECT\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DETECT\+\_\+\+CTRL~0x69}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00137}{137}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga5b725ca4941b1a73f8e4df3d7164d514}\label{group__MPU6050_ga5b725ca4941b1a73f8e4df3d7164d514}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_MOT\_DETECT\_STATUS@{MPU6050\_RA\_MOT\_DETECT\_STATUS}}
+\index{MPU6050\_RA\_MOT\_DETECT\_STATUS@{MPU6050\_RA\_MOT\_DETECT\_STATUS}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_MOT\_DETECT\_STATUS}{MPU6050\_RA\_MOT\_DETECT\_STATUS}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DETECT\+\_\+\+STATUS~0x61}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00128}{128}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga25ce9fe346237d22b62881257458fdf4}\label{group__MPU6050_ga25ce9fe346237d22b62881257458fdf4}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_MOT\_DUR@{MPU6050\_RA\_MOT\_DUR}}
+\index{MPU6050\_RA\_MOT\_DUR@{MPU6050\_RA\_MOT\_DUR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_MOT\_DUR}{MPU6050\_RA\_MOT\_DUR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DUR~0x20}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00059}{59}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga444c7d6d710bcc30f1ad98f703f9921e}\label{group__MPU6050_ga444c7d6d710bcc30f1ad98f703f9921e}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_MOT\_THR@{MPU6050\_RA\_MOT\_THR}}
+\index{MPU6050\_RA\_MOT\_THR@{MPU6050\_RA\_MOT\_THR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_MOT\_THR}{MPU6050\_RA\_MOT\_THR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+THR~0x1F}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00058}{58}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac6c83146165a2307ac7155d4fa566df4}\label{group__MPU6050_gac6c83146165a2307ac7155d4fa566df4}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_PWR\_MGMT\_1@{MPU6050\_RA\_PWR\_MGMT\_1}}
+\index{MPU6050\_RA\_PWR\_MGMT\_1@{MPU6050\_RA\_PWR\_MGMT\_1}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_PWR\_MGMT\_1}{MPU6050\_RA\_PWR\_MGMT\_1}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+PWR\+\_\+\+MGMT\+\_\+1~0x6B}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00140}{140}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaace6ce286da4d5f8c8f5ba6f80688e13}\label{group__MPU6050_gaace6ce286da4d5f8c8f5ba6f80688e13}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_PWR\_MGMT\_2@{MPU6050\_RA\_PWR\_MGMT\_2}}
+\index{MPU6050\_RA\_PWR\_MGMT\_2@{MPU6050\_RA\_PWR\_MGMT\_2}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_PWR\_MGMT\_2}{MPU6050\_RA\_PWR\_MGMT\_2}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+PWR\+\_\+\+MGMT\+\_\+2~0x6C}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00141}{141}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga1c9edfc09303193559373d5768d301e1}\label{group__MPU6050_ga1c9edfc09303193559373d5768d301e1}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_SELF\_TEST\_A@{MPU6050\_RA\_SELF\_TEST\_A}}
+\index{MPU6050\_RA\_SELF\_TEST\_A@{MPU6050\_RA\_SELF\_TEST\_A}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_SELF\_TEST\_A}{MPU6050\_RA\_SELF\_TEST\_A}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+A~0x10}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00050}{50}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga7ec394e32416951b6882ebe6ae924965}\label{group__MPU6050_ga7ec394e32416951b6882ebe6ae924965}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_SELF\_TEST\_X@{MPU6050\_RA\_SELF\_TEST\_X}}
+\index{MPU6050\_RA\_SELF\_TEST\_X@{MPU6050\_RA\_SELF\_TEST\_X}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_SELF\_TEST\_X}{MPU6050\_RA\_SELF\_TEST\_X}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+X~0x0D}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00047}{47}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gafaeebb6ab18231c171fed704574987e7}\label{group__MPU6050_gafaeebb6ab18231c171fed704574987e7}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_SELF\_TEST\_Y@{MPU6050\_RA\_SELF\_TEST\_Y}}
+\index{MPU6050\_RA\_SELF\_TEST\_Y@{MPU6050\_RA\_SELF\_TEST\_Y}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_SELF\_TEST\_Y}{MPU6050\_RA\_SELF\_TEST\_Y}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+Y~0x0E}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00048}{48}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga87df5ed3b1736da250e8127810adf44d}\label{group__MPU6050_ga87df5ed3b1736da250e8127810adf44d}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_SELF\_TEST\_Z@{MPU6050\_RA\_SELF\_TEST\_Z}}
+\index{MPU6050\_RA\_SELF\_TEST\_Z@{MPU6050\_RA\_SELF\_TEST\_Z}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_SELF\_TEST\_Z}{MPU6050\_RA\_SELF\_TEST\_Z}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+Z~0x0F}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00049}{49}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaccbe0fc25de063494eac9fda35ed1ca5}\label{group__MPU6050_gaccbe0fc25de063494eac9fda35ed1ca5}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_SIGNAL\_PATH\_RESET@{MPU6050\_RA\_SIGNAL\_PATH\_RESET}}
+\index{MPU6050\_RA\_SIGNAL\_PATH\_RESET@{MPU6050\_RA\_SIGNAL\_PATH\_RESET}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_SIGNAL\_PATH\_RESET}{MPU6050\_RA\_SIGNAL\_PATH\_RESET}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+SIGNAL\+\_\+\+PATH\+\_\+\+RESET~0x68}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00135}{135}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga12d24140bc78ba2db5a2e11ab32abeda}\label{group__MPU6050_ga12d24140bc78ba2db5a2e11ab32abeda}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_SMPLRT\_DIV@{MPU6050\_RA\_SMPLRT\_DIV}}
+\index{MPU6050\_RA\_SMPLRT\_DIV@{MPU6050\_RA\_SMPLRT\_DIV}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_SMPLRT\_DIV}{MPU6050\_RA\_SMPLRT\_DIV}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+SMPLRT\+\_\+\+DIV~0x19}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00051}{51}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gaa4318f7e67df92b06d81356b38048a6d}\label{group__MPU6050_gaa4318f7e67df92b06d81356b38048a6d}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_TEMP\_OUT\_H@{MPU6050\_RA\_TEMP\_OUT\_H}}
+\index{MPU6050\_RA\_TEMP\_OUT\_H@{MPU6050\_RA\_TEMP\_OUT\_H}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_TEMP\_OUT\_H}{MPU6050\_RA\_TEMP\_OUT\_H}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+TEMP\+\_\+\+OUT\+\_\+H~0x41}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00095}{95}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga08528cb9d7fd1c3c128f0762cbd0ffdd}\label{group__MPU6050_ga08528cb9d7fd1c3c128f0762cbd0ffdd}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_TEMP\_OUT\_L@{MPU6050\_RA\_TEMP\_OUT\_L}}
+\index{MPU6050\_RA\_TEMP\_OUT\_L@{MPU6050\_RA\_TEMP\_OUT\_L}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_TEMP\_OUT\_L}{MPU6050\_RA\_TEMP\_OUT\_L}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+TEMP\+\_\+\+OUT\+\_\+L~0x42}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00096}{96}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gacd4c638a6f677a42ecb9a3d7612d087a}\label{group__MPU6050_gacd4c638a6f677a42ecb9a3d7612d087a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_USER\_CTRL@{MPU6050\_RA\_USER\_CTRL}}
+\index{MPU6050\_RA\_USER\_CTRL@{MPU6050\_RA\_USER\_CTRL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_USER\_CTRL}{MPU6050\_RA\_USER\_CTRL}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+USER\+\_\+\+CTRL~0x6A}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00139}{139}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga83d60aa4c37e954266ecd17ae02ec174}\label{group__MPU6050_ga83d60aa4c37e954266ecd17ae02ec174}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_WHO\_AM\_I@{MPU6050\_RA\_WHO\_AM\_I}}
+\index{MPU6050\_RA\_WHO\_AM\_I@{MPU6050\_RA\_WHO\_AM\_I}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_WHO\_AM\_I}{MPU6050\_RA\_WHO\_AM\_I}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+WHO\+\_\+\+AM\+\_\+I~0x75}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00145}{145}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga57ad8b9e0c77ec27d41b60405ab57e1c}\label{group__MPU6050_ga57ad8b9e0c77ec27d41b60405ab57e1c}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ZRMOT\_DUR@{MPU6050\_RA\_ZRMOT\_DUR}}
+\index{MPU6050\_RA\_ZRMOT\_DUR@{MPU6050\_RA\_ZRMOT\_DUR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ZRMOT\_DUR}{MPU6050\_RA\_ZRMOT\_DUR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ZRMOT\+\_\+\+DUR~0x22}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00061}{61}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga866eb43544165dc8c777d82bab9860e6}\label{group__MPU6050_ga866eb43544165dc8c777d82bab9860e6}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_RA\_ZRMOT\_THR@{MPU6050\_RA\_ZRMOT\_THR}}
+\index{MPU6050\_RA\_ZRMOT\_THR@{MPU6050\_RA\_ZRMOT\_THR}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_RA\_ZRMOT\_THR}{MPU6050\_RA\_ZRMOT\_THR}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+RA\+\_\+\+ZRMOT\+\_\+\+THR~0x21}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00060}{60}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga9d115a76f662c1b6e003221872790eef}\label{group__MPU6050_ga9d115a76f662c1b6e003221872790eef}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SampleRate\_100Hz@{MPU6050\_SampleRate\_100Hz}}
+\index{MPU6050\_SampleRate\_100Hz@{MPU6050\_SampleRate\_100Hz}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SampleRate\_100Hz}{MPU6050\_SampleRate\_100Hz}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+Sample\+Rate\+\_\+100\+Hz~0x4F}
+
+
+
+Sample rate set to 100 Hz. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00169}{169}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga72f711ed1e87a6e6e92ad3b5ae84490c}\label{group__MPU6050_ga72f711ed1e87a6e6e92ad3b5ae84490c}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SampleRate\_125Hz@{MPU6050\_SampleRate\_125Hz}}
+\index{MPU6050\_SampleRate\_125Hz@{MPU6050\_SampleRate\_125Hz}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SampleRate\_125Hz}{MPU6050\_SampleRate\_125Hz}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+Sample\+Rate\+\_\+125\+Hz~0x3F}
+
+
+
+Sample rate set to 125 Hz. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00168}{168}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gafbf8ed3b017c604791d12c6a385cf8b2}\label{group__MPU6050_gafbf8ed3b017c604791d12c6a385cf8b2}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SampleRate\_1KHz@{MPU6050\_SampleRate\_1KHz}}
+\index{MPU6050\_SampleRate\_1KHz@{MPU6050\_SampleRate\_1KHz}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SampleRate\_1KHz}{MPU6050\_SampleRate\_1KHz}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+Sample\+Rate\+\_\+1\+KHz~0x07}
+
+
+
+Sample rate set to 1 k\+Hz. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00165}{165}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga17e1d882dd01ce93828e61e4a0982c21}\label{group__MPU6050_ga17e1d882dd01ce93828e61e4a0982c21}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SampleRate\_250Hz@{MPU6050\_SampleRate\_250Hz}}
+\index{MPU6050\_SampleRate\_250Hz@{MPU6050\_SampleRate\_250Hz}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SampleRate\_250Hz}{MPU6050\_SampleRate\_250Hz}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+Sample\+Rate\+\_\+250\+Hz~0x1F}
+
+
+
+Sample rate set to 250 Hz. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00167}{167}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga37b7afe75a69aae8e56376b98a1e2200}\label{group__MPU6050_ga37b7afe75a69aae8e56376b98a1e2200}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SampleRate\_2KHz@{MPU6050\_SampleRate\_2KHz}}
+\index{MPU6050\_SampleRate\_2KHz@{MPU6050\_SampleRate\_2KHz}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SampleRate\_2KHz}{MPU6050\_SampleRate\_2KHz}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+Sample\+Rate\+\_\+2\+KHz~0x03}
+
+
+
+Sample rate set to 2 k\+Hz. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00164}{164}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga42ea4e1341c54b7b67fbdcb9a273e635}\label{group__MPU6050_ga42ea4e1341c54b7b67fbdcb9a273e635}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SampleRate\_4KHz@{MPU6050\_SampleRate\_4KHz}}
+\index{MPU6050\_SampleRate\_4KHz@{MPU6050\_SampleRate\_4KHz}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SampleRate\_4KHz}{MPU6050\_SampleRate\_4KHz}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+Sample\+Rate\+\_\+4\+KHz~0x01}
+
+
+
+Sample rate set to 4 k\+Hz. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00163}{163}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gafa8363fd9bfca445fb347c706c3c6ffe}\label{group__MPU6050_gafa8363fd9bfca445fb347c706c3c6ffe}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SampleRate\_500Hz@{MPU6050\_SampleRate\_500Hz}}
+\index{MPU6050\_SampleRate\_500Hz@{MPU6050\_SampleRate\_500Hz}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SampleRate\_500Hz}{MPU6050\_SampleRate\_500Hz}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+Sample\+Rate\+\_\+500\+Hz~0x0F}
+
+
+
+Sample rate set to 500 Hz. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00166}{166}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga447dbe0ecc028604ca317a727d03bc50}\label{group__MPU6050_ga447dbe0ecc028604ca317a727d03bc50}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SampleRate\_8KHz@{MPU6050\_SampleRate\_8KHz}}
+\index{MPU6050\_SampleRate\_8KHz@{MPU6050\_SampleRate\_8KHz}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SampleRate\_8KHz}{MPU6050\_SampleRate\_8KHz}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+Sample\+Rate\+\_\+8\+KHz~0x00}
+
+
+
+Define MPU Output variables. 
+
+Define possible Sample rates Sample rate set to 8 k\+Hz 
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00162}{162}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga8264ea96144f5fa98bd1a22ceb590315}\label{group__MPU6050_ga8264ea96144f5fa98bd1a22ceb590315}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_SMPLRT\_DIV\_REG@{MPU6050\_SMPLRT\_DIV\_REG}}
+\index{MPU6050\_SMPLRT\_DIV\_REG@{MPU6050\_SMPLRT\_DIV\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_SMPLRT\_DIV\_REG}{MPU6050\_SMPLRT\_DIV\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+SMPLRT\+\_\+\+DIV\+\_\+\+REG~0x19}
+
+
+
+Define I2C Register Addresses. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00032}{32}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gac0a6cab209fbf707e4b0c5426e89e458}\label{group__MPU6050_gac0a6cab209fbf707e4b0c5426e89e458}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_TEMP\_OUT\_H\_REG@{MPU6050\_TEMP\_OUT\_H\_REG}}
+\index{MPU6050\_TEMP\_OUT\_H\_REG@{MPU6050\_TEMP\_OUT\_H\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_TEMP\_OUT\_H\_REG}{MPU6050\_TEMP\_OUT\_H\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+TEMP\+\_\+\+OUT\+\_\+\+H\+\_\+\+REG~0x41}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00036}{36}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga6217f217d0dfff172a1a7c759927bbdd}\label{group__MPU6050_ga6217f217d0dfff172a1a7c759927bbdd}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_USR\_CRTL\_REG@{MPU6050\_USR\_CRTL\_REG}}
+\index{MPU6050\_USR\_CRTL\_REG@{MPU6050\_USR\_CRTL\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_USR\_CRTL\_REG}{MPU6050\_USR\_CRTL\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+REG~0x6A}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00041}{41}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_ga7292e8b450174614ce5bd411ec98ac56}\label{group__MPU6050_ga7292e8b450174614ce5bd411ec98ac56}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_WHO\_AM\_I\_REG@{MPU6050\_WHO\_AM\_I\_REG}}
+\index{MPU6050\_WHO\_AM\_I\_REG@{MPU6050\_WHO\_AM\_I\_REG}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_WHO\_AM\_I\_REG}{MPU6050\_WHO\_AM\_I\_REG}}
+{\footnotesize\ttfamily \#define MPU6050\+\_\+\+WHO\+\_\+\+AM\+\_\+\+I\+\_\+\+REG~0x75}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00039}{39}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{group__MPU6050_ga6587e82fb974d296e235b3a9743617b7}\label{group__MPU6050_ga6587e82fb974d296e235b3a9743617b7}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!Movement\_direction\_t@{Movement\_direction\_t}}
+\index{Movement\_direction\_t@{Movement\_direction\_t}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{Movement\_direction\_t}{Movement\_direction\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}} \mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}}}
+
+Movement direction enum \mbox{\Hypertarget{group__MPU6050_gae31f9c4723ec996f661a33df70e643cd}\label{group__MPU6050_gae31f9c4723ec996f661a33df70e643cd}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_FIFO\_EN@{MPU6050\_FIFO\_EN}}
+\index{MPU6050\_FIFO\_EN@{MPU6050\_FIFO\_EN}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_FIFO\_EN}{MPU6050\_FIFO\_EN}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__MPU6050_ga6ac6979a76e1698e8841587195d7e1f6}{MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gae31f9c4723ec996f661a33df70e643cd}{MPU6050\+\_\+\+FIFO\+\_\+\+EN}}}
+
+
+
+FIFO\+\_\+\+ENABLE enum. 
+
+\mbox{\Hypertarget{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}\label{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_GYRO\_RES@{MPU6050\_GYRO\_RES}}
+\index{MPU6050\_GYRO\_RES@{MPU6050\_GYRO\_RES}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_GYRO\_RES}{MPU6050\_GYRO\_RES}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__MPU6050_ga76e87fbc014d4fc942e9b178df3e3e80}{MPU6050\+\_\+\+GYRO\+\_\+\+RES\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\+\_\+\+GYRO\+\_\+\+RES}}}
+
+
+
+Set Gyro\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: 
+
+\mbox{\Hypertarget{group__MPU6050_ga7e2e849a6030a6c9f4f24e98f0e217ae}\label{group__MPU6050_ga7e2e849a6030a6c9f4f24e98f0e217ae}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_INT\_EN@{MPU6050\_INT\_EN}}
+\index{MPU6050\_INT\_EN@{MPU6050\_INT\_EN}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_INT\_EN}{MPU6050\_INT\_EN}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__MPU6050_gadc48e7a9bf258853096098d9ac57c2fc}{MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_ga7e2e849a6030a6c9f4f24e98f0e217ae}{MPU6050\+\_\+\+INT\+\_\+\+EN}}}
+
+
+
+Interrupt enable enum. 
+
+\mbox{\Hypertarget{group__MPU6050_gac963b232728d0f265ce7a1e7c20e4962}\label{group__MPU6050_gac963b232728d0f265ce7a1e7c20e4962}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_INT\_STATUS@{MPU6050\_INT\_STATUS}}
+\index{MPU6050\_INT\_STATUS@{MPU6050\_INT\_STATUS}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_INT\_STATUS}{MPU6050\_INT\_STATUS}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__MPU6050_ga71492368fefe6bd98c5b8c16749b7b41}{MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gac963b232728d0f265ce7a1e7c20e4962}{MPU6050\+\_\+\+INT\+\_\+\+STATUS}}}
+
+
+
+Interrupt status enum. 
+
+\mbox{\Hypertarget{group__MPU6050_ga6187941789d211b1e6c0a28a366cc9a8}\label{group__MPU6050_ga6187941789d211b1e6c0a28a366cc9a8}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_USR\_CRTL@{MPU6050\_USR\_CRTL}}
+\index{MPU6050\_USR\_CRTL@{MPU6050\_USR\_CRTL}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_USR\_CRTL}{MPU6050\_USR\_CRTL}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__MPU6050_gace83f566436760ec0b731f9178929bd3}{MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_ga6187941789d211b1e6c0a28a366cc9a8}{MPU6050\+\_\+\+USR\+\_\+\+CRTL}}}
+
+
+
+User Controll enum. 
+
+\mbox{\Hypertarget{group__MPU6050_gabbffa66db1c27e631e55fe54973212b2}\label{group__MPU6050_gabbffa66db1c27e631e55fe54973212b2}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!tilt\_direction\_t@{tilt\_direction\_t}}
+\index{tilt\_direction\_t@{tilt\_direction\_t}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{tilt\_direction\_t}{tilt\_direction\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}} \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}}}
+
+
+
+Tilt direction enumeration. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}\label{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!Movement\_direction\_t@{Movement\_direction\_t}}
+\index{Movement\_direction\_t@{Movement\_direction\_t}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{Movement\_direction\_t}{Movement\_direction\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}}}
+
+Movement direction enum 
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00325}{325}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00326 \{}
+\DoxyCodeLine{00327 }
+\DoxyCodeLine{00328     MOVEMENT\_NONE = 0x00,}
+\DoxyCodeLine{00329     MOVEMENT\_HIGH = 0x01,}
+\DoxyCodeLine{00330     MOVEMENT\_DOWN,}
+\DoxyCodeLine{00331     MOVEMENT\_RIGHT,}
+\DoxyCodeLine{00332     MOVEMENT\_LEFT}
+\DoxyCodeLine{00333 \} \mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\_direction\_t}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga18ad019342a4d49779b497db4882529d}\label{group__MPU6050_ga18ad019342a4d49779b497db4882529d}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_RES@{MPU6050\_ACCL\_RES}}
+\index{MPU6050\_ACCL\_RES@{MPU6050\_ACCL\_RES}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ACCL\_RES}{MPU6050\_ACCL\_RES}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\+\_\+\+ACCL\+\_\+\+RES}}}
+
+
+
+Set Accl\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: 
+
+Configuration ENUMS BEGINN \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MPU6050\_ACCL\_4G@{MPU6050\_ACCL\_4G}!MPU6050 Software driver@{MPU6050 Software driver}}\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_4G@{MPU6050\_ACCL\_4G}}}\mbox{\Hypertarget{group__MPU6050_gga18ad019342a4d49779b497db4882529da6390f128316eec4b36b7ea3b6d59f581}\label{group__MPU6050_gga18ad019342a4d49779b497db4882529da6390f128316eec4b36b7ea3b6d59f581}} 
+MPU6050\+\_\+\+ACCL\+\_\+4G&-\/\texorpdfstring{$>$}{>}0 ±2g 16384 LSB/g \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MPU6050\_ACCL\_8G@{MPU6050\_ACCL\_8G}!MPU6050 Software driver@{MPU6050 Software driver}}\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_8G@{MPU6050\_ACCL\_8G}}}\mbox{\Hypertarget{group__MPU6050_gga18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}\label{group__MPU6050_gga18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}} 
+MPU6050\+\_\+\+ACCL\+\_\+8G&-\/\texorpdfstring{$>$}{>}1 ±4g 8192 LSB/g \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MPU6050\_ACCL\_16G@{MPU6050\_ACCL\_16G}!MPU6050 Software driver@{MPU6050 Software driver}}\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_ACCL\_16G@{MPU6050\_ACCL\_16G}}}\mbox{\Hypertarget{group__MPU6050_gga18ad019342a4d49779b497db4882529daa44ddb1fd0aa9d8783c29f2fbf45fda8}\label{group__MPU6050_gga18ad019342a4d49779b497db4882529daa44ddb1fd0aa9d8783c29f2fbf45fda8}} 
+MPU6050\+\_\+\+ACCL\+\_\+16G&-\/\texorpdfstring{$>$}{>}2 ±8g 4096 LSB/g -\/\texorpdfstring{$>$}{>}3 ±16g 2048 LSB/g \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00251}{251}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00252 \{}
+\DoxyCodeLine{00253     MPU6050\_ACCL\_2G = 0x00, }
+\DoxyCodeLine{00254     \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529da6390f128316eec4b36b7ea3b6d59f581}{MPU6050\_ACCL\_4G}},     }
+\DoxyCodeLine{00255     \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}{MPU6050\_ACCL\_8G}},     }
+\DoxyCodeLine{00256     \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529daa44ddb1fd0aa9d8783c29f2fbf45fda8}{MPU6050\_ACCL\_16G}}        }
+\DoxyCodeLine{00257 \} \mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\_ACCL\_RES}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga6ac6979a76e1698e8841587195d7e1f6}\label{group__MPU6050_ga6ac6979a76e1698e8841587195d7e1f6}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_FIFO\_EN\_ENUM@{MPU6050\_FIFO\_EN\_ENUM}}
+\index{MPU6050\_FIFO\_EN\_ENUM@{MPU6050\_FIFO\_EN\_ENUM}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_FIFO\_EN\_ENUM}{MPU6050\_FIFO\_EN\_ENUM}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__MPU6050_ga6ac6979a76e1698e8841587195d7e1f6}{MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ENUM}}}
+
+
+
+FIFO\+\_\+\+ENABLE enum. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00297}{297}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00298 \{}
+\DoxyCodeLine{00299     MPU6050\_FIFO\_EN\_SLV0 = 0x01,}
+\DoxyCodeLine{00300     MPU6050\_FIFO\_EN\_SLV1 = 0x02,}
+\DoxyCodeLine{00301     MPU6050\_FIFO\_EN\_SLV2 = 0x04,}
+\DoxyCodeLine{00302     MPU6050\_FIFO\_EN\_ACCEL = 0x08,}
+\DoxyCodeLine{00303     MPU6050\_FIFO\_EN\_ZG = 0x10,}
+\DoxyCodeLine{00304     MPU6050\_FIFO\_EN\_YG = 0x20,}
+\DoxyCodeLine{00305     MPU6050\_FIFO\_EN\_XG = 0x40,}
+\DoxyCodeLine{00306     MPU6050\_FIFO\_EN\_TEMP = 0x80}
+\DoxyCodeLine{00307 \} \mbox{\hyperlink{group__MPU6050_gae31f9c4723ec996f661a33df70e643cd}{MPU6050\_FIFO\_EN}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga76e87fbc014d4fc942e9b178df3e3e80}\label{group__MPU6050_ga76e87fbc014d4fc942e9b178df3e3e80}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_GYRO\_RES\_ENUM@{MPU6050\_GYRO\_RES\_ENUM}}
+\index{MPU6050\_GYRO\_RES\_ENUM@{MPU6050\_GYRO\_RES\_ENUM}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_GYRO\_RES\_ENUM}{MPU6050\_GYRO\_RES\_ENUM}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__MPU6050_ga76e87fbc014d4fc942e9b178df3e3e80}{MPU6050\+\_\+\+GYRO\+\_\+\+RES\+\_\+\+ENUM}}}
+
+
+
+Set Gyro\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00260}{260}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00261 \{}
+\DoxyCodeLine{00262     MPU6050\_GYRO\_250deg = 0x00, \textcolor{comment}{// 0 ±  250 °/s 131   LSB/°/s}}
+\DoxyCodeLine{00263     MPU6050\_GYRO\_500deg,        \textcolor{comment}{// 1 ±  500 °/s  65.5 LSB/°/s}}
+\DoxyCodeLine{00264     MPU6050\_GYRO\_1000deg,       \textcolor{comment}{// 2 ± 1000 °/s  32.8 LSB/°/s}}
+\DoxyCodeLine{00265     MPU6050\_GYRO\_2000deg        \textcolor{comment}{// 3 ± 2000 °/s  16.4 LSB/°/s}}
+\DoxyCodeLine{00266 \} \mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\_GYRO\_RES}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_gadc48e7a9bf258853096098d9ac57c2fc}\label{group__MPU6050_gadc48e7a9bf258853096098d9ac57c2fc}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_INT\_EN\_ENUM@{MPU6050\_INT\_EN\_ENUM}}
+\index{MPU6050\_INT\_EN\_ENUM@{MPU6050\_INT\_EN\_ENUM}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_INT\_EN\_ENUM}{MPU6050\_INT\_EN\_ENUM}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__MPU6050_gadc48e7a9bf258853096098d9ac57c2fc}{MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+ENUM}}}
+
+
+
+Interrupt enable enum. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00281}{281}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00282 \{}
+\DoxyCodeLine{00283     MPU6050\_INT\_EN\_DATA\_RDY = 0x01,}
+\DoxyCodeLine{00284     MPU6050\_INT\_EN\_I2C\_INT = 0x08,}
+\DoxyCodeLine{00285     MPU6050\_INT\_EN\_FIFO\_OVERFLOW = 0x10}
+\DoxyCodeLine{00286 \} \mbox{\hyperlink{group__MPU6050_ga7e2e849a6030a6c9f4f24e98f0e217ae}{MPU6050\_INT\_EN}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga71492368fefe6bd98c5b8c16749b7b41}\label{group__MPU6050_ga71492368fefe6bd98c5b8c16749b7b41}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_INT\_STATUS\_ENUM@{MPU6050\_INT\_STATUS\_ENUM}}
+\index{MPU6050\_INT\_STATUS\_ENUM@{MPU6050\_INT\_STATUS\_ENUM}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_INT\_STATUS\_ENUM}{MPU6050\_INT\_STATUS\_ENUM}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__MPU6050_ga71492368fefe6bd98c5b8c16749b7b41}{MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+ENUM}}}
+
+
+
+Interrupt status enum. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00289}{289}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00290 \{}
+\DoxyCodeLine{00291     MPU6050\_INT\_DATA\_RDY = 0x01,}
+\DoxyCodeLine{00292     MPU6050\_INT\_I2C\_INT = 0x08,}
+\DoxyCodeLine{00293     MPU6050\_INT\_FIFO\_OVERFLOW = 0x10}
+\DoxyCodeLine{00294 \} \mbox{\hyperlink{group__MPU6050_gac963b232728d0f265ce7a1e7c20e4962}{MPU6050\_INT\_STATUS}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}\label{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_STATUS@{MPU6050\_STATUS}}
+\index{MPU6050\_STATUS@{MPU6050\_STATUS}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_STATUS}{MPU6050\_STATUS}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}}}
+
+
+
+MPU6050 return values. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00233}{233}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00234 \{}
+\DoxyCodeLine{00235     MPU6050\_Status\_OK = 0x00,}
+\DoxyCodeLine{00236     MPU6050\_Read\_OK,}
+\DoxyCodeLine{00237     MPU6050\_Status\_Error,}
+\DoxyCodeLine{00238     MPU6050\_Read\_Error,}
+\DoxyCodeLine{00239     MPU6050\_Status\_Notconnected,}
+\DoxyCodeLine{00240     MPU6050\_Status\_Invalid}
+\DoxyCodeLine{00241 \} \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\_STATUS}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_gace83f566436760ec0b731f9178929bd3}\label{group__MPU6050_gace83f566436760ec0b731f9178929bd3}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_USR\_CRTL\_ENUM@{MPU6050\_USR\_CRTL\_ENUM}}
+\index{MPU6050\_USR\_CRTL\_ENUM@{MPU6050\_USR\_CRTL\_ENUM}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_USR\_CRTL\_ENUM}{MPU6050\_USR\_CRTL\_ENUM}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__MPU6050_gace83f566436760ec0b731f9178929bd3}{MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+ENUM}}}
+
+
+
+User Controll enum. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00269}{269}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00270 \{}
+\DoxyCodeLine{00271     MPU6050\_USR\_CRTL\_SIG\_COND\_RESET = 0x01,}
+\DoxyCodeLine{00272     MPU6050\_USR\_CRTL\_I2C\_MST\_RESET = 0x02,}
+\DoxyCodeLine{00273     MPU6050\_USR\_CRTL\_FIFO\_RESET = 0x04,}
+\DoxyCodeLine{00274     MPU6050\_USR\_CRTL\_I2C\_TO\_SPI = 0x10,}
+\DoxyCodeLine{00275     MPU6050\_USR\_CRTL\_I2C\_MST\_E = 0x20,}
+\DoxyCodeLine{00276     MPU6050\_USR\_CRTL\_FIFO\_EN = 0x40}
+\DoxyCodeLine{00277 \} \mbox{\hyperlink{group__MPU6050_ga6187941789d211b1e6c0a28a366cc9a8}{MPU6050\_USR\_CRTL}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga7021b2a1eb586b74239bbfa19f42724a}\label{group__MPU6050_ga7021b2a1eb586b74239bbfa19f42724a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!tilt\_direction\_t@{tilt\_direction\_t}}
+\index{tilt\_direction\_t@{tilt\_direction\_t}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{tilt\_direction\_t}{tilt\_direction\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}}}
+
+
+
+Tilt direction enumeration. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00310}{310}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00311 \{}
+\DoxyCodeLine{00312 }
+\DoxyCodeLine{00313     TILT\_NONE = 0x00,}
+\DoxyCodeLine{00314     TILT\_RIGHT = 0x01,}
+\DoxyCodeLine{00315     TILT\_LEFT,}
+\DoxyCodeLine{00316     TILT\_FRONT,}
+\DoxyCodeLine{00317     TILT\_BACK,}
+\DoxyCodeLine{00318     TILT\_RIGHT\_S, \textcolor{comment}{// Fast}}
+\DoxyCodeLine{00319     TILT\_LEFT\_S,}
+\DoxyCodeLine{00320     TILT\_FRONT\_S,}
+\DoxyCodeLine{00321     TILT\_BACK\_S}
+\DoxyCodeLine{00322 \} \mbox{\hyperlink{group__MPU6050_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\_direction\_t}};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}\label{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!getAcclRoll@{getAcclRoll}}
+\index{getAcclRoll@{getAcclRoll}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{getAcclRoll()}{getAcclRoll()}}
+{\footnotesize\ttfamily void get\+Accl\+Roll (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the roll with accl-\/data ~\newline
+ 
+
+\begin{DoxyNote}{Note}
+MPU6050\+\_\+\+Read\+\_\+\+Sensor or MPU6050\+\_\+\+Read\+\_\+\+Accl must be called before 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00366}{366}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00366                   \{}
+\DoxyCodeLine{00367 }
+\DoxyCodeLine{00368     \textcolor{comment}{//Parameter for stability in Regions where X and Z or Y and Z are near zero}}
+\DoxyCodeLine{00369     int16\_t mu = 0.01;}
+\DoxyCodeLine{00370 }
+\DoxyCodeLine{00371 }
+\DoxyCodeLine{00372     int16\_t X = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_X;}
+\DoxyCodeLine{00373     int16\_t Y = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_Y;}
+\DoxyCodeLine{00374     int16\_t Z = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_Z;}
+\DoxyCodeLine{00375 }
+\DoxyCodeLine{00376     \textcolor{comment}{// parameter for correct orientation}}
+\DoxyCodeLine{00377     int16\_t     sign;}
+\DoxyCodeLine{00378     \textcolor{keywordflow}{if} (Z>0)    sign = 1;}
+\DoxyCodeLine{00379     \textcolor{keywordflow}{else}        sign = -\/1;}
+\DoxyCodeLine{00380 }
+\DoxyCodeLine{00381     \textcolor{comment}{//transform radians to degree}}
+\DoxyCodeLine{00382     \textcolor{keywordtype}{float} RAD\_TO\_DEG = 180/M\_PI;}
+\DoxyCodeLine{00383 }
+\DoxyCodeLine{00384     \textcolor{comment}{// Get Roll}}
+\DoxyCodeLine{00385     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_deg = atan2( Y ,   sign * sqrt(Z*Z+ mu*X*X)) * RAD\_TO\_DEG;}
+\DoxyCodeLine{00386     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg = atan2(-\/X, sqrt(Y*Y + Z*Z)) * RAD\_TO\_DEG;}
+\DoxyCodeLine{00387 }
+\DoxyCodeLine{00388 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}\label{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!getGyroRoll@{getGyroRoll}}
+\index{getGyroRoll@{getGyroRoll}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{getGyroRoll()}{getGyroRoll()}}
+{\footnotesize\ttfamily void get\+Gyro\+Roll (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Roll with gyro-\/data. 
+
+\begin{DoxyNote}{Note}
+MPU6050\+\_\+\+Read\+\_\+\+Sensor or MPU6050\+\_\+\+Read\+\_\+\+Gyro must be called before 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00340}{340}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00340                   \{}
+\DoxyCodeLine{00341 }
+\DoxyCodeLine{00342     \textcolor{comment}{// time of measurement for integration}}
+\DoxyCodeLine{00343     \textcolor{keywordtype}{float} cycletime = 80000000;}
+\DoxyCodeLine{00344 }
+\DoxyCodeLine{00345     \textcolor{comment}{// Get Roll}}
+\DoxyCodeLine{00346     \textcolor{comment}{// RAW Gyrodata: Gyro\_X; transformation to Deg/s: Gyro\_mult; time since last measurement: Gyro\_time; cycletime per second: cycletime}}
+\DoxyCodeLine{00347     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg =  (float)( ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_X) * \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
+\DoxyCodeLine{00348     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg =  (float)( ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_Y) * \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
+\DoxyCodeLine{00349     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg =  (float)( ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_Z) * \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_mult ) * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gyro\_time)) / cycletime;}
+\DoxyCodeLine{00350 }
+\DoxyCodeLine{00351     \textcolor{comment}{// Take into account that +-\/360 degrees is the same as 0 degrees}}
+\DoxyCodeLine{00352     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg >=180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg -\/ 360;}
+\DoxyCodeLine{00353     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg <=-\/180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg + 360;}
+\DoxyCodeLine{00354 }
+\DoxyCodeLine{00355     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg >=180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg -\/ 360;}
+\DoxyCodeLine{00356     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg <=-\/180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg + 360;}
+\DoxyCodeLine{00357 }
+\DoxyCodeLine{00358     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg >=180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg -\/ 360;}
+\DoxyCodeLine{00359     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg <=-\/180) \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg + 360;}
+\DoxyCodeLine{00360 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}\label{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_Calculate\_Mean@{MPU6050\_Calculate\_Mean}}
+\index{MPU6050\_Calculate\_Mean@{MPU6050\_Calculate\_Mean}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_Calculate\_Mean()}{MPU6050\_Calculate\_Mean()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} MPU6050\+\_\+\+Calculate\+\_\+\+Mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the mean value of the gyro and accl over n\+\_\+measurements. 
+
+\begin{DoxyNote}{Note}
+this function is in first order a helper function for the calibration process
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+MPU6050\+\_\+\+STATUS 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00228}{228}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00228                                        \{}
+\DoxyCodeLine{00229     \textcolor{comment}{// Temp memory to sum up values for mean calculation}}
+\DoxyCodeLine{00230     \textcolor{comment}{// Gyroscope}}
+\DoxyCodeLine{00231     int32\_t Gx\_mean\_tempbuffer  =   0;}
+\DoxyCodeLine{00232     int32\_t Gy\_mean\_tempbuffer  =   0;}
+\DoxyCodeLine{00233     int32\_t Gz\_mean\_tempbuffer  =   0;}
+\DoxyCodeLine{00234     \textcolor{comment}{// Accelerometer}}
+\DoxyCodeLine{00235     int32\_t Ax\_mean\_tempbuffer  =   0;}
+\DoxyCodeLine{00236     int32\_t Ay\_mean\_tempbuffer  =   0;}
+\DoxyCodeLine{00237     int32\_t Az\_mean\_tempbuffer  =   0;}
+\DoxyCodeLine{00238 }
+\DoxyCodeLine{00239     \textcolor{comment}{// First measurements have to be skipped}}
+\DoxyCodeLine{00240     \textcolor{keywordtype}{int} n\_skipping      =   100;}
+\DoxyCodeLine{00241     \textcolor{keywordtype}{int} n\_measurements  =   500;}
+\DoxyCodeLine{00242     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=n\_skipping; i < n\_measurements + n\_skipping; i++)\{}
+\DoxyCodeLine{00243         }
+\DoxyCodeLine{00244     \textcolor{comment}{// Read Data}}
+\DoxyCodeLine{00245         \textcolor{comment}{// from Gyroscope}}
+\DoxyCodeLine{00246         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}) != MPU6050\_Read\_OK)\{}
+\DoxyCodeLine{00247             \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00248         \}}
+\DoxyCodeLine{00249         int16\_t Gx = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_X;}
+\DoxyCodeLine{00250         int16\_t Gy = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_Y;}
+\DoxyCodeLine{00251         int16\_t Gz = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Gyro\_Z;}
+\DoxyCodeLine{00252         \textcolor{comment}{// from Accelerometer}}
+\DoxyCodeLine{00253         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}{MPU6050\_Read\_Accl}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}) != MPU6050\_Read\_OK)\{}
+\DoxyCodeLine{00254             \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00255         \}}
+\DoxyCodeLine{00256 }
+\DoxyCodeLine{00257         int16\_t Ax = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_X;}
+\DoxyCodeLine{00258         int16\_t Ay = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_Y;}
+\DoxyCodeLine{00259         int16\_t Az = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/>  Accl\_Z;}
+\DoxyCodeLine{00260         \textcolor{comment}{// sum it up}}
+\DoxyCodeLine{00261         Gx\_mean\_tempbuffer  +=  Gx;}
+\DoxyCodeLine{00262         Gy\_mean\_tempbuffer  +=  Gy;}
+\DoxyCodeLine{00263         Gz\_mean\_tempbuffer  +=  Gz;}
+\DoxyCodeLine{00264         Ax\_mean\_tempbuffer  +=  Ax;}
+\DoxyCodeLine{00265         Ay\_mean\_tempbuffer  +=  Ay;}
+\DoxyCodeLine{00266         Az\_mean\_tempbuffer  +=  Az;}
+\DoxyCodeLine{00267         \textcolor{comment}{// Wait to prevent double measurements}}
+\DoxyCodeLine{00268         HAL\_Delay(2);}
+\DoxyCodeLine{00269     \}}
+\DoxyCodeLine{00270 }
+\DoxyCodeLine{00271     \textcolor{comment}{//Save offset to Sensor\_Data}}
+\DoxyCodeLine{00272     \textcolor{comment}{//Gyroscope offset}}
+\DoxyCodeLine{00273     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_mean=Gx\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{00274     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_mean=Gy\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{00275     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_mean=Gz\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{00276     \textcolor{comment}{//Accelerometer offset}}
+\DoxyCodeLine{00277     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_mean=Ax\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{00278     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_mean=Ay\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{00279     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_mean=Az\_mean\_tempbuffer/n\_measurements;}
+\DoxyCodeLine{00280 }
+\DoxyCodeLine{00281     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
+\DoxyCodeLine{00282 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_gac5545cc463f9c6b45b18aab7acc33d83}\label{group__MPU6050_gac5545cc463f9c6b45b18aab7acc33d83}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_Calibrate@{MPU6050\_Calibrate}}
+\index{MPU6050\_Calibrate@{MPU6050\_Calibrate}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_Calibrate()}{MPU6050\_Calibrate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} MPU6050\+\_\+\+Calibrate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calibrates the MPU6050 and sets the offsets, which needed to be subtracted from the Rawdata to get valid information. 
+
+\begin{DoxyReturn}{Returns}
+MPU6050\+\_\+\+STATUS 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00288}{288}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00288                                   \{}
+\DoxyCodeLine{00289 }
+\DoxyCodeLine{00290     \textcolor{comment}{// gravitational constant depending on accelerometer resolution}}
+\DoxyCodeLine{00291     int16\_t gravitation = (int16\_t)((\textcolor{keywordtype}{float})1 / \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Accl\_mult);}
+\DoxyCodeLine{00292     \textcolor{comment}{// allowed deviation from mean for raw data from sensors}}
+\DoxyCodeLine{00293     int8\_t  gyro\_tolerance  = 1;}
+\DoxyCodeLine{00294     int8\_t  accl\_tolerance  = 5;}
+\DoxyCodeLine{00295 }
+\DoxyCodeLine{00296     \textcolor{comment}{// Set offset Initially (offset is subtracted from future measurements)}}
+\DoxyCodeLine{00297     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean;}
+\DoxyCodeLine{00298     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean;}
+\DoxyCodeLine{00299     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean;}
+\DoxyCodeLine{00300     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean;}
+\DoxyCodeLine{00301     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset     =   \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean;}
+\DoxyCodeLine{00302     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset     =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) + gravitation;}
+\DoxyCodeLine{00303 }
+\DoxyCodeLine{00304     \textcolor{comment}{// Indicator for correct calibration of all axis}}
+\DoxyCodeLine{00305     \textcolor{keywordtype}{int} calibrated = 0;}
+\DoxyCodeLine{00306     \textcolor{keywordflow}{while}(calibrated <= 6)\{}
+\DoxyCodeLine{00307         printf(\textcolor{stringliteral}{"{}\%i\(\backslash\)n\(\backslash\)r"{}},calibrated );}
+\DoxyCodeLine{00308         \textcolor{comment}{// Calculate means of sensors}}
+\DoxyCodeLine{00309         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}{MPU6050\_Calculate\_Mean}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}})!= MPU6050\_Read\_OK)\{}
+\DoxyCodeLine{00310             \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00311         \}}
+\DoxyCodeLine{00312         \textcolor{comment}{// Validate or Update Calibration}}
+\DoxyCodeLine{00313         \textcolor{comment}{// Gyroscope X Y Z}}
+\DoxyCodeLine{00314         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean)<gyro\_tolerance) calibrated++;}
+\DoxyCodeLine{00315         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_mean);}
+\DoxyCodeLine{00316 }
+\DoxyCodeLine{00317         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean)<gyro\_tolerance) calibrated++;}
+\DoxyCodeLine{00318         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_mean);}
+\DoxyCodeLine{00319 }
+\DoxyCodeLine{00320         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean)<gyro\_tolerance) calibrated++;}
+\DoxyCodeLine{00321         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_mean);}
+\DoxyCodeLine{00322         \textcolor{comment}{// Accelerometer X Y Z}}
+\DoxyCodeLine{00323         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean)<accl\_tolerance) calibrated++;}
+\DoxyCodeLine{00324         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_mean);}
+\DoxyCodeLine{00325 }
+\DoxyCodeLine{00326         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean)<accl\_tolerance) calibrated++;}
+\DoxyCodeLine{00327         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_offset)   +   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_mean);}
+\DoxyCodeLine{00328 }
+\DoxyCodeLine{00329         \textcolor{keywordflow}{if} ((abs((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) -\/ gravitation)) <accl\_tolerance) calibrated++;}
+\DoxyCodeLine{00330         \textcolor{keywordflow}{else} \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset        =   (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_offset)   +   ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Az\_mean) -\/ gravitation);}
+\DoxyCodeLine{00331 }
+\DoxyCodeLine{00332     \}}
+\DoxyCodeLine{00333     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
+\DoxyCodeLine{00334 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga54401f79994f9addfe2f908f8a565e22}\label{group__MPU6050_ga54401f79994f9addfe2f908f8a565e22}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_detectTilt@{MPU6050\_detectTilt}}
+\index{MPU6050\_detectTilt@{MPU6050\_detectTilt}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_detectTilt()}{MPU6050\_detectTilt()}}
+{\footnotesize\ttfamily uint8\+\_\+t MPU6050\+\_\+detect\+Tilt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+detects the tilt of the Sensor in relation to the calibrated starting stance 
+
+\begin{DoxyReturn}{Returns}
+tilt\+\_\+direction\+\_\+t 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00432}{432}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00432                                      \{}
+\DoxyCodeLine{00433     \textcolor{comment}{//tilt Thresholds, right, left , front}}
+\DoxyCodeLine{00434     int16\_t tilt\_TH\_X\_r,tilt\_TH\_X\_l,  tilt\_TH\_Y, tilt\_TH\_Y\_f,tilt\_TH\_Y\_b, tilt\_TH\_Z;}
+\DoxyCodeLine{00435     int16\_t tilt\_TH\_X\_r\_s, tilt\_TH\_X\_l\_s,  tilt\_TH\_Y\_f\_s, tilt\_TH\_Y\_b\_s;}
+\DoxyCodeLine{00436     \textcolor{comment}{//slow tilt}}
+\DoxyCodeLine{00437     tilt\_TH\_X\_r = -\/1500;}
+\DoxyCodeLine{00438     tilt\_TH\_X\_l = 1500;}
+\DoxyCodeLine{00439     tilt\_TH\_Y   = 1500;}
+\DoxyCodeLine{00440     tilt\_TH\_Y\_f = -\/1500;}
+\DoxyCodeLine{00441     tilt\_TH\_Y\_b = 1500;}
+\DoxyCodeLine{00442     tilt\_TH\_Z   = 3800;}
+\DoxyCodeLine{00443     \textcolor{keywordtype}{float} angle\_TH = 25.0;}
+\DoxyCodeLine{00444     \textcolor{comment}{//strong tilt}}
+\DoxyCodeLine{00445     tilt\_TH\_X\_r\_s = -\/2500;}
+\DoxyCodeLine{00446     tilt\_TH\_X\_l\_s = 2500;}
+\DoxyCodeLine{00447     tilt\_TH\_Y\_f\_s = -\/3000;}
+\DoxyCodeLine{00448     tilt\_TH\_Y\_b\_s = 3000;}
+\DoxyCodeLine{00449 }
+\DoxyCodeLine{00450     getAngleRoll(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
+\DoxyCodeLine{00451     \textcolor{keywordtype}{float} alpha = sqrtf(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>X\_deg*\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>X\_deg + \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Y\_deg* \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Y\_deg);}
+\DoxyCodeLine{00452     \textcolor{comment}{//detect tilt in any diretion}}
+\DoxyCodeLine{00453     \textcolor{keywordflow}{if} ((alpha > angle\_TH) \&\&  (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z) < tilt\_TH\_Z))\{}
+\DoxyCodeLine{00454         \textcolor{comment}{//speciify direction}}
+\DoxyCodeLine{00455         \textcolor{keywordflow}{if} (abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y) < tilt\_TH\_Y)\{}
+\DoxyCodeLine{00456             \textcolor{comment}{//tilt rigth when Accl\_X is negative}}
+\DoxyCodeLine{00457             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X < tilt\_TH\_X\_r)\{}
+\DoxyCodeLine{00458                 \textcolor{comment}{//}}
+\DoxyCodeLine{00459                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X < tilt\_TH\_X\_r\_s)\{}
+\DoxyCodeLine{00460                     \textcolor{comment}{//printf("{}tilt strong right \(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00461                     \textcolor{keywordflow}{return} TILT\_RIGHT\_S;}
+\DoxyCodeLine{00462                 \}}
+\DoxyCodeLine{00463                 \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00464                     \textcolor{comment}{//printf("{}tilt right \(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00465                     \textcolor{keywordflow}{return} TILT\_RIGHT;}
+\DoxyCodeLine{00466                 \}}
+\DoxyCodeLine{00467 }
+\DoxyCodeLine{00468             \}}
+\DoxyCodeLine{00469             \textcolor{comment}{//tilt left when Accl\_X is positiv}}
+\DoxyCodeLine{00470             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X > tilt\_TH\_X\_l) \&\& abs(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y))\{}
+\DoxyCodeLine{00471 }
+\DoxyCodeLine{00472                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X > tilt\_TH\_X\_l\_s)\{}
+\DoxyCodeLine{00473                                         \textcolor{comment}{//printf("{}tilt strong left\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00474                     \textcolor{keywordflow}{return} TILT\_LEFT\_S;}
+\DoxyCodeLine{00475                 \}}
+\DoxyCodeLine{00476                 \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00477                                         \textcolor{comment}{//printf("{}tilt left\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00478                     \textcolor{keywordflow}{return} TILT\_LEFT;}
+\DoxyCodeLine{00479                 \}}
+\DoxyCodeLine{00480             \}}
+\DoxyCodeLine{00481         \}}
+\DoxyCodeLine{00482         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y < tilt\_TH\_Y\_f)\{}
+\DoxyCodeLine{00483             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y < tilt\_TH\_Y\_f\_s)\{}
+\DoxyCodeLine{00484                                 \textcolor{comment}{//printf("{}tilt strong front\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00485                 \textcolor{keywordflow}{return} TILT\_FRONT\_S;}
+\DoxyCodeLine{00486             \}}
+\DoxyCodeLine{00487             \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00488                                 \textcolor{comment}{//printf("{}tilt front\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00489                 \textcolor{keywordflow}{return} TILT\_FRONT;}
+\DoxyCodeLine{00490             \}}
+\DoxyCodeLine{00491 }
+\DoxyCodeLine{00492         \}}
+\DoxyCodeLine{00493         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y > tilt\_TH\_Y\_b)\{}
+\DoxyCodeLine{00494             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y > tilt\_TH\_Y\_b\_s)\{}
+\DoxyCodeLine{00495                                 \textcolor{comment}{//printf("{}tilt strong back\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00496                 \textcolor{keywordflow}{return} TILT\_BACK\_S;}
+\DoxyCodeLine{00497             \}}
+\DoxyCodeLine{00498             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00499                                 \textcolor{comment}{//printf("{}tilt back\(\backslash\)r\(\backslash\)n"{});}}
+\DoxyCodeLine{00500                 \textcolor{keywordflow}{return} TILT\_BACK;}
+\DoxyCodeLine{00501             \}}
+\DoxyCodeLine{00502 }
+\DoxyCodeLine{00503         \}}
+\DoxyCodeLine{00504     \}}
+\DoxyCodeLine{00505     \textcolor{keywordflow}{return} TILT\_NONE;}
+\DoxyCodeLine{00506 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_gad5723da18ebbc9a3730c81df47503f5a}\label{group__MPU6050_gad5723da18ebbc9a3730c81df47503f5a}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_Display\_Data@{MPU6050\_Display\_Data}}
+\index{MPU6050\_Display\_Data@{MPU6050\_Display\_Data}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_Display\_Data()}{MPU6050\_Display\_Data()}}
+{\footnotesize\ttfamily void MPU6050\+\_\+\+Display\+\_\+\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays all Gyro and Accl Axis. 
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00414}{414}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00414                            \{}
+\DoxyCodeLine{00415     \textcolor{comment}{//  uint8\_t buffer[1024];}}
+\DoxyCodeLine{00416     \mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
+\DoxyCodeLine{00417     printf(\textcolor{stringliteral}{"{}Gx: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X);\textcolor{comment}{//+(buffer[5]<<8)+(buffer[6]<<16)+(buffer[7]<<24));}}
+\DoxyCodeLine{00418     printf(\textcolor{stringliteral}{"{}Gy: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y);}
+\DoxyCodeLine{00419     printf(\textcolor{stringliteral}{"{}Gz: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z);}
+\DoxyCodeLine{00420     printf(\textcolor{stringliteral}{"{}Ax: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X);}
+\DoxyCodeLine{00421     printf(\textcolor{stringliteral}{"{}Ay: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y);}
+\DoxyCodeLine{00422     printf(\textcolor{stringliteral}{"{}Az: \%i\(\backslash\)r\(\backslash\)n"{}}, \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z);}
+\DoxyCodeLine{00423 }
+\DoxyCodeLine{00424 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga4b1f2e602c95802e5c65168964da2eb5}\label{group__MPU6050_ga4b1f2e602c95802e5c65168964da2eb5}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_init@{MPU6050\_init}}
+\index{MPU6050\_init@{MPU6050\_init}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_init()}{MPU6050\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} MPU6050\+\_\+init (\begin{DoxyParamCaption}\item[{I2\+C\+\_\+\+Handle\+Type\+Def $\ast$}]{\+\_\+\+\_\+hi2c,  }\item[{\mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}} $\ast$}]{Sensor\+\_\+\+Data\+\_\+pointer,  }\item[{\mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\+\_\+\+ACCL\+\_\+\+RES}}}]{accl\+\_\+resolution,  }\item[{\mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\+\_\+\+GYRO\+\_\+\+RES}}}]{gyro\+\_\+resolution,  }\item[{uint8\+\_\+t}]{samplerate }\end{DoxyParamCaption})}
+
+
+
+Init for the MPU6050. 
+
+Functions
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+hi2c} & i2c handler \\
+\hline
+{\em Sensor\+\_\+\+Data\+\_\+pointer} & struct to save the data \\
+\hline
+{\em accl\+\_\+resolution} & \\
+\hline
+{\em gyro\+\_\+resolution} & \\
+\hline
+{\em samplerate} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+MPU6050\+\_\+\+STATUS 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00025}{25}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025                                                                                                                                                                                  \{}
+\DoxyCodeLine{00026 }
+\DoxyCodeLine{00027     uint8\_t Data=0x00;}
+\DoxyCodeLine{00028     MPU6050\_hi2c = \_\_hi2c;}
+\DoxyCodeLine{00029     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} = Sensor\_Data\_pointer;}
+\DoxyCodeLine{00030     printf(\textcolor{stringliteral}{"{}MPU6050 init begin\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00031     \textcolor{comment}{//Check if device is ready: Let LED blink 3 times if yes}}
+\DoxyCodeLine{00032     \textcolor{keywordflow}{if}((HAL\_I2C\_IsDeviceReady(MPU6050\_hi2c, MPU6050\_ADDR, 2, 20)) != HAL\_OK)\{}
+\DoxyCodeLine{00033         printf(\textcolor{stringliteral}{"{}MPU 6050 No Connection\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00034         \textcolor{keywordflow}{return} MPU6050\_Status\_Notconnected;}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036     \}}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040     \textcolor{comment}{//check WHO\_AM\_I: If answer is I\_AM toggle LED}}
+\DoxyCodeLine{00041     HAL\_I2C\_Mem\_Read(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_WHO\_AM\_I\_REG, 1, \&Data, 1, 1000);}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043     \textcolor{keywordflow}{if} ((Data =! \mbox{\hyperlink{group__MPU6050_ga1de390da371b9193740d43bf523b9791}{MPU6050\_I\_AM}})) \textcolor{comment}{// if-\/statement is 1 if MPU is present}}
+\DoxyCodeLine{00044     \{}
+\DoxyCodeLine{00045         \textcolor{keywordflow}{return} MPU6050\_Status\_Invalid;}
+\DoxyCodeLine{00046     \}}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050     \textcolor{comment}{// wake sensor}}
+\DoxyCodeLine{00051     Data=0x00;}
+\DoxyCodeLine{00052     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_PWR\_MGMT\_1\_REG, 1, \&Data, 1, 1000)!=HAL\_OK)}
+\DoxyCodeLine{00053     \{}
+\DoxyCodeLine{00054         \textcolor{keywordflow}{return} MPU6050\_Status\_Invalid;}
+\DoxyCodeLine{00055     \}}
+\DoxyCodeLine{00056 }
+\DoxyCodeLine{00057 }
+\DoxyCodeLine{00058     \textcolor{comment}{// Config range/resolution Gyroscope}}
+\DoxyCodeLine{00059     Data = 0xE0 | (gyro\_resolution<<3);}
+\DoxyCodeLine{00060     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_GYRO\_CONFIG\_REG, 1, \&Data, 1, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{00061         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00062     \}}
+\DoxyCodeLine{00063     \textcolor{comment}{//for normalization of Gyroscope range}}
+\DoxyCodeLine{00064     \textcolor{keywordflow}{switch} (gyro\_resolution)\{}
+\DoxyCodeLine{00065     \textcolor{keywordflow}{case} MPU6050\_GYRO\_250deg:}
+\DoxyCodeLine{00066         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = \mbox{\hyperlink{group__MPU6050_ga0c37fc112539bcdbe9faa322935b02d7}{MPU6050\_GYRO\_SENS\_250}};}
+\DoxyCodeLine{00067         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00068     \textcolor{keywordflow}{case} MPU6050\_GYRO\_500deg:}
+\DoxyCodeLine{00069         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_500;}
+\DoxyCodeLine{00070         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00071     \textcolor{keywordflow}{case} MPU6050\_GYRO\_1000deg:}
+\DoxyCodeLine{00072         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_1000;}
+\DoxyCodeLine{00073         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00074     \textcolor{keywordflow}{case} MPU6050\_GYRO\_2000deg:}
+\DoxyCodeLine{00075         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_mult = MPU6050\_GYRO\_SENS\_2000;}
+\DoxyCodeLine{00076         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00077     \}}
+\DoxyCodeLine{00078 }
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080     \textcolor{comment}{// Config range/resolution of Accelerometer}}
+\DoxyCodeLine{00081     Data = 0xE0 | (accl\_resolution<<3);}
+\DoxyCodeLine{00082     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_ACCL\_CONFIG\_REG, 1, \&Data, 1, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{00083         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00084     \}}
+\DoxyCodeLine{00085 }
+\DoxyCodeLine{00086     \textcolor{keywordflow}{switch}(accl\_resolution)\{}
+\DoxyCodeLine{00087     \textcolor{keywordflow}{case} MPU6050\_ACCL\_2G:}
+\DoxyCodeLine{00088         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = \mbox{\hyperlink{group__MPU6050_ga1c92b8af476c3704f73583d654dd3b5e}{MPU6050\_ACCL\_SENS\_2}};}
+\DoxyCodeLine{00089         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00090     \textcolor{keywordflow}{case} \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529da6390f128316eec4b36b7ea3b6d59f581}{MPU6050\_ACCL\_4G}}:}
+\DoxyCodeLine{00091         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_4;}
+\DoxyCodeLine{00092         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00093     \textcolor{keywordflow}{case} \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}{MPU6050\_ACCL\_8G}}:}
+\DoxyCodeLine{00094         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_8;}
+\DoxyCodeLine{00095         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00096     \textcolor{keywordflow}{case} \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529daa44ddb1fd0aa9d8783c29f2fbf45fda8}{MPU6050\_ACCL\_16G}}:}
+\DoxyCodeLine{00097         \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_mult = MPU6050\_ACCL\_SENS\_16;}
+\DoxyCodeLine{00098         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00099     \}}
+\DoxyCodeLine{00100 }
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102     \textcolor{comment}{// Config Sample Rate: Sample Rate=8/(1+Data)}}
+\DoxyCodeLine{00103     Data=samplerate;}
+\DoxyCodeLine{00104     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR, \mbox{\hyperlink{group__MPU6050_ga8264ea96144f5fa98bd1a22ceb590315}{MPU6050\_SMPLRT\_DIV\_REG}}, 1, \&Data, 1, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{00105         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00106     \}}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108     \textcolor{comment}{//Set Gyroscope offset to zero}}
+\DoxyCodeLine{00109     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset = 0;}
+\DoxyCodeLine{00110     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset = 0;}
+\DoxyCodeLine{00111     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset = 0;}
+\DoxyCodeLine{00112 }
+\DoxyCodeLine{00113     \textcolor{comment}{//Set Accelerometer offset to zero}}
+\DoxyCodeLine{00114     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset = 0;}
+\DoxyCodeLine{00115     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset = 0;}
+\DoxyCodeLine{00116     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset = 0;}
+\DoxyCodeLine{00117 }
+\DoxyCodeLine{00118     \textcolor{comment}{//  //Set User Controll, Enable FIFO}}
+\DoxyCodeLine{00119     Data = MPU6050\_USR\_CRTL\_FIFO\_EN;}
+\DoxyCodeLine{00120     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_USR\_CRTL\_REG, 1, \&Data, 1, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{00121         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00122     \}}
+\DoxyCodeLine{00123     HAL\_I2C\_Mem\_Read(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_USR\_CRTL\_REG, 1, \&Data, 1, 1000);}
+\DoxyCodeLine{00124     \textcolor{comment}{//  printf("{}MPU6050\_USR\_CRTL\_REG: \%i\(\backslash\)r\(\backslash\)n"{},Data);}}
+\DoxyCodeLine{00125     \textcolor{comment}{// Interruppt Enable}}
+\DoxyCodeLine{00126     Data = MPU6050\_INT\_EN\_DATA\_RDY;}
+\DoxyCodeLine{00127     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR,MPU6050\_RA\_INT\_ENABLE, 1, \&Data, 1, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{00128         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00129     \}}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131 }
+\DoxyCodeLine{00132     \textcolor{comment}{//determines which sensor measurements are loaded into the FIFO buffer}}
+\DoxyCodeLine{00133     \textcolor{comment}{//  Data = MPU6050\_FIFO\_EN\_ACCEL | MPU6050\_FIFO\_EN\_ZG | MPU6050\_FIFO\_EN\_YG | MPU6050\_FIFO\_EN\_XG;}}
+\DoxyCodeLine{00134     Data = 0x00;}
+\DoxyCodeLine{00135     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Write(MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_FIFO\_DATA\_REG, 1, \&Data, 1, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{00136         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00137     \}}
+\DoxyCodeLine{00138     printf(\textcolor{stringliteral}{"{}MPU6050 init end\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00139     \textcolor{keywordflow}{return} MPU6050\_Status\_OK;}
+\DoxyCodeLine{00140 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}\label{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_Read\_Accl@{MPU6050\_Read\_Accl}}
+\index{MPU6050\_Read\_Accl@{MPU6050\_Read\_Accl}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_Read\_Accl()}{MPU6050\_Read\_Accl()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} MPU6050\+\_\+\+Read\+\_\+\+Accl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reeads only accl data 
+
+\begin{DoxyReturn}{Returns}
+MPU6050\+\_\+\+STATUS 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00149}{149}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00149                                   \{}
+\DoxyCodeLine{00150 }
+\DoxyCodeLine{00151     uint8\_t Rec\_Data[6];}
+\DoxyCodeLine{00152 }
+\DoxyCodeLine{00153     \textcolor{comment}{// Read 6Bytes (2byte per axis) starting from ACCL\_XOUT\_H register}}
+\DoxyCodeLine{00154     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Read (MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_ACCL\_XOUT\_H\_REG, 1, Rec\_Data, 6, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{00155         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00156     \}}
+\DoxyCodeLine{00157 }
+\DoxyCodeLine{00158     \textcolor{comment}{// Data for all axis comes as 6Byte array, in the following it is filled into one 16-\/bit array for each axis}}
+\DoxyCodeLine{00159     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset;}
+\DoxyCodeLine{00160     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset;}
+\DoxyCodeLine{00161     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset;}
+\DoxyCodeLine{00162 }
+\DoxyCodeLine{00163     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
+\DoxyCodeLine{00164 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_gac16021f5f2c6dbf509ed77ddfc6d943d}\label{group__MPU6050_gac16021f5f2c6dbf509ed77ddfc6d943d}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_Read\_Gyro@{MPU6050\_Read\_Gyro}}
+\index{MPU6050\_Read\_Gyro@{MPU6050\_Read\_Gyro}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_Read\_Gyro()}{MPU6050\_Read\_Gyro()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} MPU6050\+\_\+\+Read\+\_\+\+Gyro (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reads only gyro data 
+
+\begin{DoxyReturn}{Returns}
+MPU6050\+\_\+\+STATUS 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00171}{171}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00171                                   \{}
+\DoxyCodeLine{00172 }
+\DoxyCodeLine{00173     uint8\_t Rec\_Data[6];}
+\DoxyCodeLine{00174 }
+\DoxyCodeLine{00175     \textcolor{comment}{// Read 6Bytes (2byte per axis) starting from GYRO\_XOUT\_H register}}
+\DoxyCodeLine{00176     \textcolor{keywordflow}{if}(HAL\_I2C\_Mem\_Read ( MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_GYRO\_XOUT\_H\_REG, 1, Rec\_Data, 6, 1000) != HAL\_OK)\{}
+\DoxyCodeLine{00177         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00178     \}}
+\DoxyCodeLine{00179 }
+\DoxyCodeLine{00180     \textcolor{comment}{// Get time of new Measurement and safe time of last measurement}}
+\DoxyCodeLine{00181     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_time   =   DWT-\/>CYCCNT;}
+\DoxyCodeLine{00182     DWT-\/>CYCCNT             =   0;}
+\DoxyCodeLine{00183 }
+\DoxyCodeLine{00184     \textcolor{comment}{// Data for all axis comes as 6Byte array, in the following it is filled into one 16-\/bit array for each axis}}
+\DoxyCodeLine{00185     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1])-\/\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset;}
+\DoxyCodeLine{00186     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3])-\/\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset;}
+\DoxyCodeLine{00187     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5])-\/\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset;}
+\DoxyCodeLine{00188 }
+\DoxyCodeLine{00189 }
+\DoxyCodeLine{00190     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
+\DoxyCodeLine{00191 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}\label{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_Read\_Sensor@{MPU6050\_Read\_Sensor}}
+\index{MPU6050\_Read\_Sensor@{MPU6050\_Read\_Sensor}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_Read\_Sensor()}{MPU6050\_Read\_Sensor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} MPU6050\+\_\+\+Read\+\_\+\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads raw data from accl and gyro ~\newline
+ 
+
+\begin{DoxyReturn}{Returns}
+MPU6050\+\_\+\+STATUS 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00198}{198}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00198                                     \{}
+\DoxyCodeLine{00199 }
+\DoxyCodeLine{00200     uint8\_t Rec\_Data[14];}
+\DoxyCodeLine{00201 }
+\DoxyCodeLine{00202     \textcolor{comment}{// Read 6Bytes (2byte per axis) starting from ACCL\_XOUT\_H register}}
+\DoxyCodeLine{00203     \textcolor{keywordflow}{if} (HAL\_I2C\_Mem\_Read (MPU6050\_hi2c, MPU6050\_ADDR, MPU6050\_ACCL\_XOUT\_H\_REG, 1, Rec\_Data, 14, 1000) != HAL\_OK )\{}
+\DoxyCodeLine{00204         \textcolor{keywordflow}{return} MPU6050\_Status\_Error;}
+\DoxyCodeLine{00205         printf(\textcolor{stringliteral}{"{}READ ERROR\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00206     \}}
+\DoxyCodeLine{00207     \textcolor{comment}{// Get time of new Measurement and safe time of last measurement}}
+\DoxyCodeLine{00208     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_time   =   DWT-\/>CYCCNT;}
+\DoxyCodeLine{00209     DWT-\/>CYCCNT             =   0;}
+\DoxyCodeLine{00210     \textcolor{comment}{// Data for all axis comes as 6Byte array, in the following it is filled into one 16-\/bit array for each axis}}
+\DoxyCodeLine{00211     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_X = (int16\_t)(Rec\_Data[0]<<8 | Rec\_Data[1]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ax\_offset;}
+\DoxyCodeLine{00212     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Y = (int16\_t)(Rec\_Data[2]<<8 | Rec\_Data[3]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Ay\_offset;}
+\DoxyCodeLine{00213     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Accl\_Z = (int16\_t)(Rec\_Data[4]<<8 | Rec\_Data[5]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Az\_offset;}
+\DoxyCodeLine{00214     \textcolor{comment}{// Data for all axis comes as 6Byte array, in the following it is filled into one 16-\/bit array for each axis}}
+\DoxyCodeLine{00215     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_X = (int16\_t)(Rec\_Data[8]<<8 | Rec\_Data[9]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gx\_offset;}
+\DoxyCodeLine{00216     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Y = (int16\_t)(Rec\_Data[10]<<8 | Rec\_Data[11]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gy\_offset;}
+\DoxyCodeLine{00217     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gyro\_Z = (int16\_t)(Rec\_Data[12]<<8 | Rec\_Data[13]) -\/ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}}-\/>Gz\_offset;}
+\DoxyCodeLine{00218 }
+\DoxyCodeLine{00219     \textcolor{keywordflow}{return} MPU6050\_Read\_OK;}
+\DoxyCodeLine{00220 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__MPU6050_gabda0fafb0baae0726041fade79289441}\label{group__MPU6050_gabda0fafb0baae0726041fade79289441}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!MPU6050\_hi2c@{MPU6050\_hi2c}}
+\index{MPU6050\_hi2c@{MPU6050\_hi2c}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_hi2c}{MPU6050\_hi2c}}
+{\footnotesize\ttfamily I2\+C\+\_\+\+Handle\+Type\+Def$\ast$ MPU6050\+\_\+hi2c}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00342}{342}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+
+\mbox{\Hypertarget{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}\label{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}} 
+\index{MPU6050 Software driver@{MPU6050 Software driver}!Sensor\_Data@{Sensor\_Data}}
+\index{Sensor\_Data@{Sensor\_Data}!MPU6050 Software driver@{MPU6050 Software driver}}
+\doxysubsubsection{\texorpdfstring{Sensor\_Data}{Sensor\_Data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}}$\ast$ Sensor\+\_\+\+Data}
+
+Configuration ENUMS END 
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8h_source_l00340}{340}} of file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+

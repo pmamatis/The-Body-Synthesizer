@@ -142,10 +142,10 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l00151}00151 }
 \DoxyCodeLine{\Hypertarget{display_8c_source_l00152}00152     Display-\/>SetPreset = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l00153}00153 }
-\DoxyCodeLine{\Hypertarget{display_8c_source_l00154}00154     sprintf(Display-\/>value\_str\_volume[0], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0]); \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l00155}00155     sprintf(Display-\/>value\_str\_volume[1], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1]);}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l00156}00156     sprintf(Display-\/>value\_str\_volume[2], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2]);}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l00157}00157     sprintf(Display-\/>value\_str\_volume[3], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3]);}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l00154}00154     sprintf(Display-\/>value\_str\_volume[0], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0]); \textcolor{comment}{// Volumes}}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l00155}00155     sprintf(Display-\/>value\_str\_volume[1], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1]);}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l00156}00156     sprintf(Display-\/>value\_str\_volume[2], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2]);}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l00157}00157     sprintf(Display-\/>value\_str\_volume[3], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3]);}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l00158}00158 }
 \DoxyCodeLine{\Hypertarget{display_8c_source_l00159}00159     Display-\/>Drumfilter\_Gain = LS\_DRUMS.dBGain; \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l00160}00160     strcpy(Display-\/>value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}OFF"{}});}
@@ -3015,7 +3015,7 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l03175}03175         Display.currentVoice = 5;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l03176}03176 }
 \DoxyCodeLine{\Hypertarget{display_8c_source_l03177}03177         \textcolor{keywordflow}{if}(Display.Reset == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l03178}03178             \mbox{\hyperlink{signal__synthesis_8h_af4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l03178}03178             \mbox{\hyperlink{group__SSynth_gaf4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l03179}03179             Display.Reset = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l03180}03180             strcpy(Display.value\_str\_voices\_overview[4], \textcolor{stringliteral}{"{}done"{}});}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l03181}03181         \}}
@@ -4431,19 +4431,19 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04637}04637         \textcolor{keywordflow}{switch}(Display.JoystickParameterPosition) \{}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04638}04638         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04639}04639             \textcolor{comment}{// Volume Voices}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04640}04640             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04640}04640             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04641}04641             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04642}04642         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04643}04643             \textcolor{comment}{// Volume Drumcomputer}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04644}04644             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04644}04644             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04645}04645             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04646}04646         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04647}04647             \textcolor{comment}{// Volume Sequencer}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04648}04648             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04648}04648             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04649}04649             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04650}04650         \textcolor{keywordflow}{case} 4:}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04651}04651             \textcolor{comment}{// Volume Keyboard}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04652}04652             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04652}04652             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04653}04653             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04654}04654         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04655}04655             \textcolor{keywordflow}{break};}
@@ -4455,10 +4455,10 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04661}04661     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position-\/25, CASE3, Display.value\_end\_x\_position, CASE3+VALUE\_ROW\_LENGTH, UNCOLORED);}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04662}04662     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position-\/25, CASE4, Display.value\_end\_x\_position, CASE4+VALUE\_ROW\_LENGTH, UNCOLORED);}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04663}04663 }
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04664}04664     sprintf(Display.value\_str\_volume[0], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0]);}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04665}04665     sprintf(Display.value\_str\_volume[1], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1]);}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04666}04666     sprintf(Display.value\_str\_volume[2], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2]);}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04667}04667     sprintf(Display.value\_str\_volume[3], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3]);}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04664}04664     sprintf(Display.value\_str\_volume[0], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0]);}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04665}04665     sprintf(Display.value\_str\_volume[1], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1]);}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04666}04666     sprintf(Display.value\_str\_volume[2], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2]);}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04667}04667     sprintf(Display.value\_str\_volume[3], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3]);}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04668}04668     \textcolor{comment}{// Print value row}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04669}04669     Paint\_DrawStringAt(\&paint, Display.value\_start\_x\_position-\/25, CASE1, Display.value\_str\_volume[0], \&Font12, COLORED);}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04670}04670     Paint\_DrawStringAt(\&paint, Display.value\_start\_x\_position-\/25, CASE2, Display.value\_str\_volume[1], \&Font12, COLORED);}
@@ -4468,10 +4468,10 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04678}\mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{04678}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}(\textcolor{keywordtype}{void}) \{}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04679}04679 }
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04680}04680     \textcolor{keywordflow}{for}(uint8\_t i=0; i<3; i++)}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04681}04681         \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04681}04681         \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04682}04682     \mbox{\hyperlink{group__DrumComputer_ga0945a49b026be615b8a70c8ec885ac08}{Drum\_Computer\_Reset}}();}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04683}04683     \mbox{\hyperlink{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}{Sequencer\_Reset}}();}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04684}04684     \mbox{\hyperlink{signal__synthesis_8h_af4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04684}04684     \mbox{\hyperlink{group__SSynth_gaf4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04685}04685     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04686}04686         \mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\_Reset}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i]);}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04687}04687     \mbox{\hyperlink{group__Filters_gab23086039f9e38c9538b24412c2e397d}{Equalizer\_Reset}}();}
@@ -4516,10 +4516,10 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04730}04730             \textcolor{comment}{// Reset everything}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04731}04731             \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}();}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04732}04732             \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04733}04733             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.54;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04734}04734             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 0.56;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04735}04735             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.47;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04736}04736             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.44;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04733}04733             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.54;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04734}04734             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 0.56;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04735}04735             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.47;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04736}04736             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.44;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04737}04737             \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04738}04738             Display.Drumcomputer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04739}04739             strcpy(Display.value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}ON"{}});    \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
@@ -4707,10 +4707,10 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04921}04921             \textcolor{comment}{// Reset everything}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04922}04922             \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}();}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04923}04923             \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04924}04924             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.43;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04925}04925             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 0.66;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04926}04926             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.73;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l04927}04927             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.68;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04924}04924             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.43;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04925}04925             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 0.66;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04926}04926             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.73;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l04927}04927             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.68;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04928}04928             \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04929}04929             Display.Drumcomputer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l04930}04930             strcpy(Display.value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}ON"{}});    \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
@@ -4874,10 +4874,10 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05088}05088             \textcolor{comment}{// Reset everything}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05089}05089             \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}();}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05090}05090             \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l05091}05091             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.21;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l05092}05092             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 1;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l05093}05093             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.55;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l05094}05094             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 1;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l05091}05091             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.21;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l05092}05092             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 1;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l05093}05093             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.55;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l05094}05094             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 1;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05095}05095             \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05096}05096             Display.Drumcomputer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05097}05097             strcpy(Display.value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}ON"{}});    \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
@@ -5045,10 +5045,10 @@
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05259}05259             \textcolor{comment}{// Reset everything}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05260}05260             \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}();}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05261}05261             \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l05262}05262             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.93;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l05263}05263             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 1.00;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l05264}05264             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 1.00;}
-\DoxyCodeLine{\Hypertarget{display_8c_source_l05265}05265             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.40;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l05262}05262             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.93;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l05263}05263             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 1.00;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l05264}05264             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 1.00;}
+\DoxyCodeLine{\Hypertarget{display_8c_source_l05265}05265             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.40;}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05266}05266             \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05267}05267             Display.Drumcomputer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{display_8c_source_l05268}05268             strcpy(Display.value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}ON"{}});    \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}

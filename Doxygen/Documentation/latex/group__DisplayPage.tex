@@ -191,10 +191,10 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04678}{4678}} of file \mb
 \DoxyCodeLine{04678                       \{}
 \DoxyCodeLine{04679 }
 \DoxyCodeLine{04680     \textcolor{keywordflow}{for}(uint8\_t i=0; i<3; i++)}
-\DoxyCodeLine{04681         \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
+\DoxyCodeLine{04681         \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[i] = 1;}
 \DoxyCodeLine{04682     \mbox{\hyperlink{group__DrumComputer_ga0945a49b026be615b8a70c8ec885ac08}{Drum\_Computer\_Reset}}();}
 \DoxyCodeLine{04683     \mbox{\hyperlink{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}{Sequencer\_Reset}}();}
-\DoxyCodeLine{04684     \mbox{\hyperlink{signal__synthesis_8h_af4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
+\DoxyCodeLine{04684     \mbox{\hyperlink{group__SSynth_gaf4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
 \DoxyCodeLine{04685     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
 \DoxyCodeLine{04686         \mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\_Reset}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i]);}
 \DoxyCodeLine{04687     \mbox{\hyperlink{group__Filters_gab23086039f9e38c9538b24412c2e397d}{Equalizer\_Reset}}();}
@@ -1728,10 +1728,10 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04697}{4697}} of file \mb
 \DoxyCodeLine{04730             \textcolor{comment}{// Reset everything}}
 \DoxyCodeLine{04731             \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}();}
 \DoxyCodeLine{04732             \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{04733             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.54;}
-\DoxyCodeLine{04734             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 0.56;}
-\DoxyCodeLine{04735             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.47;}
-\DoxyCodeLine{04736             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.44;}
+\DoxyCodeLine{04733             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.54;}
+\DoxyCodeLine{04734             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 0.56;}
+\DoxyCodeLine{04735             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.47;}
+\DoxyCodeLine{04736             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.44;}
 \DoxyCodeLine{04737             \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{04738             Display.Drumcomputer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{04739             strcpy(Display.value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}ON"{}});    \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
@@ -1919,10 +1919,10 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04697}{4697}} of file \mb
 \DoxyCodeLine{04921             \textcolor{comment}{// Reset everything}}
 \DoxyCodeLine{04922             \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}();}
 \DoxyCodeLine{04923             \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{04924             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.43;}
-\DoxyCodeLine{04925             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 0.66;}
-\DoxyCodeLine{04926             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.73;}
-\DoxyCodeLine{04927             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.68;}
+\DoxyCodeLine{04924             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.43;}
+\DoxyCodeLine{04925             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 0.66;}
+\DoxyCodeLine{04926             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.73;}
+\DoxyCodeLine{04927             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.68;}
 \DoxyCodeLine{04928             \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{04929             Display.Drumcomputer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{04930             strcpy(Display.value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}ON"{}});    \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
@@ -2086,10 +2086,10 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04697}{4697}} of file \mb
 \DoxyCodeLine{05088             \textcolor{comment}{// Reset everything}}
 \DoxyCodeLine{05089             \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}();}
 \DoxyCodeLine{05090             \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{05091             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.21;}
-\DoxyCodeLine{05092             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 1;}
-\DoxyCodeLine{05093             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.55;}
-\DoxyCodeLine{05094             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 1;}
+\DoxyCodeLine{05091             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.21;}
+\DoxyCodeLine{05092             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 1;}
+\DoxyCodeLine{05093             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 0.55;}
+\DoxyCodeLine{05094             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 1;}
 \DoxyCodeLine{05095             \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{05096             Display.Drumcomputer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{05097             strcpy(Display.value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}ON"{}});    \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
@@ -2257,10 +2257,10 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04697}{4697}} of file \mb
 \DoxyCodeLine{05259             \textcolor{comment}{// Reset everything}}
 \DoxyCodeLine{05260             \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}();}
 \DoxyCodeLine{05261             \textcolor{comment}{// Volumes}}
-\DoxyCodeLine{05262             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.93;}
-\DoxyCodeLine{05263             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 1.00;}
-\DoxyCodeLine{05264             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 1.00;}
-\DoxyCodeLine{05265             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.40;}
+\DoxyCodeLine{05262             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = 0.93;}
+\DoxyCodeLine{05263             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = 1.00;}
+\DoxyCodeLine{05264             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = 1.00;}
+\DoxyCodeLine{05265             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = 0.40;}
 \DoxyCodeLine{05266             \textcolor{comment}{// Drumcomputer}}
 \DoxyCodeLine{05267             Display.Drumcomputer\_ONOFF = \textcolor{keyword}{true};}
 \DoxyCodeLine{05268             strcpy(Display.value\_str\_drumcomputer[0], \textcolor{stringliteral}{"{}ON"{}});    \textcolor{comment}{// To make sure that value is correctly displayed when switch to page}}
@@ -2942,7 +2942,7 @@ Definition at line \mbox{\hyperlink{display_8c_source_l03076}{3076}} of file \mb
 \DoxyCodeLine{03175         Display.currentVoice = 5;}
 \DoxyCodeLine{03176 }
 \DoxyCodeLine{03177         \textcolor{keywordflow}{if}(Display.Reset == \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{03178             \mbox{\hyperlink{signal__synthesis_8h_af4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
+\DoxyCodeLine{03178             \mbox{\hyperlink{group__SSynth_gaf4829c3aeeaf3dbcda0b5266e2834898}{Voices\_Reset}}();}
 \DoxyCodeLine{03179             Display.Reset = \textcolor{keyword}{false};}
 \DoxyCodeLine{03180             strcpy(Display.value\_str\_voices\_overview[4], \textcolor{stringliteral}{"{}done"{}});}
 \DoxyCodeLine{03181         \}}
@@ -3123,19 +3123,19 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04617}{4617}} of file \mb
 \DoxyCodeLine{04637         \textcolor{keywordflow}{switch}(Display.JoystickParameterPosition) \{}
 \DoxyCodeLine{04638         \textcolor{keywordflow}{case} 1:}
 \DoxyCodeLine{04639             \textcolor{comment}{// Volume Voices}}
-\DoxyCodeLine{04640             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
+\DoxyCodeLine{04640             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
 \DoxyCodeLine{04641             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{04642         \textcolor{keywordflow}{case} 2:}
 \DoxyCodeLine{04643             \textcolor{comment}{// Volume Drumcomputer}}
-\DoxyCodeLine{04644             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
+\DoxyCodeLine{04644             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
 \DoxyCodeLine{04645             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{04646         \textcolor{keywordflow}{case} 3:}
 \DoxyCodeLine{04647             \textcolor{comment}{// Volume Sequencer}}
-\DoxyCodeLine{04648             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
+\DoxyCodeLine{04648             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
 \DoxyCodeLine{04649             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{04650         \textcolor{keywordflow}{case} 4:}
 \DoxyCodeLine{04651             \textcolor{comment}{// Volume Keyboard}}
-\DoxyCodeLine{04652             \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
+\DoxyCodeLine{04652             \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3] = (float)Display.ADC2inputs[2]/(\textcolor{keywordtype}{float})Display.ADC\_FullRange;}
 \DoxyCodeLine{04653             \textcolor{keywordflow}{break};}
 \DoxyCodeLine{04654         \textcolor{keywordflow}{default}:}
 \DoxyCodeLine{04655             \textcolor{keywordflow}{break};}
@@ -3147,10 +3147,10 @@ Definition at line \mbox{\hyperlink{display_8c_source_l04617}{4617}} of file \mb
 \DoxyCodeLine{04661     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position-\/25, CASE3, Display.value\_end\_x\_position, CASE3+VALUE\_ROW\_LENGTH, UNCOLORED);}
 \DoxyCodeLine{04662     Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position-\/25, CASE4, Display.value\_end\_x\_position, CASE4+VALUE\_ROW\_LENGTH, UNCOLORED);}
 \DoxyCodeLine{04663 }
-\DoxyCodeLine{04664     sprintf(Display.value\_str\_volume[0], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0]);}
-\DoxyCodeLine{04665     sprintf(Display.value\_str\_volume[1], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1]);}
-\DoxyCodeLine{04666     sprintf(Display.value\_str\_volume[2], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2]);}
-\DoxyCodeLine{04667     sprintf(Display.value\_str\_volume[3], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{signal__synthesis_8h_a0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3]);}
+\DoxyCodeLine{04664     sprintf(Display.value\_str\_volume[0], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[0]);}
+\DoxyCodeLine{04665     sprintf(Display.value\_str\_volume[1], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[1]);}
+\DoxyCodeLine{04666     sprintf(Display.value\_str\_volume[2], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[2]);}
+\DoxyCodeLine{04667     sprintf(Display.value\_str\_volume[3], \textcolor{stringliteral}{"{}\%.2f"{}}, \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}}[3]);}
 \DoxyCodeLine{04668     \textcolor{comment}{// Print value row}}
 \DoxyCodeLine{04669     Paint\_DrawStringAt(\&paint, Display.value\_start\_x\_position-\/25, CASE1, Display.value\_str\_volume[0], \&Font12, COLORED);}
 \DoxyCodeLine{04670     Paint\_DrawStringAt(\&paint, Display.value\_start\_x\_position-\/25, CASE2, Display.value\_str\_volume[1], \&Font12, COLORED);}

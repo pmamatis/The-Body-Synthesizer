@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">The Body-Synthesizer<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers</div>
+   <div id="projectbrief">Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers</div>
   </td>
  </tr>
  </tbody>
@@ -187,14 +187,14 @@ Variables</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="tremolo_8c_source.html#l00069">69</a> of file <a class="el" href="tremolo_8c_source.html">tremolo.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   69</span>                                                                      {</div>
 <div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>    <a class="code hl_function" href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a>(Tremolo-&gt;lfo, TREMOLO_LFO);</div>
+<div class="line"><span class="lineno">   71</span>    <a class="code hl_function" href="group__SSynth.html#ga381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a>(Tremolo-&gt;lfo, TREMOLO_LFO);</div>
 <div class="line"><span class="lineno">   72</span> </div>
 <div class="line"><span class="lineno">   73</span>    <span class="keywordtype">float</span> tremolo_mod = (1 + Tremolo-&gt;lfo-&gt;lfo_depth * Tremolo-&gt;lfo-&gt;lfo_data);</div>
 <div class="line"><span class="lineno">   74</span>    *data = (tremolo_mod * *data) / (1+Tremolo-&gt;lfo-&gt;lfo_depth);</div>
 <div class="line"><span class="lineno">   75</span> </div>
 <div class="line"><span class="lineno">   76</span>    <span class="keywordflow">return</span> TREMOLO_OK;</div>
 <div class="line"><span class="lineno">   77</span>}</div>
-<div class="ttc" id="asignal__synthesis_8h_html_a381bb27bca64ed7f5df822a3db09707a"><div class="ttname"><a href="signal__synthesis_8h.html#a381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a></div><div class="ttdeci">void LFO_SingleValueProcess(struct effects_lfo_t *lfo, uint8_t lfo_effect)</div><div class="ttdoc">Constructor for a signal, adds a signal into the signals1 struct.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00147">signal_synthesis.c:147</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga381bb27bca64ed7f5df822a3db09707a"><div class="ttname"><a href="group__SSynth.html#ga381bb27bca64ed7f5df822a3db09707a">LFO_SingleValueProcess</a></div><div class="ttdeci">void LFO_SingleValueProcess(struct effects_lfo_t *lfo, uint8_t lfo_effect)</div><div class="ttdoc">Constructor for a signal, adds a signal into the signals1 struct.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00147">signal_synthesis.c:147</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

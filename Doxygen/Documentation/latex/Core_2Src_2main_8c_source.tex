@@ -125,10 +125,10 @@
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00138}00138 \textcolor{comment}{// DAC\_CHANNEL\_2}}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00139}00139 \textcolor{keywordtype}{void} HAL\_DACEx\_ConvHalfCpltCallbackCh2(DAC\_HandleTypeDef* \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}) \{}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00140}00140 }
-\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00141}00141     \mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = HALF\_BLOCK;}
+\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00141}00141     \mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = HALF\_BLOCK;}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00142}00142 }
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00143}00143     \textcolor{keywordflow}{if} (Init\_complete)\{}
-\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00144}00144         \mbox{\hyperlink{signal__synthesis_8h_a14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\&signals1, 1);}
+\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00144}00144         \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\&signals1, 1);}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00145}00145     \}}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00146}00146     \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00147}00147         Init\_complete = initRamp();}
@@ -136,10 +136,10 @@
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00149}00149 }
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00150}00150 \textcolor{keywordtype}{void} HAL\_DACEx\_ConvCpltCallbackCh2(DAC\_HandleTypeDef* \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}) \{}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00151}00151 }
-\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00152}00152     \mbox{\hyperlink{signal__synthesis_8h_a5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = FULL\_BLOCK;}
+\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00152}00152     \mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{outputBuffer\_position}} = FULL\_BLOCK;}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00153}00153 }
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00154}00154     \textcolor{keywordflow}{if} (Init\_complete)\{}
-\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00155}00155         \mbox{\hyperlink{signal__synthesis_8h_a14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\&signals1, 1);}
+\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00155}00155         \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\_Synthesis}}(\&signals1, 1);}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00156}00156     \}}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00157}00157     \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00158}00158         Init\_complete = initRamp();}
@@ -203,7 +203,7 @@
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00220}00220     \textcolor{comment}{/* INIT FUNCTIONS begin*********************/}}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00221}00221 }
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00222}00222     printf(\textcolor{stringliteral}{"{}Begin Init\(\backslash\)r\(\backslash\)n"{}});}
-\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00223}00223     \textcolor{keywordflow}{if}(\mbox{\hyperlink{signal__synthesis_8h_a9eda288feb5c689a0f90742249fe6da0}{Signal\_Synthesis\_Init}}(htim8, \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}) != HAL\_OK) \{}
+\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00223}00223     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__SSynth_ga9eda288feb5c689a0f90742249fe6da0}{Signal\_Synthesis\_Init}}(htim8, \mbox{\hyperlink{Core_2Src_2main_8c_a40a0d1383beda58531dfda6218720e45}{hdac}}) != HAL\_OK) \{}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00224}00224         printf(\textcolor{stringliteral}{"{}Signal Synthesis init failed\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00225}00225     \}}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00226}00226 }
@@ -266,7 +266,7 @@
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00283}00283     \mbox{\hyperlink{group__keyboard_ga86de1f5c40ab14dddcc12fbf3eafde08}{keyboard\_start\_read}}();}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00284}00284 }
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00285}00285     \textcolor{comment}{// Start Timer and ADC-\/DMA for the joystick and the potentiometer (ADC2)}}
-\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00286}00286     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim6, 500);  \textcolor{comment}{// Timer 6 default: 2000 Hz}}
+\DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00286}00286     \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(\&htim6, 500);  \textcolor{comment}{// Timer 6 default: 2000 Hz}}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00287}00287     printf(\textcolor{stringliteral}{"{}start Button ADC\(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00288}00288     HAL\_TIM\_Base\_Start(\&htim6);}
 \DoxyCodeLine{\Hypertarget{Core_2Src_2main_8c_source_l00289}00289     HAL\_ADC\_Start\_DMA(\&hadc2, (uint32\_t*)Display.ADC2inputs, 4);}

@@ -69,6 +69,13 @@ static void MX_I2C1_Init(void);
 /* USER CODE END 0 */
 
 /**
+ * @defgroup LED LED Feedback Controll and STMf4 main-loop
+ * @ingroup SensorSTM
+ * @brief Controlls the LED-Feedback-Board
+ * @{
+ */
+
+/**
   * @brief  The application entry point.
   * @retval int
   */
@@ -228,9 +235,13 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	}
+ 
   /* USER CODE END 3 */
 }
-
+ /**
+   * @} 
+   * 
+   */
 /**
   * @brief System Clock Configuration
   * @retval None

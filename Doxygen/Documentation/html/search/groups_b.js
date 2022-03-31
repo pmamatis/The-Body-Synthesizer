@@ -1,12 +1,12 @@
 var searchData=
 [
   ['sd_2dcard_0',['SD-Card',['../group__SDcard.html',1,'']]],
-  ['sensor_20board_20code_1',['Sensor Board Code',['../group__SensorSTM.html',1,'']]],
-  ['sequencer_2',['Sequencer',['../group__Sequencer.html',1,'']]],
+  ['sequencer_1',['Sequencer',['../group__Sequencer.html',1,'']]],
+  ['signal_20synthesis_20and_20lfo_2',['Signal Synthesis and LFO',['../group__SSynth.html',1,'']]],
   ['sinus_20lut_3',['Sinus LUT',['../group__SINLUT.html',1,'']]],
   ['sound_20bins_20sequencer_4',['Sound bins sequencer',['../group__SoundBinSequencer.html',1,'']]],
   ['sound_20synthesis_5',['Sound Synthesis',['../group__SoundSynth.html',1,'']]],
-  ['stm32_20related_20code_6',['STM32 related Code',['../group__STM32.html',1,'']]],
+  ['spi_2dconnection_20_20_3cbr_3e_6',['SPI-Connection  &lt;br&gt;',['../group__SPI.html',1,'']]],
   ['stm32f4xx_5fsystem_7',['Stm32f4xx_system',['../group__stm32f4xx__system.html',1,'']]],
   ['stm32f4xx_5fsystem_5fprivate_5fdefines_8',['STM32F4xx_System_Private_Defines',['../group__STM32F4xx__System__Private__Defines.html',1,'']]],
   ['stm32f4xx_5fsystem_5fprivate_5ffunctionprototypes_9',['STM32F4xx_System_Private_FunctionPrototypes',['../group__STM32F4xx__System__Private__FunctionPrototypes.html',1,'']]],

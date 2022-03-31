@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">The Body-Synthesizer<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers</div>
+   <div id="projectbrief">Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers</div>
   </td>
  </tr>
  </tbody>
@@ -309,10 +309,10 @@ Functions</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno"> 4678</span>                      {</div>
 <div class="line"><span class="lineno"> 4679</span> </div>
 <div class="line"><span class="lineno"> 4680</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;3; i++)</div>
-<div class="line"><span class="lineno"> 4681</span>        <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[i] = 1;</div>
+<div class="line"><span class="lineno"> 4681</span>        <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[i] = 1;</div>
 <div class="line"><span class="lineno"> 4682</span>    <a class="code hl_function" href="group__DrumComputer.html#ga0945a49b026be615b8a70c8ec885ac08">Drum_Computer_Reset</a>();</div>
 <div class="line"><span class="lineno"> 4683</span>    <a class="code hl_function" href="group__Sequencer.html#gaf1fa77afa44aa624f611ecb1bcb9117e">Sequencer_Reset</a>();</div>
-<div class="line"><span class="lineno"> 4684</span>    <a class="code hl_function" href="signal__synthesis_8h.html#af4829c3aeeaf3dbcda0b5266e2834898">Voices_Reset</a>();</div>
+<div class="line"><span class="lineno"> 4684</span>    <a class="code hl_function" href="group__SSynth.html#gaf4829c3aeeaf3dbcda0b5266e2834898">Voices_Reset</a>();</div>
 <div class="line"><span class="lineno"> 4685</span>    <span class="keywordflow">for</span>(uint8_t i=0; i&lt;MAX_SIMULTANEOUS_KEYBOARD_NOTES; i++)</div>
 <div class="line"><span class="lineno"> 4686</span>        <a class="code hl_function" href="group__ADSR.html#gab059a1f2cde16bed41f0f4e0f113a5d9">ADSR_Reset</a>(&amp;<a class="code hl_variable" href="group__ADSR.html#ga742e13f70ae8c573509abfd794271f44">adsr_keyboard</a>[i]);</div>
 <div class="line"><span class="lineno"> 4687</span>    <a class="code hl_function" href="group__Filters.html#gab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a>();</div>
@@ -325,11 +325,11 @@ Functions</h2></td></tr>
 <div class="ttc" id="agroup__Distortion_html_gac69b82a1179f795d9205a246de59a37a"><div class="ttname"><a href="group__Distortion.html#gac69b82a1179f795d9205a246de59a37a">Distortion_Reset</a></div><div class="ttdeci">Distortion_Status Distortion_Reset(void)</div><div class="ttdoc">This function resets the distortion variables to its initial state.</div><div class="ttdef"><b>Definition:</b> <a href="distortion_8c_source.html#l00033">distortion.c:33</a></div></div>
 <div class="ttc" id="agroup__DrumComputer_html_ga0945a49b026be615b8a70c8ec885ac08"><div class="ttname"><a href="group__DrumComputer.html#ga0945a49b026be615b8a70c8ec885ac08">Drum_Computer_Reset</a></div><div class="ttdeci">HAL_StatusTypeDef Drum_Computer_Reset(void)</div><div class="ttdoc">This function resets the drumcomputer to its initial state.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00198">drum_computer.c:198</a></div></div>
 <div class="ttc" id="agroup__Filters_html_gab23086039f9e38c9538b24412c2e397d"><div class="ttname"><a href="group__Filters.html#gab23086039f9e38c9538b24412c2e397d">Equalizer_Reset</a></div><div class="ttdeci">Filter_Status Equalizer_Reset(void)</div><div class="ttdoc">This function resets the equalizer parameters to its initial states.</div><div class="ttdef"><b>Definition:</b> <a href="filters_8c_source.html#l00265">filters.c:265</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga0c06ec02b1329cdb21df9311f9bc3712"><div class="ttname"><a href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a></div><div class="ttdeci">float volume[4]</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00117">signal_synthesis.h:117</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_gaf4829c3aeeaf3dbcda0b5266e2834898"><div class="ttname"><a href="group__SSynth.html#gaf4829c3aeeaf3dbcda0b5266e2834898">Voices_Reset</a></div><div class="ttdeci">HAL_StatusTypeDef Voices_Reset(void)</div><div class="ttdoc">resets the voice parameter which can be changed in the GUI</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00058">signal_synthesis.c:58</a></div></div>
 <div class="ttc" id="agroup__Sequencer_html_gaf1fa77afa44aa624f611ecb1bcb9117e"><div class="ttname"><a href="group__Sequencer.html#gaf1fa77afa44aa624f611ecb1bcb9117e">Sequencer_Reset</a></div><div class="ttdeci">HAL_StatusTypeDef Sequencer_Reset(void)</div><div class="ttdoc">This function resets the sequencer to its initial state.</div><div class="ttdef"><b>Definition:</b> <a href="drum__computer_8c_source.html#l00261">drum_computer.c:261</a></div></div>
 <div class="ttc" id="agroup__tremolo_html_ga7ec31bc72214199a5efdbe88b3a3f8b8"><div class="ttname"><a href="group__tremolo.html#ga7ec31bc72214199a5efdbe88b3a3f8b8">Tremolo_Reset</a></div><div class="ttdeci">Tremolo_Status Tremolo_Reset(void)</div><div class="ttdoc">resets all tremelo parameters</div><div class="ttdef"><b>Definition:</b> <a href="tremolo_8c_source.html#l00045">tremolo.c:45</a></div></div>
 <div class="ttc" id="agroup__wahwah_html_ga9b91a7fae64755689936b60cf1820535"><div class="ttname"><a href="group__wahwah.html#ga9b91a7fae64755689936b60cf1820535">WahWah_Reset</a></div><div class="ttdeci">WahWah_Status WahWah_Reset(struct WahWah_t *WahWah)</div><div class="ttdoc">resets all wahwah parameters</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00055">wahwah.c:55</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a0c06ec02b1329cdb21df9311f9bc3712"><div class="ttname"><a href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a></div><div class="ttdeci">float volume[4]</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00106">signal_synthesis.h:106</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_af4829c3aeeaf3dbcda0b5266e2834898"><div class="ttname"><a href="signal__synthesis_8h.html#af4829c3aeeaf3dbcda0b5266e2834898">Voices_Reset</a></div><div class="ttdeci">HAL_StatusTypeDef Voices_Reset(void)</div><div class="ttdoc">resets the voice parameter which can be changed in the GUI</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00058">signal_synthesis.c:58</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1907,10 +1907,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4730</span>            <span class="comment">// Reset everything</span></div>
 <div class="line"><span class="lineno"> 4731</span>            <a class="code hl_function" href="group__DisplayPage.html#ga84ad5e4c5b1f9dca651caf624ed02d91">Full_Reset</a>();</div>
 <div class="line"><span class="lineno"> 4732</span>            <span class="comment">// Volumes</span></div>
-<div class="line"><span class="lineno"> 4733</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = 0.54;</div>
-<div class="line"><span class="lineno"> 4734</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = 0.56;</div>
-<div class="line"><span class="lineno"> 4735</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = 0.47;</div>
-<div class="line"><span class="lineno"> 4736</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = 0.44;</div>
+<div class="line"><span class="lineno"> 4733</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = 0.54;</div>
+<div class="line"><span class="lineno"> 4734</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = 0.56;</div>
+<div class="line"><span class="lineno"> 4735</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = 0.47;</div>
+<div class="line"><span class="lineno"> 4736</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = 0.44;</div>
 <div class="line"><span class="lineno"> 4737</span>            <span class="comment">// Drumcomputer</span></div>
 <div class="line"><span class="lineno"> 4738</span>            Display.Drumcomputer_ONOFF = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno"> 4739</span>            strcpy(Display.value_str_drumcomputer[0], <span class="stringliteral">&quot;ON&quot;</span>);    <span class="comment">// To make sure that value is correctly displayed when switch to page</span></div>
@@ -2098,10 +2098,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4921</span>            <span class="comment">// Reset everything</span></div>
 <div class="line"><span class="lineno"> 4922</span>            <a class="code hl_function" href="group__DisplayPage.html#ga84ad5e4c5b1f9dca651caf624ed02d91">Full_Reset</a>();</div>
 <div class="line"><span class="lineno"> 4923</span>            <span class="comment">// Volumes</span></div>
-<div class="line"><span class="lineno"> 4924</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = 0.43;</div>
-<div class="line"><span class="lineno"> 4925</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = 0.66;</div>
-<div class="line"><span class="lineno"> 4926</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = 0.73;</div>
-<div class="line"><span class="lineno"> 4927</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = 0.68;</div>
+<div class="line"><span class="lineno"> 4924</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = 0.43;</div>
+<div class="line"><span class="lineno"> 4925</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = 0.66;</div>
+<div class="line"><span class="lineno"> 4926</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = 0.73;</div>
+<div class="line"><span class="lineno"> 4927</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = 0.68;</div>
 <div class="line"><span class="lineno"> 4928</span>            <span class="comment">// Drumcomputer</span></div>
 <div class="line"><span class="lineno"> 4929</span>            Display.Drumcomputer_ONOFF = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno"> 4930</span>            strcpy(Display.value_str_drumcomputer[0], <span class="stringliteral">&quot;ON&quot;</span>);    <span class="comment">// To make sure that value is correctly displayed when switch to page</span></div>
@@ -2265,10 +2265,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 5088</span>            <span class="comment">// Reset everything</span></div>
 <div class="line"><span class="lineno"> 5089</span>            <a class="code hl_function" href="group__DisplayPage.html#ga84ad5e4c5b1f9dca651caf624ed02d91">Full_Reset</a>();</div>
 <div class="line"><span class="lineno"> 5090</span>            <span class="comment">// Volumes</span></div>
-<div class="line"><span class="lineno"> 5091</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = 0.21;</div>
-<div class="line"><span class="lineno"> 5092</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = 1;</div>
-<div class="line"><span class="lineno"> 5093</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = 0.55;</div>
-<div class="line"><span class="lineno"> 5094</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = 1;</div>
+<div class="line"><span class="lineno"> 5091</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = 0.21;</div>
+<div class="line"><span class="lineno"> 5092</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = 1;</div>
+<div class="line"><span class="lineno"> 5093</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = 0.55;</div>
+<div class="line"><span class="lineno"> 5094</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = 1;</div>
 <div class="line"><span class="lineno"> 5095</span>            <span class="comment">// Drumcomputer</span></div>
 <div class="line"><span class="lineno"> 5096</span>            Display.Drumcomputer_ONOFF = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno"> 5097</span>            strcpy(Display.value_str_drumcomputer[0], <span class="stringliteral">&quot;ON&quot;</span>);    <span class="comment">// To make sure that value is correctly displayed when switch to page</span></div>
@@ -2436,10 +2436,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 5259</span>            <span class="comment">// Reset everything</span></div>
 <div class="line"><span class="lineno"> 5260</span>            <a class="code hl_function" href="group__DisplayPage.html#ga84ad5e4c5b1f9dca651caf624ed02d91">Full_Reset</a>();</div>
 <div class="line"><span class="lineno"> 5261</span>            <span class="comment">// Volumes</span></div>
-<div class="line"><span class="lineno"> 5262</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = 0.93;</div>
-<div class="line"><span class="lineno"> 5263</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = 1.00;</div>
-<div class="line"><span class="lineno"> 5264</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = 1.00;</div>
-<div class="line"><span class="lineno"> 5265</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = 0.40;</div>
+<div class="line"><span class="lineno"> 5262</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = 0.93;</div>
+<div class="line"><span class="lineno"> 5263</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = 1.00;</div>
+<div class="line"><span class="lineno"> 5264</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = 1.00;</div>
+<div class="line"><span class="lineno"> 5265</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = 0.40;</div>
 <div class="line"><span class="lineno"> 5266</span>            <span class="comment">// Drumcomputer</span></div>
 <div class="line"><span class="lineno"> 5267</span>            Display.Drumcomputer_ONOFF = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno"> 5268</span>            strcpy(Display.value_str_drumcomputer[0], <span class="stringliteral">&quot;ON&quot;</span>);    <span class="comment">// To make sure that value is correctly displayed when switch to page</span></div>
@@ -3145,7 +3145,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 3175</span>        Display.currentVoice = 5;</div>
 <div class="line"><span class="lineno"> 3176</span> </div>
 <div class="line"><span class="lineno"> 3177</span>        <span class="keywordflow">if</span>(Display.Reset == <span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno"> 3178</span>            <a class="code hl_function" href="signal__synthesis_8h.html#af4829c3aeeaf3dbcda0b5266e2834898">Voices_Reset</a>();</div>
+<div class="line"><span class="lineno"> 3178</span>            <a class="code hl_function" href="group__SSynth.html#gaf4829c3aeeaf3dbcda0b5266e2834898">Voices_Reset</a>();</div>
 <div class="line"><span class="lineno"> 3179</span>            Display.Reset = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno"> 3180</span>            strcpy(Display.value_str_voices_overview[4], <span class="stringliteral">&quot;done&quot;</span>);</div>
 <div class="line"><span class="lineno"> 3181</span>        }</div>
@@ -3332,19 +3332,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4637</span>        <span class="keywordflow">switch</span>(Display.JoystickParameterPosition) {</div>
 <div class="line"><span class="lineno"> 4638</span>        <span class="keywordflow">case</span> 1:</div>
 <div class="line"><span class="lineno"> 4639</span>            <span class="comment">// Volume Voices</span></div>
-<div class="line"><span class="lineno"> 4640</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = (float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange;</div>
+<div class="line"><span class="lineno"> 4640</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0] = (float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange;</div>
 <div class="line"><span class="lineno"> 4641</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 4642</span>        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><span class="lineno"> 4643</span>            <span class="comment">// Volume Drumcomputer</span></div>
-<div class="line"><span class="lineno"> 4644</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = (float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange;</div>
+<div class="line"><span class="lineno"> 4644</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1] = (float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange;</div>
 <div class="line"><span class="lineno"> 4645</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 4646</span>        <span class="keywordflow">case</span> 3:</div>
 <div class="line"><span class="lineno"> 4647</span>            <span class="comment">// Volume Sequencer</span></div>
-<div class="line"><span class="lineno"> 4648</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = (float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange;</div>
+<div class="line"><span class="lineno"> 4648</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2] = (float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange;</div>
 <div class="line"><span class="lineno"> 4649</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 4650</span>        <span class="keywordflow">case</span> 4:</div>
 <div class="line"><span class="lineno"> 4651</span>            <span class="comment">// Volume Keyboard</span></div>
-<div class="line"><span class="lineno"> 4652</span>            <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = (float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange;</div>
+<div class="line"><span class="lineno"> 4652</span>            <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3] = (float)Display.ADC2inputs[2]/(<span class="keywordtype">float</span>)Display.ADC_FullRange;</div>
 <div class="line"><span class="lineno"> 4653</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno"> 4654</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><span class="lineno"> 4655</span>            <span class="keywordflow">break</span>;</div>
@@ -3356,10 +3356,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno"> 4661</span>    Paint_DrawFilledRectangle(&amp;paint, Display.value_start_x_position-25, CASE3, Display.value_end_x_position, CASE3+VALUE_ROW_LENGTH, UNCOLORED);</div>
 <div class="line"><span class="lineno"> 4662</span>    Paint_DrawFilledRectangle(&amp;paint, Display.value_start_x_position-25, CASE4, Display.value_end_x_position, CASE4+VALUE_ROW_LENGTH, UNCOLORED);</div>
 <div class="line"><span class="lineno"> 4663</span> </div>
-<div class="line"><span class="lineno"> 4664</span>    sprintf(Display.value_str_volume[0], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0]);</div>
-<div class="line"><span class="lineno"> 4665</span>    sprintf(Display.value_str_volume[1], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1]);</div>
-<div class="line"><span class="lineno"> 4666</span>    sprintf(Display.value_str_volume[2], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2]);</div>
-<div class="line"><span class="lineno"> 4667</span>    sprintf(Display.value_str_volume[3], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="signal__synthesis_8h.html#a0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3]);</div>
+<div class="line"><span class="lineno"> 4664</span>    sprintf(Display.value_str_volume[0], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[0]);</div>
+<div class="line"><span class="lineno"> 4665</span>    sprintf(Display.value_str_volume[1], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[1]);</div>
+<div class="line"><span class="lineno"> 4666</span>    sprintf(Display.value_str_volume[2], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[2]);</div>
+<div class="line"><span class="lineno"> 4667</span>    sprintf(Display.value_str_volume[3], <span class="stringliteral">&quot;%.2f&quot;</span>, <a class="code hl_variable" href="group__SSynth.html#ga0c06ec02b1329cdb21df9311f9bc3712">volume</a>[3]);</div>
 <div class="line"><span class="lineno"> 4668</span>    <span class="comment">// Print value row</span></div>
 <div class="line"><span class="lineno"> 4669</span>    Paint_DrawStringAt(&amp;paint, Display.value_start_x_position-25, CASE1, Display.value_str_volume[0], &amp;Font12, COLORED);</div>
 <div class="line"><span class="lineno"> 4670</span>    Paint_DrawStringAt(&amp;paint, Display.value_start_x_position-25, CASE2, Display.value_str_volume[1], &amp;Font12, COLORED);</div>

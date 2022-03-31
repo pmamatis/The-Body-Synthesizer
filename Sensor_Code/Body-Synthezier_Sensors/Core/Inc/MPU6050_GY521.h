@@ -10,15 +10,15 @@
  */
 
 
-/*
- * MPU6050_GY521.h
- *
- *  Created on:
- *      Author: Paul Mamatis
- */
-
 #ifndef INC_MPU6050_GY521_H_
 #define INC_MPU6050_GY521_H_
+
+/**
+ * @defgroup MPU6050 MPU6050 Software driver
+ * @ingroup SensorSTM
+ * @brief Software driver for the MPU6050 Sensor
+ * @{
+ */
 
 #include "stdlib.h"
 #include "math.h"
@@ -364,4 +364,9 @@ uint8_t MPU6050_GetDMPIntReg(void);
 void MPU6050_Display_Data();
 float getAbsMax(float a, float b, float c);
 uint8_t MPU6050_detectTilt();
+
+/**
+ * @} 
+ * 
+ */
 #endif /* INC_MPU6050_GY521_H_ */

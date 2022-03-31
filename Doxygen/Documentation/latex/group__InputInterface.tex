@@ -169,7 +169,7 @@ Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00744}{744}} of
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00744                                 \{}
-\DoxyCodeLine{00745     uint8\_t index= \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
+\DoxyCodeLine{00745     uint8\_t index= \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
 \DoxyCodeLine{00746     \textcolor{keywordtype}{char} oldKey = Display.Voices\_Note[ID];}
 \DoxyCodeLine{00747     \textcolor{keywordtype}{char} newKey;}
 \DoxyCodeLine{00748     uint8\_t key\_counter = 0;}
@@ -194,8 +194,8 @@ Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00744}{744}} of
 \DoxyCodeLine{00767     \}}
 \DoxyCodeLine{00768     Display.Voices\_Note[ID] = newKey;}
 \DoxyCodeLine{00769     \textcolor{keywordflow}{if}(index >= 0)\{}
-\DoxyCodeLine{00770         \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
-\DoxyCodeLine{00771         \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
+\DoxyCodeLine{00770         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
+\DoxyCodeLine{00771         \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
 \DoxyCodeLine{00772     \}}
 \DoxyCodeLine{00773 }
 \DoxyCodeLine{00774 \}}
@@ -713,7 +713,7 @@ Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00053}{53}} of 
 \DoxyCodeLine{00058 }
 \DoxyCodeLine{00059             \textcolor{comment}{// signal has to be created once, because otherwise the count for-\/loop in signal synthesis function can not be entered (count > 0)}}
 \DoxyCodeLine{00060             \textcolor{keywordflow}{if}(Display.Voices\_Created[ii\_i] == \textcolor{keyword}{false}) \{}
-\DoxyCodeLine{00061                 \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, Display.Voices\_Kind[ii\_i], Display.Voices\_Note[ii\_i], Display.Voices\_Octave[ii\_i], ii\_i);}
+\DoxyCodeLine{00061                 \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, Display.Voices\_Kind[ii\_i], Display.Voices\_Note[ii\_i], Display.Voices\_Octave[ii\_i], ii\_i);}
 \DoxyCodeLine{00062                 Display.Voices\_Created[ii\_i] = \textcolor{keyword}{true};}
 \DoxyCodeLine{00063             \}}
 \DoxyCodeLine{00064 }
@@ -937,7 +937,7 @@ Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00711}{711}} of
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00711                              \{}
 \DoxyCodeLine{00712 }
-\DoxyCodeLine{00713     uint8\_t index= \mbox{\hyperlink{signal__synthesis_8h_a100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
+\DoxyCodeLine{00713     uint8\_t index= \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDtoIndex}}(ID);}
 \DoxyCodeLine{00714     \textcolor{keywordtype}{char} oldKey = Display.Voices\_Note[ID];}
 \DoxyCodeLine{00715 }
 \DoxyCodeLine{00716     uint8\_t key\_counter = 0;}
@@ -960,8 +960,8 @@ Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00711}{711}} of
 \DoxyCodeLine{00733     \}}
 \DoxyCodeLine{00734     Display.Voices\_Note[ID] = newKey;}
 \DoxyCodeLine{00735     \textcolor{keywordflow}{if}(index >= 0)\{ \textcolor{comment}{// only done if ID is existing}}
-\DoxyCodeLine{00736         \mbox{\hyperlink{signal__synthesis_8h_aff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
-\DoxyCodeLine{00737         \mbox{\hyperlink{signal__synthesis_8h_a15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
+\DoxyCodeLine{00736         \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{DeleteSignal}}(\&signals1, index);}
+\DoxyCodeLine{00737         \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{NewSignal}}(\&signals1, SIN, newKey, Display.Voices\_Octave[ID],ID);}
 \DoxyCodeLine{00738     \}}
 \DoxyCodeLine{00739 \}}
 
@@ -984,7 +984,7 @@ Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00040}{40}} of 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00040                                                 \{}
 \DoxyCodeLine{00041 }
-\DoxyCodeLine{00042     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(htim, II\_SR);}
+\DoxyCodeLine{00042     \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(htim, II\_SR);}
 \DoxyCodeLine{00043     HAL\_TIM\_Base\_Start\_IT(htim);}
 \DoxyCodeLine{00044 \}}
 

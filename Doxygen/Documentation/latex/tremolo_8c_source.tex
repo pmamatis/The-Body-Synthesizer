@@ -47,7 +47,7 @@
 \DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00063}00063 }
 \DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00069}\mbox{\hyperlink{group__tremolo_ga922840d8712ad7bd4904f7813c8ac2f6}{00069}} Tremolo\_Status \mbox{\hyperlink{group__tremolo_ga922840d8712ad7bd4904f7813c8ac2f6}{ProcessTremolo}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structTremolo__t}{Tremolo\_t}}* Tremolo, \textcolor{keywordtype}{float}* data) \{}
 \DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00070}00070 }
-\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00071}00071     \mbox{\hyperlink{signal__synthesis_8h_a381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(Tremolo-\/>lfo, TREMOLO\_LFO);}
+\DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00071}00071     \mbox{\hyperlink{group__SSynth_ga381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(Tremolo-\/>lfo, TREMOLO\_LFO);}
 \DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00072}00072 }
 \DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00073}00073     \textcolor{keywordtype}{float} tremolo\_mod = (1 + Tremolo-\/>lfo-\/>lfo\_depth * Tremolo-\/>lfo-\/>lfo\_data);}
 \DoxyCodeLine{\Hypertarget{tremolo_8c_source_l00074}00074     *data = (tremolo\_mod * *data) / (1+Tremolo-\/>lfo-\/>lfo\_depth);}

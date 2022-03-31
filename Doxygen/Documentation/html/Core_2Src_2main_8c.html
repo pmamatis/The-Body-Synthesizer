@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">The Body-Synthesizer<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">portable Sythesizer, whith oppertunity to use guestures and muscle movements as controllers</div>
+   <div id="projectbrief">Portable Synthesizer, enabling usage of guestures and muscle movements as sound controllers</div>
   </td>
  </tr>
  </tbody>
@@ -382,16 +382,16 @@ Variables</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="Core_2Src_2main_8c_source.html#l00150">150</a> of file <a class="el" href="Core_2Src_2main_8c_source.html">main.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  150</span>                                                            {</div>
 <div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>    <a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> = FULL_BLOCK;</div>
+<div class="line"><span class="lineno">  152</span>    <a class="code hl_variable" href="group__SSynth.html#ga5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> = FULL_BLOCK;</div>
 <div class="line"><span class="lineno">  153</span> </div>
 <div class="line"><span class="lineno">  154</span>    <span class="keywordflow">if</span> (Init_complete){</div>
-<div class="line"><span class="lineno">  155</span>        <a class="code hl_function" href="signal__synthesis_8h.html#a14e563872b7cc3bae6f534d36f016911">Signal_Synthesis</a>(&amp;signals1, 1);</div>
+<div class="line"><span class="lineno">  155</span>        <a class="code hl_function" href="group__SSynth.html#ga14e563872b7cc3bae6f534d36f016911">Signal_Synthesis</a>(&amp;signals1, 1);</div>
 <div class="line"><span class="lineno">  156</span>    }</div>
 <div class="line"><span class="lineno">  157</span>    <span class="keywordflow">else</span></div>
 <div class="line"><span class="lineno">  158</span>        Init_complete = initRamp();</div>
 <div class="line"><span class="lineno">  159</span>}</div>
-<div class="ttc" id="asignal__synthesis_8h_html_a14e563872b7cc3bae6f534d36f016911"><div class="ttname"><a href="signal__synthesis_8h.html#a14e563872b7cc3bae6f534d36f016911">Signal_Synthesis</a></div><div class="ttdeci">void Signal_Synthesis(struct signal_t *signals, uint8_t output_Channel)</div><div class="ttdoc">generates a digital signal in the calculate_vector, depending on the signals inside the struct signal...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00847">signal_synthesis.c:847</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a5b4caaf313594423ca462cb11a33eca9"><div class="ttname"><a href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a></div><div class="ttdeci">uint8_t outputBuffer_position</div><div class="ttdoc">Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00113">signal_synthesis.h:113</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga14e563872b7cc3bae6f534d36f016911"><div class="ttname"><a href="group__SSynth.html#ga14e563872b7cc3bae6f534d36f016911">Signal_Synthesis</a></div><div class="ttdeci">void Signal_Synthesis(struct signal_t *signals, uint8_t output_Channel)</div><div class="ttdoc">generates a digital signal in the calculate_vector, depending on the signals inside the struct signal...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00847">signal_synthesis.c:847</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga5b4caaf313594423ca462cb11a33eca9"><div class="ttname"><a href="group__SSynth.html#ga5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a></div><div class="ttdeci">uint8_t outputBuffer_position</div><div class="ttdoc">Position of the DMA Output Buffer, can be HALF_BLOCK or FULL_BLOCK.</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8h_source.html#l00124">signal_synthesis.h:124</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -414,10 +414,10 @@ Variables</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="Core_2Src_2main_8c_source.html#l00139">139</a> of file <a class="el" href="Core_2Src_2main_8c_source.html">main.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  139</span>                                                                {</div>
 <div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>    <a class="code hl_variable" href="signal__synthesis_8h.html#a5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> = HALF_BLOCK;</div>
+<div class="line"><span class="lineno">  141</span>    <a class="code hl_variable" href="group__SSynth.html#ga5b4caaf313594423ca462cb11a33eca9">outputBuffer_position</a> = HALF_BLOCK;</div>
 <div class="line"><span class="lineno">  142</span> </div>
 <div class="line"><span class="lineno">  143</span>    <span class="keywordflow">if</span> (Init_complete){</div>
-<div class="line"><span class="lineno">  144</span>        <a class="code hl_function" href="signal__synthesis_8h.html#a14e563872b7cc3bae6f534d36f016911">Signal_Synthesis</a>(&amp;signals1, 1);</div>
+<div class="line"><span class="lineno">  144</span>        <a class="code hl_function" href="group__SSynth.html#ga14e563872b7cc3bae6f534d36f016911">Signal_Synthesis</a>(&amp;signals1, 1);</div>
 <div class="line"><span class="lineno">  145</span>    }</div>
 <div class="line"><span class="lineno">  146</span>    <span class="keywordflow">else</span></div>
 <div class="line"><span class="lineno">  147</span>        Init_complete = initRamp();</div>
@@ -1119,7 +1119,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  220</span>    <span class="comment">/* INIT FUNCTIONS begin*********************/</span></div>
 <div class="line"><span class="lineno">  221</span> </div>
 <div class="line"><span class="lineno">  222</span>    printf(<span class="stringliteral">&quot;Begin Init\r\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  223</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="signal__synthesis_8h.html#a9eda288feb5c689a0f90742249fe6da0">Signal_Synthesis_Init</a>(htim8, <a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>) != HAL_OK) {</div>
+<div class="line"><span class="lineno">  223</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="group__SSynth.html#ga9eda288feb5c689a0f90742249fe6da0">Signal_Synthesis_Init</a>(htim8, <a class="code hl_variable" href="Core_2Src_2main_8c.html#a40a0d1383beda58531dfda6218720e45">hdac</a>) != HAL_OK) {</div>
 <div class="line"><span class="lineno">  224</span>        printf(<span class="stringliteral">&quot;Signal Synthesis init failed\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  225</span>    }</div>
 <div class="line"><span class="lineno">  226</span> </div>
@@ -1182,7 +1182,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  283</span>    <a class="code hl_function" href="group__keyboard.html#ga86de1f5c40ab14dddcc12fbf3eafde08">keyboard_start_read</a>();</div>
 <div class="line"><span class="lineno">  284</span> </div>
 <div class="line"><span class="lineno">  285</span>    <span class="comment">// Start Timer and ADC-DMA for the joystick and the potentiometer (ADC2)</span></div>
-<div class="line"><span class="lineno">  286</span>    <a class="code hl_function" href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(&amp;htim6, 500);  <span class="comment">// Timer 6 default: 2000 Hz</span></div>
+<div class="line"><span class="lineno">  286</span>    <a class="code hl_function" href="group__SSynth.html#gadc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a>(&amp;htim6, 500);  <span class="comment">// Timer 6 default: 2000 Hz</span></div>
 <div class="line"><span class="lineno">  287</span>    printf(<span class="stringliteral">&quot;start Button ADC\r\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  288</span>    HAL_TIM_Base_Start(&amp;htim6);</div>
 <div class="line"><span class="lineno">  289</span>    HAL_ADC_Start_DMA(&amp;hadc2, (uint32_t*)Display.ADC2inputs, 4);</div>
@@ -1231,12 +1231,12 @@ Variables</h2></td></tr>
 <div class="ttc" id="agroup__Gyro_html_ga87e70ebae58b5e371289ad557bb31b74"><div class="ttname"><a href="group__Gyro.html#ga87e70ebae58b5e371289ad557bb31b74">spiC_Init</a></div><div class="ttdeci">void spiC_Init(SPI_HandleTypeDef *hspi, TIM_HandleTypeDef *htim)</div><div class="ttdoc">spi connection init</div><div class="ttdef"><b>Definition:</b> <a href="SPI__Connection_8c_source.html#l00020">SPI_Connection.c:20</a></div></div>
 <div class="ttc" id="agroup__InputInterface_html_ga3c55c248a4e6b89d5698af2b46e35b60"><div class="ttname"><a href="group__InputInterface.html#ga3c55c248a4e6b89d5698af2b46e35b60">II_startInterface</a></div><div class="ttdeci">void II_startInterface(TIM_HandleTypeDef *htim)</div><div class="ttdoc">starts the interface timer Interrupt</div><div class="ttdef"><b>Definition:</b> <a href="input__interfaces_8c_source.html#l00040">input_interfaces.c:40</a></div></div>
 <div class="ttc" id="agroup__InputInterface_html_gaf102c42e8c8be931b33bd67401dd9424"><div class="ttname"><a href="group__InputInterface.html#gaf102c42e8c8be931b33bd67401dd9424">II_init</a></div><div class="ttdeci">void II_init()</div><div class="ttdoc">init function</div><div class="ttdef"><b>Definition:</b> <a href="input__interfaces_8c_source.html#l00020">input_interfaces.c:20</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_ga9eda288feb5c689a0f90742249fe6da0"><div class="ttname"><a href="group__SSynth.html#ga9eda288feb5c689a0f90742249fe6da0">Signal_Synthesis_Init</a></div><div class="ttdeci">HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac)</div><div class="ttdoc">Init funtion for the signal_synthesis, must be used in order to use any other funtion of this ....</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00030">signal_synthesis.c:30</a></div></div>
+<div class="ttc" id="agroup__SSynth_html_gadc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="group__SSynth.html#gadc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 <div class="ttc" id="agroup__keyboard_html_ga49b74c118843f9046a50a49296e3ce37"><div class="ttname"><a href="group__keyboard.html#ga49b74c118843f9046a50a49296e3ce37">keyboard_init</a></div><div class="ttdeci">void keyboard_init(ADC_HandleTypeDef *ADC_Handler, TIM_HandleTypeDef *TIM_Handler)</div><div class="ttdoc">Keyboaed Init funcrion.</div><div class="ttdef"><b>Definition:</b> <a href="keyboard_8c_source.html#l00020">keyboard.c:20</a></div></div>
 <div class="ttc" id="agroup__keyboard_html_ga86de1f5c40ab14dddcc12fbf3eafde08"><div class="ttname"><a href="group__keyboard.html#ga86de1f5c40ab14dddcc12fbf3eafde08">keyboard_start_read</a></div><div class="ttdeci">HAL_StatusTypeDef keyboard_start_read(void)</div><div class="ttdoc">starts the keyboard reading process</div><div class="ttdef"><b>Definition:</b> <a href="keyboard_8c_source.html#l00036">keyboard.c:36</a></div></div>
 <div class="ttc" id="agroup__tremolo_html_gacb90f3df18e98cac0b0aadc519411a7a"><div class="ttname"><a href="group__tremolo.html#gacb90f3df18e98cac0b0aadc519411a7a">Tremolo_Init</a></div><div class="ttdeci">Tremolo_Status Tremolo_Init(struct Tremolo_t *Tremolo)</div><div class="ttdoc">Tremolo Init function.</div><div class="ttdef"><b>Definition:</b> <a href="tremolo_8c_source.html#l00024">tremolo.c:24</a></div></div>
 <div class="ttc" id="agroup__wahwah_html_gafdc2b53d4cc3352bf6e51df974ce169e"><div class="ttname"><a href="group__wahwah.html#gafdc2b53d4cc3352bf6e51df974ce169e">WahWah_Init</a></div><div class="ttdeci">WahWah_Status WahWah_Init(struct WahWah_t *WahWah)</div><div class="ttdoc">wahwah efffect init function</div><div class="ttdef"><b>Definition:</b> <a href="wahwah_8c_source.html#l00024">wahwah.c:24</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_a9eda288feb5c689a0f90742249fe6da0"><div class="ttname"><a href="signal__synthesis_8h.html#a9eda288feb5c689a0f90742249fe6da0">Signal_Synthesis_Init</a></div><div class="ttdeci">HAL_StatusTypeDef Signal_Synthesis_Init(TIM_HandleTypeDef htim, DAC_HandleTypeDef hdac)</div><div class="ttdoc">Init funtion for the signal_synthesis, must be used in order to use any other funtion of this ....</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00030">signal_synthesis.c:30</a></div></div>
-<div class="ttc" id="asignal__synthesis_8h_html_adc7b4110b68d58532096fe9f817df89c"><div class="ttname"><a href="signal__synthesis_8h.html#adc7b4110b68d58532096fe9f817df89c">SetTimerSettings</a></div><div class="ttdeci">void SetTimerSettings(TIM_HandleTypeDef *htim, uint32_t SR)</div><div class="ttdoc">Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler...</div><div class="ttdef"><b>Definition:</b> <a href="signal__synthesis_8c_source.html#l00093">signal_synthesis.c:93</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

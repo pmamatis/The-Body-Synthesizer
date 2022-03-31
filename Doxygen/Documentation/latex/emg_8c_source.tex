@@ -39,7 +39,7 @@
 \DoxyCodeLine{\Hypertarget{emg_8c_source_l00050}00050 \}}
 \DoxyCodeLine{\Hypertarget{emg_8c_source_l00052}\mbox{\hyperlink{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}{00052}} HAL\_StatusTypeDef \mbox{\hyperlink{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}{emg\_start\_read}}(\textcolor{keywordtype}{void})\{}
 \DoxyCodeLine{\Hypertarget{emg_8c_source_l00053}00053 }
-\DoxyCodeLine{\Hypertarget{emg_8c_source_l00054}00054     \mbox{\hyperlink{signal__synthesis_8h_adc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(EMG\_TIM, EMG\_SR);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00054}00054     \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(EMG\_TIM, EMG\_SR);}
 \DoxyCodeLine{\Hypertarget{emg_8c_source_l00055}00055     HAL\_TIM\_Base\_Start(EMG\_TIM);}
 \DoxyCodeLine{\Hypertarget{emg_8c_source_l00056}00056     printf(\textcolor{stringliteral}{"{}start emg\(\backslash\)r\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{emg_8c_source_l00057}00057     \textcolor{keywordflow}{return} HAL\_ADC\_Start\_DMA(EMG\_ADC, emg\_buffer, EMG\_READ\_LENGTH);}

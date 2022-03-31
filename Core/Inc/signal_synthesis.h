@@ -11,12 +11,23 @@
 #ifndef INC_SIGNAL_SYNTHESIS_H_
 #define INC_SIGNAL_SYNTHESIS_H_
 
+
+/**
+ * @defgroup SSynth Signal Synthesis and LFO
+ * @ingroup SoundSynth
+ * @brief Contains all related functions and variables for the audio signal synthesis
+ * @{
+ */
+
 #include <math.h>
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include "display.h"
+
+
+
 
 /*********************************
  * @brief		Defines
@@ -128,4 +139,8 @@ float Noise_Generator(void);
 int16_t IDtoIndex(int16_t id);
 bool initRamp(void);
 
+/**
+ * @} 
+ * 
+ */
 #endif /* INC_SIGNAL_SYNTHESIS_H_ */
