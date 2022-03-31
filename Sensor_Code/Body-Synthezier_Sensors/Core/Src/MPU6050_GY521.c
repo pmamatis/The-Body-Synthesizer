@@ -421,8 +421,6 @@ void MPU6050_Display_Data(){
 	printf("Ay: %i\r\n", Sensor_Data->Accl_Y);
 	printf("Az: %i\r\n", Sensor_Data->Accl_Z);
 
-	//	printf("Gx: %i		**Gy: %i		**Gz: %i\r\n",Sensor_Data->Gyro_X ,Sensor_Data->Gyro_Y ,Sensor_Data->Gyro_Z);
-	//	printf("Ax: %i		**Ay: %i		**Az: %i\r\n", Sensor_Data->Accl_X,Sensor_Data->Accl_Y, Sensor_Data->Accl_Z);
 }
 
 
