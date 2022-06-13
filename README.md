@@ -1,5 +1,5 @@
 \image html ./TU_Logo.png width=100cm
-![alt text](https://github.com/pmamatis/The-Body-Synthesizer/blob/master/TU_Logo.png?raw=true)
+![alt text](https://github.com/pmamatis/The-Body-Synthesizer/blob/master/TU_Logo.png?raw=true width=100cm)
 
 @author Maximillian Lehmer <br> Marc Bielen <br> Paul Mamatis
 
