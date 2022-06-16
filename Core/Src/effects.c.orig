@@ -1,0 +1,167 @@
+#include "effects.h"
+
+<<<<<<< HEAD
+
+
+void effects_init(){
+    for (int i = 0; i < MAX_EFFECTS; i++){
+    	effect_order[i] = 0;
+    }
+=======
+void effects_init(){
+	for (int i = 0; i < MAX_EFFECTS; i++){
+		effect_order[i] = 0;
+	}
+>>>>>>> ready_to_merge
+}
+
+/**
+ * processes all effects in the given order, order is determined through effect_order[i]
+ * @note access order throgh the functions:  effects_add(effects_t_enum effect, uint8_t position) to add effects
+ * 											 effects_delete(effects_t_enum effect, uint8_t position) to delete effects
+ * @param calculate_value:adress of a signle sample which should be effected
+ */
+<<<<<<< HEAD
+void effects_process(float* calculate_value){
+
+
+
+    for (int i = 0; i < MAX_EFFECTS; i++)
+    {
+        switch (effect_order[i])
+        {
+        case TREM:
+        	ProcessTremolo(&Tremolo1, calculate_value);
+            break;
+        
+        case EQ:
+        	ProcessEQ(calculate_value);
+            break;
+        case DIST_H:
+        	ProcessHardClippingDistortion(&HardClipping1, calculate_value);
+            break;
+        case DIST_S:
+        	ProcessSoftClippingDistortion(&SoftClipping1, calculate_value);
+        	break;
+        default:
+            break;
+        }
+    }
+    
+
+
+}
+
+=======
+void effects_process(float* calculate_value) {
+
+	for (int i = 0; i < MAX_EFFECTS; i++) {
+
+		switch (effect_order[i]) {
+
+		case TREM:
+			/*lfo_value = LFO_SingleValueProcess(&Tremolo);
+			ProcessTremolo(&Tremolo, calculate_value, &lfo_value);*/
+			//process_trem = true;
+			break;
+
+		case EQ:
+			ProcessEQ(calculate_value);
+			break;
+
+		case DIST_H:
+			//ProcessHardClippingDistortion(&HardClipping, calculate_value);
+			break;
+
+		case DIST_S:
+			ProcessSoftClippingDistortion(&SoftClipping, calculate_value);
+			break;
+
+		case ADSR:
+			//OnePress_ADSR_Linear_Process(&envelope, calculate_value);
+			break;
+
+		default:
+			break;
+
+		}
+	}
+}
+>>>>>>> ready_to_merge
+
+/**
+ * Inserts an entry in the effect_order[position], and shifts the other entrys to the right
+ * @param effect: wanted effect listed in the effects_t_enum
+ * @param position:
+ */
+<<<<<<< HEAD
+void effects_add(effects_t_enum effect, uint8_t position){
+=======
+/*void effects_add(effects_t_enum effect, uint8_t position){
+>>>>>>> ready_to_merge
+
+	if (position < MAX_EFFECTS){
+
+		effects_t_enum tmp = effect_order[position];
+		effects_t_enum tmp2;
+		effect_order[position] = effect;
+<<<<<<< HEAD
+		for (int i = position+1; i < MAX_EFFECTS;i++){
+			tmp2 = effect_order[i];
+			effect_order[i] = tmp;
+			tmp = tmp2;
+
+
+
+		}
+=======
+		for (int i = position+1; i < MAX_EFFECTS;i++) {
+			tmp2 = effect_order[i];
+			effect_order[i] = tmp;
+			tmp = tmp2;
+		}
+	}
+	else {
+		//error @TODO
+	}
+}*/
+void effects_add(effects_t_enum effect, uint8_t position) {
+
+	if (position < MAX_EFFECTS){
+
+		effect_order[position] = effect;
+>>>>>>> ready_to_merge
+	}
+	else {
+		//error @TODO
+	}
+
+}
+
+/**
+ * Deletes an effect inside the effect_order[position]
+ */
+<<<<<<< HEAD
+void effects_delete(effects_t_enum effect, uint8_t position){
+=======
+void effects_delete(effects_t_enum effect, uint8_t position) {
+>>>>>>> ready_to_merge
+
+	if (position < MAX_EFFECTS){
+		if (effect == effect_order[position]){
+			effect_order[position] = 0;
+		}
+		else{
+			//print LCD( "diffrent Effect, really want to delete?" )
+		}
+	}
+	else {
+		//error @TODO
+	}
+<<<<<<< HEAD
+
+
+    
+=======
+>>>>>>> ready_to_merge
+}

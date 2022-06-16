@@ -1,0 +1,181 @@
+\hypertarget{emg_8c_source}{}\doxysection{emg.\+c}
+\label{emg_8c_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/emg.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/emg.c}}
+\mbox{\hyperlink{emg_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{emg_8h}{emg.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00016}\mbox{\hyperlink{group__EMG__ECG_gaa7d92b6a1983e52614915f8e2cfb3140}{00016}} HAL\_StatusTypeDef \mbox{\hyperlink{group__EMG__ECG_gaa7d92b6a1983e52614915f8e2cfb3140}{emg\_init}}(ADC\_HandleTypeDef *hadc, TIM\_HandleTypeDef *htim)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00018}00018     EMG\_ADC = hadc;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00019}00019     EMG\_TIM = htim;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00020}00020     emg\_detectionThreshold = 2500;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00021}00021     emg\_peak = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00022}00022     emg\_toggleThreshold = 50;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00023}00023     emg\_toggleCounter = emg\_toggleThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00024}00024     emg\_toggled = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00025}00025     emg\_maxDetectionThreshold = 2850;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00026}00026     emg\_maxToggleThreshold = EMG\_SR/5;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00028}00028     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00029}00029 \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00034}\mbox{\hyperlink{group__EMG__ECG_ga98bf9a8015f7a7833276fbf6a72e255e}{00034}} HAL\_StatusTypeDef \mbox{\hyperlink{group__EMG__ECG_ga98bf9a8015f7a7833276fbf6a72e255e}{ecg\_init}}(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00036}00036     heartrate = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00038}00038     ecg\_detectionThreshold = 2500;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00039}00039     ecg\_peaks = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00040}00040     ecg\_toggled = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00041}00041     ecg\_peak = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00042}00042     ecg\_toggleThreshold = EMG\_SR/10;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00043}00043     ecg\_toggleCounter = ecg\_toggleThreshold;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00044}00044     ecg\_measInt = EMG\_SR * EMG\_MI;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00045}00045     ecg\_intCount = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00046}00046     ecg\_maxDetectionThreshold = 2850;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00047}00047     ecg\_maxToggleThreshold = EMG\_SR/5;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00049}00049     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00050}00050 \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00052}\mbox{\hyperlink{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}{00052}} HAL\_StatusTypeDef \mbox{\hyperlink{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}{emg\_start\_read}}(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00054}00054     \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(EMG\_TIM, EMG\_SR);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00055}00055     HAL\_TIM\_Base\_Start(EMG\_TIM);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00056}00056     printf(\textcolor{stringliteral}{"{}start emg\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00057}00057     \textcolor{keywordflow}{return} HAL\_ADC\_Start\_DMA(EMG\_ADC, emg\_buffer, EMG\_READ\_LENGTH);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00058}00058 \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00061}\mbox{\hyperlink{group__EMG__ECG_ga305d3a0240c6e197a771b26c8d4fd22a}{00061}} HAL\_StatusTypeDef \mbox{\hyperlink{group__EMG__ECG_ga305d3a0240c6e197a771b26c8d4fd22a}{emg\_stop\_read}}(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00062}00062     \textcolor{keywordflow}{return} HAL\_ADC\_Stop\_DMA(EMG\_ADC);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00063}00063 \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00067}\mbox{\hyperlink{group__EMG__ECG_ga63f5337cb5d5feb55ddedd79bca265d9}{00067}} HAL\_StatusTypeDef \mbox{\hyperlink{group__EMG__ECG_ga63f5337cb5d5feb55ddedd79bca265d9}{emg\_peak\_detection}}(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00069}00069     uint16\_t ADC\_BLOCKSIZE\_startIndex=0, ADC\_BLOCKSIZE\_endIndex=0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00071}00071     \textcolor{comment}{// decide which buffer half}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00072}00072     \textcolor{keywordflow}{if}(inputBuffer\_position == HALF\_BLOCK) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00073}00073         ADC\_BLOCKSIZE\_startIndex = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00074}00074         ADC\_BLOCKSIZE\_endIndex = EMG\_READ\_LENGTH/2;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00075}00075     \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00076}00076     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(inputBuffer\_position == FULL\_BLOCK) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00077}00077         ADC\_BLOCKSIZE\_startIndex = EMG\_READ\_LENGTH/2;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00078}00078         ADC\_BLOCKSIZE\_endIndex = EMG\_READ\_LENGTH;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00079}00079     \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00081}00081     \textcolor{comment}{// Peak detection with certain threshold in amplitude (detectionThreshold) and time (toggleThreshold), so called debouncing}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00082}00082     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = ADC\_BLOCKSIZE\_startIndex; i < ADC\_BLOCKSIZE\_endIndex; i+=2)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00083}00083         \textcolor{keywordflow}{if}(emg\_buffer[i] > emg\_detectionThreshold \&\& emg\_toggleCounter > emg\_toggleThreshold)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00084}00084             emg\_peak = 1;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00085}00085             emg\_toggleCounter = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00086}00086             HAL\_GPIO\_WritePin(Red\_User\_LED\_GPIO\_Port, Red\_User\_LED\_Pin,SET);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00087}00087             emg\_toggled = 1;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00088}00088         \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00089}00089         \textcolor{keywordflow}{if}(emg\_toggleCounter > emg\_toggleThreshold \&\& emg\_toggled == 1)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00090}00090             HAL\_GPIO\_WritePin(Red\_User\_LED\_GPIO\_Port, Red\_User\_LED\_Pin,RESET);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00091}00091             emg\_toggled = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00092}00092         \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00094}00094         emg\_toggleCounter++;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00095}00095     \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00097}00097     \textcolor{comment}{// Sample playing controlled by EMG}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00098}00098     \textcolor{keywordflow}{if}(Display.PlaySingleSample\_ONOFF == \textcolor{keyword}{true} \&\& emg\_peak == 1) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00100}00100         play\_single\_sample\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00101}00101         emg\_peak = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00102}00102     \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00104}00104     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00105}00105 \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00108}\mbox{\hyperlink{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}{00108}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}{ecg\_heartrate}}(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00110}00110     uint16\_t ADC\_BLOCKSIZE\_startIndex=0, ADC\_BLOCKSIZE\_endIndex=0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00112}00112     \textcolor{comment}{// detect buffer half}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00113}00113     \textcolor{keywordflow}{if}(inputBuffer\_position == HALF\_BLOCK) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00114}00114         ADC\_BLOCKSIZE\_startIndex = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00115}00115         ADC\_BLOCKSIZE\_endIndex = EMG\_READ\_LENGTH/2;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00116}00116     \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00117}00117     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(inputBuffer\_position == FULL\_BLOCK) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00118}00118         ADC\_BLOCKSIZE\_startIndex = EMG\_READ\_LENGTH/2;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00119}00119         ADC\_BLOCKSIZE\_endIndex = EMG\_READ\_LENGTH;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00120}00120     \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00122}00122     \textcolor{comment}{// Peak detection with certain threshold in amplitude (detectionThreshold) and time (toggleThreshold), so called debouncing}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00123}00123     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = ADC\_BLOCKSIZE\_startIndex; i < ADC\_BLOCKSIZE\_endIndex; i+=2)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00124}00124         \textcolor{keywordflow}{if}(emg\_buffer[i] > ecg\_detectionThreshold \&\& ecg\_toggleCounter > ecg\_toggleThreshold)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00125}00125             ecg\_peaks += 1;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00126}00126             HAL\_GPIO\_WritePin(Blue\_User\_LED\_GPIO\_Port, Blue\_User\_LED\_Pin,SET);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00127}00127             ecg\_toggleCounter = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00128}00128             ecg\_peak = 1;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00129}00129         \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00131}00131         \textcolor{keywordflow}{if}(ecg\_peak)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00132}00132             ecg\_peak = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00133}00133             ecg\_toggled = 1;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00134}00134 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00135}00135         \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00136}00136         \textcolor{comment}{// Delay to avoid false peaks rigth after another peak}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00137}00137         \textcolor{keywordflow}{if}(ecg\_toggleCounter > ecg\_toggleThreshold \&\& ecg\_toggled == 1)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00138}00138             ecg\_toggled = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00139}00139         \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00140}00140 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00141}00141         \textcolor{comment}{// Calculate heartrate when finishing a measurement interval}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00142}00142         \textcolor{keywordflow}{if} (ecg\_intCount == ecg\_measInt)\{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00143}00143             heartrate = ((float)(60/(EMG\_MI))*ecg\_peaks)/2;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00144}00144             ecg\_peaks = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00145}00145             ecg\_intCount = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00146}00146 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00147}00147             \textcolor{comment}{// Direct transfer of the heartrate to Drumcomputer}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00148}00148             \textcolor{keywordflow}{if}(Display.Drumcomputer\_BPMbyECG\_ONOFF == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00150}00150                 \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}} = heartrate;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00151}00151             \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00152}00152         \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00153}00153 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00154}00154         \textcolor{comment}{// Update drumcoputer-\/page and reset values of drumcoputer when bpm changed, to avoid "{}plop"{}-\/noise}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00155}00155         \textcolor{keywordflow}{if}(abs(last\_BPM-\/\mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}}) > 3) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00157}00157             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00158}00158 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00159}00159                 \textcolor{comment}{// INIT: Counter}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00160}00160                 counter\_DS1[i] = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00161}00161                 counter\_DS2[i] = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00162}00162                 counter\_DS3[i] = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00163}00163                 counter\_DS4[i] = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00164}00164 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00165}00165                 \mbox{\hyperlink{group__DrumComputer_gad32e19a8282780d0a134ec07797ac10b}{drum\_index}} = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00166}00166                 \mbox{\hyperlink{group__DrumComputer_ga148d70203e23260f999890046d5509b0}{counter\_master}} = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00168}00168                 \textcolor{comment}{// RESET: Drum sound bins}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00169}00169                 \mbox{\hyperlink{group__DrumComputer_ga1d0ce949a258b04a5822d3442fd73d83}{DS1s}} = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00170}00170                 DS2s = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00171}00171                 DS3s = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00172}00172                 DS4s = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00173}00173 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00174}00174                 drums = 0;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00175}00175 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00176}00176                 timing\_position\_in\_samples[i] = (\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}} / 4 ) * (i + 1) * (MasterClock / \mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}) * (60 / \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00177}00177             \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00178}00178 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00179}00179             sprintf(Display.value\_str\_drumcomputer[8], \textcolor{stringliteral}{"{}\%.f"{}}, \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00180}00180 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00181}00181             \textcolor{comment}{// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00182}00182             \textcolor{comment}{// BPM set by ECG and display only updated with new BPM value on drumcomputer settings page}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00183}00183             \textcolor{keywordflow}{if}(Display.pagePosition == 3 \&\& Display.currentDrumcomputer > 0) \{}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00184}00184                 Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position-\/50, CASE2, Display.value\_end\_x\_position, CASE2+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00185}00185                 Paint\_DrawStringAt(\&paint, Display.value\_start\_x\_position-\/50, CASE2, Display.value\_str\_drumcomputer[8], \&Font12, COLORED);}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00186}00186             \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00187}00187 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00188}00188             Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00189}00189             last\_BPM = \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}};}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00190}00190         \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00191}00191 }
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00192}00192         ecg\_toggleCounter++;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00193}00193         ecg\_intCount++;}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00194}00194     \}}
+\DoxyCodeLine{\Hypertarget{emg_8c_source_l00195}00195 \}}
+
+\end{DoxyCode}

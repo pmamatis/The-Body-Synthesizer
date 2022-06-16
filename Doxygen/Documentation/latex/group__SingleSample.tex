@@ -1,0 +1,90 @@
+\hypertarget{group__SingleSample}{}\doxysection{Play Single Sample}
+\label{group__SingleSample}\index{Play Single Sample@{Play Single Sample}}
+
+
+play a singles sample triggered by the EMG / ECG  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{Play\+Single\+Sample}} (void)
+\begin{DoxyCompactList}\small\item\em Function to play a chosen sample each time it is triggerd by EMG / ECG, must be called inside \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{group__SingleSample_ga4f45ba3b9c8c3c6e57de16324bf23604}{single\+\_\+sample}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__SingleSample_ga121c3b5953310244fe5ea8cab09efe66}{counter\+\_\+single\+\_\+sample}}
+\item 
+bool \mbox{\hyperlink{group__SingleSample_ga304666972f058f6ed2f1acd6816f70ac}{play\+\_\+single\+\_\+sample\+\_\+flag}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+play a singles sample triggered by the EMG / ECG 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}\label{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}} 
+\index{Play Single Sample@{Play Single Sample}!PlaySingleSample@{PlaySingleSample}}
+\index{PlaySingleSample@{PlaySingleSample}!Play Single Sample@{Play Single Sample}}
+\doxysubsubsection{\texorpdfstring{PlaySingleSample()}{PlaySingleSample()}}
+{\footnotesize\ttfamily void Play\+Single\+Sample (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to play a chosen sample each time it is triggerd by EMG / ECG, must be called inside \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} 
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8c_source_l00500}{500}} of file \mbox{\hyperlink{drum__computer_8c_source}{drum\+\_\+computer.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00500                             \{}
+\DoxyCodeLine{00501 }
+\DoxyCodeLine{00502     single\_sample = PSS[counter\_single\_sample];}
+\DoxyCodeLine{00503     counter\_single\_sample++;}
+\DoxyCodeLine{00504 }
+\DoxyCodeLine{00505     \textcolor{keywordflow}{if}(counter\_single\_sample == DS\_L -\/ 1) \{}
+\DoxyCodeLine{00506         counter\_single\_sample = 0;}
+\DoxyCodeLine{00507         play\_single\_sample\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{00508     \}}
+\DoxyCodeLine{00509 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__SingleSample_ga121c3b5953310244fe5ea8cab09efe66}\label{group__SingleSample_ga121c3b5953310244fe5ea8cab09efe66}} 
+\index{Play Single Sample@{Play Single Sample}!counter\_single\_sample@{counter\_single\_sample}}
+\index{counter\_single\_sample@{counter\_single\_sample}!Play Single Sample@{Play Single Sample}}
+\doxysubsubsection{\texorpdfstring{counter\_single\_sample}{counter\_single\_sample}}
+{\footnotesize\ttfamily uint32\+\_\+t counter\+\_\+single\+\_\+sample}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00144}{144}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__SingleSample_ga304666972f058f6ed2f1acd6816f70ac}\label{group__SingleSample_ga304666972f058f6ed2f1acd6816f70ac}} 
+\index{Play Single Sample@{Play Single Sample}!play\_single\_sample\_flag@{play\_single\_sample\_flag}}
+\index{play\_single\_sample\_flag@{play\_single\_sample\_flag}!Play Single Sample@{Play Single Sample}}
+\doxysubsubsection{\texorpdfstring{play\_single\_sample\_flag}{play\_single\_sample\_flag}}
+{\footnotesize\ttfamily bool play\+\_\+single\+\_\+sample\+\_\+flag}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00145}{145}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+
+\mbox{\Hypertarget{group__SingleSample_ga4f45ba3b9c8c3c6e57de16324bf23604}\label{group__SingleSample_ga4f45ba3b9c8c3c6e57de16324bf23604}} 
+\index{Play Single Sample@{Play Single Sample}!single\_sample@{single\_sample}}
+\index{single\_sample@{single\_sample}!Play Single Sample@{Play Single Sample}}
+\doxysubsubsection{\texorpdfstring{single\_sample}{single\_sample}}
+{\footnotesize\ttfamily float single\+\_\+sample}
+
+
+
+Definition at line \mbox{\hyperlink{drum__computer_8h_source_l00143}{143}} of file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+

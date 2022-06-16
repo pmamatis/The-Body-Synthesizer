@@ -1,0 +1,201 @@
+\hypertarget{group__LED}{}\doxysection{LED Feedback Controll and STMf4 main-\/loop}
+\label{group__LED}\index{LED Feedback Controll and STMf4 main-\/loop@{LED Feedback Controll and STMf4 main-\/loop}}
+
+
+Controlls the LED-\/\+Feedback-\/\+Board.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__LED_ga840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlls the LED-\/\+Feedback-\/\+Board. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__LED_ga840291bc02cba5474a4cb46a9b9566fe}\label{group__LED_ga840291bc02cba5474a4cb46a9b9566fe}} 
+\index{LED Feedback Controll and STMf4 main-\/loop@{LED Feedback Controll and STMf4 main-\/loop}!main@{main}}
+\index{main@{main}!LED Feedback Controll and STMf4 main-\/loop@{LED Feedback Controll and STMf4 main-\/loop}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source_l00082}{82}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Src_2main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00083 \{}
+\DoxyCodeLine{00084   \textcolor{comment}{/* USER CODE BEGIN 1 */}}
+\DoxyCodeLine{00085 }
+\DoxyCodeLine{00086   \textcolor{comment}{/* USER CODE END 1 */}}
+\DoxyCodeLine{00087 }
+\DoxyCodeLine{00088   \textcolor{comment}{/* MCU Configuration-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090   \textcolor{comment}{/* Reset of all peripherals, Initializes the Flash interface and the Systick. */}}
+\DoxyCodeLine{00091   HAL\_Init();}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093   \textcolor{comment}{/* USER CODE BEGIN Init */}}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095   \textcolor{comment}{/* USER CODE END Init */}}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097   \textcolor{comment}{/* Configure the system clock */}}
+\DoxyCodeLine{00098   \mbox{\hyperlink{Core_2Src_2main_8c_a70af21c671abfcc773614a9a4f63d920}{SystemClock\_Config}}();}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100   \textcolor{comment}{/* USER CODE BEGIN SysInit */}}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102   \textcolor{comment}{/* USER CODE END SysInit */}}
+\DoxyCodeLine{00103 }
+\DoxyCodeLine{00104   \textcolor{comment}{/* Initialize all configured peripherals */}}
+\DoxyCodeLine{00105   MX\_GPIO\_Init();}
+\DoxyCodeLine{00106   MX\_DMA\_Init();}
+\DoxyCodeLine{00107   MX\_SPI1\_Init();}
+\DoxyCodeLine{00108   MX\_USART2\_UART\_Init();}
+\DoxyCodeLine{00109   MX\_I2C1\_Init();}
+\DoxyCodeLine{00110   \textcolor{comment}{/* USER CODE BEGIN 2 */}}
+\DoxyCodeLine{00111     printf(\textcolor{stringliteral}{"{}***Bodysythesizer Sensor Board***\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00112     uint8\_t initError\_counter = 0;}
+\DoxyCodeLine{00113     \textcolor{keywordtype}{bool} led\_off = \textcolor{keyword}{true};}
+\DoxyCodeLine{00114 }
+\DoxyCodeLine{00115     \textcolor{comment}{//Calibrated LED switc ON}}
+\DoxyCodeLine{00116     HAL\_GPIO\_WritePin(LED\_CALIBRATED\_GPIO\_Port, LED\_CALIBRATED\_Pin,SET );}
+\DoxyCodeLine{00117 }
+\DoxyCodeLine{00118 }
+\DoxyCodeLine{00119     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i =0;i<BUFFERSIZE;i++)\{}
+\DoxyCodeLine{00120         pTxData[i] = 0;}
+\DoxyCodeLine{00121         pRxData[i] = 0;}
+\DoxyCodeLine{00122     \}}
+\DoxyCodeLine{00123     \textcolor{comment}{//Power up Gyro}}
+\DoxyCodeLine{00124     HAL\_GPIO\_WritePin(MPU6050\_Power\_GPIO\_Port, MPU6050\_Power\_Pin,SET );}
+\DoxyCodeLine{00125     HAL\_Delay(10);}
+\DoxyCodeLine{00126 }
+\DoxyCodeLine{00127     \textcolor{comment}{//Gyros Init}}
+\DoxyCodeLine{00128     \mbox{\hyperlink{structMPU6050__Data}{MPU6050\_Data}} gyro\_data;}
+\DoxyCodeLine{00129     \textcolor{comment}{//   MPU6050\_STATUS gyro\_status;}}
+\DoxyCodeLine{00130     \textcolor{keywordflow}{while}((initError\_counter < 5) \&\& \mbox{\hyperlink{group__MPU6050_ga4b1f2e602c95802e5c65168964da2eb5}{MPU6050\_init}}(\&hi2c1, \&gyro\_data, \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}{MPU6050\_ACCL\_8G}}, MPU6050\_GYRO\_2000deg, \mbox{\hyperlink{group__MPU6050_ga37b7afe75a69aae8e56376b98a1e2200}{MPU6050\_SampleRate\_2KHz}} != MPU6050\_Status\_OK))\{}
+\DoxyCodeLine{00131         initError\_counter++;}
+\DoxyCodeLine{00132         printf(\textcolor{stringliteral}{"{}MPU6050 Init Error\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00133         \textcolor{keywordflow}{if} (initError\_counter == 3)\{}
+\DoxyCodeLine{00134             printf(\textcolor{stringliteral}{"{}restart MPU6050\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00135             HAL\_GPIO\_WritePin(MPU6050\_Power\_GPIO\_Port, MPU6050\_Power\_Pin,RESET );}
+\DoxyCodeLine{00136             HAL\_Delay(10);}
+\DoxyCodeLine{00137             HAL\_GPIO\_WritePin(MPU6050\_Power\_GPIO\_Port, MPU6050\_Power\_Pin,SET );}
+\DoxyCodeLine{00138             HAL\_Delay(10);}
+\DoxyCodeLine{00139         \}}
+\DoxyCodeLine{00140     \}}
+\DoxyCodeLine{00141     \textcolor{keywordflow}{if} (initError\_counter < 5)\{}
+\DoxyCodeLine{00142         printf(\textcolor{stringliteral}{"{}MPU6050 Init complete\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00143         \textcolor{keywordflow}{if} ( \mbox{\hyperlink{group__MPU6050_gac5545cc463f9c6b45b18aab7acc33d83}{MPU6050\_Calibrate}}(\&gyro\_data) == MPU6050\_Read\_OK)\{}
+\DoxyCodeLine{00144             printf(\textcolor{stringliteral}{"{}MPU6050 calibrated\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00145             SyncBuffer.gyro\_initilized =\textcolor{keyword}{true};}
+\DoxyCodeLine{00146             HAL\_GPIO\_WritePin(LED\_CALIBRATED\_GPIO\_Port, LED\_CALIBRATED\_Pin,RESET );}
+\DoxyCodeLine{00147 }
+\DoxyCodeLine{00148         \}}
+\DoxyCodeLine{00149         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00150             printf(\textcolor{stringliteral}{"{}MPU6050 calibration failed\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00151             SyncBuffer.gyro\_initilized = \textcolor{keyword}{false};}
+\DoxyCodeLine{00152         \}}
+\DoxyCodeLine{00153     \}}
+\DoxyCodeLine{00154     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00155         SyncBuffer.gyro\_initilized = \textcolor{keyword}{false};}
+\DoxyCodeLine{00156     \}}
+\DoxyCodeLine{00157 }
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159 }
+\DoxyCodeLine{00160   \textcolor{comment}{/* USER CODE END 2 */}}
+\DoxyCodeLine{00161 }
+\DoxyCodeLine{00162   \textcolor{comment}{/* Infinite loop */}}
+\DoxyCodeLine{00163   \textcolor{comment}{/* USER CODE BEGIN WHILE */}}
+\DoxyCodeLine{00164 }
+\DoxyCodeLine{00165 }
+\DoxyCodeLine{00166     HAL\_SPI\_TransmitReceive\_DMA(\&hspi1, pTxData, pRxData, BUFFERSIZE);}
+\DoxyCodeLine{00167     \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00168     \{}
+\DoxyCodeLine{00169         \textcolor{comment}{// Get Movement detection and write into Sync buffer}}
+\DoxyCodeLine{00170         \textcolor{keywordflow}{if}(SyncBuffer.gyro\_initilized == \textcolor{keyword}{true})\{}
+\DoxyCodeLine{00171             \mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\_Read\_Sensor}}();}
+\DoxyCodeLine{00172             SyncBuffer.tilt\_detected  = \mbox{\hyperlink{group__MPU6050_ga54401f79994f9addfe2f908f8a565e22}{MPU6050\_detectTilt}}();}
+\DoxyCodeLine{00173         \}}
+\DoxyCodeLine{00174 }
+\DoxyCodeLine{00175 }
+\DoxyCodeLine{00176         \_\_disable\_irq();}
+\DoxyCodeLine{00177         memcpy((\textcolor{keywordtype}{void}*)pTxData,(\textcolor{keywordtype}{void}*)\&SyncBuffer, BUFFERSIZE);}
+\DoxyCodeLine{00178         \_\_enable\_irq();}
+\DoxyCodeLine{00179 }
+\DoxyCodeLine{00180         \textcolor{comment}{//switch LED}}
+\DoxyCodeLine{00181         \textcolor{keywordflow}{switch} (SyncBuffer.tilt\_detected) \{}
+\DoxyCodeLine{00182         \textcolor{keywordflow}{case} TILT\_RIGHT:}
+\DoxyCodeLine{00183             HAL\_GPIO\_WritePin(LED\_TILT\_RIGHT\_GPIO\_Port, LED\_TILT\_RIGHT\_Pin,SET );}
+\DoxyCodeLine{00184             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00185             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00186         \textcolor{keywordflow}{case} TILT\_RIGHT\_S:}
+\DoxyCodeLine{00187             HAL\_GPIO\_WritePin(LED\_TILT\_RIGHT\_GPIO\_Port, LED\_TILT\_RIGHT\_Pin,SET );}
+\DoxyCodeLine{00188             HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_RIGHT\_GPIO\_Port, LED\_STRONG\_TILT\_RIGHT\_Pin,SET );}
+\DoxyCodeLine{00189             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00190             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00191         \textcolor{keywordflow}{case} TILT\_LEFT:}
+\DoxyCodeLine{00192             HAL\_GPIO\_WritePin(LED\_TILT\_LEFT\_GPIO\_Port, LED\_TILT\_LEFT\_Pin,SET );}
+\DoxyCodeLine{00193             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00194             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00195         \textcolor{keywordflow}{case} TILT\_LEFT\_S:}
+\DoxyCodeLine{00196             HAL\_GPIO\_WritePin(LED\_TILT\_LEFT\_GPIO\_Port, LED\_TILT\_LEFT\_Pin,SET );}
+\DoxyCodeLine{00197             HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_LEFT\_GPIO\_Port, LED\_STRONG\_TILT\_LEFT\_Pin,SET );}
+\DoxyCodeLine{00198             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00199             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00200         \textcolor{keywordflow}{case} TILT\_FRONT:}
+\DoxyCodeLine{00201             HAL\_GPIO\_WritePin(LED\_TILT\_FRONT\_GPIO\_Port, LED\_TILT\_FRONT\_Pin,SET );}
+\DoxyCodeLine{00202             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00203             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00204         \textcolor{keywordflow}{case} TILT\_FRONT\_S:}
+\DoxyCodeLine{00205             HAL\_GPIO\_WritePin(LED\_TILT\_FRONT\_GPIO\_Port, LED\_TILT\_FRONT\_Pin,SET );}
+\DoxyCodeLine{00206             HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_FRONT\_GPIO\_Port, LED\_STRONG\_TILT\_FRONT\_Pin,SET );}
+\DoxyCodeLine{00207             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00208             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00209         \textcolor{keywordflow}{case} TILT\_BACK:}
+\DoxyCodeLine{00210             HAL\_GPIO\_WritePin(LED\_TILT\_BACK\_GPIO\_Port, LED\_TILT\_BACK\_Pin,SET );}
+\DoxyCodeLine{00211             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00212             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00213         \textcolor{keywordflow}{case} TILT\_BACK\_S:}
+\DoxyCodeLine{00214             HAL\_GPIO\_WritePin(LED\_TILT\_BACK\_GPIO\_Port, LED\_TILT\_BACK\_Pin,SET );}
+\DoxyCodeLine{00215             HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_BACK\_GPIO\_Port, LED\_STRONG\_TILT\_BACK\_Pin,SET );}
+\DoxyCodeLine{00216             led\_off = \textcolor{keyword}{false};}
+\DoxyCodeLine{00217             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00218         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00219             \textcolor{keywordflow}{if} (!led\_off) \{}
+\DoxyCodeLine{00220                 HAL\_GPIO\_WritePin(LED\_TILT\_LEFT\_GPIO\_Port, LED\_TILT\_LEFT\_Pin,RESET );}
+\DoxyCodeLine{00221                 HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_LEFT\_GPIO\_Port, LED\_STRONG\_TILT\_LEFT\_Pin,RESET );}
+\DoxyCodeLine{00222                 HAL\_GPIO\_WritePin(LED\_TILT\_FRONT\_GPIO\_Port, LED\_TILT\_FRONT\_Pin,RESET );}
+\DoxyCodeLine{00223                 HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_FRONT\_GPIO\_Port, LED\_STRONG\_TILT\_FRONT\_Pin,RESET );}
+\DoxyCodeLine{00224                 HAL\_GPIO\_WritePin(LED\_TILT\_BACK\_GPIO\_Port, LED\_TILT\_BACK\_Pin,RESET );}
+\DoxyCodeLine{00225                 HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_BACK\_GPIO\_Port, LED\_STRONG\_TILT\_BACK\_Pin,RESET );}
+\DoxyCodeLine{00226                 HAL\_GPIO\_WritePin(LED\_TILT\_RIGHT\_GPIO\_Port, LED\_TILT\_RIGHT\_Pin,RESET );}
+\DoxyCodeLine{00227                 HAL\_GPIO\_WritePin(LED\_STRONG\_TILT\_RIGHT\_GPIO\_Port, LED\_STRONG\_TILT\_RIGHT\_Pin,RESET );}
+\DoxyCodeLine{00228                 led\_off = \textcolor{keyword}{true};}
+\DoxyCodeLine{00229             \}}
+\DoxyCodeLine{00230 }
+\DoxyCodeLine{00231             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00232         \}}
+\DoxyCodeLine{00233         \textcolor{comment}{//  HAL\_Delay(10);}}
+\DoxyCodeLine{00234     \textcolor{comment}{/* USER CODE END WHILE */}}
+\DoxyCodeLine{00235 }
+\DoxyCodeLine{00236     \textcolor{comment}{/* USER CODE BEGIN 3 */}}
+\DoxyCodeLine{00237     \}}
+\DoxyCodeLine{00238  }
+\DoxyCodeLine{00239   \textcolor{comment}{/* USER CODE END 3 */}}
+\DoxyCodeLine{00240 \}}
+
+\end{DoxyCode}

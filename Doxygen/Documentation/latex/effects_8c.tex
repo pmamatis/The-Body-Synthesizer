@@ -1,0 +1,93 @@
+\hypertarget{effects_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/effects.c File Reference}
+\label{effects_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/effects.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/effects.c}}
+
+
+effect proccesing  
+
+
+{\ttfamily \#include \char`\"{}effects.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}display.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__EffectProcessing_ga3b78cb1a6c0d05c3740b0d59f514a49e}{effects\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{effects_8c_a3cf8b82d8ee857615741a7e0e04dbdf1}{effects\+\_\+process}} (float $\ast$calculate\+\_\+value)
+\begin{DoxyCompactList}\small\item\em reads the effect\+\_\+order\mbox{[}\mbox{]} and activates the processing functions for the effects \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\+\_\+adsr\+\_\+process}} (void)
+\begin{DoxyCompactList}\small\item\em function for the keyboard adsr processing \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__EffectProcessing_ga4dfb093ad0f349af12ad3030a11da8d9}{effects\+\_\+add}} (effects\+\_\+t\+\_\+enum effect)
+\begin{DoxyCompactList}\small\item\em Inserts an entry in the effect\+\_\+order\mbox{[}position\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\+\_\+delete}} (effects\+\_\+t\+\_\+enum effect)
+\begin{DoxyCompactList}\small\item\em Deletes a certain effect inside the effect\+\_\+order\mbox{[}position\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+effect proccesing 
+
+\begin{DoxyAuthor}{Author}
+Paul Mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{effects_8c_source}{effects.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{effects_8c_a3cf8b82d8ee857615741a7e0e04dbdf1}\label{effects_8c_a3cf8b82d8ee857615741a7e0e04dbdf1}} 
+\index{effects.c@{effects.c}!effects\_process@{effects\_process}}
+\index{effects\_process@{effects\_process}!effects.c@{effects.c}}
+\doxysubsubsection{\texorpdfstring{effects\_process()}{effects\_process()}}
+{\footnotesize\ttfamily void effects\+\_\+process (\begin{DoxyParamCaption}\item[{float $\ast$}]{calculate\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+reads the effect\+\_\+order\mbox{[}\mbox{]} and activates the processing functions for the effects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em single} & sample value, where the effects should be applied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{effects_8c_source_l00026}{26}} of file \mbox{\hyperlink{effects_8c_source}{effects.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026                                             \{}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__EffectProcessing_ga356f7e77328d3524cc7c5592b2237823}{effect\_order}}[0] == EQ) \{}
+\DoxyCodeLine{00029         \mbox{\hyperlink{group__Filters_gaa615f53296529b29ed116c17bf41f422}{ProcessEQ}}(calculate\_value);}
+\DoxyCodeLine{00030     \}}
+\DoxyCodeLine{00031     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__EffectProcessing_ga356f7e77328d3524cc7c5592b2237823}{effect\_order}}[1] == TREM) \{}
+\DoxyCodeLine{00032         \mbox{\hyperlink{group__tremolo_ga922840d8712ad7bd4904f7813c8ac2f6}{ProcessTremolo}}(\&Tremolo, calculate\_value);}
+\DoxyCodeLine{00033     \}}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__EffectProcessing_ga356f7e77328d3524cc7c5592b2237823}{effect\_order}}[2] == DIST) \{}
+\DoxyCodeLine{00037         \textcolor{keywordflow}{if}(Display.Distortion\_Type == 0)}
+\DoxyCodeLine{00038             \mbox{\hyperlink{group__Distortion_ga1676e7551d7621b89efb0ecc46092436}{ProcessSoftClippingDistortion}}(calculate\_value);}
+\DoxyCodeLine{00039         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.Distortion\_Type == 1)}
+\DoxyCodeLine{00040             \mbox{\hyperlink{group__Distortion_ga7a68b2a90c4306d739161ee82b7eb89c}{ProcessHardClippingDistortion}}(calculate\_value);}
+\DoxyCodeLine{00041     \}}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043     \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__EffectProcessing_ga356f7e77328d3524cc7c5592b2237823}{effect\_order}}[3] == WAHWAH) \{}
+\DoxyCodeLine{00044         \textcolor{keywordflow}{if}(Display.WahWah\_Mode == 0)}
+\DoxyCodeLine{00045             \mbox{\hyperlink{group__wahwah_ga2fa3b9f5777f0876da0b828ee333673a}{ProcessWahWah}}(\&WahWah, calculate\_value);}
+\DoxyCodeLine{00046         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.WahWah\_Mode == 1)}
+\DoxyCodeLine{00047             \mbox{\hyperlink{group__wahwah_ga85d3b2ed1cf4a3aef7b32c97b2e64237}{ProcessAutoWahWah}}(\&WahWah, calculate\_value);}
+\DoxyCodeLine{00048     \}}
+\DoxyCodeLine{00049 \}}
+
+\end{DoxyCode}

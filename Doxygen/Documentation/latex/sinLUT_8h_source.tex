@@ -1,0 +1,41 @@
+\hypertarget{sinLUT_8h_source}{}\doxysection{sin\+LUT.\+h}
+\label{sinLUT_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/sinLUT.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/sinLUT.h}}
+\mbox{\hyperlink{sinLUT_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00014}00014 \textcolor{preprocessor}{\#ifndef INC\_SINLUT\_H\_}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00015}00015 \textcolor{preprocessor}{\#define INC\_SINLUT\_H\_}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00026}00026 \textcolor{comment}{// Includes}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00027}00027 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00028}00028  }
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00029}00029  }
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00030}00030 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00031}00031 \textcolor{comment}{ * @brief Defines}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00032}00032 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00033}00033 \textcolor{preprocessor}{\#define LUT\_SR 24000}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00034}00034 \textcolor{preprocessor}{\#define LUT\_START\_OCTAVE 4186.009}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00035}00035 \textcolor{preprocessor}{\#define LUT\_FMAX 4186.009}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00036}00036 \textcolor{preprocessor}{\#define LUT\_FMIN 65.4064}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00037}00037 \textcolor{preprocessor}{\#define LUT\_OCTAVES 6}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00038}00038 \textcolor{preprocessor}{\#define LFO\_FMAX 16}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00039}00039 \textcolor{preprocessor}{\#define LFO\_FMIN 0.125}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00040}00040  }
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00041}00041 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00042}00042 \textcolor{comment}{ * @brief       Variables}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00043}00043 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00045}\mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{00045}} \textcolor{keyword}{const} \textcolor{keywordtype}{float}  \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}}[6439];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00047}\mbox{\hyperlink{group__SINLUT_ga93f6110c104231e7959e446480c94834}{00047}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__SINLUT_ga93f6110c104231e7959e446480c94834}{LUT\_ENDINDEX}}[73];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00049}\mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{00049}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\_STARTINDEX}}[73];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00051}\mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{00051}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\_SUPPORTPOINTS}}[73];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00053}\mbox{\hyperlink{group__SINLUT_ga9a9d9181987af97d8c0ee7492f2e17fc}{00053}} \textcolor{keyword}{const} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__SINLUT_ga9a9d9181987af97d8c0ee7492f2e17fc}{LUT\_FREQUENCYS}}[73];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00056}\mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{00056}} \textcolor{keyword}{const} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}}[95625];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00058}\mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{00058}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\_ENDINDEX}}[8];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00060}\mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{00060}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\_STARTINDEX}}[8];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00062}\mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{00062}} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\_SUPPORTPOINTS}}[8];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00064}\mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{00064}} \textcolor{keyword}{const} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\_FREQUENCYS}}[8];}
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{sinLUT_8h_source_l00067}00067 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

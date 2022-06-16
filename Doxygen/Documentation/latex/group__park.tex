@@ -1,0 +1,130 @@
+\hypertarget{group__park}{}\doxysection{Vector Park Transform}
+\label{group__park}\index{Vector Park Transform@{Vector Park Transform}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE void \mbox{\hyperlink{group__park_ga18f92d09e080edc98a00c01886b56b5d}{arm\+\_\+park\+\_\+f32}} (float32\+\_\+t Ialpha, float32\+\_\+t Ibeta, float32\+\_\+t $\ast$p\+Id, float32\+\_\+t $\ast$p\+Iq, float32\+\_\+t sin\+Val, float32\+\_\+t cos\+Val)
+\begin{DoxyCompactList}\small\item\em Floating-\/point Park transform. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE void \mbox{\hyperlink{group__park_ga69be76685149b18f345f705aa8efaad0}{arm\+\_\+park\+\_\+q31}} (q31\+\_\+t Ialpha, q31\+\_\+t Ibeta, q31\+\_\+t $\ast$p\+Id, q31\+\_\+t $\ast$p\+Iq, q31\+\_\+t sin\+Val, q31\+\_\+t cos\+Val)
+\begin{DoxyCompactList}\small\item\em Park transform for Q31 version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+end of inv\+\_\+clarke group
+
+Forward Park transform converts the input two-\/coordinate vector to flux and torque components. The Park transform can be used to realize the transformation of the {\ttfamily Ialpha} and the {\ttfamily Ibeta} currents from the stationary to the moving reference frame and control the spatial relationship between the stator vector current and rotor flux vector. If we consider the d axis aligned with the rotor flux, the diagram below shows the current vector and the relationship from the two reference frames\+: 
+
+The function operates on a single sample of data and each call to the function returns the processed output. The library provides separate functions for Q31 and floating-\/point data types. \begin{DoxyParagraph}{Algorithm}
+ where {\ttfamily Ialpha} and {\ttfamily Ibeta} are the stator vector components, {\ttfamily p\+Id} and {\ttfamily p\+Iq} are rotor vector components and {\ttfamily cos\+Val} and {\ttfamily sin\+Val} are the cosine and sine values of theta (rotor flux position). 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Fixed-\/\+Point Behavior}
+Care must be taken when using the Q31 version of the Park transform. In particular, the overflow and saturation behavior of the accumulator used must be considered. Refer to the function specific documentation below for usage guidelines. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__park_ga18f92d09e080edc98a00c01886b56b5d}\label{group__park_ga18f92d09e080edc98a00c01886b56b5d}} 
+\index{Vector Park Transform@{Vector Park Transform}!arm\_park\_f32@{arm\_park\_f32}}
+\index{arm\_park\_f32@{arm\_park\_f32}!Vector Park Transform@{Vector Park Transform}}
+\doxysubsubsection{\texorpdfstring{arm\_park\_f32()}{arm\_park\_f32()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE void arm\+\_\+park\+\_\+f32 (\begin{DoxyParamCaption}\item[{float32\+\_\+t}]{Ialpha,  }\item[{float32\+\_\+t}]{Ibeta,  }\item[{float32\+\_\+t $\ast$}]{p\+Id,  }\item[{float32\+\_\+t $\ast$}]{p\+Iq,  }\item[{float32\+\_\+t}]{sin\+Val,  }\item[{float32\+\_\+t}]{cos\+Val }\end{DoxyParamCaption})}
+
+
+
+Floating-\/point Park transform. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Ialpha} & input two-\/phase vector coordinate alpha \\
+\hline
+\mbox{\texttt{ in}}  & {\em Ibeta} & input two-\/phase vector coordinate beta \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+Id} & points to output rotor reference frame d \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+Iq} & points to output rotor reference frame q \\
+\hline
+\mbox{\texttt{ in}}  & {\em sin\+Val} & sine value of rotation angle theta \\
+\hline
+\mbox{\texttt{ in}}  & {\em cos\+Val} & cosine value of rotation angle theta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+The function implements the forward Park transform. 
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l06265}{6265}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{06272   \{}
+\DoxyCodeLine{06273     \textcolor{comment}{/* Calculate pId using the equation, pId = Ialpha * cosVal + Ibeta * sinVal */}}
+\DoxyCodeLine{06274     *pId = Ialpha * cosVal + Ibeta * sinVal;}
+\DoxyCodeLine{06275 }
+\DoxyCodeLine{06276     \textcolor{comment}{/* Calculate pIq using the equation, pIq = -\/ Ialpha * sinVal + Ibeta * cosVal */}}
+\DoxyCodeLine{06277     *pIq = -\/Ialpha * sinVal + Ibeta * cosVal;}
+\DoxyCodeLine{06278   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__park_ga69be76685149b18f345f705aa8efaad0}\label{group__park_ga69be76685149b18f345f705aa8efaad0}} 
+\index{Vector Park Transform@{Vector Park Transform}!arm\_park\_q31@{arm\_park\_q31}}
+\index{arm\_park\_q31@{arm\_park\_q31}!Vector Park Transform@{Vector Park Transform}}
+\doxysubsubsection{\texorpdfstring{arm\_park\_q31()}{arm\_park\_q31()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE void arm\+\_\+park\+\_\+q31 (\begin{DoxyParamCaption}\item[{q31\+\_\+t}]{Ialpha,  }\item[{q31\+\_\+t}]{Ibeta,  }\item[{q31\+\_\+t $\ast$}]{p\+Id,  }\item[{q31\+\_\+t $\ast$}]{p\+Iq,  }\item[{q31\+\_\+t}]{sin\+Val,  }\item[{q31\+\_\+t}]{cos\+Val }\end{DoxyParamCaption})}
+
+
+
+Park transform for Q31 version. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Ialpha} & input two-\/phase vector coordinate alpha \\
+\hline
+\mbox{\texttt{ in}}  & {\em Ibeta} & input two-\/phase vector coordinate beta \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+Id} & points to output rotor reference frame d \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+Iq} & points to output rotor reference frame q \\
+\hline
+\mbox{\texttt{ in}}  & {\em sin\+Val} & sine value of rotation angle theta \\
+\hline
+\mbox{\texttt{ in}}  & {\em cos\+Val} & cosine value of rotation angle theta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Scaling and Overflow Behavior}
+The function is implemented using an internal 32-\/bit accumulator. The accumulator maintains 1.\+31 format by truncating lower 31 bits of the intermediate multiplication in 2.\+62 format. There is saturation on the addition and subtraction, hence there is no risk of overflow. 
+\end{DoxyParagraph}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l06296}{6296}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{06303   \{}
+\DoxyCodeLine{06304     q31\_t product1, product2;                    \textcolor{comment}{/* Temporary variables used to store intermediate results */}}
+\DoxyCodeLine{06305     q31\_t product3, product4;                    \textcolor{comment}{/* Temporary variables used to store intermediate results */}}
+\DoxyCodeLine{06306 }
+\DoxyCodeLine{06307     \textcolor{comment}{/* Intermediate product is calculated by (Ialpha * cosVal) */}}
+\DoxyCodeLine{06308     product1 = (q31\_t) (((q63\_t) (Ialpha) * (cosVal)) >> 31);}
+\DoxyCodeLine{06309 }
+\DoxyCodeLine{06310     \textcolor{comment}{/* Intermediate product is calculated by (Ibeta * sinVal) */}}
+\DoxyCodeLine{06311     product2 = (q31\_t) (((q63\_t) (Ibeta) * (sinVal)) >> 31);}
+\DoxyCodeLine{06312 }
+\DoxyCodeLine{06313 }
+\DoxyCodeLine{06314     \textcolor{comment}{/* Intermediate product is calculated by (Ialpha * sinVal) */}}
+\DoxyCodeLine{06315     product3 = (q31\_t) (((q63\_t) (Ialpha) * (sinVal)) >> 31);}
+\DoxyCodeLine{06316 }
+\DoxyCodeLine{06317     \textcolor{comment}{/* Intermediate product is calculated by (Ibeta * cosVal) */}}
+\DoxyCodeLine{06318     product4 = (q31\_t) (((q63\_t) (Ibeta) * (cosVal)) >> 31);}
+\DoxyCodeLine{06319 }
+\DoxyCodeLine{06320     \textcolor{comment}{/* Calculate pId by adding the two intermediate products 1 and 2 */}}
+\DoxyCodeLine{06321     *pId = \_\_QADD(product1, product2);}
+\DoxyCodeLine{06322 }
+\DoxyCodeLine{06323     \textcolor{comment}{/* Calculate pIq by subtracting the two intermediate products 3 from 4 */}}
+\DoxyCodeLine{06324     *pIq = \_\_QSUB(product4, product3);}
+\DoxyCodeLine{06325   \}}
+
+\end{DoxyCode}

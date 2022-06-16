@@ -1,0 +1,227 @@
+\hypertarget{group__PID}{}\doxysection{PID Motor Control}
+\label{group__PID}\index{PID Motor Control@{PID Motor Control}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE float32\+\_\+t \mbox{\hyperlink{group__PID_ga5a6865ed706b7dd969ef0bd58a61f306}{arm\+\_\+pid\+\_\+f32}} (\mbox{\hyperlink{structarm__pid__instance__f32}{arm\+\_\+pid\+\_\+instance\+\_\+f32}} $\ast$S, float32\+\_\+t in)
+\begin{DoxyCompactList}\small\item\em Process function for the floating-\/point PID Control. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q31\+\_\+t \mbox{\hyperlink{group__PID_ga9ead8b3180125fb42879389477b99dc8}{arm\+\_\+pid\+\_\+q31}} (\mbox{\hyperlink{structarm__pid__instance__q31}{arm\+\_\+pid\+\_\+instance\+\_\+q31}} $\ast$S, q31\+\_\+t in)
+\begin{DoxyCompactList}\small\item\em Process function for the Q31 PID Control. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q15\+\_\+t \mbox{\hyperlink{group__PID_ga7ecc87208cb297fb9a31cec4f18bb54e}{arm\+\_\+pid\+\_\+q15}} (\mbox{\hyperlink{structarm__pid__instance__q15}{arm\+\_\+pid\+\_\+instance\+\_\+q15}} $\ast$S, q15\+\_\+t in)
+\begin{DoxyCompactList}\small\item\em Process function for the Q15 PID Control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Proportional Integral Derivative (PID) controller is a generic feedback control loop mechanism widely used in industrial control systems. A PID controller is the most commonly used type of feedback controller.
+
+This set of functions implements (PID) controllers for Q15, Q31, and floating-\/point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. {\ttfamily S} points to an instance of the PID control data structure. {\ttfamily in} is the input sample value. The functions return the output value.
+
+\begin{DoxyParagraph}{Algorithm\+:}
+
+\begin{DoxyPre}
+   y[n] = y[n-\/1] + A0 * x[n] + A1 * x[n-\/1] + A2 * x[n-\/2]
+   A0 = Kp + Ki + Kd
+   A1 = (-\/Kp ) -\/ (2 * Kd )
+   A2 = Kd
+\end{DoxyPre}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+where {\ttfamily Kp} is proportional constant, {\ttfamily Ki} is Integral constant and {\ttfamily Kd} is Derivative constant
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The PID controller calculates an \char`\"{}error\char`\"{} value as the difference between the measured output and the reference input. The controller attempts to minimize the error by adjusting the process control inputs. The proportional value determines the reaction to the current error, the integral value determines the reaction based on the sum of recent errors, and the derivative value determines the reaction based on the rate at which the error has been changing.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Instance Structure}
+The Gains A0, A1, A2 and state variables for a PID controller are stored together in an instance data structure. A separate instance structure must be defined for each PID Controller. There are separate instance structure declarations for each of the 3 supported data types.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Reset Functions}
+There is also an associated reset function for each data type which clears the state array.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Initialization Functions}
+There is also an associated initialization function for each data type. The initialization function performs the following operations\+:
+\begin{DoxyItemize}
+\item Initializes the Gains A0, A1, A2 from Kp,Ki, Kd gains.
+\item Zeros out the values in the state buffer.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Instance structure cannot be placed into a const data section and it is recommended to use the initialization function.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Fixed-\/\+Point Behavior}
+Care must be taken when using the fixed-\/point versions of the PID Controller functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__PID_ga5a6865ed706b7dd969ef0bd58a61f306}\label{group__PID_ga5a6865ed706b7dd969ef0bd58a61f306}} 
+\index{PID Motor Control@{PID Motor Control}!arm\_pid\_f32@{arm\_pid\_f32}}
+\index{arm\_pid\_f32@{arm\_pid\_f32}!PID Motor Control@{PID Motor Control}}
+\doxysubsubsection{\texorpdfstring{arm\_pid\_f32()}{arm\_pid\_f32()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE float32\+\_\+t arm\+\_\+pid\+\_\+f32 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarm__pid__instance__f32}{arm\+\_\+pid\+\_\+instance\+\_\+f32}} $\ast$}]{S,  }\item[{float32\+\_\+t}]{in }\end{DoxyParamCaption})}
+
+
+
+Process function for the floating-\/point PID Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em S} & is an instance of the floating-\/point PID Control structure \\
+\hline
+\mbox{\texttt{ in}}  & {\em in} & input sample to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+processed output sample. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l05891}{5891}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{05894   \{}
+\DoxyCodeLine{05895     float32\_t out;}
+\DoxyCodeLine{05896 }
+\DoxyCodeLine{05897     \textcolor{comment}{/* y[n] = y[n-\/1] + A0 * x[n] + A1 * x[n-\/1] + A2 * x[n-\/2]  */}}
+\DoxyCodeLine{05898     out = (S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_ad7b0bed64915d0a25a3409fa2dc45556}{A0}} * in) +}
+\DoxyCodeLine{05899       (S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_a7def89571c50f7137a213326a396e560}{A1}} * S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_afd394e1e52fb1d526aa472c83b8f2464}{state}}[0]) + (S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_a155acf642ba2f521869f19d694cd7fa0}{A2}} * S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_afd394e1e52fb1d526aa472c83b8f2464}{state}}[1]) + (S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_afd394e1e52fb1d526aa472c83b8f2464}{state}}[2]);}
+\DoxyCodeLine{05900 }
+\DoxyCodeLine{05901     \textcolor{comment}{/* Update state */}}
+\DoxyCodeLine{05902     S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_afd394e1e52fb1d526aa472c83b8f2464}{state}}[1] = S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_afd394e1e52fb1d526aa472c83b8f2464}{state}}[0];}
+\DoxyCodeLine{05903     S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_afd394e1e52fb1d526aa472c83b8f2464}{state}}[0] = in;}
+\DoxyCodeLine{05904     S-\/>\mbox{\hyperlink{structarm__pid__instance__f32_afd394e1e52fb1d526aa472c83b8f2464}{state}}[2] = out;}
+\DoxyCodeLine{05905 }
+\DoxyCodeLine{05906     \textcolor{comment}{/* return to application */}}
+\DoxyCodeLine{05907     \textcolor{keywordflow}{return} (out);}
+\DoxyCodeLine{05908 }
+\DoxyCodeLine{05909   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__PID_ga7ecc87208cb297fb9a31cec4f18bb54e}\label{group__PID_ga7ecc87208cb297fb9a31cec4f18bb54e}} 
+\index{PID Motor Control@{PID Motor Control}!arm\_pid\_q15@{arm\_pid\_q15}}
+\index{arm\_pid\_q15@{arm\_pid\_q15}!PID Motor Control@{PID Motor Control}}
+\doxysubsubsection{\texorpdfstring{arm\_pid\_q15()}{arm\_pid\_q15()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q15\+\_\+t arm\+\_\+pid\+\_\+q15 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarm__pid__instance__q15}{arm\+\_\+pid\+\_\+instance\+\_\+q15}} $\ast$}]{S,  }\item[{q15\+\_\+t}]{in }\end{DoxyParamCaption})}
+
+
+
+Process function for the Q15 PID Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em S} & points to an instance of the Q15 PID Control structure \\
+\hline
+\mbox{\texttt{ in}}  & {\em in} & input sample to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+processed output sample.
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Scaling and Overflow Behavior}
+The function is implemented using a 64-\/bit internal accumulator. Both Gains and state variables are represented in 1.\+15 format and multiplications yield a 2.\+30 result. The 2.\+30 intermediate results are accumulated in a 64-\/bit accumulator in 34.\+30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.\+15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.\+15 format. 
+\end{DoxyParagraph}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l05970}{5970}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{05973   \{}
+\DoxyCodeLine{05974     q63\_t acc;}
+\DoxyCodeLine{05975     q15\_t out;}
+\DoxyCodeLine{05976 }
+\DoxyCodeLine{05977 \textcolor{preprocessor}{\#if defined (ARM\_MATH\_DSP)}}
+\DoxyCodeLine{05978     \textcolor{comment}{/* Implementation of PID controller */}}
+\DoxyCodeLine{05979 }
+\DoxyCodeLine{05980     \textcolor{comment}{/* acc = A0 * x[n]  */}}
+\DoxyCodeLine{05981     acc = (q31\_t) \_\_SMUAD((uint32\_t)S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_ad77f3a2823c7f96de42c92a3fbf3246b}{A0}}, (uint32\_t)in);}
+\DoxyCodeLine{05982 }
+\DoxyCodeLine{05983     \textcolor{comment}{/* acc += A1 * x[n-\/1] + A2 * x[n-\/2]  */}}
+\DoxyCodeLine{05984     acc = (q63\_t)\_\_SMLALD((uint32\_t)S-\/>A1, (uint32\_t)read\_q15x2 (S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_a4a3f0a878b5b6b055e3478a2f244cd30}{state}}), (uint64\_t)acc);}
+\DoxyCodeLine{05985 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{05986     \textcolor{comment}{/* acc = A0 * x[n]  */}}
+\DoxyCodeLine{05987     acc = ((q31\_t) S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_ad77f3a2823c7f96de42c92a3fbf3246b}{A0}}) * in;}
+\DoxyCodeLine{05988 }
+\DoxyCodeLine{05989     \textcolor{comment}{/* acc += A1 * x[n-\/1] + A2 * x[n-\/2]  */}}
+\DoxyCodeLine{05990     acc += (q31\_t) S-\/>A1 * S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_a4a3f0a878b5b6b055e3478a2f244cd30}{state}}[0];}
+\DoxyCodeLine{05991     acc += (q31\_t) S-\/>A2 * S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_a4a3f0a878b5b6b055e3478a2f244cd30}{state}}[1];}
+\DoxyCodeLine{05992 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{05993 }
+\DoxyCodeLine{05994     \textcolor{comment}{/* acc += y[n-\/1] */}}
+\DoxyCodeLine{05995     acc += (q31\_t) S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_a4a3f0a878b5b6b055e3478a2f244cd30}{state}}[2] << 15;}
+\DoxyCodeLine{05996 }
+\DoxyCodeLine{05997     \textcolor{comment}{/* saturate the output */}}
+\DoxyCodeLine{05998     out = (q15\_t) (\_\_SSAT((q31\_t)(acc >> 15), 16));}
+\DoxyCodeLine{05999 }
+\DoxyCodeLine{06000     \textcolor{comment}{/* Update state */}}
+\DoxyCodeLine{06001     S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_a4a3f0a878b5b6b055e3478a2f244cd30}{state}}[1] = S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_a4a3f0a878b5b6b055e3478a2f244cd30}{state}}[0];}
+\DoxyCodeLine{06002     S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_a4a3f0a878b5b6b055e3478a2f244cd30}{state}}[0] = in;}
+\DoxyCodeLine{06003     S-\/>\mbox{\hyperlink{structarm__pid__instance__q15_a4a3f0a878b5b6b055e3478a2f244cd30}{state}}[2] = out;}
+\DoxyCodeLine{06004 }
+\DoxyCodeLine{06005     \textcolor{comment}{/* return to application */}}
+\DoxyCodeLine{06006     \textcolor{keywordflow}{return} (out);}
+\DoxyCodeLine{06007   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__PID_ga9ead8b3180125fb42879389477b99dc8}\label{group__PID_ga9ead8b3180125fb42879389477b99dc8}} 
+\index{PID Motor Control@{PID Motor Control}!arm\_pid\_q31@{arm\_pid\_q31}}
+\index{arm\_pid\_q31@{arm\_pid\_q31}!PID Motor Control@{PID Motor Control}}
+\doxysubsubsection{\texorpdfstring{arm\_pid\_q31()}{arm\_pid\_q31()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q31\+\_\+t arm\+\_\+pid\+\_\+q31 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarm__pid__instance__q31}{arm\+\_\+pid\+\_\+instance\+\_\+q31}} $\ast$}]{S,  }\item[{q31\+\_\+t}]{in }\end{DoxyParamCaption})}
+
+
+
+Process function for the Q31 PID Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em S} & points to an instance of the Q31 PID Control structure \\
+\hline
+\mbox{\texttt{ in}}  & {\em in} & input sample to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+processed output sample.
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Scaling and Overflow Behavior}
+The function is implemented using an internal 64-\/bit accumulator. The accumulator has a 2.\+62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by 2 bits as there are four additions. After all multiply-\/accumulates are performed, the 2.\+62 accumulator is truncated to 1.\+32 format and then saturated to 1.\+31 format. 
+\end{DoxyParagraph}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l05924}{5924}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{05927   \{}
+\DoxyCodeLine{05928     q63\_t acc;}
+\DoxyCodeLine{05929     q31\_t out;}
+\DoxyCodeLine{05930 }
+\DoxyCodeLine{05931     \textcolor{comment}{/* acc = A0 * x[n]  */}}
+\DoxyCodeLine{05932     acc = (q63\_t) S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_aa5332635ce9c7078cdb4c1ecf442eadd}{A0}} * in;}
+\DoxyCodeLine{05933 }
+\DoxyCodeLine{05934     \textcolor{comment}{/* acc += A1 * x[n-\/1] */}}
+\DoxyCodeLine{05935     acc += (q63\_t) S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a2f7492bd6fb92fae5e2de7fbbec39b0e}{A1}} * S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a228e4a64da6014844a0a671a1fa391d4}{state}}[0];}
+\DoxyCodeLine{05936 }
+\DoxyCodeLine{05937     \textcolor{comment}{/* acc += A2 * x[n-\/2]  */}}
+\DoxyCodeLine{05938     acc += (q63\_t) S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a3e34537c53af4f9ad7bfffa4dff27c82}{A2}} * S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a228e4a64da6014844a0a671a1fa391d4}{state}}[1];}
+\DoxyCodeLine{05939 }
+\DoxyCodeLine{05940     \textcolor{comment}{/* convert output to 1.31 format to add y[n-\/1] */}}
+\DoxyCodeLine{05941     out = (q31\_t) (acc >> 31U);}
+\DoxyCodeLine{05942 }
+\DoxyCodeLine{05943     \textcolor{comment}{/* out += y[n-\/1] */}}
+\DoxyCodeLine{05944     out += S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a228e4a64da6014844a0a671a1fa391d4}{state}}[2];}
+\DoxyCodeLine{05945 }
+\DoxyCodeLine{05946     \textcolor{comment}{/* Update state */}}
+\DoxyCodeLine{05947     S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a228e4a64da6014844a0a671a1fa391d4}{state}}[1] = S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a228e4a64da6014844a0a671a1fa391d4}{state}}[0];}
+\DoxyCodeLine{05948     S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a228e4a64da6014844a0a671a1fa391d4}{state}}[0] = in;}
+\DoxyCodeLine{05949     S-\/>\mbox{\hyperlink{structarm__pid__instance__q31_a228e4a64da6014844a0a671a1fa391d4}{state}}[2] = out;}
+\DoxyCodeLine{05950 }
+\DoxyCodeLine{05951     \textcolor{comment}{/* return to application */}}
+\DoxyCodeLine{05952     \textcolor{keywordflow}{return} (out);}
+\DoxyCodeLine{05953   \}}
+
+\end{DoxyCode}

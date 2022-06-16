@@ -1,0 +1,72 @@
+\hypertarget{fatfs__sd_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/fatfs\+\_\+sd.h File Reference}
+\label{fatfs__sd_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/fatfs\_sd.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/fatfs\_sd.h}}
+
+
+sd card implementation  
+
+
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga938c1466755f12fb04ac0d1b775584d1}{CMD0}}~(0x40+0)     /$\ast$ GO\+\_\+\+IDLE\+\_\+\+STATE $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_gaca9979f299fa78c1128d778084478673}{CMD1}}~(0x40+1)     /$\ast$ SEND\+\_\+\+OP\+\_\+\+COND $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_gac75b3e0ad1fb013ea946fb49bbe65668}{CMD8}}~(0x40+8)     /$\ast$ SEND\+\_\+\+IF\+\_\+\+COND $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga1fac6a251d7e7dc204d21639bf521459}{CMD9}}~(0x40+9)     /$\ast$ SEND\+\_\+\+CSD $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_gae7b800ed8e7bd52e6f570a5ce72b8104}{CMD10}}~(0x40+10)    /$\ast$ SEND\+\_\+\+CID $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga8d6283c9b060afbaa0e6d1ff7e5ea7b8}{CMD12}}~(0x40+12)    /$\ast$ STOP\+\_\+\+TRANSMISSION $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_gaaeab261b94f2031ba41a1d4d857c3541}{CMD16}}~(0x40+16)    /$\ast$ SET\+\_\+\+BLOCKLEN $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga6bbfe7dc16a19b7f40efcf554b5666ad}{CMD17}}~(0x40+17)    /$\ast$ READ\+\_\+\+SINGLE\+\_\+\+BLOCK $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga3d32c27a6be061b865ba539127278f14}{CMD18}}~(0x40+18)    /$\ast$ READ\+\_\+\+MULTIPLE\+\_\+\+BLOCK $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga14506e981f38b6177bc36f72c2ca18b1}{CMD23}}~(0x40+23)    /$\ast$ SET\+\_\+\+BLOCK\+\_\+\+COUNT $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga252300302c6f7960df547a7f5c25be85}{CMD24}}~(0x40+24)    /$\ast$ WRITE\+\_\+\+BLOCK $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_gaee2c673fba987178f4642531fdeefe9e}{CMD25}}~(0x40+25)    /$\ast$ WRITE\+\_\+\+MULTIPLE\+\_\+\+BLOCK $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga3ca1450d0ac55d2705aab03537bf2865}{CMD41}}~(0x40+41)    /$\ast$ SEND\+\_\+\+OP\+\_\+\+COND (ACMD) $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga78289a7a85ffcfddd626694105dc0780}{CMD55}}~(0x40+55)    /$\ast$ APP\+\_\+\+CMD $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_gaa7a26b2cf17e1ff5967820a1fa41a7aa}{CMD58}}~(0x40+58)    /$\ast$ READ\+\_\+\+OCR $\ast$/
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga0131f2774f4e3dd71567400683b60405}{SPI\+\_\+\+TIMEOUT}}~1000
+\item 
+DSTATUS \mbox{\hyperlink{group__SDcard_gaf2a40446de9bbb9de81a0220227a6c22}{SD\+\_\+disk\+\_\+initialize}} (BYTE pdrv)
+\item 
+DSTATUS \mbox{\hyperlink{group__SDcard_ga3b6d8a36e6ae7d47bbbf4c3c79aba082}{SD\+\_\+disk\+\_\+status}} (BYTE pdrv)
+\item 
+DRESULT \mbox{\hyperlink{group__SDcard_gaf48460111fe5bb4f17ef7a44960aca5f}{SD\+\_\+disk\+\_\+read}} (BYTE pdrv, BYTE $\ast$buff, DWORD sector, UINT count)
+\item 
+DRESULT \mbox{\hyperlink{group__SDcard_gaac0b616ac2848931b42f68495ea5f8f2}{SD\+\_\+disk\+\_\+write}} (BYTE pdrv, const BYTE $\ast$buff, DWORD sector, UINT count)
+\item 
+DRESULT \mbox{\hyperlink{group__SDcard_gae7705ac9e8ddd4c2931a2ce4b4f232d7}{SD\+\_\+disk\+\_\+ioctl}} (BYTE pdrv, BYTE cmd, void $\ast$buff)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+sd card implementation 
+
+\begin{DoxyAuthor}{Author}
+\href{https://controllerstech.com/sd-card-using-spi-in-stm32/}{\texttt{ https\+://controllerstech.\+com/sd-\/card-\/using-\/spi-\/in-\/stm32/}} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{fatfs__sd_8h_source}{fatfs\+\_\+sd.\+h}}.
+

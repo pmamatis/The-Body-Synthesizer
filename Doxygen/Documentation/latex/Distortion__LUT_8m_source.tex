@@ -1,0 +1,22 @@
+\hypertarget{Distortion__LUT_8m_source}{}\doxysection{Distortion\+\_\+\+LUT.\+m}
+\label{Distortion__LUT_8m_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Matlab/Distortion\_LUT.m@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Matlab/Distortion\_LUT.m}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00001}00001 clear all; close all; clc}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00003}00003 \% atan lookup-\/table generation}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00004}00004 LUT\_size = 8192;}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00005}00005 max\_distortion\_gain = 10;}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00006}00006 values = linspace(-\/max\_distortion\_gain, max\_distortion\_gain, LUT\_size);}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00007}\mbox{\hyperlink{group__Distortion_ga638ce07da32913582447f1e26b745c37}{00007}} \mbox{\hyperlink{group__Distortion_ga638ce07da32913582447f1e26b745c37}{aquidistance}} = (2*max\_distortion\_gain) / (LUT\_size-\/1);}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00008}00008 atan\_LUT = atan(values);}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00009}00009 atan\_LUT\_rounded = round(atan\_LUT,4);}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00010}00010 figure(1)}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00011}00011 plot(values, atan\_LUT\_rounded); grid on}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00012}00012 xlabel('Distortion Gain')}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00013}00013 ylabel('atan(x)')}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00014}00014 csvwrite('\mbox{\hyperlink{group__atanLUT_ga44717ae85351202c8833c3880a6ef9e8}{atan\_LUT\_y}}.txt',atan\_LUT\_rounded)}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00015}00015 csvwrite('atan\_LUT\_x.txt',values)}
+\DoxyCodeLine{\Hypertarget{Distortion__LUT_8m_source_l00016}00016 dlmwrite('\mbox{\hyperlink{group__Distortion_ga638ce07da32913582447f1e26b745c37}{aquidistance}}.txt', \mbox{\hyperlink{group__Distortion_ga638ce07da32913582447f1e26b745c37}{aquidistance}}, 'delimiter', ',', 'precision', 15);}
+
+\end{DoxyCode}

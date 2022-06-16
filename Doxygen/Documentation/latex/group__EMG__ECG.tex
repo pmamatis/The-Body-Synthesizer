@@ -1,0 +1,617 @@
+\hypertarget{group__EMG__ECG}{}\doxysection{EMG and ECG sensor processing}
+\label{group__EMG__ECG}\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__EMG__ECG_gaef2f74bc8f2632e5eb78c2aaa1222ece}{EMG\+\_\+\+READ\+\_\+\+LENGTH}}~20
+\item 
+\#define \mbox{\hyperlink{group__EMG__ECG_ga0467216c3971f76f80c488c1d1b89c42}{EMG\+\_\+\+SR}}~5000
+\item 
+\#define \mbox{\hyperlink{group__EMG__ECG_gad4da5bbe0f76fdca7af3576d6d5eb417}{EMG\+\_\+\+MI}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_gaa7d92b6a1983e52614915f8e2cfb3140}{emg\+\_\+init}} (ADC\+\_\+\+Handle\+Type\+Def $\ast$hadc, TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em EMG Init. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_ga98bf9a8015f7a7833276fbf6a72e255e}{ecg\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em ECG init. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}{emg\+\_\+start\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Start all necessary peripherals for the EMG / ECG. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_ga305d3a0240c6e197a771b26c8d4fd22a}{emg\+\_\+stop\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Stops the ADC reading of the connected EMG / ECG board. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_ga63f5337cb5d5feb55ddedd79bca265d9}{emg\+\_\+peak\+\_\+detection}} (void)
+\begin{DoxyCompactList}\small\item\em Detects an EMG peak and sets flags for further processing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}{ecg\+\_\+heartrate}} (void)
+\begin{DoxyCompactList}\small\item\em Detect heartrate and change the Drumcomputers BPM accordingly in realtime. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__EMG__ECG_gaa0343f5f6ec51b2315e8af04936ded6c}{EMG\+\_\+\+ADC}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__EMG__ECG_gaaaca668bcd874fee31cc4dbf110f241c}{EMG\+\_\+\+TIM}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gafbfbad3430f3ca07748fe46ea721f425}{emg\+\_\+buffer}} \mbox{[}EMG\+\_\+\+READ\+\_\+\+LENGTH\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga820e056b9586fec05150a738d09828c7}{emg\+\_\+detection\+Threshold}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gabc598a894ad122f8758e1469ef82405b}{emg\+\_\+peak}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gaeefbcf6066e07f71f063f2374aaf5cf8}{emg\+\_\+toggle\+Counter}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga72eccf432ccbca5a28d55952a2162149}{emg\+\_\+toggle\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga5dbb1dd2634480627376d02417b18aa4}{emg\+\_\+max\+Detection\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga8a1f1f967c2c635001bb4feb13db46a1}{emg\+\_\+max\+Toggle\+Threshold}}
+\item 
+bool \mbox{\hyperlink{group__EMG__ECG_gadbcea8e6bb2a0b7d11f6dc8922cae7c5}{emg\+\_\+toggled}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga7c8f024fed67aaecdb0696b8c7ef88c0}{ecg\+\_\+meas\+Int}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gabde05bcf6583c365191e87886cca6a6a}{ecg\+\_\+detection\+Threshold}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga739bff2109fffa5194f6d9eec65a2ae3}{ecg\+\_\+peaks}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gabfde41aeb1a8bd2fba440438c488013d}{ecg\+\_\+toggle\+Counter}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gadf508018b5bffa0045774b49aaadbea6}{ecg\+\_\+toggle\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gadb1057f6f992deabcf704e9715ee089a}{ecg\+\_\+max\+Detection\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gacc929fb59a231e854009488bd9cf0868}{ecg\+\_\+max\+Toggle\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gab459858f605f9c5509b2ecce7294d5e4}{ecg\+\_\+int\+Count}}
+\item 
+bool \mbox{\hyperlink{group__EMG__ECG_gaf8252f523485fdd4b73185728fb467ab}{ecg\+\_\+peak}}
+\item 
+bool \mbox{\hyperlink{group__EMG__ECG_ga5029188c23694b9770491106b607bc2c}{ecg\+\_\+toggled}}
+\item 
+float \mbox{\hyperlink{group__EMG__ECG_ga9932f29af2ffe1856d0d0e29610efcac}{heartrate}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gacf0ee8035c8dba31c94430e6648c4704}{input\+Buffer\+\_\+position}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__EMG__ECG_gad4da5bbe0f76fdca7af3576d6d5eb417}\label{group__EMG__ECG_gad4da5bbe0f76fdca7af3576d6d5eb417}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!EMG\_MI@{EMG\_MI}}
+\index{EMG\_MI@{EMG\_MI}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{EMG\_MI}{EMG\_MI}}
+{\footnotesize\ttfamily \#define EMG\+\_\+\+MI~1}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00027}{27}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gaef2f74bc8f2632e5eb78c2aaa1222ece}\label{group__EMG__ECG_gaef2f74bc8f2632e5eb78c2aaa1222ece}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!EMG\_READ\_LENGTH@{EMG\_READ\_LENGTH}}
+\index{EMG\_READ\_LENGTH@{EMG\_READ\_LENGTH}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{EMG\_READ\_LENGTH}{EMG\_READ\_LENGTH}}
+{\footnotesize\ttfamily \#define EMG\+\_\+\+READ\+\_\+\+LENGTH~20}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00025}{25}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga0467216c3971f76f80c488c1d1b89c42}\label{group__EMG__ECG_ga0467216c3971f76f80c488c1d1b89c42}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!EMG\_SR@{EMG\_SR}}
+\index{EMG\_SR@{EMG\_SR}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{EMG\_SR}{EMG\_SR}}
+{\footnotesize\ttfamily \#define EMG\+\_\+\+SR~5000}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00026}{26}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}\label{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_heartrate@{ecg\_heartrate}}
+\index{ecg\_heartrate@{ecg\_heartrate}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_heartrate()}{ecg\_heartrate()}}
+{\footnotesize\ttfamily void ecg\+\_\+heartrate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Detect heartrate and change the Drumcomputers BPM accordingly in realtime. 
+
+
+
+Definition at line \mbox{\hyperlink{emg_8c_source_l00108}{108}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00108                         \{}
+\DoxyCodeLine{00109 }
+\DoxyCodeLine{00110     uint16\_t ADC\_BLOCKSIZE\_startIndex=0, ADC\_BLOCKSIZE\_endIndex=0;}
+\DoxyCodeLine{00111 }
+\DoxyCodeLine{00112     \textcolor{comment}{// detect buffer half}}
+\DoxyCodeLine{00113     \textcolor{keywordflow}{if}(inputBuffer\_position == HALF\_BLOCK) \{}
+\DoxyCodeLine{00114         ADC\_BLOCKSIZE\_startIndex = 0;}
+\DoxyCodeLine{00115         ADC\_BLOCKSIZE\_endIndex = EMG\_READ\_LENGTH/2;}
+\DoxyCodeLine{00116     \}}
+\DoxyCodeLine{00117     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(inputBuffer\_position == FULL\_BLOCK) \{}
+\DoxyCodeLine{00118         ADC\_BLOCKSIZE\_startIndex = EMG\_READ\_LENGTH/2;}
+\DoxyCodeLine{00119         ADC\_BLOCKSIZE\_endIndex = EMG\_READ\_LENGTH;}
+\DoxyCodeLine{00120     \}}
+\DoxyCodeLine{00121 }
+\DoxyCodeLine{00122     \textcolor{comment}{// Peak detection with certain threshold in amplitude (detectionThreshold) and time (toggleThreshold), so called debouncing}}
+\DoxyCodeLine{00123     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = ADC\_BLOCKSIZE\_startIndex; i < ADC\_BLOCKSIZE\_endIndex; i+=2)\{}
+\DoxyCodeLine{00124         \textcolor{keywordflow}{if}(emg\_buffer[i] > ecg\_detectionThreshold \&\& ecg\_toggleCounter > ecg\_toggleThreshold)\{}
+\DoxyCodeLine{00125             ecg\_peaks += 1;}
+\DoxyCodeLine{00126             HAL\_GPIO\_WritePin(Blue\_User\_LED\_GPIO\_Port, Blue\_User\_LED\_Pin,SET);}
+\DoxyCodeLine{00127             ecg\_toggleCounter = 0;}
+\DoxyCodeLine{00128             ecg\_peak = 1;}
+\DoxyCodeLine{00129         \}}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131         \textcolor{keywordflow}{if}(ecg\_peak)\{}
+\DoxyCodeLine{00132             ecg\_peak = 0;}
+\DoxyCodeLine{00133             ecg\_toggled = 1;}
+\DoxyCodeLine{00134 }
+\DoxyCodeLine{00135         \}}
+\DoxyCodeLine{00136         \textcolor{comment}{// Delay to avoid false peaks rigth after another peak}}
+\DoxyCodeLine{00137         \textcolor{keywordflow}{if}(ecg\_toggleCounter > ecg\_toggleThreshold \&\& ecg\_toggled == 1)\{}
+\DoxyCodeLine{00138             ecg\_toggled = 0;}
+\DoxyCodeLine{00139         \}}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141         \textcolor{comment}{// Calculate heartrate when finishing a measurement interval}}
+\DoxyCodeLine{00142         \textcolor{keywordflow}{if} (ecg\_intCount == ecg\_measInt)\{}
+\DoxyCodeLine{00143             heartrate = ((float)(60/(EMG\_MI))*ecg\_peaks)/2;}
+\DoxyCodeLine{00144             ecg\_peaks = 0;}
+\DoxyCodeLine{00145             ecg\_intCount = 0;}
+\DoxyCodeLine{00146 }
+\DoxyCodeLine{00147             \textcolor{comment}{// Direct transfer of the heartrate to Drumcomputer}}
+\DoxyCodeLine{00148             \textcolor{keywordflow}{if}(Display.Drumcomputer\_BPMbyECG\_ONOFF == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00149 }
+\DoxyCodeLine{00150                 \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}} = heartrate;}
+\DoxyCodeLine{00151             \}}
+\DoxyCodeLine{00152         \}}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00154         \textcolor{comment}{// Update drumcoputer-\/page and reset values of drumcoputer when bpm changed, to avoid "{}plop"{}-\/noise}}
+\DoxyCodeLine{00155         \textcolor{keywordflow}{if}(abs(last\_BPM-\/\mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}}) > 3) \{}
+\DoxyCodeLine{00156 }
+\DoxyCodeLine{00157             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}; i++) \{}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159                 \textcolor{comment}{// INIT: Counter}}
+\DoxyCodeLine{00160                 counter\_DS1[i] = 0;}
+\DoxyCodeLine{00161                 counter\_DS2[i] = 0;}
+\DoxyCodeLine{00162                 counter\_DS3[i] = 0;}
+\DoxyCodeLine{00163                 counter\_DS4[i] = 0;}
+\DoxyCodeLine{00164 }
+\DoxyCodeLine{00165                 \mbox{\hyperlink{group__DrumComputer_gad32e19a8282780d0a134ec07797ac10b}{drum\_index}} = 0;}
+\DoxyCodeLine{00166                 \mbox{\hyperlink{group__DrumComputer_ga148d70203e23260f999890046d5509b0}{counter\_master}} = 0;}
+\DoxyCodeLine{00167 }
+\DoxyCodeLine{00168                 \textcolor{comment}{// RESET: Drum sound bins}}
+\DoxyCodeLine{00169                 \mbox{\hyperlink{group__DrumComputer_ga1d0ce949a258b04a5822d3442fd73d83}{DS1s}} = 0;}
+\DoxyCodeLine{00170                 DS2s = 0;}
+\DoxyCodeLine{00171                 DS3s = 0;}
+\DoxyCodeLine{00172                 DS4s = 0;}
+\DoxyCodeLine{00173 }
+\DoxyCodeLine{00174                 drums = 0;}
+\DoxyCodeLine{00175 }
+\DoxyCodeLine{00176                 timing\_position\_in\_samples[i] = (\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}} / 4 ) * (i + 1) * (MasterClock / \mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{FourFour}}) * (60 / \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{00177             \}}
+\DoxyCodeLine{00178 }
+\DoxyCodeLine{00179             sprintf(Display.value\_str\_drumcomputer[8], \textcolor{stringliteral}{"{}\%.f"{}}, \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}});}
+\DoxyCodeLine{00180 }
+\DoxyCodeLine{00181             \textcolor{comment}{// ACHTUNG ACHTUNG, SEITENZAHL USW. BEACHTEN!!!}}
+\DoxyCodeLine{00182             \textcolor{comment}{// BPM set by ECG and display only updated with new BPM value on drumcomputer settings page}}
+\DoxyCodeLine{00183             \textcolor{keywordflow}{if}(Display.pagePosition == 3 \&\& Display.currentDrumcomputer > 0) \{}
+\DoxyCodeLine{00184                 Paint\_DrawFilledRectangle(\&paint, Display.value\_start\_x\_position-\/50, CASE2, Display.value\_end\_x\_position, CASE2+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00185                 Paint\_DrawStringAt(\&paint, Display.value\_start\_x\_position-\/50, CASE2, Display.value\_str\_drumcomputer[8], \&Font12, COLORED);}
+\DoxyCodeLine{00186             \}}
+\DoxyCodeLine{00187 }
+\DoxyCodeLine{00188             Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00189             last\_BPM = \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}};}
+\DoxyCodeLine{00190         \}}
+\DoxyCodeLine{00191 }
+\DoxyCodeLine{00192         ecg\_toggleCounter++;}
+\DoxyCodeLine{00193         ecg\_intCount++;}
+\DoxyCodeLine{00194     \}}
+\DoxyCodeLine{00195 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__EMG__ECG_ga98bf9a8015f7a7833276fbf6a72e255e}\label{group__EMG__ECG_ga98bf9a8015f7a7833276fbf6a72e255e}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_init@{ecg\_init}}
+\index{ecg\_init@{ecg\_init}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_init()}{ecg\_init()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def ecg\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+ECG init. 
+
+\begin{DoxyNote}{Note}
+needs to be called after \mbox{\hyperlink{group__EMG__ECG_gaa7d92b6a1983e52614915f8e2cfb3140}{emg\+\_\+init()}} 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{emg_8c_source_l00034}{34}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034                                 \{}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036     heartrate = 0;}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038     ecg\_detectionThreshold = 2500;}
+\DoxyCodeLine{00039     ecg\_peaks = 0;}
+\DoxyCodeLine{00040     ecg\_toggled = \textcolor{keyword}{false};}
+\DoxyCodeLine{00041     ecg\_peak = \textcolor{keyword}{false};}
+\DoxyCodeLine{00042     ecg\_toggleThreshold = EMG\_SR/10;}
+\DoxyCodeLine{00043     ecg\_toggleCounter = ecg\_toggleThreshold;}
+\DoxyCodeLine{00044     ecg\_measInt = EMG\_SR * EMG\_MI;}
+\DoxyCodeLine{00045     ecg\_intCount = 0;}
+\DoxyCodeLine{00046     ecg\_maxDetectionThreshold = 2850;}
+\DoxyCodeLine{00047     ecg\_maxToggleThreshold = EMG\_SR/5;}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{00050 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__EMG__ECG_gaa7d92b6a1983e52614915f8e2cfb3140}\label{group__EMG__ECG_gaa7d92b6a1983e52614915f8e2cfb3140}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_init@{emg\_init}}
+\index{emg\_init@{emg\_init}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_init()}{emg\_init()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def emg\+\_\+init (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def $\ast$}]{hadc,  }\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+
+
+EMG Init. 
+
+
+
+Definition at line \mbox{\hyperlink{emg_8c_source_l00016}{16}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016                                                                             \{}
+\DoxyCodeLine{00017 }
+\DoxyCodeLine{00018     EMG\_ADC = hadc;}
+\DoxyCodeLine{00019     EMG\_TIM = htim;}
+\DoxyCodeLine{00020     emg\_detectionThreshold = 2500;}
+\DoxyCodeLine{00021     emg\_peak = 0;}
+\DoxyCodeLine{00022     emg\_toggleThreshold = 50;}
+\DoxyCodeLine{00023     emg\_toggleCounter = emg\_toggleThreshold;}
+\DoxyCodeLine{00024     emg\_toggled = 0;}
+\DoxyCodeLine{00025     emg\_maxDetectionThreshold = 2850;}
+\DoxyCodeLine{00026     emg\_maxToggleThreshold = EMG\_SR/5;}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{00029 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__EMG__ECG_ga63f5337cb5d5feb55ddedd79bca265d9}\label{group__EMG__ECG_ga63f5337cb5d5feb55ddedd79bca265d9}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_peak\_detection@{emg\_peak\_detection}}
+\index{emg\_peak\_detection@{emg\_peak\_detection}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_peak\_detection()}{emg\_peak\_detection()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def emg\+\_\+peak\+\_\+detection (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Detects an EMG peak and sets flags for further processing. 
+
+\begin{DoxyNote}{Note}
+Needs to be called in an ADC interrupt 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{emg_8c_source_l00067}{67}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00067                                           \{}
+\DoxyCodeLine{00068 }
+\DoxyCodeLine{00069     uint16\_t ADC\_BLOCKSIZE\_startIndex=0, ADC\_BLOCKSIZE\_endIndex=0;}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071     \textcolor{comment}{// decide which buffer half}}
+\DoxyCodeLine{00072     \textcolor{keywordflow}{if}(inputBuffer\_position == HALF\_BLOCK) \{}
+\DoxyCodeLine{00073         ADC\_BLOCKSIZE\_startIndex = 0;}
+\DoxyCodeLine{00074         ADC\_BLOCKSIZE\_endIndex = EMG\_READ\_LENGTH/2;}
+\DoxyCodeLine{00075     \}}
+\DoxyCodeLine{00076     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(inputBuffer\_position == FULL\_BLOCK) \{}
+\DoxyCodeLine{00077         ADC\_BLOCKSIZE\_startIndex = EMG\_READ\_LENGTH/2;}
+\DoxyCodeLine{00078         ADC\_BLOCKSIZE\_endIndex = EMG\_READ\_LENGTH;}
+\DoxyCodeLine{00079     \}}
+\DoxyCodeLine{00080 }
+\DoxyCodeLine{00081     \textcolor{comment}{// Peak detection with certain threshold in amplitude (detectionThreshold) and time (toggleThreshold), so called debouncing}}
+\DoxyCodeLine{00082     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = ADC\_BLOCKSIZE\_startIndex; i < ADC\_BLOCKSIZE\_endIndex; i+=2)\{}
+\DoxyCodeLine{00083         \textcolor{keywordflow}{if}(emg\_buffer[i] > emg\_detectionThreshold \&\& emg\_toggleCounter > emg\_toggleThreshold)\{}
+\DoxyCodeLine{00084             emg\_peak = 1;}
+\DoxyCodeLine{00085             emg\_toggleCounter = 0;}
+\DoxyCodeLine{00086             HAL\_GPIO\_WritePin(Red\_User\_LED\_GPIO\_Port, Red\_User\_LED\_Pin,SET);}
+\DoxyCodeLine{00087             emg\_toggled = 1;}
+\DoxyCodeLine{00088         \}}
+\DoxyCodeLine{00089         \textcolor{keywordflow}{if}(emg\_toggleCounter > emg\_toggleThreshold \&\& emg\_toggled == 1)\{}
+\DoxyCodeLine{00090             HAL\_GPIO\_WritePin(Red\_User\_LED\_GPIO\_Port, Red\_User\_LED\_Pin,RESET);}
+\DoxyCodeLine{00091             emg\_toggled = 0;}
+\DoxyCodeLine{00092         \}}
+\DoxyCodeLine{00093 }
+\DoxyCodeLine{00094         emg\_toggleCounter++;}
+\DoxyCodeLine{00095     \}}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097     \textcolor{comment}{// Sample playing controlled by EMG}}
+\DoxyCodeLine{00098     \textcolor{keywordflow}{if}(Display.PlaySingleSample\_ONOFF == \textcolor{keyword}{true} \&\& emg\_peak == 1) \{}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100         play\_single\_sample\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{00101         emg\_peak = 0;}
+\DoxyCodeLine{00102     \}}
+\DoxyCodeLine{00103 }
+\DoxyCodeLine{00104     \textcolor{keywordflow}{return} HAL\_OK;}
+\DoxyCodeLine{00105 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}\label{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_start\_read@{emg\_start\_read}}
+\index{emg\_start\_read@{emg\_start\_read}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_start\_read()}{emg\_start\_read()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def emg\+\_\+start\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Start all necessary peripherals for the EMG / ECG. 
+
+
+
+Definition at line \mbox{\hyperlink{emg_8c_source_l00052}{52}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052                                       \{}
+\DoxyCodeLine{00053 }
+\DoxyCodeLine{00054     \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{SetTimerSettings}}(EMG\_TIM, EMG\_SR);}
+\DoxyCodeLine{00055     HAL\_TIM\_Base\_Start(EMG\_TIM);}
+\DoxyCodeLine{00056     printf(\textcolor{stringliteral}{"{}start emg\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00057     \textcolor{keywordflow}{return} HAL\_ADC\_Start\_DMA(EMG\_ADC, emg\_buffer, EMG\_READ\_LENGTH);}
+\DoxyCodeLine{00058 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__EMG__ECG_ga305d3a0240c6e197a771b26c8d4fd22a}\label{group__EMG__ECG_ga305d3a0240c6e197a771b26c8d4fd22a}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_stop\_read@{emg\_stop\_read}}
+\index{emg\_stop\_read@{emg\_stop\_read}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_stop\_read()}{emg\_stop\_read()}}
+{\footnotesize\ttfamily HAL\+\_\+\+Status\+Type\+Def emg\+\_\+stop\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Stops the ADC reading of the connected EMG / ECG board. 
+
+
+
+Definition at line \mbox{\hyperlink{emg_8c_source_l00061}{61}} of file \mbox{\hyperlink{emg_8c_source}{emg.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061                                      \{}
+\DoxyCodeLine{00062     \textcolor{keywordflow}{return} HAL\_ADC\_Stop\_DMA(EMG\_ADC);}
+\DoxyCodeLine{00063 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__EMG__ECG_gabde05bcf6583c365191e87886cca6a6a}\label{group__EMG__ECG_gabde05bcf6583c365191e87886cca6a6a}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_detectionThreshold@{ecg\_detectionThreshold}}
+\index{ecg\_detectionThreshold@{ecg\_detectionThreshold}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_detectionThreshold}{ecg\_detectionThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t ecg\+\_\+detection\+Threshold}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00050}{50}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gab459858f605f9c5509b2ecce7294d5e4}\label{group__EMG__ECG_gab459858f605f9c5509b2ecce7294d5e4}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_intCount@{ecg\_intCount}}
+\index{ecg\_intCount@{ecg\_intCount}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_intCount}{ecg\_intCount}}
+{\footnotesize\ttfamily uint32\+\_\+t ecg\+\_\+int\+Count}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00056}{56}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gadb1057f6f992deabcf704e9715ee089a}\label{group__EMG__ECG_gadb1057f6f992deabcf704e9715ee089a}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_maxDetectionThreshold@{ecg\_maxDetectionThreshold}}
+\index{ecg\_maxDetectionThreshold@{ecg\_maxDetectionThreshold}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_maxDetectionThreshold}{ecg\_maxDetectionThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t ecg\+\_\+max\+Detection\+Threshold}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00054}{54}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gacc929fb59a231e854009488bd9cf0868}\label{group__EMG__ECG_gacc929fb59a231e854009488bd9cf0868}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_maxToggleThreshold@{ecg\_maxToggleThreshold}}
+\index{ecg\_maxToggleThreshold@{ecg\_maxToggleThreshold}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_maxToggleThreshold}{ecg\_maxToggleThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t ecg\+\_\+max\+Toggle\+Threshold}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00055}{55}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga7c8f024fed67aaecdb0696b8c7ef88c0}\label{group__EMG__ECG_ga7c8f024fed67aaecdb0696b8c7ef88c0}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_measInt@{ecg\_measInt}}
+\index{ecg\_measInt@{ecg\_measInt}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_measInt}{ecg\_measInt}}
+{\footnotesize\ttfamily uint32\+\_\+t ecg\+\_\+meas\+Int}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00049}{49}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gaf8252f523485fdd4b73185728fb467ab}\label{group__EMG__ECG_gaf8252f523485fdd4b73185728fb467ab}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_peak@{ecg\_peak}}
+\index{ecg\_peak@{ecg\_peak}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_peak}{ecg\_peak}}
+{\footnotesize\ttfamily bool ecg\+\_\+peak}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00057}{57}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga739bff2109fffa5194f6d9eec65a2ae3}\label{group__EMG__ECG_ga739bff2109fffa5194f6d9eec65a2ae3}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_peaks@{ecg\_peaks}}
+\index{ecg\_peaks@{ecg\_peaks}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_peaks}{ecg\_peaks}}
+{\footnotesize\ttfamily uint8\+\_\+t ecg\+\_\+peaks}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00051}{51}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gabfde41aeb1a8bd2fba440438c488013d}\label{group__EMG__ECG_gabfde41aeb1a8bd2fba440438c488013d}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_toggleCounter@{ecg\_toggleCounter}}
+\index{ecg\_toggleCounter@{ecg\_toggleCounter}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_toggleCounter}{ecg\_toggleCounter}}
+{\footnotesize\ttfamily uint32\+\_\+t ecg\+\_\+toggle\+Counter}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00052}{52}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga5029188c23694b9770491106b607bc2c}\label{group__EMG__ECG_ga5029188c23694b9770491106b607bc2c}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_toggled@{ecg\_toggled}}
+\index{ecg\_toggled@{ecg\_toggled}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_toggled}{ecg\_toggled}}
+{\footnotesize\ttfamily bool ecg\+\_\+toggled}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00058}{58}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gadf508018b5bffa0045774b49aaadbea6}\label{group__EMG__ECG_gadf508018b5bffa0045774b49aaadbea6}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!ecg\_toggleThreshold@{ecg\_toggleThreshold}}
+\index{ecg\_toggleThreshold@{ecg\_toggleThreshold}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{ecg\_toggleThreshold}{ecg\_toggleThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t ecg\+\_\+toggle\+Threshold}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00053}{53}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gaa0343f5f6ec51b2315e8af04936ded6c}\label{group__EMG__ECG_gaa0343f5f6ec51b2315e8af04936ded6c}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!EMG\_ADC@{EMG\_ADC}}
+\index{EMG\_ADC@{EMG\_ADC}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{EMG\_ADC}{EMG\_ADC}}
+{\footnotesize\ttfamily ADC\+\_\+\+Handle\+Type\+Def$\ast$ EMG\+\_\+\+ADC}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00033}{33}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gafbfbad3430f3ca07748fe46ea721f425}\label{group__EMG__ECG_gafbfbad3430f3ca07748fe46ea721f425}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_buffer@{emg\_buffer}}
+\index{emg\_buffer@{emg\_buffer}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_buffer}{emg\_buffer}}
+{\footnotesize\ttfamily uint32\+\_\+t emg\+\_\+buffer\mbox{[}EMG\+\_\+\+READ\+\_\+\+LENGTH\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00037}{37}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga820e056b9586fec05150a738d09828c7}\label{group__EMG__ECG_ga820e056b9586fec05150a738d09828c7}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_detectionThreshold@{emg\_detectionThreshold}}
+\index{emg\_detectionThreshold@{emg\_detectionThreshold}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_detectionThreshold}{emg\_detectionThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t emg\+\_\+detection\+Threshold}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00040}{40}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga5dbb1dd2634480627376d02417b18aa4}\label{group__EMG__ECG_ga5dbb1dd2634480627376d02417b18aa4}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_maxDetectionThreshold@{emg\_maxDetectionThreshold}}
+\index{emg\_maxDetectionThreshold@{emg\_maxDetectionThreshold}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_maxDetectionThreshold}{emg\_maxDetectionThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t emg\+\_\+max\+Detection\+Threshold}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00044}{44}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga8a1f1f967c2c635001bb4feb13db46a1}\label{group__EMG__ECG_ga8a1f1f967c2c635001bb4feb13db46a1}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_maxToggleThreshold@{emg\_maxToggleThreshold}}
+\index{emg\_maxToggleThreshold@{emg\_maxToggleThreshold}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_maxToggleThreshold}{emg\_maxToggleThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t emg\+\_\+max\+Toggle\+Threshold}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00045}{45}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gabc598a894ad122f8758e1469ef82405b}\label{group__EMG__ECG_gabc598a894ad122f8758e1469ef82405b}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_peak@{emg\_peak}}
+\index{emg\_peak@{emg\_peak}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_peak}{emg\_peak}}
+{\footnotesize\ttfamily uint8\+\_\+t emg\+\_\+peak}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00041}{41}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gaaaca668bcd874fee31cc4dbf110f241c}\label{group__EMG__ECG_gaaaca668bcd874fee31cc4dbf110f241c}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!EMG\_TIM@{EMG\_TIM}}
+\index{EMG\_TIM@{EMG\_TIM}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{EMG\_TIM}{EMG\_TIM}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def$\ast$ EMG\+\_\+\+TIM}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00034}{34}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gaeefbcf6066e07f71f063f2374aaf5cf8}\label{group__EMG__ECG_gaeefbcf6066e07f71f063f2374aaf5cf8}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_toggleCounter@{emg\_toggleCounter}}
+\index{emg\_toggleCounter@{emg\_toggleCounter}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_toggleCounter}{emg\_toggleCounter}}
+{\footnotesize\ttfamily uint32\+\_\+t emg\+\_\+toggle\+Counter}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00042}{42}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gadbcea8e6bb2a0b7d11f6dc8922cae7c5}\label{group__EMG__ECG_gadbcea8e6bb2a0b7d11f6dc8922cae7c5}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_toggled@{emg\_toggled}}
+\index{emg\_toggled@{emg\_toggled}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_toggled}{emg\_toggled}}
+{\footnotesize\ttfamily bool emg\+\_\+toggled}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00046}{46}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga72eccf432ccbca5a28d55952a2162149}\label{group__EMG__ECG_ga72eccf432ccbca5a28d55952a2162149}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!emg\_toggleThreshold@{emg\_toggleThreshold}}
+\index{emg\_toggleThreshold@{emg\_toggleThreshold}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{emg\_toggleThreshold}{emg\_toggleThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t emg\+\_\+toggle\+Threshold}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00043}{43}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_ga9932f29af2ffe1856d0d0e29610efcac}\label{group__EMG__ECG_ga9932f29af2ffe1856d0d0e29610efcac}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!heartrate@{heartrate}}
+\index{heartrate@{heartrate}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{heartrate}{heartrate}}
+{\footnotesize\ttfamily float heartrate}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00059}{59}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+
+\mbox{\Hypertarget{group__EMG__ECG_gacf0ee8035c8dba31c94430e6648c4704}\label{group__EMG__ECG_gacf0ee8035c8dba31c94430e6648c4704}} 
+\index{EMG and ECG sensor processing@{EMG and ECG sensor processing}!inputBuffer\_position@{inputBuffer\_position}}
+\index{inputBuffer\_position@{inputBuffer\_position}!EMG and ECG sensor processing@{EMG and ECG sensor processing}}
+\doxysubsubsection{\texorpdfstring{inputBuffer\_position}{inputBuffer\_position}}
+{\footnotesize\ttfamily uint8\+\_\+t input\+Buffer\+\_\+position}
+
+
+
+Definition at line \mbox{\hyperlink{emg_8h_source_l00061}{61}} of file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+

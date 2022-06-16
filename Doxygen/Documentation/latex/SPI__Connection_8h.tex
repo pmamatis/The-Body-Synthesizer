@@ -1,0 +1,81 @@
+\hypertarget{SPI__Connection_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/\+SPI\+\_\+\+Connection.h File Reference}
+\label{SPI__Connection_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/SPI\_Connection.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/SPI\_Connection.h}}
+
+
+spi connection to other STM, where the MPU6050 is processed  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsensor__data}{sensor\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__Gyro_gac3146f1e9227301bb4aa518f4d336cee}{BUFFERSIZE}}~sizeof(\mbox{\hyperlink{structsensor__data}{sensor\+\_\+data\+\_\+t}})
+\item 
+\#define \mbox{\hyperlink{group__Gyro_gac2725a893e2f98de37d81e119fa56799}{SPI\+\_\+\+SR}}~50
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}} \mbox{\hyperlink{group__Gyro_gabbffa66db1c27e631e55fe54973212b2}{tilt\+\_\+direction\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em tilt directions Flags, from MPU6050 \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structsensor__data}{sensor\+\_\+data}} {\bfseries sensor\+\_\+data\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}} \{ \newline
+{\bfseries TILT\+\_\+\+NONE} = 0x00
+, {\bfseries TILT\+\_\+\+RIGHT} = 0x01
+, {\bfseries TILT\+\_\+\+LEFT}
+, {\bfseries TILT\+\_\+\+FRONT}
+, \newline
+{\bfseries TILT\+\_\+\+BACK}
+, {\bfseries TILT\+\_\+\+RIGHT\+\_\+S}
+, {\bfseries TILT\+\_\+\+LEFT\+\_\+S}
+, {\bfseries TILT\+\_\+\+FRONT\+\_\+S}
+, \newline
+{\bfseries TILT\+\_\+\+BACK\+\_\+S}
+ \}
+\begin{DoxyCompactList}\small\item\em tilt directions Flags, from MPU6050 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__Gyro_ga87e70ebae58b5e371289ad557bb31b74}{spi\+C\+\_\+\+Init}} (SPI\+\_\+\+Handle\+Type\+Def $\ast$hspi, TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em spi connection init \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structsensor__data}{sensor\+\_\+data\+\_\+t}} \mbox{\hyperlink{group__Gyro_gae792ad17eb6392b523c02b7afa2290bf}{sensor\+Data}}
+\item 
+SPI\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__Gyro_ga5ea0b51ec99bf8bd7cd3fda99b3772bf}{h\+Sensor\+SPI}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__Gyro_ga3547d2a0ba10b89bfe237edc93e2cdcc}{p\+Tx\+Data}} \mbox{[}sizeof(\mbox{\hyperlink{structsensor__data}{sensor\+\_\+data\+\_\+t}})\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__Gyro_ga24c4d0c5778082a8a31db78c6f93f556}{p\+Rx\+Data}} \mbox{[}sizeof(\mbox{\hyperlink{structsensor__data}{sensor\+\_\+data\+\_\+t}})\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+spi connection to other STM, where the MPU6050 is processed 
+
+\begin{DoxyAuthor}{Author}
+paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{SPI__Connection_8h_source}{SPI\+\_\+\+Connection.\+h}}.
+

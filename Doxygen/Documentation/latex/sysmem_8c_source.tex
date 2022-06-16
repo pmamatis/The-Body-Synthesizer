@@ -1,0 +1,38 @@
+\hypertarget{sysmem_8c_source}{}\doxysection{sysmem.\+c}
+\label{sysmem_8c_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/sysmem.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/sysmem.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00049}00049 \textcolor{comment}{/* Includes */}}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00050}00050 \textcolor{preprocessor}{\#include <errno.h>}}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00051}00051 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00053}00053 \textcolor{comment}{/* Variables */}}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00054}00054 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} errno;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00055}00055 \textcolor{keyword}{register} \textcolor{keywordtype}{char} * stack\_ptr \textcolor{keyword}{asm}(\textcolor{stringliteral}{"{}sp"{}});}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00057}00057 \textcolor{comment}{/* Functions */}}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00063}00063 caddr\_t \_sbrk(\textcolor{keywordtype}{int} incr)}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00064}00064 \{}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00065}00065     \textcolor{keyword}{extern} \textcolor{keywordtype}{char} end \textcolor{keyword}{asm}(\textcolor{stringliteral}{"{}end"{}});}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00066}00066     \textcolor{keyword}{static} \textcolor{keywordtype}{char} *heap\_end;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00067}00067     \textcolor{keywordtype}{char} *prev\_heap\_end;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00069}00069     \textcolor{keywordflow}{if} (heap\_end == 0)}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00070}00070         heap\_end = \&end;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00072}00072     prev\_heap\_end = heap\_end;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00073}00073     \textcolor{keywordflow}{if} (heap\_end + incr > stack\_ptr)}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00074}00074     \{}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00075}00075         errno = ENOMEM;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00076}00076         \textcolor{keywordflow}{return} (caddr\_t) -\/1;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00077}00077     \}}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00079}00079     heap\_end += incr;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00081}00081     \textcolor{keywordflow}{return} (caddr\_t) prev\_heap\_end;}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00082}00082 \}}
+\DoxyCodeLine{\Hypertarget{sysmem_8c_source_l00083}00083 }
+
+\end{DoxyCode}

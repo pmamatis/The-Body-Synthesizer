@@ -1,0 +1,69 @@
+\hypertarget{adsr_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/adsr.h File Reference}
+\label{adsr_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/adsr.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/adsr.h}}
+
+
+adsr effect header  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}}
+\begin{DoxyCompactList}\small\item\em stores the state of the ADSR values for keyboardand sequencer structs as well as the configuration \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries ADSR\+\_\+\+Status} \{ {\bfseries ADSR\+\_\+\+FAIL} = -\/1
+, {\bfseries ADSR\+\_\+\+OK} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}{ADSR\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Init funtion for the ADSR, has to be used in order to use any other funtion of this .c. \end{DoxyCompactList}\item 
+ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}{Setup\+ADSR}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}})
+\begin{DoxyCompactList}\small\item\em Setup funtion for the ADSR, which is called in the ADSR\+\_\+\+Init function for any single keyboard note. \end{DoxyCompactList}\item 
+ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\+\_\+\+Reset}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}})
+\begin{DoxyCompactList}\small\item\em Reset function for the ADSR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{One\+Press\+\_\+\+ADSR\+\_\+\+Linear\+\_\+\+Process}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, float $\ast$calculate\+\_\+value, bool flag)
+\begin{DoxyCompactList}\small\item\em Keyboard function used to calculate the current ADSR value which is then multiplied with the keyboard sample. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}{One\+Press\+\_\+\+ADSR\+\_\+\+Sequencer\+\_\+\+Process}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, float $\ast$calculate\+\_\+value, bool flag)
+\begin{DoxyCompactList}\small\item\em Sequencer function used to calculate the current ADSR value which is then multiplied with the sample. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}
+\begin{DoxyCompactList}\small\item\em ADSR for the Voice notes. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_gaaadc1294c5e9298d0ae4a1fd75fd68a9}{adsr\+\_\+\+SN1}} \mbox{[}16\mbox{]}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_gab7591a8d78bd729063748410fd9d35ae}{adsr\+\_\+\+SN2}} \mbox{[}16\mbox{]}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga39cbe7292e2d699f206aa1e7e89c4984}{adsr\+\_\+\+SN3}} \mbox{[}16\mbox{]}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga1372304559086561ead44f354b3361df}{adsr\+\_\+\+SN4}} \mbox{[}16\mbox{]}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\+\_\+keyboard}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em ADSR storage for the keyboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+adsr effect header 
+
+\begin{DoxyAuthor}{Author}
+Marc Bielen 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{adsr_8h_source}{adsr.\+h}}.
+

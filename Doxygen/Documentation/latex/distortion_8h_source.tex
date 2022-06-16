@@ -1,0 +1,53 @@
+\hypertarget{distortion_8h_source}{}\doxysection{distortion.\+h}
+\label{distortion_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/distortion.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/distortion.h}}
+\mbox{\hyperlink{distortion_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00012}00012 \textcolor{preprocessor}{\#ifndef INC\_DISTORTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00013}00013 \textcolor{preprocessor}{\#define INC\_DISTORTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00025}00025 \textcolor{comment}{/***************************}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00026}00026 \textcolor{comment}{ * @brief Enumeration for Distortion Debugging}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00027}00027 \textcolor{comment}{ ***************************/}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00028}00028 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00029}00029     DISTORTION\_FAIL = -\/1,}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00030}00030     DISTORTION\_OK = 1}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00031}00031 \} Distortion\_Status;}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00033}00033 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00034}00034 \textcolor{comment}{ * @brief       Distortion struct}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00035}00035 \textcolor{comment}{ * @parameter   Distortion}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00036}00036 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00037}\mbox{\hyperlink{structeffects__distortion}{00037}} \textcolor{keyword}{struct }\mbox{\hyperlink{structeffects__distortion}{effects\_distortion}}\{}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00039}00039     \textcolor{keywordtype}{float} distortion\_gain;}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00040}00040     \textcolor{keywordtype}{float} atan\_parameter;}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00041}00041     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} distortion\_index;}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00042}00042     \textcolor{keywordtype}{float} atan\_softclipping\_distortion\_max[10]; \textcolor{comment}{// 10 different distortion gain values, so the effect can be increased step-\/wise}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00043}00043     uint8\_t distortion\_maximum\_gain;}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00044}00044 \};}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00046}00046 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00047}00047 \textcolor{comment}{ * @beief   Variables}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00048}00048 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00049}00049 \textcolor{keyword}{struct }\mbox{\hyperlink{structeffects__distortion}{effects\_distortion}} HardClipping;}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00050}00050 \textcolor{keyword}{struct }\mbox{\hyperlink{structeffects__distortion}{effects\_distortion}} SoftClipping;}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00052}00052 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__Distortion_ga638ce07da32913582447f1e26b745c37}{aquidistance}};}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00053}00053 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{float} \mbox{\hyperlink{group__Distortion_gab6549ea7290a59876018cb53511f134d}{atan\_LUT\_y}}[8192];  \textcolor{comment}{// blocksize = 8192}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00055}00055 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00056}00056 \textcolor{comment}{ * @brief   Functions}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00057}00057 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00058}00058 Distortion\_Status \mbox{\hyperlink{group__Distortion_ga54ad82c4a3ecbc0c2784ae81c92eb22e}{Distortion\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00059}00059 Distortion\_Status \mbox{\hyperlink{group__Distortion_gac69b82a1179f795d9205a246de59a37a}{Distortion\_Reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00060}00060 Distortion\_Status \mbox{\hyperlink{group__Distortion_ga2a6725ec967773f5ddfbc3fc21d67049}{SetupHardClippingDistortion}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structeffects__distortion}{effects\_distortion}}* HardClipping);}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00061}00061 Distortion\_Status \mbox{\hyperlink{group__Distortion_ga8a375c625074dc4492066cda7e9e175b}{SetupSoftClippingDistortion}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structeffects__distortion}{effects\_distortion}}* SoftClipping);}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00062}00062 Distortion\_Status \mbox{\hyperlink{group__Distortion_ga7a68b2a90c4306d739161ee82b7eb89c}{ProcessHardClippingDistortion}}(\textcolor{keywordtype}{float}* data);}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00063}00063 Distortion\_Status \mbox{\hyperlink{group__Distortion_ga1676e7551d7621b89efb0ecc46092436}{ProcessSoftClippingDistortion}}(\textcolor{keywordtype}{float}* data);}
+\DoxyCodeLine{\Hypertarget{distortion_8h_source_l00066}00066 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_DISTORTION\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

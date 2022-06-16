@@ -1,0 +1,78 @@
+\hypertarget{input__interfaces_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/input\+\_\+interfaces.c File Reference}
+\label{input__interfaces_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/input\_interfaces.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/input\_interfaces.c}}
+
+
+controller between sensors, display and signal synthesis  
+
+
+{\ttfamily \#include \char`\"{}input\+\_\+interfaces.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__InputInterface_gaf102c42e8c8be931b33bd67401dd9424}{II\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em init function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}{II\+\_\+start\+Interface}} (TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em starts the interface timer Interrupt \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__InputInterface_ga68aa067f04b08bf4a16352bf87cc4c3e}{II\+\_\+\+Display\+\_\+\+Voices}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__InputInterface_ga195e0c4273ec6831366f4ae54a1586ee}{II\+\_\+\+Display\+\_\+\+Effects}} (void)
+\begin{DoxyCompactList}\small\item\em parses the information from the Display-\/input to the strcuts of the effects retval\+: 0 Error 1 Success \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__InputInterface_ga2b27d1c554db52f823b2897137823819}{II\+\_\+raise\+Note}} (uint8\+\_\+t ID)
+\item 
+void \mbox{\hyperlink{group__InputInterface_gafa7d9063c65151e6c6c79e94f81dd0fd}{II\+\_\+decrease\+Note}} (uint8\+\_\+t ID)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}{gyro\+\_\+toggle\+Counter}} = 0
+\begin{DoxyCompactList}\small\item\em Creates the Signals given through the Display-\/\+Interput retval\+: 0 Error 1 Success. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{input__interfaces_8c_accc7ee82b2af294958b7165b441890b4}{gyro\+\_\+toggle\+Threshold}} = 10
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+controller between sensors, display and signal synthesis 
+
+\begin{DoxyAuthor}{Author}
+Paul Mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+Aug 15, 2021
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}\label{input__interfaces_8c_a6d6f063b2586502895f157d0c13455f1}} 
+\index{input\_interfaces.c@{input\_interfaces.c}!gyro\_toggleCounter@{gyro\_toggleCounter}}
+\index{gyro\_toggleCounter@{gyro\_toggleCounter}!input\_interfaces.c@{input\_interfaces.c}}
+\doxysubsubsection{\texorpdfstring{gyro\_toggleCounter}{gyro\_toggleCounter}}
+{\footnotesize\ttfamily uint32\+\_\+t gyro\+\_\+toggle\+Counter = 0}
+
+
+
+Creates the Signals given through the Display-\/\+Interput retval\+: 0 Error 1 Success. 
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00050}{50}} of file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+
+\mbox{\Hypertarget{input__interfaces_8c_accc7ee82b2af294958b7165b441890b4}\label{input__interfaces_8c_accc7ee82b2af294958b7165b441890b4}} 
+\index{input\_interfaces.c@{input\_interfaces.c}!gyro\_toggleThreshold@{gyro\_toggleThreshold}}
+\index{gyro\_toggleThreshold@{gyro\_toggleThreshold}!input\_interfaces.c@{input\_interfaces.c}}
+\doxysubsubsection{\texorpdfstring{gyro\_toggleThreshold}{gyro\_toggleThreshold}}
+{\footnotesize\ttfamily uint32\+\_\+t gyro\+\_\+toggle\+Threshold = 10}
+
+
+
+Definition at line \mbox{\hyperlink{input__interfaces_8c_source_l00051}{51}} of file \mbox{\hyperlink{input__interfaces_8c_source}{input\+\_\+interfaces.\+c}}.
+

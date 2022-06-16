@@ -1,0 +1,100 @@
+\hypertarget{emg_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/emg.h File Reference}
+\label{emg_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/emg.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/emg.h}}
+
+
+EMG and ECG.  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__EMG__ECG_gaef2f74bc8f2632e5eb78c2aaa1222ece}{EMG\+\_\+\+READ\+\_\+\+LENGTH}}~20
+\item 
+\#define \mbox{\hyperlink{group__EMG__ECG_ga0467216c3971f76f80c488c1d1b89c42}{EMG\+\_\+\+SR}}~5000
+\item 
+\#define \mbox{\hyperlink{group__EMG__ECG_gad4da5bbe0f76fdca7af3576d6d5eb417}{EMG\+\_\+\+MI}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_gaa7d92b6a1983e52614915f8e2cfb3140}{emg\+\_\+init}} (ADC\+\_\+\+Handle\+Type\+Def $\ast$hadc, TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em EMG Init. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_ga98bf9a8015f7a7833276fbf6a72e255e}{ecg\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em ECG init. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_gad8539de6db12ec20b070f6fb97f99a73}{emg\+\_\+start\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Start all necessary peripherals for the EMG / ECG. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_ga305d3a0240c6e197a771b26c8d4fd22a}{emg\+\_\+stop\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Stops the ADC reading of the connected EMG / ECG board. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__EMG__ECG_ga63f5337cb5d5feb55ddedd79bca265d9}{emg\+\_\+peak\+\_\+detection}} (void)
+\begin{DoxyCompactList}\small\item\em Detects an EMG peak and sets flags for further processing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__EMG__ECG_ga6ad14645e09a9e49124abbb14199027f}{ecg\+\_\+heartrate}} (void)
+\begin{DoxyCompactList}\small\item\em Detect heartrate and change the Drumcomputers BPM accordingly in realtime. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__EMG__ECG_gaa0343f5f6ec51b2315e8af04936ded6c}{EMG\+\_\+\+ADC}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__EMG__ECG_gaaaca668bcd874fee31cc4dbf110f241c}{EMG\+\_\+\+TIM}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gafbfbad3430f3ca07748fe46ea721f425}{emg\+\_\+buffer}} \mbox{[}EMG\+\_\+\+READ\+\_\+\+LENGTH\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga820e056b9586fec05150a738d09828c7}{emg\+\_\+detection\+Threshold}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gabc598a894ad122f8758e1469ef82405b}{emg\+\_\+peak}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gaeefbcf6066e07f71f063f2374aaf5cf8}{emg\+\_\+toggle\+Counter}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga72eccf432ccbca5a28d55952a2162149}{emg\+\_\+toggle\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga5dbb1dd2634480627376d02417b18aa4}{emg\+\_\+max\+Detection\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga8a1f1f967c2c635001bb4feb13db46a1}{emg\+\_\+max\+Toggle\+Threshold}}
+\item 
+bool \mbox{\hyperlink{group__EMG__ECG_gadbcea8e6bb2a0b7d11f6dc8922cae7c5}{emg\+\_\+toggled}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga7c8f024fed67aaecdb0696b8c7ef88c0}{ecg\+\_\+meas\+Int}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gabde05bcf6583c365191e87886cca6a6a}{ecg\+\_\+detection\+Threshold}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__EMG__ECG_ga739bff2109fffa5194f6d9eec65a2ae3}{ecg\+\_\+peaks}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gabfde41aeb1a8bd2fba440438c488013d}{ecg\+\_\+toggle\+Counter}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gadf508018b5bffa0045774b49aaadbea6}{ecg\+\_\+toggle\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gadb1057f6f992deabcf704e9715ee089a}{ecg\+\_\+max\+Detection\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gacc929fb59a231e854009488bd9cf0868}{ecg\+\_\+max\+Toggle\+Threshold}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gab459858f605f9c5509b2ecce7294d5e4}{ecg\+\_\+int\+Count}}
+\item 
+bool \mbox{\hyperlink{group__EMG__ECG_gaf8252f523485fdd4b73185728fb467ab}{ecg\+\_\+peak}}
+\item 
+bool \mbox{\hyperlink{group__EMG__ECG_ga5029188c23694b9770491106b607bc2c}{ecg\+\_\+toggled}}
+\item 
+float \mbox{\hyperlink{group__EMG__ECG_ga9932f29af2ffe1856d0d0e29610efcac}{heartrate}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__EMG__ECG_gacf0ee8035c8dba31c94430e6648c4704}{input\+Buffer\+\_\+position}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+EMG and ECG. 
+
+\begin{DoxyAuthor}{Author}
+Paul Mamatis \& Max Lehmer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{emg_8h_source}{emg.\+h}}.
+

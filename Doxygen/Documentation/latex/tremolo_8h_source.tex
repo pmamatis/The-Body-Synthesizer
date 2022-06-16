@@ -1,0 +1,46 @@
+\hypertarget{tremolo_8h_source}{}\doxysection{tremolo.\+h}
+\label{tremolo_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/tremolo.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/tremolo.h}}
+\mbox{\hyperlink{tremolo_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef INC\_TREMOLO\_H\_}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00012}00012 \textcolor{preprocessor}{\#define INC\_TREMOLO\_H\_}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00021}00021 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00022}00022 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00023}00023 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00024}00024 \textcolor{comment}{ * @brief       Enums}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00025}00025 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00026}00026 \textcolor{comment}{/***************************}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00027}00027 \textcolor{comment}{ * @brief Enumeration for Tremolo Debugging}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00028}00028 \textcolor{comment}{ ***************************/}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00029}00029 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00030}00030     TREMOLO\_FAIL = -\/1,}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00031}00031     TREMOLO\_OK = 1}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00032}00032 \} Tremolo\_Status;}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00034}00034 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00035}00035 \textcolor{comment}{ * @brief       Structs}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00036}00036 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00038}00038 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00039}00039 \textcolor{comment}{ * @brief       Tremolo struct}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00040}00040 \textcolor{comment}{ * @parameter   Tremolo}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00041}00041 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00042}\mbox{\hyperlink{structTremolo__t}{00042}} \textcolor{keyword}{struct }\mbox{\hyperlink{structTremolo__t}{Tremolo\_t}}\{}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00044}00044     \textcolor{keyword}{struct }\mbox{\hyperlink{structeffects__lfo__t}{effects\_lfo\_t}} *lfo;}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00045}00045     \textcolor{keywordtype}{float} tremolo\_maximum\_rate;}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00046}00046     \textcolor{keywordtype}{float} tremolo\_maximum\_depth;}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00047}00047 \};}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00049}00049 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00050}00050 \textcolor{comment}{ * @brief       Variables}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00051}00051 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00052}00052 \textcolor{keyword}{struct }\mbox{\hyperlink{structTremolo__t}{Tremolo\_t}} Tremolo;}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00054}00054 Tremolo\_Status \mbox{\hyperlink{group__tremolo_gacb90f3df18e98cac0b0aadc519411a7a}{Tremolo\_Init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structTremolo__t}{Tremolo\_t}}* Tremolo);}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00055}00055 Tremolo\_Status \mbox{\hyperlink{group__tremolo_ga7ec31bc72214199a5efdbe88b3a3f8b8}{Tremolo\_Reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00056}00056 Tremolo\_Status \mbox{\hyperlink{group__tremolo_ga922840d8712ad7bd4904f7813c8ac2f6}{ProcessTremolo}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structTremolo__t}{Tremolo\_t}}* Tremolo, \textcolor{keywordtype}{float}* data);}
+\DoxyCodeLine{\Hypertarget{tremolo_8h_source_l00058}00058 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_TREMOLO\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

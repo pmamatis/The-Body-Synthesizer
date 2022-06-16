@@ -1,0 +1,67 @@
+\hypertarget{distortion_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/distortion.h File Reference}
+\label{distortion_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/distortion.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/distortion.h}}
+
+
+distortion effect  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Distortion\+\_\+\+Status} \{ {\bfseries DISTORTION\+\_\+\+FAIL} = -\/1
+, {\bfseries DISTORTION\+\_\+\+OK} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{group__Distortion_ga54ad82c4a3ecbc0c2784ae81c92eb22e}{Distortion\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Distortion init functions. \end{DoxyCompactList}\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{group__Distortion_gac69b82a1179f795d9205a246de59a37a}{Distortion\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em This function resets the distortion variables to its initial state. \end{DoxyCompactList}\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{group__Distortion_ga2a6725ec967773f5ddfbc3fc21d67049}{Setup\+Hard\+Clipping\+Distortion}} (struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} $\ast$Hard\+Clipping)
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{group__Distortion_ga8a375c625074dc4492066cda7e9e175b}{Setup\+Soft\+Clipping\+Distortion}} (struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} $\ast$Soft\+Clipping)
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{group__Distortion_ga7a68b2a90c4306d739161ee82b7eb89c}{Process\+Hard\+Clipping\+Distortion}} (float $\ast$data)
+\item 
+Distortion\+\_\+\+Status \mbox{\hyperlink{group__Distortion_ga1676e7551d7621b89efb0ecc46092436}{Process\+Soft\+Clipping\+Distortion}} (float $\ast$data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} \mbox{\hyperlink{group__Distortion_gafe398e89ade080fe269a7349a6d74987}{Hard\+Clipping}}
+\item 
+struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} \mbox{\hyperlink{group__Distortion_ga1a0fdc608d881e90cf6fcbecd9bb5a34}{Soft\+Clipping}}
+\item 
+const float \mbox{\hyperlink{group__Distortion_ga638ce07da32913582447f1e26b745c37}{aquidistance}}
+\begin{DoxyCompactList}\small\item\em variable for calculation of the soft clipping effect \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{group__Distortion_gab6549ea7290a59876018cb53511f134d}{atan\+\_\+\+LUT\+\_\+y}} \mbox{[}8192\mbox{]}
+\begin{DoxyCompactList}\small\item\em atan() look up table \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+distortion effect 
+
+\begin{DoxyAuthor}{Author}
+marc bielen 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{distortion_8h_source}{distortion.\+h}}.
+

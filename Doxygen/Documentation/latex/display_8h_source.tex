@@ -1,0 +1,360 @@
+\hypertarget{display_8h_source}{}\doxysection{display.\+h}
+\label{display_8h_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/display.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/display.h}}
+\mbox{\hyperlink{display_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef INC\_DISPLAY\_H\_}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00012}00012 \textcolor{preprocessor}{\#define INC\_DISPLAY\_H\_}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00015}00015 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00017}00017 \textcolor{preprocessor}{\#include "{}epd1in54.h"{}}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00018}00018 \textcolor{preprocessor}{\#include "{}epdif.h"{}}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00019}00019 \textcolor{preprocessor}{\#include "{}epdpaint.h"{}}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00020}00020 \textcolor{preprocessor}{\#include "{}imagedata.h"{}}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00022}00022 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00023}00023 \textcolor{comment}{ * @brief       Defines}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00024}00024 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00026}00026 \textcolor{preprocessor}{\#define COLORED      0}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00027}00027 \textcolor{preprocessor}{\#define UNCOLORED    1}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00029}00029 \textcolor{preprocessor}{\#define VALUE\_ROW\_LENGTH 10 }\textcolor{comment}{// Difference of starting point and end point for Value-\/row}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00031}00031 \textcolor{preprocessor}{\#define NUMBER\_OF\_SOURCES 3 }\textcolor{comment}{// As big as the number of sources in source\_t enum}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00033}00033 \textcolor{comment}{// Voices}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00034}00034 \textcolor{preprocessor}{\#define NUMBER\_OF\_VOICES 3}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00036}00036 \textcolor{comment}{// Drumcomputer}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00037}00037 \textcolor{preprocessor}{\#define MAX\_NUMBER\_OF\_SAMPLES 4}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00038}00038 \textcolor{preprocessor}{\#define NUMBER\_OF\_DRUMSTEPS 8}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00040}00040 \textcolor{comment}{// Sequencer}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00041}00041 \textcolor{preprocessor}{\#define MAX\_NUMBER\_OF\_NOTES 3}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00042}00042 \textcolor{preprocessor}{\#define NUMBER\_OF\_SEQUENCERSTEPS 8}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00044}00044 \textcolor{comment}{/***************************}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00045}00045 \textcolor{comment}{ * @brief       Enumeration}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00046}00046 \textcolor{comment}{ ***************************/}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00048}00048 \textcolor{comment}{//typedef enum \{    // Waveshare 2.9 inch ePD}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00049}00049 \textcolor{comment}{//  CASE0 = 10,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00050}00050 \textcolor{comment}{//  CASE1 = 20,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00051}00051 \textcolor{comment}{//  CASE2 = 30,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00052}00052 \textcolor{comment}{//  CASE3 = 40,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00053}00053 \textcolor{comment}{//  CASE4 = 50,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00054}00054 \textcolor{comment}{//  CASE5 = 60,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00055}00055 \textcolor{comment}{//  CASE6 = 70,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00056}00056 \textcolor{comment}{//  CASE7 = 80,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00057}00057 \textcolor{comment}{//  CASE8 = 90,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00058}00058 \textcolor{comment}{//  CASE9 = 100,}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00059}00059 \textcolor{comment}{//  CASE10 = 110}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00060}00060 \textcolor{comment}{//\}y\_row\_value;}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00068}\mbox{\hyperlink{group__EPDLib_ga08d49f85a02740ce26c51f43e64f9a15}{00068}} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{  }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00069}00069     CASE0 = 10,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00070}00070     CASE1 = 30,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00071}00071     CASE2 = 50,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00072}00072     CASE3 = 70,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00073}00073     CASE4 = 90,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00074}00074     CASE5 = 110,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00075}00075     CASE6 = 130,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00076}00076     CASE7 = 150,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00077}00077     CASE8 = 170,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00078}00078     CASE9 = 190,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00079}00079     CASE10 = 210}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00080}00080 \} \mbox{\hyperlink{group__EPDLib_ga08d49f85a02740ce26c51f43e64f9a15}{y\_row\_value}};}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00082}00082 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00083}00083     STEP1 = 40,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00084}00084     STEP2 = 60,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00085}00085     STEP3 = 80,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00086}00086     STEP4 = 100,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00087}00087     STEP5 = 120,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00088}00088     STEP6 = 140,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00089}00089     STEP7 = 160,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00090}00090     STEP8 = 180}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00091}00091 \} drumcomputer\_step\_coordinate;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00094}00094 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00095}00095     DISPLAY\_FAIL = -\/1,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00096}00096     DISPLAY\_OK = 1}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00097}00097 \} Display\_Status;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00099}00099 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00100}00100     POTI = 0,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00101}00101     GYRO\_LR = 1,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00102}00102     GYRO\_FB = 2}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00103}00103 \} source\_t;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00105}00105 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00106}00106     FREESTYLE = 0,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00107}00107     MAJOR = 1,}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00108}00108     MINOR = 2}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00109}00109 \} keyandmode\_t;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00111}00111 \textcolor{comment}{/***************************}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00112}00112 \textcolor{comment}{ * @brief       Structs}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00113}00113 \textcolor{comment}{ ***************************/}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00127}\mbox{\hyperlink{structdisplay__variables}{00127}} \textcolor{keyword}{struct }\mbox{\hyperlink{structdisplay__variables}{display\_variables}} \{}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00128}00128 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00129}00129     \textcolor{keywordtype}{char} source\_names[NUMBER\_OF\_SOURCES][10];   \textcolor{comment}{// assumption: maximum length of 10 characters for a each source name}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00131}00131     \textcolor{comment}{// Keyboard Parameters}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00132}00132     uint8\_t Keyboard\_Octave;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00134}00134     \textcolor{comment}{// Synthesizer Parameters}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00135}00135     \textcolor{comment}{// Voices}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00136}00136     \textcolor{keywordtype}{bool} Voices\_ONOFF[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00137}00137     \textcolor{keywordtype}{char} Voices\_Note[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00138}00138     \textcolor{keywordtype}{char} last\_Voices\_Note[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00139}00139     \textcolor{keywordtype}{char} Voices\_Octave[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00140}00140     \textcolor{keywordtype}{char} last\_Voices\_Octave[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00141}00141     \textcolor{keywordtype}{bool} Voices\_Created[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00142}00142     uint8\_t currentVoice;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00143}00143     uint8\_t Voices\_Noteindex[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00144}00144     uint8\_t last\_Voices\_Noteindex[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00145}00145     uint8\_t Voices\_Kind[NUMBER\_OF\_VOICES];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00146}00146 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00147}00147     \textcolor{comment}{// Noise}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00148}00148     \textcolor{keywordtype}{bool} Noise\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00149}00149     \textcolor{keywordtype}{float} Noise\_Volume;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00150}00150 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00151}00151     \textcolor{comment}{//ADSR}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00152}00152     \textcolor{keywordtype}{float} ADSR\_Attacktime;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00153}00153     \textcolor{keywordtype}{float} ADSR\_Decaytime;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00154}00154     \textcolor{keywordtype}{float} ADSR\_Sustaintime;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00155}00155     \textcolor{keywordtype}{float} ADSR\_Sustainlevel;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00156}00156     \textcolor{keywordtype}{float} ADSR\_Releasetime;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00157}00157     uint8\_t currentADSR;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00158}00158     \textcolor{keywordtype}{bool} KeyboardFX\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00160}00160     \textcolor{comment}{//Distortion}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00161}00161     \textcolor{keywordtype}{bool} Distortion\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00162}00162     \textcolor{keywordtype}{bool} Distortion\_Type;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00163}00163     \textcolor{keywordtype}{float} Distortion\_Gain;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00164}00164     uint8\_t currentDistortion;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00166}00166     \textcolor{comment}{//Tremolo}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00167}00167     \textcolor{keywordtype}{bool} Tremolo\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00168}00168     \textcolor{keywordtype}{bool} last\_Tremolo\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00169}00169     \textcolor{keywordtype}{float} Tremolo\_Rate;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00170}00170     \textcolor{keywordtype}{float} Tremolo\_Depth;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00171}00171     uint8\_t currentTremolo;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00172}00172     uint16\_t Tremolo\_Rate\_Index;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00173}00173     uint16\_t last\_Tremolo\_Rate\_Index;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00175}00175     \textcolor{comment}{//Filter/EQ}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00176}00176     \textcolor{keywordtype}{bool} Filter\_ONOFF[5];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00177}00177     \textcolor{keywordtype}{float} Filter\_Cutoff[5];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00178}00178     \textcolor{keywordtype}{float} Filter\_Q[5];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00179}00179     \textcolor{keywordtype}{float} Filter\_Gain[5];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00180}00180     uint8\_t currentBand;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00181}00181 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00182}00182     \textcolor{comment}{// WahWah}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00183}00183     \textcolor{keywordtype}{bool} WahWah\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00184}00184     \textcolor{keywordtype}{float} WahWah\_LFOfreq;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00185}00185     \textcolor{keywordtype}{float} WahWah\_Range;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00186}00186     \textcolor{keywordtype}{float} WahWah\_MidFreq;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00187}00187     \textcolor{keywordtype}{float} WahWah\_Q;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00188}00188     uint8\_t currentWahWah;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00189}00189     uint16\_t WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00190}00190     uint16\_t last\_WahWah\_LFOfreq\_Index;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00191}00191 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00192}00192     \textcolor{comment}{// ADC input arrays}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00193}00193     uint32\_t ADC1input;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00194}00194     uint16\_t ADC2inputs[4];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00195}00195 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00196}00196     \textcolor{comment}{// Joystick-\/variables}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00197}00197     uint16\_t JoystickMiddle;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00198}00198     uint16\_t LowerLimit;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00199}00199     uint16\_t UpperLimit;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00200}00200     uint16\_t ADC\_FullRange;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00201}00201     uint16\_t VRx;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00202}00202     uint16\_t VRy;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00203}00203     uint8\_t JoystickParameterPosition;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00205}00205     \textcolor{comment}{// Draw Parameters}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00206}00206     \textcolor{keywordtype}{bool} arrow\_flag;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00207}00207     uint8\_t arrow\_start\_x\_position;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00208}00208     uint8\_t arrow\_end\_x\_position;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00209}00209     uint8\_t value\_start\_x\_position;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00210}00210     uint8\_t value\_end\_x\_position;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00211}00211     uint8\_t row\_start\_x\_position;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00212}00212 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00213}00213     \textcolor{comment}{// Page parameters}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00214}00214     int8\_t pagePosition;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00215}00215     uint8\_t page\_max;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00216}00216     int8\_t page\_min;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00217}00217     uint8\_t max\_parameter;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00219}00219     \textcolor{comment}{// Potentiometer-\/variables}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00220}00220     uint16\_t last\_Poti;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00221}00221     uint16\_t Poti\_Threshold;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00222}00222     \textcolor{keywordtype}{bool} poti\_moved;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00223}00223     uint16\_t PotiMean\_tmp;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00224}00224     uint16\_t PotiMean;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00225}00225     uint16\_t PotiMean\_counter;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00226}00226 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00227}00227     \textcolor{keywordtype}{bool} ENTER\_Debounce\_State;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00228}00228     \textcolor{keywordtype}{bool} BACK\_Debounce\_State;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00229}00229     \textcolor{keywordtype}{bool} ENTER;     \textcolor{comment}{// state variable of the ENTER-\/Button to go one step further in the display-\/menu}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00230}00230     \textcolor{keywordtype}{bool} BACK;      \textcolor{comment}{// state variable of the BACK-\/Button to go one step back in the display-\/menu}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00231}00231     \textcolor{keywordtype}{bool} button\_pressed\_flag;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00232}00232 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00233}00233     \textcolor{comment}{// SOURCES}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00234}00234     source\_t Voice\_Note\_Sources[3];             \textcolor{comment}{// sources for note of Voice 1,2 and 3}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00235}00235     source\_t Voice\_Octave\_Sources[3];           \textcolor{comment}{// sources for octave of Voice 1,2 and 3}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00236}00236     source\_t ADSR\_Sources[5];                   \textcolor{comment}{// sources for attack time, decay time, sustain time, sustain level, release time}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00237}00237     source\_t EQ\_Q\_factor\_Sources[5];            \textcolor{comment}{// sources for q-\/factor of 5 frequency bands}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00238}00238     source\_t EQ\_Cutoff\_Sources[5];              \textcolor{comment}{// sources for cutoff of 5 frequency bands}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00239}00239     source\_t EQ\_Gain\_Sources[5];                \textcolor{comment}{// sources for gain of 5 frequency bands}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00240}00240     source\_t WahWah\_Sources[6];                 \textcolor{comment}{// sources for wahwah parameters}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00241}00241     source\_t Distortion\_Sources;                \textcolor{comment}{// sources for gain}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00242}00242     source\_t Tremolo\_Sources[2];                \textcolor{comment}{// sources for rate and depth}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00243}00243     source\_t Drumfilter\_Cutoff\_Source;          \textcolor{comment}{// source for drumfilter cuttoff}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00244}00244 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00245}00245     \textcolor{comment}{// Page value strings}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00246}00246     \textcolor{keywordtype}{char} value\_str\_voices\_overview[6][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00247}00247     \textcolor{keywordtype}{char} value\_str\_voices\_settings[4][9][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00248}00248     \textcolor{keywordtype}{char} value\_str\_adsr\_overview[7][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00249}00249     \textcolor{keywordtype}{char} value\_str\_adsr\_settings[5][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00250}00250     \textcolor{keywordtype}{char} value\_str\_equalizer\_overview[6][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00251}00251     \textcolor{keywordtype}{char} value\_str\_equalizer\_settings[5][6][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00252}00252     \textcolor{keywordtype}{char} value\_str\_wahwah[15][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00253}00253     \textcolor{keywordtype}{char} value\_str\_distortion[5][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00254}00254     \textcolor{keywordtype}{char} value\_str\_tremolo[6][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00255}00255     \textcolor{keywordtype}{char} value\_str\_volume[4][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00256}00256     \textcolor{keywordtype}{char} value\_str\_presets[9][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00257}00257     \textcolor{keywordtype}{char} value\_str\_keyboardmode[9][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00258}00258     \textcolor{keywordtype}{char} value\_str\_drumcomputer[12][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00259}00259     \textcolor{keywordtype}{char} value\_str\_sequencer[9][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00260}00260     \textcolor{keywordtype}{char} value\_str\_emg[5][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00261}00261     \textcolor{keywordtype}{char} value\_str\_ecg[2][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00262}00262     \textcolor{keywordtype}{char} value\_str\_keyandmode[2][10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00263}00263 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00264}00264     \textcolor{comment}{// Drumcomputer}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00265}00265     uint8\_t CurrentSampleRow;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00266}00266     uint8\_t CurrentDrumstep;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00267}00267     \textcolor{keywordtype}{bool} DrumMatrix[MAX\_NUMBER\_OF\_SAMPLES][NUMBER\_OF\_DRUMSTEPS];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00268}00268     \textcolor{keywordtype}{bool} UpdateDisplay;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00269}00269     \textcolor{keywordtype}{bool} Drumcomputer\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00270}00270     \textcolor{keywordtype}{bool} EditDrums;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00271}00271     uint8\_t currentDrumcomputer;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00272}00272     \textcolor{keywordtype}{char} sample1[10], sample2[10], sample3[10], sample4[10];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00273}00273     \textcolor{keywordtype}{bool} LoadDrumkit;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00274}00274     \textcolor{keywordtype}{float} Drumfilter\_Cutoff;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00275}00275     \textcolor{keywordtype}{float} Drumfilter\_Q;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00276}00276     \textcolor{keywordtype}{float} Drumfilter\_Gain;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00277}00277     \textcolor{keywordtype}{bool} Drumcomputer\_BPMbyECG\_ONOFF; \textcolor{comment}{// heartbeat from EMG/ECG-\/Board as bpm for Drumcomputer}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00278}00278     \textcolor{comment}{// Sequencer}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00279}00279     uint8\_t CurrentNoteRow;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00280}00280     uint8\_t CurrentSequencestep;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00281}00281     \textcolor{keywordtype}{bool} Sequencer\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00282}00282     \textcolor{keywordtype}{char} Sequencer\_Note[4];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00283}00283     \textcolor{keywordtype}{char} Sequencer\_Octave[4];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00284}00284     \textcolor{keywordtype}{char} last\_Sequencer\_Octave[4];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00285}00285     \textcolor{keywordtype}{bool} SequencerMatrix[MAX\_NUMBER\_OF\_NOTES][NUMBER\_OF\_SEQUENCERSTEPS];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00286}00286     \textcolor{keywordtype}{bool} EditSteps;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00287}00287     uint8\_t currentSequencer;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00288}00288     uint8\_t Sequencer\_Noteindex[3];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00289}00289     uint8\_t last\_Sequencer\_Noteindex[3];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00290}00290 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00291}00291     \textcolor{comment}{// WahWah}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00292}00292     uint8\_t WahWah\_Mode;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00293}00293 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00294}00294     \textcolor{comment}{// EMG / ECG}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00295}00295     \textcolor{keywordtype}{float} EMG\_detectionThreshold;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00296}00296     \textcolor{keywordtype}{float} EMG\_toggleThreshold;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00297}00297     \textcolor{keywordtype}{float} ECG\_detectionThreshold;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00298}00298     \textcolor{keywordtype}{float} ECG\_toggleThreshold;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00299}00299 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00300}00300     \textcolor{comment}{// Key and Mode}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00301}00301     \textcolor{keywordtype}{char} KeyNote;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00302}00302     uint8\_t KeyNoteIndex;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00303}00303     keyandmode\_t ScaleMode;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00304}00304 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00305}00305     \textcolor{comment}{// Play Single Sample}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00306}00306     \textcolor{keywordtype}{bool} PlaySingleSample\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00307}00307     uint8\_t SingleSampleKit;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00308}00308     uint8\_t SingleSample;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00309}00309 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00310}00310     \textcolor{comment}{// Drumfilter}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00311}00311     \textcolor{keywordtype}{bool} Drumfilter\_ONOFF;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00312}00312 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00313}00313     \textcolor{comment}{// Preset}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00314}00314     \textcolor{keywordtype}{bool} GyroResetPreset[2];}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00315}00315 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00316}00316     \textcolor{comment}{// Reset}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00317}00317     \textcolor{keywordtype}{bool} Reset;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00318}00318 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00319}00319     \textcolor{comment}{// SetPreset}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00320}00320     \textcolor{keywordtype}{bool} SetPreset;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00321}00321 \};}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00322}00322 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00323}00323 \textcolor{keyword}{struct }\mbox{\hyperlink{structdisplay__variables}{display\_variables}} Display;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00324}00324 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00331}00331 EPD epd;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00332}00332 Paint paint;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00333}00333 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* frame\_buffer;}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00348}00348 Display\_Status \mbox{\hyperlink{group__DisplayProcess_ga11f29ac6ffffd64bb9c21e37c0b6e7ce}{Display\_Init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structdisplay__variables}{display\_variables}}* Display);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00349}00349 Display\_Status \mbox{\hyperlink{group__DisplayProcess_gad30227eebb2921ea58a7bc2c82cb33ab}{Display\_Start}}(EPD* epd, Paint* paint, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* frame\_buffer);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00350}00350 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\_processing}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00351}00351 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayProcess_ga04813dcc16532f2222d2a9d799d98f30}{DISPLAY\_PrintCurrentPage}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00352}00352 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayProcess_ga44502944f0f57e797ed44a9d81e533e8}{DISPLAY\_ArrowDown}}(uint8\_t *JoystickParameterPosition);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00353}00353 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayProcess_ga66ef522eba7da71e294cabcccdd89adf}{DISPLAY\_ArrowUp}}(uint8\_t *JoystickParameterPosition);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00354}00354 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayProcess_gaad139dccbdea27c5c95092b327408a1a}{DISPLAY\_SwitchPageLeft}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00355}00355 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayProcess_ga6762942b296dabc3a6cfa0f14bd1c690}{DISPLAY\_SwitchPageRight}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00356}00356 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayProcess_ga0cf58d71eacb3fad194c7257fd5ce183}{DISPLAY\_Update}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00357}00357 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayProcess_ga4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(uint8\_t JoystickParameterPosition);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00360}00360 \textcolor{comment}{// Display Drum Computer}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00361}00361 Display\_Status \mbox{\hyperlink{group__Display_ga6f1e5fd55fe52c0da6ed8691a043c7e3}{Display\_DrawDrumcomputerIcons}}(\textcolor{keywordtype}{char}* S1, \textcolor{keywordtype}{char}* S2, \textcolor{keywordtype}{char}* S3, \textcolor{keywordtype}{char}* S4);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00362}00362 Display\_Status \mbox{\hyperlink{group__Display_gafeebe386ce2f442752742b054674b40d}{Display\_LoadDrumKits}}(uint8\_t Drumkit);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00363}00363 Display\_Status \mbox{\hyperlink{group__Display_gaeee4736127d8842a23ce57021443c5af}{DISPLAY\_DrawDrumcomputerPatternFrame}}(uint8\_t Drumsteps);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00364}00364 Display\_Status \mbox{\hyperlink{group__Display_ga2900e59099c5f0d46df7571a3e9b7352}{DISPLAY\_DrawDrumcomputerPattern}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00365}00365 Display\_Status \mbox{\hyperlink{group__Display_gacc64d5980c2033bd470353f22af60a7a}{DISPLAY\_SetDrumcomputerStep}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00366}00366 Display\_Status \mbox{\hyperlink{group__Display_ga7759568f4bd60f3d77a2a0e463b77b03}{DISPLAY\_DeleteDrumcomputerStep}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00367}00367 Display\_Status \mbox{\hyperlink{group__Display_ga6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\_SetDrumcomputerStepCursor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00368}00368 Display\_Status \mbox{\hyperlink{group__Display_ga1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\_DeleteDrumcomputerStepCursor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00369}00369 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00370}00370 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00371}00371 \textcolor{comment}{// Display Sequencer}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00372}00372 Display\_Status \mbox{\hyperlink{group__Display_gaf6dae7f8bd4125cda81cd0a03749adf2}{Display\_DrawSequencerIcons}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00373}00373 Display\_Status \mbox{\hyperlink{group__Display_ga3270139a5529761a3c6cc482e8a83367}{DISPLAY\_DrawSequencerPatternFrame}}(uint8\_t Drumsteps);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00374}00374 Display\_Status \mbox{\hyperlink{group__Display_ga2f33d0a9945e16984c8e31dc9b145c01}{DISPLAY\_DrawSequencerPattern}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00375}00375 Display\_Status \mbox{\hyperlink{group__Display_ga9d7e433c8b0a75b8ffdfa1ffe817c2f1}{DISPLAY\_SetSequencerStep}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00376}00376 Display\_Status \mbox{\hyperlink{group__Display_ga6b780fda00ecfb80ed28ba3a62937b11}{DISPLAY\_DeleteSequencerStep}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00377}00377 Display\_Status \mbox{\hyperlink{group__Display_gacb106feb27895b4c32f2cd8770842848}{DISPLAY\_SetSequencerStepCursor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00378}00378 Display\_Status \mbox{\hyperlink{group__Display_gab4a4b9b1639809ba234afec57b86facb}{DISPLAY\_DeleteSequencerStepCursor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00379}00379 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00380}00380 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00381}00381 \textcolor{comment}{// Page functions}}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00382}00382 }
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00390}00390 Display\_Status \mbox{\hyperlink{group__DisplayPage_ga7b8ca052b8ac8db5ac68f7cbe53ae494}{p\_StartingMenu}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* frame\_buffer);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00391}00391 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga349ac6f6068d46a199b473139123f0be}{p\_Voices\_overview}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00392}00392 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga43359da16507588edd1fe90f3ced9222}{p\_Voices\_Settings}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00393}00393 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga9c50283b04038fadbf006a1a7ecf27c8}{p\_ADSR\_overview}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00394}00394 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga59adc18e5d5ce7fc2cfa665772b52302}{p\_ADSR\_Settings}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00395}00395 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga98cc1f263ddc00ac8fbf80266616ce1c}{p\_Equalizer\_overview}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00396}00396 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga7b732b0224608d1d160f657ee80e3b6e}{p\_Equalizer\_Settings}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00397}00397 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_gaf744a311b39e043299b23b94ce5b0f7c}{p\_WahWah\_overview}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00398}00398 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga7a0c5167cd2dd7640095ed836806993a}{p\_WahWah\_Settings}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00399}00399 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga1165fc18d03b690c887a8e8de4286a53}{p\_Distortion}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structeffects__distortion}{effects\_distortion}}* HardClipping);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00400}00400 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga89b9c4137cc59fe857a1a6cdcaffc0a9}{p\_Tremolo}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structTremolo__t}{Tremolo\_t}}* Tremolo);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00401}00401 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_gae9490b1e7da6a8a226cf5065174d5ae3}{p\_EMG}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00402}00402 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga3123aab8377a46e24d0b13a17c68aa19}{p\_KeyAndMode}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00403}00403 Display\_Status \mbox{\hyperlink{group__DisplayPage_gadf582a2e8ef7f900542820189b94f22d}{Display\_LoadSingleSample}}(uint8\_t SampleNUM, uint8\_t KitNUM);}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00404}00404 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_gaa562906df4ccbd2259ec2436685c418f}{p\_Volume}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00405}00405 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\_Reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00406}00406 \textcolor{keywordtype}{void} \mbox{\hyperlink{group__DisplayPage_gabd2a92e2609f00be1f6dd91508ac20d8}{p\_Presets}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00407}00407 Display\_Status \mbox{\hyperlink{group__DisplayPage_gae23937cde028cc1e90910692e6a2c6a4}{p\_Drumcomputer\_overview}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00408}00408 Display\_Status \mbox{\hyperlink{group__DisplayPage_gaf9d7f7add0e2f3d4bc2d56c1b4803d97}{p\_Drumcomputer\_Settings}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00409}00409 Display\_Status \mbox{\hyperlink{group__DisplayPage_ga8c0c367ef7802a6af877619b174d12ec}{p\_Sequencer\_overview}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00410}00410 Display\_Status \mbox{\hyperlink{group__DisplayPage_ga9eb195ca66d081452b9af0da2689dae2}{p\_Sequencer\_Settings}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{display_8h_source_l00414}00414 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* INC\_DISPLAY\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

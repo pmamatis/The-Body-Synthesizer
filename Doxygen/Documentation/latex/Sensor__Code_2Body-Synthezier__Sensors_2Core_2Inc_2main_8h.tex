@@ -1,0 +1,102 @@
+\hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Sensor\+\_\+\+Code/\+Body-\/\+Synthezier\+\_\+\+Sensors/\+Core/\+Inc/main.h File Reference}
+\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Inc/main.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Inc/main.h}}
+
+
+\+: Header for main.\+c file. This file contains the common defines of the application.  
+
+
+{\ttfamily \#include \char`\"{}stm32f4xx\+\_\+hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}MPU6050\+\_\+\+GY521.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a7587f7b186c2173cc97c6fdec90cc4ff}{p\+Tx\+Data}} \mbox{[}BUFFERSIZE\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a57ab4378d4fe82851a7568e46e8abb20}{p\+Rx\+Data}} \mbox{[}BUFFERSIZE\mbox{]}
+\item 
+\mbox{\hyperlink{structsensor__data}{sensor\+\_\+data\+\_\+t}} \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a1f56cfd2fdb638fa87250aa5cf1ab7d9}{Sync\+Buffer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Header for main.\+c file. This file contains the common defines of the application. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2021 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 
+
+Definition in file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_source}{main.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a1730ffe1e560465665eb47d9264826f9}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a1730ffe1e560465665eb47d9264826f9}} 
+\index{main.h@{main.h}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l01928}{1928}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01929 \{}
+\DoxyCodeLine{01930   \textcolor{comment}{/* USER CODE BEGIN Error\_Handler\_Debug */}}
+\DoxyCodeLine{01931     \textcolor{comment}{/* User can add his own implementation to report the HAL error return state */}}
+\DoxyCodeLine{01932 }
+\DoxyCodeLine{01933   \textcolor{comment}{/* USER CODE END Error\_Handler\_Debug */}}
+\DoxyCodeLine{01934 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a57ab4378d4fe82851a7568e46e8abb20}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a57ab4378d4fe82851a7568e46e8abb20}} 
+\index{main.h@{main.h}!pRxData@{pRxData}}
+\index{pRxData@{pRxData}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{pRxData}{pRxData}}
+{\footnotesize\ttfamily uint8\+\_\+t p\+Rx\+Data\mbox{[}BUFFERSIZE\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_source_l00097}{97}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_source}{main.\+h}}.
+
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a7587f7b186c2173cc97c6fdec90cc4ff}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a7587f7b186c2173cc97c6fdec90cc4ff}} 
+\index{main.h@{main.h}!pTxData@{pTxData}}
+\index{pTxData@{pTxData}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{pTxData}{pTxData}}
+{\footnotesize\ttfamily uint8\+\_\+t p\+Tx\+Data\mbox{[}BUFFERSIZE\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_source_l00096}{96}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_source}{main.\+h}}.
+
+\mbox{\Hypertarget{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a1f56cfd2fdb638fa87250aa5cf1ab7d9}\label{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_a1f56cfd2fdb638fa87250aa5cf1ab7d9}} 
+\index{main.h@{main.h}!SyncBuffer@{SyncBuffer}}
+\index{SyncBuffer@{SyncBuffer}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{SyncBuffer}{SyncBuffer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsensor__data}{sensor\+\_\+data\+\_\+t}} Sync\+Buffer}
+
+
+
+Definition at line \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_source_l00098}{98}} of file \mbox{\hyperlink{Sensor__Code_2Body-Synthezier__Sensors_2Core_2Inc_2main_8h_source}{main.\+h}}.
+

@@ -1,0 +1,416 @@
+\hypertarget{group__BilinearInterpolate}{}\doxysection{Bilinear Interpolation}
+\label{group__BilinearInterpolate}\index{Bilinear Interpolation@{Bilinear Interpolation}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE float32\+\_\+t \mbox{\hyperlink{group__BilinearInterpolate_ga887756dbbe013d0a15b987836a787677}{arm\+\_\+bilinear\+\_\+interp\+\_\+f32}} (const \mbox{\hyperlink{structarm__bilinear__interp__instance__f32}{arm\+\_\+bilinear\+\_\+interp\+\_\+instance\+\_\+f32}} $\ast$S, float32\+\_\+t X, float32\+\_\+t Y)
+\begin{DoxyCompactList}\small\item\em Floating-\/point bilinear interpolation. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q31\+\_\+t \mbox{\hyperlink{group__BilinearInterpolate_gaefe4731017e8b9ac652e5fea57cb1fa5}{arm\+\_\+bilinear\+\_\+interp\+\_\+q31}} (\mbox{\hyperlink{structarm__bilinear__interp__instance__q31}{arm\+\_\+bilinear\+\_\+interp\+\_\+instance\+\_\+q31}} $\ast$S, q31\+\_\+t X, q31\+\_\+t Y)
+\begin{DoxyCompactList}\small\item\em Q31 bilinear interpolation. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q15\+\_\+t \mbox{\hyperlink{group__BilinearInterpolate_ga56fe34273ffb422f428b1d9feeffe0ea}{arm\+\_\+bilinear\+\_\+interp\+\_\+q15}} (\mbox{\hyperlink{structarm__bilinear__interp__instance__q15}{arm\+\_\+bilinear\+\_\+interp\+\_\+instance\+\_\+q15}} $\ast$S, q31\+\_\+t X, q31\+\_\+t Y)
+\begin{DoxyCompactList}\small\item\em Q15 bilinear interpolation. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q7\+\_\+t \mbox{\hyperlink{group__BilinearInterpolate_ga1230bb062f6d8614db10b37ba7c9a161}{arm\+\_\+bilinear\+\_\+interp\+\_\+q7}} (\mbox{\hyperlink{structarm__bilinear__interp__instance__q7}{arm\+\_\+bilinear\+\_\+interp\+\_\+instance\+\_\+q7}} $\ast$S, q31\+\_\+t X, q31\+\_\+t Y)
+\begin{DoxyCompactList}\small\item\em Q7 bilinear interpolation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Bilinear interpolation is an extension of linear interpolation applied to a two dimensional grid. The underlying function {\ttfamily f(x, y)} is sampled on a regular grid and the interpolation process determines values between the grid points. Bilinear interpolation is equivalent to two step linear interpolation, first in the x-\/dimension and then in the y-\/dimension. Bilinear interpolation is often used in image processing to rescale images. The CMSIS DSP library provides bilinear interpolation functions for Q7, Q15, Q31, and floating-\/point data types.
+
+{\bfseries{Algorithm}} \begin{DoxyParagraph}{}
+The instance structure used by the bilinear interpolation functions describes a two dimensional data table. For floating-\/point, the instance structure is defined as\+: 
+\begin{DoxyPre}
+  typedef struct
+  \{
+    uint16\_t numRows;
+    uint16\_t numCols;
+    float32\_t *pData;
+\} \mbox{\hyperlink{structarm__bilinear__interp__instance__f32}{arm\_bilinear\_interp\_instance\_f32}};
+\end{DoxyPre}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+where {\ttfamily num\+Rows} specifies the number of rows in the table; {\ttfamily num\+Cols} specifies the number of columns in the table; and {\ttfamily p\+Data} points to an array of size {\ttfamily num\+Rows$\ast$num\+Cols} values. The data table {\ttfamily p\+Table} is organized in row order and the supplied data values fall on integer indexes. That is, table element (x,y) is located at {\ttfamily p\+Table\mbox{[}x + y$\ast$num\+Cols\mbox{]}} where x and y are integers.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Let {\ttfamily (x, y)} specify the desired interpolation point. Then define\+: 
+\begin{DoxyPre}
+    XF = floor(x)
+    YF = floor(y)
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The interpolated output point is computed as\+: 
+\begin{DoxyPre}
+ f(x, y) = f(XF, YF) * (1-\/(x-\/XF)) * (1-\/(y-\/YF))
+          + f(XF+1, YF) * (x-\/XF)*(1-\/(y-\/YF))
+          + f(XF, YF+1) * (1-\/(x-\/XF))*(y-\/YF)
+          + f(XF+1, YF+1) * (x-\/XF)*(y-\/YF)
+\end{DoxyPre}
+ Note that the coordinates (x, y) contain integer and fractional components. The integer components specify which portion of the table to use while the fractional components control the interpolation processor.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+if (x,y) are outside of the table boundary, Bilinear interpolation returns zero output. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__BilinearInterpolate_ga887756dbbe013d0a15b987836a787677}\label{group__BilinearInterpolate_ga887756dbbe013d0a15b987836a787677}} 
+\index{Bilinear Interpolation@{Bilinear Interpolation}!arm\_bilinear\_interp\_f32@{arm\_bilinear\_interp\_f32}}
+\index{arm\_bilinear\_interp\_f32@{arm\_bilinear\_interp\_f32}!Bilinear Interpolation@{Bilinear Interpolation}}
+\doxysubsubsection{\texorpdfstring{arm\_bilinear\_interp\_f32()}{arm\_bilinear\_interp\_f32()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE float32\+\_\+t arm\+\_\+bilinear\+\_\+interp\+\_\+f32 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structarm__bilinear__interp__instance__f32}{arm\+\_\+bilinear\+\_\+interp\+\_\+instance\+\_\+f32}} $\ast$}]{S,  }\item[{float32\+\_\+t}]{X,  }\item[{float32\+\_\+t}]{Y }\end{DoxyParamCaption})}
+
+
+
+Floating-\/point bilinear interpolation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em S} & points to an instance of the interpolation structure. \\
+\hline
+\mbox{\texttt{ in}}  & {\em X} & interpolation coordinate. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Y} & interpolation coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+out interpolated value. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l08538}{8538}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{08542   \{}
+\DoxyCodeLine{08543     float32\_t out;}
+\DoxyCodeLine{08544     float32\_t f00, f01, f10, f11;}
+\DoxyCodeLine{08545     float32\_t *pData = S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__f32_afd1e764591c991c212d56c893efb5ea4}{pData}};}
+\DoxyCodeLine{08546     int32\_t xIndex, yIndex, index;}
+\DoxyCodeLine{08547     float32\_t xdiff, ydiff;}
+\DoxyCodeLine{08548     float32\_t b1, b2, b3, b4;}
+\DoxyCodeLine{08549 }
+\DoxyCodeLine{08550     xIndex = (int32\_t) X;}
+\DoxyCodeLine{08551     yIndex = (int32\_t) Y;}
+\DoxyCodeLine{08552 }
+\DoxyCodeLine{08553     \textcolor{comment}{/* Care taken for table outside boundary */}}
+\DoxyCodeLine{08554     \textcolor{comment}{/* Returns zero output when values are outside table boundary */}}
+\DoxyCodeLine{08555     \textcolor{keywordflow}{if} (xIndex < 0 || xIndex > (S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__f32_aede17bebfb1f835b61d71dd813eab3f8}{numCols}} -\/ 2) || yIndex < 0 || yIndex > (S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__f32_a34f2b17cc57b95011960df9718af6ed6}{numRows}} -\/ 2))}
+\DoxyCodeLine{08556     \{}
+\DoxyCodeLine{08557       \textcolor{keywordflow}{return} (0);}
+\DoxyCodeLine{08558     \}}
+\DoxyCodeLine{08559 }
+\DoxyCodeLine{08560     \textcolor{comment}{/* Calculation of index for two nearest points in X-\/direction */}}
+\DoxyCodeLine{08561     index = (xIndex ) + (yIndex ) * S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__f32_aede17bebfb1f835b61d71dd813eab3f8}{numCols}};}
+\DoxyCodeLine{08562 }
+\DoxyCodeLine{08563 }
+\DoxyCodeLine{08564     \textcolor{comment}{/* Read two nearest points in X-\/direction */}}
+\DoxyCodeLine{08565     f00 = pData[index];}
+\DoxyCodeLine{08566     f01 = pData[index + 1];}
+\DoxyCodeLine{08567 }
+\DoxyCodeLine{08568     \textcolor{comment}{/* Calculation of index for two nearest points in Y-\/direction */}}
+\DoxyCodeLine{08569     index = (xIndex ) + (yIndex+1) * S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__f32_aede17bebfb1f835b61d71dd813eab3f8}{numCols}};}
+\DoxyCodeLine{08570 }
+\DoxyCodeLine{08571 }
+\DoxyCodeLine{08572     \textcolor{comment}{/* Read two nearest points in Y-\/direction */}}
+\DoxyCodeLine{08573     f10 = pData[index];}
+\DoxyCodeLine{08574     f11 = pData[index + 1];}
+\DoxyCodeLine{08575 }
+\DoxyCodeLine{08576     \textcolor{comment}{/* Calculation of intermediate values */}}
+\DoxyCodeLine{08577     b1 = f00;}
+\DoxyCodeLine{08578     b2 = f01 -\/ f00;}
+\DoxyCodeLine{08579     b3 = f10 -\/ f00;}
+\DoxyCodeLine{08580     b4 = f00 -\/ f01 -\/ f10 + f11;}
+\DoxyCodeLine{08581 }
+\DoxyCodeLine{08582     \textcolor{comment}{/* Calculation of fractional part in X */}}
+\DoxyCodeLine{08583     xdiff = X -\/ xIndex;}
+\DoxyCodeLine{08584 }
+\DoxyCodeLine{08585     \textcolor{comment}{/* Calculation of fractional part in Y */}}
+\DoxyCodeLine{08586     ydiff = Y -\/ yIndex;}
+\DoxyCodeLine{08587 }
+\DoxyCodeLine{08588     \textcolor{comment}{/* Calculation of bi-\/linear interpolated output */}}
+\DoxyCodeLine{08589     out = b1 + b2 * xdiff + b3 * ydiff + b4 * xdiff * ydiff;}
+\DoxyCodeLine{08590 }
+\DoxyCodeLine{08591     \textcolor{comment}{/* return to application */}}
+\DoxyCodeLine{08592     \textcolor{keywordflow}{return} (out);}
+\DoxyCodeLine{08593   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__BilinearInterpolate_ga56fe34273ffb422f428b1d9feeffe0ea}\label{group__BilinearInterpolate_ga56fe34273ffb422f428b1d9feeffe0ea}} 
+\index{Bilinear Interpolation@{Bilinear Interpolation}!arm\_bilinear\_interp\_q15@{arm\_bilinear\_interp\_q15}}
+\index{arm\_bilinear\_interp\_q15@{arm\_bilinear\_interp\_q15}!Bilinear Interpolation@{Bilinear Interpolation}}
+\doxysubsubsection{\texorpdfstring{arm\_bilinear\_interp\_q15()}{arm\_bilinear\_interp\_q15()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q15\+\_\+t arm\+\_\+bilinear\+\_\+interp\+\_\+q15 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarm__bilinear__interp__instance__q15}{arm\+\_\+bilinear\+\_\+interp\+\_\+instance\+\_\+q15}} $\ast$}]{S,  }\item[{q31\+\_\+t}]{X,  }\item[{q31\+\_\+t}]{Y }\end{DoxyParamCaption})}
+
+
+
+Q15 bilinear interpolation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em S} & points to an instance of the interpolation structure. \\
+\hline
+\mbox{\texttt{ in}}  & {\em X} & interpolation coordinate in 12.\+20 format. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Y} & interpolation coordinate in 12.\+20 format. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+out interpolated value. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l08677}{8677}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{08681   \{}
+\DoxyCodeLine{08682     q63\_t acc = 0;                               \textcolor{comment}{/* output */}}
+\DoxyCodeLine{08683     q31\_t out;                                   \textcolor{comment}{/* Temporary output */}}
+\DoxyCodeLine{08684     q15\_t x1, x2, y1, y2;                        \textcolor{comment}{/* Nearest output values */}}
+\DoxyCodeLine{08685     q31\_t xfract, yfract;                        \textcolor{comment}{/* X, Y fractional parts */}}
+\DoxyCodeLine{08686     int32\_t rI, cI;                              \textcolor{comment}{/* Row and column indices */}}
+\DoxyCodeLine{08687     q15\_t *pYData = S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q15_a50d75b1316cee3e0dfad6dcc4c9a2954}{pData}};                    \textcolor{comment}{/* pointer to output table values */}}
+\DoxyCodeLine{08688     uint32\_t nCols = S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q15_a7fa8772d01583374ff8ac18205a26a37}{numCols}};                 \textcolor{comment}{/* num of rows */}}
+\DoxyCodeLine{08689 }
+\DoxyCodeLine{08690     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{08691     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{08692     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{08693     rI = ((X \& (q31\_t)0xFFF00000) >> 20);}
+\DoxyCodeLine{08694 }
+\DoxyCodeLine{08695     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{08696     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{08697     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{08698     cI = ((Y \& (q31\_t)0xFFF00000) >> 20);}
+\DoxyCodeLine{08699 }
+\DoxyCodeLine{08700     \textcolor{comment}{/* Care taken for table outside boundary */}}
+\DoxyCodeLine{08701     \textcolor{comment}{/* Returns zero output when values are outside table boundary */}}
+\DoxyCodeLine{08702     \textcolor{keywordflow}{if} (rI < 0 || rI > (S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q15_a7fa8772d01583374ff8ac18205a26a37}{numCols}} -\/ 2) || cI < 0 || cI > (S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q15_a2130ae30a804995a9f5d0e2189e08565}{numRows}} -\/ 2))}
+\DoxyCodeLine{08703     \{}
+\DoxyCodeLine{08704       \textcolor{keywordflow}{return} (0);}
+\DoxyCodeLine{08705     \}}
+\DoxyCodeLine{08706 }
+\DoxyCodeLine{08707     \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{08708     \textcolor{comment}{/* xfract should be in 12.20 format */}}
+\DoxyCodeLine{08709     xfract = (X \& 0x000FFFFF);}
+\DoxyCodeLine{08710 }
+\DoxyCodeLine{08711     \textcolor{comment}{/* Read two nearest output values from the index */}}
+\DoxyCodeLine{08712     x1 = pYData[((uint32\_t)rI) + nCols * ((uint32\_t)cI)    ];}
+\DoxyCodeLine{08713     x2 = pYData[((uint32\_t)rI) + nCols * ((uint32\_t)cI) + 1];}
+\DoxyCodeLine{08714 }
+\DoxyCodeLine{08715     \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{08716     \textcolor{comment}{/* yfract should be in 12.20 format */}}
+\DoxyCodeLine{08717     yfract = (Y \& 0x000FFFFF);}
+\DoxyCodeLine{08718 }
+\DoxyCodeLine{08719     \textcolor{comment}{/* Read two nearest output values from the index */}}
+\DoxyCodeLine{08720     y1 = pYData[((uint32\_t)rI) + nCols * ((uint32\_t)cI + 1)    ];}
+\DoxyCodeLine{08721     y2 = pYData[((uint32\_t)rI) + nCols * ((uint32\_t)cI + 1) + 1];}
+\DoxyCodeLine{08722 }
+\DoxyCodeLine{08723     \textcolor{comment}{/* Calculation of x1 * (1-\/xfract ) * (1-\/yfract) and acc is in 13.51 format */}}
+\DoxyCodeLine{08724 }
+\DoxyCodeLine{08725     \textcolor{comment}{/* x1 is in 1.15(q15), xfract in 12.20 format and out is in 13.35 format */}}
+\DoxyCodeLine{08726     \textcolor{comment}{/* convert 13.35 to 13.31 by right shifting  and out is in 1.31 */}}
+\DoxyCodeLine{08727     out = (q31\_t) (((q63\_t) x1 * (0x0FFFFF -\/ xfract)) >> 4U);}
+\DoxyCodeLine{08728     acc = ((q63\_t) out * (0x0FFFFF -\/ yfract));}
+\DoxyCodeLine{08729 }
+\DoxyCodeLine{08730     \textcolor{comment}{/* x2 * (xfract) * (1-\/yfract)  in 1.51 and adding to acc */}}
+\DoxyCodeLine{08731     out = (q31\_t) (((q63\_t) x2 * (0x0FFFFF -\/ yfract)) >> 4U);}
+\DoxyCodeLine{08732     acc += ((q63\_t) out * (xfract));}
+\DoxyCodeLine{08733 }
+\DoxyCodeLine{08734     \textcolor{comment}{/* y1 * (1 -\/ xfract) * (yfract)  in 1.51 and adding to acc */}}
+\DoxyCodeLine{08735     out = (q31\_t) (((q63\_t) y1 * (0x0FFFFF -\/ xfract)) >> 4U);}
+\DoxyCodeLine{08736     acc += ((q63\_t) out * (yfract));}
+\DoxyCodeLine{08737 }
+\DoxyCodeLine{08738     \textcolor{comment}{/* y2 * (xfract) * (yfract)  in 1.51 and adding to acc */}}
+\DoxyCodeLine{08739     out = (q31\_t) (((q63\_t) y2 * (xfract)) >> 4U);}
+\DoxyCodeLine{08740     acc += ((q63\_t) out * (yfract));}
+\DoxyCodeLine{08741 }
+\DoxyCodeLine{08742     \textcolor{comment}{/* acc is in 13.51 format and down shift acc by 36 times */}}
+\DoxyCodeLine{08743     \textcolor{comment}{/* Convert out to 1.15 format */}}
+\DoxyCodeLine{08744     \textcolor{keywordflow}{return} ((q15\_t)(acc >> 36));}
+\DoxyCodeLine{08745   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__BilinearInterpolate_gaefe4731017e8b9ac652e5fea57cb1fa5}\label{group__BilinearInterpolate_gaefe4731017e8b9ac652e5fea57cb1fa5}} 
+\index{Bilinear Interpolation@{Bilinear Interpolation}!arm\_bilinear\_interp\_q31@{arm\_bilinear\_interp\_q31}}
+\index{arm\_bilinear\_interp\_q31@{arm\_bilinear\_interp\_q31}!Bilinear Interpolation@{Bilinear Interpolation}}
+\doxysubsubsection{\texorpdfstring{arm\_bilinear\_interp\_q31()}{arm\_bilinear\_interp\_q31()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q31\+\_\+t arm\+\_\+bilinear\+\_\+interp\+\_\+q31 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarm__bilinear__interp__instance__q31}{arm\+\_\+bilinear\+\_\+interp\+\_\+instance\+\_\+q31}} $\ast$}]{S,  }\item[{q31\+\_\+t}]{X,  }\item[{q31\+\_\+t}]{Y }\end{DoxyParamCaption})}
+
+
+
+Q31 bilinear interpolation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em S} & points to an instance of the interpolation structure. \\
+\hline
+\mbox{\texttt{ in}}  & {\em X} & interpolation coordinate in 12.\+20 format. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Y} & interpolation coordinate in 12.\+20 format. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+out interpolated value. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l08603}{8603}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{08607   \{}
+\DoxyCodeLine{08608     q31\_t out;                                   \textcolor{comment}{/* Temporary output */}}
+\DoxyCodeLine{08609     q31\_t acc = 0;                               \textcolor{comment}{/* output */}}
+\DoxyCodeLine{08610     q31\_t xfract, yfract;                        \textcolor{comment}{/* X, Y fractional parts */}}
+\DoxyCodeLine{08611     q31\_t x1, x2, y1, y2;                        \textcolor{comment}{/* Nearest output values */}}
+\DoxyCodeLine{08612     int32\_t rI, cI;                              \textcolor{comment}{/* Row and column indices */}}
+\DoxyCodeLine{08613     q31\_t *pYData = S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q31_a843eae0c9db5f815e77e1aaf9afea358}{pData}};                    \textcolor{comment}{/* pointer to output table values */}}
+\DoxyCodeLine{08614     uint32\_t nCols = S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q31_a6c3eff4eb17ff1d43f170efb84713a2d}{numCols}};                 \textcolor{comment}{/* num of rows */}}
+\DoxyCodeLine{08615 }
+\DoxyCodeLine{08616     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{08617     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{08618     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{08619     rI = ((X \& (q31\_t)0xFFF00000) >> 20);}
+\DoxyCodeLine{08620 }
+\DoxyCodeLine{08621     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{08622     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{08623     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{08624     cI = ((Y \& (q31\_t)0xFFF00000) >> 20);}
+\DoxyCodeLine{08625 }
+\DoxyCodeLine{08626     \textcolor{comment}{/* Care taken for table outside boundary */}}
+\DoxyCodeLine{08627     \textcolor{comment}{/* Returns zero output when values are outside table boundary */}}
+\DoxyCodeLine{08628     \textcolor{keywordflow}{if} (rI < 0 || rI > (S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q31_a6c3eff4eb17ff1d43f170efb84713a2d}{numCols}} -\/ 2) || cI < 0 || cI > (S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q31_a2082e3eac56354d75291f03e96ce4aa5}{numRows}} -\/ 2))}
+\DoxyCodeLine{08629     \{}
+\DoxyCodeLine{08630       \textcolor{keywordflow}{return} (0);}
+\DoxyCodeLine{08631     \}}
+\DoxyCodeLine{08632 }
+\DoxyCodeLine{08633     \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{08634     \textcolor{comment}{/* shift left xfract by 11 to keep 1.31 format */}}
+\DoxyCodeLine{08635     xfract = (X \& 0x000FFFFF) << 11U;}
+\DoxyCodeLine{08636 }
+\DoxyCodeLine{08637     \textcolor{comment}{/* Read two nearest output values from the index */}}
+\DoxyCodeLine{08638     x1 = pYData[(rI) + (int32\_t)nCols * (cI)    ];}
+\DoxyCodeLine{08639     x2 = pYData[(rI) + (int32\_t)nCols * (cI) + 1];}
+\DoxyCodeLine{08640 }
+\DoxyCodeLine{08641     \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{08642     \textcolor{comment}{/* shift left yfract by 11 to keep 1.31 format */}}
+\DoxyCodeLine{08643     yfract = (Y \& 0x000FFFFF) << 11U;}
+\DoxyCodeLine{08644 }
+\DoxyCodeLine{08645     \textcolor{comment}{/* Read two nearest output values from the index */}}
+\DoxyCodeLine{08646     y1 = pYData[(rI) + (int32\_t)nCols * (cI + 1)    ];}
+\DoxyCodeLine{08647     y2 = pYData[(rI) + (int32\_t)nCols * (cI + 1) + 1];}
+\DoxyCodeLine{08648 }
+\DoxyCodeLine{08649     \textcolor{comment}{/* Calculation of x1 * (1-\/xfract ) * (1-\/yfract) and acc is in 3.29(q29) format */}}
+\DoxyCodeLine{08650     out = ((q31\_t) (((q63\_t) x1  * (0x7FFFFFFF -\/ xfract)) >> 32));}
+\DoxyCodeLine{08651     acc = ((q31\_t) (((q63\_t) out * (0x7FFFFFFF -\/ yfract)) >> 32));}
+\DoxyCodeLine{08652 }
+\DoxyCodeLine{08653     \textcolor{comment}{/* x2 * (xfract) * (1-\/yfract)  in 3.29(q29) and adding to acc */}}
+\DoxyCodeLine{08654     out = ((q31\_t) ((q63\_t) x2 * (0x7FFFFFFF -\/ yfract) >> 32));}
+\DoxyCodeLine{08655     acc += ((q31\_t) ((q63\_t) out * (xfract) >> 32));}
+\DoxyCodeLine{08656 }
+\DoxyCodeLine{08657     \textcolor{comment}{/* y1 * (1 -\/ xfract) * (yfract)  in 3.29(q29) and adding to acc */}}
+\DoxyCodeLine{08658     out = ((q31\_t) ((q63\_t) y1 * (0x7FFFFFFF -\/ xfract) >> 32));}
+\DoxyCodeLine{08659     acc += ((q31\_t) ((q63\_t) out * (yfract) >> 32));}
+\DoxyCodeLine{08660 }
+\DoxyCodeLine{08661     \textcolor{comment}{/* y2 * (xfract) * (yfract)  in 3.29(q29) and adding to acc */}}
+\DoxyCodeLine{08662     out = ((q31\_t) ((q63\_t) y2 * (xfract) >> 32));}
+\DoxyCodeLine{08663     acc += ((q31\_t) ((q63\_t) out * (yfract) >> 32));}
+\DoxyCodeLine{08664 }
+\DoxyCodeLine{08665     \textcolor{comment}{/* Convert acc to 1.31(q31) format */}}
+\DoxyCodeLine{08666     \textcolor{keywordflow}{return} ((q31\_t)(acc << 2));}
+\DoxyCodeLine{08667   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__BilinearInterpolate_ga1230bb062f6d8614db10b37ba7c9a161}\label{group__BilinearInterpolate_ga1230bb062f6d8614db10b37ba7c9a161}} 
+\index{Bilinear Interpolation@{Bilinear Interpolation}!arm\_bilinear\_interp\_q7@{arm\_bilinear\_interp\_q7}}
+\index{arm\_bilinear\_interp\_q7@{arm\_bilinear\_interp\_q7}!Bilinear Interpolation@{Bilinear Interpolation}}
+\doxysubsubsection{\texorpdfstring{arm\_bilinear\_interp\_q7()}{arm\_bilinear\_interp\_q7()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+STATIC\+\_\+\+FORCEINLINE q7\+\_\+t arm\+\_\+bilinear\+\_\+interp\+\_\+q7 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structarm__bilinear__interp__instance__q7}{arm\+\_\+bilinear\+\_\+interp\+\_\+instance\+\_\+q7}} $\ast$}]{S,  }\item[{q31\+\_\+t}]{X,  }\item[{q31\+\_\+t}]{Y }\end{DoxyParamCaption})}
+
+
+
+Q7 bilinear interpolation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em S} & points to an instance of the interpolation structure. \\
+\hline
+\mbox{\texttt{ in}}  & {\em X} & interpolation coordinate in 12.\+20 format. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Y} & interpolation coordinate in 12.\+20 format. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+out interpolated value. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{arm__math_8h_source_l08755}{8755}} of file \mbox{\hyperlink{arm__math_8h_source}{arm\+\_\+math.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{08759   \{}
+\DoxyCodeLine{08760     q63\_t acc = 0;                               \textcolor{comment}{/* output */}}
+\DoxyCodeLine{08761     q31\_t out;                                   \textcolor{comment}{/* Temporary output */}}
+\DoxyCodeLine{08762     q31\_t xfract, yfract;                        \textcolor{comment}{/* X, Y fractional parts */}}
+\DoxyCodeLine{08763     q7\_t x1, x2, y1, y2;                         \textcolor{comment}{/* Nearest output values */}}
+\DoxyCodeLine{08764     int32\_t rI, cI;                              \textcolor{comment}{/* Row and column indices */}}
+\DoxyCodeLine{08765     q7\_t *pYData = S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q7_af05194d691bbefb02c34bafb22ca9ef0}{pData}};                     \textcolor{comment}{/* pointer to output table values */}}
+\DoxyCodeLine{08766     uint32\_t nCols = S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q7_a860dd0d24380ea06cfbb348fb3b12c9a}{numCols}};                 \textcolor{comment}{/* num of rows */}}
+\DoxyCodeLine{08767 }
+\DoxyCodeLine{08768     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{08769     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{08770     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{08771     rI = ((X \& (q31\_t)0xFFF00000) >> 20);}
+\DoxyCodeLine{08772 }
+\DoxyCodeLine{08773     \textcolor{comment}{/* Input is in 12.20 format */}}
+\DoxyCodeLine{08774     \textcolor{comment}{/* 12 bits for the table index */}}
+\DoxyCodeLine{08775     \textcolor{comment}{/* Index value calculation */}}
+\DoxyCodeLine{08776     cI = ((Y \& (q31\_t)0xFFF00000) >> 20);}
+\DoxyCodeLine{08777 }
+\DoxyCodeLine{08778     \textcolor{comment}{/* Care taken for table outside boundary */}}
+\DoxyCodeLine{08779     \textcolor{comment}{/* Returns zero output when values are outside table boundary */}}
+\DoxyCodeLine{08780     \textcolor{keywordflow}{if} (rI < 0 || rI > (S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q7_a860dd0d24380ea06cfbb348fb3b12c9a}{numCols}} -\/ 2) || cI < 0 || cI > (S-\/>\mbox{\hyperlink{structarm__bilinear__interp__instance__q7_ad5a8067cab5f9ea4688b11a623e16607}{numRows}} -\/ 2))}
+\DoxyCodeLine{08781     \{}
+\DoxyCodeLine{08782       \textcolor{keywordflow}{return} (0);}
+\DoxyCodeLine{08783     \}}
+\DoxyCodeLine{08784 }
+\DoxyCodeLine{08785     \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{08786     \textcolor{comment}{/* xfract should be in 12.20 format */}}
+\DoxyCodeLine{08787     xfract = (X \& (q31\_t)0x000FFFFF);}
+\DoxyCodeLine{08788 }
+\DoxyCodeLine{08789     \textcolor{comment}{/* Read two nearest output values from the index */}}
+\DoxyCodeLine{08790     x1 = pYData[((uint32\_t)rI) + nCols * ((uint32\_t)cI)    ];}
+\DoxyCodeLine{08791     x2 = pYData[((uint32\_t)rI) + nCols * ((uint32\_t)cI) + 1];}
+\DoxyCodeLine{08792 }
+\DoxyCodeLine{08793     \textcolor{comment}{/* 20 bits for the fractional part */}}
+\DoxyCodeLine{08794     \textcolor{comment}{/* yfract should be in 12.20 format */}}
+\DoxyCodeLine{08795     yfract = (Y \& (q31\_t)0x000FFFFF);}
+\DoxyCodeLine{08796 }
+\DoxyCodeLine{08797     \textcolor{comment}{/* Read two nearest output values from the index */}}
+\DoxyCodeLine{08798     y1 = pYData[((uint32\_t)rI) + nCols * ((uint32\_t)cI + 1)    ];}
+\DoxyCodeLine{08799     y2 = pYData[((uint32\_t)rI) + nCols * ((uint32\_t)cI + 1) + 1];}
+\DoxyCodeLine{08800 }
+\DoxyCodeLine{08801     \textcolor{comment}{/* Calculation of x1 * (1-\/xfract ) * (1-\/yfract) and acc is in 16.47 format */}}
+\DoxyCodeLine{08802     out = ((x1 * (0xFFFFF -\/ xfract)));}
+\DoxyCodeLine{08803     acc = (((q63\_t) out * (0xFFFFF -\/ yfract)));}
+\DoxyCodeLine{08804 }
+\DoxyCodeLine{08805     \textcolor{comment}{/* x2 * (xfract) * (1-\/yfract)  in 2.22 and adding to acc */}}
+\DoxyCodeLine{08806     out = ((x2 * (0xFFFFF -\/ yfract)));}
+\DoxyCodeLine{08807     acc += (((q63\_t) out * (xfract)));}
+\DoxyCodeLine{08808 }
+\DoxyCodeLine{08809     \textcolor{comment}{/* y1 * (1 -\/ xfract) * (yfract)  in 2.22 and adding to acc */}}
+\DoxyCodeLine{08810     out = ((y1 * (0xFFFFF -\/ xfract)));}
+\DoxyCodeLine{08811     acc += (((q63\_t) out * (yfract)));}
+\DoxyCodeLine{08812 }
+\DoxyCodeLine{08813     \textcolor{comment}{/* y2 * (xfract) * (yfract)  in 2.22 and adding to acc */}}
+\DoxyCodeLine{08814     out = ((y2 * (yfract)));}
+\DoxyCodeLine{08815     acc += (((q63\_t) out * (xfract)));}
+\DoxyCodeLine{08816 }
+\DoxyCodeLine{08817     \textcolor{comment}{/* acc in 16.47 format and down shift by 40 to convert to 1.7 format */}}
+\DoxyCodeLine{08818     \textcolor{keywordflow}{return} ((q7\_t)(acc >> 40));}
+\DoxyCodeLine{08819   \}}
+
+\end{DoxyCode}

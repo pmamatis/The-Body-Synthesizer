@@ -1,0 +1,69 @@
+\hypertarget{effects_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/effects.h File Reference}
+\label{effects_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/effects.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/effects.h}}
+
+
+processing for all effects  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__EffectProcessing_ga10d4997e12a6984229c6f67c805ad007}{MAX\+\_\+\+EFFECTS}}~10
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum effects\+\_\+t\+\_\+enum {\bfseries effects\+\_\+t\+\_\+enum}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries effects\+\_\+t\+\_\+enum} \{ \newline
+{\bfseries TREM} = 1
+, {\bfseries DIST}
+, {\bfseries EQ}
+, {\bfseries ADSR}
+, \newline
+{\bfseries VOICES}
+, {\bfseries WAHWAH}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__EffectProcessing_ga3b78cb1a6c0d05c3740b0d59f514a49e}{effects\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{group__EffectProcessing_ga4dfb093ad0f349af12ad3030a11da8d9}{effects\+\_\+add}} (effects\+\_\+t\+\_\+enum effect)
+\begin{DoxyCompactList}\small\item\em Inserts an entry in the effect\+\_\+order\mbox{[}position\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__EffectProcessing_ga3f7370371217adca4b93419901dc1c1f}{keyboard\+\_\+adsr\+\_\+process}} (void)
+\begin{DoxyCompactList}\small\item\em function for the keyboard adsr processing \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__EffectProcessing_ga050a7ed0cb582067293e423a9c3fd7a9}{effects\+\_\+delete}} (effects\+\_\+t\+\_\+enum effect)
+\begin{DoxyCompactList}\small\item\em Deletes a certain effect inside the effect\+\_\+order\mbox{[}position\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+effects\+\_\+t\+\_\+enum \mbox{\hyperlink{group__EffectProcessing_ga356f7e77328d3524cc7c5592b2237823}{effect\+\_\+order}} \mbox{[}MAX\+\_\+\+EFFECTS\mbox{]}
+\begin{DoxyCompactList}\small\item\em array for activating effects \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+processing for all effects 
+
+\begin{DoxyAuthor}{Author}
+paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{effects_8h_source}{effects.\+h}}.
+

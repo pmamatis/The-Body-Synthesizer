@@ -1,0 +1,295 @@
+\hypertarget{wav_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/wav.h File Reference}
+\label{wav_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wav.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wav.h}}
+
+
+Simple PCM wav file I/O library.  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{wav_8h_a7ff724a7e59219c82177925476950735}{WAV\+\_\+\+FORMAT\+\_\+\+PCM}}~0x0001
+\item 
+\#define \mbox{\hyperlink{wav_8h_afd376f04ba9c4c56ad5c974d308530e5}{WAV\+\_\+\+FORMAT\+\_\+\+IEEE\+\_\+\+FLOAT}}~0x0003
+\item 
+\#define \mbox{\hyperlink{wav_8h_aa7a6693241fa1bfe8b2b82a06e723e37}{WAV\+\_\+\+FORMAT\+\_\+\+ALAW}}~0x0006
+\item 
+\#define \mbox{\hyperlink{wav_8h_a74af2fb4b8de297ef79eefa5118d52b5}{WAV\+\_\+\+FORMAT\+\_\+\+MULAW}}~0x0007
+\item 
+\#define \mbox{\hyperlink{wav_8h_a7906fcb39fc4a1eb43fff86173a3893a}{WAV\+\_\+\+FORMAT\+\_\+\+EXTENSIBLE}}~0xfffe
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \+\_\+\+Wav\+File \mbox{\hyperlink{wav_8h_ab437a4f212b3033976de7b2afc2230ac}{Wav\+File}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Wav\+Error} \{ \newline
+{\bfseries WAV\+\_\+\+OK}
+, {\bfseries WAV\+\_\+\+ERROR\+\_\+\+NOMEM}
+, {\bfseries WAV\+\_\+\+ERROR\+\_\+\+OS}
+, {\bfseries WAV\+\_\+\+ERROR\+\_\+\+FORMAT}
+, \newline
+{\bfseries WAV\+\_\+\+ERROR\+\_\+\+MODE}
+, {\bfseries WAV\+\_\+\+ERROR\+\_\+\+PARAM}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Wav\+File $\ast$ \mbox{\hyperlink{wav_8h_a36022ae34482d520db9e14d7e056bcbf}{wav\+\_\+open}} (const char $\ast$filename, const char $\ast$mode)
+\item 
+\mbox{\Hypertarget{wav_8h_a502403e50277054f04d9d837ee359c10}\label{wav_8h_a502403e50277054f04d9d837ee359c10}} 
+int {\bfseries wav\+\_\+close} (Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_af5646e3b510d41a013c424e577adab33}\label{wav_8h_af5646e3b510d41a013c424e577adab33}} 
+Wav\+File $\ast$ {\bfseries wav\+\_\+reopen} (Wav\+File $\ast$self, const char $\ast$filename, const char $\ast$mode)
+\item 
+size\+\_\+t \mbox{\hyperlink{wav_8h_a9a818bd7facdfcce273c04ed41c99f68}{wav\+\_\+read}} (Wav\+File $\ast$self, void $\ast$$\ast$buffers, size\+\_\+t count)
+\item 
+size\+\_\+t \mbox{\hyperlink{wav_8h_a9d988d0342d7c19394e8e0f29d26e485}{wav\+\_\+write}} (Wav\+File $\ast$self, const void $\ast$const $\ast$buffers, size\+\_\+t count)
+\item 
+long int \mbox{\hyperlink{wav_8h_aa990c8c22d5039769d35f7cdae28310d}{wav\+\_\+tell}} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_ae596540a94f871b815ac8535b583b920}\label{wav_8h_ae596540a94f871b815ac8535b583b920}} 
+int {\bfseries wav\+\_\+seek} (Wav\+File $\ast$self, long int offset, int origin)
+\item 
+\mbox{\Hypertarget{wav_8h_a38842fa61b980b95f585c5213e25b950}\label{wav_8h_a38842fa61b980b95f585c5213e25b950}} 
+void {\bfseries wav\+\_\+rewind} (Wav\+File $\ast$self)
+\item 
+int \mbox{\hyperlink{wav_8h_a2ae347cfdc40d636285968e72294eb8c}{wav\+\_\+eof}} (const Wav\+File $\ast$self)
+\item 
+int \mbox{\hyperlink{wav_8h_af241642229468a37ee36ca86a06978a9}{wav\+\_\+error}} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_a31426bf878486cf65405b8dd4e7034bd}\label{wav_8h_a31426bf878486cf65405b8dd4e7034bd}} 
+int {\bfseries wav\+\_\+flush} (Wav\+File $\ast$self)
+\item 
+Wav\+Error \mbox{\hyperlink{wav_8h_a689b248101c33cc0412d625f497396ba}{wav\+\_\+errno}} (const Wav\+File $\ast$self)
+\item 
+void \mbox{\hyperlink{wav_8h_a129bf98b4d0805e7068dbbba3ce9119c}{wav\+\_\+set\+\_\+format}} (Wav\+File $\ast$self, uint16\+\_\+t format)
+\item 
+void \mbox{\hyperlink{wav_8h_afc5fb77381d285f3bab78cb6b263db00}{wav\+\_\+set\+\_\+num\+\_\+channels}} (Wav\+File $\ast$self, uint16\+\_\+t num\+\_\+channels)
+\item 
+void \mbox{\hyperlink{wav_8h_aec804cebb962f82451f2a7efca41cf8a}{wav\+\_\+set\+\_\+sample\+\_\+rate}} (Wav\+File $\ast$self, uint32\+\_\+t sample\+\_\+rate)
+\item 
+void \mbox{\hyperlink{wav_8h_a50becd30ff6f8fcc4b42c84ff2df42b8}{wav\+\_\+set\+\_\+valid\+\_\+bits\+\_\+per\+\_\+sample}} (Wav\+File $\ast$self, uint16\+\_\+t bits)
+\item 
+void \mbox{\hyperlink{wav_8h_a4505192e4d2b0dae0cec1421af9c8e9f}{wav\+\_\+set\+\_\+sample\+\_\+size}} (Wav\+File $\ast$self, size\+\_\+t sample\+\_\+size)
+\item 
+\mbox{\Hypertarget{wav_8h_a1caa681508b3a0bb93bbfccbc05f0018}\label{wav_8h_a1caa681508b3a0bb93bbfccbc05f0018}} 
+uint16\+\_\+t {\bfseries wav\+\_\+get\+\_\+format} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_a2915aad1ee679ab887f195e2a5a21971}\label{wav_8h_a2915aad1ee679ab887f195e2a5a21971}} 
+uint16\+\_\+t {\bfseries wav\+\_\+get\+\_\+num\+\_\+channels} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_ae8ef50ee3500ddfddec3fb3811eefab3}\label{wav_8h_ae8ef50ee3500ddfddec3fb3811eefab3}} 
+uint32\+\_\+t {\bfseries wav\+\_\+get\+\_\+sample\+\_\+rate} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_a78042c63cd02fa5d53af015bfac40091}\label{wav_8h_a78042c63cd02fa5d53af015bfac40091}} 
+uint16\+\_\+t {\bfseries wav\+\_\+get\+\_\+valid\+\_\+bits\+\_\+per\+\_\+sample} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_a42c53ee7d3de1abe135b974cabcb7651}\label{wav_8h_a42c53ee7d3de1abe135b974cabcb7651}} 
+size\+\_\+t {\bfseries wav\+\_\+get\+\_\+sample\+\_\+size} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_a8ba9dd3bd3110f563ab40a06e106cae3}\label{wav_8h_a8ba9dd3bd3110f563ab40a06e106cae3}} 
+size\+\_\+t {\bfseries wav\+\_\+get\+\_\+length} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_a07e32fd34348be354e762e9a409d19ad}\label{wav_8h_a07e32fd34348be354e762e9a409d19ad}} 
+uint32\+\_\+t {\bfseries wav\+\_\+get\+\_\+channel\+\_\+mask} (const Wav\+File $\ast$self)
+\item 
+\mbox{\Hypertarget{wav_8h_a75516a5db666d7e2a38aa93df128669b}\label{wav_8h_a75516a5db666d7e2a38aa93df128669b}} 
+uint16\+\_\+t {\bfseries wav\+\_\+get\+\_\+sub\+\_\+format} (const Wav\+File $\ast$self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple PCM wav file I/O library. 
+
+\begin{DoxyAuthor}{Author}
+Zhaosheng Pan \href{mailto:zhaosheng.pan@sololand.moe}{\texttt{ zhaosheng.\+pan@sololand.\+moe}} 
+\end{DoxyAuthor}
+\begin{DoxyNote}{Note}
+The API is designed to be similar to stdio.
+\end{DoxyNote}
+This library does not support\+:
+\begin{DoxyItemize}
+\item formats other than PCM, IEEE float and log-\/\+PCM
+\item extra chunks after the data chunk
+\item big endian platforms (might be supported in the future) 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{wav_8h_source}{wav.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{wav_8h_aa7a6693241fa1bfe8b2b82a06e723e37}\label{wav_8h_aa7a6693241fa1bfe8b2b82a06e723e37}} 
+\index{wav.h@{wav.h}!WAV\_FORMAT\_ALAW@{WAV\_FORMAT\_ALAW}}
+\index{WAV\_FORMAT\_ALAW@{WAV\_FORMAT\_ALAW}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{WAV\_FORMAT\_ALAW}{WAV\_FORMAT\_ALAW}}
+{\footnotesize\ttfamily \#define WAV\+\_\+\+FORMAT\+\_\+\+ALAW~0x0006}
+
+
+
+Definition at line \mbox{\hyperlink{wav_8h_source_l00034}{34}} of file \mbox{\hyperlink{wav_8h_source}{wav.\+h}}.
+
+\mbox{\Hypertarget{wav_8h_a7906fcb39fc4a1eb43fff86173a3893a}\label{wav_8h_a7906fcb39fc4a1eb43fff86173a3893a}} 
+\index{wav.h@{wav.h}!WAV\_FORMAT\_EXTENSIBLE@{WAV\_FORMAT\_EXTENSIBLE}}
+\index{WAV\_FORMAT\_EXTENSIBLE@{WAV\_FORMAT\_EXTENSIBLE}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{WAV\_FORMAT\_EXTENSIBLE}{WAV\_FORMAT\_EXTENSIBLE}}
+{\footnotesize\ttfamily \#define WAV\+\_\+\+FORMAT\+\_\+\+EXTENSIBLE~0xfffe}
+
+
+
+Definition at line \mbox{\hyperlink{wav_8h_source_l00036}{36}} of file \mbox{\hyperlink{wav_8h_source}{wav.\+h}}.
+
+\mbox{\Hypertarget{wav_8h_afd376f04ba9c4c56ad5c974d308530e5}\label{wav_8h_afd376f04ba9c4c56ad5c974d308530e5}} 
+\index{wav.h@{wav.h}!WAV\_FORMAT\_IEEE\_FLOAT@{WAV\_FORMAT\_IEEE\_FLOAT}}
+\index{WAV\_FORMAT\_IEEE\_FLOAT@{WAV\_FORMAT\_IEEE\_FLOAT}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{WAV\_FORMAT\_IEEE\_FLOAT}{WAV\_FORMAT\_IEEE\_FLOAT}}
+{\footnotesize\ttfamily \#define WAV\+\_\+\+FORMAT\+\_\+\+IEEE\+\_\+\+FLOAT~0x0003}
+
+
+
+Definition at line \mbox{\hyperlink{wav_8h_source_l00033}{33}} of file \mbox{\hyperlink{wav_8h_source}{wav.\+h}}.
+
+\mbox{\Hypertarget{wav_8h_a74af2fb4b8de297ef79eefa5118d52b5}\label{wav_8h_a74af2fb4b8de297ef79eefa5118d52b5}} 
+\index{wav.h@{wav.h}!WAV\_FORMAT\_MULAW@{WAV\_FORMAT\_MULAW}}
+\index{WAV\_FORMAT\_MULAW@{WAV\_FORMAT\_MULAW}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{WAV\_FORMAT\_MULAW}{WAV\_FORMAT\_MULAW}}
+{\footnotesize\ttfamily \#define WAV\+\_\+\+FORMAT\+\_\+\+MULAW~0x0007}
+
+
+
+Definition at line \mbox{\hyperlink{wav_8h_source_l00035}{35}} of file \mbox{\hyperlink{wav_8h_source}{wav.\+h}}.
+
+\mbox{\Hypertarget{wav_8h_a7ff724a7e59219c82177925476950735}\label{wav_8h_a7ff724a7e59219c82177925476950735}} 
+\index{wav.h@{wav.h}!WAV\_FORMAT\_PCM@{WAV\_FORMAT\_PCM}}
+\index{WAV\_FORMAT\_PCM@{WAV\_FORMAT\_PCM}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{WAV\_FORMAT\_PCM}{WAV\_FORMAT\_PCM}}
+{\footnotesize\ttfamily \#define WAV\+\_\+\+FORMAT\+\_\+\+PCM~0x0001}
+
+\#ifdef \+\_\+\+\_\+cplusplus extern \char`\"{}\+C\char`\"{} \{ \#endif
+
+\#include \texorpdfstring{$<$}{<}stddef.\+h\texorpdfstring{$>$}{>} \#include \texorpdfstring{$<$}{<}stdint.\+h\texorpdfstring{$>$}{>}
+
+/$\ast$ wave file format codes 
+
+Definition at line \mbox{\hyperlink{wav_8h_source_l00032}{32}} of file \mbox{\hyperlink{wav_8h_source}{wav.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{wav_8h_ab437a4f212b3033976de7b2afc2230ac}\label{wav_8h_ab437a4f212b3033976de7b2afc2230ac}} 
+\index{wav.h@{wav.h}!WavFile@{WavFile}}
+\index{WavFile@{WavFile}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{WavFile}{WavFile}}
+{\footnotesize\ttfamily typedef struct \+\_\+\+Wav\+File Wav\+File}
+
+
+
+Definition at line \mbox{\hyperlink{wav_8h_source_l00047}{47}} of file \mbox{\hyperlink{wav_8h_source}{wav.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{wav_8h_ab31bfa84a48197e1e8a800f9c3a14193}\label{wav_8h_ab31bfa84a48197e1e8a800f9c3a14193}} 
+\index{wav.h@{wav.h}!WavError@{WavError}}
+\index{WavError@{WavError}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{WavError}{WavError}}
+{\footnotesize\ttfamily enum Wav\+Error}
+
+
+
+Definition at line \mbox{\hyperlink{wav_8h_source_l00038}{38}} of file \mbox{\hyperlink{wav_8h_source}{wav.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038              \{}
+\DoxyCodeLine{00039     WAV\_OK,           \textcolor{comment}{/* no error */}}
+\DoxyCodeLine{00040     WAV\_ERROR\_NOMEM,  \textcolor{comment}{/* malloc failed */}}
+\DoxyCodeLine{00041     WAV\_ERROR\_OS,     \textcolor{comment}{/* error when \{wave\} called a stdio function */}}
+\DoxyCodeLine{00042     WAV\_ERROR\_FORMAT, \textcolor{comment}{/* not a wave file or unsupported wave format */}}
+\DoxyCodeLine{00043     WAV\_ERROR\_MODE,   \textcolor{comment}{/* incorrect mode when opening the wave file or calling mode-\/specific API */}}
+\DoxyCodeLine{00044     WAV\_ERROR\_PARAM,  \textcolor{comment}{/* incorrect parameter passed to the API function */}}
+\DoxyCodeLine{00045 \} WavError;}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{wav_8h_a2ae347cfdc40d636285968e72294eb8c}\label{wav_8h_a2ae347cfdc40d636285968e72294eb8c}} 
+\index{wav.h@{wav.h}!wav\_eof@{wav\_eof}}
+\index{wav\_eof@{wav\_eof}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_eof()}{wav\_eof()}}
+{\footnotesize\ttfamily int wav\+\_\+eof (\begin{DoxyParamCaption}\item[{const Wav\+File $\ast$}]{self }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+eof description\+: Tell if the end of the wave file is reached. parameters\+: wave\+: The pointer to the Wave\+File structure. return\+: Non-\/zero integer if the end of the wave file is reached, otherwise zero. \mbox{\Hypertarget{wav_8h_a689b248101c33cc0412d625f497396ba}\label{wav_8h_a689b248101c33cc0412d625f497396ba}} 
+\index{wav.h@{wav.h}!wav\_errno@{wav\_errno}}
+\index{wav\_errno@{wav\_errno}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_errno()}{wav\_errno()}}
+{\footnotesize\ttfamily Wav\+Error wav\+\_\+errno (\begin{DoxyParamCaption}\item[{const Wav\+File $\ast$}]{self }\end{DoxyParamCaption})}
+
+function\+: wav\+\_\+errno description\+: Get the error code of the last operation. parameters\+: self The pointer to the Wave\+File structure. return\+: A Wave\+Error value, see \{enum \+\_\+\+Wave\+Error\}. \mbox{\Hypertarget{wav_8h_af241642229468a37ee36ca86a06978a9}\label{wav_8h_af241642229468a37ee36ca86a06978a9}} 
+\index{wav.h@{wav.h}!wav\_error@{wav\_error}}
+\index{wav\_error@{wav\_error}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_error()}{wav\_error()}}
+{\footnotesize\ttfamily int wav\+\_\+error (\begin{DoxyParamCaption}\item[{const Wav\+File $\ast$}]{self }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+error description\+: Tell if an error occurred in the last operation parameters\+: wave\+: The pointer to the Wave\+File structure return\+: Non-\/zero if there is an error, otherwise zero \mbox{\Hypertarget{wav_8h_a36022ae34482d520db9e14d7e056bcbf}\label{wav_8h_a36022ae34482d520db9e14d7e056bcbf}} 
+\index{wav.h@{wav.h}!wav\_open@{wav\_open}}
+\index{wav\_open@{wav\_open}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_open()}{wav\_open()}}
+{\footnotesize\ttfamily Wav\+File $\ast$ wav\+\_\+open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename,  }\item[{const char $\ast$}]{mode }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+open description\+: Open a wave file parameters\+: filename\+: The name of the wave file mode\+: The mode for open (same as fopen) return\+: NULL if the memory allocation for the Wave\+File object failed. Non-\/\+NULL means the memory allocation succeeded, but there can be other errors, which can be got using wav\+\_\+errno or wave\+\_\+error. \mbox{\Hypertarget{wav_8h_a9a818bd7facdfcce273c04ed41c99f68}\label{wav_8h_a9a818bd7facdfcce273c04ed41c99f68}} 
+\index{wav.h@{wav.h}!wav\_read@{wav\_read}}
+\index{wav\_read@{wav\_read}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_read()}{wav\_read()}}
+{\footnotesize\ttfamily size\+\_\+t wav\+\_\+read (\begin{DoxyParamCaption}\item[{Wav\+File $\ast$}]{self,  }\item[{void $\ast$$\ast$}]{buffers,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+read description\+: Read a block of samples from the wave file parameters\+: buffers\+: A list of pointers to a buffer where the data of each single channel will be placed count\+: The number of frames (block size) wave\+: The pointer to the Wave\+File structure return\+: The number of frames read If returned value \texorpdfstring{$<$}{<} \{count\}, either EOF reached or an error occured remarks\+: This API does not support extensible format. For extensible format, use \{wave\+\_\+read\+\_\+raw\} instead. \mbox{\Hypertarget{wav_8h_a129bf98b4d0805e7068dbbba3ce9119c}\label{wav_8h_a129bf98b4d0805e7068dbbba3ce9119c}} 
+\index{wav.h@{wav.h}!wav\_set\_format@{wav\_set\_format}}
+\index{wav\_set\_format@{wav\_set\_format}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_set\_format()}{wav\_set\_format()}}
+{\footnotesize\ttfamily void wav\+\_\+set\+\_\+format (\begin{DoxyParamCaption}\item[{Wav\+File $\ast$}]{self,  }\item[{uint16\+\_\+t}]{format }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+set\+\_\+format description\+: Set the format code parameters\+: self\+: The Wave\+File object format\+: The format code, which should be one of WAVE\+\_\+\+FORMAT\+\_\+$\ast$ return\+: None remarks\+: All data will be cleared after the call \{wav\+\_\+errno\} can be used to get the error code if there is an error. \mbox{\Hypertarget{wav_8h_afc5fb77381d285f3bab78cb6b263db00}\label{wav_8h_afc5fb77381d285f3bab78cb6b263db00}} 
+\index{wav.h@{wav.h}!wav\_set\_num\_channels@{wav\_set\_num\_channels}}
+\index{wav\_set\_num\_channels@{wav\_set\_num\_channels}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_set\_num\_channels()}{wav\_set\_num\_channels()}}
+{\footnotesize\ttfamily void wav\+\_\+set\+\_\+num\+\_\+channels (\begin{DoxyParamCaption}\item[{Wav\+File $\ast$}]{self,  }\item[{uint16\+\_\+t}]{num\+\_\+channels }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+set\+\_\+num\+\_\+channels description\+: Set the number of channels parameters\+: self\+: The Wave\+File object num\+\_\+channels\+: The number of channels return\+: None remarks\+: All data will be cleared after the call \{wav\+\_\+errno\} can be used to get the error code if there is an error. \mbox{\Hypertarget{wav_8h_aec804cebb962f82451f2a7efca41cf8a}\label{wav_8h_aec804cebb962f82451f2a7efca41cf8a}} 
+\index{wav.h@{wav.h}!wav\_set\_sample\_rate@{wav\_set\_sample\_rate}}
+\index{wav\_set\_sample\_rate@{wav\_set\_sample\_rate}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_set\_sample\_rate()}{wav\_set\_sample\_rate()}}
+{\footnotesize\ttfamily void wav\+\_\+set\+\_\+sample\+\_\+rate (\begin{DoxyParamCaption}\item[{Wav\+File $\ast$}]{self,  }\item[{uint32\+\_\+t}]{sample\+\_\+rate }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+set\+\_\+sample\+\_\+rate description\+: Set the sample rate parameters\+: self\+: The Wave\+File object sample\+\_\+rate\+: The sample rate return\+: None remarks\+: All data will be cleared after the call \{wav\+\_\+errno\} can be used to get the error code if there is an error. \mbox{\Hypertarget{wav_8h_a4505192e4d2b0dae0cec1421af9c8e9f}\label{wav_8h_a4505192e4d2b0dae0cec1421af9c8e9f}} 
+\index{wav.h@{wav.h}!wav\_set\_sample\_size@{wav\_set\_sample\_size}}
+\index{wav\_set\_sample\_size@{wav\_set\_sample\_size}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_set\_sample\_size()}{wav\_set\_sample\_size()}}
+{\footnotesize\ttfamily void wav\+\_\+set\+\_\+sample\+\_\+size (\begin{DoxyParamCaption}\item[{Wav\+File $\ast$}]{self,  }\item[{size\+\_\+t}]{sample\+\_\+size }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+set\+\_\+sample\+\_\+size description\+: Set the size (in bytes) per sample parameters\+: self\+: the Wave\+File object sample\+\_\+size\+: the sample size value return\+: None remarks\+: When this function is called, the \{Bits\+Per\+Sample\} and \{Valid\+Bits\+Per\+Sample\} fields in the wave file will be set to 8$\ast$\{sample\+\_\+size\}. All data will be cleared after the call. \{wav\+\_\+errno\} can be used to get the error code if there is an error. \mbox{\Hypertarget{wav_8h_a50becd30ff6f8fcc4b42c84ff2df42b8}\label{wav_8h_a50becd30ff6f8fcc4b42c84ff2df42b8}} 
+\index{wav.h@{wav.h}!wav\_set\_valid\_bits\_per\_sample@{wav\_set\_valid\_bits\_per\_sample}}
+\index{wav\_set\_valid\_bits\_per\_sample@{wav\_set\_valid\_bits\_per\_sample}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_set\_valid\_bits\_per\_sample()}{wav\_set\_valid\_bits\_per\_sample()}}
+{\footnotesize\ttfamily void wav\+\_\+set\+\_\+valid\+\_\+bits\+\_\+per\+\_\+sample (\begin{DoxyParamCaption}\item[{Wav\+File $\ast$}]{self,  }\item[{uint16\+\_\+t}]{bits }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+set\+\_\+valid\+\_\+bits\+\_\+per\+\_\+sample description\+: get the number of valid bits per sample parameters\+: self\+: The Wave\+File object bits\+: The value of valid bits to set return\+: None remarks\+: If \{bits\} is 0 or larger than 8$\ast$\{sample\+\_\+size\}, an error will occur. All data will be cleared after the call. \{wav\+\_\+errno\} can be used to get the error code if there is an error. \mbox{\Hypertarget{wav_8h_aa990c8c22d5039769d35f7cdae28310d}\label{wav_8h_aa990c8c22d5039769d35f7cdae28310d}} 
+\index{wav.h@{wav.h}!wav\_tell@{wav\_tell}}
+\index{wav\_tell@{wav\_tell}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_tell()}{wav\_tell()}}
+{\footnotesize\ttfamily long int wav\+\_\+tell (\begin{DoxyParamCaption}\item[{const Wav\+File $\ast$}]{self }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+tell description\+: Tell the current position in the wave file. parameters\+: wave\+: The pointer to the Wave\+File structure. return\+: The current frame number. \mbox{\Hypertarget{wav_8h_a9d988d0342d7c19394e8e0f29d26e485}\label{wav_8h_a9d988d0342d7c19394e8e0f29d26e485}} 
+\index{wav.h@{wav.h}!wav\_write@{wav\_write}}
+\index{wav\_write@{wav\_write}!wav.h@{wav.h}}
+\doxysubsubsection{\texorpdfstring{wav\_write()}{wav\_write()}}
+{\footnotesize\ttfamily size\+\_\+t wav\+\_\+write (\begin{DoxyParamCaption}\item[{Wav\+File $\ast$}]{self,  }\item[{const void $\ast$const $\ast$}]{buffers,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+function\+: wave\+\_\+write description\+: Write a block of samples to the wave file parameters\+: buffers\+: A list of pointers to a buffer of the data of a single channel. count\+: The number of frames (block size) wave\+: The pointer to the Wave\+File structure return\+: The number of frames written If returned value \texorpdfstring{$<$}{<} \{count\}, either EOF reached or an error occured. remarks\+: This API does not support extensible format. For extensible format, use \{wave\+\_\+read\+\_\+raw\} instead. 

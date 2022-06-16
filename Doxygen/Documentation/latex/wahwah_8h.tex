@@ -1,0 +1,58 @@
+\hypertarget{wahwah_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/wahwah.h File Reference}
+\label{wahwah_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wahwah.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/wahwah.h}}
+
+
+wahwah effect  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Wah\+Wah\+\_\+\+Status} \{ {\bfseries WAHWAH\+\_\+\+FAIL} = -\/1
+, {\bfseries WAHWAH\+\_\+\+OK} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Wah\+Wah\+\_\+\+Status \mbox{\hyperlink{group__wahwah_gafdc2b53d4cc3352bf6e51df974ce169e}{Wah\+Wah\+\_\+\+Init}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah)
+\begin{DoxyCompactList}\small\item\em wahwah efffect init function \end{DoxyCompactList}\item 
+Wah\+Wah\+\_\+\+Status \mbox{\hyperlink{group__wahwah_ga9b91a7fae64755689936b60cf1820535}{Wah\+Wah\+\_\+\+Reset}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah)
+\begin{DoxyCompactList}\small\item\em resets all wahwah parameters \end{DoxyCompactList}\item 
+Wah\+Wah\+\_\+\+Status \mbox{\hyperlink{group__wahwah_ga2fa3b9f5777f0876da0b828ee333673a}{Process\+Wah\+Wah}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah, float $\ast$data)
+\begin{DoxyCompactList}\small\item\em Processed current tremolo sample. \end{DoxyCompactList}\item 
+Wah\+Wah\+\_\+\+Status \mbox{\hyperlink{group__wahwah_ga85d3b2ed1cf4a3aef7b32c97b2e64237}{Process\+Auto\+Wah\+Wah}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah, float $\ast$data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} \mbox{\hyperlink{group__wahwah_ga62a194fb1a3f2db2cb92a47784a1394d}{Wah\+Wah}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+wahwah effect 
+
+\begin{DoxyAuthor}{Author}
+Max Lehmer, Marc Bielen 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{wahwah_8h_source}{wahwah.\+h}}.
+

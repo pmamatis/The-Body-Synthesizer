@@ -1,0 +1,132 @@
+\hypertarget{structsignal__t}{}\doxysection{signal\+\_\+t Struct Reference}
+\label{structsignal__t}\index{signal\_t@{signal\_t}}
+
+
+struct to store signals  
+
+
+
+
+{\ttfamily \#include $<$signal\+\_\+synthesis.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsignal__t_a0ad6f555d19197265e723b11e9e7df47}{count}}
+\item 
+float \mbox{\hyperlink{structsignal__t_a30c064665654e9d85034fa0629428455}{max}}
+\item 
+unsigned int \mbox{\hyperlink{structsignal__t_a276717a0fd6e22f23853f6b736b1ecc0}{kind}} \mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}
+\item 
+double \mbox{\hyperlink{structsignal__t_a1c13846aa5eaad504e237510812a01fa}{freq}} \mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsignal__t_a124e943f2326441ecdf5a4562e1743ee}{freq\+Index}} \mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structsignal__t_a561acecc408d7b29b668d2318a81f0f1}{current\+\_\+\+LUT\+\_\+\+Index}} \mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsignal__t_a2f4c3ee31aa2e40107b3104b7791c24b}{ID}} \mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+struct to store signals 
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & amount of signals \\
+\hline
+{\em max} & global Maximum of all added Signals, set to zero when construct or destruct a Signal \\
+\hline
+{\em kind} & kind of the signal, e.\+g. sinus, triangle, noise etc. \\
+\hline
+{\em freq} & frequency \\
+\hline
+{\em freq\+Index} & starting index of the LUT for the gicen frequency, all LUT\textquotesingle{}s for all predefiend frequencys are in the same array \\
+\hline
+{\em current\+\_\+\+LUT\+\_\+\+Index} & last used LUT index, neccessary to write the signal in arrays which are smaller or bigger than the LUT samples \\
+\hline
+{\em ID} & indicates the Signal where it comes from. 0-\/2 Synthesizer Voices. 3-\/5 Keyboard notes, \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8h_source_l00062}{62}} of file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structsignal__t_a0ad6f555d19197265e723b11e9e7df47}\label{structsignal__t_a0ad6f555d19197265e723b11e9e7df47}} 
+\index{signal\_t@{signal\_t}!count@{count}}
+\index{count@{count}!signal\_t@{signal\_t}}
+\doxysubsubsection{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily uint8\+\_\+t signal\+\_\+t\+::count}
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8h_source_l00063}{63}} of file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+
+\mbox{\Hypertarget{structsignal__t_a561acecc408d7b29b668d2318a81f0f1}\label{structsignal__t_a561acecc408d7b29b668d2318a81f0f1}} 
+\index{signal\_t@{signal\_t}!current\_LUT\_Index@{current\_LUT\_Index}}
+\index{current\_LUT\_Index@{current\_LUT\_Index}!signal\_t@{signal\_t}}
+\doxysubsubsection{\texorpdfstring{current\_LUT\_Index}{current\_LUT\_Index}}
+{\footnotesize\ttfamily uint32\+\_\+t signal\+\_\+t\+::current\+\_\+\+LUT\+\_\+\+Index\mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8h_source_l00069}{69}} of file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+
+\mbox{\Hypertarget{structsignal__t_a1c13846aa5eaad504e237510812a01fa}\label{structsignal__t_a1c13846aa5eaad504e237510812a01fa}} 
+\index{signal\_t@{signal\_t}!freq@{freq}}
+\index{freq@{freq}!signal\_t@{signal\_t}}
+\doxysubsubsection{\texorpdfstring{freq}{freq}}
+{\footnotesize\ttfamily double signal\+\_\+t\+::freq\mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8h_source_l00067}{67}} of file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+
+\mbox{\Hypertarget{structsignal__t_a124e943f2326441ecdf5a4562e1743ee}\label{structsignal__t_a124e943f2326441ecdf5a4562e1743ee}} 
+\index{signal\_t@{signal\_t}!freqIndex@{freqIndex}}
+\index{freqIndex@{freqIndex}!signal\_t@{signal\_t}}
+\doxysubsubsection{\texorpdfstring{freqIndex}{freqIndex}}
+{\footnotesize\ttfamily uint8\+\_\+t signal\+\_\+t\+::freq\+Index\mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8h_source_l00068}{68}} of file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+
+\mbox{\Hypertarget{structsignal__t_a2f4c3ee31aa2e40107b3104b7791c24b}\label{structsignal__t_a2f4c3ee31aa2e40107b3104b7791c24b}} 
+\index{signal\_t@{signal\_t}!ID@{ID}}
+\index{ID@{ID}!signal\_t@{signal\_t}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily uint8\+\_\+t signal\+\_\+t\+::\+ID\mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8h_source_l00071}{71}} of file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+
+\mbox{\Hypertarget{structsignal__t_a276717a0fd6e22f23853f6b736b1ecc0}\label{structsignal__t_a276717a0fd6e22f23853f6b736b1ecc0}} 
+\index{signal\_t@{signal\_t}!kind@{kind}}
+\index{kind@{kind}!signal\_t@{signal\_t}}
+\doxysubsubsection{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily unsigned int signal\+\_\+t\+::kind\mbox{[}\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8h_source_l00066}{66}} of file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+
+\mbox{\Hypertarget{structsignal__t_a30c064665654e9d85034fa0629428455}\label{structsignal__t_a30c064665654e9d85034fa0629428455}} 
+\index{signal\_t@{signal\_t}!max@{max}}
+\index{max@{max}!signal\_t@{signal\_t}}
+\doxysubsubsection{\texorpdfstring{max}{max}}
+{\footnotesize\ttfamily float signal\+\_\+t\+::max}
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8h_source_l00064}{64}} of file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/\mbox{\hyperlink{signal__synthesis_8h}{signal\+\_\+synthesis.\+h}}\end{DoxyCompactItemize}

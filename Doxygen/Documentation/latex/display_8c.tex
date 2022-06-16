@@ -1,0 +1,191 @@
+\hypertarget{display_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/display.c File Reference}
+\label{display_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/display.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/display.c}}
+
+
+contains all Display related functions and variables  
+
+
+{\ttfamily \#include \char`\"{}display.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayProcess_ga11f29ac6ffffd64bb9c21e37c0b6e7ce}{Display\+\_\+\+Init}} (struct \mbox{\hyperlink{structdisplay__variables}{display\+\_\+variables}} $\ast$Display)
+\begin{DoxyCompactList}\small\item\em this function initiliazes the display struct variables \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayProcess_gad30227eebb2921ea58a7bc2c82cb33ab}{Display\+\_\+\+Start}} (EPD $\ast$epd, Paint $\ast$paint, unsigned char $\ast$frame\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em this function starts the display \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayProcess_ga04813dcc16532f2222d2a9d799d98f30}{DISPLAY\+\_\+\+Print\+Current\+Page}} (void)
+\begin{DoxyCompactList}\small\item\em this function prints the current display page \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayProcess_ga0cf58d71eacb3fad194c7257fd5ce183}{DISPLAY\+\_\+\+Update}} (void)
+\begin{DoxyCompactList}\small\item\em this function updates the display \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayProcess_ga4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\+\_\+\+Draw\+Arrow}} (uint8\+\_\+t Joystick\+Parameter\+Position)
+\begin{DoxyCompactList}\small\item\em this function draws an arrow \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display_8c_a08d53d7a8c7863ece4aace771ec9fcfb}{DISPLAY\+\_\+\+Delete\+Arrow}} (uint8\+\_\+t Joystick\+Parameter\+Position)
+\begin{DoxyCompactList}\small\item\em this function deletes an arrow \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayProcess_ga66ef522eba7da71e294cabcccdd89adf}{DISPLAY\+\_\+\+Arrow\+Up}} (uint8\+\_\+t $\ast$Joystick\+Parameter\+Position)
+\begin{DoxyCompactList}\small\item\em this function sets the arrow one more position up \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayProcess_ga44502944f0f57e797ed44a9d81e533e8}{DISPLAY\+\_\+\+Arrow\+Down}} (uint8\+\_\+t $\ast$Joystick\+Parameter\+Position)
+\begin{DoxyCompactList}\small\item\em this function sets the arrow one more position down \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayProcess_gaad139dccbdea27c5c95092b327408a1a}{DISPLAY\+\_\+\+Switch\+Page\+Left}} (void)
+\begin{DoxyCompactList}\small\item\em this function switches to one page on the left \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayProcess_ga6762942b296dabc3a6cfa0f14bd1c690}{DISPLAY\+\_\+\+Switch\+Page\+Right}} (void)
+\begin{DoxyCompactList}\small\item\em this function switches to one page on the right \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayProcess_ga58ba5f4736b652ed76bbb23f7d2cbe0e}{DISPLAY\+\_\+processing}} (void)
+\begin{DoxyCompactList}\small\item\em this function is the main processing function of the display \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayPage_ga7b8ca052b8ac8db5ac68f7cbe53ae494}{p\+\_\+\+Starting\+Menu}} (unsigned char $\ast$frame\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em this function prints the start menu \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayPage_gae23937cde028cc1e90910692e6a2c6a4}{p\+\_\+\+Drumcomputer\+\_\+overview}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayPage_gaf9d7f7add0e2f3d4bc2d56c1b4803d97}{p\+\_\+\+Drumcomputer\+\_\+\+Settings}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga2900e59099c5f0d46df7571a3e9b7352}{DISPLAY\+\_\+\+Draw\+Drumcomputer\+Pattern}} (void)
+\begin{DoxyCompactList}\small\item\em This function draws the current set drumcomputer pattern for each step of each sample. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gafeebe386ce2f442752742b054674b40d}{Display\+\_\+\+Load\+Drum\+Kits}} (uint8\+\_\+t Drumkit)
+\begin{DoxyCompactList}\small\item\em This function loads the expected drumkit from the sd card. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayPage_gadf582a2e8ef7f900542820189b94f22d}{Display\+\_\+\+Load\+Single\+Sample}} (uint8\+\_\+t Sample\+NUM, uint8\+\_\+t Kit\+NUM)
+\begin{DoxyCompactList}\small\item\em This function loads the single sample, which is e.\+g. triggered by the emg-\/sensor from the sd card. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga6f1e5fd55fe52c0da6ed8691a043c7e3}{Display\+\_\+\+Draw\+Drumcomputer\+Icons}} (char $\ast$S1, char $\ast$S2, char $\ast$S3, char $\ast$S4)
+\begin{DoxyCompactList}\small\item\em This function draws the sample names of the drumkit, which is currently chosen. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gaeee4736127d8842a23ce57021443c5af}{DISPLAY\+\_\+\+Draw\+Drumcomputer\+Pattern\+Frame}} (uint8\+\_\+t Drumsteps)
+\begin{DoxyCompactList}\small\item\em This function draws the frame of the drumcomputer pattern. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gacc64d5980c2033bd470353f22af60a7a}{DISPLAY\+\_\+\+Set\+Drumcomputer\+Step}} (void)
+\begin{DoxyCompactList}\small\item\em This function fills the drumcomputer steps with color. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga7759568f4bd60f3d77a2a0e463b77b03}{DISPLAY\+\_\+\+Delete\+Drumcomputer\+Step}} (void)
+\begin{DoxyCompactList}\small\item\em This function unfills the drumcomputer steps with color. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga6e1ecb52e8edebcd426cb409104aac47}{DISPLAY\+\_\+\+Set\+Drumcomputer\+Step\+Cursor}} (void)
+\begin{DoxyCompactList}\small\item\em This function sets the current cursor position of the drumcomputer cursor. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga1734a46d569f2b74ad09171b2802ca6b}{DISPLAY\+\_\+\+Delete\+Drumcomputer\+Step\+Cursor}} (void)
+\begin{DoxyCompactList}\small\item\em This function deletes the current cursor position of the drumcomputer cursor. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayPage_ga8c0c367ef7802a6af877619b174d12ec}{p\+\_\+\+Sequencer\+\_\+overview}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__DisplayPage_ga9eb195ca66d081452b9af0da2689dae2}{p\+\_\+\+Sequencer\+\_\+\+Settings}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gaf6dae7f8bd4125cda81cd0a03749adf2}{Display\+\_\+\+Draw\+Sequencer\+Icons}} (void)
+\begin{DoxyCompactList}\small\item\em This function draws the note names of the sequencer. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga3270139a5529761a3c6cc482e8a83367}{DISPLAY\+\_\+\+Draw\+Sequencer\+Pattern\+Frame}} (uint8\+\_\+t Drumsteps)
+\begin{DoxyCompactList}\small\item\em This function draws the pattern frame of the sequencer. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gacb106feb27895b4c32f2cd8770842848}{DISPLAY\+\_\+\+Set\+Sequencer\+Step\+Cursor}} (void)
+\begin{DoxyCompactList}\small\item\em This function sets the current cursor position of the sequencer cursor. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga2f33d0a9945e16984c8e31dc9b145c01}{DISPLAY\+\_\+\+Draw\+Sequencer\+Pattern}} (void)
+\begin{DoxyCompactList}\small\item\em This function draws the current set sequencer pattern for each step of each sample. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga9d7e433c8b0a75b8ffdfa1ffe817c2f1}{DISPLAY\+\_\+\+Set\+Sequencer\+Step}} (void)
+\begin{DoxyCompactList}\small\item\em This function fills the sequencer steps with color. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_ga6b780fda00ecfb80ed28ba3a62937b11}{DISPLAY\+\_\+\+Delete\+Sequencer\+Step}} (void)
+\begin{DoxyCompactList}\small\item\em This function unfills the drumcomputer steps with color. \end{DoxyCompactList}\item 
+Display\+\_\+\+Status \mbox{\hyperlink{group__Display_gab4a4b9b1639809ba234afec57b86facb}{DISPLAY\+\_\+\+Delete\+Sequencer\+Step\+Cursor}} (void)
+\begin{DoxyCompactList}\small\item\em This function deletes the current cursor position of the sequencer cursor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga349ac6f6068d46a199b473139123f0be}{p\+\_\+\+Voices\+\_\+overview}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga43359da16507588edd1fe90f3ced9222}{p\+\_\+\+Voices\+\_\+\+Settings}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga9c50283b04038fadbf006a1a7ecf27c8}{p\+\_\+\+ADSR\+\_\+overview}} (void)
+\begin{DoxyCompactList}\small\item\em this function edits the settings of the ADSR, just the sources have can be edited on another page or you can switch to the next effect \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga59adc18e5d5ce7fc2cfa665772b52302}{p\+\_\+\+ADSR\+\_\+\+Settings}} (void)
+\begin{DoxyCompactList}\small\item\em this function edits the sources of the ADSR parameters \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga98cc1f263ddc00ac8fbf80266616ce1c}{p\+\_\+\+Equalizer\+\_\+overview}} (void)
+\begin{DoxyCompactList}\small\item\em this function edits the ON/\+OFF settings of the Equalizer, the parameters and sources have to be edited on another page or you can switch to the next effect \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga7b732b0224608d1d160f657ee80e3b6e}{p\+\_\+\+Equalizer\+\_\+\+Settings}} (void)
+\begin{DoxyCompactList}\small\item\em this function prints the Equalizer submenu and edits its values \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_gaf744a311b39e043299b23b94ce5b0f7c}{p\+\_\+\+Wah\+Wah\+\_\+overview}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga7a0c5167cd2dd7640095ed836806993a}{p\+\_\+\+Wah\+Wah\+\_\+\+Settings}} (struct \mbox{\hyperlink{structWahWah__t}{Wah\+Wah\+\_\+t}} $\ast$Wah\+Wah)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga1165fc18d03b690c887a8e8de4286a53}{p\+\_\+\+Distortion}} (struct \mbox{\hyperlink{structeffects__distortion}{effects\+\_\+distortion}} $\ast$Hard\+Clipping)
+\begin{DoxyCompactList}\small\item\em this function prints the Distortion submenu and edits its values \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga89b9c4137cc59fe857a1a6cdcaffc0a9}{p\+\_\+\+Tremolo}} (struct \mbox{\hyperlink{structTremolo__t}{Tremolo\+\_\+t}} $\ast$Tremolo)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_gae9490b1e7da6a8a226cf5065174d5ae3}{p\+\_\+\+EMG}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga3123aab8377a46e24d0b13a17c68aa19}{p\+\_\+\+Key\+And\+Mode}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_gaa562906df4ccbd2259ec2436685c418f}{p\+\_\+\+Volume}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_ga84ad5e4c5b1f9dca651caf624ed02d91}{Full\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em Makes a full reset of all efffects paramter to the default values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayPage_gabd2a92e2609f00be1f6dd91508ac20d8}{p\+\_\+\+Presets}} (void)
+\begin{DoxyCompactList}\small\item\em GUI-\/site function, all functions with the beginning p\+\_\+ represent a site of the GUI menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+contains all Display related functions and variables 
+
+\begin{DoxyAuthor}{Author}
+Marc Bielen 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{display_8c_a08d53d7a8c7863ece4aace771ec9fcfb}\label{display_8c_a08d53d7a8c7863ece4aace771ec9fcfb}} 
+\index{display.c@{display.c}!DISPLAY\_DeleteArrow@{DISPLAY\_DeleteArrow}}
+\index{DISPLAY\_DeleteArrow@{DISPLAY\_DeleteArrow}!display.c@{display.c}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_DeleteArrow()}{DISPLAY\_DeleteArrow()}}
+{\footnotesize\ttfamily void DISPLAY\+\_\+\+Delete\+Arrow (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Joystick\+Parameter\+Position }\end{DoxyParamCaption})}
+
+
+
+this function deletes an arrow 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Joystick\+Parameter\+Position} & current position of the joystick \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{display_8c_source_l00419}{419}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00419                                                             \{}
+\DoxyCodeLine{00420 }
+\DoxyCodeLine{00421     \textcolor{keywordflow}{switch}(JoystickParameterPosition) \{}
+\DoxyCodeLine{00422     \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00423         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE1, Display.arrow\_end\_x\_position, CASE1+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00424         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00425     \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00426         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE2, Display.arrow\_end\_x\_position, CASE2+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00427         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00428     \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00429         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE3, Display.arrow\_end\_x\_position, CASE3+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00430         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00431     \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{00432         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE4, Display.arrow\_end\_x\_position, CASE4+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00433         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00434     \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{00435         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE5, Display.arrow\_end\_x\_position, CASE5+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00436         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00437     \textcolor{keywordflow}{case} 6:}
+\DoxyCodeLine{00438         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE6, Display.arrow\_end\_x\_position, CASE6+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00439         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00440     \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{00441         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE7, Display.arrow\_end\_x\_position, CASE7+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00442         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00443     \textcolor{keywordflow}{case} 8:}
+\DoxyCodeLine{00444         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE8, Display.arrow\_end\_x\_position, CASE8+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00445         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00446     \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{00447         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE9, Display.arrow\_end\_x\_position, CASE9+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00448         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00449     \textcolor{keywordflow}{case} 10:}
+\DoxyCodeLine{00450         Paint\_DrawFilledRectangle(\&paint, Display.arrow\_start\_x\_position, CASE10, Display.arrow\_end\_x\_position, CASE10+VALUE\_ROW\_LENGTH, UNCOLORED);}
+\DoxyCodeLine{00451         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00452     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00453         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00454     \}}
+\DoxyCodeLine{00455 \}}
+
+\end{DoxyCode}

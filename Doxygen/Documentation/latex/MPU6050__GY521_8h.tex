@@ -1,0 +1,442 @@
+\hypertarget{MPU6050__GY521_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Sensor\+\_\+\+Code/\+Body-\/\+Synthezier\+\_\+\+Sensors/\+Core/\+Inc/\+MPU6050\+\_\+\+GY521.h File Reference}
+\label{MPU6050__GY521_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Inc/MPU6050\_GY521.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Inc/MPU6050\_GY521.h}}
+
+
+Software driver for the MPU6050 in combination with a STM32.  
+
+
+{\ttfamily \#include \char`\"{}stdlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}math.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}}
+\begin{DoxyCompactList}\small\item\em struct with all neccesarry variables stored \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gad4d6255d8f7e5dc770e773b787977508}{MPU6050\+\_\+\+ADDR}}~0x\+D0
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga8264ea96144f5fa98bd1a22ceb590315}{MPU6050\+\_\+\+SMPLRT\+\_\+\+DIV\+\_\+\+REG}}~0x19
+\begin{DoxyCompactList}\small\item\em Define I2C Register Addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga6659bbde3b9ef9d139758a467fcb3ec1}{MPU6050\+\_\+\+GYRO\+\_\+\+CONFIG\+\_\+\+REG}}~0x1B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7b1907a4242a05f4688ee4c769ef5e00}{MPU6050\+\_\+\+ACCL\+\_\+\+CONFIG\+\_\+\+REG}}~0x1C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac878ea91759d1eb591386dd2d33a86fd}{MPU6050\+\_\+\+ACCL\+\_\+\+XOUT\+\_\+\+H\+\_\+\+REG}}~0x3B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac0a6cab209fbf707e4b0c5426e89e458}{MPU6050\+\_\+\+TEMP\+\_\+\+OUT\+\_\+\+H\+\_\+\+REG}}~0x41
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaeae6c0fbc47aa2c613342fce2cc45372}{MPU6050\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+\+H\+\_\+\+REG}}~0x43
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac8e6174d5a02ed531329494959e57304}{MPU6050\+\_\+\+PWR\+\_\+\+MGMT\+\_\+1\+\_\+\+REG}}~0x6B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7292e8b450174614ce5bd411ec98ac56}{MPU6050\+\_\+\+WHO\+\_\+\+AM\+\_\+\+I\+\_\+\+REG}}~0x75
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaa505712a4ec1870948dd09b46aa8b3d6}{MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+REG}}~0x3A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga6217f217d0dfff172a1a7c759927bbdd}{MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+REG}}~0x6A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae65281028f8572c529b27349d79d249e}{MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+REG}}~0x23
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafb7bbf3592347c1cd226612e0eeabfb9}{MPU6050\+\_\+\+FIFO\+\_\+\+DATA\+\_\+\+REG}}~0x74
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga67ab543b2fbb1b6432acfeeeb9be6974}{MPU6050\+\_\+\+FIFO\+\_\+\+COUNT\+\_\+\+L\+\_\+\+REG}}~0x73
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga02346b7de5fb6043ecc60f994b1038bd}{MPU6050\+\_\+\+FIFO\+\_\+\+COUNT\+\_\+\+H\+\_\+\+REG}}~0x72
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7ec394e32416951b6882ebe6ae924965}{MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+X}}~0x0D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafaeebb6ab18231c171fed704574987e7}{MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+Y}}~0x0E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga87df5ed3b1736da250e8127810adf44d}{MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+Z}}~0x0F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1c9edfc09303193559373d5768d301e1}{MPU6050\+\_\+\+RA\+\_\+\+SELF\+\_\+\+TEST\+\_\+A}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga12d24140bc78ba2db5a2e11ab32abeda}{MPU6050\+\_\+\+RA\+\_\+\+SMPLRT\+\_\+\+DIV}}~0x19
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga51c78b27e0368d91c94209dbeca4df90}{MPU6050\+\_\+\+RA\+\_\+\+CONFIG}}~0x1A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga004871ad77398075d79e9111989007dc}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+CONFIG}}~0x1B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga48b7d7b24a70b247e373bc5965a5dcc7}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+CONFIG}}~0x1C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga391a4a95c33895c6926b9459cea5f3cd}{MPU6050\+\_\+\+RA\+\_\+\+FF\+\_\+\+THR}}~0x1D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaaf242278f1dd87556bdeeab589b01fd7}{MPU6050\+\_\+\+RA\+\_\+\+FF\+\_\+\+DUR}}~0x1E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga444c7d6d710bcc30f1ad98f703f9921e}{MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+THR}}~0x1F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga25ce9fe346237d22b62881257458fdf4}{MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DUR}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga866eb43544165dc8c777d82bab9860e6}{MPU6050\+\_\+\+RA\+\_\+\+ZRMOT\+\_\+\+THR}}~0x21
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga57ad8b9e0c77ec27d41b60405ab57e1c}{MPU6050\+\_\+\+RA\+\_\+\+ZRMOT\+\_\+\+DUR}}~0x22
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1166fe50f4792f3266e15dc3273e375d}{MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+EN}}~0x23
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae4804708dd5f21dbca1ff1815b883504}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+CTRL}}~0x24
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga423463fce914683217f05e3ca686364c}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+ADDR}}~0x25
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae9fc1bc0eb0c568846328de91127ca80}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+REG}}~0x26
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga70ce4d71982a1e3fb2be9b71f40da786}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+CTRL}}~0x27
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae33062d5e05f28a5aa6831b7f1d88104}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+ADDR}}~0x28
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga49790a56674e4dfe184ec067295e26ec}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+REG}}~0x29
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gad2ea53ab83e95289ef6d78cccb73b307}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+CTRL}}~0x2A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab9bd1737877e24c981423c9b63f64d3a}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+ADDR}}~0x2B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga9ed25cb09399d6700cd0255b17ad7a47}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+REG}}~0x2C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga85020a23b62a5ea0c88137038f65767e}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+CTRL}}~0x2D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga2a495eb60b391ed7a157e494dd7d3e69}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+ADDR}}~0x2E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaab183c416882e55c7fdda4b24160dd1a}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+REG}}~0x2F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga0f9ead95fc8c60f9218162a69c83163a}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+CTRL}}~0x30
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga3a3a4854870a5f354e50fbc4eae196c0}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+ADDR}}~0x31
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga5b2f24136f2f68b5d42652d16208d9d0}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+REG}}~0x32
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga433e4202ff24b4d90e695d5154a6f9eb}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+DO}}~0x33
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga2b6fbfceb145ba1c8b19f51475fd7a5d}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+CTRL}}~0x34
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga80d3591c47d0482c0adcf176e1994a65}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV4\+\_\+\+DI}}~0x35
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga5ef54580f436c198fb84d01288fbef49}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+STATUS}}~0x36
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga82344e1daef2bac2e0d938319528be6c}{MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+PIN\+\_\+\+CFG}}~0x37
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1de9d9557aa7420c746721999df4a377}{MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+ENABLE}}~0x38
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga917ac5ff97cc7e9ecee733d20a95825e}{MPU6050\+\_\+\+RA\+\_\+\+DMP\+\_\+\+INT\+\_\+\+STATUS}}~0x39
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga8337320c5ccc92def830e968d2e19d75}{MPU6050\+\_\+\+RA\+\_\+\+INT\+\_\+\+STATUS}}~0x3A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga9f08bfd13152053c226e5efb57e1c209}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+XOUT\+\_\+H}}~0x3B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7a077cc96fed2f0502592983d9d9115e}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+XOUT\+\_\+L}}~0x3C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaccc9b8669e7b799c8630e8a84cd24692}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+YOUT\+\_\+H}}~0x3D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga44bc0473921fbf0a6cdfc39ed4b26b15}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+YOUT\+\_\+L}}~0x3E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga2244ed0bf9c94ab5cde2bba541bfa22f}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+ZOUT\+\_\+H}}~0x3F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gad6a2299d2c4e78faa704c70a80a6c7c8}{MPU6050\+\_\+\+RA\+\_\+\+ACCEL\+\_\+\+ZOUT\+\_\+L}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaa4318f7e67df92b06d81356b38048a6d}{MPU6050\+\_\+\+RA\+\_\+\+TEMP\+\_\+\+OUT\+\_\+H}}~0x41
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga08528cb9d7fd1c3c128f0762cbd0ffdd}{MPU6050\+\_\+\+RA\+\_\+\+TEMP\+\_\+\+OUT\+\_\+L}}~0x42
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gabf19d88e8e460df1c49750393ee4b72c}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+H}}~0x43
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga84accb945e8d1388d38fe76482cdd144}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+XOUT\+\_\+L}}~0x44
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga97729ffd27bd81b9af5b42a598f91736}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+YOUT\+\_\+H}}~0x45
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaa6ac5e36155a22dcd345148720272a75}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+YOUT\+\_\+L}}~0x46
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac134c8894ef3aa4715e796f7a3a56383}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+ZOUT\+\_\+H}}~0x47
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga4af03513e690fb8cdff5d2fef4669704}{MPU6050\+\_\+\+RA\+\_\+\+GYRO\+\_\+\+ZOUT\+\_\+L}}~0x48
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafbb19101a107f71744f2146e0f09d926}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+00}}~0x49
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga8588292fe63c60797fa35d2fa45304ff}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+01}}~0x4A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab64e78a35138012905b39bce57bc11ad}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+02}}~0x4B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga04d33c89ef205d71c6a58375583a3e9a}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+03}}~0x4C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac2ab46a498dad6b08c1eba13141334e9}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+04}}~0x4D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga59ae9c4cc5e49ca9c2e84964bd4650f8}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+05}}~0x4E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga8826886b08af627d90cf6177d47a92c5}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+06}}~0x4F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaf6833167ba0616ecbae4d097c07a876d}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+07}}~0x50
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga13873cda21ce269f6fe226eab1d4b30b}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+08}}~0x51
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac573e571fcad258f86dde91664e5f342}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+09}}~0x52
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gacd1f7243b983e30e089287848f8cc55e}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+10}}~0x53
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga0e0182cc41903f0a093744ecd235387a}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+11}}~0x54
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga298602aead44e886734ad2a23409346b}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+12}}~0x55
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga760d027a571620eb804b107179a1f482}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+13}}~0x56
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga29f438db1edcda54a42257599122d864}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+14}}~0x57
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab5a88f4d418f8fe9872c533ab007c431}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+15}}~0x58
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac5d3afd3508121f30613edceb4e48297}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+16}}~0x59
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaa1a6f7f2b079583c5478f7126f7ca3d6}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+17}}~0x5A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaefda60825aa631ed7837cf33a134e3f7}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+18}}~0x5B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab89c01f38370289d7e9f323871014370}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+19}}~0x5C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga572fd6cdf79333a5fd6e88021cde475f}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+20}}~0x5D
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gab62ffbd26174f1ec37088a3217fdb14e}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+21}}~0x5E
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac52873fef1bb2a0c1e00b7ba77a5c10e}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+22}}~0x5F
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga7256bd65a372fcc4f420e1796c1b579a}{MPU6050\+\_\+\+RA\+\_\+\+EXT\+\_\+\+SENS\+\_\+\+DATA\+\_\+23}}~0x60
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga5b725ca4941b1a73f8e4df3d7164d514}{MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DETECT\+\_\+\+STATUS}}~0x61
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga53ca9562881303b665299907726fb753}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV0\+\_\+\+DO}}~0x63
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga62e9f2471f54176625236775d82b66ca}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV1\+\_\+\+DO}}~0x64
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1f192825e93dd8bdfbe8cefdb30786ac}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV2\+\_\+\+DO}}~0x65
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1fbafdd8c59383fa4eeae50b103adda7}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+SLV3\+\_\+\+DO}}~0x66
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga95960b2c82d00341b6174272e2fb3e07}{MPU6050\+\_\+\+RA\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+DELAY\+\_\+\+CTRL}}~0x67
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaccbe0fc25de063494eac9fda35ed1ca5}{MPU6050\+\_\+\+RA\+\_\+\+SIGNAL\+\_\+\+PATH\+\_\+\+RESET}}~0x68
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gae83e3eb48f0803227db54291fdf0ea80}{MPU6050\+\_\+\+RA\+\_\+\+MOT\+\_\+\+DETECT\+\_\+\+CTRL}}~0x69
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gacd4c638a6f677a42ecb9a3d7612d087a}{MPU6050\+\_\+\+RA\+\_\+\+USER\+\_\+\+CTRL}}~0x6A
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gac6c83146165a2307ac7155d4fa566df4}{MPU6050\+\_\+\+RA\+\_\+\+PWR\+\_\+\+MGMT\+\_\+1}}~0x6B
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaace6ce286da4d5f8c8f5ba6f80688e13}{MPU6050\+\_\+\+RA\+\_\+\+PWR\+\_\+\+MGMT\+\_\+2}}~0x6C
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaaff95ccbc06a8f3336850a35cd8df488}{MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+COUNTH}}~0x72
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga9bc0458ce42b66e81a8831dd2c07dc0a}{MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+COUNTL}}~0x73
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga4fd3a14925375c3112b830d6d1dd1fe9}{MPU6050\+\_\+\+RA\+\_\+\+FIFO\+\_\+\+R\+\_\+W}}~0x74
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga83d60aa4c37e954266ecd17ae02ec174}{MPU6050\+\_\+\+RA\+\_\+\+WHO\+\_\+\+AM\+\_\+I}}~0x75
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1de390da371b9193740d43bf523b9791}{MPU6050\+\_\+\+I\+\_\+\+AM}}~0x68
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga0c37fc112539bcdbe9faa322935b02d7}{MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+250}}~((float)1 / ((float)131))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga6ff225c6496521a87d4be6b4bdb9793a}{MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+500}}~((float)1 / ((float)65.\+5))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga2d961248a2df52bea565360c831a35df}{MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+1000}}~((float)1 / ((float)32.\+8))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga0ab0b77e3a746aba5fe0c2184fd3e061}{MPU6050\+\_\+\+GYRO\+\_\+\+SENS\+\_\+2000}}~((float)1 / ((float)16.\+4))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga1c92b8af476c3704f73583d654dd3b5e}{MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+2}}~((float)1 / ((float)16384.\+0))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gaf0f8787e032a83adcd5c0e24741d51de}{MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+4}}~((float)1 / ((float)8192.\+0))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga953204c40b96072126d8e292b566d0d3}{MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+8}}~((float)1 / ((float)4096.\+0))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_gacf9e15ae39e955dedacced252769d859}{MPU6050\+\_\+\+ACCL\+\_\+\+SENS\+\_\+16}}~((float)1 / ((float)2048.\+0))
+\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga447dbe0ecc028604ca317a727d03bc50}{MPU6050\+\_\+\+Sample\+Rate\+\_\+8\+KHz}}~0x00
+\begin{DoxyCompactList}\small\item\em Define MPU Output variables. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga42ea4e1341c54b7b67fbdcb9a273e635}{MPU6050\+\_\+\+Sample\+Rate\+\_\+4\+KHz}}~0x01
+\begin{DoxyCompactList}\small\item\em Sample rate set to 4 k\+Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga37b7afe75a69aae8e56376b98a1e2200}{MPU6050\+\_\+\+Sample\+Rate\+\_\+2\+KHz}}~0x03
+\begin{DoxyCompactList}\small\item\em Sample rate set to 2 k\+Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafbf8ed3b017c604791d12c6a385cf8b2}{MPU6050\+\_\+\+Sample\+Rate\+\_\+1\+KHz}}~0x07
+\begin{DoxyCompactList}\small\item\em Sample rate set to 1 k\+Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_gafa8363fd9bfca445fb347c706c3c6ffe}{MPU6050\+\_\+\+Sample\+Rate\+\_\+500\+Hz}}~0x0F
+\begin{DoxyCompactList}\small\item\em Sample rate set to 500 Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga17e1d882dd01ce93828e61e4a0982c21}{MPU6050\+\_\+\+Sample\+Rate\+\_\+250\+Hz}}~0x1F
+\begin{DoxyCompactList}\small\item\em Sample rate set to 250 Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga72f711ed1e87a6e6e92ad3b5ae84490c}{MPU6050\+\_\+\+Sample\+Rate\+\_\+125\+Hz}}~0x3F
+\begin{DoxyCompactList}\small\item\em Sample rate set to 125 Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__MPU6050_ga9d115a76f662c1b6e003221872790eef}{MPU6050\+\_\+\+Sample\+Rate\+\_\+100\+Hz}}~0x4F
+\begin{DoxyCompactList}\small\item\em Sample rate set to 100 Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_ga76e87fbc014d4fc942e9b178df3e3e80}{MPU6050\+\_\+\+GYRO\+\_\+\+RES\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\+\_\+\+GYRO\+\_\+\+RES}}
+\begin{DoxyCompactList}\small\item\em Set Gyro\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_gace83f566436760ec0b731f9178929bd3}{MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_ga6187941789d211b1e6c0a28a366cc9a8}{MPU6050\+\_\+\+USR\+\_\+\+CRTL}}
+\begin{DoxyCompactList}\small\item\em User Controll enum. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_gadc48e7a9bf258853096098d9ac57c2fc}{MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_ga7e2e849a6030a6c9f4f24e98f0e217ae}{MPU6050\+\_\+\+INT\+\_\+\+EN}}
+\begin{DoxyCompactList}\small\item\em Interrupt enable enum. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_ga71492368fefe6bd98c5b8c16749b7b41}{MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gac963b232728d0f265ce7a1e7c20e4962}{MPU6050\+\_\+\+INT\+\_\+\+STATUS}}
+\begin{DoxyCompactList}\small\item\em Interrupt status enum. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_ga6ac6979a76e1698e8841587195d7e1f6}{MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ENUM}} \mbox{\hyperlink{group__MPU6050_gae31f9c4723ec996f661a33df70e643cd}{MPU6050\+\_\+\+FIFO\+\_\+\+EN}}
+\begin{DoxyCompactList}\small\item\em FIFO\+\_\+\+ENABLE enum. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}} \mbox{\hyperlink{group__MPU6050_gabbffa66db1c27e631e55fe54973212b2}{tilt\+\_\+direction\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Tilt direction enumeration. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}} \mbox{\hyperlink{group__MPU6050_ga6587e82fb974d296e235b3a9743617b7}{Movement\+\_\+direction\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \{ \newline
+{\bfseries MPU6050\+\_\+\+Status\+\_\+\+OK} = 0x00
+, {\bfseries MPU6050\+\_\+\+Read\+\_\+\+OK}
+, {\bfseries MPU6050\+\_\+\+Status\+\_\+\+Error}
+, {\bfseries MPU6050\+\_\+\+Read\+\_\+\+Error}
+, \newline
+{\bfseries MPU6050\+\_\+\+Status\+\_\+\+Notconnected}
+, {\bfseries MPU6050\+\_\+\+Status\+\_\+\+Invalid}
+ \}
+\begin{DoxyCompactList}\small\item\em MPU6050 return values. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\+\_\+\+ACCL\+\_\+\+RES}} \{ {\bfseries MPU6050\+\_\+\+ACCL\+\_\+2G} = 0x00
+, \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529da6390f128316eec4b36b7ea3b6d59f581}{MPU6050\+\_\+\+ACCL\+\_\+4G}}
+, \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529dadd5c313c6802fd5118fd0ceec67ab4a9}{MPU6050\+\_\+\+ACCL\+\_\+8G}}
+, \mbox{\hyperlink{group__MPU6050_gga18ad019342a4d49779b497db4882529daa44ddb1fd0aa9d8783c29f2fbf45fda8}{MPU6050\+\_\+\+ACCL\+\_\+16G}}
+ \}
+\begin{DoxyCompactList}\small\item\em Set Accl\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga76e87fbc014d4fc942e9b178df3e3e80}{MPU6050\+\_\+\+GYRO\+\_\+\+RES\+\_\+\+ENUM}} \{ {\bfseries MPU6050\+\_\+\+GYRO\+\_\+250deg} = 0x00
+, {\bfseries MPU6050\+\_\+\+GYRO\+\_\+500deg}
+, {\bfseries MPU6050\+\_\+\+GYRO\+\_\+1000deg}
+, {\bfseries MPU6050\+\_\+\+GYRO\+\_\+2000deg}
+ \}
+\begin{DoxyCompactList}\small\item\em Set Gyro\+\_\+\+Res to 0, 1, 2, 3 for following resolution\+: \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_gace83f566436760ec0b731f9178929bd3}{MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+ENUM}} \{ \newline
+{\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+SIG\+\_\+\+COND\+\_\+\+RESET} = 0x01
+, {\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+I2\+C\+\_\+\+MST\+\_\+\+RESET} = 0x02
+, {\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+FIFO\+\_\+\+RESET} = 0x04
+, {\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+I2\+C\+\_\+\+TO\+\_\+\+SPI} = 0x10
+, \newline
+{\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+I2\+C\+\_\+\+MST\+\_\+E} = 0x20
+, {\bfseries MPU6050\+\_\+\+USR\+\_\+\+CRTL\+\_\+\+FIFO\+\_\+\+EN} = 0x40
+ \}
+\begin{DoxyCompactList}\small\item\em User Controll enum. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_gadc48e7a9bf258853096098d9ac57c2fc}{MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+ENUM}} \{ {\bfseries MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+DATA\+\_\+\+RDY} = 0x01
+, {\bfseries MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+I2\+C\+\_\+\+INT} = 0x08
+, {\bfseries MPU6050\+\_\+\+INT\+\_\+\+EN\+\_\+\+FIFO\+\_\+\+OVERFLOW} = 0x10
+ \}
+\begin{DoxyCompactList}\small\item\em Interrupt enable enum. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga71492368fefe6bd98c5b8c16749b7b41}{MPU6050\+\_\+\+INT\+\_\+\+STATUS\+\_\+\+ENUM}} \{ {\bfseries MPU6050\+\_\+\+INT\+\_\+\+DATA\+\_\+\+RDY} = 0x01
+, {\bfseries MPU6050\+\_\+\+INT\+\_\+\+I2\+C\+\_\+\+INT} = 0x08
+, {\bfseries MPU6050\+\_\+\+INT\+\_\+\+FIFO\+\_\+\+OVERFLOW} = 0x10
+ \}
+\begin{DoxyCompactList}\small\item\em Interrupt status enum. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga6ac6979a76e1698e8841587195d7e1f6}{MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ENUM}} \{ \newline
+{\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+SLV0} = 0x01
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+SLV1} = 0x02
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+SLV2} = 0x04
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ACCEL} = 0x08
+, \newline
+{\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+ZG} = 0x10
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+YG} = 0x20
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+XG} = 0x40
+, {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+TEMP} = 0x80
+ \}
+\begin{DoxyCompactList}\small\item\em FIFO\+\_\+\+ENABLE enum. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}} \{ \newline
+{\bfseries TILT\+\_\+\+NONE} = 0x00
+, {\bfseries TILT\+\_\+\+RIGHT} = 0x01
+, {\bfseries TILT\+\_\+\+LEFT}
+, {\bfseries TILT\+\_\+\+FRONT}
+, \newline
+{\bfseries TILT\+\_\+\+BACK}
+, {\bfseries TILT\+\_\+\+RIGHT\+\_\+S}
+, {\bfseries TILT\+\_\+\+LEFT\+\_\+S}
+, {\bfseries TILT\+\_\+\+FRONT\+\_\+S}
+, \newline
+{\bfseries TILT\+\_\+\+BACK\+\_\+S}
+, {\bfseries TILT\+\_\+\+NONE} = 0x00
+, {\bfseries TILT\+\_\+\+RIGHT} = 0x01
+, {\bfseries TILT\+\_\+\+LEFT}
+, \newline
+{\bfseries TILT\+\_\+\+FRONT}
+, {\bfseries TILT\+\_\+\+BACK}
+, {\bfseries TILT\+\_\+\+RIGHT\+\_\+S}
+, {\bfseries TILT\+\_\+\+LEFT\+\_\+S}
+, \newline
+{\bfseries TILT\+\_\+\+FRONT\+\_\+S}
+, {\bfseries TILT\+\_\+\+BACK\+\_\+S}
+ \}
+\begin{DoxyCompactList}\small\item\em Tilt direction enumeration. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}} \{ \newline
+{\bfseries MOVEMENT\+\_\+\+NONE} = 0x00
+, {\bfseries MOVEMENT\+\_\+\+HIGH} = 0x01
+, {\bfseries MOVEMENT\+\_\+\+DOWN}
+, {\bfseries MOVEMENT\+\_\+\+RIGHT}
+, \newline
+{\bfseries MOVEMENT\+\_\+\+LEFT}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga4b1f2e602c95802e5c65168964da2eb5}{MPU6050\+\_\+init}} (I2\+C\+\_\+\+Handle\+Type\+Def $\ast$\+\_\+\+\_\+hi2c, \mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}} $\ast$Data\+Struct, \mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\+\_\+\+ACCL\+\_\+\+RES}} accl\+\_\+resolution, \mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\+\_\+\+GYRO\+\_\+\+RES}} gyro\+\_\+resolution, uint8\+\_\+t samplerate)
+\begin{DoxyCompactList}\small\item\em Init for the MPU6050. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}{MPU6050\+\_\+\+Read\+\_\+\+Accl}} ()
+\begin{DoxyCompactList}\small\item\em reeads only accl data \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_gac16021f5f2c6dbf509ed77ddfc6d943d}{MPU6050\+\_\+\+Read\+\_\+\+Gyro}} ()
+\begin{DoxyCompactList}\small\item\em reads only gyro data \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\+\_\+\+Read\+\_\+\+Sensor}} ()
+\begin{DoxyCompactList}\small\item\em Reads raw data from accl and gyro ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_gac5545cc463f9c6b45b18aab7acc33d83}{MPU6050\+\_\+\+Calibrate}} ()
+\begin{DoxyCompactList}\small\item\em Calibrates the MPU6050 and sets the offsets, which needed to be subtracted from the Rawdata to get valid information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}{MPU6050\+\_\+\+Calculate\+\_\+\+Mean}} ()
+\begin{DoxyCompactList}\small\item\em Gets the mean value of the gyro and accl over n\+\_\+measurements. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_gaaeff0b55bde9aa79d4d34bd983e81117}{Movement\+\_\+direction\+\_\+t}} {\bfseries MPU6050\+\_\+\+Detect\+\_\+\+Movement} ()
+\item 
+void \mbox{\hyperlink{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}{get\+Gyro\+Roll}} ()
+\begin{DoxyCompactList}\small\item\em Get the Roll with gyro-\/data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}{get\+Accl\+Roll}} ()
+\begin{DoxyCompactList}\small\item\em Get the roll with accl-\/data ~\newline
+ \end{DoxyCompactList}\item 
+uint8\+\_\+t {\bfseries MPU6050\+\_\+\+Get\+Int\+Reg} (void)
+\item 
+void {\bfseries MPU6050\+\_\+\+Get\+Fi\+Fo\+Data} (uint8\+\_\+t buffer\mbox{[}1024\mbox{]})
+\item 
+uint16\+\_\+t {\bfseries MPU6050\+\_\+\+Read\+\_\+\+FIFOcount} (void)
+\item 
+void {\bfseries MPU6050\+\_\+\+Display\+\_\+\+FIFO} ()
+\item 
+void {\bfseries MPU6050\+\_\+\+FIFO\+\_\+\+RESET} ()
+\item 
+uint8\+\_\+t {\bfseries MPU6050\+\_\+\+Get\+DMPInt\+Reg} (void)
+\item 
+void \mbox{\hyperlink{group__MPU6050_gad5723da18ebbc9a3730c81df47503f5a}{MPU6050\+\_\+\+Display\+\_\+\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Displays all Gyro and Accl Axis. \end{DoxyCompactList}\item 
+float {\bfseries get\+Abs\+Max} (float a, float b, float c)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__MPU6050_ga54401f79994f9addfe2f908f8a565e22}{MPU6050\+\_\+detect\+Tilt}} ()
+\begin{DoxyCompactList}\small\item\em detects the tilt of the Sensor in relation to the calibrated starting stance \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}} $\ast$ \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\+\_\+\+Data}}
+\item 
+I2\+C\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__MPU6050_gabda0fafb0baae0726041fade79289441}{MPU6050\+\_\+hi2c}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Software driver for the MPU6050 in combination with a STM32. 
+
+\begin{DoxyAuthor}{Author}
+Paul Mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+Okt 10, 2020
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2020 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{MPU6050__GY521_8h_source}{MPU6050\+\_\+\+GY521.\+h}}.
+

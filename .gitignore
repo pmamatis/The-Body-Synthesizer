@@ -2,6 +2,7 @@
 Drivers/*
 MDK-ARM/*
 EWARM/*
+.vscode/*
 # CrossWorks project files
 !*/*.hzp
 !*/*.hzs
@@ -9,7 +10,9 @@ EWARM/*
 *.o
 .mxproject
 Debug/*
+RemoteSystemsTempFiles/*
 
+.metadata/*
 
 *.settings
 
@@ -31,6 +34,7 @@ Debug/*
 *.so.*
 *.dylib
 
+
 # Executables
 *.exe
 *.out
@@ -41,12 +45,11 @@ Debug/*
 
 # Misc
 *.map
-*.m
+
 *.png
 
 # Eclipse CDT project files
-.cproject
-.project
+
 .settings/
 
 # Vagrant directory

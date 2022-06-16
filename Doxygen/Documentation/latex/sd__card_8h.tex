@@ -1,0 +1,90 @@
+\hypertarget{sd__card_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/sd\+\_\+card.h File Reference}
+\label{sd__card_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/sd\_card.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/sd\_card.h}}
+
+
+SD-\/\+Card Access.  
+
+
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__SDcard_ga6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~1000
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__SDcard_ga3d58516bba6fae33b5a617ca1ec8c5f2}{bufsize}} (char $\ast$buf)
+\item 
+void \mbox{\hyperlink{group__SDcard_ga876d5723d0511f25736dcd24ef3fd437}{clear\+\_\+buffer}} (void)
+\item 
+void \mbox{\hyperlink{group__SDcard_gaf5bec5970e5694e62a95ddac43eb291f}{send\+\_\+uart}} (char $\ast$string, UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+char $\ast$ \mbox{\hyperlink{group__SDcard_gaf2d13ce691654a78a1dc4f8ba84cceab}{find\+\_\+text\+\_\+file}} (UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+void \mbox{\hyperlink{group__SDcard_ga2052d8e246fcd7710baf786f61c59038}{sd\+\_\+card\+\_\+mount}} (void)
+\item 
+void \mbox{\hyperlink{group__SDcard_ga681b37ae98d83e58474c79cb836d0280}{sd\+\_\+card\+\_\+unmount}} (void)
+\item 
+void \mbox{\hyperlink{group__SDcard_gac1fc753aea400af6d191ede49e9be778}{sd\+\_\+card\+\_\+free\+\_\+space}} (UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+void \mbox{\hyperlink{group__SDcard_ga6dacdaf5530cfe6c164de87795ec2189}{sd\+\_\+card\+\_\+write\+\_\+newfile}} (char $\ast$filename, char $\ast$filecontent, UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+void \mbox{\hyperlink{group__SDcard_ga0cf3082c520d42e71c3394eaf7accf05}{sd\+\_\+card\+\_\+write\+\_\+appendfile}} (char $\ast$filename, char $\ast$filecontent, UART\+\_\+\+Handle\+Type\+Def huart)
+\item 
+void \mbox{\hyperlink{group__SDcard_ga2fc37a80c9a1b6a1e130462705d888ca}{sd\+\_\+card\+\_\+read}} (char $\ast$filename, float $\ast$\mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}})
+\item 
+void \mbox{\hyperlink{group__SDcard_ga26ed1f760dee256c3b76e753bfa22de2}{sd\+\_\+card\+\_\+remove\+\_\+file}} (char $\ast$filename, UART\+\_\+\+Handle\+Type\+Def huart)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+FATFS \mbox{\hyperlink{group__SDcard_gae5bcde72e0e0b29ec86d00ba3e5cd51f}{fs}}
+\item 
+FIL \mbox{\hyperlink{group__SDcard_ga4be63952e3c9cb0f46f9e592b3c78714}{fil}}
+\item 
+FILINFO \mbox{\hyperlink{group__SDcard_gadb2adf9b3f315041beb78852fa37a984}{fno}}
+\item 
+FRESULT \mbox{\hyperlink{group__SDcard_ga6c01f12753eea998672735a0321e2baa}{fresult}}
+\item 
+char \mbox{\hyperlink{group__SDcard_ga5e8f218de29bd00e9c744eb52231d22b}{txtfile\+\_\+array}} \mbox{[}40000\mbox{]}
+\item 
+UINT \mbox{\hyperlink{group__SDcard_gaf73466f2f9a9dc91e720750a58b422e4}{br}}
+\item 
+UINT \mbox{\hyperlink{group__SDcard_ga43bf7f8524c9a39d4b8d4fa43fc51620}{bw}}
+\item 
+DIR \mbox{\hyperlink{group__SDcard_ga90affc32512431e143844fa9721bf9d9}{dj}}
+\item 
+FATFS $\ast$ \mbox{\hyperlink{group__SDcard_ga73fc1d7f310236f10a83485a71a2ff07}{pfs}}
+\item 
+DWORD \mbox{\hyperlink{group__SDcard_ga09395a8369ae8b24191a9522d71c89c4}{fre\+\_\+clust}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__SDcard_ga5982fc6fd4a7c57ef565f0b7a2f1df6a}{total}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__SDcard_gaa34bbdee19d0822d5dac5e4f32dfa4db}{free\+\_\+space}}
+\item 
+char \mbox{\hyperlink{group__SDcard_gaf00b615ca097c43dbb02ae3a00ea3a62}{buffer}} \mbox{[}BUFFER\+\_\+\+SIZE\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+SD-\/\+Card Access. 
+
+\begin{DoxyAuthor}{Author}
+\href{https://controllerstech.com/sd-card-using-spi-in-stm32/}{\texttt{ https\+://controllerstech.\+com/sd-\/card-\/using-\/spi-\/in-\/stm32/}} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{sd__card_8h_source}{sd\+\_\+card.\+h}}.
+

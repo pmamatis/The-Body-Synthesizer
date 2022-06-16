@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['theta_0',['theta',['../structarm__gaussian__naive__bayes__instance__f32.html#a88b225d1292eefe044cb0464aac35210',1,'arm_gaussian_naive_bayes_instance_f32']]],
+  ['timing_5fds1_1',['timing_DS1',['../drum__computer_8h.html#a4c0fb828065d1505aa1abfdd52afc7c3',1,'drum_computer.h']]],
+  ['twidcoefmodifier_2',['twidCoefModifier',['../structarm__cfft__radix2__instance__q15.html#a6f2ab87fb4c568656e1f92f687b5c850',1,'arm_cfft_radix2_instance_q15::twidCoefModifier()'],['../structarm__cfft__radix4__instance__q15.html#af32fdc78bcc27ca385f9b76a0a1f71c3',1,'arm_cfft_radix4_instance_q15::twidCoefModifier()'],['../structarm__cfft__radix2__instance__q31.html#ae63ca9193322cd477970c1d2086407d1',1,'arm_cfft_radix2_instance_q31::twidCoefModifier()'],['../structarm__cfft__radix4__instance__q31.html#a8cf8187b8232815cf17ee82bf572ecf9',1,'arm_cfft_radix4_instance_q31::twidCoefModifier()'],['../structarm__cfft__radix2__instance__f32.html#a411f75b6ed01690293f4f5988030ea42',1,'arm_cfft_radix2_instance_f32::twidCoefModifier()'],['../structarm__cfft__radix4__instance__f32.html#abe31ea2157dfa233e389cdfd3b9993ee',1,'arm_cfft_radix4_instance_f32::twidCoefModifier()']]],
+  ['twidcoefrmodifier_3',['twidCoefRModifier',['../structarm__rfft__instance__q15.html#afd444d05858c5f419980e94e8240d5c3',1,'arm_rfft_instance_q15::twidCoefRModifier()'],['../structarm__rfft__instance__q31.html#a6fc90252b579f7c29e01bd279334fc43',1,'arm_rfft_instance_q31::twidCoefRModifier()'],['../structarm__rfft__instance__f32.html#aede85350fb5ae6baa1b3e8bfa15b18d6',1,'arm_rfft_instance_f32::twidCoefRModifier()']]],
+  ['type_4',['type',['../structarm__spline__instance__f32.html#a26acf1cb37658c19dfd5bfab23cd3014',1,'arm_spline_instance_f32']]]
+];

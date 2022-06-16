@@ -1,0 +1,417 @@
+\hypertarget{group__ADSR}{}\doxysection{ADSR Effect}
+\label{group__ADSR}\index{ADSR Effect@{ADSR Effect}}
+
+
+Attack-\/\+Decay-\/\+Sustain-\/\+Release.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}}
+\begin{DoxyCompactList}\small\item\em stores the state of the ADSR values for keyboardand sequencer structs as well as the configuration \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries ADSR\+\_\+\+Status} \{ {\bfseries ADSR\+\_\+\+FAIL} = -\/1
+, {\bfseries ADSR\+\_\+\+OK} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}{ADSR\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Init funtion for the ADSR, has to be used in order to use any other funtion of this .c. \end{DoxyCompactList}\item 
+ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}{Setup\+ADSR}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}})
+\begin{DoxyCompactList}\small\item\em Setup funtion for the ADSR, which is called in the ADSR\+\_\+\+Init function for any single keyboard note. \end{DoxyCompactList}\item 
+ADSR\+\_\+\+Status \mbox{\hyperlink{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}{ADSR\+\_\+\+Reset}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}})
+\begin{DoxyCompactList}\small\item\em Reset function for the ADSR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}{One\+Press\+\_\+\+ADSR\+\_\+\+Linear\+\_\+\+Process}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, float $\ast$calculate\+\_\+value, bool flag)
+\begin{DoxyCompactList}\small\item\em Keyboard function used to calculate the current ADSR value which is then multiplied with the keyboard sample. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}{One\+Press\+\_\+\+ADSR\+\_\+\+Sequencer\+\_\+\+Process}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}, float $\ast$calculate\+\_\+value, bool flag)
+\begin{DoxyCompactList}\small\item\em Sequencer function used to calculate the current ADSR value which is then multiplied with the sample. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}
+\begin{DoxyCompactList}\small\item\em ADSR for the Voice notes. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_gaaadc1294c5e9298d0ae4a1fd75fd68a9}{adsr\+\_\+\+SN1}} \mbox{[}16\mbox{]}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_gab7591a8d78bd729063748410fd9d35ae}{adsr\+\_\+\+SN2}} \mbox{[}16\mbox{]}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga39cbe7292e2d699f206aa1e7e89c4984}{adsr\+\_\+\+SN3}} \mbox{[}16\mbox{]}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga1372304559086561ead44f354b3361df}{adsr\+\_\+\+SN4}} \mbox{[}16\mbox{]}
+\item 
+struct \mbox{\hyperlink{structadsr}{adsr}} \mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\+\_\+keyboard}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em ADSR storage for the keyboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Attack-\/\+Decay-\/\+Sustain-\/\+Release. 
+
+ADSR storage for sequencer notes.
+
+\begin{DoxyNote}{Note}
+Length 16 is max. time steps\+: 1/16, 1/8, 1/4 
+\end{DoxyNote}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__ADSR_ga6be09edd58a7d02106bd5473abb9bae5}\label{group__ADSR_ga6be09edd58a7d02106bd5473abb9bae5}} 
+\index{ADSR Effect@{ADSR Effect}!ADSR\_Status@{ADSR\_Status}}
+\index{ADSR\_Status@{ADSR\_Status}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{ADSR\_Status}{ADSR\_Status}}
+{\footnotesize\ttfamily enum ADSR\+\_\+\+Status}
+
+
+
+Definition at line \mbox{\hyperlink{adsr_8h_source_l00025}{25}} of file \mbox{\hyperlink{adsr_8h_source}{adsr.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025              \{}
+\DoxyCodeLine{00026     ADSR\_FAIL = -\/1,}
+\DoxyCodeLine{00027     ADSR\_OK = 1}
+\DoxyCodeLine{00028 \} ADSR\_Status;}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}\label{group__ADSR_gab26d8ec30eff40bfb82b160defd0af22}} 
+\index{ADSR Effect@{ADSR Effect}!ADSR\_Init@{ADSR\_Init}}
+\index{ADSR\_Init@{ADSR\_Init}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{ADSR\_Init()}{ADSR\_Init()}}
+{\footnotesize\ttfamily ADSR\+\_\+\+Status ADSR\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Init funtion for the ADSR, has to be used in order to use any other funtion of this .c. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+return ADSR\+\_\+\+Status 
+
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00020}{20}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020                             \{}
+\DoxyCodeLine{00021 }
+\DoxyCodeLine{00022     \mbox{\hyperlink{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}{SetupADSR}}(\&\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}});}
+\DoxyCodeLine{00023     \textcolor{keywordflow}{for}(uint8\_t i=0; i<MAX\_SIMULTANEOUS\_KEYBOARD\_NOTES; i++)}
+\DoxyCodeLine{00024         \mbox{\hyperlink{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}{SetupADSR}}(\&\mbox{\hyperlink{group__ADSR_ga742e13f70ae8c573509abfd794271f44}{adsr\_keyboard}}[i]);}
+\DoxyCodeLine{00025 }
+\DoxyCodeLine{00026     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00027 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}\label{group__ADSR_gab059a1f2cde16bed41f0f4e0f113a5d9}} 
+\index{ADSR Effect@{ADSR Effect}!ADSR\_Reset@{ADSR\_Reset}}
+\index{ADSR\_Reset@{ADSR\_Reset}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{ADSR\_Reset()}{ADSR\_Reset()}}
+{\footnotesize\ttfamily ADSR\+\_\+\+Status ADSR\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$}]{envelope }\end{DoxyParamCaption})}
+
+
+
+Reset function for the ADSR. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em envelope} & struct for any generated keyboard note \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ADSR\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00060}{60}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060                                               \{}
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
+\DoxyCodeLine{00063     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{00064     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
+\DoxyCodeLine{00065     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00066     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
+\DoxyCodeLine{00067     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
+\DoxyCodeLine{00068     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00069 }
+\DoxyCodeLine{00070     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072     Display.ADSR\_Attacktime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time/LUT\_SR;}
+\DoxyCodeLine{00073     Display.ADSR\_Decaytime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time/LUT\_SR;}
+\DoxyCodeLine{00074     Display.ADSR\_Sustaintime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time/LUT\_SR;}
+\DoxyCodeLine{00075     Display.ADSR\_Sustainlevel = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/LUT\_SR;}
+\DoxyCodeLine{00076     Display.ADSR\_Releasetime = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time/LUT\_SR;}
+\DoxyCodeLine{00077 }
+\DoxyCodeLine{00078     Display.ADSR\_Sources[0] = POTI;}
+\DoxyCodeLine{00079     Display.ADSR\_Sources[1] = POTI;}
+\DoxyCodeLine{00080     Display.ADSR\_Sources[2] = POTI;}
+\DoxyCodeLine{00081     Display.ADSR\_Sources[3] = POTI;}
+\DoxyCodeLine{00082     Display.ADSR\_Sources[4] = POTI;}
+\DoxyCodeLine{00083 }
+\DoxyCodeLine{00084     strcpy(Display.value\_str\_adsr\_settings[0], Display.source\_names[Display.ADSR\_Sources[0]]);}
+\DoxyCodeLine{00085     strcpy(Display.value\_str\_adsr\_settings[1], Display.source\_names[Display.ADSR\_Sources[1]]);}
+\DoxyCodeLine{00086     strcpy(Display.value\_str\_adsr\_settings[2], Display.source\_names[Display.ADSR\_Sources[2]]);}
+\DoxyCodeLine{00087     strcpy(Display.value\_str\_adsr\_settings[3], Display.source\_names[Display.ADSR\_Sources[3]]);}
+\DoxyCodeLine{00088     strcpy(Display.value\_str\_adsr\_settings[4], Display.source\_names[Display.ADSR\_Sources[4]]);}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00091 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}\label{group__ADSR_ga02c74c2f9a8094da74c4d9b905d87550}} 
+\index{ADSR Effect@{ADSR Effect}!OnePress\_ADSR\_Linear\_Process@{OnePress\_ADSR\_Linear\_Process}}
+\index{OnePress\_ADSR\_Linear\_Process@{OnePress\_ADSR\_Linear\_Process}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{OnePress\_ADSR\_Linear\_Process()}{OnePress\_ADSR\_Linear\_Process()}}
+{\footnotesize\ttfamily void One\+Press\+\_\+\+ADSR\+\_\+\+Linear\+\_\+\+Process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$}]{envelope,  }\item[{float $\ast$}]{calculate\+\_\+value,  }\item[{bool}]{flag }\end{DoxyParamCaption})}
+
+
+
+Keyboard function used to calculate the current ADSR value which is then multiplied with the keyboard sample. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em envelope} & struct for any generated keyboard note \\
+\hline
+{\em calculate\+\_\+value} & current sample \\
+\hline
+{\em flag} & allows processing or does not \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00100}{100}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100                                                                                             \{}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00103 }
+\DoxyCodeLine{00104         \textcolor{keywordtype}{float} calc = 0;}
+\DoxyCodeLine{00105 }
+\DoxyCodeLine{00106         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration}}
+\DoxyCodeLine{00109 }
+\DoxyCodeLine{00110             \textcolor{comment}{// attack period}}
+\DoxyCodeLine{00111             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
+\DoxyCodeLine{00112                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
+\DoxyCodeLine{00113 }
+\DoxyCodeLine{00114             \textcolor{comment}{// decay period}}
+\DoxyCodeLine{00115             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
+\DoxyCodeLine{00116                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
+\DoxyCodeLine{00117 }
+\DoxyCodeLine{00118             \textcolor{comment}{// sustain period}}
+\DoxyCodeLine{00119             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{00120                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00121 }
+\DoxyCodeLine{00122             \textcolor{comment}{// release period}}
+\DoxyCodeLine{00123             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{00124                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126             *calculate\_value = *calculate\_value * calc;}
+\DoxyCodeLine{00127         \}}
+\DoxyCodeLine{00128 }
+\DoxyCodeLine{00129         \textcolor{comment}{// update adsr counter}}
+\DoxyCodeLine{00130         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
+\DoxyCodeLine{00131 }
+\DoxyCodeLine{00132         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
+\DoxyCodeLine{00133             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
+\DoxyCodeLine{00134             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{00135         \}}
+\DoxyCodeLine{00136     \}}
+\DoxyCodeLine{00137 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}\label{group__ADSR_gac86ad75fa8ab7681c5ba8fdb66c4cbf0}} 
+\index{ADSR Effect@{ADSR Effect}!OnePress\_ADSR\_Sequencer\_Process@{OnePress\_ADSR\_Sequencer\_Process}}
+\index{OnePress\_ADSR\_Sequencer\_Process@{OnePress\_ADSR\_Sequencer\_Process}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{OnePress\_ADSR\_Sequencer\_Process()}{OnePress\_ADSR\_Sequencer\_Process()}}
+{\footnotesize\ttfamily void One\+Press\+\_\+\+ADSR\+\_\+\+Sequencer\+\_\+\+Process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$}]{envelope,  }\item[{float $\ast$}]{calculate\+\_\+value,  }\item[{bool}]{flag }\end{DoxyParamCaption})}
+
+
+
+Sequencer function used to calculate the current ADSR value which is then multiplied with the sample. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em envelope} & struct for any generated keyboard note \\
+\hline
+{\em calculate\+\_\+value} & current sample \\
+\hline
+{\em flag} & allows processing or does not \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00145}{145}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00145                                                                                                \{}
+\DoxyCodeLine{00146 }
+\DoxyCodeLine{00147     \textcolor{keywordflow}{if}(flag == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149         \textcolor{keywordtype}{float} calc;}
+\DoxyCodeLine{00150 }
+\DoxyCodeLine{00151         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time;}
+\DoxyCodeLine{00152 }
+\DoxyCodeLine{00153         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{ \textcolor{comment}{// if time < total duration time}}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155             \textcolor{comment}{// attack period}}
+\DoxyCodeLine{00156             \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time)}
+\DoxyCodeLine{00157                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time);}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159             \textcolor{comment}{// decay period}}
+\DoxyCodeLine{00160             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time))}
+\DoxyCodeLine{00161                 calc = ((\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp)/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp;}
+\DoxyCodeLine{00162 }
+\DoxyCodeLine{00163             \textcolor{comment}{// sustain period}}
+\DoxyCodeLine{00164             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter < (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{00165                 calc = \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00166 }
+\DoxyCodeLine{00167             \textcolor{comment}{// release period}}
+\DoxyCodeLine{00168             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time))}
+\DoxyCodeLine{00169                 calc = -\/(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude/\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time) * (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter -\/ (\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time -\/ \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time)) + \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude;}
+\DoxyCodeLine{00170 }
+\DoxyCodeLine{00171             *calculate\_value = *calculate\_value * calc;}
+\DoxyCodeLine{00172         \}}
+\DoxyCodeLine{00173 }
+\DoxyCodeLine{00174         \textcolor{comment}{// update adsr counter}}
+\DoxyCodeLine{00175         \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter++;}
+\DoxyCodeLine{00176 }
+\DoxyCodeLine{00177         \textcolor{keywordflow}{if}(\mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter >= \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_duration\_time) \{}
+\DoxyCodeLine{00178 }
+\DoxyCodeLine{00179             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0; \textcolor{comment}{// restart}}
+\DoxyCodeLine{00180             \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{00181         \}}
+\DoxyCodeLine{00182     \}}
+\DoxyCodeLine{00183 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}\label{group__ADSR_ga5056dadba0e7d70cf66cb85475c599a1}} 
+\index{ADSR Effect@{ADSR Effect}!SetupADSR@{SetupADSR}}
+\index{SetupADSR@{SetupADSR}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{SetupADSR()}{SetupADSR()}}
+{\footnotesize\ttfamily ADSR\+\_\+\+Status Setup\+ADSR (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$}]{envelope }\end{DoxyParamCaption})}
+
+
+
+Setup funtion for the ADSR, which is called in the ADSR\+\_\+\+Init function for any single keyboard note. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em envelope} & struct for any generated keyboard note \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ADSR\+\_\+\+Status 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{adsr_8c_source_l00034}{34}} of file \mbox{\hyperlink{adsr_8c_source}{adsr.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034                                              \{}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_counter = 0;}
+\DoxyCodeLine{00037     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_max\_amp = 1.00;  \textcolor{comment}{// maximum value should be 1}}
+\DoxyCodeLine{00038     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_attack\_time = 0.1 * LUT\_SR;}
+\DoxyCodeLine{00039     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_decay\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00040     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_time = 0.15 * LUT\_SR;}
+\DoxyCodeLine{00041     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_sustain\_amplitude = 0.5;}
+\DoxyCodeLine{00042     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_release\_time = 0.05 * LUT\_SR;}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_attack = 1.00;   \textcolor{comment}{// in seconds; maximum 4.0 seconds (-\/> 4*LUT\_SR), to display the value -\/> uint16\_t}}
+\DoxyCodeLine{00045     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_decay = 1.00;}
+\DoxyCodeLine{00046     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_sustaintime = 2.00;}
+\DoxyCodeLine{00047     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_maximum\_release = 1.00;}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049     \mbox{\hyperlink{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}{envelope}}-\/>adsr\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{00050 }
+\DoxyCodeLine{00051     \textcolor{keywordflow}{return} ADSR\_OK;}
+\DoxyCodeLine{00052 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__ADSR_ga742e13f70ae8c573509abfd794271f44}\label{group__ADSR_ga742e13f70ae8c573509abfd794271f44}} 
+\index{ADSR Effect@{ADSR Effect}!adsr\_keyboard@{adsr\_keyboard}}
+\index{adsr\_keyboard@{adsr\_keyboard}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{adsr\_keyboard}{adsr\_keyboard}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structadsr}{adsr}} adsr\+\_\+keyboard\mbox{[}5\mbox{]}}
+
+
+
+ADSR storage for the keyboard. 
+
+
+
+Definition at line \mbox{\hyperlink{adsr_8h_source_l00082}{82}} of file \mbox{\hyperlink{adsr_8h_source}{adsr.\+h}}.
+
+\mbox{\Hypertarget{group__ADSR_gaaadc1294c5e9298d0ae4a1fd75fd68a9}\label{group__ADSR_gaaadc1294c5e9298d0ae4a1fd75fd68a9}} 
+\index{ADSR Effect@{ADSR Effect}!adsr\_SN1@{adsr\_SN1}}
+\index{adsr\_SN1@{adsr\_SN1}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{adsr\_SN1}{adsr\_SN1}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structadsr}{adsr}} adsr\+\_\+\+SN1\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{adsr_8h_source_l00072}{72}} of file \mbox{\hyperlink{adsr_8h_source}{adsr.\+h}}.
+
+\mbox{\Hypertarget{group__ADSR_gab7591a8d78bd729063748410fd9d35ae}\label{group__ADSR_gab7591a8d78bd729063748410fd9d35ae}} 
+\index{ADSR Effect@{ADSR Effect}!adsr\_SN2@{adsr\_SN2}}
+\index{adsr\_SN2@{adsr\_SN2}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{adsr\_SN2}{adsr\_SN2}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structadsr}{adsr}} adsr\+\_\+\+SN2\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{adsr_8h_source_l00073}{73}} of file \mbox{\hyperlink{adsr_8h_source}{adsr.\+h}}.
+
+\mbox{\Hypertarget{group__ADSR_ga39cbe7292e2d699f206aa1e7e89c4984}\label{group__ADSR_ga39cbe7292e2d699f206aa1e7e89c4984}} 
+\index{ADSR Effect@{ADSR Effect}!adsr\_SN3@{adsr\_SN3}}
+\index{adsr\_SN3@{adsr\_SN3}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{adsr\_SN3}{adsr\_SN3}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structadsr}{adsr}} adsr\+\_\+\+SN3\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{adsr_8h_source_l00074}{74}} of file \mbox{\hyperlink{adsr_8h_source}{adsr.\+h}}.
+
+\mbox{\Hypertarget{group__ADSR_ga1372304559086561ead44f354b3361df}\label{group__ADSR_ga1372304559086561ead44f354b3361df}} 
+\index{ADSR Effect@{ADSR Effect}!adsr\_SN4@{adsr\_SN4}}
+\index{adsr\_SN4@{adsr\_SN4}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{adsr\_SN4}{adsr\_SN4}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structadsr}{adsr}} adsr\+\_\+\+SN4\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{adsr_8h_source_l00075}{75}} of file \mbox{\hyperlink{adsr_8h_source}{adsr.\+h}}.
+
+\mbox{\Hypertarget{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}\label{group__ADSR_ga1fef3d5c4761374cfc9f8f5e9a48ddf0}} 
+\index{ADSR Effect@{ADSR Effect}!envelope@{envelope}}
+\index{envelope@{envelope}!ADSR Effect@{ADSR Effect}}
+\doxysubsubsection{\texorpdfstring{envelope}{envelope}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structadsr}{adsr}} envelope}
+
+
+
+ADSR for the Voice notes. 
+
+
+
+Definition at line \mbox{\hyperlink{adsr_8h_source_l00064}{64}} of file \mbox{\hyperlink{adsr_8h_source}{adsr.\+h}}.
+

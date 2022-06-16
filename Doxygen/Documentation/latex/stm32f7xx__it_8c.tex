@@ -1,0 +1,371 @@
+\hypertarget{stm32f7xx__it_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/stm32f7xx\+\_\+it.c File Reference}
+\label{stm32f7xx__it_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/stm32f7xx\_it.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/stm32f7xx\_it.c}}
+
+
+Interrupt Service Routines.  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32f7xx\+\_\+it.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{stm32f7xx__it_8c_adac3d2a67ed908e1b5938277292d314b}{SDTimer\+\_\+\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{group__Interrupts_ga6ad7a5e3ee69cb6db6a6b9111ba898bc}{NMI\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Non maskable interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga2bffc10d5bd4106753b7c30e86903bea}{Hard\+Fault\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Hard fault interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga3150f74512510287a942624aa9b44cc5}{Mem\+Manage\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Memory management fault. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga850cefb17a977292ae5eb4cafa9976c3}{Bus\+Fault\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Pre-\/fetch fault, memory access fault. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga1d98923de2ed6b7309b66f9ba2971647}{Usage\+Fault\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Undefined instruction or illegal state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga3e5ddb3df0d62f2dc357e64a3f04a6ce}{SVC\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles System service call via SWI instruction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_gadbdfb05858cc36fc520974df37ec3cb0}{Debug\+Mon\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Debug monitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga6303e1f258cbdc1f970ce579cc015623}{Pend\+SV\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles Pendable request for system service. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_gab5e09814056d617c521549e542639b7e}{Sys\+Tick\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles System tick timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_gac201b60d58b0eba2ce0b55710eb3c4d0}{DMA1\+\_\+\+Stream5\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA1 stream5 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_gaa28fd448462a6347589129f63bb0a388}{DMA1\+\_\+\+Stream6\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA1 stream6 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga06406eadf297fa89a6eaf9586b227a69}{ADC\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles ADC1, ADC2 and ADC3 global interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga7b2096b8b2643286dc3a7e5110e5ae85}{EXTI9\+\_\+5\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles EXTI line\mbox{[}9\+:5\mbox{]} interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga3b60f6118cdd3449f4ed29fde4704236}{TIM1\+\_\+\+BRK\+\_\+\+TIM9\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM1 break interrupt and TIM9 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga38ad4725462bdc5e86c4ead4f04b9fc2}{TIM2\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM2 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_gac8e51d2183b5230cbd5481f8867adce9}{TIM3\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM3 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga7133f3f78767503641d307386e68bd28}{TIM4\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM4 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga738473a5b43f6c92b80ce1d3d6f77ed9}{EXTI15\+\_\+10\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles EXTI line\mbox{[}15\+:10\mbox{]} interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga4c8359a023f7ede4a9d9f94ea6fb92da}{TIM8\+\_\+\+TRG\+\_\+\+COM\+\_\+\+TIM14\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga5e66446caf21dd90191dc07a13ce2378}{TIM5\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM5 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga98cff83252098363b2dbca9608df964e}{TIM7\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles TIM7 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_gaaf6ce196dde98712e1223b99766e06c0}{DMA2\+\_\+\+Stream0\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream0 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_gadab6f3e22e90bd5b1ceebb98022abdf2}{DMA2\+\_\+\+Stream1\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream1 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga7e367d7c7b74485c4c75cdef30ad01e1}{DMA2\+\_\+\+Stream2\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream2 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga877135f6494d6923d6f6ec32d75d9eeb}{DMA2\+\_\+\+Stream3\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream3 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_ga295198ed574625d416158a5fc54205ea}{DMA2\+\_\+\+Stream4\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles DMA2 stream4 global interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Interrupts_gae5dcb5c1516cad8503ba1c778107c580}{SPI4\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em This function handles SPI4 global interrupt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{stm32f7xx__it_8c_abfd0324dc6a076ce94aac2e4ab05d1a2}{Fat\+Fs\+Cnt}} = 0
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{stm32f7xx__it_8c_a9963841bb1243906a136fe725492521e}{Timer1}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{stm32f7xx__it_8c_a1842f6ee4ba320821c21bcc34b28f6ce}{Timer2}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a1c126854bb1813d31ab4776b21dcc51f}{hdma\+\_\+adc1}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_ad99dd74cc50b61cf07680c1adaf80337}{hdma\+\_\+adc2}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a348c49f75bc918736d17997ac3f02e82}{hdma\+\_\+adc3}}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_acd9221f1aa19aebfe0b744947f2daf49}{hadc2}}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a984624bcf28d1b2fb7e4e18349f65d5c}{hadc3}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a0b091a815a18763d1ae04b35c8dc931f}{hdma\+\_\+dac1}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_aae5d903ccfcaf671396b79ed15eec0a3}{hdma\+\_\+dac2}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a7b5bae23cf8c5a2bae4a2dc352a6bf18}{hdma\+\_\+spi4\+\_\+rx}}
+\item 
+DMA\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_ad790392d1f26fe2990cd755d5497fbdb}{hdma\+\_\+spi4\+\_\+tx}}
+\item 
+SPI\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_ad11f23991deec4a1a2ffe474d1ef4ddd}{hspi4}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a25fc663547539bc49fecc0011bd76ab5}{htim1}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a2c80fd5510e2990a59a5c90d745c716c}{htim2}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_aac3d2c59ee0e3bbae1b99529a154eb62}{htim3}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a85788cec5a97ee377e4ee2e74f026484}{htim4}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_acefaeaaa3856ddddae7083b2d220fe4b}{htim5}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_abb71bf3ee68e2a051fbeec6c3ab3012d}{htim7}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{stm32f7xx__it_8c_a5faa27108379f799afb6984010bf0384}{htim8}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interrupt Service Routines. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2019 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 
+
+Definition in file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{stm32f7xx__it_8c_adac3d2a67ed908e1b5938277292d314b}\label{stm32f7xx__it_8c_adac3d2a67ed908e1b5938277292d314b}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!SDTimer\_Handler@{SDTimer\_Handler}}
+\index{SDTimer\_Handler@{SDTimer\_Handler}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{SDTimer\_Handler()}{SDTimer\_Handler()}}
+{\footnotesize\ttfamily void SDTimer\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00060}{60}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060                            \{}
+\DoxyCodeLine{00061     \textcolor{keywordflow}{if}(Timer1 > 0)}
+\DoxyCodeLine{00062         Timer1-\/-\/;}
+\DoxyCodeLine{00063 }
+\DoxyCodeLine{00064     \textcolor{keywordflow}{if}(Timer2 > 0)}
+\DoxyCodeLine{00065         Timer2-\/-\/;}
+\DoxyCodeLine{00066 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{stm32f7xx__it_8c_abfd0324dc6a076ce94aac2e4ab05d1a2}\label{stm32f7xx__it_8c_abfd0324dc6a076ce94aac2e4ab05d1a2}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!FatFsCnt@{FatFsCnt}}
+\index{FatFsCnt@{FatFsCnt}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{FatFsCnt}{FatFsCnt}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t Fat\+Fs\+Cnt = 0}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00057}{57}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a22b804736f5648d52f639b2647d4ed13}\label{stm32f7xx__it_8c_a22b804736f5648d52f639b2647d4ed13}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hadc1@{hadc1}}
+\index{hadc1@{hadc1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hadc1}{hadc1}}
+{\footnotesize\ttfamily ADC\+\_\+\+Handle\+Type\+Def hadc1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00052}{52}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_acd9221f1aa19aebfe0b744947f2daf49}\label{stm32f7xx__it_8c_acd9221f1aa19aebfe0b744947f2daf49}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hadc2@{hadc2}}
+\index{hadc2@{hadc2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hadc2}{hadc2}}
+{\footnotesize\ttfamily ADC\+\_\+\+Handle\+Type\+Def hadc2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00053}{53}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a984624bcf28d1b2fb7e4e18349f65d5c}\label{stm32f7xx__it_8c_a984624bcf28d1b2fb7e4e18349f65d5c}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hadc3@{hadc3}}
+\index{hadc3@{hadc3}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hadc3}{hadc3}}
+{\footnotesize\ttfamily ADC\+\_\+\+Handle\+Type\+Def hadc3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00054}{54}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a1c126854bb1813d31ab4776b21dcc51f}\label{stm32f7xx__it_8c_a1c126854bb1813d31ab4776b21dcc51f}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_adc1@{hdma\_adc1}}
+\index{hdma\_adc1@{hdma\_adc1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_adc1}{hdma\_adc1}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+adc1\hspace{0.3cm}{\ttfamily [extern]}}
+
+File Name \+: \mbox{\hyperlink{stm32f7xx__hal__msp_8c_source}{stm32f7xx\+\_\+hal\+\_\+msp.\+c}} Description \+: This file provides code for the MSP Initialization and de-\/\+Initialization codes.
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} Copyright (c) 2019 STMicroelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under BSD 3-\/Clause license, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: opensource.\+org/licenses/\+BSD-\/3-\/\+Clause 
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00055}{55}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_ad99dd74cc50b61cf07680c1adaf80337}\label{stm32f7xx__it_8c_ad99dd74cc50b61cf07680c1adaf80337}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_adc2@{hdma\_adc2}}
+\index{hdma\_adc2@{hdma\_adc2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_adc2}{hdma\_adc2}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+adc2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00056}{56}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a348c49f75bc918736d17997ac3f02e82}\label{stm32f7xx__it_8c_a348c49f75bc918736d17997ac3f02e82}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_adc3@{hdma\_adc3}}
+\index{hdma\_adc3@{hdma\_adc3}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_adc3}{hdma\_adc3}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+adc3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00057}{57}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a0b091a815a18763d1ae04b35c8dc931f}\label{stm32f7xx__it_8c_a0b091a815a18763d1ae04b35c8dc931f}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_dac1@{hdma\_dac1}}
+\index{hdma\_dac1@{hdma\_dac1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_dac1}{hdma\_dac1}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+dac1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00060}{60}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_aae5d903ccfcaf671396b79ed15eec0a3}\label{stm32f7xx__it_8c_aae5d903ccfcaf671396b79ed15eec0a3}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_dac2@{hdma\_dac2}}
+\index{hdma\_dac2@{hdma\_dac2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_dac2}{hdma\_dac2}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+dac2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00061}{61}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a7b5bae23cf8c5a2bae4a2dc352a6bf18}\label{stm32f7xx__it_8c_a7b5bae23cf8c5a2bae4a2dc352a6bf18}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_spi4\_rx@{hdma\_spi4\_rx}}
+\index{hdma\_spi4\_rx@{hdma\_spi4\_rx}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_spi4\_rx}{hdma\_spi4\_rx}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+spi4\+\_\+rx\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00068}{68}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_ad790392d1f26fe2990cd755d5497fbdb}\label{stm32f7xx__it_8c_ad790392d1f26fe2990cd755d5497fbdb}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hdma\_spi4\_tx@{hdma\_spi4\_tx}}
+\index{hdma\_spi4\_tx@{hdma\_spi4\_tx}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_spi4\_tx}{hdma\_spi4\_tx}}
+{\footnotesize\ttfamily DMA\+\_\+\+Handle\+Type\+Def hdma\+\_\+spi4\+\_\+tx\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00069}{69}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_ad11f23991deec4a1a2ffe474d1ef4ddd}\label{stm32f7xx__it_8c_ad11f23991deec4a1a2ffe474d1ef4ddd}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!hspi4@{hspi4}}
+\index{hspi4@{hspi4}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{hspi4}{hspi4}}
+{\footnotesize\ttfamily SPI\+\_\+\+Handle\+Type\+Def hspi4\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00067}{67}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a25fc663547539bc49fecc0011bd76ab5}\label{stm32f7xx__it_8c_a25fc663547539bc49fecc0011bd76ab5}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim1@{htim1}}
+\index{htim1@{htim1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim1}{htim1}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00071}{71}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a2c80fd5510e2990a59a5c90d745c716c}\label{stm32f7xx__it_8c_a2c80fd5510e2990a59a5c90d745c716c}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim2@{htim2}}
+\index{htim2@{htim2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim2}{htim2}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00072}{72}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_aac3d2c59ee0e3bbae1b99529a154eb62}\label{stm32f7xx__it_8c_aac3d2c59ee0e3bbae1b99529a154eb62}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim3@{htim3}}
+\index{htim3@{htim3}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim3}{htim3}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00073}{73}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a85788cec5a97ee377e4ee2e74f026484}\label{stm32f7xx__it_8c_a85788cec5a97ee377e4ee2e74f026484}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim4@{htim4}}
+\index{htim4@{htim4}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim4}{htim4}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim4\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00074}{74}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_acefaeaaa3856ddddae7083b2d220fe4b}\label{stm32f7xx__it_8c_acefaeaaa3856ddddae7083b2d220fe4b}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim5@{htim5}}
+\index{htim5@{htim5}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim5}{htim5}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim5\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00075}{75}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_abb71bf3ee68e2a051fbeec6c3ab3012d}\label{stm32f7xx__it_8c_abb71bf3ee68e2a051fbeec6c3ab3012d}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim7@{htim7}}
+\index{htim7@{htim7}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim7}{htim7}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim7\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00077}{77}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a5faa27108379f799afb6984010bf0384}\label{stm32f7xx__it_8c_a5faa27108379f799afb6984010bf0384}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!htim8@{htim8}}
+\index{htim8@{htim8}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{htim8}{htim8}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def htim8\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{Core_2Src_2main_8c_source_l00078}{78}} of file \mbox{\hyperlink{Core_2Src_2main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a9963841bb1243906a136fe725492521e}\label{stm32f7xx__it_8c_a9963841bb1243906a136fe725492521e}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!Timer1@{Timer1}}
+\index{Timer1@{Timer1}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{Timer1}{Timer1}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t Timer1}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00058}{58}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+
+\mbox{\Hypertarget{stm32f7xx__it_8c_a1842f6ee4ba320821c21bcc34b28f6ce}\label{stm32f7xx__it_8c_a1842f6ee4ba320821c21bcc34b28f6ce}} 
+\index{stm32f7xx\_it.c@{stm32f7xx\_it.c}!Timer2@{Timer2}}
+\index{Timer2@{Timer2}!stm32f7xx\_it.c@{stm32f7xx\_it.c}}
+\doxysubsubsection{\texorpdfstring{Timer2}{Timer2}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t Timer2}
+
+
+
+Definition at line \mbox{\hyperlink{stm32f7xx__it_8c_source_l00058}{58}} of file \mbox{\hyperlink{stm32f7xx__it_8c_source}{stm32f7xx\+\_\+it.\+c}}.
+

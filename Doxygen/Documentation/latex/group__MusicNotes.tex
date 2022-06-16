@@ -1,0 +1,289 @@
+\hypertarget{group__MusicNotes}{}\doxysection{Music Notes}
+\label{group__MusicNotes}\index{Music Notes@{Music Notes}}
+
+
+helper functions and variables to reference music notes to frequencies of the LUT,  
+
+
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries chord\+\_\+type} \{ {\bfseries fifth} = 0
+, {\bfseries seventh}
+, {\bfseries ninth}
+ \}
+\item 
+enum {\bfseries sex\+\_\+type} \{ {\bfseries major} =0
+, {\bfseries minor}
+, {\bfseries diminished}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}{Get\+\_\+\+Keyindex}} (char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}})
+\begin{DoxyCompactList}\small\item\em returns the index of a note-\/letter depending on the keys-\/array \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__MusicNotes_ga3fc1bdf03e12b5dee3aa887f100421bf}{Get\+\_\+\+Note\+\_\+\+Frequency}} (uint8\+\_\+t index, uint8\+\_\+t octave)
+\begin{DoxyCompactList}\small\item\em returns the frequency of a music note listed in the \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}{Get\+\_\+\+Note\+\_\+\+Index}} (char \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}, uint8\+\_\+t octave)
+\begin{DoxyCompactList}\small\item\em returns the frequency of a music note listed in the \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \mbox{\hyperlink{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}{keys}} \mbox{[}26\mbox{]}
+\begin{DoxyCompactList}\small\item\em lookuptable for respective note keys \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}{major\+\_\+scale}} \mbox{[}9\mbox{]}
+\begin{DoxyCompactList}\small\item\em minor/major tone scale in semi tone steps, according to the array keys \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga7888292b39a60d1e7b8c2e69c4aa8265}{minor\+\_\+scale}} \mbox{[}9\mbox{]}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga2222edaa79f27840e9e26c4d0076bd8c}{major\+\_\+chords}} \mbox{[}9\mbox{]}
+\begin{DoxyCompactList}\small\item\em minor/major tone chords in semi tone steps, according to the array keys \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga60de763cc89ce8e62431a20aa8ebce45}{minor\+\_\+chords}} \mbox{[}9\mbox{]}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__MusicNotes_gaf387d96b9f2a32b87121e2eae2c5ff16}{chord\+\_\+5}} \mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em chords, numbers give information of position in scale array(must be -\/1 if used directly) \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__MusicNotes_gab50e88548c5f7807cc8007d73893d715}{chord\+\_\+7}} \mbox{[}4\mbox{]}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__MusicNotes_ga6c859578132fe43620e6695425e47274}{chord\+\_\+9}} \mbox{[}4\mbox{]}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__MusicNotes_gad207617558c517f97f446e8732e1dcff}{chord\+\_\+dim}} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+helper functions and variables to reference music notes to frequencies of the LUT, 
+
+\texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}
+
+major / minor scales to the voices playing notes, chord types and their shapes 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__MusicNotes_ga1332ccdcab47ff8d20e5b4018a027655}\label{group__MusicNotes_ga1332ccdcab47ff8d20e5b4018a027655}} 
+\index{Music Notes@{Music Notes}!chord\_type@{chord\_type}}
+\index{chord\_type@{chord\_type}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{chord\_type}{chord\_type}}
+{\footnotesize\ttfamily enum chord\+\_\+type}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00026}{26}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026                \{}
+\DoxyCodeLine{00027     fifth= 0,}
+\DoxyCodeLine{00028     seventh,}
+\DoxyCodeLine{00029     ninth,}
+\DoxyCodeLine{00030 \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MusicNotes_ga3969450575cb399754dccab812c8017a}\label{group__MusicNotes_ga3969450575cb399754dccab812c8017a}} 
+\index{Music Notes@{Music Notes}!sex\_type@{sex\_type}}
+\index{sex\_type@{sex\_type}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{sex\_type}{sex\_type}}
+{\footnotesize\ttfamily enum sex\+\_\+type}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00032}{32}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032              \{}
+\DoxyCodeLine{00033     major=0,}
+\DoxyCodeLine{00034     minor,}
+\DoxyCodeLine{00035     diminished}
+\DoxyCodeLine{00036 \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}\label{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}} 
+\index{Music Notes@{Music Notes}!Get\_Keyindex@{Get\_Keyindex}}
+\index{Get\_Keyindex@{Get\_Keyindex}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{Get\_Keyindex()}{Get\_Keyindex()}}
+{\footnotesize\ttfamily uint8\+\_\+t Get\+\_\+\+Keyindex (\begin{DoxyParamCaption}\item[{char}]{key }\end{DoxyParamCaption})}
+
+
+
+returns the index of a note-\/letter depending on the keys-\/array 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & note-\/letter e.\+g. C \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+key index 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00051}{51}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051                               \{}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053     uint8\_t keyindex = 0;}
+\DoxyCodeLine{00054 }
+\DoxyCodeLine{00055     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 12; i++)\{}
+\DoxyCodeLine{00056         \textcolor{keywordflow}{if}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}} == \mbox{\hyperlink{music__notes_8c_aaeba6af94f85d3f8a58e358b842e96f5}{keys}}[i]) keyindex = i;}
+\DoxyCodeLine{00057     \}}
+\DoxyCodeLine{00058 \textcolor{keywordflow}{return} keyindex;}
+\DoxyCodeLine{00059 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MusicNotes_ga3fc1bdf03e12b5dee3aa887f100421bf}\label{group__MusicNotes_ga3fc1bdf03e12b5dee3aa887f100421bf}} 
+\index{Music Notes@{Music Notes}!Get\_Note\_Frequency@{Get\_Note\_Frequency}}
+\index{Get\_Note\_Frequency@{Get\_Note\_Frequency}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{Get\_Note\_Frequency()}{Get\_Note\_Frequency()}}
+{\footnotesize\ttfamily double Get\+\_\+\+Note\+\_\+\+Frequency (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index,  }\item[{uint8\+\_\+t}]{octave }\end{DoxyParamCaption})}
+
+
+
+returns the frequency of a music note listed in the 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00063}{63}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063                                                        \{}
+\DoxyCodeLine{00064     \textcolor{keywordtype}{int} tmp\_octave = 12*octave; \textcolor{comment}{//DEBUG}}
+\DoxyCodeLine{00065     \textcolor{keywordtype}{double} note\_freq =\mbox{\hyperlink{group__SINLUT_ga9a9d9181987af97d8c0ee7492f2e17fc}{LUT\_FREQUENCYS}}[tmp\_octave+index];}
+\DoxyCodeLine{00066     \textcolor{keywordflow}{return} note\_freq;}
+\DoxyCodeLine{00067 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}\label{group__MusicNotes_ga71407d53f2b1100f1ab93dc2681dfe48}} 
+\index{Music Notes@{Music Notes}!Get\_Note\_Index@{Get\_Note\_Index}}
+\index{Get\_Note\_Index@{Get\_Note\_Index}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{Get\_Note\_Index()}{Get\_Note\_Index()}}
+{\footnotesize\ttfamily uint16\+\_\+t Get\+\_\+\+Note\+\_\+\+Index (\begin{DoxyParamCaption}\item[{char}]{key,  }\item[{uint8\+\_\+t}]{octave }\end{DoxyParamCaption})}
+
+
+
+returns the frequency of a music note listed in the 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8c_source_l00071}{71}} of file \mbox{\hyperlink{music__notes_8c_source}{music\+\_\+notes.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071                                                 \{}
+\DoxyCodeLine{00072     \textcolor{keywordflow}{return} 12*octave + \mbox{\hyperlink{group__MusicNotes_ga24334366425c42178a955c3c969ad9a8}{Get\_Keyindex}}(\mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}});}
+\DoxyCodeLine{00073 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__MusicNotes_gaf387d96b9f2a32b87121e2eae2c5ff16}\label{group__MusicNotes_gaf387d96b9f2a32b87121e2eae2c5ff16}} 
+\index{Music Notes@{Music Notes}!chord\_5@{chord\_5}}
+\index{chord\_5@{chord\_5}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{chord\_5}{chord\_5}}
+{\footnotesize\ttfamily const uint32\+\_\+t chord\+\_\+5\mbox{[}3\mbox{]}}
+
+
+
+chords, numbers give information of position in scale array(must be -\/1 if used directly) 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00053}{53}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+\mbox{\Hypertarget{group__MusicNotes_gab50e88548c5f7807cc8007d73893d715}\label{group__MusicNotes_gab50e88548c5f7807cc8007d73893d715}} 
+\index{Music Notes@{Music Notes}!chord\_7@{chord\_7}}
+\index{chord\_7@{chord\_7}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{chord\_7}{chord\_7}}
+{\footnotesize\ttfamily const uint32\+\_\+t chord\+\_\+7\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00054}{54}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+\mbox{\Hypertarget{group__MusicNotes_ga6c859578132fe43620e6695425e47274}\label{group__MusicNotes_ga6c859578132fe43620e6695425e47274}} 
+\index{Music Notes@{Music Notes}!chord\_9@{chord\_9}}
+\index{chord\_9@{chord\_9}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{chord\_9}{chord\_9}}
+{\footnotesize\ttfamily const uint32\+\_\+t chord\+\_\+9\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00055}{55}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+\mbox{\Hypertarget{group__MusicNotes_gad207617558c517f97f446e8732e1dcff}\label{group__MusicNotes_gad207617558c517f97f446e8732e1dcff}} 
+\index{Music Notes@{Music Notes}!chord\_dim@{chord\_dim}}
+\index{chord\_dim@{chord\_dim}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{chord\_dim}{chord\_dim}}
+{\footnotesize\ttfamily const uint32\+\_\+t chord\+\_\+dim\mbox{[}3\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00056}{56}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+\mbox{\Hypertarget{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}\label{group__MusicNotes_gaa6edf4563731abf1927b342c5ebe3e8a}} 
+\index{Music Notes@{Music Notes}!keys@{keys}}
+\index{keys@{keys}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{keys}{keys}}
+{\footnotesize\ttfamily const char keys\mbox{[}26\mbox{]}}
+
+
+
+lookuptable for respective note keys 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00042}{42}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+\mbox{\Hypertarget{group__MusicNotes_ga2222edaa79f27840e9e26c4d0076bd8c}\label{group__MusicNotes_ga2222edaa79f27840e9e26c4d0076bd8c}} 
+\index{Music Notes@{Music Notes}!major\_chords@{major\_chords}}
+\index{major\_chords@{major\_chords}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{major\_chords}{major\_chords}}
+{\footnotesize\ttfamily const uint32\+\_\+t major\+\_\+chords\mbox{[}9\mbox{]}}
+
+
+
+minor/major tone chords in semi tone steps, according to the array keys 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00049}{49}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+\mbox{\Hypertarget{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}\label{group__MusicNotes_ga4e77e1cf22732d27ec948ba6f3942187}} 
+\index{Music Notes@{Music Notes}!major\_scale@{major\_scale}}
+\index{major\_scale@{major\_scale}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{major\_scale}{major\_scale}}
+{\footnotesize\ttfamily const uint32\+\_\+t major\+\_\+scale\mbox{[}9\mbox{]}}
+
+
+
+minor/major tone scale in semi tone steps, according to the array keys 
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00045}{45}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+\mbox{\Hypertarget{group__MusicNotes_ga60de763cc89ce8e62431a20aa8ebce45}\label{group__MusicNotes_ga60de763cc89ce8e62431a20aa8ebce45}} 
+\index{Music Notes@{Music Notes}!minor\_chords@{minor\_chords}}
+\index{minor\_chords@{minor\_chords}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{minor\_chords}{minor\_chords}}
+{\footnotesize\ttfamily const uint32\+\_\+t minor\+\_\+chords\mbox{[}9\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00050}{50}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+
+\mbox{\Hypertarget{group__MusicNotes_ga7888292b39a60d1e7b8c2e69c4aa8265}\label{group__MusicNotes_ga7888292b39a60d1e7b8c2e69c4aa8265}} 
+\index{Music Notes@{Music Notes}!minor\_scale@{minor\_scale}}
+\index{minor\_scale@{minor\_scale}!Music Notes@{Music Notes}}
+\doxysubsubsection{\texorpdfstring{minor\_scale}{minor\_scale}}
+{\footnotesize\ttfamily const uint32\+\_\+t minor\+\_\+scale\mbox{[}9\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{music__notes_8h_source_l00046}{46}} of file \mbox{\hyperlink{music__notes_8h_source}{music\+\_\+notes.\+h}}.
+

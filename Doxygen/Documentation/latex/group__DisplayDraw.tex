@@ -1,0 +1,372 @@
+\hypertarget{group__DisplayDraw}{}\doxysection{Display Draw Funtions}
+\label{group__DisplayDraw}\index{Display Draw Funtions@{Display Draw Funtions}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__DisplayDraw_ga04813dcc16532f2222d2a9d799d98f30}{DISPLAY\+\_\+\+Print\+Current\+Page}} (void)
+\begin{DoxyCompactList}\small\item\em this function prints the current display page \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayDraw_ga44502944f0f57e797ed44a9d81e533e8}{DISPLAY\+\_\+\+Arrow\+Down}} (uint8\+\_\+t $\ast$Joystick\+Parameter\+Position)
+\begin{DoxyCompactList}\small\item\em this function sets the arrow one more position down \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayDraw_ga66ef522eba7da71e294cabcccdd89adf}{DISPLAY\+\_\+\+Arrow\+Up}} (uint8\+\_\+t $\ast$Joystick\+Parameter\+Position)
+\begin{DoxyCompactList}\small\item\em this function sets the arrow one more position up \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayDraw_gaad139dccbdea27c5c95092b327408a1a}{DISPLAY\+\_\+\+Switch\+Page\+Left}} (void)
+\begin{DoxyCompactList}\small\item\em this function switches to one page on the left \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayDraw_ga6762942b296dabc3a6cfa0f14bd1c690}{DISPLAY\+\_\+\+Switch\+Page\+Right}} (void)
+\begin{DoxyCompactList}\small\item\em this function switches to one page on the right \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayDraw_ga0cf58d71eacb3fad194c7257fd5ce183}{DISPLAY\+\_\+\+Update}} (void)
+\begin{DoxyCompactList}\small\item\em this function updates the display \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__DisplayDraw_ga4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\+\_\+\+Draw\+Arrow}} (uint8\+\_\+t Joystick\+Parameter\+Position)
+\begin{DoxyCompactList}\small\item\em this function draws an arrow \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__DisplayDraw_ga44502944f0f57e797ed44a9d81e533e8}\label{group__DisplayDraw_ga44502944f0f57e797ed44a9d81e533e8}} 
+\index{Display Draw Funtions@{Display Draw Funtions}!DISPLAY\_ArrowDown@{DISPLAY\_ArrowDown}}
+\index{DISPLAY\_ArrowDown@{DISPLAY\_ArrowDown}!Display Draw Funtions@{Display Draw Funtions}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_ArrowDown()}{DISPLAY\_ArrowDown()}}
+{\footnotesize\ttfamily void DISPLAY\+\_\+\+Arrow\+Down (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Joystick\+Parameter\+Position }\end{DoxyParamCaption})}
+
+
+
+this function sets the arrow one more position down 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Joystick\+Parameter\+Position} & pointer to the current position of the joystick \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{display_8c_source_l00507}{507}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00507                                                            \{}
+\DoxyCodeLine{00508 }
+\DoxyCodeLine{00509     Display.poti\_moved = \textcolor{keyword}{false}; \textcolor{comment}{// To make sure that the following parameter is not changed}}
+\DoxyCodeLine{00510 }
+\DoxyCodeLine{00511     \mbox{\hyperlink{display_8c_a08d53d7a8c7863ece4aace771ec9fcfb}{DISPLAY\_DeleteArrow}}(*JoystickParameterPosition);}
+\DoxyCodeLine{00512 }
+\DoxyCodeLine{00513     \textcolor{keywordflow}{switch}(*JoystickParameterPosition) \{}
+\DoxyCodeLine{00514     \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00515         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00516             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00517         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00518     \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00519         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00520             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00521         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(*JoystickParameterPosition == Display.max\_parameter)}
+\DoxyCodeLine{00522             *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00523         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00524     \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00525         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00526             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00527         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(*JoystickParameterPosition == Display.max\_parameter)}
+\DoxyCodeLine{00528             *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00529         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00530     \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{00531         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00532             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00533         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(*JoystickParameterPosition == Display.max\_parameter)}
+\DoxyCodeLine{00534             *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00535         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00536     \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{00537         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00538             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00539         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(*JoystickParameterPosition == Display.max\_parameter)}
+\DoxyCodeLine{00540             *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00541         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00542     \textcolor{keywordflow}{case} 6:}
+\DoxyCodeLine{00543         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00544             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00545         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(*JoystickParameterPosition == Display.max\_parameter)}
+\DoxyCodeLine{00546             *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00547         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00548     \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{00549         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00550             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00551         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(*JoystickParameterPosition == Display.max\_parameter)}
+\DoxyCodeLine{00552             *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00553         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00554     \textcolor{keywordflow}{case} 8:}
+\DoxyCodeLine{00555         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00556             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00557         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(*JoystickParameterPosition == Display.max\_parameter)}
+\DoxyCodeLine{00558             *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00559         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00560     \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{00561         \textcolor{keywordflow}{if}(*JoystickParameterPosition < Display.max\_parameter)}
+\DoxyCodeLine{00562             *JoystickParameterPosition = *JoystickParameterPosition+1;}
+\DoxyCodeLine{00563         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(*JoystickParameterPosition == Display.max\_parameter)}
+\DoxyCodeLine{00564             *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00565         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00566     \textcolor{keywordflow}{case} 10:}
+\DoxyCodeLine{00567         *JoystickParameterPosition = 1; \textcolor{comment}{// Switch to the top}}
+\DoxyCodeLine{00568         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00569     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00570         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00571     \}}
+\DoxyCodeLine{00572 }
+\DoxyCodeLine{00573     \mbox{\hyperlink{group__DisplayDraw_ga4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(*JoystickParameterPosition);}
+\DoxyCodeLine{00574 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__DisplayDraw_ga66ef522eba7da71e294cabcccdd89adf}\label{group__DisplayDraw_ga66ef522eba7da71e294cabcccdd89adf}} 
+\index{Display Draw Funtions@{Display Draw Funtions}!DISPLAY\_ArrowUp@{DISPLAY\_ArrowUp}}
+\index{DISPLAY\_ArrowUp@{DISPLAY\_ArrowUp}!Display Draw Funtions@{Display Draw Funtions}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_ArrowUp()}{DISPLAY\_ArrowUp()}}
+{\footnotesize\ttfamily void DISPLAY\+\_\+\+Arrow\+Up (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Joystick\+Parameter\+Position }\end{DoxyParamCaption})}
+
+
+
+this function sets the arrow one more position up 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Joystick\+Parameter\+Position} & pointer to the current position of the joystick \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{display_8c_source_l00459}{459}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00459                                                         \{}
+\DoxyCodeLine{00460 }
+\DoxyCodeLine{00461     Display.poti\_moved = \textcolor{keyword}{false}; \textcolor{comment}{// To make sure that the following parameter is not changed}}
+\DoxyCodeLine{00462 }
+\DoxyCodeLine{00463     \mbox{\hyperlink{display_8c_a08d53d7a8c7863ece4aace771ec9fcfb}{DISPLAY\_DeleteArrow}}(*JoystickParameterPosition);}
+\DoxyCodeLine{00464 }
+\DoxyCodeLine{00465     \textcolor{keywordflow}{switch}(*JoystickParameterPosition) \{}
+\DoxyCodeLine{00466     \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00467         \textcolor{comment}{// Switch to the bottom}}
+\DoxyCodeLine{00468         *JoystickParameterPosition = Display.max\_parameter;}
+\DoxyCodeLine{00469         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00470     \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00471         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00472         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00473     \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00474         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00475         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00476     \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{00477         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00478         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00479     \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{00480         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00481         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00482     \textcolor{keywordflow}{case} 6:}
+\DoxyCodeLine{00483         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00484         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00485     \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{00486         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00487         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00488     \textcolor{keywordflow}{case} 8:}
+\DoxyCodeLine{00489         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00490         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00491     \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{00492         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00493         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00494     \textcolor{keywordflow}{case} 10:}
+\DoxyCodeLine{00495         *JoystickParameterPosition = *JoystickParameterPosition-\/1;}
+\DoxyCodeLine{00496         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00497     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00498         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00499     \}}
+\DoxyCodeLine{00500 }
+\DoxyCodeLine{00501     \mbox{\hyperlink{group__DisplayDraw_ga4170023d4ce93f468b83d6bd0f5c316d}{DISPLAY\_DrawArrow}}(*JoystickParameterPosition);}
+\DoxyCodeLine{00502 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__DisplayDraw_ga4170023d4ce93f468b83d6bd0f5c316d}\label{group__DisplayDraw_ga4170023d4ce93f468b83d6bd0f5c316d}} 
+\index{Display Draw Funtions@{Display Draw Funtions}!DISPLAY\_DrawArrow@{DISPLAY\_DrawArrow}}
+\index{DISPLAY\_DrawArrow@{DISPLAY\_DrawArrow}!Display Draw Funtions@{Display Draw Funtions}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_DrawArrow()}{DISPLAY\_DrawArrow()}}
+{\footnotesize\ttfamily void DISPLAY\+\_\+\+Draw\+Arrow (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Joystick\+Parameter\+Position }\end{DoxyParamCaption})}
+
+
+
+this function draws an arrow 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Joystick\+Parameter\+Position} & current position of the joystick \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{display_8c_source_l00374}{374}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00374                                                           \{}
+\DoxyCodeLine{00375 }
+\DoxyCodeLine{00376     \textcolor{keywordflow}{if}(Display.pagePosition != 0) \{ \textcolor{comment}{// Print an arrow unless the current page is the starting menu page, because on this one the arrow is not useful}}
+\DoxyCodeLine{00377 }
+\DoxyCodeLine{00378         \textcolor{keywordflow}{switch}(JoystickParameterPosition) \{}
+\DoxyCodeLine{00379         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00380             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE1, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00381             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00382         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00383             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE2, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00384             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00385         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00386             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE3, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00387             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00388         \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{00389             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE4, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00390             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00391         \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{00392             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE5, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00393             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00394         \textcolor{keywordflow}{case} 6:}
+\DoxyCodeLine{00395             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE6, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00396             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00397         \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{00398             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE7, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00399             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00400         \textcolor{keywordflow}{case} 8:}
+\DoxyCodeLine{00401             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE8, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00402             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00403         \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{00404             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE9, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00405             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00406         \textcolor{keywordflow}{case} 10:}
+\DoxyCodeLine{00407             Paint\_DrawStringAt(\&paint, Display.arrow\_start\_x\_position, CASE10, \textcolor{stringliteral}{"{}<-\/-\/"{}}, \&Font12, COLORED);}
+\DoxyCodeLine{00408             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00409         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00410             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00411         \}}
+\DoxyCodeLine{00412     \}}
+\DoxyCodeLine{00413 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__DisplayDraw_ga04813dcc16532f2222d2a9d799d98f30}\label{group__DisplayDraw_ga04813dcc16532f2222d2a9d799d98f30}} 
+\index{Display Draw Funtions@{Display Draw Funtions}!DISPLAY\_PrintCurrentPage@{DISPLAY\_PrintCurrentPage}}
+\index{DISPLAY\_PrintCurrentPage@{DISPLAY\_PrintCurrentPage}!Display Draw Funtions@{Display Draw Funtions}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_PrintCurrentPage()}{DISPLAY\_PrintCurrentPage()}}
+{\footnotesize\ttfamily void DISPLAY\+\_\+\+Print\+Current\+Page (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+this function prints the current display page 
+
+
+
+Definition at line \mbox{\hyperlink{display_8c_source_l00351}{351}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00351                                     \{}
+\DoxyCodeLine{00352 }
+\DoxyCodeLine{00353     \textcolor{keywordtype}{char} current\_page[1];}
+\DoxyCodeLine{00354     itoa(Display.pagePosition, current\_page, 10);}
+\DoxyCodeLine{00355     Paint\_DrawFilledRectangle(\&paint, 180, 1, 200, 10, UNCOLORED);  \textcolor{comment}{// Delete the frame content}}
+\DoxyCodeLine{00356     Paint\_DrawStringAt(\&paint, 180, 1, current\_page, \&Font12, COLORED);}
+\DoxyCodeLine{00357 }
+\DoxyCodeLine{00358     Display.UpdateDisplay = \textcolor{keyword}{true};}
+\DoxyCodeLine{00359 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__DisplayDraw_gaad139dccbdea27c5c95092b327408a1a}\label{group__DisplayDraw_gaad139dccbdea27c5c95092b327408a1a}} 
+\index{Display Draw Funtions@{Display Draw Funtions}!DISPLAY\_SwitchPageLeft@{DISPLAY\_SwitchPageLeft}}
+\index{DISPLAY\_SwitchPageLeft@{DISPLAY\_SwitchPageLeft}!Display Draw Funtions@{Display Draw Funtions}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_SwitchPageLeft()}{DISPLAY\_SwitchPageLeft()}}
+{\footnotesize\ttfamily void DISPLAY\+\_\+\+Switch\+Page\+Left (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+this function switches to one page on the left 
+
+
+
+Definition at line \mbox{\hyperlink{display_8c_source_l00579}{579}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00579                                   \{}
+\DoxyCodeLine{00580 }
+\DoxyCodeLine{00581     Display.poti\_moved = \textcolor{keyword}{false}; \textcolor{comment}{// To make sure that the following parameter is not changed}}
+\DoxyCodeLine{00582 }
+\DoxyCodeLine{00583     Display.currentVoice = 0;}
+\DoxyCodeLine{00584     Display.currentBand = 0;}
+\DoxyCodeLine{00585     Display.currentADSR = 0;}
+\DoxyCodeLine{00586     Display.currentDistortion = 0;}
+\DoxyCodeLine{00587     Display.currentTremolo = 0;}
+\DoxyCodeLine{00588     Display.currentDrumcomputer = 0;}
+\DoxyCodeLine{00589     Display.currentSequencer = 0;}
+\DoxyCodeLine{00590     Display.currentWahWah = 0;}
+\DoxyCodeLine{00591 }
+\DoxyCodeLine{00592     Display.JoystickParameterPosition = 1;}
+\DoxyCodeLine{00593 }
+\DoxyCodeLine{00594     Paint\_DrawFilledRectangle(\&paint, 1, 1, 200, 200, UNCOLORED);   \textcolor{comment}{// Delete the frame content}}
+\DoxyCodeLine{00595 }
+\DoxyCodeLine{00596     \textcolor{keywordflow}{if}(Display.pagePosition > Display.page\_min)}
+\DoxyCodeLine{00597         Display.pagePosition = Display.pagePosition-\/1;}
+\DoxyCodeLine{00598     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.pagePosition == Display.page\_min)}
+\DoxyCodeLine{00599         Display.pagePosition = Display.page\_max;}
+\DoxyCodeLine{00600 }
+\DoxyCodeLine{00601     \mbox{\hyperlink{group__DisplayDraw_ga04813dcc16532f2222d2a9d799d98f30}{DISPLAY\_PrintCurrentPage}}();}
+\DoxyCodeLine{00602 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__DisplayDraw_ga6762942b296dabc3a6cfa0f14bd1c690}\label{group__DisplayDraw_ga6762942b296dabc3a6cfa0f14bd1c690}} 
+\index{Display Draw Funtions@{Display Draw Funtions}!DISPLAY\_SwitchPageRight@{DISPLAY\_SwitchPageRight}}
+\index{DISPLAY\_SwitchPageRight@{DISPLAY\_SwitchPageRight}!Display Draw Funtions@{Display Draw Funtions}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_SwitchPageRight()}{DISPLAY\_SwitchPageRight()}}
+{\footnotesize\ttfamily void DISPLAY\+\_\+\+Switch\+Page\+Right (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+this function switches to one page on the right 
+
+
+
+Definition at line \mbox{\hyperlink{display_8c_source_l00607}{607}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00607                                    \{}
+\DoxyCodeLine{00608 }
+\DoxyCodeLine{00609     Display.poti\_moved = \textcolor{keyword}{false}; \textcolor{comment}{// To make sure that the following parameter is not changed}}
+\DoxyCodeLine{00610 }
+\DoxyCodeLine{00611     Display.JoystickParameterPosition = 1;}
+\DoxyCodeLine{00612 }
+\DoxyCodeLine{00613     Paint\_DrawFilledRectangle(\&paint, 1, 1, 200, 200, UNCOLORED);   \textcolor{comment}{// Delete the frame content}}
+\DoxyCodeLine{00614 }
+\DoxyCodeLine{00615     \textcolor{keywordflow}{if}(Display.pagePosition < Display.page\_max)}
+\DoxyCodeLine{00616         Display.pagePosition = Display.pagePosition+1;}
+\DoxyCodeLine{00617     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(Display.pagePosition == 11)}
+\DoxyCodeLine{00618         Display.pagePosition = -\/1;}
+\DoxyCodeLine{00619 }
+\DoxyCodeLine{00620     \mbox{\hyperlink{group__DisplayDraw_ga04813dcc16532f2222d2a9d799d98f30}{DISPLAY\_PrintCurrentPage}}();}
+\DoxyCodeLine{00621 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__DisplayDraw_ga0cf58d71eacb3fad194c7257fd5ce183}\label{group__DisplayDraw_ga0cf58d71eacb3fad194c7257fd5ce183}} 
+\index{Display Draw Funtions@{Display Draw Funtions}!DISPLAY\_Update@{DISPLAY\_Update}}
+\index{DISPLAY\_Update@{DISPLAY\_Update}!Display Draw Funtions@{Display Draw Funtions}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_Update()}{DISPLAY\_Update()}}
+{\footnotesize\ttfamily void DISPLAY\+\_\+\+Update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+this function updates the display 
+
+
+
+Definition at line \mbox{\hyperlink{display_8c_source_l00364}{364}} of file \mbox{\hyperlink{display_8c_source}{display.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00364                           \{}
+\DoxyCodeLine{00365 }
+\DoxyCodeLine{00366     EPD\_SetFrameMemory(\&epd, frame\_buffer, 0, 0, Paint\_GetWidth(\&paint), Paint\_GetHeight(\&paint));}
+\DoxyCodeLine{00367     EPD\_DisplayFrame(\&epd);}
+\DoxyCodeLine{00368     EPD\_Init(\&epd, lut\_partial\_update);}
+\DoxyCodeLine{00369 \}}
+
+\end{DoxyCode}

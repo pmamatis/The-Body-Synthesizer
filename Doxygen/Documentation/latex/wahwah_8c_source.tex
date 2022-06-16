@@ -1,0 +1,112 @@
+\hypertarget{wahwah_8c_source}{}\doxysection{wahwah.\+c}
+\label{wahwah_8c_source}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/wahwah.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/wahwah.c}}
+\mbox{\hyperlink{wahwah_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00011}00011 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{wahwah_8h}{wahwah.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00013}00013 \textcolor{comment}{/*********************************}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00014}00014 \textcolor{comment}{ * @brief       WahWah functions}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00015}00015 \textcolor{comment}{ * @parameter   WahWah}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00016}00016 \textcolor{comment}{ *********************************/}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00024}\mbox{\hyperlink{group__wahwah_gafdc2b53d4cc3352bf6e51df974ce169e}{00024}} WahWah\_Status \mbox{\hyperlink{group__wahwah_gafdc2b53d4cc3352bf6e51df974ce169e}{WahWah\_Init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah) \{}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00026}00026     WahWah-\/>lfo = \&lfo\_wahwah;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00027}00027     WahWah-\/>bandpass = \&BP\_WAHWAH;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00029}00029     WahWah-\/>lfo-\/>lfo\_index     = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00030}00030     WahWah-\/>lfo-\/>lfo\_quarter   = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00031}00031     WahWah-\/>lfo-\/>lfo\_frequency = 1; \textcolor{comment}{// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00033}00033     WahWah-\/>range        = 600;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00034}00034     WahWah-\/>mid\_freq     = 350;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00035}00035     WahWah-\/>mid\_freq\_mod = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00037}00037     WahWah-\/>max\_range = 500;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00038}00038     WahWah-\/>max\_mid\_freq = 2000;    \textcolor{comment}{// can be adjusted in the display to values 1000, 2000, 3000 and 4000}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00039}00039     WahWah-\/>max\_Q = 20;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00041}00041     WahWah-\/>reinit\_counter = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00042}00042     WahWah-\/>bandpass-\/>Q = 1;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00044}00044     \mbox{\hyperlink{group__Filters_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00046}00046     \textcolor{keywordflow}{return} WAHWAH\_OK;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00047}00047 \}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00055}\mbox{\hyperlink{group__wahwah_ga9b91a7fae64755689936b60cf1820535}{00055}} WahWah\_Status \mbox{\hyperlink{group__wahwah_ga9b91a7fae64755689936b60cf1820535}{WahWah\_Reset}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah) \{}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00057}00057     Display.WahWah\_ONOFF = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00059}00059     WahWah-\/>lfo-\/>lfo\_index     = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00060}00060     WahWah-\/>lfo-\/>lfo\_quarter   = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00061}00061     Display.WahWah\_LFOfreq = WahWah-\/>lfo-\/>lfo\_frequency = 1;    \textcolor{comment}{// [0.125, 0.25, 0.5, 1, 2, 4, 8, 16]}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00062}00062     Display.WahWah\_LFOfreq\_Index = Display.last\_WahWah\_LFOfreq\_Index = 3;   \textcolor{comment}{// 1 Hz}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00064}00064     Display.WahWah\_Range = WahWah-\/>range        = 600;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00065}00065     Display.WahWah\_MidFreq = WahWah-\/>mid\_freq     = 350;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00066}00066     WahWah-\/>mid\_freq\_mod = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00068}00068     WahWah-\/>reinit\_counter = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00069}00069     Display.WahWah\_Q = WahWah-\/>bandpass-\/>Q = 1;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00071}00071     Display.WahWah\_Sources[0] = POTI;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00072}00072     Display.WahWah\_Sources[1] = POTI;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00073}00073     Display.WahWah\_Sources[2] = POTI;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00074}00074     Display.WahWah\_Sources[3] = POTI;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00076}00076     strcpy(Display.value\_str\_wahwah[0], \textcolor{stringliteral}{"{}OFF"{}});}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00078}00078     \mbox{\hyperlink{group__Filters_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00080}00080     \textcolor{keywordflow}{return} WAHWAH\_OK;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00081}00081 \}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00088}\mbox{\hyperlink{group__wahwah_ga2fa3b9f5777f0876da0b828ee333673a}{00088}} WahWah\_Status \mbox{\hyperlink{group__wahwah_ga2fa3b9f5777f0876da0b828ee333673a}{ProcessWahWah}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah, \textcolor{keywordtype}{float} *data)\{}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00090}00090     \textcolor{comment}{// SET: mid frequency to at least 50 Hz due to filter response}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00091}00091     \textcolor{keywordflow}{if}(WahWah-\/>mid\_freq < 50)}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00092}00092         WahWah-\/>mid\_freq = 50;  \textcolor{comment}{// 50 Hz Offset;}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00094}00094     \textcolor{comment}{// RESET: Filter after 100 samples (with SR = 24k Hz >> 240 times a second)}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00095}00095     \textcolor{keywordflow}{if}(WahWah-\/>reinit\_counter == 100)\{}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00097}00097         \mbox{\hyperlink{group__Filters_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00098}00098         WahWah-\/>reinit\_counter = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00099}00099     \}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00101}00101     WahWah-\/>reinit\_counter++;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00103}00103     \mbox{\hyperlink{group__Filters_gad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(WahWah-\/>bandpass, data);}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00105}00105     \textcolor{keywordflow}{return} WAHWAH\_OK;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00106}00106 \}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00115}\mbox{\hyperlink{group__wahwah_ga85d3b2ed1cf4a3aef7b32c97b2e64237}{00115}} WahWah\_Status \mbox{\hyperlink{group__wahwah_ga85d3b2ed1cf4a3aef7b32c97b2e64237}{ProcessAutoWahWah}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structWahWah__t}{WahWah\_t}} *WahWah, \textcolor{keywordtype}{float} *data)\{}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00117}00117     \textcolor{comment}{// mid\_freq and range have to be set in the display function}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00118}00118 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00119}00119     \textcolor{comment}{// FETCH: actual LFO value}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00120}00120     \mbox{\hyperlink{group__SSynth_ga381bb27bca64ed7f5df822a3db09707a}{LFO\_SingleValueProcess}}(WahWah-\/>lfo, WAHWAH\_LFO);}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00122}00122     \textcolor{keywordflow}{if}(WahWah-\/>mid\_freq < 50)}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00123}00123         WahWah-\/>mid\_freq = 50;  \textcolor{comment}{// 50 Hz Offset;}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00125}00125     WahWah-\/>mid\_freq\_mod = WahWah-\/>mid\_freq + (WahWah-\/>range / 2) * WahWah-\/>lfo-\/>lfo\_data;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00127}00127     \textcolor{comment}{// RESET: Filter after 100 samples (with SR = 24k Hz >> 240 times a second)}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00128}00128     \textcolor{keywordflow}{if}(WahWah-\/>reinit\_counter == 100)\{}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00130}00130         \mbox{\hyperlink{group__Filters_ga30d8b183489ac4208a5fe11ba3a5dd40}{SetupBandpassCPG}}(WahWah-\/>bandpass, WahWah-\/>mid\_freq\_mod, WahWah-\/>bandpass-\/>Q);}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00131}00131         WahWah-\/>reinit\_counter = 0;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00132}00132     \}}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00134}00134     WahWah-\/>reinit\_counter++;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00136}00136     \mbox{\hyperlink{group__Filters_gad95e18a35a0ebacf27bc67222a71e275}{ProcessFilter}}(WahWah-\/>bandpass, data);}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00137}00137 }
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00138}00138     \textcolor{keywordflow}{return} WAHWAH\_OK;}
+\DoxyCodeLine{\Hypertarget{wahwah_8c_source_l00139}00139 \}}
+
+\end{DoxyCode}

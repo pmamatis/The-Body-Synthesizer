@@ -1,0 +1,78 @@
+\hypertarget{input__interfaces_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/input\+\_\+interfaces.h File Reference}
+\label{input__interfaces_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/input\_interfaces.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/input\_interfaces.h}}
+
+
+input device data processing, e.\+g. gyro emg ekc etc.  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_gae75d85c2a0e33285b010de60ba62d5de}{II\+\_\+\+MAX\+\_\+\+VOICES}}~3
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_gab5f73ee78baaa63d35a30b4df2e19bb1}{II\+\_\+\+SR}}~50
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_gad8b8ff119b355a4f2924ac3737ee1942}{II\+\_\+\+TREM\+\_\+\+DEPTH\+\_\+\+STEP\+\_\+\+SIZE}}~20
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_ga5fa4dbf044c0d140e4b176cd254b0535}{II\+\_\+\+FILTER\+\_\+\+CUTTOFF\+\_\+\+STEP\+\_\+\+SIZE}}~1600
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_ga4b48736ece16161be4dc32baa4a2a927}{II\+\_\+\+MINIMUM\+\_\+\+STEPCOUNTER}}~440
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_ga3ec9f00b0d3b0b973871a2d0017db3bc}{II\+\_\+\+FILTER\+\_\+\+CUTOFF\+\_\+\+MIN}}~10
+\item 
+\#define \mbox{\hyperlink{group__InputInterface_gac6dc998476a80037e675ac210e8fe275}{II\+\_\+\+TREM\+\_\+\+RATE\+\_\+\+DELAY}}~II\+\_\+\+SR/4
+\begin{DoxyCompactList}\small\item\em Processing Delays. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__InputInterface_gaf5ee1c3931290902bb339f3fef51307c}{II\+\_\+\+TREM\+\_\+\+DEPTH\+\_\+\+DELAY}}~II\+\_\+\+SR/4
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__InputInterface_gaf102c42e8c8be931b33bd67401dd9424}{II\+\_\+init}} ()
+\begin{DoxyCompactList}\small\item\em init function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__InputInterface_ga3c55c248a4e6b89d5698af2b46e35b60}{II\+\_\+start\+Interface}} (TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em starts the interface timer Interrupt \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__InputInterface_ga2b27d1c554db52f823b2897137823819}{II\+\_\+raise\+Note}} (uint8\+\_\+t ID)
+\item 
+void \mbox{\hyperlink{group__InputInterface_gafa7d9063c65151e6c6c79e94f81dd0fd}{II\+\_\+decrease\+Note}} (uint8\+\_\+t ID)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__InputInterface_ga68aa067f04b08bf4a16352bf87cc4c3e}{II\+\_\+\+Display\+\_\+\+Voices}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__InputInterface_ga195e0c4273ec6831366f4ae54a1586ee}{II\+\_\+\+Display\+\_\+\+Effects}} (void)
+\begin{DoxyCompactList}\small\item\em parses the information from the Display-\/input to the strcuts of the effects retval\+: 0 Error 1 Success \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{group__InputInterface_gad50ffb5e3431bdf97736f4dab39c252d}{log\+\_\+mapping\+\_\+F}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{group__InputInterface_ga18a2130fd54d97626562fa2719aae572}{filter\+\_\+step\+\_\+counter}} \mbox{[}5\mbox{]}
+\item 
+int16\+\_\+t \mbox{\hyperlink{group__InputInterface_ga6d86279f4356bba7d0efcb58cd190a1a}{drum\+\_\+filter\+\_\+step\+\_\+counter}}
+\item 
+bool \mbox{\hyperlink{group__InputInterface_ga192acf54301f05c84432d895bfc661e6}{gyrochanged}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__InputInterface_ga76749a61b9d1cc989220f945bd8cbba2}{gyro\+\_\+delay\+\_\+counter}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em \mbox{[}0\mbox{]}\+: tremolo rate; \mbox{[}1\mbox{]}\+: tremolo depth \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__InputInterface_gad625849bf556493fe3fde5a8418c5f33}{emg\+\_\+triggerd\+\_\+flag}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+input device data processing, e.\+g. gyro emg ekc etc. 
+
+\begin{DoxyAuthor}{Author}
+paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{input__interfaces_8h_source}{input\+\_\+interfaces.\+h}}.
+

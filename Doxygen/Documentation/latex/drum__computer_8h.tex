@@ -1,0 +1,159 @@
+\hypertarget{drum__computer_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/drum\+\_\+computer.h File Reference}
+\label{drum__computer_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/drum\_computer.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/drum\_computer.h}}
+
+
+Drumcomputer.  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}wav\+\_\+\+LUT.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}~8
+\begin{DoxyCompactList}\small\item\em Common Sample Length \& Time Signature. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__DrumComputer_ga9c96e4adb3d71b241ba9479117ab18d5}{Three\+Four}}~12
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga98c7a5f46d897df7157cfd75e379afb3}{Drum\+\_\+\+Computer\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Init function for the drumcomputer ~\newline
+ \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga0945a49b026be615b8a70c8ec885ac08}{Drum\+\_\+\+Computer\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em This function resets the drumcomputer to its initial state. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_ga08535ad247ef4e17b91bbba4b56833af}{Drum\+\_\+\+Computer\+\_\+\+Process}} (void)
+\begin{DoxyCompactList}\small\item\em Process-\/function of drumcomputer as well as sequencer. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__DrumComputer_gab1eca379f4f1b927be94270e748a87bf}{Drum\+\_\+\+Computer\+\_\+\+Calc\+Sample}} (void)
+\begin{DoxyCompactList}\small\item\em This function calculates actual samples of the drumcomputer depending on via display set timings. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gaf1fa77afa44aa624f611ecb1bcb9117e}{Sequencer\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em This function resets the sequencer to its initial state. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__Sequencer_gafe5a4ffde057a9bf69f40122bd7fee59}{Sequencer\+\_\+\+ADSR\+\_\+\+Init}} (struct \mbox{\hyperlink{structadsr}{adsr}} $\ast$env)
+\begin{DoxyCompactList}\small\item\em Initializes the variables of the sequencer ADSR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SingleSample_gab788a1e344e6956cb70a8e5e1ea4d0bd}{Play\+Single\+Sample}} (void)
+\begin{DoxyCompactList}\small\item\em Function to play a chosen sample each time it is triggerd by EMG / ECG, must be called inside \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{group__DrumComputer_ga0065e192c774e20fd5e0ab3c342b7088}{BPM}}
+\begin{DoxyCompactList}\small\item\em Tempo. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__DrumComputer_gab74b468925d5594f5e6817253e20c0e9}{BPM\+\_\+\+MAX}}
+\item 
+float \mbox{\hyperlink{group__DrumComputer_gae7cf814a888116b0be48e93f65cb989b}{last\+\_\+\+BPM}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_ga79a50fe2dacb6a669b7f4332e80aeab5}{Master\+Clock}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_gad32e19a8282780d0a134ec07797ac10b}{drum\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em Index. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_ga148d70203e23260f999890046d5509b0}{counter\+\_\+master}}
+\begin{DoxyCompactList}\small\item\em Counter. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_ga520717caafb0f824dbfb248c798605c0}{counter\+\_\+\+DS1}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_ga7f5a800f74267184ad26e97bb2e6641a}{counter\+\_\+\+DS2}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_ga101bd308bd999ec9847b656cdaf0664d}{counter\+\_\+\+DS3}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_ga047e98277538d9ffc3d242754f62b193}{counter\+\_\+\+DS4}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_ga88744615d25a485f31d6718453e6d324}{flag\+\_\+\+DS1}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Flag drums. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_ga08a8a4237acd74826889df3da7f6a00f}{flag\+\_\+\+DS2}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_gab941f4cf9dd1ef2f86902e5666f095b8}{flag\+\_\+\+DS3}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_gaef5d6aad3a47daa8cd8e180a06faeb87}{flag\+\_\+\+DS4}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{group__DrumComputer_ga4c0fb828065d1505aa1abfdd52afc7c3}{timing\+\_\+\+DS1}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Timing positions drums. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__DrumComputer_gac6a6a939795b423cd08dcf824be44293}{timing\+\_\+\+DS2}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{group__DrumComputer_ga1d71b31242bba20b36aaa09423e05a7a}{timing\+\_\+\+DS3}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{group__DrumComputer_ga887569e17cb0b5549694bc801fe4799a}{timing\+\_\+\+DS4}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__DrumComputer_gaf384496dba8edda6634148e3f1ecce3a}{timing\+\_\+position\+\_\+in\+\_\+samples}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+float \mbox{\hyperlink{group__DrumComputer_ga1d0ce949a258b04a5822d3442fd73d83}{DS1s}}
+\begin{DoxyCompactList}\small\item\em Sound bins. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__DrumComputer_ga91f172b51e2692fa5588b770e91f7927}{DS2s}}
+\item 
+float \mbox{\hyperlink{group__DrumComputer_ga7639ed9a41d8415500467c9a34488915}{DS3s}}
+\item 
+float \mbox{\hyperlink{group__DrumComputer_gae16aa85c82950c468f71f0f7db5b6b8a}{DS4s}}
+\item 
+float \mbox{\hyperlink{group__DrumComputer_ga1458fb0f412465df40b358462981d8ff}{PSSs}}
+\item 
+float \mbox{\hyperlink{group__DrumComputer_ga59012c74fae9a4d4011b5e397e85ebe5}{drums}}
+\item 
+float \mbox{\hyperlink{group__DrumComputer_ga4359d1d2b54286d788ee147a70f1df1a}{drums\+\_\+filtered}}
+\item 
+bool \mbox{\hyperlink{group__DrumComputer_ga00202ac1b0a383528653024a1b8c60d5}{timing\+\_\+\+SN1}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{group__DrumComputer_ga55c36451eeab342bc8750f1701762673}{timing\+\_\+\+SN2}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{group__DrumComputer_ga3d872f469584fd20e125932e33fcb6bc}{timing\+\_\+\+SN3}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{group__DrumComputer_gade7888aa494edc6233ab7ab7ef45c36f}{timing\+\_\+\+SN4}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__Sequencer_ga4211ba08e77d82a294762a623041e342}{freq\+\_\+index\+\_\+\+SN1}}
+\begin{DoxyCompactList}\small\item\em Frequency index sequencer. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__Sequencer_ga293fbfcf8787bd80eae1045c50ce7930}{freq\+\_\+index\+\_\+\+SN2}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__Sequencer_ga0ddb00b49386070cc056f71880a16215}{freq\+\_\+index\+\_\+\+SN3}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__Sequencer_ga9de3fd8c6de51c0cd59bc06b93e6bead}{freq\+\_\+index\+\_\+\+SN4}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_gabafd5c3bbb1d0bbc3e708889e904e3a7}{current\+\_\+\+LUT\+\_\+index\+\_\+\+SN1}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Current LUT index sequencer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_ga51da216a9e0dc66de3deb7cefcd77f30}{current\+\_\+\+LUT\+\_\+index\+\_\+\+SN2}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_ga0e2c70b4b41ba25a4d81e29bce62c2e7}{current\+\_\+\+LUT\+\_\+index\+\_\+\+SN3}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Sequencer_gaa9cc0ac2c5813c64e55e66d728074dd6}{current\+\_\+\+LUT\+\_\+index\+\_\+\+SN4}} \mbox{[}\mbox{\hyperlink{group__DrumComputer_ga267b06d60a7514d898b5cac91b4380ec}{Four\+Four}}\mbox{]}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_ga1578899be8b6d34fe965f44a84c16ecd}{SN1}}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_ga3383b4bacd2044b816aa4e3381410a6a}{SN2}}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_gad7509321da0468103a01c5191185672d}{SN3}}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_ga177dbaeb805759824fd534911c9a9eb2}{SN4}}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_gaf7db34cc03ea96d4aa7fb125c3543448}{SN1\+\_\+temp}}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_ga682c420600092a94d441c492b97d5c6c}{SN2\+\_\+temp}}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_ga29aed2ab97cc4663efd0359bc8ddbb7c}{SN3\+\_\+temp}}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_gadcbf1e3c0ff63db19fc628a7ddad58c7}{SN4\+\_\+temp}}
+\item 
+float \mbox{\hyperlink{group__SoundBinSequencer_ga3681ed9a2c0d65e556d0c9b60215bcf4}{sequencer}}
+\item 
+float \mbox{\hyperlink{group__SingleSample_ga4f45ba3b9c8c3c6e57de16324bf23604}{single\+\_\+sample}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__SingleSample_ga121c3b5953310244fe5ea8cab09efe66}{counter\+\_\+single\+\_\+sample}}
+\item 
+bool \mbox{\hyperlink{group__SingleSample_ga304666972f058f6ed2f1acd6816f70ac}{play\+\_\+single\+\_\+sample\+\_\+flag}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Drumcomputer. 
+
+\begin{DoxyAuthor}{Author}
+Max Lehmer \& Marc Bielen 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+05.\+08.\+2021
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{drum__computer_8h_source}{drum\+\_\+computer.\+h}}.
+

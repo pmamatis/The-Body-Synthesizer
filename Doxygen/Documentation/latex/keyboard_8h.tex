@@ -1,0 +1,75 @@
+\hypertarget{keyboard_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/keyboard.h File Reference}
+\label{keyboard_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/keyboard.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/keyboard.h}}
+
+
+keyboard adc data processing  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__keyboard_ga1e98c907246db70618a24c58d5f2dbad}{KEYBOARD\+\_\+\+SR}}~500
+\item 
+\#define \mbox{\hyperlink{group__keyboard_ga0925999ad04646c40c88acad44d112b2}{KEYBOARD\+\_\+\+VOICE\+\_\+\+ID}}~4
+\item 
+\#define \mbox{\hyperlink{group__keyboard_ga6046b15858f72a37e7822e5d4e0e284c}{VOICES\+\_\+\+ID}}~0
+\item 
+\#define \mbox{\hyperlink{group__keyboard_ga5b6b06be8158790d4e7dfc884690acb1}{NO\+\_\+\+KEY\+\_\+\+ADC\+\_\+\+VALUE}}~200
+\item 
+\#define \mbox{\hyperlink{group__keyboard_gaaa8ce6d66acf69ac599527ea3c51a7bb}{NUMBER\+\_\+\+OF\+\_\+\+KEYBOARD\+\_\+\+NOTES}}~13
+\item 
+\#define \mbox{\hyperlink{group__keyboard_gabcc22bbe2fc19ba537b8b0f24595ffa1}{MAX\+\_\+\+SIMULTANEOUS\+\_\+\+KEYBOARD\+\_\+\+NOTES}}~5
+\item 
+\#define \mbox{\hyperlink{group__keyboard_ga223f58b0e6ba7585a26967062d8c6e17}{KEYBOARD\+\_\+\+SP}}~\mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__keyboard_ga49b74c118843f9046a50a49296e3ce37}{keyboard\+\_\+init}} (ADC\+\_\+\+Handle\+Type\+Def $\ast$ADC\+\_\+\+Handler, TIM\+\_\+\+Handle\+Type\+Def $\ast$TIM\+\_\+\+Handler)
+\begin{DoxyCompactList}\small\item\em Keyboaed Init funcrion. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__keyboard_ga86de1f5c40ab14dddcc12fbf3eafde08}{keyboard\+\_\+start\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em starts the keyboard reading process \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__keyboard_ga2482802c0a6906975f7ad3f6143bd456}{keyboard\+\_\+stop\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Stops teh Keyboard readout by stoping the timer-\/interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__keyboard_ga4f8ca4fda6a27fe2ed6ad14c40339324}{One\+Press\+\_\+keyboard\+\_\+process}} (uint32\+\_\+t adc\+\_\+value, struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, struct \mbox{\hyperlink{structdisplay__variables}{display\+\_\+variables}} $\ast$Display)
+\begin{DoxyCompactList}\small\item\em This function handles the Data processing for the Keyboard ADC, depending on the given value a signal is generated and played untill the keyboard adsr end for this signal. ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{group__keyboard_ga994e37dd30a67beee328caeb1975e7e2}{keyboard\+\_\+note\+\_\+adcval}} \mbox{[}NUMBER\+\_\+\+OF\+\_\+\+KEYBOARD\+\_\+\+NOTES\mbox{]}
+\item 
+ADC\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__keyboard_ga871034e248b9e3d89132c320a8a0fc31}{KEYBOARD\+\_\+\+ADC}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{group__keyboard_ga7786cb1b74bd2aa2a9b97f1372a3e308}{KEYBOARD\+\_\+\+TIM}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__keyboard_ga34df4b41f8c51fa60fd85e2864156acd}{keyboard\+\_\+pressed\+\_\+counter}}
+\item 
+bool \mbox{\hyperlink{group__keyboard_ga7bfc57c85f9d6a1dc4f6c4f2b85ab519}{played\+\_\+keyboard\+\_\+note}} \mbox{[}MAX\+\_\+\+SIMULTANEOUS\+\_\+\+KEYBOARD\+\_\+\+NOTES\mbox{]}
+\item 
+bool \mbox{\hyperlink{group__keyboard_gaefe54d3f8f407830155ba96ec1ea7c4d}{activate\+\_\+processing}} \mbox{[}MAX\+\_\+\+SIMULTANEOUS\+\_\+\+KEYBOARD\+\_\+\+NOTES\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__keyboard_ga3cb9c3d7be09493634b6d9d88c4a43b7}{active\+\_\+keyboard\+\_\+notes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+keyboard adc data processing 
+
+\begin{DoxyAuthor}{Author}
+paul mamatis \& marc bielen 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{keyboard_8h_source}{keyboard.\+h}}.
+

@@ -1,0 +1,164 @@
+\hypertarget{signal__synthesis_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Src/signal\+\_\+synthesis.c File Reference}
+\label{signal__synthesis_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/signal\_synthesis.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Src/signal\_synthesis.c}}
+
+
+Signal Synthesis and related functions.  
+
+
+{\ttfamily \#include \char`\"{}signal\+\_\+synthesis.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__SSynth_ga9eda288feb5c689a0f90742249fe6da0}{Signal\+\_\+\+Synthesis\+\_\+\+Init}} (TIM\+\_\+\+Handle\+Type\+Def htim, DAC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{music__notes_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})
+\begin{DoxyCompactList}\small\item\em Init funtion for the signal\+\_\+synthesis, must be used in order to use any other funtion of this .c. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__SSynth_gaf4829c3aeeaf3dbcda0b5266e2834898}{Voices\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em resets the voice parameter which can be changed in the GUI \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{Set\+Timer\+Settings}} (TIM\+\_\+\+Handle\+Type\+Def $\ast$htim, uint32\+\_\+t SR)
+\begin{DoxyCompactList}\small\item\em Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_ga381bb27bca64ed7f5df822a3db09707a}{LFO\+\_\+\+Single\+Value\+Process}} (struct \mbox{\hyperlink{structeffects__lfo__t}{effects\+\_\+lfo\+\_\+t}} $\ast$lfo, uint8\+\_\+t lfo\+\_\+effect)
+\begin{DoxyCompactList}\small\item\em Constructor for a signal, adds a signal into the signals1 struct. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{New\+Signal}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, uint8\+\_\+t kind, uint8\+\_\+t \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}, uint8\+\_\+t octave, uint8\+\_\+t ID)
+\begin{DoxyCompactList}\small\item\em generates a signal which is processed in the \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{Delete\+Signal}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int16\+\_\+t signal\+\_\+index)
+\begin{DoxyCompactList}\small\item\em deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDto\+Index}} (int16\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em converts an signal ID into its Index \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, uint8\+\_\+t output\+\_\+\+Channel)
+\begin{DoxyCompactList}\small\item\em generates a digital signal in the calculate\+\_\+vector, depending on the signals inside the struct signals1. To add signals use New\+Signal and to delete signals use Delete\+Signal \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__SSynth_ga994b819c46cb3569b8854f25a13b54fc}{init\+Ramp}} (void)
+\item 
+float \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{Calc\+Rect\+Sample}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int index)
+\begin{DoxyCompactList}\small\item\em Rectangle wave based on struct signals. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{Calc\+Triangle\+Sample}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int index)
+\begin{DoxyCompactList}\small\item\em Triangle wave samples based on struct signals. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__SSynth_ga2f9745c8cd2b522e949b4c58cfccce56}{Noise\+\_\+\+Generator}} (void)
+\begin{DoxyCompactList}\small\item\em random number generator \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}{AWGN\+\_\+generator}} (void)
+\begin{DoxyCompactList}\small\item\em Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}{max\+Value\+DAC}}
+\begin{DoxyCompactList}\small\item\em maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal\+\_\+sythesis.\+h and will be set in the Init function \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}{ramp\+\_\+counter}} = 0
+\begin{DoxyCompactList}\small\item\em wirtes a starting ramp into the DAC-\/\+Buffer to avoid speaker damage \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Signal Synthesis and related functions. 
+
+\begin{DoxyAuthor}{Author}
+Marc Bielen \& Max Lehmer \& Paul Mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+3.\+2 
+\end{DoxyVersion}
+
+
+Definition in file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}\label{signal__synthesis_8c_ac23864825289dd0157a0abf76c915b70}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!AWGN\_generator@{AWGN\_generator}}
+\index{AWGN\_generator@{AWGN\_generator}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{AWGN\_generator()}{AWGN\_generator()}}
+{\footnotesize\ttfamily float AWGN\+\_\+generator (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Generates additive white Gaussian Noise samples with zero mean and a standard deviation of 1. 
+
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01344}{1344}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01344                            \{}
+\DoxyCodeLine{01345 }
+\DoxyCodeLine{01346     \textcolor{keywordtype}{float} temp1;}
+\DoxyCodeLine{01347     \textcolor{keywordtype}{float} temp2;}
+\DoxyCodeLine{01348     \textcolor{keywordtype}{float} result;}
+\DoxyCodeLine{01349     \textcolor{keywordtype}{int} p;}
+\DoxyCodeLine{01350 }
+\DoxyCodeLine{01351     p = 1;}
+\DoxyCodeLine{01352 }
+\DoxyCodeLine{01353     \textcolor{keywordflow}{while}( p > 0 )}
+\DoxyCodeLine{01354     \{}
+\DoxyCodeLine{01355         temp2 = ( rand() / ( (float)RAND\_MAX ) ); \textcolor{comment}{/*  rand() function generates an }}
+\DoxyCodeLine{01356 \textcolor{comment}{                                                       integer between 0 and  RAND\_MAX, }}
+\DoxyCodeLine{01357 \textcolor{comment}{                                                       which is defined in stdlib.h. }}
+\DoxyCodeLine{01358 \textcolor{comment}{         */}}
+\DoxyCodeLine{01359 }
+\DoxyCodeLine{01360         \textcolor{keywordflow}{if} ( temp2 == 0 )}
+\DoxyCodeLine{01361         \{\textcolor{comment}{// temp2 is >= (RAND\_MAX / 2)}}
+\DoxyCodeLine{01362             p = 1;}
+\DoxyCodeLine{01363         \}\textcolor{comment}{// end if}}
+\DoxyCodeLine{01364         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01365         \{\textcolor{comment}{// temp2 is < (RAND\_MAX / 2)}}
+\DoxyCodeLine{01366             p = -\/1;}
+\DoxyCodeLine{01367         \}\textcolor{comment}{// end else}}
+\DoxyCodeLine{01368 }
+\DoxyCodeLine{01369     \}\textcolor{comment}{// end while()}}
+\DoxyCodeLine{01370 }
+\DoxyCodeLine{01371     temp1 = cos( ( 2.0 * (\textcolor{keywordtype}{float})PI ) * rand() / ( (\textcolor{keywordtype}{float})RAND\_MAX ) );}
+\DoxyCodeLine{01372     result = sqrt( -\/2.0 * log( temp2 ) ) * temp1;}
+\DoxyCodeLine{01373 }
+\DoxyCodeLine{01374     \textcolor{keywordflow}{return} result;  \textcolor{comment}{// return the generated random sample to the caller}}
+\DoxyCodeLine{01375 }
+\DoxyCodeLine{01376 \}\textcolor{comment}{// end AWGN\_generator()}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}\label{signal__synthesis_8c_ac19aecb2f04b87bf170233b3236093ae}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!maxValueDAC@{maxValueDAC}}
+\index{maxValueDAC@{maxValueDAC}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{maxValueDAC}{maxValueDAC}}
+{\footnotesize\ttfamily double max\+Value\+DAC}
+
+
+
+maximal binary value which is used by the DAC, can be adjusted by AMPLITUDE in signal\+\_\+sythesis.\+h and will be set in the Init function 
+
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l00023}{23}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+
+\mbox{\Hypertarget{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}\label{signal__synthesis_8c_a406aefd47c82521bb2c5a14ef93c85d2}} 
+\index{signal\_synthesis.c@{signal\_synthesis.c}!ramp\_counter@{ramp\_counter}}
+\index{ramp\_counter@{ramp\_counter}!signal\_synthesis.c@{signal\_synthesis.c}}
+\doxysubsubsection{\texorpdfstring{ramp\_counter}{ramp\_counter}}
+{\footnotesize\ttfamily float ramp\+\_\+counter = 0}
+
+
+
+wirtes a starting ramp into the DAC-\/\+Buffer to avoid speaker damage 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em returns} & a bool which indicates if ramp is finished or still in process \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{signal__synthesis_8c_source_l01204}{1204}} of file \mbox{\hyperlink{signal__synthesis_8c_source}{signal\+\_\+synthesis.\+c}}.
+

@@ -1,0 +1,73 @@
+\hypertarget{sinLUT_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/sin\+LUT.h File Reference}
+\label{sinLUT_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/sinLUT.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/sinLUT.h}}
+
+
+contains a certain amount of frequencys which can be accsed  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__SINLUT_gacbdaf271857451168a37d2636c6a0129}{LUT\+\_\+\+SR}}~24000
+\item 
+\#define \mbox{\hyperlink{group__SINLUT_ga41871d7a40b207a14317208a76d9855c}{LUT\+\_\+\+START\+\_\+\+OCTAVE}}~4186.\+009
+\item 
+\#define \mbox{\hyperlink{group__SINLUT_gad41e6dcdfa4592f3b9ebc970c5480169}{LUT\+\_\+\+FMAX}}~4186.\+009
+\item 
+\#define \mbox{\hyperlink{group__SINLUT_ga6077f848edb4cbaca2b54a09b6ebca06}{LUT\+\_\+\+FMIN}}~65.\+4064
+\item 
+\#define \mbox{\hyperlink{group__SINLUT_ga2388ba56a3aa9de1f9a9811a8a89ba9d}{LUT\+\_\+\+OCTAVES}}~6
+\item 
+\#define \mbox{\hyperlink{group__SINLUT_ga4d421090f8666302d0bd174c81bbd3a8}{LFO\+\_\+\+FMAX}}~16
+\item 
+\#define \mbox{\hyperlink{group__SINLUT_ga259f94659423ae045f1d5f9bbf331763}{LFO\+\_\+\+FMIN}}~0.\+125
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const float \mbox{\hyperlink{group__SINLUT_ga4f12a18a6cf6bdb4cf4b1f3a509f061e}{LUT}} \mbox{[}6439\mbox{]}
+\begin{DoxyCompactList}\small\item\em SIN-\/\+LUT, contains all values of 1/4-\/\+Sin\textquotesingle{}s for the frequency from LUT\+\_\+\+FMIN to LUT\+\_\+\+FMAX ~\newline
+ \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__SINLUT_ga93f6110c104231e7959e446480c94834}{LUT\+\_\+\+ENDINDEX}} \mbox{[}73\mbox{]}
+\begin{DoxyCompactList}\small\item\em contains all endindizies of the frequencies in the SIN-\/\+LUT \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__SINLUT_ga2e5122eebde8d369cf949da93586ec2e}{LUT\+\_\+\+STARTINDEX}} \mbox{[}73\mbox{]}
+\begin{DoxyCompactList}\small\item\em contains all startindizies of the frequencies in the SIN-\/\+LUT \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__SINLUT_ga1380f2886548602aeb7849aa7ba76435}{LUT\+\_\+\+SUPPORTPOINTS}} \mbox{[}73\mbox{]}
+\begin{DoxyCompactList}\small\item\em contains the support points for each frequncy \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{group__SINLUT_ga9a9d9181987af97d8c0ee7492f2e17fc}{LUT\+\_\+\+FREQUENCYS}} \mbox{[}73\mbox{]}
+\begin{DoxyCompactList}\small\item\em gives the the frquncy value \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{group__SINLUT_ga8ed6c93a3575a1bca18ba7ae1ab1735a}{LFO}} \mbox{[}95625\mbox{]}
+\begin{DoxyCompactList}\small\item\em containing the LFO values \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__SINLUT_gadd64de359bd581eccdc0c439dd3add66}{LFO\+\_\+\+ENDINDEX}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em contains all startindizies of the frequencies in the LFO-\/\+LUT \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__SINLUT_ga56c49e449311b56a93feb559198762fe}{LFO\+\_\+\+STARTINDEX}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em contains all startindizies of the frequencies in the LFO-\/\+LUT \end{DoxyCompactList}\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__SINLUT_ga956e265f52e43419b6840913fb23f8d0}{LFO\+\_\+\+SUPPORTPOINTS}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em contains the support points for each LFO-\/frequncy \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{group__SINLUT_gaa9c9ea0c186709ce908f4a8ad5e0975d}{LFO\+\_\+\+FREQUENCYS}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em gives the the LFO-\/frquency value \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+contains a certain amount of frequencys which can be accsed 
+
+\begin{DoxyAuthor}{Author}
+paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022
+\end{DoxyCopyright}
+\begin{DoxyAttention}{Attention}
+SIN LUT Data are only valid SIN\textquotesingle{}s with given samplerate (LUT\+\_\+\+SR) 
+\end{DoxyAttention}
+
+
+Definition in file \mbox{\hyperlink{sinLUT_8h_source}{sin\+LUT.\+h}}.
+

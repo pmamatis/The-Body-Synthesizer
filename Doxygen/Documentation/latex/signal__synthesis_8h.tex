@@ -1,0 +1,111 @@
+\hypertarget{signal__synthesis_8h}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Core/\+Inc/signal\+\_\+synthesis.h File Reference}
+\label{signal__synthesis_8h}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/signal\_synthesis.h@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Core/Inc/signal\_synthesis.h}}
+
+
+sound synthesis, (Signals + Effects) -\/\texorpdfstring{$>$}{>} DAC  
+
+
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}display.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em struct to store signals \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structeffects__lfo__t}{effects\+\_\+lfo\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__SSynth_gae2d3a48fb01bbc0fe795724379434d05}{AMPLITUDE}}~1000
+\begin{DoxyCompactList}\small\item\em maximal amplitude of output voltage in millivolts \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__SSynth_ga80825df7d911faa99554cbe165590474}{DAC\+\_\+\+MAX}}~4095
+\begin{DoxyCompactList}\small\item\em digital DAC value for maximal output voltage (3,3V) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__SSynth_ga21005f9f4e2ce7597c5eb4351816d7e2}{OFFSET}}~2047
+\begin{DoxyCompactList}\small\item\em digital value for 1.\+65 V \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__SSynth_ga9403bb31e6a5748c0bfc57f7523ef483}{DAC\+\_\+\+MAXVALUE\+\_\+\+TO\+\_\+\+AMPLITUDE\+\_\+\+RATIO}}~1.\+24121212121212
+\begin{DoxyCompactList}\small\item\em 4096/3300 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__SSynth_ga74bf0cbaccfba1bf548d482148183a12}{MAX\+\_\+\+SIGNAL\+\_\+\+KOMBINATION}}~30
+\begin{DoxyCompactList}\small\item\em Maximum of SIgnals which can be played at the same time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__SSynth_ga30e7759725b5108d333a72ccd70aece3}{signal\+\_\+kind\+\_\+enum}} \{ {\bfseries SIN} = 1
+, {\bfseries RECT}
+, {\bfseries TRIANGLE}
+, {\bfseries NOISE}
+ \}
+\begin{DoxyCompactList}\small\item\em Signal kinds. \end{DoxyCompactList}\item 
+enum {\bfseries lfo\+\_\+effect} \{ {\bfseries TREMOLO\+\_\+\+LFO} = 0
+, {\bfseries WAHWAH\+\_\+\+LFO}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__SSynth_ga9eda288feb5c689a0f90742249fe6da0}{Signal\+\_\+\+Synthesis\+\_\+\+Init}} (TIM\+\_\+\+Handle\+Type\+Def htim, DAC\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{music__notes_8c_a40a0d1383beda58531dfda6218720e45}{hdac}})
+\begin{DoxyCompactList}\small\item\em Init funtion for the signal\+\_\+synthesis, must be used in order to use any other funtion of this .c. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{group__SSynth_gaf4829c3aeeaf3dbcda0b5266e2834898}{Voices\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em resets the voice parameter which can be changed in the GUI \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_gadc7b4110b68d58532096fe9f817df89c}{Set\+Timer\+Settings}} (TIM\+\_\+\+Handle\+Type\+Def $\ast$htim, uint32\+\_\+t SR)
+\begin{DoxyCompactList}\small\item\em Init funtion for the Timer which triggers the DAC, this function sets the timerperiode and presacaler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, uint8\+\_\+t output\+\_\+\+Channel)
+\begin{DoxyCompactList}\small\item\em generates a digital signal in the calculate\+\_\+vector, depending on the signals inside the struct signals1. To add signals use New\+Signal and to delete signals use Delete\+Signal \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_gaff4b96bd9a6fb74a10215a54f141d06d}{Delete\+Signal}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int16\+\_\+t signal\+\_\+index)
+\begin{DoxyCompactList}\small\item\em deletes a signal inside the signals1 struct, and shifts all other signals behind the deleted signal to the left. The shift is for having no empty spaces inside the signals1 struct \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_ga15e519685bb7a5374c0ea7e3b9980952}{New\+Signal}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, uint8\+\_\+t kind, uint8\+\_\+t \mbox{\hyperlink{music__notes_8c_acad36f7a1211e9e9da68e181667d9c3f}{key}}, uint8\+\_\+t octave, uint8\+\_\+t ID)
+\begin{DoxyCompactList}\small\item\em generates a signal which is processed in the \mbox{\hyperlink{group__SSynth_ga14e563872b7cc3bae6f534d36f016911}{Signal\+\_\+\+Synthesis()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SSynth_ga381bb27bca64ed7f5df822a3db09707a}{LFO\+\_\+\+Single\+Value\+Process}} (struct \mbox{\hyperlink{structeffects__lfo__t}{effects\+\_\+lfo\+\_\+t}} $\ast$lfo, uint8\+\_\+t lfo\+\_\+effect)
+\begin{DoxyCompactList}\small\item\em Constructor for a signal, adds a signal into the signals1 struct. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__SSynth_ga2b8c4b7d554c97fbb68f2226c8202acd}{Calc\+Rect\+Sample}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int index)
+\begin{DoxyCompactList}\small\item\em Rectangle wave based on struct signals. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__SSynth_gabeac1ddb99c3d1374df2dc163a756072}{Calc\+Triangle\+Sample}} (struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} $\ast$signals, int index)
+\begin{DoxyCompactList}\small\item\em Triangle wave samples based on struct signals. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__SSynth_ga2f9745c8cd2b522e949b4c58cfccce56}{Noise\+\_\+\+Generator}} (void)
+\begin{DoxyCompactList}\small\item\em random number generator \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{group__SSynth_ga100668ad3cefb7abc0f65f866ea508ba}{IDto\+Index}} (int16\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em converts an signal ID into its Index \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__SSynth_ga994b819c46cb3569b8854f25a13b54fc}{init\+Ramp}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsignal__t}{signal\+\_\+t}} \mbox{\hyperlink{group__SSynth_ga5b95c7f01daea158ffcc681572618373}{signals1}}
+\item 
+struct \mbox{\hyperlink{structeffects__lfo__t}{effects\+\_\+lfo\+\_\+t}} \mbox{\hyperlink{group__SSynth_ga97dbcee80a3c35c2977ad6b4678d3537}{lfo\+\_\+tremolo}}
+\item 
+struct \mbox{\hyperlink{structeffects__lfo__t}{effects\+\_\+lfo\+\_\+t}} \mbox{\hyperlink{group__SSynth_ga2a60cfa8d2bbdf6a0ac6e035afe008cb}{lfo\+\_\+wahwah}}
+\item 
+float \mbox{\hyperlink{group__SSynth_ga0c06ec02b1329cdb21df9311f9bc3712}{volume}} \mbox{[}4\mbox{]}
+\item 
+float \mbox{\hyperlink{group__SSynth_gaa15347ac4d705e4e9db618dfa95640e7}{Master\+\_\+\+Volume}}
+\item 
+float \mbox{\hyperlink{group__SSynth_ga5c1306f9014e8c807f270a79a96bc1e4}{calculate\+\_\+keyboard}} \mbox{[}5\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__SSynth_ga5b4caaf313594423ca462cb11a33eca9}{output\+Buffer\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em Position of the DMA Output Buffer, can be HALF\+\_\+\+BLOCK or FULL\+\_\+\+BLOCK. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+sound synthesis, (Signals + Effects) -\/\texorpdfstring{$>$}{>} DAC 
+
+\begin{DoxyAuthor}{Author}
+max lehmer \& marc bielen \& paul mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/01-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{signal__synthesis_8h_source}{signal\+\_\+synthesis.\+h}}.
+

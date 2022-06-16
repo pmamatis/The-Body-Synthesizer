@@ -1,0 +1,88 @@
+\hypertarget{MPU6050__GY521_8c}{}\doxysection{/media/paul/\+LINUX\+\_\+\+MEM/\+Uni/\+Git Repos/\+Body-\/\+Synthesizer\+\_\+\+STM32\+\_\+\+F746\+ZG/body-\/synthesizer-\/stm32-\/f746zg/\+Sensor\+\_\+\+Code/\+Body-\/\+Synthezier\+\_\+\+Sensors/\+Core/\+Src/\+MPU6050\+\_\+\+GY521.c File Reference}
+\label{MPU6050__GY521_8c}\index{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Src/MPU6050\_GY521.c@{/media/paul/LINUX\_MEM/Uni/Git Repos/Body-\/Synthesizer\_STM32\_F746ZG/body-\/synthesizer-\/stm32-\/f746zg/Sensor\_Code/Body-\/Synthezier\_Sensors/Core/Src/MPU6050\_GY521.c}}
+
+
+software driver for MPU6050 in combination with a STM32  
+
+
+{\ttfamily \#include \char`\"{}MPU6050\+\_\+\+GY521.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga4b1f2e602c95802e5c65168964da2eb5}{MPU6050\+\_\+init}} (I2\+C\+\_\+\+Handle\+Type\+Def $\ast$\+\_\+\+\_\+hi2c, \mbox{\hyperlink{structMPU6050__Data}{MPU6050\+\_\+\+Data}} $\ast$Sensor\+\_\+\+Data\+\_\+pointer, \mbox{\hyperlink{group__MPU6050_ga18ad019342a4d49779b497db4882529d}{MPU6050\+\_\+\+ACCL\+\_\+\+RES}} accl\+\_\+resolution, \mbox{\hyperlink{group__MPU6050_gaca49957b1a43f91ee978555e2dfc7ff0}{MPU6050\+\_\+\+GYRO\+\_\+\+RES}} gyro\+\_\+resolution, uint8\+\_\+t samplerate)
+\begin{DoxyCompactList}\small\item\em Init for the MPU6050. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga54ed50404498f4682d81ad8cb74a7150}{MPU6050\+\_\+\+Read\+\_\+\+Accl}} ()
+\begin{DoxyCompactList}\small\item\em reeads only accl data \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_gac16021f5f2c6dbf509ed77ddfc6d943d}{MPU6050\+\_\+\+Read\+\_\+\+Gyro}} ()
+\begin{DoxyCompactList}\small\item\em reads only gyro data \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga109418b6b13fd4ddff993014f625994f}{MPU6050\+\_\+\+Read\+\_\+\+Sensor}} ()
+\begin{DoxyCompactList}\small\item\em Reads raw data from accl and gyro ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_ga9bffe1265ebfe68fd00af734443b6f4f}{MPU6050\+\_\+\+Calculate\+\_\+\+Mean}} ()
+\begin{DoxyCompactList}\small\item\em Gets the mean value of the gyro and accl over n\+\_\+measurements. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__MPU6050_ga93fe4b900e9a53cf29a99adc9e64d7c4}{MPU6050\+\_\+\+STATUS}} \mbox{\hyperlink{group__MPU6050_gac5545cc463f9c6b45b18aab7acc33d83}{MPU6050\+\_\+\+Calibrate}} ()
+\begin{DoxyCompactList}\small\item\em Calibrates the MPU6050 and sets the offsets, which needed to be subtracted from the Rawdata to get valid information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}{get\+Gyro\+Roll}} ()
+\begin{DoxyCompactList}\small\item\em Get the Roll with gyro-\/data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}{get\+Accl\+Roll}} ()
+\begin{DoxyCompactList}\small\item\em Get the roll with accl-\/data ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{MPU6050__GY521_8c_a4e9d05683d6f3a7e9cf6a2a95b4fd054}{get\+Angle\+Roll}} ()
+\item 
+void \mbox{\hyperlink{group__MPU6050_gad5723da18ebbc9a3730c81df47503f5a}{MPU6050\+\_\+\+Display\+\_\+\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Displays all Gyro and Accl Axis. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Gyro_ga7021b2a1eb586b74239bbfa19f42724a}{tilt\+\_\+direction\+\_\+t}} \mbox{\hyperlink{group__MPU6050_ga54401f79994f9addfe2f908f8a565e22}{MPU6050\+\_\+detect\+Tilt}} ()
+\begin{DoxyCompactList}\small\item\em detects the tilt of the Sensor in relation to the calibrated starting stance \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+software driver for MPU6050 in combination with a STM32 
+
+\begin{DoxyAuthor}{Author}
+Paul Mamatis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+Okt 10, 2020
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2020 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{MPU6050__GY521_8c_a4e9d05683d6f3a7e9cf6a2a95b4fd054}\label{MPU6050__GY521_8c_a4e9d05683d6f3a7e9cf6a2a95b4fd054}} 
+\index{MPU6050\_GY521.c@{MPU6050\_GY521.c}!getAngleRoll@{getAngleRoll}}
+\index{getAngleRoll@{getAngleRoll}!MPU6050\_GY521.c@{MPU6050\_GY521.c}}
+\doxysubsubsection{\texorpdfstring{getAngleRoll()}{getAngleRoll()}}
+{\footnotesize\ttfamily void get\+Angle\+Roll (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{MPU6050__GY521_8c_source_l00394}{394}} of file \mbox{\hyperlink{MPU6050__GY521_8c_source}{MPU6050\+\_\+\+GY521.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00394                    \{}
+\DoxyCodeLine{00395 }
+\DoxyCodeLine{00396 \textcolor{comment}{//  MPU6050\_Read\_Sensor(Sensor\_Data);}}
+\DoxyCodeLine{00397     \mbox{\hyperlink{group__MPU6050_ga923f606dca8c70b4e43e0191f01cd79b}{getAcclRoll}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
+\DoxyCodeLine{00398     \mbox{\hyperlink{group__MPU6050_gad5e70844772059924d57cc53655aa1f2}{getGyroRoll}}(\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}});}
+\DoxyCodeLine{00399 }
+\DoxyCodeLine{00400     \textcolor{keywordtype}{float} X = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg;}
+\DoxyCodeLine{00401     \textcolor{keywordtype}{float} Y = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg;}
+\DoxyCodeLine{00402     \textcolor{comment}{//komplementär FIlter}}
+\DoxyCodeLine{00403     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg =  0.98 * (X + \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gx\_deg) + (0.02 * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ax\_deg));}
+\DoxyCodeLine{00404     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg =  0.98 * (Y + \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gy\_deg) + (0.02 * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg)); }
+\DoxyCodeLine{00405     \textcolor{keywordtype}{float} X = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> X\_deg;}
+\DoxyCodeLine{00406     \textcolor{keywordtype}{float} Y = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Y\_deg;-\/> Gy\_deg) + (0.02 * (\mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Ay\_deg));}
+\DoxyCodeLine{00407     \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Z\_deg = \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Z\_deg + \mbox{\hyperlink{group__MPU6050_gabdc15688e79d6395670b10cf1b2e1235}{Sensor\_Data}} -\/> Gz\_deg;}
+\DoxyCodeLine{00408 \}}
+
+\end{DoxyCode}
